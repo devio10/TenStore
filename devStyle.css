@@ -1,0 +1,28 @@
+@charset "utf-8";
+@font-face {
+    font-family: "WorkSans Bold";
+    src: url("fonts/WorkSans-Bold.ttf"); 
+   }
+@font-face {
+    font-family: 'WorkSans Regular';
+    src: url("fonts/WorkSans-Regular.ttf"); 
+}
+h1 {
+	font-family: "WorkSans Bold";
+	font-size: 50px;
+}
+.mCard {
+	background: rgb(190,190,190);
+	background: linear-gradient(106deg, rgba(190,190,190,1) 0%, rgba(240,240,240,1) 100%);
+	box-shadow: 0px 6px 47px -12px rgba(171,171,171,0.98);
+	width: 50%;
+	height: 450px;
+	border-radius: 10px;
+	margin-left: auto;
+	margin-right: 30px;
+	margin-top: 40px;
+	color: black;
+	text-decoration: none;
+	font-family: "WorkSans Regular";
+	font-size: 15px;
+}
