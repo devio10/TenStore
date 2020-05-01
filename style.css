@@ -1,12 +1,20 @@
 @charset "utf-8";
 @font-face {
-    font-family: "WorkSans Bold";
-    src: url("fonts/WorkSans-Bold.ttf"); 
-   }
-@font-face {
-    font-family: 'WorkSans Regular';
-    src: url("fonts/WorkSans-Regular.ttf"); 
+	font-family: "WorkSans Bold";
+	src: url("fonts/WorkSans-Bold.ttf"); 
 }
+
+@font-face {
+	font-family: 'WorkSans Regular';
+	src: url("fonts/WorkSans-Regular.ttf"); 
+}
+
+h2 {
+	font-family: "WorkSans Bold";
+	font-size: 20px;
+	margin: 20px 0 0 30px;
+}
+
 h3 {
 	color: black;
 	text-decoration: none;
@@ -14,6 +22,7 @@ h3 {
 	font-size: 20px;
 	margin: 20px 0 0 30px;
 }
+
 .rCard {
 	background: rgb(190,190,190);
 	background: linear-gradient(106deg, rgba(190,190,190,1) 0%, rgba(240,240,240,1) 100%);
@@ -29,6 +38,7 @@ h3 {
 	font-family: "WorkSans Regular";
 	font-size: 15px;
 }
+
 .mCard {
 	background: rgb(190,190,190);
 	background: linear-gradient(106deg, rgba(190,190,190,1) 0%, rgba(240,240,240,1) 100%);
@@ -40,6 +50,7 @@ h3 {
 	margin-right: 30px;
 	margin-top: 40px;
 }
+
 .aCard {
 	background: rgb(190,190,190);
 	background: linear-gradient(106deg, rgba(190,190,190,1) 0%, rgba(240,240,240,1) 100%);
@@ -55,6 +66,7 @@ h3 {
 	font-family: "WorkSans Regular";
 	font-size: 15px;
 }
+
 .profile {
 	margin-left: auto;
 	margin-right: 30px;
@@ -63,6 +75,7 @@ h3 {
 	height: 32px;
 	border-radius: 25px;
 }
+
 .title {
 	font-family: "WorkSans Bold";
 	font-size: 20px;
@@ -70,6 +83,31 @@ h3 {
 	color: black;
 	text-decoration: none;
 }
+
+.listtype {
+	font-family: "WorkSans Regular";
+	font-size: 15px;
+	text-decoration: none;
+	color: black;
+}
+
+.listtypeS {
+	font-family: 'WorkSans Bold';
+	font-size: 15px;
+	text-decoration: none;
+	color: black;
+}
+
+#store {
+	text-decoration: none;
+	color: black;
+}
+
+.smallCards {
+	display: flex;
+	flex-direction: column;
+}
+
 /*
 .typebtn {
 	border: none;
