@@ -1,12 +1,12 @@
 @charset "utf-8";
 @font-face {
 	font-family: "WorkSans Bold";
-	src: url("fonts/WorkSans-Bold.ttf"); 
+	src: url("fonts/WorkSans-Bold.ttf") format('truetype'); 
 }
 
 @font-face {
 	font-family: 'WorkSans Regular';
-	src: url("fonts/WorkSans-Regular.ttf"); 
+	src: url("fonts/WorkSans-Regular.ttf") format('truetype'); 
 }
 
 /*---------------------------------------*/
