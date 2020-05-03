@@ -1,22 +1,103 @@
 @charset "utf-8";
 @font-face {
-	font-family: "WorkSans Bold";
+	font-family: "NotoSans Bold";
 	src: url("fonts/bold.ttf") format('truetype');
 }
 
 @font-face {
-	font-family: 'WorkSans Regular';
+	font-family: 'NotoSans Regular';
 	src: url("fonts/regular.ttf") format('truetype');
 }
 
 /*---------------------------------------*/
 
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+		background-color: var(--bg-color);
+}
+
+:root {
+	--bg-color: white;
+	--primary-color: #e6e6e6;
+	--secondary-color: #DCDCDC;
+	--font-color: black;
+	--selection-color: #7a7a7a;
+	--border-color: #929292;
+	--darkness: 255;
+	--brightness: 0;
+}
+
+[data-theme="dark"] {
+	--bg-color: #1c1c1c;
+	--primary-color: #121212;
+	--secondary-color: #0d0d0d;
+	--font-color: white;
+	--selection-color: #e6e6e6;
+	--border-color: #333333;
+	--darkness: 0;
+	--brightness: 1;
+}
+
+.themeSwitch {
+	display: inline-block;
+  height: 20px;
+  position: relative;
+  width: 50px;
+	margin-left: auto;
+	margin-right: 30px;
+}
+
+.themeSwitch input {
+  display:none;
+}
+
+.slider {
+  background-color: var(--secondary-color);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: var(--bg-color);
+  bottom: 4px;
+	top: 2px;
+  content: "";
+  height: 16px;
+  left: 3px;
+  position: absolute;
+  transition: .4s;
+  width: 16px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
 .title {
 	/*Верхняя часть каждой страницы*/
-	font-family: "WorkSans Bold";
+	font-family: "NotoSans Bold";
 	font-size: 18px;
 	margin: 15px 0px 0 0px;
-	color: black;
 	text-decoration: none;
 }
 
@@ -29,7 +110,7 @@
 	/*Фотография профиля*/
 	margin-left: auto;
 	margin-right: 30px;
-	background: gray;
+	background: var(--secondary-color);
 	width: 32px;
 	height: 32px;
 	border-radius: 25px;
@@ -37,8 +118,7 @@
 
 .mCard {
 	/*index.html; большая карточка*/
-	background: rgb(190,190,190);
-	background: linear-gradient(106deg, rgba(190,190,190,1) 0%, rgba(240,240,240,1) 100%);
+	/*background: linear-gradient(106deg, rgba(190,190,190,1) 0%, rgba(240,240,240,1) 100%);*/
 	box-shadow: 0px 10px 34px -9px rgba(0,0,0,0.27);
 	width: 70%;
 	height: 342px;
@@ -46,12 +126,20 @@
 	margin-left: 30px;
 	margin-right: 30px;
 	margin-top: 40px;
+	object-fit: cover;
+	background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mCard:hover {
+	box-shadow: 0px 10px 34px -9px rgba(50,50,50,0.5);
 }
 
 .rCard {
 	/*index.html; карточки справа*/
-	background: rgb(190,190,190);
-	background: #e6e6e6;
+	background: var(--primary-color);
 	box-shadow: 0px 10px 34px -9px rgba(0,0,0,0.27);
 	width: 400px;
 	height: 150px;
@@ -59,67 +147,250 @@
 	margin-left: auto;
 	margin-right: 30px;
 	margin-top: 40px;
-	color: black;
 	text-decoration: none;
-	font-family: "WorkSans Regular";
+	font-family: "NotoSans Regular";
 	font-size: 15px;
+	object-fit: cover;
+	background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.rCard:hover {
+	box-shadow: 0px 10px 34px -9px rgba(50,50,50,0.5);
+}
+
+.aContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	margin-left: 30px;
+	margin-top: 15px;
+	margin-right: 30px;
 }
 
 .aCard {
 	/*index.html, apps.html, games.html; карточка приложения*/
-	background: #e6e6e6;
+	background: var(--primary-color);
 	width: 150px;
 	height: 245px;
 	border-style: solid;
 	border-width: thin;
-	border-color: #929292;
+	border-color: var(--border-color);
 	border-radius: 10px;
+	/*
 	margin-left: 30px;
 	margin-right: 30px;
-	margin-top: 20px;
-	color: black;
+	*/
+	margin-bottom: 15px;
 	text-decoration: none;
-	font-family: "WorkSans Regular";
-	font-size: 15px;
+	font-family: "NotoSans Regular";
+	font-size: 14px;
 }
 
 .aCard:hover {
 	/*карточка приложения при наведении*/
-	background: #DCDCDC;
+	background: var(--secondary-color);
 	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
 }
 
 .aCardIcon {
 	/*значок в карточке приложения*/
-	width: 150px;
-	height: 150px;
-	background: white;
+	width: 120px;
+	height: 120px;
+	background: var(--bg-color);
 	border-radius: 10px;
 	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	padding: 15px;
 }
 
 .aCardName {
 	/*название в карточке приложения*/
-	font-size: 16px;
-	margin: 5px 0 0 9px;
+	font-size: 15px;
+	margin: 5px 9px 0 9px;
 }
 
 .aCardDev {
 	/*имя разработчика в карточке приложения*/
-	font-size: 13px;
+	font-size: 12px;
 	margin: 2px 0 0 9px;
-	font-family: 'WorkSans Regular'
+	font-family: 'NotoSans Regular'
+}
+
+.aPlatform {
+	margin: 5px 0 0 9px;
+	width: 16px;
+	height: 16px;
+	filter: invert(var(--brightness));
+}
+
+/*APP PAGE*/
+
+.aPageLogo {
+	width: 206px;
+	height: 206px;
+	background: var(--bg-color);
+	border-radius: 10px;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	border-style: solid;
+	border-width: thin;
+	border-color: var(--border-color);
+	margin: 0 0 0 10%;
+	padding: 30px;
+}
+
+.aPageName {
+	margin: -25px 0 0 2%;
+	font-family: 'NotoSans Bold';
+	font-size: 40px;
+}
+
+.aPageDev {
+	font-family: 'NotoSans Regular';
+	font-size: 25px;
+	margin: 60px 0 0 -225px;
+}
+
+.aPageDownload {
+	font-family: 'NotoSans Bold';
+	font-size: 15px;
+	color: var(--font-color);
+	margin: 0 0 0 0;
+	border: 0;
+	border-radius: 10px;
+	width: 250px;
+	height: 75px;
+	margin: 30px 0 0 150px;
+}
+
+#windows {
+	background: linear-gradient(135deg, rgba(0,130,252,1) 0%, rgba(0,49,102,1) 100%);
+	box-shadow: 0px 10px 34px 1px rgba(0,130,252,0.5);
+	display: flex;
+	align-items: center;
+}
+
+#windows:hover {
+	background: #0082fc;
+}
+
+#android {
+	background: linear-gradient(135deg, rgba(48,219,128,1) 0%, rgba(23,64,92,1) 100%);
+	box-shadow: 0px 10px 34px 1px rgba(48,219,128,0.5);
+	margin: 30px 0 0 60px;
+	display: flex;
+	align-items: center;
+}
+
+#android:hover {
+	background: #30db80;
+}
+
+.aPageDownload:hover {
+	box-shadow: 0px 10px 34px 1px rgba(0,0,0,0.25);
+}
+
+.aPageDownloadIcon {
+	filter: invert(1);
+	width: 35px;
+	height: 35px;
+	margin-left: 20px;
+}
+
+.aPageDownloadPlatform {
+	font-size: 15px;
+	margin-left: 10px;
+}
+
+.aPageDownloadVersion {
+	font-size: 12px;
+	margin-right: 20px;
+}
+
+#appTitle {
+	width: 100%;
+	height: 550px;
+	padding: 0;
+	margin: -48px 0 0 0;
+	object-fit: cover;
+	background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+}
+
+.block {
+	display: flex;
+	margin-left: 150px;
+	margin-right: 150px;
+	margin-top: 15px;
+}
+
+#requir {
+	/* TODO: requirements */
+}
+
+#screenshots {
+	overflow-x: auto;
+}
+
+.screenshot {
+	width: 300px;
+	height: auto;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	border-color: var(--border-color);
+	margin: 0 15px 0 15px;
+}
+
+.contact {
+	width: 19px;
+	height: 19px;
+	margin-bottom: -5px;
+	margin-right: 10px;
+	filter: invert(var(--brightness));
 }
 
 a {
-	color: black;
 	text-decoration: none;
+	color: var(--font-color);
 }
 
 h3 {
-	color: black;
+	color: var(--font-color);
 	text-decoration: none;
-	font-family: 'WorkSans Bold';
+	font-family: 'NotoSans Bold';
 	font-size: 20px;
 	margin: 20px 0 0 30px;
+}
+
+h4 {
+	color: var(--font-color);
+	text-decoration: none;
+	font-family: 'NotoSans Regular';
+	font-size: 14px;
+	margin: 14px 150px 0 150px;
+}
+
+::selection {
+	background: var(--selection-color);
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7a7a7a;
+	border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #545454;
 }

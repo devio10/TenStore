@@ -10,16 +10,79 @@
 
 <body>
 	<nav>
-		<ul class="title" style="display: flex; align-items: center">
-			<a href="index.html">TENSTORE</a>
-			<a href="apps.html">•APPS•</a>
-			<a href="games.html" style="font-family: 'WorkSans Regular'">GAMES•</a>
-			<a href="tenid.html" style="font-family: 'WorkSans Regular'">TENID•</a>
-			<a href="dev.html" style="font-family: 'WorkSans Regular'">DEV</a>
-			<img class="profile" src="dnavalny.png">
+		<ul class="title" id="appPageTitle" style="display: flex; align-items: center">
+			<a href="index.html" style="font-size='20px'">TENSTORE</a>
+			<a сlass="space">•</a>
+			<a href="apps.html" style="font-family: 'NotoSans Regular'">APPS</a>
+			<a сlass="space">•</a>
+			<a href="games.html" style="font-family: 'NotoSans Regular'">GAMES</a>
+			<a сlass="space">•</a>
+			<a href="tenid.html" style="font-family: 'NotoSans Regular';">TENID</a>
+			<a сlass="space">•</a>
+			<a href="dev.html" style="font-family: 'NotoSans Regular'">DEV</a>
+			<img class="profile" src="images/dnavalny.png">
+			<div style="display: flex; align-items: center">
+				<label class="themeSwitch" for="checkbox">
+			      <input type="checkbox" id="checkbox" />
+			      <div class="slider round"></div>
+			 	</label>
+			</div>
 		</ul>
 	</nav>
-	<img class="applogo" src="tenstore.svg" width="128" height="128" style="background: white; border-radius: 10px; box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12); border-style: solid; border-width: thin; border-color: #929292;">
-	<h3 style="font-size: 12px; text-align: center">TenStore version 2.0.0.7 Beta</h3>
+
+	<section id="appTitle" style="display: flex; align-items: center; background-image: linear-gradient( rgba(var(--darkness), var(--darkness), var(--darkness), 0.5), rgba(var(--darkness), var(--darkness), var(--darkness), 0.5) ), url(images/pic2.jfif);">
+		<img class="aPageLogo" src="images/musicx.png" width="210" height="210">
+		<h3 class="aPageName">$app_name</h3>
+		<h3 class="aPageDev">$app_dev</h3>
+	</section>
+
+	<h3 style="margin-left:150px; margin-top: 25px">Downloads</h3>
+	<div style="display: flex; align-items: center">
+		<a href="index.html" class="aPageDownload" id="windows">
+			<img class="aPageDownloadIcon" src="images/windows.svg">
+			<h2 class="aPageDownloadPlatform">Download for Windows</h2>
+			<h2 class="aPageDownloadVersion">$version</h2>
+		</a>
+		<a href="apps.html" class="aPageDownload" id="android">
+			<img class="aPageDownloadIcon" src="images/android.svg">
+			<h2 class="aPageDownloadPlatform">Download for Android</h2>
+			<h2 class="aPageDownloadVersion">$version</h2>
+		</a>
+	</div>
+
+	<h3 style="margin-left:150px; margin-top: 35px">Description</h3>
+		<h4>
+			Music X - удобный и функциональный музыкальный плеер.<p>
+			Ключевые возможности:<p>
+			Плейлисты - порядок в Вашей музыкальной библиотеке! Удобное создание и красивый дизайн Вам в этом помогут.<p>
+			Избранное - треки, которые больше, чем просто треки! Выберите самые лучшие и они всегда будут с Вами.<p>
+			Удобный поиск - найдите тот самый трек, который потерялся три года назад!<p>
+			Темная тема - переходите на темную сторону вместе со всеми.<p>
+			Музыка ВКонтакте - слушайте любимую музыку из ВКонтакте в Music X!<p>
+			Рекомендации ВКонтакте - откройте для себя новую музыку, которая подходит именно Вам.<p>
+			Карточки музыкантов - посмотрите дискографию Вашего любимого исполнителя и откройте что-то новое!<p>
+			Популярное - узнайте, что сейчас популярно во ВКонтакте.<p>
+			Загруженное - скачайте с ВКонтакте на компьютер Вашу любимую музыку и слушайте даже без подключения к интернету!
+		</h4>
+	<h3 style="margin-left:150px; margin-top: 25px">Screenshots</h3>
+		<div class="block" id="screenshots">
+			<img class="screenshot" src="images/0screenshot_1.jpg">
+			<img class="screenshot" src="images/0screenshot_2.jpg">
+			<img class="screenshot" src="images/0screenshot_3.jpg">
+			<img class="screenshot" src="images/0screenshot_4.jpg">
+			<img class="screenshot" src="images/0screenshot_2.jpg">
+			<img class="screenshot" src="images/0screenshot_2.jpg">
+		</div>
+	<h3 style="margin-left:150px; margin-top: 25px">System requirements</h3>
+		<div class="block" id="requir">
+
+		</div>
+	<h3 style="margin-left:150px; margin-top: 25px">Contact with developer</h3>
+		<h4>
+			<img class="contact" src="images/mail.svg"><a href="mailto:fooxboy@gmail.com">fooxboy@gmail.com</a> <p>
+			<img class="contact" src="images/telegram.svg"><a href="https://t.me/fooxboy">@fooxboy</a>
+		</h4>
+	<h3 style="font-size: 12px; text-align: center">TenStore version 2.0.0.8 Beta</h3>
+	<script src="scripts/theme.js"></script>
 </body>
 </html>

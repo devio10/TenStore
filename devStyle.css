@@ -1,14 +1,14 @@
 @charset "utf-8";
 @font-face {
-    font-family: "WorkSans Bold";
-    src: url("fonts/WorkSans-Bold.ttf"); 
+    font-family: "NotoSans Bold";
+    src: url("fonts/NotoSans-Bold.ttf");
    }
 @font-face {
-    font-family: 'WorkSans Regular';
-    src: url("fonts/WorkSans-Regular.ttf"); 
+    font-family: 'NotoSans Regular';
+    src: url("fonts/NotoSans-Regular.ttf");
 }
 h1 {
-	font-family: "WorkSans Bold";
+	font-family: "NotoSans Bold";
 	font-size: 50px;
 }
 .mCard {
@@ -23,6 +23,6 @@ h1 {
 	margin-top: 40px;
 	color: black;
 	text-decoration: none;
-	font-family: "WorkSans Regular";
+	font-family: "NotoSans Regular";
 	font-size: 15px;
 }
