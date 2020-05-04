@@ -15,7 +15,8 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
-		background-color: var(--bg-color);
+		background: var(--bg-color);
+		font-family: var(--regular-font);
 }
 
 :root {
@@ -27,6 +28,8 @@ html, body {
 	--border-color: #929292;
 	--darkness: 255;
 	--brightness: 0;
+	--bold-font: "NotoSans Bold";
+	--regular-font: "NotoSans Regular";
 }
 
 [data-theme="dark"] {
@@ -38,6 +41,73 @@ html, body {
 	--border-color: #333333;
 	--darkness: 0;
 	--brightness: 1;
+	--bold-font: "NotoSans Bold";
+	--regular-font: "NotoSans Regular";
+}
+
+.pageFrame {
+	color: var(--font-color);
+	border-radius: 10px;
+	border-style: solid;
+	border-width: thin;
+	padding-top:0px;
+	width: 60%;
+  height: 60%;
+	background-color: var(--bg-color);
+	border-color: var(--border-color);
+}
+
+.frameContainer {
+	width: 320px; /*Ширина блока*/
+  height: 320px; /*Высота блока*/
+  margin:0 auto;
+  overflow:visible;
+  position:absolute;
+  left:20%;
+  top:20%;
+	margin-left:-30%; /*Смещаем блок на половину всей ширины влево*/
+  margin-top:-30%; /*Смещаем блок на половину высоты вверх*/
+}
+
+.notification {
+	position: fixed;
+  top: 0;
+  width: 100%;
+	margin-left: 10px;
+	margin-right: 30px;
+	margin-top: 10px;
+	background: var(--primary-color);
+	color: var(--font-color);
+	font-family: var(--regular-font);
+	font-size: 14px;
+	width: 300px;
+	height: auto;
+	opacity: 0.9;
+	border-radius: 10px;
+	border-style: solid;
+	border-width: thin;
+	border-color: var(--border-color);
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	visibility: visible;
+	transition: .3s opacity, .3s visibility;
+}
+
+.notificationButton {
+	color: var(--font-color);
+	font-family: var(--bold-font);
+	font-size: 12px;
+	float: right;
+	margin: 5px 10px 0 0px;
+}
+
+.closeNotification {
+	margin: 10px 10px 0 0;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .themeSwitch {
@@ -263,29 +333,6 @@ input:checked + .slider:before {
 	margin: 30px 0 0 150px;
 }
 
-#windows {
-	background: linear-gradient(135deg, rgba(0,130,252,1) 0%, rgba(0,49,102,1) 100%);
-	box-shadow: 0px 10px 34px 1px rgba(0,130,252,0.5);
-	display: flex;
-	align-items: center;
-}
-
-#windows:hover {
-	background: #0082fc;
-}
-
-#android {
-	background: linear-gradient(135deg, rgba(48,219,128,1) 0%, rgba(23,64,92,1) 100%);
-	box-shadow: 0px 10px 34px 1px rgba(48,219,128,0.5);
-	margin: 30px 0 0 60px;
-	display: flex;
-	align-items: center;
-}
-
-#android:hover {
-	background: #30db80;
-}
-
 .aPageDownload:hover {
 	box-shadow: 0px 10px 34px 1px rgba(0,0,0,0.25);
 }
@@ -307,32 +354,11 @@ input:checked + .slider:before {
 	margin-right: 20px;
 }
 
-#appTitle {
-	width: 100%;
-	height: 550px;
-	padding: 0;
-	margin: -48px 0 0 0;
-	object-fit: cover;
-	background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
-}
-
 .block {
 	display: flex;
 	margin-left: 150px;
 	margin-right: 150px;
 	margin-top: 15px;
-}
-
-#requir {
-	/* TODO: requirements */
-}
-
-#screenshots {
-	overflow-x: auto;
 }
 
 .screenshot {
@@ -351,6 +377,120 @@ input:checked + .slider:before {
 	margin-bottom: -5px;
 	margin-right: 10px;
 	filter: invert(var(--brightness));
+}
+
+.accentButton {
+	width: 175px;
+	height: 50px;
+	font-size: 18px;
+	color: white;
+	border: 0;
+	border-radius: 10px;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	background: linear-gradient(135deg, rgba(130,130,130,1) 0%, rgba(49,49,49,1) 100%);
+	margin: 20px 10px 0 0;
+	text-align: center;
+}
+
+.accentButtonIcon {
+	filter: invert(1);
+	width: 20px;
+	height: 20px;
+	margin-top: 15px;
+}
+
+.accentButton:hover {
+	box-shadow: 0px 4px 15px 0px rgba(40,40,40,0.24);
+	background: rgba(49,49,49,1);
+}
+
+.outlineButton {
+	width: 175px;
+	height: 50px;
+	font-size: 18px;
+	color: white;
+	border: solid;
+	border-width: thin;
+	border-color: var(--border-color);
+	border-radius: 10px;
+	background: var(--bg-color);
+	margin: 20px 10px 0 0;
+	text-align: center;
+}
+
+.outlineButtonIcon {
+	filter: invert(var(--brightness));
+	width: 20px;
+	height: 20px;
+	margin-top: 15px;
+}
+
+.outlineButton:hover {
+	background: var(--primary-color);
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -64.5px;
+  margin-top: -85.5px;
+}
+
+#parent {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#requir {
+	/* TODO: requirements */
+}
+
+#screenshots {
+	overflow-x: auto;
+}
+
+#appTitle {
+	width: 100%;
+	height: 550px;
+	padding: 0;
+	margin: -48px 0 0 0;
+	object-fit: cover;
+	background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+}
+
+#windows {
+	background: linear-gradient(135deg, rgba(0,130,252,1) 0%, rgba(0,49,102,1) 100%);
+	box-shadow: 0px 10px 34px 1px rgba(0,130,252,0.5);
+	display: flex;
+	align-items: center;
+}
+
+#windows:hover {
+	background: #0082fc;
+}
+
+#android {
+	background: linear-gradient(135deg, rgba(48,219,128,1) 0%, rgba(23,64,92,1) 100%);
+	box-shadow: 0px 10px 34px 1px rgba(48,219,128,0.5);
+	margin: 30px 0 0 60px;
+	display: flex;
+	align-items: center;
+}
+
+#android:hover {
+	background: #30db80;
 }
 
 a {
@@ -393,4 +533,53 @@ h4 {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #545454;
+}
+
+/*LOADING SCREEN*/
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height:100%;
+}
+.loader-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border: 4px solid #Fff;
+  animation: loader 2s infinite ease;
+}
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+@keyframes loader {
+  0% { transform: rotate(0deg);}
+  25% { transform: rotate(180deg);}
+  50% { transform: rotate(180deg);}
+  75% { transform: rotate(360deg);}
+  100% { transform: rotate(360deg);}
+}
+@keyframes loader-inner {
+  0% { height: 0%;}
+  25% { height: 0%;}
+  50% { height: 100%;}
+  75% { height: 100%;}
+  100% { height: 0%;}
 }
