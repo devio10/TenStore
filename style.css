@@ -17,6 +17,7 @@ html, body {
     margin: 0;
 		background: var(--bg-color);
 		font-family: var(--regular-font);
+		transition: background-color 0.15s linear;
 }
 
 :root {
@@ -103,6 +104,7 @@ html, body {
 	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
 	visibility: visible;
 	backdrop-filter: blur(10px);
+	transition: background-color 0.15s linear;
 }
 
 .notificationButton {
@@ -257,17 +259,19 @@ input:checked + .slider:before {
 	box-shadow: 0px 10px 34px -9px rgba(50,50,50,0.5);
 }
 
-#aContainer {
+.aContainer {
+	width: 90%;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(60px, 15%));
 	margin-left: 30px;
 	margin-top: 15px;
 	margin-right: 30px;
 }
 
-.aContainer {
+#aContainer {
+	width: 90%;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(60px, 15%));
 	margin-left: 30px;
 	margin-top: 15px;
 	margin-right: 30px;
@@ -291,6 +295,7 @@ input:checked + .slider:before {
 	font-family: "NotoSans Regular";
 	font-size: 14px;
 	transition: box-shadow 0.2s;
+	transition: background-color 0.15s linear;
 }
 
 .aCard:hover {
@@ -333,7 +338,7 @@ input:checked + .slider:before {
 
 /*APP PAGE*/
 
-.aPageLogo {
+#aPageLogo {
 	width: 206px;
 	height: 206px;
 	background: var(--bg-color);
@@ -346,13 +351,13 @@ input:checked + .slider:before {
 	padding: 30px;
 }
 
-.aPageName {
+#aPageName {
 	margin: -25px 0 0 2%;
 	font-family: 'NotoSans Bold';
 	font-size: 40px;
 }
 
-.aPageDev {
+#aPageDev {
 	font-family: 'NotoSans Regular';
 	font-size: 25px;
 	margin: 60px 0 0 -225px;
@@ -361,7 +366,7 @@ input:checked + .slider:before {
 .aPageDownload {
 	font-family: 'NotoSans Bold';
 	font-size: 15px;
-	color: var(--font-color);
+	color: white;
 	margin: 0 0 0 0;
 	border: 0;
 	border-radius: 10px;
@@ -411,8 +416,6 @@ input:checked + .slider:before {
 .contact {
 	width: 19px;
 	height: 19px;
-	margin-bottom: -5px;
-	margin-right: 10px;
 	filter: invert(var(--brightness));
 }
 
@@ -496,7 +499,7 @@ input:checked + .slider:before {
 	overflow-x: auto;
 }
 
-#appTitle {
+.appTitle {
 	width: 100%;
 	height: 550px;
 	padding: 0;
@@ -507,6 +510,8 @@ input:checked + .slider:before {
   background-repeat: no-repeat;
   background-size: cover;
 	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+	display: flex;
+	align-items: center;
 }
 
 #windows {
@@ -551,6 +556,7 @@ h4 {
 	font-family: 'NotoSans Regular';
 	font-size: 14px;
 	margin: 14px 150px 0 150px;
+
 }
 
 h2 {
@@ -690,28 +696,16 @@ h2 {
 	margin-right: 5px;
 }
 
-.aPageLogoM {
-	visibility: hidden;
-	width: 0;
-	height: 0;
-}
-
-.aPageNameM {
-	visibility: hidden;
-	font-size: 0;
-}
-
-.aPageDevM {
-	visibility: hidden;
-	font-size: 0;
-}
-
 #productivity {
 	height: 270px;
 	background: #000;
 	text-align: center;
 	align-items: center;
 	border-radius: 10px;
+	grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+	margin-left: 5%;
+	margin-top: 15px;
+	margin-right: 5%;
 	background-image: linear-gradient( rgba(var(--darkness), var(--darkness), var(--darkness), 0.9), rgba(var(--darkness), var(--darkness), var(--darkness), 0.6) ), url(images/codeBg.jpg);
 }
 
@@ -721,6 +715,10 @@ h2 {
 	text-align: center;
 	align-items: center;
 	border-radius: 10px;
+	grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+	margin-left: 5%;
+	margin-top: 15px;
+	margin-right: 5%;
 	background-image: linear-gradient( rgba(var(--darkness), var(--darkness), var(--darkness), 0.9), rgba(var(--darkness), var(--darkness), var(--darkness), 0.6) ), url(images/codeBg.jpg);
 }
 
@@ -732,10 +730,39 @@ h2 {
 	border-radius: 10px;
 	background-image: linear-gradient( rgba(var(--darkness), var(--darkness), var(--darkness), 0.9), rgba(var(--darkness), var(--darkness), var(--darkness), 0.6) ), url(images/codeBg.jpg);
 	margin-bottom: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+	margin-left: 5%;
+	margin-top: 15px;
+	margin-right: 5%;
+}
+
+#hDownloads {
+	margin-left:150px;
+	margin-top: 25px
+}
+
+#bDownloads {
+	display: flex;
+	align-items: center;
+}
+
+#bDesc {
+	margin-left:150px;
+	margin-top: 35px;
+}
+
+#bScr {
+	margin-left:150px;
+	margin-top: 35px;
 }
 
 @media (orientation: portrait) {
 	/*Сайт для телефонов*/
+	#bScr {
+		margin-left:5%;
+		margin-top: 35px;
+	}
 	.aContainer {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -744,33 +771,78 @@ h2 {
 		margin-right: 5%;
 	}
 
-	.aPageLogoM {
+	#aContainer {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(60px, 15%));
+		margin-left: 5%;
+		margin-top: 15px;
+		margin-right: 5%;
+	}
+
+	.appTitle {
 		visibility: visible;
-		width: 206px;
-		height: 206px;
+		display: flex;
+		align-items: flex-start;
+		height: 110px;
+		margin: 0;
+		text-align: left;
+	}
+
+	#aPageLogo {
+		visibility: visible;
+		width: 80px;
+		height: 80px;
 		background: var(--bg-color);
 		border-radius: 10px;
 		box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
 		border-style: solid;
 		border-width: thin;
 		border-color: var(--border-color);
-		padding: 30px;
+		margin: 5% 0 0 5%;
 	}
 
-	.aPageNameM {
+	#aPageName {
 		visibility: visible;
 		font-family: 'NotoSans Bold';
-		font-size: 40px;
+		font-size: 22px;
+		margin: 5% 5% 0 5%;
 	}
 
-	.aPageDevM {
-		visibility: visible;
-		font-family: 'NotoSans Regular';
-		font-size: 25px;
-	}
-
-	#appTitle {
+	#aPageDev {
 		visibility: hidden;
+		font-family: 'NotoSans Regular';
+		font-size: 20px;
+		margin: 0 0 0 10px;
+	}
+
+	#hDownloads {
+		margin-left: 5%;
+		margin-top: 80px;
+	}
+
+	#bDownloads {
+		align-items: flex-start;
+	}
+
+	h4 {
+		margin-left: 7%;
+		margin-right: 7%;
+	}
+
+	.block {
+		margin-left: 7%;
+		margin-right: 7%;
+	}
+
+	#aPageDownload {
+		width: 30%;
+		height: 60px;
+		margin: 30px 5% 0 5%;
+	}
+
+	#bDesc {
+		margin-top: 35px;
+		margin-left: 5%;
 	}
 
 	.notification {
@@ -789,7 +861,9 @@ h2 {
 
 	#topBlock {
 		display: inherit;
+		margin-top: 5%;
 	}
+
 	.title {
 		/*Верхняя часть каждой страницы*/
 		font-family: var(--bold-font);

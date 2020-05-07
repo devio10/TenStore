@@ -5,7 +5,55 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TenStore</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="style.css?v=1002" rel="stylesheet" type="text/css">
+	<script>
+	function getUrlVars(key) {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+		});
+		return vars;
+		}
+		//Получаем данные и присваиваем их
+		let key = "KdSqSAOC";
+		let select = getUrlVars()["select"];
+		let value = getUrlVars()["value"];
+
+		const request = new XMLHttpRequest();
+		const url = "api.php";
+		const params = "key=" + key+ "&select=" + select+ "&value=" + value;
+		request.responseType =	"json";
+		request.open("POST", url, true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.addEventListener("readystatechange", () => {
+			if (request.readyState === 4 && request.status === 200) {
+				let obj = request.response;
+				for(let i=0; i<obj.apps.length; i++) {
+					document.getElementById("aPageLogo").src=obj.apps[0].icon;
+					document.getElementById("aPageName").innerHTML=obj.apps[0].appname;
+					if (obj.apps[0].windows == 0) {
+						document.getElementById("windows").style.display = 'none';
+					}
+					if (obj.apps[0].android == 0) {
+						document.getElementById("android").style.display = 'none';
+					}
+					document.getElementById("windows").href=obj.apps[0].windows;
+					document.getElementById("android").href=obj.apps[0].android;
+					document.getElementById("desc").innerHTML=obj.apps[0].description;
+					if (obj.telegram == null) {
+						document.getElementById("telegram").style.display = 'none';
+					}
+					if (obj.email == null) {
+						document.getElementById("email").style.display = 'none';
+					}
+					document.getElementById("telegramL").href=obj.apps[0].telegram;
+					document.getElementById("emailL").href=obj.apps[0].email;
+				}
+			}
+		});
+		request.send(params);
+	</script>
+
 </head>
 
 <body>
@@ -32,47 +80,32 @@
 		</ul>
 	</nav>
 
-	<section>
-		<img class="aPageLogoM" src="images/musicx.png">
-		<h3 class="aPageNameM">app_name</h3>
-		<h3 class="aPageDevM">app_dev</h3>
+	<section class="appTitle" style="background-image: linear-gradient( rgba(var(--darkness), var(--darkness), var(--darkness), 0.95) 5%, rgba(var(--darkness), var(--darkness), var(--darkness), 0.4) ), url(images/emptyBgLight.jpeg);">
+		<img id="aPageLogo" src="images/empty.svg" width="210" height="210">
+		<h3 id="aPageName">Что-то не сработало :/</h3>
+		<!-- <h3 class="aPageDev">Press Team</h3> -->
 	</section>
 
-	<section id="appTitle" style="display: flex; align-items: center; background-image: linear-gradient( rgba(var(--darkness), var(--darkness), var(--darkness), 0.5), rgba(var(--darkness), var(--darkness), var(--darkness), 0.5) ), url(images/pic2.jfif);">
-		<img class="aPageLogo" src="images/musicx.png" width="210" height="210">
-		<h3 class="aPageName">app_name</h3>
-		<h3 class="aPageDev">app_dev</h3>
-	</section>
-
-	<h3 style="margin-left:150px; margin-top: 25px">Загрузки</h3>
-	<div style="display: flex; align-items: center">
+	<h3 id="hDownloads">Загрузки</h3>
+	<div id="bDownloads">
 		<a href="index.html" class="aPageDownload" id="windows">
 			<img class="aPageDownloadIcon" src="images/windows.svg">
-			<h2 class="aPageDownloadPlatform">Загрузить для Windows</h2>
-			<h2 class="aPageDownloadVersion">$version</h2>
+			<h2 class="aPageDownloadPlatform">Windows</h2>
+			<!-- <h2 class="aPageDownloadVersion">$version</h2> -->
 		</a>
 		<a href="apps.html" class="aPageDownload" id="android">
 			<img class="aPageDownloadIcon" src="images/android.svg">
-			<h2 class="aPageDownloadPlatform">Загрузить для Android</h2>
-			<h2 class="aPageDownloadVersion">$version</h2>
+			<h2 class="aPageDownloadPlatform">Android</h2>
+			<!-- <h2 class="aPageDownloadVersion">$version</h2> -->
 		</a>
 	</div>
 
-	<h3 style="margin-left:150px; margin-top: 35px">Описание</h3>
-		<h4>
-			Music X - удобный и функциональный музыкальный плеер.<p>
-			Ключевые возможности:<p>
-			Плейлисты - порядок в Вашей музыкальной библиотеке! Удобное создание и красивый дизайн Вам в этом помогут.<p>
-			Избранное - треки, которые больше, чем просто треки! Выберите самые лучшие и они всегда будут с Вами.<p>
-			Удобный поиск - найдите тот самый трек, который потерялся три года назад!<p>
-			Темная тема - переходите на темную сторону вместе со всеми.<p>
-			Музыка ВКонтакте - слушайте любимую музыку из ВКонтакте в Music X!<p>
-			Рекомендации ВКонтакте - откройте для себя новую музыку, которая подходит именно Вам.<p>
-			Карточки музыкантов - посмотрите дискографию Вашего любимого исполнителя и откройте что-то новое!<p>
-			Популярное - узнайте, что сейчас популярно во ВКонтакте.<p>
-			Загруженное - скачайте с ВКонтакте на компьютер Вашу любимую музыку и слушайте даже без подключения к интернету!
+	<h3 id="bDesc">Описание</h3>
+		<h4 id="desc">
+			Здесь должно было быть описание, но что-то не сработало :/ <br>
+			Обратитесь к администратору сервера.
 		</h4>
-	<h3 style="margin-left:150px; margin-top: 25px">Скриншоты</h3>
+	<h3 id="bScr">Скриншоты</h3>
 		<div class="block" id="screenshots">
 			<img class="screenshot" src="images/0screenshot_1.jpg">
 			<img class="screenshot" src="images/0screenshot_2.jpg">
@@ -81,14 +114,16 @@
 			<img class="screenshot" src="images/0screenshot_2.jpg">
 			<img class="screenshot" src="images/0screenshot_2.jpg">
 		</div>
-	<h3 style="margin-left:150px; margin-top: 25px">Системные требования</h3>
+	<h3 id="bDesc">Системные требования</h3>
 		<div class="block" id="requir">
-
+			<div class="aContainer" id="editorsChoice">
+				<h2>мы работаем над этим пунктом.</h2>
+			</div>
 		</div>
-	<h3 style="margin-left:150px; margin-top: 25px">Связь с разработчиком</h3>
+	<h3 id="bDesc" style="margin-bottom: 100px;">Связь с разработчиком</h3>
 		<h4>
-			<img class="contact" src="images/mail.svg"><a href="mailto:fooxboy@gmail.com">fooxboy@gmail.com</a> <p>
-			<img class="contact" src="images/telegram.svg"><a href="https://t.me/fooxboy">@fooxboy</a>
+			<img class="contact" id="email" src="images/mail.svg"><a id="emailL" href="mailto:fooxboy@gmail.com">Email</a> <p>
+			<img class="contact" id="telegram" src="images/telegram.svg"><a id="telegramL" href="https://t.me/fooxboy">Telegram</a>
 		</h4>
 		<div class="loader-wrapper">
 			<span class="loader"><span class="loader-inner"></span></span>

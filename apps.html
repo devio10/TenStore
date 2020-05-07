@@ -5,36 +5,37 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TenStore</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="style.css?v=1002" rel="stylesheet" type="text/css">
 	<script src="scripts/apps.js"></script>
 	<script>
-	let key = "KdSqSAOC";
-	let count = "more";
-	let select = "all";
-	const request = new XMLHttpRequest();
-	const url = "api.php";
-	const params = "key=" + key+ "&count=" + count+ "&select=" + select;
-	request.responseType =	"json";
-	request.open("POST", url, true);
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	request.addEventListener("readystatechange", () => {
-	    if (request.readyState === 4 && request.status === 200) {
-	        let obj = request.response;
-					for(let i=0; i<obj.apps.length; i++) {
-					var aCard = document.createElement('div');
-			    aCard.className = 'aCard';
-			    aCard.innerHTML = "<a href='app.html?id="+ obj.apps[i].id +"'> \
-			      <img class='aCardIcon' src='"+ obj.apps[i].icon +"'> \
-			      <h3 class='aCardName'>"+ obj.apps[i].appname +"</h3> \
-			      <h3 class='aCardDev'>"+ obj.apps[i].devname +"</h3> \
-			    </a>"
-					document.getElementById('aContainer').appendChild(aCard);
-				}
-		}
-	});
+		let key = "KdSqSAOC";
+		let count = "more";
+		let select = "type";
+		value = "app";
 
-	request.send(params);
-</script>
+		const request = new XMLHttpRequest();
+		const url = "api.php";
+		const params = "key=" + key+ "&count=" + count+ "&select=" + select+ "&value=" + value;
+		request.responseType =	"json";
+		request.open("POST", url, true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.addEventListener("readystatechange", () => {
+			if (request.readyState === 4 && request.status === 200) {
+				let obj = request.response;
+				for(let i=0; i<obj.apps.length; i++) {
+				var aCard = document.createElement('div');
+				aCard.className = 'aCard';
+				aCard.innerHTML = "<a href='app.html?&select=id&value="+ obj.apps[i].id +"'> \
+					<img class='aCardIcon' src='"+ obj.apps[i].icon +"'> \
+					<h3 class='aCardName'>"+ obj.apps[i].appname +"</h3> \
+					<h3 class='aCardDev'>"+ obj.apps[i].devname +"</h3> \
+				</a>"
+				document.getElementById('aContainer').appendChild(aCard);
+				}
+			}
+		});
+		request.send(params);
+	</script>
 </head>
 
 <body>
