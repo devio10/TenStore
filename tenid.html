@@ -2,58 +2,62 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>TenStore</title>
+	<title>TenID</title>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="style.css?v=1100" rel="stylesheet" type="text/css">
+	<link href="mobile.css?v=1000" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<nav>
-		<!--<a href="index.html" class="mobileLogo">TENSTORE</a>-->
 		<ul class="title" style="display: flex; align-items: center">
-			<a id="logo" href="index.html" style="font-size='20px'">TENSTORE</a>
+			<a id="logo" href="tenid.html" style="font-family: var(--bold-font)">TENID</a>
 			<a сlass="space">•</a>
-			<a class="navItem" href="apps.html" style="font-family: 'NotoSans Regular'">ПРИЛОЖЕНИЯ</a>
+			<a class="navItem" href="apps.html">ПРИЛОЖЕНИЯ</a>
 			<a сlass="space">•</a>
-			<a class="navItem" href="games.html" style="font-family: 'NotoSans Regular'">ИГРЫ</a>
+			<a class="navItem" href="games.html">ИГРЫ</a>
 			<a сlass="space">•</a>
-			<a class="navItem" href="tenid.html">TENID</a>
-			<a сlass="space">•</a>
-			<a class="navItem" href="dev.html" style="font-family: 'NotoSans Regular'">API</a>
+			<a class="navItem" href="index.html">TENSTORE</a>
+
 			<div style="display: flex; align-items: center">
 				<label id="mobileSwitch" class="themeSwitch" for="checkbox">
-						<input type="checkbox" id="checkbox" />
+						<input type="checkbox" id="checkbox"/>
 						<div class="slider round"></div>
 				</label>
 			</div>
-			<h3 id="profileName">Dmitry Navalny</h3>
-			<img class="profile" src="images/dnavalny.png">
+			<img id="mUserPhoto" src="images/login.svg">
+			<a id="userName" href="tenid.html">Войти</a>
+			<img id="noUserPhoto" src="images/login.svg">
+			<img id="userPhoto" src="images/login.svg" style="display: none">
 		</ul>
 	</nav>
-		<div id="parent">
-			<div id="imgBlock">
-				<img src="images/underConstruction.png">
-				<h2 style="color: var(--font-color)">Эта страница в разработке.</h2>
-				<div class="accentButton" onclick="goBack()"><img class="accentButtonIcon" src="images/back.svg"></div>
-			</div>
-		</div>
+
+	 <!-- <div style="margin: 0 35px 0 35px">
+		<img id="mediumUserPhoto" src="images/empty.svg">
+		<h3 id="aPageName" >Что-то не сработало :/</h3>
+	</div> -->
+
+	<div id="idBtms">
+		<a href="register.html"><div class="accentButton" style="margin-right: 15px; margin-bottom: 100px">Создать аккаунт</div></a>
+		<a href="login.html"><div class="outlineButton" style="margin-left: 15px; margin-bottom: 100px">Войти в аккаунт</div></a>
+	</div>
+
+	<div id="notPlace">
+		<!-- уведомления здесь -->
+	</div>
 
 	<div class="loader-wrapper">
 		<span class="loader"><span class="loader-inner"></span></span>
 	</div>
+
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-	<script>
-		$(window).on("load",function(){
-		$(".loader-wrapper").fadeOut("slow");
-		});
-	</script>
-	<script>
-	function goBack() {
-	  window.history.go(-1);
-	}
-	</script>
+	<script src="scripts/loadScreen.js"></script>
 	<script src="scripts/closeNotification.js"></script>
 	<script src="scripts/newNotification.js"></script>
 	<script src="scripts/theme.js"></script>
+	<script src="scripts/goBack.js"></script>
 	<script src="scripts/setupNot.js"></script>
+	<script src="scripts/login.js"></script>
+	<script>login()</script>
 </body>
 </html>
