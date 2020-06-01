@@ -26,7 +26,15 @@ if($_POST['action']=="4LlFCT"){
 isset($_POST['id']);
 $value=$_POST['id'];
     $statement = $pdo->prepare("SELECT * FROM `apps` WHERE `id`='".$id."' ORDER BY `apps`.`downloads` DESC");
-}}
+	$statement->execute();
+$userData_List = array();
+while($row=$statement->fetch(PDO::FETCH_ASSOC)){
+		$userData_List['apps'][] = $row;	
+	}
+$json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
+$json=unicode_escape_decode($json);
+echo $json;
+}
 //download (need edit)
 if($_POST['action']=="NvXrSW"){
     $id=$_POST['id'];
@@ -34,9 +42,9 @@ if($_POST['action']=="NvXrSW"){
     $statement->execute([$id]);
 }
 //restore password query
-if($_POST['action']="fg0348"){
+if($_POST['action']=="fg0348"){
 	isset($_POST['login']);
-$login=$_POST['login'];;
+$login=$_POST['login'];
 if (filter_var($login, FILTER_VALIDATE_EMAIL) !== false)
 {
     $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `email`='".$login."'");
