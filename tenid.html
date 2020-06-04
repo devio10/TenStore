@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Профиль — TenID</title>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="style.css?v=1100" rel="stylesheet" type="text/css">
+	<link href="mobile.css?v=1000" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<a id="mLogo">TENID</a>
+	<nav>
+		<ul class="title" style="display: flex; align-items: center">
+			<a id="logo" style="font-family: var(--bold-font)">TENID</a>
+			<a id="spaceF">•</a>
+			<a class="navItem" href="tenid" style="font-family: var(--bold-font)">ПРОФИЛЬ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="library">БИБЛИОТЕКА</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="settings">НАСТРОЙКИ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="dev">DEV</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="index">TENSTORE</a>
+
+			<div style="display: flex; align-items: center">
+				<label id="mobileSwitch" class="themeSwitch" for="checkbox">
+						<input type="checkbox" id="checkbox"/>
+						<div class="slider round"></div>
+				</label>
+			</div>
+			<a id="userName" href="tenid" style="visibility: hidden"><img id="noUserPhoto" src="images/login.svg"></a>
+			<a id="userName" href="tenid" style="visibility: hidden"><img id="userPhoto" src="images/login.svg" style="display: none"></a>
+		</ul>
+	</nav>
+
+	<div class="stage" id="logged" style="display: none">
+		<div id="userPicDiv">
+			<img id="idUserPic" src="images/user.svg">
+		</div>
+		<h3 id="name" style="width: 100%; text-align: center; margin: 10px 0 5px 0">Имя фамилия</h3>
+		<h3 id="login" style="width: 100%; text-align: center; margin: 0 0 5px 0; font-size: 12px">никнейм</h3>
+		<h3 id="mail" style="width: 100%; text-align: center; margin: 0 0 30px 0; font-size: 12px">почта</h3>
+		<a href="index"><button class="outlineButton" id="regBtn">Сменить фотографию</button></a>
+		<a href="account"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Моя библиотека</button></a>
+		<a href="account"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Редактировать профиль</button></a>
+		<a href="security"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Подключённые приложения</button></a>
+		<button class="outlineButton" id="regBtn" style="margin-top: 15px" onclick="logOff()">Выйти из аккаунта</button>
+	</div>
+	<div class="stage" id="notLogged">
+		<img class="titleIcon" src="images/register.svg"></img>
+		<h3 style="width: 100%; text-align: center; margin: 10px 0 10px 0">Добро пожаловать</h3>
+		<h4 style="width: 100%; text-align: center; margin: 10px 0 30px 0">Войдите в аккаунт, чтобы получить все возможности TenStore.</h4>
+		<a href="register"><button class="accentButton" id="regBtn" style="margin-top: 15px">Создать аккаунт</button></a>
+		<h3 style="width: 100%; text-align: center; margin: 15px 0 0 0; font-family: var(--regular-font); font-size: 12px">Уже есть аккаунт?</h3>
+		<a href="login"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Войти в аккаунт</button></a>
+	</div>
+
+	<div id="notPlace">
+		<!-- уведомления здесь -->
+	</div>
+
+	<div class="loader-wrapper">
+		<span class="loader"><span class="loader-inner"></span></span>
+	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	<script src="scripts/loadScreen.js"></script>
+	<script src="scripts/closeNotification.js"></script>
+	<script src="scripts/newNotification.js"></script>
+	<script src="scripts/theme.js"></script>
+	<script src="scripts/goBack.js"></script>
+	<script src="scripts/setupNot.js"></script>
+	<script src="scripts/login.js"></script>
+	<script>TenIDLogin()</script>
+</body>
+</html>

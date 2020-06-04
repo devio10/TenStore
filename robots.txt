@@ -1,0 +1,4 @@
+User-agent: YandexBot
+Disallow: /*.php$
+Disallow: /page?
+sitemap: https://thetenstore.ru/sitemap.xml

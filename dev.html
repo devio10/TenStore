@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TenStore</title>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="devStyle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<h3 id="topNot"><a href="whatsNew" style="color: white">TenStore v2.0.1.0 БЕТА. ЧТО НОВОГО</a></h3>
+	<a id="mLogo">TENSTORE</a>
+	<nav>
+		<ul class="title" style="display: flex; align-items: center">
+			<a id="logo" style="font-family: var(--bold-font)">TENID</a>
+			<a id="spaceF">•</a>
+			<a class="navItem" href="tenid">ПРОФИЛЬ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="library">БИБЛИОТЕКА</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="settings">НАСТРОЙКИ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="dev" style="font-family: var(--bold-font)">DEV</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="register">РЕГИСТРАЦИЯ</a>
+
+			<div style="display: flex; align-items: center">
+				<label id="mobileSwitch" class="themeSwitch" for="checkbox">
+						<input type="checkbox" id="checkbox"/>
+						<div class="slider round"></div>
+				</label>
+			</div>
+			<a id="userName" href="tenid"><img id="noUserPhoto" src="images/login.svg"></a>
+			<img id="userPhoto" src="images/login.svg" style="display: none">
+		</ul>
+	</nav>
+	<div class="mCard" style="background-image: url(images/codeBg.jpg)">
+
+	</div>
+
+	<div class="loader-wrapper">
+		<span class="loader"><span class="loader-inner"></span></span>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	<script>
+		$(window).on("load",function(){
+		$(".loader-wrapper").fadeOut("slow");
+		});
+	</script>
+	<script>
+	function goBack() {
+	  window.history.go(-1);
+	}
+	</script>
+	<script src="scripts/closeNotification.js"></script>
+	<script src="scripts/newNotification.js"></script>
+	<script src="scripts/theme.js"></script>
+	<script src="scripts/setupNot.js"></script>
+</body>
+</html>

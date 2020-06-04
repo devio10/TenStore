@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Страница приложения — TenStore</title>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+	<link href="style.css?v=1105" rel="stylesheet" type="text/css">
+	<link href="mobile.css?v=1005" rel="stylesheet" type="text/css">
+	<script src="scripts/appPage.js"></script>
+</head>
+
+<body>
+	<h3 id="topNot"><a href="whatsNew" style="color: white">TenStore v2.0.1.0 БЕТА. ЧТО НОВОГО</a></h3>
+	<a id="mLogo">TENSTORE</a>
+  <nav>
+		<ul class="title" style="display: flex; align-items: center">
+			<a id="logo" style="font-family: var(--bold-font)">TENSTORE</a>
+			<a id="spaceF">•</a>
+			<a class="navItem" href="index" style="font-family: var(--bold-font)">ГЛАВНАЯ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="games">ИГРЫ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="tenid">TENID</a>
+			<div style="display: flex; align-items: center">
+				<label id="mobileSwitch" class="themeSwitch" for="checkbox">
+						<input type="checkbox" id="checkbox"/>
+						<div class="slider round"></div>
+				</label>
+			</div>
+			<a id="userName" href="tenid"><img id="noUserPhoto" src="images/login.svg"></a>
+			<img id="userPhoto" src="images/login.svg" style="display: none">
+		</ul>
+	</nav>
+
+	<section class="appTitle" id="appB" style="background-image: var(--gradient), url(images/appTitles/tcs1.png);">
+		<img id="ATIcon" src="images/empty.svg">
+		<h3 id="ATName">Что-то не сработало :/</h3>
+	</section>
+
+	<section class="mAppTitle" style="background-image: var(--gradient), url(images/appTitles/tcs1.png);">
+		<div id="userPicDiv">
+			<img id="ATIconM" src="images/empty.svg">
+		</div>
+	</section>
+
+	<div id="mData">
+		<h3 id="ATNameM">Что-то не сработало :/</h3>
+	</div>
+
+	<div id="bDownloads">
+		<button class="accentButton" id="downlBtn" onclick="downlBtn();"><img id="btnIcon" src="images/download.svg">Скачать</button>
+		<div id="downlMenu">
+			<a id="downlWindows" target="_blank"><button class="outlineButton" id="windows" onclick="sWindow(); setTimeout(sWindow, 1000);">
+				<img id="btnIcon" src="images/windows.svg">Windows</button></a>
+			<a id="downlAndroid" target="_blank"><button class="outlineButton" id="android" onclick="sWindow(); setTimeout(sWindow, 1000);">
+				<img id="btnIcon" src="images/android.svg">Android</button></a>
+		</div>
+	</div>
+	<div id="rateBox">
+		<nav>
+			<img id="rateBtn" src="images/like.svg">
+			<img id="rateBtn" src="images/dislike.svg">
+			<h3 id="rateCount">n загрузок</h3>
+		</nav>
+	</div>
+
+	<nav>
+		<ul id="APNav">
+			<a id="APFirst" onclick="bDesc()" style="font-family: var(--bold-font)">ОПИСАНИЕ</a>
+			<a сlass="space">•</a>
+			<a id="2" class="navItem" onclick="bScr()">СКРИНШОТЫ</a>
+			<a сlass="space">•</a>
+			<a id="3" class="navItem" onclick="bReviews()">ОТЗЫВЫ</a>
+			<a сlass="space">•</a>
+			<a id="4" class="navItem" onclick="bContacts()">КОНТАКТЫ</a>
+		</ul>
+	</nav>
+
+	<div id="bDesc">
+		<h4 id="desc">
+			Здесь должно было быть описание, но что-то не сработало :/ <br>
+			Обратитесь к администратору сайта.
+		</h4>
+	</div>
+		<div class="block" id="bScr">
+			<img class="screenshot" src="images/appTitles/tcs7.png">
+			<img class="screenshot" src="images/appTitles/tcs2.png">
+			<img class="screenshot" src="images/appTitles/tcs3.png">
+			<img class="screenshot" src="images/appTitles/tcs4.png">
+			<img class="screenshot" src="images/appTitles/tcs5.png">
+			<img class="screenshot" src="images/appTitles/tcs6.png">
+		</div>
+		<div id="bReviews">
+
+		</div>
+		<div id="bContacts">
+			<a id="emailL" href="https://youtu.be/dQw4w9WgXcQ"><button class="outlineButton" id="contactBtn">Почта</button></a>
+			<a id="telegramL" href="https://youtu.be/dQw4w9WgXcQ"><button class="outlineButton" id="contactBtn">Telegram</button></a>
+		</div>
+
+		<div class="loader-wrapper">
+			<span class="loader"><span class="loader-inner"></span></span>
+		</div>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+		<script>
+			$(window).on("load",function(){
+			$(".loader-wrapper").fadeOut("slow");
+			});
+		</script>
+		<script src="scripts/closeNotification.js"></script>
+		<script src="scripts/newNotification.js"></script>
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/setupNot.js"></script>
+		<script src="scripts/downlApp.js"></script>
+		<script src="scripts/login.js"></script>
+		<script src="scripts/version.js"></script>
+		<script>getVersion()</script>
+		<script>login()</script>
+</body>
+</html>

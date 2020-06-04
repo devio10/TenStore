@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TenStore</title>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+	<link href="style.css?v=1100" rel="stylesheet" type="text/css">
+	<link href="mobile.css?v=1000" rel="stylesheet" type="text/css">
+	<script src="scripts/apps.js"></script>
+	<script>
+		let key = "KdSqSAOC";
+		let count = "more";
+		let select = "type";
+		value = "app";
+
+		const request = new XMLHttpRequest();
+		const url = "api.php";
+		const params = "key=" + key+ "&count=" + count+ "&select=" + select+ "&value=" + value;
+		request.responseType =	"json";
+		request.open("POST", url, true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.addEventListener("readystatechange", () => {
+			if (request.readyState === 4 && request.status === 200) {
+				let obj = request.response;
+				for(let i=0; i<obj.apps.length; i++) {
+				var aCard = document.createElement('div');
+				aCard.className = 'aCard';
+				aCard.innerHTML = "<a href='app?&select=id&value="+ obj.apps[i].id +"'> \
+					<img class='aCardIcon' src='"+ obj.apps[i].icon +"'> \
+					<h3 class='aCardName'>"+ obj.apps[i].appname +"</h3> \
+					<h3 class='aCardDev'>"+ obj.apps[i].devname +"</h3> \
+				</a>"
+				document.getElementById('aContainer').appendChild(aCard);
+				}
+			}
+		});
+		request.send(params);
+	</script>
+</head>
+
+<body>
+	<a id="mLogo">TENSTORE</a>
+	<nav>
+		<ul class="title" style="display: flex; align-items: center">
+			<a id="logo" style="font-family: var(--bold-font)">TENSTORE</a>
+			<a id="spaceF">•</a>
+			<a class="navItem" href="index" style="font-family: var(--bold-font)">ГЛАВНАЯ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="apps">ПРИЛОЖЕНИЯ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="games">ИГРЫ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="tenid">TENID</a>
+			<div style="display: flex; align-items: center">
+				<label id="mobileSwitch" class="themeSwitch" for="checkbox">
+						<input type="checkbox" id="checkbox" />
+						<div class="slider round"></div>
+				</label>
+			</div>
+			<a id="userName" href="tenid"><img id="noUserPhoto" src="images/login.svg"></a>
+			<a id="userName" href="tenid"><img id="userPhoto" src="images/login.svg" style="display: none"></a>
+		</ul>
+	</nav>
+
+	<img class="titleIcon" src="images/apps.svg"></img>
+	<h3 style="width: 100%; text-align: center; margin: 15px 0 30px 0">Приложения</h3>
+	<div id="aContainer">
+	</div>
+		<div class="loader-wrapper">
+			<span class="loader"><span class="loader-inner"></span></span>
+		</div>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+		<script>
+			$(window).on("load",function(){
+			$(".loader-wrapper").fadeOut("slow");
+			});
+		</script>
+		<script src="scripts/closeNotification.js"></script>
+		<script src="scripts/newNotification.js"></script>
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/setupNot.js"></script>
+		<script src="scripts/login.js"></script>
+		<script>login()</script>
+	</body>
+</html>

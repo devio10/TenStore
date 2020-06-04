@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TenStore</title>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+	<link href="style.css?v=1101" rel="stylesheet" type="text/css">
+	<link href="mobile.css?v=1001" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<h3 id="topNot"><a href="whatsNew" style="color: white">TenStore v2.0.1.0 БЕТА. ЧТО НОВОГО</a></h3>
+	<a id="mLogo">TENSTORE</a>
+	<nav>
+		<ul class="title" style="display: flex; align-items: center">
+			<a id="logo" style="font-family: var(--bold-font)">TENSTORE</a>
+			<a id="spaceF">•</a>
+			<a class="navItem" href="index" style="font-family: var(--bold-font)">ГЛАВНАЯ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="games">ИГРЫ</a>
+			<a сlass="space">•</a>
+			<a class="navItem" href="tenid">TENID</a>
+
+			<div style="display: flex; align-items: center">
+				<label id="mobileSwitch" class="themeSwitch" for="checkbox">
+						<input type="checkbox" id="checkbox"/>
+						<div class="slider round"></div>
+				</label>
+			</div>
+			<a id="userName" href="tenid"><img id="noUserPhoto" src="images/login.svg"></a>
+			<a id="userName" href="tenid"><img id="userPhoto" src="images/login.svg" style="display: none"></a>
+		</ul>
+	</nav>
+
+	<a href="app?&select=id&value=1"><section class="appTitle" style="background-image: var(--gradient), url(images/appIcons/musicx.png); height: 500px">
+		<h3 style="margin: auto 0 50px 0; font-size: 45px; width: 100%; text-align: center;">Music X</h3>
+	</section></a>
+
+	<h3>Инструменты</h3>
+	<div class="aContainer" id="utilities">
+		<!-- инструменты здесь -->
+	</div>
+
+	<h3>Новеллы</h3>
+	<div class="aContainer" id="novels">
+		<!-- новеллы здесь -->
+	</div>
+
+	<h3>Музыка</h3>
+	<div class="aContainer" id="media">
+		<!-- медиа здесь -->
+	</div>
+
+
+	<div id="notPlace">
+		<!-- уведомления здесь -->
+	</div>
+
+	<div class="loader-wrapper">
+		<span class="loader"><span class="loader-inner"></span></span>
+	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	<script src="scripts/loadScreen.js"></script>
+	<script src="scripts/closeNotification.js"></script>
+	<script src="scripts/newNotification.js"></script>
+	<script src="scripts/theme.js"></script>
+	<script src="scripts/setupNot.js"></script>
+	<script src="scripts/login.js"></script>
+	<script src="scripts/homePage.js"></script>
+	<script src="scripts/version.js"></script>
+	<script>getVersion()</script>
+	<script>login()</script>
+	<!-- <script>
+		showNot("ВАШ АККАУНТ БЫЛ ЗАБЛОКИРОВАН", " \
+		 <a href='whatsNew' id='link'>Узнать подробности</a> \
+		", '0001');
+	</script> -->
+	<!--<script>
+		showNot('ДОСТУП ОГРАНИЧЕН', "Ваш IP адрес занесён в чёрный список, поэтому некоторые функции сайта недоступны. \
+		<a href='https://vk.com/pressteam' id='link'>Напишите в поддержку, если мы не правы.</a> \
+		");
+	</script> -->
+	<!-- <script>
+		showNot('TENSTORE 2.0.0.13', "Сайт был обновлён. Добавили название магазина сверху экрана для мобильных устройств, анимацию подчёркивания элементов навигации при наведении и убрали никнейм: теперь фотография профиля переводит на страницу TenID.")
+	</script> -->
+	</body>
+</html>
