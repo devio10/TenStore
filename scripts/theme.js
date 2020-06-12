@@ -21,17 +21,11 @@ function changeAccent(accent) {
   localStorage.setItem('accent', accent);
 }
 
-toggleSwitch.addEventListener('change', switchTheme, false);
-
 //Проверка установленной темы
 const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
-
-    if ((currentTheme === 'dark') || (currentTheme === 'black')) {
-        toggleSwitch.checked = true;
-    }
 }
 
 const currentAccent = localStorage.getItem('accent') ? localStorage.getItem('accent') : null;

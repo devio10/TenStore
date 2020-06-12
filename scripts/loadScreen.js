@@ -1,3 +1,3 @@
-$(window).on("load",function(){
-$(".loader-wrapper").fadeOut("slow");
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById('loadScreen').display = 'none';
 });

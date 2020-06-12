@@ -122,7 +122,6 @@ html, body {
 .card .cardImage {
   width: inherit;
   height: inherit;
-
 }
 
 .card .cardImage img {
@@ -209,7 +208,7 @@ label {
 
 
 /* input */
-input {
+#RadioInput {
   opacity: 0;
   position: absolute;
   left: 50%;
