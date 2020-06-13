@@ -9,6 +9,8 @@
   	<!-- СКРИПТЫ -->
   	<script src="scripts/theme.js"></script>
   	<script src="scripts/alert.js"></script>
+    <script src="scripts/dev.js"></script>
+    <script>showAlert('hello', 'mi')</script>
   </head>
   <body>
     <h3 id="betaAlert"><a href="whatsNew" style="color: white">TenStore v2.1.0.4 БЕТА. ЧТО НОВОГО</a></h3>
@@ -28,15 +30,20 @@
   		</ul>
   	</nav>
 
-    <div class="stage" id="notLogged">
+    <div id="notLogged">
 			<div class="centerIcon"><img class="pageIcon" src="images/login2.svg"></img></div>
-			<h3 style="width: 100%; text-align: center; margin: 10px 0 30px 0">Войти в аккаунт</h3>
-			<input type="text" id="login" class="regInput" placeholder="Логин" required>
+			<h4 class="centerText" style="margin-bottom: 30px">Войти в аккаунт</h4>
+			<input type="text" id="login" class="textInput centerInput" placeholder="Логин">
 			<h3></h3>
-			<input type="password" id="password" class="regInput" placeholder="Пароль" required>
-			<button class="accentButton" id="regBtn" onclick="loginAccount()">Войти</button>
-			<h3 style="width: 100%; text-align: center; margin: 15px 0 0 0; font-family: var(--regular-font); font-size: 12px">или</h3>
-			<a href="register"><button id="regBtn" style="margin-top: 15px">Создать аккаунт</button></a>
+			<input type="password" id="password" class="textInput centerInput" placeholder="Пароль">
+			<button class="accentButton centerInput" onclick="loginAccount()" style="margin-top: 30px">Войти</button>
+			<h5 class="centerText">или</h5>
+      <form action="https://thetenstore.ru/register">
+			     <button class="centerInput">Создать аккаунт</button>
+      </form>
 		</div>
+    <div id="notPlace">
+  		<!-- уведомления здесь -->
+  	</div>
   </body>
 </html>

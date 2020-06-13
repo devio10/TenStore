@@ -1,124 +1,112 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Experimental — TenStore</title>
-  <link rel="shortcut icon" href="images/experimental.svg" type="image/png">
-	<link href="styles/desktop.css" rel="stylesheet" type="text/css">
-	<!-- СКРИПТЫ -->
-	<script src="scripts/theme.js"></script>
-	<script src="scripts/alert.js"></script>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Experimental — TenStore</title>
+	  <link rel="shortcut icon" href="images/experimental.svg" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/alert.js"></script>
+	</head>
 
-<body>
-	<h3 id="betaAlert"><a href="whatsNew" style="color: white">TenStore v2.1.0 PRE-RELEASE 1. ЧТО НОВОГО</a></h3>
-	<a id="mLogo">TENSTORE</a>
-	<nav>
-		<ul class="topBar" style="display: flex; align-items: center">
-			<a id="logo">TENSTORE</a>
-			<a class="separate" id="first">•</a>
-			<a class="topItem" href="index">ГЛАВНАЯ</a>
-			<a class="separate">•</a>
-			<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
-			<a class="separate">•</a>
-			<a class="topItem" href="games">ИГРЫ</a>
-			<a class="separate">•</a>
-			<a class="topItem" href="tenid">TENID</a>
-			<a class="separate">•</a>
-			<a class="topItem" id="chosen" href="polygon">EXPERIMENTAL</a>
-			<img id="userPic" src="images/user.svg">
-		</ul>
-	</nav>
+	<body>
+		<h3 id="betaAlert"><a href="whatsNew" style="color: white">TenStore v2.1.0 PRE-RELEASE 1. ЧТО НОВОГО</a></h3>
+		<a id="mLogo">TENSTORE</a>
+		<nav>
+			<ul class="topBar" style="display: flex; align-items: center">
+				<a id="logo">TENSTORE</a>
+				<a class="separate" id="first">•</a>
+				<a class="topItem" href="index">ГЛАВНАЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="tenid">TENID</a>
+				<a class="separate">•</a>
+				<a class="topItem" id="chosen" href="polygon">EXPERIMENTAL</a>
+				<img id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
 
-	<div id="userBox">
-		<div id="picDiv">
-			<img id="boxPic" src="images/user.svg">
+		<div id="userBox">
+			<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
+				<h3 style="margin: 0" id="name" class="centerText">Дмитрий Навальный</h3>
+				<h5 style="margin: 5px 0" id="login" class="centerText">никнейм</h3>
+				<h5 style="margin: 5px 0" id="mail" class="centerText">почта</h3>
 		</div>
-			<h3 id="name" style="width: 100%; text-align: center; margin: 10px 0 5px 0">Дмитрий Навальный</h3>
-			<h3 id="login" style="width: 100%; text-align: center; margin: 0 0 5px 0; font-size: 12px">никнейм</h3>
-			<h3 id="mail" style="width: 100%; text-align: center; margin: 0 0 30px 0; font-size: 12px">почта</h3>
 
-	</div>
+		<div style="margin: 0 60px 0 60px">
+		  <h2 style="font-family: var(--bold-font)">Тема</h2>
+		  <label class="radioLabel" onclick="changeTheme('light')">
+		    <input id="RadioInput" type="radio" name="theme" checked>
+		    <span class="design"></span>
+		    <span class="text">Светлая</span>
+		  </label>
+		  <label class="radioLabel" onclick="changeTheme('dark')">
+		    <input id="RadioInput" type="radio" name="theme">
+		    <span class="design"></span>
+		    <span class="text">Темная</span>
+		  </label>
+		  <label class="radioLabel" onclick="changeTheme('black')">
+		    <input id="RadioInput" type="radio" name="theme">
+		    <span class="design"></span>
+		    <span class="text">Черная</span>
+		  </label>
+		</div>
 
-	<div style="margin: 0 60px 0 60px">
-	  <h2 style="font-family: var(--bold-font)">Тема</h2>
-	  <label class="radioLabel" onclick="changeTheme('light')">
-	    <input id="RadioInput" type="radio" name="theme" checked>
-	    <span class="design"></span>
-	    <span class="text">Светлая</span>
-	  </label>
-	  <label class="radioLabel" onclick="changeTheme('dark')">
-	    <input id="RadioInput" type="radio" name="theme">
-	    <span class="design"></span>
-	    <span class="text">Темная</span>
-	  </label>
-	  <label class="radioLabel" onclick="changeTheme('black')">
-	    <input id="RadioInput" type="radio" name="theme">
-	    <span class="design"></span>
-	    <span class="text">Черная</span>
-	  </label>
-	</div>
+		<div style="margin: 0 60px 0 60px">
+		  <h2 style="font-family: var(--bold-font)">Акцент</h2>
+		  <label class="radioLabel" onclick="changeAccent('blue')">
+		    <input id="RadioInput" type="radio" name="accent" checked>
+		    <span class="design"></span>
+		    <span class="text">Синий</span>
+		  </label>
+		  <label class="radioLabel" onclick="changeAccent('green')">
+		    <input id="RadioInput" type="radio" name="accent">
+		    <span class="design"></span>
+		    <span class="text">Зеленый</span>
+		  </label>
+		  <label class="radioLabel" onclick="changeAccent('red')">
+		    <input id="RadioInput" type="radio" name="accent">
+		    <span class="design"></span>
+		    <span class="text">Красный</span>
+		  </label>
+			<label class="radioLabel" onclick="changeAccent('ohSoOrange')">
+		    <input id="RadioInput" type="radio" name="accent">
+		    <span class="design"></span>
+		    <span class="text">Оранжевый</span>
+		  </label>
+			<label class="radioLabel" onclick="changeAccent('purple')">
+		    <input id="RadioInput" type="radio" name="accent">
+		    <span class="design"></span>
+		    <span class="text">Фиолетовый</span>
+		  </label>
+			<label class="radioLabel" onclick="changeAccent('gray')">
+		    <input id="RadioInput" type="radio" name="accent">
+		    <span class="design"></span>
+		    <span class="text">Серый</span>
+		  </label>
+		</div>
 
-	<div style="margin: 0 60px 0 60px">
-	  <h2 style="font-family: var(--bold-font)">Акцент</h2>
-	  <label class="radioLabel" onclick="changeAccent('blue')">
-	    <input id="RadioInput" type="radio" name="accent" checked>
-	    <span class="design"></span>
-	    <span class="text">Синий</span>
-	  </label>
-	  <label class="radioLabel" onclick="changeAccent('green')">
-	    <input id="RadioInput" type="radio" name="accent">
-	    <span class="design"></span>
-	    <span class="text">Зеленый</span>
-	  </label>
-	  <label class="radioLabel" onclick="changeAccent('red')">
-	    <input id="RadioInput" type="radio" name="accent">
-	    <span class="design"></span>
-	    <span class="text">Красный</span>
-	  </label>
-		<label class="radioLabel" onclick="changeAccent('ohSoOrange')">
-	    <input id="RadioInput" type="radio" name="accent">
-	    <span class="design"></span>
-	    <span class="text">Оранжевый</span>
-	  </label>
-		<label class="radioLabel" onclick="changeAccent('purple')">
-	    <input id="RadioInput" type="radio" name="accent">
-	    <span class="design"></span>
-	    <span class="text">Фиолетовый</span>
-	  </label>
-	</div>
+		<button class="accentButton" style="margin: 30px 0 0 60px">accentButton</button>
+		<button style="margin: 30px 0 0 60px">button</button>
 
-	<button class="accentButton" style="margin: 30px 0 0 60px" onclick="showNot('ВСЁ РЕШЕНО', 'аоаоаоа')">кнопо4ка</button>
-
-	<!-- новые карточки -->
-
+		<!-- новые карточки -->
 		<div id="cardsList">
 			<div class="card">
 			  <div class="cardImage"> <img id="appIcon" src="images/empty.svg"/> </div>
-			  <div class="cardTitle titleWhite">
-			    <p id="appName">app name</p>
+			  <div class="cardTitle titleBlack">
+			    <p id="appName">appCard</p>
 			  </div>
 			</div>
 		</div>
 
-	<div id="notPlace">
-		<!-- уведомления здесь -->
-	</div>
-
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-	<script src="scripts/loadScreen.js"></script>
-	<script src="scripts/closeNotification.js"></script>
-	<script src="scripts/newNotification.js"></script>
-	<script src="scripts/theme.js"></script>
-	<script src="scripts/setupNot.js"></script>
-	<script src="scripts/login.js"></script>
-	<script src="scripts/version.js"></script>
-	<script>getVersion()</script>
-	<script>login()</script>
-	<!-- <script>
-		showNot('ВНИМАНИЕ', "Вы находитесь на полигоне испытаний, это место для тестирования сырых функций. Иногда требуется заново загрузить ресурсы сайта, для этого используйте Ctrl + F5, или нажмите на иконку перезагрузки с зажатой клавишей Ctrl. Также можно очистить кэш браузера.")
-	</script> -->
+		<div id="alerts">
+			<!-- уведомления здесь -->
+		</div>
 	</body>
 </html>
