@@ -270,6 +270,11 @@ function TenIDLogin () {
         document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
         document.getElementById('login').innerHTML = obj.user[0].login;
         document.getElementById('mail').innerHTML = obj.user[0].email;
+        if (obj.user[0].photo == null) {
+          document.getElementById('idUserPic').src = 'images/user.svg';
+        } else {
+          document.getElementById('idUserPic').src = obj.user[0].photo;
+        }
       }
     }
   };

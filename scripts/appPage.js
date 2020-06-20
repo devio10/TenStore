@@ -16,16 +16,48 @@ request.responseType =	"json";
 request.open("POST", url, true);
 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 request.addEventListener("readystatechange", () => {
-  if (request.readyState === 4 && request.status === 200) {
+  if ((request.readyState === 4) && (request.status === 200)) {
     var obj = request.response;
     for(let i=0; i<obj.apps.length; i++) {
+      let header = obj.apps[0].head_image;
+      let pHeader = document.getElementById("appB");
+      let pHeaderM = document.getElementById("appM");
       document.getElementById("ATIcon").src=obj.apps[0].icon;
       document.getElementById("ATName").innerHTML=obj.apps[0].appname;
       document.getElementById("ATIconM").src=obj.apps[0].icon;
       document.getElementById("ATNameM").innerHTML=obj.apps[0].appname;
       document.getElementById("rateCount").innerHTML=obj.apps[0].downloads + " загрузок";
+      document.getElementById("ATIcon").style.padding = obj.apps[0].padding;
+      document.getElementById("ATIcon").style.bg = obj.apps[0].bg;
+      document.getElementById("ATIconM").style.bg = obj.apps[0].bg;
+      let size = 0;
+      if (obj.apps[0].padding == 15) {
+        size = '150px';
+      } else {
+        size = '175px';
+      }
+      document.getElementById("ATIcon").style.width = size;
+      document.getElementById("ATIcon").style.height = size;
+      document.getElementById("ATIconM").style.width = size;
+      document.getElementById("ATIconM").style.height = size;
+      pHeader.style.background = "var(--gradient), url(" + header + ")";
+      pHeader.style.objectFit = 'cover';
+      pHeader.style.backgroundAttachment = 'fixed';
+      pHeader.style.backgroundPosition = 'center';
+      pHeader.style.backgroundRepeat = 'no-repeat';
+      pHeader.style.backgroundSize = 'cover';
+      pHeaderM.style.background = "var(--gradient), url(" + header + ")";
+      pHeaderM.style.backgroundPosition = 'center';
+      pHeaderM.style.backgroundRepeat = 'no-repeat';
+      pHeaderM.style.backgroundSize = 'cover';
+      document.getElementById('bScr').innerHTML = obj.apps[0].screenshots;
+      if (obj.apps[0].padding == 0) {
+        document.getElementById("ATIcon").style.width = '165px';
+        document.getElementById("ATIcon").style.height = '165px';
+      }
       if (obj.apps[0].windows == 0) {
         document.getElementById("windows").style.display = 'none';
+
       }
       if (obj.apps[0].android == 0) {
         document.getElementById("android").style.display = 'none';
@@ -38,10 +70,10 @@ request.addEventListener("readystatechange", () => {
       document.getElementById("downlAndroid").href=obj.apps[0].android;
       document.getElementById("desc").innerHTML=obj.apps[0].description;
       if (obj.telegram == null) {
-        document.getElementById("telegram").style.display = 'none';
+        document.getElementById("telegramL").style.display = 'none';
       }
       if (obj.email == null) {
-        document.getElementById("email").style.display = 'none';
+        document.getElementById("emailL").style.display = 'none';
       }
       document.getElementById("telegramL").href=obj.apps[0].telegram;
       document.getElementById("emailL").href=obj.apps[0].email;

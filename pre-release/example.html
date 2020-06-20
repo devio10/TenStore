@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TenStore</title>
+	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/alert.js"></script>
+		<script src="scripts/tenid.js"></script>
+	</head>
+	<body>
+		<h3 id="betaAlert"><a href="whatsNew" style="color: white">TenStore v2.1.0 PRE-RELEASE 1. ЧТО НОВОГО</a></h3>
+		<a id="mLogo">TENSTORE</a>
+		<nav>
+			<ul class="topBar" style="display: flex; align-items: center">
+				<a id="logo">TENSTORE</a>
+				<a class="separate" id="first">•</a>
+				<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="tenid">TENID</a>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
+				<h3 style="margin: 0" id="name" class="centerText">name lastName</h3>
+				<h5 style="margin: 5px 0 12px 0" id="email" class="centerText">email</h3>
+				<form action="tenid/settings"><button class="boxButton">Настройки</button></form>
+				<form action="tenid/security"><button class="boxButton">Безопасность</button></form>
+				<form action="tenid/library"><button class="boxButton">Библиотека</button></form>
+				<form action="tenid/services"><button class="boxButton">Подключённые сервисы</button></form>
+				<form action="https://dev.thetenstore.ru/"><button class="boxButton">Для разработчиков</button></form>
+				<button onclick="logoff()" class="boxButton lastButton">Выйти из аккаунта</button>
+		</div>
+		<div style="margin: 0 0 0 35px">
+			<h1>ШОК КАНТЕНТ</h1>
+			<h2>ОН ПРАВДА ЭТО ЗДЕЛАЛ??</h2>
+			<h3>МЫ УЗНАЛЕ ПАДРОБНАСТИ ТАВО ДЕЛА</h3>
+			<h4>АНО АКАЗАЛОСЬ НЕ ОЧИНЬ</h4>
+			<h5>ДОВАЙТЕ МЫ СИЙЧАС ВСЁ РАСКАЖЕМ И ВЫ УСПОКОЕТЕСЬ</h5>
+			<h6>НЕТ НЕ РАСКАЖЕМ ЭТА ШОК КАНТЕНТ</h6>
+			<a class="link" href="javascript:newAlert('TENSTORE', 'hello bitches')">ну ладно нажмите сюда</a>
+			<button><img class="buttonIcon" src="images/back.svg">click here</button>
+		</div>
+		<div id="cardsList">
+			<div class="card">
+				<div class="cardImage"> <img id="appIcon" src="images/appIcons/tenstore.png"/> </div>
+				<div class="cardTitle titleBlack">
+					<p id="appName">TenStore</p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="cardImage"> <img id="appIcon" src="images/appIcons/tenstore.png"/> </div>
+				<div class="cardTitle titleBlack">
+					<p id="appName">TenStore</p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="cardImage"> <img id="appIcon" src="images/appIcons/tenstore.png"/> </div>
+				<div class="cardTitle titleBlack">
+					<p id="appName">TenStore</p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="cardImage"> <img id="appIcon" src="images/appIcons/tenstore.png"/> </div>
+				<div class="cardTitle titleBlack">
+					<p id="appName">TenStore</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="alerts">
+			<!-- уведомления здесь -->
+			<div class="alert">
+				<span class='closeAlert'>&times;</span>
+			  <h5 style="margin: 10px">TENSTORE</h5>
+			  <h5 style='margin: -5px 10px 10px 10px'>Welcome bitches!</h5>
+			</div>
+		</div>
+		<script>login()</script>
+	</body>
+</html>

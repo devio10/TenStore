@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TenStore</title>
+	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/alert.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/index.js"></script>
+	</head>
+
+	<body>
+		<h3 id="betaAlert"><a href="whatsNew" style="color: white">TenStore v2.1.0 PRE-RELEASE 1. ЧТО НОВОГО</a></h3>
+		<a id="mLogo">TENSTORE</a>
+		<nav>
+			<ul class="topBar" style="display: flex; align-items: center">
+				<a id="logo">TENSTORE</a>
+				<a class="separate" id="first">•</a>
+				<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="tenid">TENID</a>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
+				<h3 style="margin: 0" id="name" class="centerText">name lastName</h3>
+				<h5 style="margin: 5px 0 12px 0" id="email" class="centerText">email</h3>
+				<form action="tenid/settings"><button class="boxButton">Настройки</button></form>
+				<form action="tenid/security"><button class="boxButton">Безопасность</button></form>
+				<form action="tenid/library"><button class="boxButton">Библиотека</button></form>
+				<form action="tenid/services"><button class="boxButton">Подключённые сервисы</button></form>
+				<form action="https://dev.thetenstore.ru/"><button class="boxButton">Для разработчиков</button></form>
+				<button onclick="logoff()" class="boxButton lastButton">Выйти из аккаунта</button>
+		</div>
+		<div style="margin: 0 30px 80px 30px">
+			<h3>ИНСТРУМЕНТЫ</h3>
+			<div class="cardsList" id="utilities">
+				<!-- инструменты здесь -->
+			</div>
+			<h3>МУЗЫКА</h3>
+			<div class="cardsList" id="media">
+				<!-- медиа здесь -->
+			</div>
+		</div>
+
+		<div id="alerts">
+			<!-- уведомления здесь -->
+		</div>
+		<script>login()</script>
+	</body>
+</html>

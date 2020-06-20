@@ -6,14 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TenStore</title>
   <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-	<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+	<link href="style.css?v=1101" rel="stylesheet" type="text/css">
+	<link href="mobile.css?v=1001" rel="stylesheet" type="text/css">
+	<meta name="Life on Mars?">
 </head>
 
 <body>
 	<h3 id="topNot"><a href="whatsNew" style="color: white">TenStore v2.0.1.0 БЕТА. ЧТО НОВОГО</a></h3>
-	<a id="mobileLogo">TENSTORE</a>
+	<a id="mLogo">TENSTORE</a>
 	<nav>
-		<ul class="topBar" style="display: flex; align-items: center">
+		<ul class="title" style="display: flex; align-items: center">
 			<a id="logo" style="font-family: var(--bold-font)">TENSTORE</a>
 			<a id="spaceF">•</a>
 			<a class="navItem" href="index" style="font-family: var(--bold-font)">ГЛАВНАЯ</a>
@@ -35,24 +37,55 @@
 		</ul>
 	</nav>
 
-	<a href="app?&select=id&value=1"><section class="appTitle" style="background-image: var(--gradient), url(images/appIcons/musicx.png); height: 500px">
-		<h3 style="margin: auto 0 50px 0; font-size: 45px; width: 100%; text-align: center;">Music X</h3>
+	<a href="app?id=28"><section class="appTitle" style="background-image: var(--gradient), url(images/appTitles/ucn.jpg); height: 500px">
+		<h3 style="margin: auto 0 50px 0; font-size: 45px; width: 100%; text-align: center;">Ultimate Custom Night</h3>
 	</section></a>
 
+	<h3>Экшен</h3>
+	<div class="aContainer" id="Action">
+
+	</div>
+
+	<h3>Связь</h3>
+	<div class="aContainer" id="Communication">
+
+	</div>
+
 	<h3>Инструменты</h3>
-	<div class="aContainer" id="utilities">
-		<!-- инструменты здесь -->
+	<div class="aContainer" id="Utilities">
+
 	</div>
 
-	<h3>Новеллы</h3>
-	<div class="aContainer" id="novels">
-		<!-- новеллы здесь -->
+	<h3>Аркады</h3>
+	<div class="aContainer" id="Arcade">
+
 	</div>
 
-	<h3>Музыка</h3>
-	<div class="aContainer" id="media">
-		<!-- медиа здесь -->
+	<h3>Социальные сети</h3>
+	<div class="aContainer" id="Social">
+
 	</div>
+
+	<h3>Музыка и видео</h3>
+	<div class="aContainer" id="Media">
+
+	</div>
+
+	<h3>Стратегии</h3>
+	<div class="aContainer" id="Strategy">
+
+	</div>
+
+	<h3>Симуляторы</h3>
+	<div class="aContainer" id="Simulation">
+
+	</div>
+
+	<h3>Новости</h3>
+	<div class="aContainer" id="News">
+
+	</div>
+
 
 	<div id="notPlace">
 		<!-- уведомления здесь -->
@@ -73,7 +106,6 @@
 	<script src="scripts/version.js"></script>
 	<script>getVersion()</script>
 	<script>login()</script>
-	<script src="scripts/notAvailable.js"></script>
 	<!-- <script>
 		showNot("ВАШ АККАУНТ БЫЛ ЗАБЛОКИРОВАН", " \
 		 <a href='whatsNew' id='link'>Узнать подробности</a> \

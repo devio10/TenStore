@@ -16,6 +16,7 @@
   --bg: white;
   --primary: #e6e6e6;
   --secondary: #DCDCDC;
+	--secondary2: #cacaca;
   --alert: rgba(230, 230, 230, 0.65);
   --font: black;
   --selection: #7a7a7a; /*ОТРЕДАКТИРОВАТЬ*/
@@ -35,6 +36,7 @@
   --bg: #121212;
   --primary: #121212;
   --secondary: #0d0d0d;
+	--secondary2: #020202;
   --alert: rgba(18, 18, 18, 0.65);
   --font: #d6d6d6;
   --selection: #e6e6e6; /* ОТРЕДАКТИРОВАТЬ */
@@ -49,6 +51,7 @@
   --bg: black;
   --primary: #0a0a0a;
   --secondary: #0d0d0d;
+	--secondary2: #020202;
   --alert: rgba(5, 5, 5, 0.65);
   --font: #cac8c8;
   --selection: #e6e6e6; /* ОТРЕДАКТИРОВАТЬ */
@@ -100,6 +103,27 @@ html, body {
   margin: 0;
 }
 
+::selection {
+	background: var(--accent);
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary2);
+}
+
 a {
   text-decoration: none;
   color: var(--font);
@@ -117,6 +141,7 @@ h2 {
 }
 
 h3 {
+	font-family: var(--bold);
   color: var(--font);
 }
 
@@ -177,6 +202,27 @@ button:focus {
 
 .accentButton:hover {
 	background-color: var(--accent2);
+}
+
+.boxButton {
+	background: var(--primary);
+	width: 100%;
+	border-radius: 0;
+	border: 0;
+	border-top: 1px solid var(--border);
+}
+
+.boxButton:hover {
+	background: var(--secondary);
+}
+
+.boxButton:active {
+	background: var(--secondary2);
+}
+
+.lastButton {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .link {
@@ -269,11 +315,13 @@ button:focus {
 }
 
 #userPic {
-  background: var(--bg);
+  background: white;
   width: 32px;
+	height: 32px;
   border-radius: 100px;
   cursor: pointer;
   margin: 0 30px 0 auto;
+	object-fit: cover;
 }
 
 #betaAlert {
@@ -286,7 +334,7 @@ button:focus {
   margin: 0;
 }
 
-/*Карточки приложений*/
+/*Новые Карточки приложений*/
 
 #cardsList {
   z-index: 0;
@@ -349,6 +397,32 @@ button:focus {
 
 .titleBlack {
   color: black;
+}
+
+/*Карточки приложений*/
+.aCard {
+	background: var(--primary);
+	width: 150px;
+	height: 245px;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	font-size: 14px;
+	transition: background-color .2s;
+	margin-bottom: 15px;
+}
+
+.aCard:hover {
+	background: var(--secondary);
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+}
+
+.aCardIcon {
+	width: 120px;
+	height: 120px;
+	background: var(--bg);
+	border-radius: 10px;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+
 }
 
 /* УВЕДОМЛЕНИЯ */
@@ -440,17 +514,17 @@ button:focus {
 	position: fixed;
 	top: 80px;
 	right: 15px;
-	/* display: none; */
+	display: none;
 }
 
 #picDiv {
 	width: 100px;
-	margin: 30px auto;
+	margin: 30px auto 15px auto;
 }
 
 #boxPic {
 	width: 100px;
-	background: var(--bg);
+	background: white;
 	border-radius: 100px;
 	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
 }

@@ -12,11 +12,11 @@ $statement = $pdo->prepare("SELECT `appname`, `devname`, `icon` FROM `apps` ORDE
         $select=$_POST['select'];
         $value=$_POST['value'];
     $statement = $pdo->prepare("SELECT `appname`, `devname`, `icon` FROM `apps` WHERE `".$select."`='".$value."' ORDER BY `apps`.`downloads` DESC");
-    }	
+    }
 $statement->execute();
 $userData_List = array();
 while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['apps'][] = $row;	
+		$userData_List['apps'][] = $row;
 	}
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
@@ -29,7 +29,7 @@ $value=$_POST['id'];
 	$statement->execute();
 $userData_List = array();
 while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['apps'][] = $row;	
+		$userData_List['apps'][] = $row;
 	}
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
@@ -59,7 +59,7 @@ $empty = $statement->rowCount() === 0;
 if (!$empty) {
 $userData_List = array();
 while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['user'][] = $row;	
+		$userData_List['user'][] = $row;
 	}
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
@@ -100,7 +100,7 @@ $statement = $pdo->prepare("SELECT * FROM apps WHERE `id` LIKE ? || `appname` LI
 $statement->execute(array($id, $appname, $devname, $description, $tag));
 $userData_List = array();
 while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['apps'][] = $row;	
+		$userData_List['apps'][] = $row;
 	}
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
@@ -187,7 +187,7 @@ $empty = $statement->rowCount() === 0;
 if (!$empty) {
 $userData_List = array();
 while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['user'][] = $row;	
+		$userData_List['user'][] = $row;
 	}
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
@@ -213,7 +213,7 @@ $empty = $statement->rowCount() === 0;
 if (!$empty) {
 $userData_List = array();
 while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['user'][] = $row;	
+		$userData_List['user'][] = $row;
 	}
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
@@ -236,13 +236,13 @@ if($statement->rowCount() > 0){
 function gen_password($length = 6){
 	$password = '';
 	$arr = array(
-		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
-		'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
-		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+		'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 		'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
 	);
- 
+
 	for ($i = 0; $i < $length; $i++) {
 		$password .= $arr[random_int(0, count($arr) - 1)];
 	}
