@@ -203,7 +203,7 @@ function login () {
           boxPic.src = 'images/user.svg';
         } else {
           userPic.src = "https://thetenstore.ru/" + obj.user[0].photo;
-          boxPic.src = obj.user[0].photo;
+          boxPic.src = "https://thetenstore.ru/" + obj.user[0].photo;
         }
     }
   };

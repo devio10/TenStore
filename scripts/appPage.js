@@ -69,14 +69,7 @@ request.addEventListener("readystatechange", () => {
       document.getElementById("downlWindows").href=obj.apps[0].windows;
       document.getElementById("downlAndroid").href=obj.apps[0].android;
       document.getElementById("desc").innerHTML=obj.apps[0].description;
-      if (obj.telegram == null) {
-        document.getElementById("telegramL").style.display = 'none';
-      }
-      if (obj.email == null) {
-        document.getElementById("emailL").style.display = 'none';
-      }
-      document.getElementById("telegramL").href=obj.apps[0].telegram;
-      document.getElementById("emailL").href=obj.apps[0].email;
+      document.getElementById("changes").innerHTML=obj.apps[0].whatsNew;
     }
   }
 });
@@ -84,44 +77,27 @@ request.send(params);
 
 function bScr () {
   document.getElementById('bDesc').style.display = 'none';
-  document.getElementById('bReviews').style.display = 'none';
-  document.getElementById('bContacts').style.display = 'none';
+  document.getElementById('whatsNew').style.display = 'none';
   document.getElementById('bScr').style.display = 'flex';
   document.getElementById('2').style.fontFamily = 'var(--bold-font)';
   document.getElementById('APFirst').style.fontFamily = '';
   document.getElementById('3').style.fontFamily = '';
-  document.getElementById('4').style.fontFamily = '';
 }
 
 function bDesc () {
   document.getElementById('bDesc').style.display = 'block';
-  document.getElementById('bReviews').style.display = 'none';
-  document.getElementById('bContacts').style.display = 'none';
+  document.getElementById('whatsNew').style.display = 'none';
   document.getElementById('bScr').style.display = 'none';
   document.getElementById('APFirst').style.fontFamily = 'var(--bold-font)';
   document.getElementById('3').style.fontFamily = '';
-  document.getElementById('4').style.fontFamily = '';
   document.getElementById('2').style.fontFamily = '';
 }
 
-function bReviews () {
+function whatsNew () {
   document.getElementById('bDesc').style.display = 'none';
-  document.getElementById('bReviews').style.display = 'block';
-  document.getElementById('bContacts').style.display = 'none';
+  document.getElementById('whatsNew').style.display = 'block';
   document.getElementById('bScr').style.display = 'none';
   document.getElementById('3').style.fontFamily = 'var(--bold-font)';
-  document.getElementById('4').style.fontFamily = '';
   document.getElementById('APFirst').style.fontFamily = '';
-  document.getElementById('2').style.fontFamily = '';
-}
-
-function bContacts () {
-  document.getElementById('bDesc').style.display = 'none';
-  document.getElementById('bReviews').style.display = 'none';
-  document.getElementById('bContacts').style.display = 'block';
-  document.getElementById('bScr').style.display = 'none';
-  document.getElementById('4').style.fontFamily = 'var(--bold-font)';
-  document.getElementById('APFirst').style.fontFamily = '';
-  document.getElementById('3').style.fontFamily = '';
   document.getElementById('2').style.fontFamily = '';
 }

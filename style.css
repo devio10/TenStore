@@ -1149,7 +1149,7 @@ h2 {
 }
 
 ::-webkit-scrollbar {
-	width: 8px;
+	width: 0;
 	height: 8px;
 }
 
@@ -1324,17 +1324,21 @@ h2 {
 	margin-top: 25px
 }
 
-#bDesc {
+#bDesc, #whatsNew {
 	margin: 30px 0 100px 0;
 }
 
-#desc {
+#whatsNew {
+	display: none;
+}
+
+#desc, #changes {
 	font-size: 15px;
 	font-family: var(--regular-font);
 }
 
 #bScr {
-	margin: 20px 7% 100px 7%;
+	margin: 30px 7% 100px 7%;
 	overflow-x: auto;
 }
 

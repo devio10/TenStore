@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Настройки — TenStore</title>
+	  <link rel="shortcut icon" href="images/experimental.svg" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/topBar.js"></script>
+	</head>
+	<body>
+		<a id="mLogo">TENSTORE</a>
+		<nav>
+			<ul id="topBar" style="display: flex; align-items: center">
+				<a id="logo">TENSTORE</a>
+				<a class="separate" id="first">•</a>
+				<a class="topItem" href="index">ГЛАВНАЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="separate">•</a>
+				<a class="topItem" id="chosen" href="settings">НАСТРОЙКИ</a>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
+				<h3 style="margin: 0" id="name" class="centerText">name lastName</h3>
+				<h5 style="margin: 5px 0 12px 0" id="email" class="centerText">email</h3>
+				<button onclick="changeTheme(1)" id="themeButton" class="boxButton">Светлая тема</button>
+				<form action="settings"><button class="boxButton">Настройки</button></form>
+				<form action="tenid/security"><button class="boxButton">Безопасность</button></form>
+				<form action="tenid/library"><button class="boxButton">Библиотека</button></form>
+				<form action="https://dev.thetenstore.ru/"><button class="boxButton">Для разработчиков</button></form>
+				<button onclick="logoff()" class="boxButton lastButton">Выйти из аккаунта</button>
+		</div>
+
+		<div style="margin: 0 35px 30px 35px; float: left">
+			<h2>Тема</h2>
+			<div style="display: flex; align-items: center;">
+				<div onclick="theme_light()" id="theme-light" class="theme-button"><h2 class="check3">Б</h2></div>
+				<div onclick="theme_dark()" id="theme-dark" class="theme-button chosen"><img class="check" src="images/check.svg"></div>
+				<div onclick="theme_black()" id="theme-black" class="theme-button"><h2 class="check2">Ч</h2></div>
+			</div>
+		</div>
+		<div style="margin: 0 35px 30px 35px; float: left">
+			<h2>Акцент</h2>
+			<div style="display: flex; align-items: center;">
+				<div onclick="accent_blue()" id="accent-reallyBlue" class="theme-button"><h2 class="check3">Г</h2></div>
+				<div onclick="accent_purple()" id="accent-purple" class="theme-button"><h2 class="check3">Ф</h2></div>
+				<div onclick="accent_red()" id="accent-red" class="theme-button"><h2 class="check3">К</h2></div>
+				<div onclick="accent_orange()" id="accent-ohSoOrange" class="theme-button"><h2 class="check3">О</h2></div>
+				<div onclick="accent_green()" id="accent-green" class="theme-button"><h2 class="check3">З</h2></div>
+				<div onclick="accent_silver()" id="accent-verySilver" class="theme-button"><h2 class="check3">С</h2></div>
+			</div>
+		</div>
+		<div style="margin: 0 35px 30px 35px; float: left">
+			<h2>Пример темы</h2>
+			<button class="accentButton"><img src="images/search.svg" class="buttonIcon accentIcon">Поиск</button>
+			<input type="text" placeholder="Номер банковской карты" class="textInput" style="margin: 30px 0">
+			<h3>Хотите обратиться к богу?</h3>
+			<h4><a href="https://t.me/dnavalny" class="link">Telegram</a> |
+			<a href="https://vk.com/dmitrynavalny" class="link">ВКонтакте</a></h4>
+			<div style="display: flex">
+				<div class="theme-blockExample theme-block1"><h1 class="check4">1</h1></div>
+				<div class="theme-blockExample theme-block2"><h1 class="check4">2</h1></div>
+				<div class="theme-blockExample theme-block3"><h1 class="check4">3</h1></div>
+			</div>
+		</div>
+		<div id="alert">
+			<img id="alertIcon">
+			<h4 id="alertText"></h4>
+		</div>
+		<script>login(); theme_check()</script>
+	</body>
+</html>

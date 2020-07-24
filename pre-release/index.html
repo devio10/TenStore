@@ -9,16 +9,14 @@
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
-		<script src="scripts/alert.js"></script>
 		<script src="scripts/tenid.js"></script>
-		<script src="scripts/index.js"></script>
+		<script src="scripts/topBar.js"></script>
 	</head>
 
 	<body>
-		<h3 id="betaAlert"><a href="whatsNew" style="color: white">TenStore v2.1.0 PRE-RELEASE 1. ЧТО НОВОГО</a></h3>
 		<a id="mLogo">TENSTORE</a>
 		<nav>
-			<ul class="topBar" style="display: flex; align-items: center">
+			<ul id="topBar" style="display: flex; align-items: center">
 				<a id="logo">TENSTORE</a>
 				<a class="separate" id="first">•</a>
 				<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
@@ -36,24 +34,26 @@
 			<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
 				<h3 style="margin: 0" id="name" class="centerText">name lastName</h3>
 				<h5 style="margin: 5px 0 12px 0" id="email" class="centerText">email</h3>
-				<form action="tenid/settings"><button class="boxButton">Настройки</button></form>
+				<form action="settings"><button class="boxButton">Настройки</button></form>
 				<form action="tenid/security"><button class="boxButton">Безопасность</button></form>
 				<form action="tenid/library"><button class="boxButton">Библиотека</button></form>
 				<form action="tenid/services"><button class="boxButton">Подключённые сервисы</button></form>
 				<form action="https://dev.thetenstore.ru/"><button class="boxButton">Для разработчиков</button></form>
 				<button onclick="logoff()" class="boxButton lastButton">Выйти из аккаунта</button>
 		</div>
-		<div style="margin: 0 30px 80px 30px">
-			<h3>ИНСТРУМЕНТЫ</h3>
-			<div class="cardsList" id="utilities">
-				<!-- инструменты здесь -->
-			</div>
-			<h3>МУЗЫКА</h3>
-			<div class="cardsList" id="media">
-				<!-- медиа здесь -->
-			</div>
-		</div>
 
+		<h2 style="margin: 0 35px 0 35px">Это pre-release версия сайта.</h2>
+		<h4 style="margin: 10px 35px 0 35px">В данный момент не все страницы готовы и работоспособны.<br>
+		Ниже вы можете посмотреть готовность обновления к запуску:</h4>
+		<h4 style="margin: 10px 35px 0 35px">
+			<a href="" class="link">Главная страница</a>: 10%<br>
+			<a href="appsList" class="link">Список приложений</a>: 30%<br>
+			<a href="gamesList" class="link">Список игр</a>: 0%<br>
+			<a href="app" class="link">Страница приложения</a>: 60%<br>
+			<a href="polygon" class="link">Полигон</a>: 90%<br>
+			Оптимизация для мобильных устройств: 0%<br>
+			Окно пользователя: 90%<br>
+		</h4>
 		<div id="alerts">
 			<!-- уведомления здесь -->
 		</div>

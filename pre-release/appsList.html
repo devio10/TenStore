@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Приложения — TenStore</title>
+	  <link rel="shortcut icon" href="images/apps.svg" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/topBar.js"></script>
+	</head>
+	<body>
+		<!--Окно поиска-->
+		<div id="appsList-searchWindow">
+			<div style="width: 100%; margin: 80px 10% 40px 10%">
+				<input placeholder="Начните вводить здесь..." class="textInput searchInput">
+			</div>
+		</div>
+
+		<a id="mLogo">TENSTORE</a>
+		<nav style="position: sticky; top: 0;">
+			<ul id="topBar" style="display: flex; align-items: center">
+				<a id="logo">TENSTORE</a>
+				<a class="separate" id="first">•</a>
+				<a class="topItem" href="index">ГЛАВНАЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="tenid">TENID</a>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
+				<h3 style="margin: 0" id="name" class="centerText">name lastName</h3>
+				<h5 style="margin: 5px 0 12px 0" id="email" class="centerText">email</h3>
+				<button onclick="changeTheme(1)" id="themeButton" class="boxButton">Светлая тема</button>
+				<form action="settings"><button class="boxButton">Настройки</button></form>
+				<form action="tenid/security"><button class="boxButton">Безопасность</button></form>
+				<form action="tenid/library"><button class="boxButton">Библиотека</button></form>
+				<form action="https://dev.thetenstore.ru/"><button class="boxButton">Для разработчиков</button></form>
+				<button onclick="logoff()" class="boxButton lastButton">Выйти из аккаунта</button>
+		</div>
+
+		<div id="aCard-block">
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+			<div class="aCard">
+				<a href='app?&id=5'>
+					<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
+					<h4 class='aCard-name'>Five Nights at Freddy's</4>
+					<h5 class='aCard-dev'>Scott Cawthon</h5>
+				</a>
+			</div>
+		</div>
+		<button class="floatButton"><img src="images/search.svg" class="buttonIcon accentIcon">Поиск</button>
+		<script>login()</script>
+	</body>
+</html>
