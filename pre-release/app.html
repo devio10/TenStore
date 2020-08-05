@@ -7,9 +7,12 @@
 		<link id="appPage-titleIcon" rel="shortcut icon" href="images/favicon.png" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/appPage-basic.css" rel="stylesheet" type="text/css">
-		<link media="screen and (min-width:1400px)" href="styles/appPage-medium.css" rel="stylesheet" type="text/css">
-		<link media="screen and (max-width:1399px)" href="styles/appPage-small.css" rel="stylesheet" type="text/css">
 		<link media="all and (orientation: portrait)" href="styles/appPage-mobile.css" rel="stylesheet" type="text/css">
+		<link media="screen and (max-width:1299px)" href="styles/appPage-smallest.css" rel="stylesheet" type="text/css">
+		<link media="screen and (min-width:1300px)" href="styles/appPage-small.css" rel="stylesheet" type="text/css">
+		<link media="screen and (min-width:1301px)" href="styles/appPage-medium.css" rel="stylesheet" type="text/css">
+		<link media="screen and (min-width:1601px)" href="styles/appPage-big.css" rel="stylesheet" type="text/css">
+
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
@@ -18,95 +21,83 @@
 	</head>
 	<body id="appPage">
 		<div id="bg-blur">
-			<a id="mLogo">TENSTORE</a>
-			<nav style="position: sticky; top: 0;">
-				<ul id="topBar" style="display: flex; align-items: center">
-					<a id="logo">TENSTORE</a>
-					<a class="separate" id="first">•</a>
-					<a class="topItem" href="index">ГЛАВНАЯ</a>
-					<a class="separate">•</a>
-					<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
-					<a class="separate">•</a>
-					<a class="topItem" href="games">ИГРЫ</a>
-					<a class="separate">•</a>
-					<a class="topItem" href="tenid">TENID</a>
-					<img onclick="userBox()" id="userPic" src="images/user.svg">
-				</ul>
-			</nav>
-			<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
-			<div id="userBox">
-				<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
-					<h3 style="margin: 0" id="name" class="centerText">name lastName</h3>
-					<h5 style="margin: 5px 0 12px 0" id="email" class="centerText">email</h3>
-					<button onclick="changeTheme(1)" id="themeButton" class="boxButton">Светлая тема</button>
-					<form action="settings"><button class="boxButton">Настройки</button></form>
-					<form action="tenid/security"><button class="boxButton">Безопасность</button></form>
-					<form action="tenid/library"><button class="boxButton">Библиотека</button></form>
-					<form action="https://dev.thetenstore.ru/"><button class="boxButton">Для разработчиков</button></form>
-					<button onclick="logoff()" class="boxButton lastButton">Выйти из аккаунта</button>
-			</div>
-
-			<!-- -->
-			<div class="appPage-block first wide">
-				<img id="appPage-icon">
-				<form id="appPage-downloadLink"><button id="appPage-download" class="accentButton">Скачать</button></form>
-				<div style="display: grid; grid-column: 1px">
-					<h1 id="appPage-name"></h1>
-					<h2 id="appPage-dev"></h2>
+			<div id="appPage-smallBg">
+				<a id="mLogo">TENSTORE</a>
+				<nav style="position: sticky; top: 0;">
+					<ul id="topBar" style="display: flex; align-items: center">
+						<a id="logo">TENSTORE</a>
+						<a class="separate" id="first">•</a>
+						<a class="topItem" href="index">ГЛАВНАЯ</a>
+						<a class="separate">•</a>
+						<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+						<a class="separate">•</a>
+						<a class="topItem" href="games">ИГРЫ</a>
+						<img onclick="userBox()" id="userPic" src="images/user.svg">
+					</ul>
+				</nav>
+				<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+				<div id="userBox">
+					<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
+					<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
+					<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+					<h3 id="name" class="centerText"></h3>
+					<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+					<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
+					<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
+					<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
 				</div>
-				<h4 id="appPage-rating">rating</h4>
-				<img id="appPage-windows" class="appPage-platform" src="images/windows.svg">
-				<img id="appPage-android" class="appPage-platform" src="images/android.svg">
-				<h4 id="appPage-category"><a class="link" href="">category</a></h4>
-			</div>
-			<div id="screenshots" class="appPage-block second">
 
-			</div>
-			<div style="display: flex; flex-direction: row;">
-				<div class="appPage-block third">
-					<h2 style="padding: 25px; margin: 0">Описание</h2>
-					<h4 id="appPage-description"></h4>
+				<!-- -->
+				<div class="appPage-block first wide">
+					<img id="appPage-icon">
+					<form id="appPage-downloadLink"><button id="appPage-download" class="accentButton">Скачать</button></form>
+					<div style="display: grid; grid-column: 1px">
+						<h1 id="appPage-name"></h1>
+						<h2 id="appPage-dev"></h2>
+					</div>
+					<h4 id="appPage-rating">rating</h4>
+					<img id="appPage-windows" class="appPage-platform" src="images/windows.svg">
+					<img id="appPage-android" class="appPage-platform" src="images/android.svg">
+					<h4 id="appPage-category"><a class="link" href="">category</a></h4>
 				</div>
-				<div class="appPage-block fourth">
-					<h2 style="padding: 25px; margin: 0">Что нового</h2>
-					<h4 id="appPage-whatsNew"></h4>
-				</div>
-			</div>
+				<div id="screenshots" class="appPage-block second wide">
 
-			<div class="appPage-block sixth wide">
-				<h2 style="padding: 25px; margin: 0">Отзывы</h2>
-			</div>
-			<div class="appPage-block seventh wide">
-				<h2 style="padding: 25px; margin: 0">Больше от этого разработчика</h2>
-				<div class="aCard-block">
-					<div class="aCard">
-						<a href='app?&id=5'>
-							<img class='aCard-icon' style='width: 150px; height: 150px; background: 0; padding: 0' src='images/icons/fnaf.webp'>
-							<h4 class='aCard-name'>Five Nights at Freddy's</4>
-							<h5 class='aCard-dev'>Scott Cawthon</h5>
-						</a>
+				</div>
+				<div style="display: flex; flex-direction: row;">
+					<div class="appPage-block third">
+						<h2 style="padding: 25px; margin: 0">Описание</h2>
+						<h4 id="appPage-description"></h4>
+					</div>
+					<div class="appPage-block fourth">
+						<h2 style="padding: 25px; margin: 0">Что нового</h2>
+						<h4 id="appPage-whatsNew"></h4>
 					</div>
 				</div>
-			</div>
-			<div style="display: flex; flex-direction: row;">
-				<div class="appPage-block fifth">
-					<h2 style="padding: 25px; margin: 0">Подробности</h2>
-					<h4 id="appPage-details1">
-						Версия (Windows):<br>
-						Вес:<br>
-						Разработчик:<br>
-						Издатель:<br>
-						Опубликовано:<br>
-						Скачано:<br>
-						Категория:<br>
-						Рейтинг:
-					</h4>
+
+				<div class="appPage-block sixth wide">
+					<h2 style="padding: 25px; margin: 0">Отзывы</h2>
 				</div>
-				<div class="appPage-block eighth">
-					<h2 style="padding: 25px; margin: 0">Бета версия</h2>
+				<div class="appPage-block seventh wide">
+					<h2 style="padding: 25px; margin: 0">Больше от этого разработчика</h2>
+					<div id="aCard-block">
+
+					</div>
+				</div>
+				<div style="display: flex; flex-direction: row;">
+					<div class="appPage-block fifth">
+						<h2 style="padding: 25px; margin: 0">Подробности</h2>
+						<h4 id="appPage-details1">
+
+						</h4>
+					</div>
+					<div class="appPage-block eighth">
+						<h2 style="padding: 25px; margin: 0">Бета версия</h2>
+						<h4 id="appPage-blockText">Бета тестирование недоступно для этого приложения.</h4>
+					</div>
+					<div style="display: none"></div>
 				</div>
 			</div>
 		</div>
-		<script>login()</script>
+		<script>login(); ub_themeBtn()</script>
 	</body>
 </html>

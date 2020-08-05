@@ -39,9 +39,6 @@
 	border-radius: 10px;
 	background: var(--bg);
 }
-#aCard-block {
-	overflow-x: hidden;
-}
 
 .appPage-block {
 	background: var(--bg);

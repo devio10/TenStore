@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TenID</title>
+	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/topBar.js"></script>
+	</head>
+	<body>
+		<a id="mLogo">TENID</a>
+		<nav>
+			<ul id="topBar" style="display: flex; align-items: center">
+				<a id="logo">TENID</a>
+				<a class="separate" id="first">/</a>
+				<a class="topItem">LOGIN</a>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
+			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
+			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
+			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
+		</div>
+
+		<div style="display: none" id="LA-alreadyLoggedIn" class="CA-block">
+			<h5 style="margin: 20px; font-family: var(--bold)">ВОЙТИ В АККАУНТ</h5>
+			<h3 style="margin: 50px 20px 0 20px">Вы уже вошли в аккаунт.</h3>
+			<h4 style="margin: 20px 20px">Перед тем как войти в новый, выйдите из текущего.</h4>
+			<div style="display: flex; align-items: center">
+				<button class="CA-button CA-left"><img src="images/back.svg" class="buttonIcon">Назад</button>
+				<button class="accentButton CA-button CA-right"><img src="images/logout.svg" class="buttonIcon accentIcon">Выйти</button>
+			</div>
+		</div>
+		<div id="LA-1step" class="CA-block">
+			<h5 style="margin: 20px; font-family: var(--bold)">ВОЙТИ В АККАУНТ</h5>
+			<h3 style="margin: 50px 20px 0 20px">Введите данные от вашего аккаунта</h3>
+			<h4 style="margin: 20px 20px">Для получения всех возможностей TenStore, войдите в аккаунт.</h4>
+			<input id="login" placeholder="Логин" type="text" class="textInput CA-input">
+			<input id="password" placeholder="Пароль" type="password" class="textInput CA-input">
+			<div style="display: flex; align-items: center">
+				<a href="create-account" style="margin: 30px" class="link">Создать аккаунт</a>
+				<button onclick="LALogin()" class="accentButton CA-button CA-right"><img src="images/login.svg" class="buttonIcon accentIcon">Войти</button>
+			</div>
+		</div>
+		<div style="display: none" id="LA-2step" class="CA-block">
+			<h5 style="margin: 20px; font-family: var(--bold)">ВОЙТИ В АККАУНТ</h5>
+			<div style="display: flex; align-items: center; margin: 30px 0 10px 0">
+				<img id="LA-userPic" src="images/user.svg">
+				<h3 id="LA-name" style="margin: 0 20px 0 20px"></h3>
+			</div>
+			<div style="display: flex; align-items: center">
+				<a href="login#" onclick="notMe()" style="margin: 30px" class="link">Это не я</a>
+				<button onclick="LASave()" class="accentButton CA-button CA-right"><img src="images/login.svg" class="buttonIcon accentIcon">Всё верно</button>
+			</div>
+		</div>
+
+		<script>login(); ub_themeBtn(); LAcheckLogin()</script>
+	</body>
+</html>

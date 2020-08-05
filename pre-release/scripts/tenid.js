@@ -143,7 +143,12 @@ function getXMLHTTP() {
   return x;
 }
 
-function TenIDLogin () {
+function goBack() {
+  window.history.go(-1);
+}
+
+
+function LALogin () {
   let action = 'h495ujh';
   var login = document.getElementById("login").value;
   var password = SHA256(document.getElementById("password").value);
@@ -156,30 +161,53 @@ function TenIDLogin () {
     if (request.readyState == 4) {
       if(request.status == 200) {
         let obj = request.response;
-        document.getElementById("name").innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
-        document.getElementById("mail").innerHTML = obj.user[0].email;
-        let x = document.getElementById('stage1');
+        document.getElementById("LA-name").innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
+        if (obj.user[0].photo != 0) {
+          document.getElementById("LA-userPic").src = "https://thetenstore.ru/" + obj.user[0].photo;
+        }
+        let x = document.getElementById('LA-1step');
         x.style.display = 'none';
-        let y = document.getElementById('stage2');
+        let y = document.getElementById('LA-2step');
         y.style.display = 'block';
       }
     }
   };
 }
-
-function wrong () {
-  let x = document.getElementById('stage2');
-  x.style.display = 'none';
-  let y = document.getElementById('stage1');
-  y.style.display = 'block';
-}
-
-function saveUser () {
+function LASave () {
   var login = document.getElementById("login").value;
   var password = SHA256(document.getElementById("password").value);
   localStorage.setItem('login', login);
   localStorage.setItem('password', password);
   goBack();
+}
+function notMe () {
+  let y = document.getElementById('LA-2step');
+  let x = document.getElementById('LA-1step');
+  y.style.display = "none";
+  x.style.display = "block";
+}
+function LAcheckLogin () {
+  var password = localStorage.getItem('password');
+  var login = localStorage.getItem('login');
+  let action = 'h495ujh';
+  var request = getXMLHTTP();
+  request.responseType =	"json";
+  request.open('POST', 'api.php', true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send("action=" + action + "&login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
+  request.onreadystatechange = function() {
+    if (request.readyState == 4) {
+      if(request.status == 200) {
+        let obj = request.response;
+        if (obj.user[0].login != null) {
+          let x = document.getElementById('LA-1step');
+          x.style.display = 'none';
+          let y = document.getElementById('LA-alreadyLoggedIn');
+          y.style.display = 'block';
+        }
+      }
+    }
+  };
 }
 
 function login () {
@@ -195,9 +223,14 @@ function login () {
     if ((request.readyState == 4) && (request.status == 200)) {
         let obj = request.response;
         document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
-        document.getElementById('email').innerHTML = obj.user[0].email;
         let userPic = document.getElementById('userPic');
         let boxPic = document.getElementById('boxPic');
+        let picDiv = document.getElementById('picDiv');
+        let lastBtn = document.getElementById('lastButton');
+        let lastBtnAccount = document.getElementById('boxBtn-account');
+        picDiv.style.display = "block";
+        lastBtn.innerHTML = "<img src='images/logout.svg' class='boxButton-icon'>Выйти";
+        lastBtnAccount.style.display = "flex";
         if (obj.user[0].photo == null) {
           userPic.src = 'images/user.svg';
           boxPic.src = 'images/user.svg';
@@ -207,4 +240,14 @@ function login () {
         }
     }
   };
+}
+
+function logoff() {
+  if (localStorage.getItem('login') != null) {
+    localStorage.setItem('password', null);
+    localStorage.setItem('login', null);
+    location.reload();
+  } else {
+    window.open("https://thetenstore.ru/pre-release/login", "_self");
+  }
 }

@@ -6,6 +6,7 @@
 		<title>Настройки — TenStore</title>
 	  <link rel="shortcut icon" href="images/experimental.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/settings.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/theme.js"></script>
@@ -29,28 +30,29 @@
 		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
-			<div id="picDiv"> <img id="boxPic" src="images/user.svg"> </div>
-				<h3 style="margin: 0" id="name" class="centerText">name lastName</h3>
-				<h5 style="margin: 5px 0 12px 0" id="email" class="centerText">email</h3>
-				<button onclick="changeTheme(1)" id="themeButton" class="boxButton">Светлая тема</button>
-				<form action="settings"><button class="boxButton">Настройки</button></form>
-				<form action="tenid/security"><button class="boxButton">Безопасность</button></form>
-				<form action="tenid/library"><button class="boxButton">Библиотека</button></form>
-				<form action="https://dev.thetenstore.ru/"><button class="boxButton">Для разработчиков</button></form>
-				<button onclick="logoff()" class="boxButton lastButton">Выйти из аккаунта</button>
+			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
+			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
+			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
+			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
 		</div>
 
-		<div style="margin: 0 35px 30px 35px; float: left">
-			<h2>Тема</h2>
-			<div style="display: flex; align-items: center;">
+		<div class="settings-block">
+			<img class="settings-subtitleIcon" src="images/theme.svg">
+			<h3>Тема</h3>
+			<div style="display: flex; align-items: center; margin: 30px 0 0 35px">
 				<div onclick="theme_light()" id="theme-light" class="theme-button"><h2 class="check3">Б</h2></div>
-				<div onclick="theme_dark()" id="theme-dark" class="theme-button chosen"><img class="check" src="images/check.svg"></div>
+				<div onclick="theme_dark()" id="theme-dark" class="theme-button chosen"><h2 class="check2">Т</h2></div>
 				<div onclick="theme_black()" id="theme-black" class="theme-button"><h2 class="check2">Ч</h2></div>
 			</div>
 		</div>
-		<div style="margin: 0 35px 30px 35px; float: left">
-			<h2>Акцент</h2>
-			<div style="display: flex; align-items: center;">
+		<div class="settings-block">
+			<img class="settings-subtitleIcon" src="images/accent.svg">
+			<h3>Акцент</h3>
+			<div style="display: flex; align-items: center; margin: 30px 0 0 35px">
 				<div onclick="accent_blue()" id="accent-reallyBlue" class="theme-button"><h2 class="check3">Г</h2></div>
 				<div onclick="accent_purple()" id="accent-purple" class="theme-button"><h2 class="check3">Ф</h2></div>
 				<div onclick="accent_red()" id="accent-red" class="theme-button"><h2 class="check3">К</h2></div>
@@ -59,23 +61,39 @@
 				<div onclick="accent_silver()" id="accent-verySilver" class="theme-button"><h2 class="check3">С</h2></div>
 			</div>
 		</div>
-		<div style="margin: 0 35px 30px 35px; float: left">
-			<h2>Пример темы</h2>
-			<button class="accentButton"><img src="images/search.svg" class="buttonIcon accentIcon">Поиск</button>
-			<input type="text" placeholder="Номер банковской карты" class="textInput" style="margin: 30px 0">
-			<h3>Хотите обратиться к богу?</h3>
-			<h4><a href="https://t.me/dnavalny" class="link">Telegram</a> |
-			<a href="https://vk.com/dmitrynavalny" class="link">ВКонтакте</a></h4>
-			<div style="display: flex">
-				<div class="theme-blockExample theme-block1"><h1 class="check4">1</h1></div>
-				<div class="theme-blockExample theme-block2"><h1 class="check4">2</h1></div>
-				<div class="theme-blockExample theme-block3"><h1 class="check4">3</h1></div>
+		<div class="settings-block">
+			<img class="settings-subtitleIcon" src="images/user.svg">
+			<h3>Аккаунт</h3>
+			<div>
+				<h4 style="margin-left: 45px">Здравствуйте, Дмитрий.</h4>
+				<h4 style="margin-left: 45px">
+					<a class="link" href="https://thetenstore.ru/tenid">Настройки аккаунта</a>
+					<a onclick="showAlert('Выйти из аккаунта?', 'images/logout.svg', 'logout')" style="margin-left: 20px" class="link" href="#">Выйти</a>
+				</h4>
+			</div>
+		</div>
+		<div class="settings-block">
+			<img class="settings-subtitleIcon" src="images/alertsAll.svg">
+			<h3>Уведомления</h3>
+			<h4 style="margin-left: 45px">Уведомления временно недоступны.</h4>
+		</div>
+		<div class="settings-block">
+			<img class="settings-subtitleIcon" src="images/experimental.svg">
+			<h3>Бета тестирование</h3>
+			<div style="margin-left: 45px">
+				<button class="accentButton" style="margin: 20px 0">Вступить</button>
+				<div style="background: #ffccbc; width: 450px; border-radius: 5px">
+					<h5 style="color: black; padding: 5px">После вступления в бета тестирование, вы будете использовать pre-release
+					версию сайта по умолчанию. Работоспособность не гарантирована.</h5>
+				</div>
 			</div>
 		</div>
 		<div id="alert">
 			<img id="alertIcon">
 			<h4 id="alertText"></h4>
 		</div>
+		<div id="alert-button-confirm"><img src="images/check.svg" class="alert-button-icon"></div>
+		<div id="alert-button-cancel"><img src="images/cancel.svg" class="alert-button-icon"></div>
 		<script>login(); theme_check()</script>
 	</body>
 </html>

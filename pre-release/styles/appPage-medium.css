@@ -13,7 +13,7 @@
 	background: 0;
 }
 .appPage-block {
-	width: 35%;
+	width: 36.25%;
 	height: 350px;
 	margin: 50px auto 0 auto;
 }
@@ -70,25 +70,19 @@
 	overflow-y: hidden;
 	display: flex;
 }
-.third {
-	margin-right: 2.5%;
+.third, .fifth {
+	margin-right: 1.25%;
 	height: auto;
 }
-.fourth {
-	margin-left: 2.5%;
+.fourth, .eighth {
+	margin-left: 1.25%;
 	height: auto;
 }
 .fifth, .eighth {
 	height: 290px;
 }
-.fifth {
-	margin-right: 2.5%;
-}
-.eighth {
-	margin-left: 2.5%;
-}
 
-#appPage-description, #appPage-whatsNew, #appPage-details1, #appPage-details2 {
+#appPage-description, #appPage-whatsNew, #appPage-details1, #appPage-details2, #appPage-blockText {
 	padding: 0 25px 35px 25px;
 	margin: 0;
 }

@@ -52,6 +52,8 @@ request.addEventListener("readystatechange", () => {
         tag = "Стратегии";
       } else if (obj.apps[0].tag == 'utilities') {
         tag = "Инструменты";
+      } else if (obj.apps[0].tag == 'RPG') {
+        tag = "RPG";
       }
       if (obj.apps[0].windows == 0) {
         document.getElementById('appPage-windows').style.display = "none";
@@ -87,7 +89,7 @@ request.addEventListener("readystatechange", () => {
       document.getElementById('appPage-dev').innerHTML = obj.apps[0].devname;
       document.getElementById('appPage-description').innerHTML = obj.apps[0].description;
       document.getElementById('appPage-whatsNew').innerHTML = obj.apps[0].whatsNew;
-      document.getElementById('appPage-downloadLink').action = obj.apps[0].windows;
+      document.getElementById('appPage-downloadLink').action = "https://thetenstore.ru/" + obj.apps[0].windows;
       document.getElementById('appPage-title').innerHTML = obj.apps[0].appname + " — TenStore";
       document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
       document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tag=" + obj.apps[0].tag + "'>" + tag + "</a>";
@@ -99,7 +101,42 @@ request.addEventListener("readystatechange", () => {
       Скачано: " + obj.apps[0].downloads + "<br> \
       Категория: <a class='link' href='appsList?tag=" + obj.apps[0].tag + "'>" + tag + "</a><br> \
       Рейтинг: " + rating + "/5.0";
+
   }
 }
 });
 request.send(params);
+let selectDev = "devname";
+let aaa = document.getElementById('appPage-dev');
+valueDev = aaa.innerHTML;
+const requestDev = new XMLHttpRequest();
+const paramsDev = "action=" + action + "&select=" + selectDev + "&value=" + valueDev;
+requestDev.responseType =	"json";
+requestDev.open("POST", url, true);
+requestDev.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+requestDev.addEventListener("readystatechange", () => {
+  if (requestDev.readyState === 4 && requestDev.status === 200) {
+    let objDev = requestDev.response;
+    for(let i=0; i<objDev.apps.length; i++) {
+      var aCardDev = document.createElement('div');
+      let width = 0;
+      if (objDev.apps[i].padding == 15) {
+        width = '120px';
+      } else {
+        width = '150px';
+      }
+      aCardDev.className = 'aCard';
+      aCardDev.innerHTML = "<a href='app?&id="+ objDev.apps[i].id +"'> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objDev.apps[i].bg +"; padding: "+ objDev.apps[i].padding +"px' src='"+ objDev.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objDev.apps[i].appname +"</h3> \
+        <h3 class='aCardDev'>"+ objDev.apps[i].devname +"</h3> \
+      </a>"
+      aCardDev.innerHTML = "<a href='app?&id="+ objDev.apps[i].id +"'> \
+        <img class='aCard-icon' style='width: " + width + "; height: " + width + "; background: "+ objDev.apps[i].bg +"; padding: "+ objDev.apps[i].padding +"px' src='"+ objDev.apps[i].icon +"'> \
+        <h4 class='aCard-name'>"+ objDev.apps[i].appname +"</4> \
+      </a>"
+      document.getElementById('aCard-block').appendChild(aCardDev);
+    }
+  }
+});
+requestDev.send(paramsDev);

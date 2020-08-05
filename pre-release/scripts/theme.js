@@ -1,3 +1,5 @@
+
+let chosenAccent;
 function changeTheme(theme) {
   if (theme == 1) {
     if (localStorage.getItem('theme') == 'black' || localStorage.getItem('theme') == 'dark') {
@@ -15,11 +17,11 @@ function changeTheme(theme) {
       }
     }
     if (localStorage.getItem('theme') == 'dark') {
-      document.getElementById('themeButton').innerHTML = 'Тёмная тема';
+      document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
     } else if (localStorage.getItem('theme') == 'black') {
-      document.getElementById('themeButton').innerHTML = 'Чёрная тема';
+      document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
     } else {
-      document.getElementById('themeButton').innerHTML = 'Светлая тема';
+      document.getElementById('themeButton').innerHTML = "<img src='images/light.svg' class='boxButton-icon'>Светлая тема";
     }
   } else {
     document.documentElement.setAttribute('data-theme', theme);
@@ -34,18 +36,26 @@ function changeAccent(accent) {
 
 function hideAlert () {
   document.getElementById('alert').style.display = "none";
+  document.getElementById('alert-button-cancel').style.display = "none";
+  document.getElementById('alert-button-confirm').style.display = "none";
 }
 
-function showAlert (text, icon) {
+function showAlert (text, icon, action) {
   document.getElementById('alertText').innerHTML = text;
   document.getElementById('alertIcon').src = icon;
   document.getElementById('alert').style.display = "flex";
   setTimeout(hideAlert, 2000);
+  if (action == "logout") {
+    document.getElementById('alert-button-confirm').style.display = "block";
+    document.getElementById('alert-button-cancel').style.display = "block";
+    document.getElementById('alert-button-cancel').onclick = "hideAlert()";
+    document.getElementById('alert-button-confirm').onclick = "logoff()";
+  }
 }
 
 let border;
 function theme_light() {
-  document.getElementById('themeButton').innerHTML = 'Светлая тема';
+  document.getElementById('themeButton').innerHTML = "<img src='images/light.svg' class='boxButton-icon'>Светлая тема";
   document.documentElement.setAttribute('data-theme', 'light');
   showAlert('Тема сохранена.', 'images/check.svg');
   document.getElementById('theme-light').innerHTML = "<img class='check' src='images/check.svg'>";
@@ -56,9 +66,10 @@ function theme_light() {
   document.getElementById('theme-black').style.border = 0;
   localStorage.setItem('theme', 'light');
   border = "black";
+  chosenAccent.style.border = "2px solid " + border;
 }
 function theme_dark() {
-  document.getElementById('themeButton').innerHTML = 'Темная тема';
+  document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
   document.documentElement.setAttribute('data-theme', 'dark');
   showAlert('Тема сохранена.', 'images/check.svg');
   document.getElementById('theme-dark').innerHTML = "<img class='check' src='images/check.svg'>";
@@ -69,9 +80,10 @@ function theme_dark() {
   document.getElementById('theme-black').style.border = 0;
   localStorage.setItem('theme', 'dark');
   border = "white";
+  chosenAccent.style.border = "2px solid " + border;
 }
 function theme_black() {
-  document.getElementById('themeButton').innerHTML = 'Черная тема';
+  document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
   document.documentElement.setAttribute('data-theme', 'black');
   showAlert('Тема сохранена.', 'images/check.svg');
   document.getElementById('theme-black').innerHTML = "<img class='check' src='images/check.svg'>";
@@ -82,36 +94,65 @@ function theme_black() {
   document.getElementById('theme-dark').style.border = 0;
   localStorage.setItem('theme', 'black');
   border = "white";
+  chosenAccent.style.border = "2px solid " + border;
+}
+function ub_themeBtn() {
+  let localTheme = localStorage.getItem('theme');
+  if (localTheme == 'dark') {
+    document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
+  } else if (localTheme == 'black') {
+    document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
+  } else {
+    document.getElementById('themeButton').innerHTML = "<img src='images/light.svg' class='boxButton-icon'>Светлая тема";
+  }
 }
 function theme_check() {
   theme = localStorage.getItem('theme');
   if (theme == "black") {
     document.documentElement.setAttribute('data-theme', 'black');
     document.getElementById('theme-black').innerHTML = "<img class='check' src='images/check.svg'>";
-    document.getElementById('theme-light').innerHTML = "<h2 class='check3'>Б</h2>";
-    document.getElementById('theme-dark').innerHTML = "<h2 class='check2'>Ч</h2>";
     document.getElementById('theme-black').style.border = "2px solid rgba(63,166,104,1)";
-    document.getElementById('theme-light').style.border = 0;
-    document.getElementById('theme-dark').style.border = 0;
+    document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
     border = "white";
   } else if (theme == "dark") {
     document.documentElement.setAttribute('data-theme', 'dark');
     document.getElementById('theme-dark').innerHTML = "<img class='check' src='images/check.svg'>";
-    document.getElementById('theme-light').innerHTML = "<h2 class='check3'>Б</h2>";
-    document.getElementById('theme-black').innerHTML = "<h2 class='check2'>Ч</h2>";
     document.getElementById('theme-dark').style.border = "2px solid rgba(63,166,104,1)";
-    document.getElementById('theme-light').style.border = 0;
-    document.getElementById('theme-black').style.border = 0;
     border = "white";
+    document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
   } else {
     document.documentElement.setAttribute('data-theme', 'light');
     document.getElementById('theme-light').innerHTML = "<img class='check' src='images/check.svg'>";
-    document.getElementById('theme-dark').innerHTML = "<h2 class='check2'>Т</h2>";
-    document.getElementById('theme-black').innerHTML = "<h2 class='check2'>Ч</h2>";
     document.getElementById('theme-light').style.border = "2px solid rgba(63,166,104,1)";
-    document.getElementById('theme-dark').style.border = 0;
-    document.getElementById('theme-black').style.border = 0;
     border = "black";
+    document.getElementById('themeButton').innerHTML = "<img src='images/light.svg' class='boxButton-icon'>Светлая тема";
+  }
+  let accent = localStorage.getItem('accent');
+  if (accent == "blue") {
+    document.getElementById('accent-reallyBlue').innerHTML = "<img class='check1' src='images/check.svg'>";
+    document.getElementById('accent-reallyBlue').style.border = "2px solid " + border;
+    chosenAccent = document.getElementById('accent-reallyBlue');
+
+  } else if (accent == "purple") {
+    document.getElementById('accent-purple').innerHTML = "<img class='check1' src='images/check.svg'>";
+    document.getElementById('accent-purple').style.border = "2px solid " + border;
+    chosenAccent = document.getElementById('accent-purple');
+  } else if (accent == "red") {
+    document.getElementById('accent-red').innerHTML = "<img class='check1' src='images/check.svg'>";
+    document.getElementById('accent-red').style.border = "2px solid " + border;
+    chosenAccent = document.getElementById('accent-red');
+  } else if (accent == "ohSoOrange") {
+    document.getElementById('accent-ohSoOrange').innerHTML = "<img class='check1' src='images/check.svg'>";
+    document.getElementById('accent-ohSoOrange').style.border = "2px solid " + border;
+    chosenAccent = document.getElementById('accent-ohSoOrange');
+  } else if (accent == "green") {
+    document.getElementById('accent-green').innerHTML = "<img class='check1' src='images/check.svg'>";
+    document.getElementById('accent-green').style.border = "2px solid " + border;
+    chosenAccent = document.getElementById('accent-green');
+  } else if (accent == "gray") {
+    document.getElementById('accent-gray').innerHTML = "<img class='check1' src='images/check.svg'>";
+    document.getElementById('accent-gray').style.border = "2px solid " + border;
+    chosenAccent = document.getElementById('accent-verySilver');
   }
 }
 function accent_blue () {
@@ -131,6 +172,7 @@ function accent_blue () {
   document.getElementById('accent-red').style.border = 0;
   document.getElementById('accent-purple').style.border = 0;
   document.getElementById('accent-green').style.border = 0;
+  chosenAccent = document.getElementById('accent-reallyBlue');
 }
 function accent_purple () {
   let accent = 'purple';
@@ -149,6 +191,7 @@ function accent_purple () {
   document.getElementById('accent-red').style.border = 0;
   document.getElementById('accent-reallyBlue').style.border = 0;
   document.getElementById('accent-green').style.border = 0;
+  chosenAccent = document.getElementById('accent-purple');
 }
 function accent_red () {
   let accent = 'red';
@@ -167,6 +210,7 @@ function accent_red () {
   document.getElementById('accent-reallyBlue').style.border = 0;
   document.getElementById('accent-purple').style.border = 0;
   document.getElementById('accent-green').style.border = 0;
+  chosenAccent = document.getElementById('accent-red');
 }
 function accent_orange () {
   let accent = 'ohSoOrange';
@@ -185,6 +229,7 @@ function accent_orange () {
   document.getElementById('accent-red').style.border = 0;
   document.getElementById('accent-purple').style.border = 0;
   document.getElementById('accent-green').style.border = 0;
+  chosenAccent = document.getElementById('accent-ohSoOrange');
 }
 function accent_green () {
   let accent = 'green';
@@ -203,6 +248,7 @@ function accent_green () {
   document.getElementById('accent-red').style.border = 0;
   document.getElementById('accent-purple').style.border = 0;
   document.getElementById('accent-reallyBlue').style.border = 0;
+  chosenAccent = document.getElementById('accent-green');
 }
 function accent_silver () {
   let accent = 'gray';
@@ -221,6 +267,7 @@ function accent_silver () {
   document.getElementById('accent-red').style.border = 0;
   document.getElementById('accent-purple').style.border = 0;
   document.getElementById('accent-green').style.border = 0;
+  chosenAccent = document.getElementById('accent-verySilver');
 }
 
 
