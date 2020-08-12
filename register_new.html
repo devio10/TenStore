@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TenID</title>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="style.css?v=1100" rel="stylesheet" type="text/css">
+	<link href="mobile.css?v=1000" rel="stylesheet" type="text/css">
+	<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+	<script src="scripts/theme.js"></script>
+	<script src="scripts/tenid.js"></script>
+	<script src="scripts/topBar.js"></script>
+</head>
+<body style="overflow-y: hidden">
+	<a id="mLogo">TENSTORE</a>
+	<nav>
+		<ul id="topBar" style="display: flex; align-items: center">
+			<a id="logo">TENSTORE</a>
+			<img style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
+			<a class="separate" id="first">•</a>
+			<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
+			<a class="separate">•</a>
+			<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+			<a class="separate">•</a>
+			<a class="topItem" href="games">ИГРЫ</a>
+			<img onclick="userBox()" id="userPic" src="images/user.svg">
+		</ul>
+	</nav>
+	<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+	<div id="userBox">
+		<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
+		<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
+		<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+		<h3 id="name" class="centerText"></h3>
+		<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
+		<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+		<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
+		<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
+		<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
+	</div>
+
+	<div style="margin: 0 35px 0 35px">
+		<!-- <img id="userPhoto" style="width: 7%; height: auto; border-radius: 100px; margin: 30px 46.5% 0 46.5%" src="images/user.svg"> -->
+		<div class="stage" id="stage1">
+			<img class="titleIcon" src="images/register.svg"></img>
+			<h3 style="width: 100%; text-align: center; margin: 10px 0 30px 0">Создать аккаунт</h3>
+			<input type="text" id="rname" class="regInput" placeholder="Имя" autocomplete="off" required>
+			<h3></h3>
+			<input type="text" id="lastName" class="regInput" placeholder="Фамилия" autocomplete="off" required>
+			<h3></h3>
+			<input type="text" id="mail" class="regInput" placeholder="Почта" autocomplete="off" required>
+			<button class="accentButton" id="regBtn" onclick="step1();">Далее</button>
+			<h3 style="width: 100%; text-align: center; margin: 15px 0 0 0; font-family: var(--regular-font); font-size: 12px">или</h3>
+			<a href="login"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Войти в аккаунт</button></a>
+		</div>
+
+		<div class="stage" id="stage2" style="visibility: hidden">
+			<img class="titleIcon" src="images/security.svg"></img>
+			<h3 style="width: 100%; text-align: center; margin: 10px 0 30px 0">Защита вашего аккаунта</h3>
+			<input type="text" id="login" class="regInput" autocomplete="off" placeholder="Никнейм">
+			<h3></h3>
+			<input type="password" id="pass" class="regInput" autocomplete="off" placeholder="Пароль">
+			<h3></h3>
+			<input type="password" id="repPass" class="regInput" autocomplete="off" placeholder="Повторите пароль">
+			<button class="accentButton" id="regBtn" onclick="step2();">Далее</button>
+			<h3 style="width: 100%; text-align: center; margin: 15px 0 0 0; font-family: var(--regular-font); font-size: 12px">или</h3>
+			<a href="login"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Войти в аккаунт</button></a>
+		</div>
+
+		<div class="stage" id="stage3" style="visibility: hidden">
+			<img class="titleIcon" src="images/userPhoto.svg"></img>
+			<h3 style="width: 100%; text-align: center; margin: 15px 0 15px 0">Фотография профиля</h3>
+			<!--
+			<input type="file" id="uplPhoto">
+			<label for="uplPhoto"/>Выберите файл...</label>
+			-->
+			<h3 style="width: 100%; text-align: center; margin: 0 0 15px 0; font-size: 15px; font-family: var(--regular-font)">Добавление фотографии профиля временно недоступно.</h3>
+			<button class="accentButton" id="regBtn" onclick="step3();">Далее</button>
+			<h3 style="width: 100%; text-align: center; margin: 15px 0 0 0; font-family: var(--regular-font); font-size: 12px">или</h3>
+			<a href="login"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Войти в аккаунт</button></a>
+		</div>
+
+		<div class="stage" id="stage4" style="visibility: hidden">
+			<img class="titleIcon" src="images/help.svg"></img>
+			<h3 id="checkName" style="width: 100%; text-align: center; margin: 15px 0 10px 0"></h3>
+			<h3 id="checkMail" style="width: 100%; text-align: center; margin: 0 0 15px 0; font-size: 12px"></h3>
+			<button class="accentButton" id="regBtn" onclick="createAccount()">Всё верно</button>
+			<button class="outlineButton" id="regBtn" onclick="step4();">Изменить</button>
+			<h3 style="width: 100%; text-align: center; margin: 15px 0 0 0; font-family: var(--regular-font); font-size: 12px">или</h3>
+			<a href="login"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Войти в аккаунт</button></a>
+		</div>
+
+		<div class="stage" id="stage5" style="visibility: hidden">
+			<img class="titleIcon" src="images/done.svg"></img>
+			<h3 style="width: 100%; text-align: center; margin: 15px 0 30px 0">Аккаунт создан</h3>
+			<h3 style="width: 100%; text-align: center; margin: 15px 0 30px 0; font-size: 15px; font-family: var(--regular-font)">На вашу почту пришло письмо с ссылкой.<br>Перейдите по ней, чтобы активировать аккаунт.</h3>
+			<a href="login"><button class="outlineButton" id="regBtn" style="margin-top: 15px">Войти в аккаунт</button></a>
+		</div>
+
+		<div class="stage" id="alreadyExists" style="display: none">
+			<img class="titleIcon" src="images/userPhoto.svg"></img>
+			<h3 style="width: 100%; text-align: center; margin: 10px 0 15px 0">Вы уже вошли в аккаунт</h3>
+			<a href="index"><button class="accentButton" id="regBtn">На главную</button></a>
+			<button class="outlineButton" id="regBtn" style="margin-top: 15px" onclick="logOff()">Выйти из аккаунта</button>
+		</div>
+
+	</div>
+
+	<script src="scripts/closeNotification.js"></script>
+	<script src="scripts/newNotification.js"></script>
+	<script src="scripts/setupNot.js"></script>
+	<script src="scripts/regStep.js"></script>
+	<script src="scripts/loadScreen.js"></script>
+	<script src="scripts/goBack.js"></script>
+	<script>login(); ub_themeBtn()</script>
+	<script>checkLogin()</script>
+</body>
+</html>

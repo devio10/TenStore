@@ -88,7 +88,7 @@ function theme_black() {
   showAlert('Тема сохранена.', 'images/check.svg');
   document.getElementById('theme-black').innerHTML = "<img class='check' src='images/check.svg'>";
   document.getElementById('theme-light').innerHTML = "<h2 class='check3'>Б</h2>";
-  document.getElementById('theme-dark').innerHTML = "<h2 class='check2'>Ч</h2>";
+  document.getElementById('theme-dark').innerHTML = "<h2 class='check2'>Т</h2>";
   document.getElementById('theme-black').style.border = "2px solid rgba(63,166,104,1)";
   document.getElementById('theme-light').style.border = 0;
   document.getElementById('theme-dark').style.border = 0;
@@ -107,6 +107,11 @@ function ub_themeBtn() {
   }
 }
 function theme_check() {
+  if (localStorage.getItem('newFont') == "t") {
+    document.documentElement.setAttribute('data-oldFont', 'true');
+  } else {
+    document.documentElement.setAttribute('data-oldFont', 'false');
+  }
   theme = localStorage.getItem('theme');
   if (theme == "black") {
     document.documentElement.setAttribute('data-theme', 'black');

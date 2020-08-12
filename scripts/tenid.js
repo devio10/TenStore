@@ -6,7 +6,6 @@ function userBox () {
     box.style.display = "block";
   }
 }
-
 function SHA256(s){
  var chrsz = 8;
  var hexcase = 0;
@@ -123,7 +122,6 @@ function SHA256(s){
  s = Utf8Encode(s);
  return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
 }
-
 function getXMLHTTP() {
   var x = false;
   try {
@@ -142,8 +140,10 @@ function getXMLHTTP() {
   }
   return x;
 }
-
-function TenIDLogin () {
+function goBack() {
+  window.history.go(-1);
+}
+function LALogin () {
   let action = 'h495ujh';
   var login = document.getElementById("login").value;
   var password = SHA256(document.getElementById("password").value);
@@ -156,33 +156,55 @@ function TenIDLogin () {
     if (request.readyState == 4) {
       if(request.status == 200) {
         let obj = request.response;
-        document.getElementById("name").innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
-        document.getElementById("mail").innerHTML = obj.user[0].email;
-        let x = document.getElementById('stage1');
+        document.getElementById("LA-name").innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
+        if (obj.user[0].photo != 0) {
+          document.getElementById("LA-userPic").src = "https://thetenstore.ru/" + obj.user[0].photo;
+        }
+        let x = document.getElementById('LA-1step');
         x.style.display = 'none';
-        let y = document.getElementById('stage2');
+        let y = document.getElementById('LA-2step');
         y.style.display = 'block';
       }
     }
   };
 }
-
-function wrong () {
-  let x = document.getElementById('stage2');
-  x.style.display = 'none';
-  let y = document.getElementById('stage1');
-  y.style.display = 'block';
-}
-
-function saveUser () {
+function LASave () {
   var login = document.getElementById("login").value;
   var password = SHA256(document.getElementById("password").value);
   localStorage.setItem('login', login);
   localStorage.setItem('password', password);
   goBack();
 }
-
-function login () {
+function notMe () {
+  let y = document.getElementById('LA-2step');
+  let x = document.getElementById('LA-1step');
+  y.style.display = "none";
+  x.style.display = "block";
+}
+function LAcheckLogin () {
+  var password = localStorage.getItem('password');
+  var login = localStorage.getItem('login');
+  let action = 'h495ujh';
+  var request = getXMLHTTP();
+  request.responseType =	"json";
+  request.open('POST', 'api.php', true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send("action=" + action + "&login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
+  request.onreadystatechange = function() {
+    if (request.readyState == 4) {
+      if(request.status == 200) {
+        let obj = request.response;
+        if (obj.user[0].login != null) {
+          let x = document.getElementById('LA-1step');
+          x.style.display = 'none';
+          let y = document.getElementById('LA-alreadyLoggedIn');
+          y.style.display = 'block';
+        }
+      }
+    }
+  };
+}
+function login (page) {
   var password = localStorage.getItem('password');
   var login = localStorage.getItem('login');
   let action = 'h495ujh';
@@ -194,17 +216,120 @@ function login () {
   request.onreadystatechange = function() {
     if ((request.readyState == 4) && (request.status == 200)) {
         let obj = request.response;
-        document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
-        document.getElementById('email').innerHTML = obj.user[0].email;
+        let userPhoto;
+        if (obj.user[0].photo == null) {
+          userPhoto = 'images/user.svg';
+        } else {
+          userPhoto = "https://thetenstore.ru/" + obj.user[0].photo;
+        }
+        if (page == 'settings') {
+          if (localStorage.getItem('nameDisplay') == 't') {
+            document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].login + ".";
+          } else {
+            document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].name + ".";
+          }
+          document.getElementById('settings-link1').style.display = "block";
+          document.getElementById('settings-link2').style.display = "block";
+          document.getElementById('settings-link3').style.display = "none";
+        }
+        if (localStorage.getItem('nameDisplay') == 't') {
+          document.getElementById('name').innerHTML = obj.user[0].login;
+        } else {
+          document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
+        }
         let userPic = document.getElementById('userPic');
         let boxPic = document.getElementById('boxPic');
-        if (obj.user[0].photo == null) {
-          userPic.src = 'images/user.svg';
-          boxPic.src = 'images/user.svg';
-        } else {
-          userPic.src = "https://thetenstore.ru/" + obj.user[0].photo;
-          boxPic.src = obj.user[0].photo;
-        }
+        let picDiv = document.getElementById('picDiv');
+        let lastBtn = document.getElementById('lastButton');
+        let lastBtnAccount = document.getElementById('boxBtn-account');
+        picDiv.style.display = "block";
+        lastBtn.innerHTML = "<img src='images/logout.svg' class='boxButton-icon'>Выйти";
+        lastBtnAccount.style.display = "flex";
+        userPic.src = userPhoto;
+        boxPic.src = userPhoto;
     }
   };
+}
+function logoff() {
+  if (localStorage.getItem('login') != null) {
+    localStorage.setItem('password', null);
+    localStorage.setItem('login', null);
+    location.reload();
+  } else {
+    window.open("https://thetenstore.ru/pre-release/login", "_self");
+  }
+}
+function validateEmail (email) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+function CAFirst () {
+  var name = document.getElementById('CA-name').value;
+  var lastName = document.getElementById('CA-lastName').value;
+  if ((name == 0) || (lastName == 0)) {
+    alert("Заполните все поля.");
+  } else {
+    let prev = document.getElementById('CA-1step');
+    let next = document.getElementById('CA-2step');
+    prev.style.display = "none";
+    next.style.display = "block";
+  }
+}
+function CASecond () {
+  var pass = document.getElementById('CA-password').value;
+  let passRep = document.getElementById('CA-repeatPassword').value;
+  if ((pass == 0) || (passRep == 0)) {
+    alert("Заполните все поля.");
+  } else if (passRep != pass) {
+    alert("Пароли не совпадают.");
+  } else if (pass.length < 8) {
+    alert("Пароль слишком короткий. Минимальная длина: 8 символов.");
+  } else {
+    let prev = document.getElementById('CA-2step');
+    let next = document.getElementById('CA-3step');
+    prev.style.display = "none";
+    next.style.display = "block";
+  }
+}
+function CAThird () {
+  let prev = document.getElementById('CA-3step');
+  let next = document.getElementById('CA-4step');
+  prev.style.display = "none";
+  next.style.display = "block";
+}
+function CAFourth () {
+  let prev = document.getElementById('CA-4step');
+  let next = document.getElementById('CA-5step');
+  prev.style.display = "none";
+  next.style.display = "block";
+}
+function CAFifth () {
+  var email = document.getElementById('CA-email').value;
+  if (email == 0) {
+    alert("Введите адрес электронной почты.");
+  } else if (validateEmail(email) == false) {
+    alert("Неправильный адрес электронной почты.");
+  } else {
+    let prev = document.getElementById('CA-5step');
+    let next = document.getElementById('CA-6step');
+    prev.style.display = "none";
+    next.style.display = "block";
+  }
+}
+function getUrlVars(key) {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+  vars[key] = value;
+  });
+  return vars;
+}
+function confirmedPage () {
+  let code = getUrlVars()["code"];
+  if (code == '0') {
+    let c0 = document.getElementById('CoA-code0');
+    c0.style.display = "block";
+  } else if (code == '1') {
+    let c1 = document.getElementById('CoA-code1');
+    c1.style.display = "block";
+  }
 }

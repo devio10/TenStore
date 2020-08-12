@@ -17,6 +17,7 @@
 		<nav>
 			<ul id="topBar" style="display: flex; align-items: center">
 				<a id="logo">TENID</a>
+				<img style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 				<a class="separate" id="first">•</a>
 				<a class="topItem">РЕГИСТРАЦИЯ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
@@ -28,10 +29,12 @@
 			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
 			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
+			<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
 		</div>
 
 		<div style="display: none" id="CA-alreadyLoggedIn" class="CA-block">
@@ -42,15 +45,15 @@
 			<button class="accentButton CA-button CA-right"><img src="images/logout.svg" class="buttonIcon accentIcon">Выйти</button>
 		</div>
 
-		<div style="display: none" id="CA-1step" class="CA-block">
+		<div id="CA-1step" class="CA-block">
 			<h5 style="margin: 20px; font-family: var(--bold)">СОЗДАТЬ АККАУНТ</h5>
 			<h3 style="margin: 50px 20px 0 20px">Как вас зовут?</h3>
-			<h4 style="margin: 20px 20px">Введите имя и и фамилию. Необязательно указывать настоящие данные.</h4>
+			<h4 style="margin: 20px 20px">Введите имя и фамилию. Необязательно указывать настоящие данные.</h4>
 			<div style="display: grid">
-				<input placeholder="Имя" type="text" class="textInput CA-input">
-				<input placeholder="Фамилия" type="text" class="textInput CA-input">
+				<input id="CA-name" placeholder="Имя" type="text" class="textInput CA-input">
+				<input id="CA-lastName" placeholder="Фамилия" type="text" class="textInput CA-input">
 			</div>
-			<button class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
+			<button onclick="CAFirst()" class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
 		</div>
 
 		<div style="display: none" id="CA-2step" class="CA-block">
@@ -58,25 +61,42 @@
 			<h3 style="margin: 50px 20px 0 20px">Защитите свои данные</h3>
 			<h4 style="margin: 20px 20px">Поставьте пароль. Вы можете воспользоваться нашим генератором надёжных паролей.</h4>
 			<div style="display: grid; margin-bottom: 10px">
-				<input placeholder="Пароль" type="password" class="textInput CA-input">
-				<input placeholder="Повторите пароль" type="password" class="textInput CA-input">
+				<input id="CA-password" placeholder="Пароль" type="password" class="textInput CA-input">
+				<input id="CA-repeatPassword" placeholder="Повторите пароль" type="password" class="textInput CA-input">
 			</div>
 			<a class="link" style="margin: 20px">Создать случайный пароль</a>
-			<button class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
+			<button onclick="CASecond()" class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
 		</div>
 
 		<div style="display: none" id="CA-3step" class="CA-block">
 			<h5 style="margin: 20px; font-family: var(--bold)">СОЗДАТЬ АККАУНТ</h5>
-			<h3 style="margin: 50px 20px 0 20px">Сделайте ваш профиль узнаваемым</h3>
-			<h4 style="margin: 20px 20px">Поставьте фотографию или пропустите этот шаг, если считаете это неважным.</h4>
-			<button class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
+			<h3 style="margin: 50px 20px 0 20px">Защита от ботов</h3>
+			<h4 style="margin: 20px 20px">Подтвердите, что вы не робот. (капчи нет ыы)</h4>
+			<button onclick="CAThird()" class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
 		</div>
 
-		<div id="CA-4step" class="CA-block">
+		<div style="display: none" id="CA-4step" class="CA-block">
+			<h5 style="margin: 20px; font-family: var(--bold)">СОЗДАТЬ АККАУНТ</h5>
+			<h3 style="margin: 50px 20px 0 20px">Сделайте ваш профиль узнаваемым</h3>
+			<h4 style="margin: 20px 20px">Поставьте фотографию или пропустите этот шаг, если считаете это неважным.</h4>
+			<button onclick="CAFourth()" class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
+		</div>
+
+		<div style="display: none" id="CA-5step" class="CA-block">
 			<h5 style="margin: 20px; font-family: var(--bold)">СОЗДАТЬ АККАУНТ</h5>
 			<h3 style="margin: 50px 20px 0 20px">Осталось совсем немного</h3>
 			<h4 style="margin: 20px 20px">Укажите почту, чтобы подтвердить вашу личность. Мы отправим туда письмо с ссылкой, по которой вам нужно перейти.</h4>
-			<button class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
+			<input id="CA-email" placeholder="Почта" type="text" class="textInput CA-input">
+			<button onclick="CAFifth()" class="accentButton CA-button CA-right"><img src="images/next2.svg" class="buttonIcon accentIcon">Далее</button>
+		</div>
+
+		<div  id="CA-6step" class="CA-block">
+			<h5 style="margin: 20px; font-family: var(--bold)">СОЗДАТЬ АККАУНТ</h5>
+			<h3 style="margin: 50px 20px 0 20px">Вы успешно создали аккаунт</h3>
+			<h4 style="margin: 20px 20px">Подтвердите ваш аккаунт, перейдя по ссылке из письма. Возможно, оно попало в папку "спам".</h4>
+			<form action="https://thetenstore.ru/pre-release/">
+				<button class="accentButton CA-button CA-right"><img src="images/check.svg" class="buttonIcon accentIcon">Готово</button>
+			</form>
 		</div>
 
 		<script>login(); ub_themeBtn()</script>

@@ -18,14 +18,13 @@
 		<nav>
 			<ul id="topBar" style="display: flex; align-items: center">
 				<a id="logo">TENSTORE</a>
+				<img style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 				<a class="separate" id="first">•</a>
 				<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
 				<a class="separate">•</a>
 				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
 				<a class="topItem" href="games">ИГРЫ</a>
-				<a class="separate">•</a>
-				<a class="topItem" href="tenid">TENID</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
@@ -35,29 +34,30 @@
 			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
 			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
+			<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
 		</div>
 
-		<h2 style="margin: 0 35px 0 35px">Это pre-release версия сайта.</h2>
-		<h4 style="margin: 10px 35px 0 35px">В данный момент не все страницы готовы и работоспособны.<br>
-		Ниже вы можете посмотреть готовность обновления к запуску:</h4>
-		<h4 style="margin: 10px 35px 0 35px">
-			<a href="app" class="link">Страница приложения</a>: 75%<br>
-			<a href="appsList" class="link">Список приложений</a>: 30%<br>
-			<a href="settings" class="link">Настройки</a>: 20%<br>
-			<a href="" class="link">Главная страница</a>: 10%<br>
-			Возможность вступить в бета тестирование: 10%<br>
-			<a href="games" class="link">Список игр</a>: 5%<br>
-			Страницы игры: 0%<br>
-			Оптимизация для мобильных устройств: 0%<br>
-			<strike>Окно пользователя: 100%</strike><br>
-		</h4>
-		<div id="alerts">
-			<!-- уведомления здесь -->
+		<div class="topCard-block">
+			<div onclick="window.open('https://thetenstore.ru/pre-release/app?id=44', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/fnafSimulator.jpg)" class="topCard">
+				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ИГРА</h5>
+				<h1 class="topCard-text"></h1>
+			</div>
+
+			<div onclick="window.open('https://thetenstore.ru/pre-release/app?id=36', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/content/filesUWP/scr/1.jpg)" class="topCard">
+				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ПРИЛОЖЕНИЕ</h5>
+				<h1 class="topCard-text">Files UWP (Preview)</h1>
+			</div>
 		</div>
+		<h3 style="margin: 40px 40px 20px 40px">Недавно обновлено</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Высокий рейтинг</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Специально для вас</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Рандомно выбранное приложение</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Недавно добавлено</h3>
 		<script>login(); ub_themeBtn()</script>
 	</body>
 </html>

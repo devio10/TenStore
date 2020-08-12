@@ -8,20 +8,6 @@
 	src: url("fonts/regular.ttf") format('truetype');
 }
 
-.games-topCard {
-	width: 800px;
-	height: 400px;
-	background: var(--primary);
-	border: 1px solid var(--border);
-	border-radius: 10px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
-	margin: 30px auto 30px auto;
-}
-.games-topCard-block {
-	display: flex;
-	flex-direction: row;
-}
-
 .games-blockTitle {
 	margin: 40px 40px 20px 40px;
 }

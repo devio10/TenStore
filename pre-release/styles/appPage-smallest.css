@@ -30,6 +30,10 @@
 	height: 50px;
 	width: 180px;
 }
+#appPage-description, #appPage-whatsNew, #appPage-details1, #appPage-details2, #appPage-blockText {
+	padding: 0 25px 35px 25px;
+	margin: 0;
+}
 .appPage-platform {
 	margin: 23px 15px 0 0;
 }

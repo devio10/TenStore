@@ -1,0 +1,88 @@
+#appsList-displaySettings {
+  width: 430px;
+  height: 100%;
+  background: var(--bg);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  transition: .15s;
+  overflow-y: auto;
+}
+#appsList-dS-block {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 0;
+  display: none;
+}
+#appsList-searchWindow {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	display: none;
+}
+.searchInput {
+	width: 85%;
+	height: 46px;
+	position: fixed;
+	bottom: 30px;
+	right: 12.5%;
+	margin: 0;
+}
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+display: none;
+}
+.selectBox {
+  position: relative;
+  float: left;
+  min-width: 200px;
+  margin: 0 28px 28px 28px;
+}
+.selectBox:after {
+  content: '<>';
+  font-size: 14px;
+  color: #333;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  right: 11px;
+  top: 18px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid #999;
+  position: absolute;
+  pointer-events: none;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  width: 330px;
+  max-width: 380px;
+  height: 50px;
+  float: right;
+  margin: 5px 0px;
+  padding: 0px 15px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--font);
+  background-color: var(--bg);
+  background-image: none;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  -ms-word-break: normal;
+  word-break: normal;
+  transition: box-shadow .2s;
+}
+select:hover {
+  box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+}
+select:focus {
+  outline: none;
+}

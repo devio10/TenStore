@@ -6,7 +6,6 @@ function userBox () {
     box.style.display = "block";
   }
 }
-
 function SHA256(s){
  var chrsz = 8;
  var hexcase = 0;
@@ -123,7 +122,6 @@ function SHA256(s){
  s = Utf8Encode(s);
  return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
 }
-
 function getXMLHTTP() {
   var x = false;
   try {
@@ -142,12 +140,9 @@ function getXMLHTTP() {
   }
   return x;
 }
-
 function goBack() {
   window.history.go(-1);
 }
-
-
 function LALogin () {
   let action = 'h495ujh';
   var login = document.getElementById("login").value;
@@ -209,8 +204,7 @@ function LAcheckLogin () {
     }
   };
 }
-
-function login () {
+function login (page) {
   var password = localStorage.getItem('password');
   var login = localStorage.getItem('login');
   let action = 'h495ujh';
@@ -222,7 +216,27 @@ function login () {
   request.onreadystatechange = function() {
     if ((request.readyState == 4) && (request.status == 200)) {
         let obj = request.response;
-        document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
+        let userPhoto;
+        if (obj.user[0].photo == null) {
+          userPhoto = 'images/user.svg';
+        } else {
+          userPhoto = "https://thetenstore.ru/" + obj.user[0].photo;
+        }
+        if (page == 'settings') {
+          if (localStorage.getItem('nameDisplay') == 't') {
+            document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].login + ".";
+          } else {
+            document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].name + ".";
+          }
+          document.getElementById('settings-link1').style.display = "block";
+          document.getElementById('settings-link2').style.display = "block";
+          document.getElementById('settings-link3').style.display = "none";
+        }
+        if (localStorage.getItem('nameDisplay') == 't') {
+          document.getElementById('name').innerHTML = obj.user[0].login;
+        } else {
+          document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
+        }
         let userPic = document.getElementById('userPic');
         let boxPic = document.getElementById('boxPic');
         let picDiv = document.getElementById('picDiv');
@@ -231,17 +245,11 @@ function login () {
         picDiv.style.display = "block";
         lastBtn.innerHTML = "<img src='images/logout.svg' class='boxButton-icon'>Выйти";
         lastBtnAccount.style.display = "flex";
-        if (obj.user[0].photo == null) {
-          userPic.src = 'images/user.svg';
-          boxPic.src = 'images/user.svg';
-        } else {
-          userPic.src = "https://thetenstore.ru/" + obj.user[0].photo;
-          boxPic.src = "https://thetenstore.ru/" + obj.user[0].photo;
-        }
+        userPic.src = userPhoto;
+        boxPic.src = userPhoto;
     }
   };
 }
-
 function logoff() {
   if (localStorage.getItem('login') != null) {
     localStorage.setItem('password', null);
@@ -249,5 +257,79 @@ function logoff() {
     location.reload();
   } else {
     window.open("https://thetenstore.ru/pre-release/login", "_self");
+  }
+}
+function validateEmail (email) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+function CAFirst () {
+  var name = document.getElementById('CA-name').value;
+  var lastName = document.getElementById('CA-lastName').value;
+  if ((name == 0) || (lastName == 0)) {
+    alert("Заполните все поля.");
+  } else {
+    let prev = document.getElementById('CA-1step');
+    let next = document.getElementById('CA-2step');
+    prev.style.display = "none";
+    next.style.display = "block";
+  }
+}
+function CASecond () {
+  var pass = document.getElementById('CA-password').value;
+  let passRep = document.getElementById('CA-repeatPassword').value;
+  if ((pass == 0) || (passRep == 0)) {
+    alert("Заполните все поля.");
+  } else if (passRep != pass) {
+    alert("Пароли не совпадают.");
+  } else if (pass.length < 8) {
+    alert("Пароль слишком короткий. Минимальная длина: 8 символов.");
+  } else {
+    let prev = document.getElementById('CA-2step');
+    let next = document.getElementById('CA-3step');
+    prev.style.display = "none";
+    next.style.display = "block";
+  }
+}
+function CAThird () {
+  let prev = document.getElementById('CA-3step');
+  let next = document.getElementById('CA-4step');
+  prev.style.display = "none";
+  next.style.display = "block";
+}
+function CAFourth () {
+  let prev = document.getElementById('CA-4step');
+  let next = document.getElementById('CA-5step');
+  prev.style.display = "none";
+  next.style.display = "block";
+}
+function CAFifth () {
+  var email = document.getElementById('CA-email').value;
+  if (email == 0) {
+    alert("Введите адрес электронной почты.");
+  } else if (validateEmail(email) == false) {
+    alert("Неправильный адрес электронной почты.");
+  } else {
+    let prev = document.getElementById('CA-5step');
+    let next = document.getElementById('CA-6step');
+    prev.style.display = "none";
+    next.style.display = "block";
+  }
+}
+function getUrlVars(key) {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+  vars[key] = value;
+  });
+  return vars;
+}
+function confirmedPage () {
+  let code = getUrlVars()["code"];
+  if (code == '0') {
+    let c0 = document.getElementById('CoA-code0');
+    c0.style.display = "block";
+  } else if (code == '1') {
+    let c1 = document.getElementById('CoA-code1');
+    c1.style.display = "block";
   }
 }

@@ -123,7 +123,7 @@ function validateEmail (email) {
 }
 
 function step1 () {
-  let name = document.getElementById('name').value;
+  let name = document.getElementById('rname').value;
   let lastName = document.getElementById('lastName').value;
   let email = document.getElementById('mail').value;
     if (validateEmail(email) == false) {
@@ -161,7 +161,7 @@ function step2 () {
   }
 
 function step3 () {
-  let name = document.getElementById('name').value;
+  let name = document.getElementById('rname').value;
   let lastName = document.getElementById('lastName').value;
   let email = document.getElementById('mail').value;
   let x = document.getElementById('stage3');
@@ -184,7 +184,7 @@ function step4 () {
 }
 
 function createAccount () {
-  let name = document.getElementById('name').value;
+  let name = document.getElementById('rname').value;
   let lastName = document.getElementById('lastName').value;
   let email = document.getElementById('mail').value;
   let login = document.getElementById('login').value;

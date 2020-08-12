@@ -1,17 +1,46 @@
 <?php
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 $pdo = new PDO("mysql:dbname=bomj2655_database;host=localhost;charset=UTF8", "user350312512e", "7T3d9C2r");
 isset($_POST['action']);
+//end id apps
+if($_POST['action']=="KdSqSAOi"){
+    $count=$pdo->query("SELECT MAX(`id`) FROM `apps`")->fetchColumn();
+    $text=['text' =>$count ];
+    header('Content-Type: application/json');
+    echo json_encode($text);
+}
 //show more apps
 if($_POST['action']=="KdSqSAOC"){
 isset($_POST['select']);
 isset($_POST['value']);
-    if($_POST['select'] == "all"){
-$statement = $pdo->prepare("SELECT `appname`, `devname`, `icon` FROM `apps` ORDER BY `apps`.`downloads` DESC");
+if(!empty($_POST['sort'])){
+    $sort=$_POST['sort'];
+    if(mb_substr($sort, 0, 1)=="+"){
+    $by="ASC";
     }
+    if(mb_substr($sort, 0, 1)=="-"){
+    $by="DESC";
+    }
+    $sort=substr($sort, 1);
+}
+else{
+    $by="DESC";
+    $sort="downloads";
+}
+if($_POST['select'] == "all"){
+$value=$_POST['value'];
+$end=$value+16;
+$count=$pdo->query("SELECT MAX(`id`) FROM `apps`")->fetchColumn();
+if($count>=$value){
+$statement = $pdo->prepare("SELECT `name`, `dev`, `icon`, `id`, `icon_bg`, `icon_pad` FROM `apps` WHERE `id`>".$value." AND `id`<=".$end." ORDER BY `apps`.`".$sort."`".$by);
+}
+}
     else{
         $select=$_POST['select'];
         $value=$_POST['value'];
-    $statement = $pdo->prepare("SELECT `appname`, `devname`, `icon` FROM `apps` WHERE `".$select."`='".$value."' ORDER BY `apps`.`downloads` DESC");
+$statement = $pdo->prepare("SELECT `name`, `dev`, `icon`, `id`, `icon_bg`, `icon_pad` FROM `apps` WHERE `".$select."`='".$value."' ORDER BY `apps`.`".$sort."`".$by);
     }
 $statement->execute();
 $userData_List = array();
@@ -20,11 +49,12 @@ while($row=$statement->fetch(PDO::FETCH_ASSOC)){
 	}
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
-echo $json;}
+echo $json;
+}
 //show one app
 if($_POST['action']=="4LlFCT"){
 isset($_POST['id']);
-$value=$_POST['id'];
+$id=$_POST['id'];
     $statement = $pdo->prepare("SELECT * FROM `apps` WHERE `id`='".$id."' ORDER BY `apps`.`downloads` DESC");
 	$statement->execute();
 $userData_List = array();
@@ -45,17 +75,25 @@ if($_POST['action']=="NvXrSW"){
 if($_POST['action']=="fg0348"){
 	isset($_POST['login']);
 $login=$_POST['login'];
+$go=$_POST['go'];
 if (filter_var($login, FILTER_VALIDATE_EMAIL) !== false)
 {
-    $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `email`='".$login."'");
+    if($go=="0"){
+    $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `email`='".$login."'");}
+    if($go=="1")$result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='".$email."'");
 }
 else
 {
-    $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `login`='".$login."'");
+    if($go=="0"){
+
+    $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `login`='".$login."'");}
+    if($go=="1")$result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='".$login."'");
+
+
 }
+if($go=="0"){
 $statement->execute();
 $empty = $statement->rowCount() === 0;
-
 if (!$empty) {
 $userData_List = array();
 while($row=$statement->fetch(PDO::FETCH_ASSOC)){
@@ -64,13 +102,14 @@ while($row=$statement->fetch(PDO::FETCH_ASSOC)){
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
 echo $json;}
-$assocArray = $statement->fetch();
+if($go=="1"){
+$assocArray = $result->fetch();
 $secretKey= $assocArray['secretKey'];
 $email= $assocArray['email'];
 $name= $assocArray['name'];
 $lastName= $assocArray['lastName'];
+echo $name;
 $content="Здравствуйте, ".$name." ".$lastName.".\n
-Спасибо за создание нового аккаунта TenID.\n
 Для завершения сброса пароля, вам необходимо пройти по ссылке ниже:\n
 thetenstore.ru/newpw.php?secretKey=".$secretKey."\n
 C уважением,\n
@@ -78,7 +117,7 @@ C уважением,\n
 \n
 Это были не вы? Проигнорируйте это письмо.";
 mail($email,"Изменение пароля на TenStore",$content);
-}
+}}}
 //change new password and secretkey
 if ($_POST['action']=="6R2YVS"){
 	$key=$_POST['key'];
@@ -108,7 +147,7 @@ echo $json;
 }}
 //register
 if($_POST['action']=="si8739JI"){
-	isset($_POST['login']);
+isset($_POST['login']);
 $login=$_POST['login'];
 isset($_POST['password']);
 $password=$_POST['password'];
@@ -120,7 +159,14 @@ isset($_POST['lastName']);
 $lastName=$_POST['lastName'];
 $secretKey=gen_password(8);
 isset($_POST['photo']);
-$photo=$_POST['photo'];
+$folder ="images/userPics/";
+$image = $_FILES['photo']['name'];
+$filename=$_FILES['photo']['name'];
+$ext=pathinfo($filename, PATHINFO_EXTENSION);
+$photoPath = $folder . $login.".".$ext ;
+$target_file=$folder.basename($_FILES["photo"]["name"]);
+$imageFileType=pathinfo($target_file,PATHINFO_EXTENSION);
+$allowed=array('jpeg','png','jpg', 'bmp', 'gif', "");
 isset($_POST['library']);
 $library=$_POST['library'];
 isset($_POST['theme']);
@@ -139,46 +185,441 @@ echo json_encode($text);}
 else{ $result = $pdo->query("SELECT * FROM `TenID` WHERE `login`='".$login."'");
 $assocArray = $result->fetch();
 $f=$assocArray['login'];
-if($f==$email){$text=['text' =>"Login занят!" ];
+if($f==$login){$text=['text' =>"Login занят!" ];
 header('Content-Type: application/json');
 echo json_encode($text);} else{
 try{
-$STH = $pdo->prepare("INSERT INTO `bomj2655_database`.`TenID` (`email`, `login`, `name`, `lastName`, `password`, `secretKey`, `photo`, `theme`, `library`, `verified`, `start_time`, `end_time`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+if(!in_array($ext,$allowed) )
+{
+ echo "Sorry, only JPG, JPEG, PNG & GIF  photo are allowed.";
+}
+else{
+move_uploaded_file( $_FILES['photo'] ['tmp_name'], $photoPath);
+       $STH = $pdo->prepare("INSERT INTO `bomj2655_database`.`TenID` (`email`, `login`, `name`, `lastName`, `password`, `secretKey`, `photo`, `theme`, `library`, `verified`, `start_time`, `end_time`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
         $STH->bindParam(1, $email);
         $STH->bindParam(2, $login);
         $STH->bindParam(3, $name);
         $STH->bindParam(4, $lastName);
         $STH->bindParam(5, $password);
         $STH->bindParam(6, $secretKey);
-        $STH->bindParam(7, $photo);
+        if($photoPath==$folder . $login.".") $photoPath="";
+        $STH->bindParam(7, $photoPath);
         $STH->bindParam(8, $theme);
         $STH->bindParam(9, $library);
         $STH->bindParam(10, $verified);
         $STH->bindParam(11, $start_time);
         $STH->bindParam(12, $end_time);
         $STH->execute();
+        $content="<!doctype html>
+<html>
+  <head>
+    <meta name=\"viewport\" content=\"width=device-width\" />
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />
+    <title>Simple Transactional Email</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+
+      /*All the styling goes here*/
+
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%;
+      }
+
+      body {
+        background-color: #f6f6f6;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top;
+      }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #f6f6f6;
+        width: 100%;
+      }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px;
+        width: 580px;
+      }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+      }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #ffffff;
+        border-radius: 3px;
+        width: 100%;
+      }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px;
+      }
+
+      .content-block {
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .footer {
+        clear: both;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+      }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #999999;
+          font-size: 12px;
+          text-align: center;
+      }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize;
+      }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px;
+      }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px;
+      }
+
+      a {
+        color: #3498db;
+        text-decoration: underline;
+      }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto;
+      }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center;
+      }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize;
+      }
+
+      .btn-primary table td {
+        background-color: #3498db;
+      }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff;
+      }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0;
+      }
+
+      .first {
+        margin-top: 0;
+      }
+
+      .align-center {
+        text-align: center;
+      }
+
+      .align-right {
+        text-align: right;
+      }
+
+      .align-left {
+        text-align: left;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+      .mt0 {
+        margin-top: 0;
+      }
+
+      .mb0 {
+        margin-bottom: 0;
+      }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0;
+      }
+
+      .powered-by a {
+        text-decoration: none;
+      }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0;
+      }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 620px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important;
+        }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important;
+        }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important;
+        }
+        table[class=body] .content {
+          padding: 0 !important;
+        }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important;
+        }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important;
+        }
+        table[class=body] .btn table {
+          width: 100% !important;
+        }
+        table[class=body] .btn a {
+          width: 100% !important;
+        }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important;
+        }
+      }
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%;
+        }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%;
+        }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important;
+        }
+        #MessageViewBody a {
+          color: inherit;
+          text-decoration: none;
+          font-size: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+        }
+        .btn-primary table td:hover {
+          background-color: #34495e !important;
+        }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important;
+        }
+      }
+
+    </style>
+  </head>
+  <body class=\"\">
+    <span class=\"preheader\">This is preheader text. Some clients will show this text as a preview.</span>
+    <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"body\">
+      <tr>
+        <td>&nbsp;</td>
+        <td class=\"container\">
+          <div class=\"content\">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <table role=\"presentation\" class=\"main\">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class=\"wrapper\">
+                  <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
+                    <tr>
+                      <td>
+                        <p>Здравствуйте,</p>
+                        <p>Нажмите на кнопку ниже, чтобы подтвердить ваш аккаунт TenID.</p>
+                        <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\">
+                          <tbody>
+                            <tr>
+                              <td align=\"left\">
+                                <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href=\"https://thetenstore.ru/activate.php?secretKey=".$secretKey."\" target=\"_blank\">Подтвердить</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p>Если вы ничего не делали, проигнорируйте это письмо.</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <div class=\"footer\">
+              <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
+                <tr>
+                  <td class=\"content-block\">
+                    <span class=\"apple-link\">https://thetenstore.ru</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class=\"content-block powered-by\">
+                    TenStore by <a href=\"https://vk.com/pressteam\">Press Team</a>.
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
+";
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= "Content-type: text/html; charset=utf-8 \r\n";
+$headers .= "From: TenStore <webmaster@thetenstore.ru>\r\n"; // от кого
+mail($email,"Регистрация на TenStore",$content, $headers);
+}
     }
     catch (PDOException $e) {
         echo $e->getMessage();
     }}
-$content="Здравствуйте, ".$name." ".$lastName.".\n
-Спасибо за создание нового аккаунта TenID.\n
-Для завершения регистрации, вам необходимо пройти по ссылке ниже:\n
-thetenstore.ru/activate.php?secretKey=".$secretKey."\n
-На это даётся 24 часа, после чего аккаунт будет удален.\n
-После активации вам будут доступны следующие возможности:\n
-- Скачивание приложений и игр в TenStore\n
-- Смена фотографии профиля\n
-- Просмотр профилей других пользователей.\n
-\n
-C уважением,\n
-команда Press Team.\n
-\n
-Это были не вы? Проигнорируйте это письмо.";
-mail($email,"Регистрация на TenStore",$content);
+
 }}
 //autorize
-if($_POST['action'=='fd92h20j']){
+if($_POST['action']=='fd92h20j'){
 isset($_POST['secretKey']);
 $secretKey=$_POST['secretKey'];
 $statement = $pdo->prepare("SELECT * FROM `TenID` WHERE `secretKey`='".$secretKey."'");
@@ -218,6 +659,37 @@ while($row=$statement->fetch(PDO::FETCH_ASSOC)){
 $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
 $json=unicode_escape_decode($json);
 echo $json;}
+}
+//moderator delete
+if($_POST['action']=='EDIAdX'){
+    $key=$_POST['key'];
+    $id=$_POST['id'];
+    $result = $pdo->query("SELECT * FROM `TenID` WHERE `secretKey`='".$key."'");
+    $assocArray = $result->fetch();
+    $f=$assocArray['userType'];
+    $login=$assocArray['login'];
+    if($f=='admin'){
+    $sql = $pdo->prepare("DELETE FROM `apps` WHERE `id`=".$id);
+    $sql->execute();
+    $text=['text' =>"Удалено!" ];
+    header('Content-Type: application/json');
+    echo json_encode($text);}
+    if($f=='dev'){
+   $result = $pdo->query("SELECT * FROM `apps` WHERE `id`=".$id);
+    $assocArray = $result->fetch();
+    $f=$assocArray['dev'];
+    if($f==$login){
+    $sql = $pdo->prepare("DELETE FROM `apps` WHERE `id`=".$id);
+    $sql->execute();
+    $text=['text' =>"Удалено!" ];
+    header('Content-Type: application/json');
+    echo json_encode($text);}
+    else{
+    $text=['text' =>"Вы не разработчик этого приложения!" ];
+    header('Content-Type: application/json');
+    echo json_encode($text);
+    }
+    }
 }
 //uploadimage (don't use, need edit)
 if($_POST['action']=='v38yr0'){

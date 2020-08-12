@@ -1,4 +1,7 @@
-
+.appPage-flexBlock {
+	display: flex;
+	flex-direction: row;
+}
 
 /*КАРТОЧКИ ПРИЛОЖЕНИЙ*/
 .aCard {

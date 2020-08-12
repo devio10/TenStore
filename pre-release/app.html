@@ -26,6 +26,7 @@
 				<nav style="position: sticky; top: 0;">
 					<ul id="topBar" style="display: flex; align-items: center">
 						<a id="logo">TENSTORE</a>
+						<img style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 						<a class="separate" id="first">•</a>
 						<a class="topItem" href="index">ГЛАВНАЯ</a>
 						<a class="separate">•</a>
@@ -41,10 +42,12 @@
 					<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 					<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 					<h3 id="name" class="centerText"></h3>
+					<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
 					<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 					<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 					<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
 					<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
+					<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
 				</div>
 
 				<!-- -->
@@ -63,12 +66,12 @@
 				<div id="screenshots" class="appPage-block second wide">
 
 				</div>
-				<div style="display: flex; flex-direction: row;">
-					<div class="appPage-block third">
+				<div class="appPage-flexBlock" id="flex1">
+					<div class="appPage-block third" id="thirdBlock">
 						<h2 style="padding: 25px; margin: 0">Описание</h2>
 						<h4 id="appPage-description"></h4>
 					</div>
-					<div class="appPage-block fourth">
+					<div class="appPage-block fourth" id="fourthBlock">
 						<h2 style="padding: 25px; margin: 0">Что нового</h2>
 						<h4 id="appPage-whatsNew"></h4>
 					</div>
@@ -83,7 +86,7 @@
 
 					</div>
 				</div>
-				<div style="display: flex; flex-direction: row;">
+				<div class="appPage-flexBlock">
 					<div class="appPage-block fifth">
 						<h2 style="padding: 25px; margin: 0">Подробности</h2>
 						<h4 id="appPage-details1">

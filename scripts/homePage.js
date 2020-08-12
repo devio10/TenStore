@@ -1,3 +1,6 @@
+if (localStorage.getItem('betaTest') == 't') {
+  window.open('https://thetenstore.ru/pre-release/?source=betaRedirect', '_self');
+}
 let action = "KdSqSAOC";
 let selectAction = "action";
 valueAction = "action";
