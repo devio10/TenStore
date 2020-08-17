@@ -87,6 +87,7 @@ request.addEventListener("readystatechange", () => {
       appPage.style.backgroundSize = 'cover';
       document.getElementById('appPage-rating').innerHTML = rating + "/5.0";
       document.getElementById('appPage-name').innerHTML = obj.apps[0].name;
+      document.getElementById('mLogo2').innerHTML = obj.apps[0].name;
       document.getElementById('appPage-dev').innerHTML = obj.apps[0].dev;
       document.getElementById('appPage-description').innerHTML = obj.apps[0].descr;
       document.getElementById('appPage-whatsNew').innerHTML = obj.apps[0].changelog;
@@ -102,7 +103,13 @@ request.addEventListener("readystatechange", () => {
       } else {
         publisher = obj.apps[0].pub;
       }
-      document.getElementById('appPage-downloadLink').action = "https://thetenstore.ru/" + obj.apps[0].windows;
+      let dPlatform;
+      if (localStorage.getItem('platform') == 'android') {
+        dPlatform = obj.apps[0].android;
+      } else {
+        dPlatform = obj.apps[0].windows;
+      }
+      document.getElementById('appPage-downloadLink').action = dPlatform;
       document.getElementById('appPage-title').innerHTML = obj.apps[0].name + " — TenStore";
       document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
       document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tags=" + obj.apps[0].tags + "'>" + tags + "</a>";
@@ -110,7 +117,7 @@ request.addEventListener("readystatechange", () => {
       Вес: " + obj.apps[0].size + "<br> \
       Разработчик: " + obj.apps[0].dev + "<br> \
       Издатель: " + publisher + "<br> \
-      Опубликовано: 30 апреля 2020г.<br> \
+      Опубликовано: <br> \
       Скачано: " + obj.apps[0].downloads + "<br> \
       Категория: <a class='link' href='appsList?tags=" + obj.apps[0].tags + "'>" + tags + "</a><br> \
       Рейтинг: " + rating + "/5.0";

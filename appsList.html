@@ -7,6 +7,7 @@
 	  <link rel="shortcut icon" href="images/apps.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/appsList-elements.css" rel="stylesheet" type="text/css">
+		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
@@ -21,11 +22,12 @@
 				<input placeholder="Начните вводить здесь..." class="textInput searchInput">
 			</div>
 		</div>
-		<a id="mLogo">TENSTORE</a>
+
 		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
+				<a id="mLogo">TENSTORE</a>
 				<a id="logo">TENSTORE</a>
-				<img style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
+				<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 				<a class="separate" id="first">•</a>
 				<a class="topItem" href="index">ГЛАВНАЯ</a>
 				<a class="separate">•</a>
@@ -33,6 +35,15 @@
 				<a class="separate">•</a>
 				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<nav id="mobile-nav" style="margin: 0 auto 0 auto; width: auto">
+			<ul style="display: flex; align-items: center">
+				<a style="display: block" class="topItem" href="index">ГЛАВНАЯ</a>
+				<a style="display: block" class="separate">•</a>
+				<a style="display: block" class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a style="display: block" class="separate">•</a>
+				<a style="display: block" class="topItem" href="appsList?type=game">ИГРЫ</a>
 			</ul>
 		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->

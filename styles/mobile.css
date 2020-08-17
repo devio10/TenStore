@@ -12,6 +12,7 @@
   #mLogo2 {
     font-size: 14px;
     text-align: left;
+    text-transform: uppercase;
   }
   #logo, .separate, .topItem, #belarus {
     display: none;
@@ -69,7 +70,45 @@
     font-size: 25px;
   }
   #appPage-icon {
-    width: 120px;
-    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+  }
+  #warningBox {
+    width: 300px;
+  }
+
+  .topCard-block {
+    display: block;
+  }
+  .topCard {
+    width: 80%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  #mobile-nav {
+  	display: block;
+  }
+  #appPage-icon-div {
+  }
+  #appPage-name, #appPage-dev, #appPage-category, #appPage-rating, #appPage-windows, #appPage-android {
+    display: none;
+  }
+  #appPage-download {
+    width: 90%;
+    height: 40px;
+    margin: 40px 5% 0 5%;
+    float: right;
+  }
+  #appPage-warningBox {
+    display: block;
+    width: 95%;
+    margin: 30px 2.25% 30px 2.25%;
+  }
+  #whatsNew-block {
+    width: 95%;
+    margin: 20px 2.5% 0 2.5%;
+    background: var(--bg);
   }
 }

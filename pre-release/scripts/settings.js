@@ -6,23 +6,27 @@ function getDefault (dSetting) {
   }
 }
 
-function changeSetting (parameter) {
+function changeSetting (parameter, parValue) {
   let current = localStorage.getItem(parameter);
   let choice;
-  if (current == "t") {
-    localStorage.setItem(parameter, "f");
-    choice = "false";
-  } else if (current == "f") {
-    localStorage.setItem(parameter, "t");
-    choice = "true";
+  if (parValue != null) {
+    localStorage.setItem(parameter, parValue);
   } else {
-    localStorage.setItem(parameter, "t");
-    choice = "true";
+    if (current == "t") {
+      localStorage.setItem(parameter, "f");
+      choice = "false";
+    } else if (current == "f") {
+      localStorage.setItem(parameter, "t");
+      choice = "true";
+    } else {
+      localStorage.setItem(parameter, "t");
+      choice = "true";
+    }
+    if (parameter == "newFont") {
+      document.documentElement.setAttribute('data-oldFont', choice);
+    }
   }
   document.getElementById('refreshButton').style.display = "block";
-  if (parameter == "newFont") {
-    document.documentElement.setAttribute('data-oldFont', choice);
-  }
 }
 
 function checkSwitches() {
@@ -35,6 +39,7 @@ function checkSwitches() {
   let altDesign = localStorage.getItem('altDesign');
   let analytics = localStorage.getItem('analytics');
   let appsListSort = localStorage.getItem('appsListSort');
+  let platform = localStorage.getItem('platform');
 
   if (betaTest == "t") {
     document.getElementById('s-betaTest').checked = true;
@@ -62,5 +67,10 @@ function checkSwitches() {
   }
   if (appsListSort == "t") {
     document.getElementById('s-appsListSort').checked = true;
+  }
+  if (platform == 'android') {
+    document.getElementById('r2').checked = true;
+  } else {
+    document.getElementById('r1').checked = true;
   }
 }

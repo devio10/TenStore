@@ -7,17 +7,18 @@
 		<title>Что нового — TenStore</title>
 	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
 	</head>
 	<body>
-		<a id="mLogo">TENSTORE</a>
 		<nav>
 			<ul id="topBar" style="display: flex; align-items: center">
+				<a id="mLogo2">ЧТО НОВОГО</a>
 				<a id="logo">TENSTORE</a>
-				<img style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
+				<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 				<a class="separate" id="first">•</a>
 				<a class="topItem" href="index">ГЛАВНАЯ</a>
 				<a class="separate">•</a>
@@ -40,14 +41,18 @@
 			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
 			<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
 		</div>
-		<div style="width: 40%; background: var(--secondary); border-radius: 5px; margin: 80px auto">
+		<div id="whatsNew-block">
 			<div style="display: flex; align-items: center;">
 				<img id="storeIcon" src="images/favicon.png">
-				<h3 style="margin: 30px 0 0 15px">TenStore v2.1.0</h3>
+				<h3 style="margin: 30px 0 0 15px">TenStore v2.1.0 rc2</h3>
 				<img style="width: 16px; margin: 30px 5px 0 5px" src="https://thetenstore.ru/images/belarus.png">
 			</div>
 			<div style="margin: 30px 75px 30px 75px">
 				<h4>
+					• Исправлена ширина кнопок акцента на телефонах<br>
+					• Исправлена ширина блоков на странице приложения<br>
+					• <br>
+					<b>2.1.0 rc1:</b> <br>
 					• Добавлена страница настроек<br>
 					• Обновлён список приложений<br>
 					• Обновлена страница входа<br>

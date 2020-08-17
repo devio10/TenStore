@@ -1,0 +1,36 @@
+[data-altDesign="true"] {
+  :root {
+    --bg: #dedede;
+    --shadow1: #bdbdbd;
+    --shadow2: #ffffff;
+    --icons: 0.5;
+    --font: #002171;
+  }
+  [data-accent="blue"] {
+    --accent: #002171;
+    --accent-light: #002171;
+  }
+  .buttonIcon, .accentIcon, .floatIcon, .settings-subtitleIcon {
+    filter: invert(9%) sepia(65%) saturate(3988%) hue-rotate(218deg) brightness(100%) contrast(107%);
+  }
+  button, .accentButton, .floatButton {
+    background: var(--bg);
+    box-shadow:  20px 20px 60px var(--shadow1), -20px -20px 60px var(--shadow2);
+  }
+  button, .accentButton, .floatButton:hover {
+    background: linear-gradient(145deg, #c8c8c8, #eeeeee);
+  }
+  button, .accentButton, .floatButton:active {
+    background: #dedede;
+    box-shadow: -20px -20px 60px #bdbdbd, 20px 20px 60px #ffffff;
+  }
+  #warningBox {
+    background: var(--bg);
+    box-shadow:  20px 20px 60px var(--shadow1), -20px -20px 60px var(--shadow2);
+  }
+  #userBox {
+    background: var(--bg);
+    box-shadow:  20px 20px 60px var(--shadow1), -20px -20px 60px var(--shadow2);
+    border: 0;
+  }
+}

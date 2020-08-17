@@ -17,16 +17,16 @@ requestAction.addEventListener("readystatechange", () => {
     for(let i=0; i<objAction.apps.length; i++) {
       var aCardAction = document.createElement('div');
       let width = 0;
-      if (objAction.apps[i].padding == 15) {
+      if (objAction.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardAction.className = 'aCard';
       aCardAction.innerHTML = "<a href='app?&id="+ objAction.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objAction.apps[i].bg +"; padding: "+ objAction.apps[i].padding +"px' src='"+ objAction.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objAction.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objAction.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objAction.apps[i].icon_bg +"; padding: "+ objAction.apps[i].icon_pad +"px' src='"+ objAction.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objAction.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objAction.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Action').appendChild(aCardAction);
     }
@@ -48,16 +48,16 @@ requestCommunication.addEventListener("readystatechange", () => {
     for(let i=0; i<objCommunication.apps.length; i++) {
       var aCardCommunication = document.createElement('div');
       let width = 0;
-      if (objCommunication.apps[i].padding == 15) {
+      if (objCommunication.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardCommunication.className = 'aCard';
       aCardCommunication.innerHTML = "<a href='app?&id="+ objCommunication.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objCommunication.apps[i].bg +"; padding: "+ objCommunication.apps[i].padding +"px' src='"+ objCommunication.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objCommunication.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objCommunication.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objCommunication.apps[i].bg +"; padding: "+ objCommunication.apps[i].icon_pad +"px' src='"+ objCommunication.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objCommunication.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objCommunication.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Communication').appendChild(aCardCommunication);
     }
@@ -86,9 +86,9 @@ requestUtilities.addEventListener("readystatechange", () => {
       }
       aCardUtilities.className = 'aCard';
       aCardUtilities.innerHTML = "<a href='app?&id="+ objUtilities.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objUtilities.apps[i].bg +"; padding: "+ objUtilities.apps[i].padding +"px' src='"+ objUtilities.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objUtilities.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objUtilities.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objUtilities.apps[i].bg +"; padding: "+ objUtilities.apps[i].icon_pad +"px' src='"+ objUtilities.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objUtilities.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objUtilities.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Utilities').appendChild(aCardUtilities);
     }
@@ -110,16 +110,16 @@ requestArcade.addEventListener("readystatechange", () => {
     for(let i=0; i<objArcade.apps.length; i++) {
       var aCardArcade = document.createElement('div');
       let width = 0;
-      if (objArcade.apps[i].padding == 15) {
+      if (objArcade.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardArcade.className = 'aCard';
       aCardArcade.innerHTML = "<a href='app?&id="+ objArcade.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objArcade.apps[i].bg +"; padding: "+ objArcade.apps[i].padding +"px' src='"+ objArcade.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objArcade.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objArcade.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objArcade.apps[i].bg +"; padding: "+ objArcade.apps[i].icon_pad +"px' src='"+ objArcade.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objArcade.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objArcade.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Arcade').appendChild(aCardArcade);
     }
@@ -141,16 +141,16 @@ requestSocial.addEventListener("readystatechange", () => {
     for(let i=0; i<objSocial.apps.length; i++) {
       var aCardSocial = document.createElement('div');
       let width = 0;
-      if (objSocial.apps[i].padding == 15) {
+      if (objSocial.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardSocial.className = 'aCard';
       aCardSocial.innerHTML = "<a href='app?&id="+ objSocial.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objSocial.apps[i].bg +"; padding: "+ objSocial.apps[i].padding +"px' src='"+ objSocial.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objSocial.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objSocial.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objSocial.apps[i].bg +"; padding: "+ objSocial.apps[i].icon_pad +"px' src='"+ objSocial.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objSocial.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objSocial.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Social').appendChild(aCardSocial);
     }
@@ -172,16 +172,16 @@ requestMedia.addEventListener("readystatechange", () => {
     for(let i=0; i<objMedia.apps.length; i++) {
       var aCardMedia = document.createElement('div');
       let width = 0;
-      if (objMedia.apps[i].padding == 15) {
+      if (objMedia.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardMedia.className = 'aCard';
       aCardMedia.innerHTML = "<a href='app?&id="+ objMedia.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objMedia.apps[i].bg +"; padding: "+ objMedia.apps[i].padding +"px' src='"+ objMedia.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objMedia.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objMedia.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objMedia.apps[i].bg +"; padding: "+ objMedia.apps[i].icon_pad +"px' src='"+ objMedia.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objMedia.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objMedia.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Media').appendChild(aCardMedia);
     }
@@ -203,16 +203,16 @@ requestStrategy.addEventListener("readystatechange", () => {
     for(let i=0; i<objStrategy.apps.length; i++) {
       var aCardStrategy = document.createElement('div');
       let width = 0;
-      if (objStrategy.apps[i].padding == 15) {
+      if (objStrategy.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardStrategy.className = 'aCard';
       aCardStrategy.innerHTML = "<a href='app?&id="+ objStrategy.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objStrategy.apps[i].bg +"; padding: "+ objStrategy.apps[i].padding +"px' src='"+ objStrategy.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objStrategy.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objStrategy.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objStrategy.apps[i].bg +"; padding: "+ objStrategy.apps[i].icon_pad +"px' src='"+ objStrategy.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objStrategy.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objStrategy.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Strategy').appendChild(aCardStrategy);
     }
@@ -234,16 +234,16 @@ requestSimulation.addEventListener("readystatechange", () => {
     for(let i=0; i<objSimulation.apps.length; i++) {
       var aCardSimulation = document.createElement('div');
       let width = 0;
-      if (objSimulation.apps[i].padding == 15) {
+      if (objSimulation.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardSimulation.className = 'aCard';
       aCardSimulation.innerHTML = "<a href='app?&id="+ objSimulation.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objSimulation.apps[i].bg +"; padding: "+ objSimulation.apps[i].padding +"px' src='"+ objSimulation.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objSimulation.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objSimulation.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objSimulation.apps[i].bg +"; padding: "+ objSimulation.apps[i].icon_pad +"px' src='"+ objSimulation.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objSimulation.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objSimulation.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('Simulation').appendChild(aCardSimulation);
     }
@@ -265,16 +265,16 @@ requestNews.addEventListener("readystatechange", () => {
     for(let i=0; i<objNews.apps.length; i++) {
       var aCardNews = document.createElement('div');
       let width = 0;
-      if (objNews.apps[i].padding == 15) {
+      if (objNews.apps[i].icon_pad == 15) {
         width = '120px';
       } else {
         width = '150px';
       }
       aCardNews.className = 'aCard';
       aCardNews.innerHTML = "<a href='app?&id="+ objNews.apps[i].id +"'> \
-        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objNews.apps[i].bg +"; padding: "+ objNews.apps[i].padding +"px' src='"+ objNews.apps[i].icon +"'> \
-        <h3 class='aCardName'>"+ objNews.apps[i].appname +"</h3> \
-        <h3 class='aCardDev'>"+ objNews.apps[i].devname +"</h3> \
+        <img class='aCardIcon' style='width: " + width + "; height: " + width + "; background: "+ objNews.apps[i].bg +"; padding: "+ objNews.apps[i].icon_pad +"px' src='"+ objNews.apps[i].icon +"'> \
+        <h3 class='aCardName'>"+ objNews.apps[i].name +"</h3> \
+        <h3 class='aCardDev'>"+ objNews.apps[i].dev +"</h3> \
       </a>"
       document.getElementById('News').appendChild(aCardNews);
     }

@@ -1,124 +1,72 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TenStore</title>
-  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-	<link href="style.css?v=1101" rel="stylesheet" type="text/css">
-	<link href="mobile.css?v=1001" rel="stylesheet" type="text/css">
-	<meta name="Life on Mars?">
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TenStore</title>
+	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/topBar.js"></script>
+	</head>
 
-<body>
-	<h3 id="topNot"><a href="https://thetenstore.ru/pre-release" style="color: white">ПЕРЕЙТИ В PRE-RELEASE ВЕРСИЮ</a></h3>
-	<a id="mLogo">TENSTORE</a>
-	<nav>
-		<ul class="title" style="display: flex; align-items: center">
-			<a id="logo" style="font-family: var(--bold-font)">TENSTORE</a>
-			<img style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
-			<a id="spaceF">•</a>
-			<a class="navItem" href="index" style="font-family: var(--bold-font)">ГЛАВНАЯ</a>
-			<a сlass="space">•</a>
-			<a class="navItem" href="appsList">ПРИЛОЖЕНИЯ</a>
-			<a сlass="space">•</a>
-			<a class="navItem" href="appsList?type=game">ИГРЫ</a>
-			<a сlass="space">•</a>
-			<a class="navItem" href="tenid">TENID</a>
+	<body>
 
-			<div style="display: flex; align-items: center">
-				<label id="mobileSwitch" class="themeSwitch" for="checkbox">
-						<input type="checkbox" id="checkbox"/>
-						<div class="slider round"></div>
-				</label>
+		<nav style="position: sticky; top: 0;">
+			<ul id="topBar" style="display: flex; align-items: center">
+				<a id="mLogo">TENSTORE</a>
+				<a id="logo">TENSTORE</a>
+				<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
+				<a class="separate" id="first">•</a>
+				<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="games">ИГРЫ</a>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+			<ul style="display: flex; align-items: center; margin: 20px auto 0 auto">
+				<a style="display: block" class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
+				<a style="display: block" class="separate">•</a>
+				<a style="display: block" class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a style="display: block" class="separate">•</a>
+				<a style="display: block" class="topItem" href="appsList?type=game">ИГРЫ</a>
+			</ul>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
+			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
+			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
+			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
+			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
+			<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
+		</div>
+
+		<div class="topCard-block">
+			<div onclick="window.open('https://thetenstore.ru/pre-release/app?id=44', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/fnafSimulator.jpg)" class="topCard">
+				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ИГРА</h5>
+				<h1 class="topCard-text"></h1>
 			</div>
-			<a id="userName" href="tenid"><img id="noUserPhoto" src="images/login.svg"></a>
-			<a id="userName" href="tenid"><img id="userPhoto" src="images/login.svg" style="display: none"></a>
-		</ul>
-	</nav>
 
-	<a href="app?id=28"><section class="appTitle" style="background-image: var(--gradient), url(images/appTitles/ucn.jpg); height: 500px">
-		<h3 style="margin: auto 0 50px 0; font-size: 45px; width: 100%; text-align: center;">Ultimate Custom Night</h3>
-	</section></a>
-
-	<h3>Экшен</h3>
-	<div class="aContainer" id="Action">
-
-	</div>
-
-	<h3>Связь</h3>
-	<div class="aContainer" id="Communication">
-
-	</div>
-
-	<h3>Инструменты</h3>
-	<div class="aContainer" id="Utilities">
-
-	</div>
-
-	<h3>Аркады</h3>
-	<div class="aContainer" id="Arcade">
-
-	</div>
-
-	<h3>Социальные сети</h3>
-	<div class="aContainer" id="Social">
-
-	</div>
-
-	<h3>Музыка и видео</h3>
-	<div class="aContainer" id="Media">
-
-	</div>
-
-	<h3>Стратегии</h3>
-	<div class="aContainer" id="Strategy">
-
-	</div>
-
-	<h3>Симуляторы</h3>
-	<div class="aContainer" id="Simulation">
-
-	</div>
-
-	<h3>Новости</h3>
-	<div class="aContainer" id="News">
-
-	</div>
-
-
-	<div id="notPlace">
-		<!-- уведомления здесь -->
-	</div>
-
-	<div class="loader-wrapper">
-		<span class="loader"><span class="loader-inner"></span></span>
-	</div>
-
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-	<script src="scripts/loadScreen.js"></script>
-	<script src="scripts/closeNotification.js"></script>
-	<script src="scripts/newNotification.js"></script>
-	<script src="scripts/theme.js"></script>
-	<script src="scripts/setupNot.js"></script>
-	<script src="scripts/login.js"></script>
-	<script src="scripts/homePage.js"></script>
-	<script src="scripts/version.js"></script>
-	<script>getVersion()</script>
-	<script>login()</script>
-	<!-- <script>
-		showNot("ВАШ АККАУНТ БЫЛ ЗАБЛОКИРОВАН", " \
-		 <a href='whatsNew' id='link'>Узнать подробности</a> \
-		", '0001');
-	</script> -->
-	<!--<script>
-		showNot('ДОСТУП ОГРАНИЧЕН', "Ваш IP адрес занесён в чёрный список, поэтому некоторые функции сайта недоступны. \
-		<a href='https://vk.com/pressteam' id='link'>Напишите в поддержку, если мы не правы.</a> \
-		");
-	</script> -->
-	<!-- <script>
-		showNot('TENSTORE 2.0.0.13', "Сайт был обновлён. Добавили название магазина сверху экрана для мобильных устройств, анимацию подчёркивания элементов навигации при наведении и убрали никнейм: теперь фотография профиля переводит на страницу TenID.")
-	</script> -->
+			<div onclick="window.open('https://thetenstore.ru/pre-release/app?id=36', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/content/filesUWP/scr/1.jpg)" class="topCard">
+				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ПРИЛОЖЕНИЕ</h5>
+				<h1 class="topCard-text">Files UWP (Preview)</h1>
+			</div>
+		</div>
+		<h3 style="margin: 40px 40px 20px 40px">Недавно обновлено</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Другим нравится</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Специально для вас</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Случайное приложение</h3>
+		<h3 style="margin: 40px 40px 20px 40px">Новинки</h3>
+		<script>login(); ub_themeBtn()</script>
 	</body>
 </html>

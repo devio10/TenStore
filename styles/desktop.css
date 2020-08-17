@@ -110,6 +110,11 @@
 
 /* Элементы */
 
+nav {
+	position: sticky;
+	top: 0;
+}
+
 html, body {
   background: var(--bg);
   font-family: var(--regular);
@@ -347,10 +352,11 @@ button:focus {
   background: white;
   width: 32px;
 	height: 32px;
-  border-radius: 100px;
+  border-radius: 100%;
   cursor: pointer;
   margin: 0 30px 0 auto;
 	object-fit: cover;
+	background-position: center;
 }
 
 #betaAlert {
@@ -981,10 +987,13 @@ input[type='radio']:checked {
 	flex-direction: row;
 }
 
-#warningBox {
+#warningBox, #appPage-warningBox {
 	background: #ffccbc;
 	width: 450px;
 	border-radius: 5px;
+}
+#appPage-warningBox {
+	display: none;
 }
 #storeIcon {
 	width: 32px;
@@ -997,4 +1006,13 @@ input[type='radio']:checked {
 	display: flex;
 	align-items: center;
 	margin: 30px 0 10px 0;
+}
+#mobile-nav {
+	display: none;
+}
+#whatsNew-block {
+	width: 40%;
+	background: var(--secondary);
+	border-radius: 5px;
+	margin: 80px auto;
 }

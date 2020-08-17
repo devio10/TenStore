@@ -1,12 +1,9 @@
 function search () {
   let searchBlock = document.getElementById('appsList-dS-block');
-  let sortButton = document.getElementById('sortButton');
   if (searchBlock.style.display == "block") {
     searchBlock.style.display = "none";
-    sortButton.style.right = "30px";
   } else {
     searchBlock.style.display = "block";
-    sortButton.style.right = "470px";
   }
 }
 let select;
@@ -70,22 +67,10 @@ function sortButton () {
   }
 }
 function confirm() {
-  //let sortList = document.getElementById('sortBy');
-  //let sortValue = sortList[sortList.selectedIndex].value;
   let selector = document.getElementById('selectBox');
   let value = selector[selector.selectedIndex].value;
   let devV = document.getElementById('inpDev').value;
   let sType;
-  //if (sortValue != 0) {
-    //sortBy = sortValue;
-  //} else {
-    //sortBy = 'name';
-  //}
-  //if (document.getElementById('r8').checked == true) {
-    //sortOrder = '-';
-  //} else {
-    //sortOrder = '+';
-  //}
   if (document.getElementById('r1').checked == true) {
     sType = 'app';
   } else if (document.getElementById('r2').checked == true) {
