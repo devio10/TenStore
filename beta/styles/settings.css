@@ -6,3 +6,20 @@
 .settings-block {
 	margin: 0 40px 50px 40px;
 }
+.settings {
+  width: 550px;
+  margin: 0 auto 0 auto;
+}
+.settings-nav {
+  background: var(--bg);
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  transition: .2s background-color;
+  z-index: 0;
+}
+.settings-nav-item {
+  font-family: var(--regular);
+  font-weight: normal;
+  margin: 15px 15px 15px 30px;
+}

@@ -79,10 +79,10 @@ function confirm() {
     sType = 'app';
   }
   if (tag == true) {
-    window.open('https://thetenstore.ru/pre-release/appsList?tag=' + value, '_self');
+    window.open('https://thetenstore.ru/appsList?tag=' + value, '_self');
   } else if (dev == true) {
-    window.open('https://thetenstore.ru/pre-release/appsList?dev=' + devV, '_self');
+    window.open('https://thetenstore.ru/appsList?dev=' + devV, '_self');
   } else {
-    window.open('https://thetenstore.ru/pre-release/appsList?type=' + sType, '_self');
+    window.open('https://thetenstore.ru/appsList?type=' + sType, '_self');
   }
 }

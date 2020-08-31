@@ -1,216 +1,253 @@
 <?php
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 $pdo = new PDO("mysql:dbname=bomj2655_database;host=localhost;charset=UTF8", "user350312512e", "7T3d9C2r");
 isset($_POST['action']);
-//end id apps
-if($_POST['action']=="KdSqSAOi"){
-    $count=$pdo->query("SELECT MAX(`id`) FROM `apps`")->fetchColumn();
-    $text=['text' =>$count ];
+// end id apps
+if ($_POST['action'] == "KdSqSAOi") {
+    $count = $pdo->query("SELECT MAX(`id`) FROM `apps`")->fetchColumn();
+    $text = [
+        'text' => $count
+    ];
     header('Content-Type: application/json');
     echo json_encode($text);
 }
-//show more apps
-if($_POST['action']=="KdSqSAOC"){
-isset($_POST['select']);
-isset($_POST['value']);
-if(!empty($_POST['sort'])){
-    $sort=$_POST['sort'];
-    if(mb_substr($sort, 0, 1)=="+"){
-    $by="ASC";
+// show more apps
+if ($_POST['action'] == "KdSqSAOC") {
+    isset($_POST['select']);
+    isset($_POST['value']);
+    if (! empty($_POST['sort'])) {
+        $sort = $_POST['sort'];
+        if (mb_substr($sort, 0, 1) == "+") {
+            $by = "ASC";
+        }
+        if (mb_substr($sort, 0, 1) == "-") {
+            $by = "DESC";
+        }
+        $sort = substr($sort, 1);
+    } else {
+        $by = "DESC";
+        $sort = "downloads";
     }
-    if(mb_substr($sort, 0, 1)=="-"){
-    $by="DESC";
+    if ($_POST['select'] == "all") {
+        $value = $_POST['value'];
+        $end = $value + 16;
+        $count = $pdo->query("SELECT MAX(`id`) FROM `apps`")->fetchColumn();
+        if ($count >= $value) {
+            $statement = $pdo->prepare("SELECT `name`, `dev`, `icon`, `id`, `icon_bg`, `icon_pad` FROM `apps` WHERE `id`>" . $value . " AND `id`<=" . $end . " ORDER BY `apps`.`" . $sort . "`" . $by);
+        }
+    } else {
+        $select = $_POST['select'];
+        $value = $_POST['value'];
+        $statement = $pdo->prepare("SELECT `name`, `dev`, `icon`, `id`, `icon_bg`, `icon_pad` FROM `apps` WHERE `" . $select . "`='" . $value . "' ORDER BY `apps`.`" . $sort . "`" . $by);
     }
-    $sort=substr($sort, 1);
-}
-else{
-    $by="DESC";
-    $sort="downloads";
-}
-if($_POST['select'] == "all"){
-$value=$_POST['value'];
-$end=$value+16;
-$count=$pdo->query("SELECT MAX(`id`) FROM `apps`")->fetchColumn();
-if($count>=$value){
-$statement = $pdo->prepare("SELECT `name`, `dev`, `icon`, `id`, `icon_bg`, `icon_pad` FROM `apps` WHERE `id`>".$value." AND `id`<=".$end." ORDER BY `apps`.`".$sort."`".$by);
-}
-}
-    else{
-        $select=$_POST['select'];
-        $value=$_POST['value'];
-$statement = $pdo->prepare("SELECT `name`, `dev`, `icon`, `id`, `icon_bg`, `icon_pad` FROM `apps` WHERE `".$select."`='".$value."' ORDER BY `apps`.`".$sort."`".$by);
+    $statement->execute();
+    $userData_List = array();
+    while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+        $userData_List['apps'][] = $row;
     }
-$statement->execute();
-$userData_List = array();
-while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['apps'][] = $row;
-	}
-$json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
-$json=unicode_escape_decode($json);
-echo $json;
+    $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
+    $json = unicode_escape_decode($json);
+    echo $json;
 }
-//show one app
-if($_POST['action']=="4LlFCT"){
-isset($_POST['id']);
-$id=$_POST['id'];
-    $statement = $pdo->prepare("SELECT * FROM `apps` WHERE `id`='".$id."' ORDER BY `apps`.`downloads` DESC");
-	$statement->execute();
-$userData_List = array();
-while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['apps'][] = $row;
-	}
-$json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
-$json=unicode_escape_decode($json);
-echo $json;
+// show one app
+if ($_POST['action'] == "4LlFCT") {
+    isset($_POST['id']);
+    $id = $_POST['id'];
+    $statement = $pdo->prepare("SELECT * FROM `apps` WHERE `id`='" . $id . "' ORDER BY `apps`.`downloads` DESC");
+    $statement->execute();
+    $userData_List = array();
+    while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+        $userData_List['apps'][] = $row;
+    }
+    $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
+    $json = unicode_escape_decode($json);
+    echo $json;
 }
-//download (need edit)
-if($_POST['action']=="NvXrSW"){
-    $id=$_POST['id'];
+// download (need edit)
+if ($_POST['action'] == "NvXrSW") {
+    $id = $_POST['id'];
     $statement = $pdo->prepare("UPDATE apps SET downloads = downloads+1 WHERE id = ?");
-    $statement->execute([$id]);
+    $statement->execute([
+        $id
+    ]);
 }
-//restore password query
-if($_POST['action']=="fg0348"){
-	isset($_POST['login']);
-$login=$_POST['login'];
-$go=$_POST['go'];
-if (filter_var($login, FILTER_VALIDATE_EMAIL) !== false)
-{
-    if($go=="0"){
-    $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `email`='".$login."'");}
-    if($go=="1")$result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='".$email."'");
-}
-else
-{
-    if($go=="0"){
+// restore password query
+if ($_POST['action'] == "fg0348") {
+    isset($_POST['login']);
+    $login = $_POST['login'];
+    $go = $_POST['go'];
+    if (filter_var($login, FILTER_VALIDATE_EMAIL) !== false) {
+        if ($go == "0") {
+            $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `email`='" . $login . "'");
+        }
+        if ($go == "1")
+            $result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='" . $login . "'");
+    } else {
+        if ($go == "0") {
 
-    $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `login`='".$login."'");}
-    if($go=="1")$result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='".$login."'");
-
-
-}
-if($go=="0"){
-$statement->execute();
-$empty = $statement->rowCount() === 0;
-if (!$empty) {
-$userData_List = array();
-while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['user'][] = $row;
-	}
-$json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
-$json=unicode_escape_decode($json);
-echo $json;}
-if($go=="1"){
-$assocArray = $result->fetch();
-$secretKey= $assocArray['secretKey'];
-$email= $assocArray['email'];
-$name= $assocArray['name'];
-$lastName= $assocArray['lastName'];
-echo $name;
-$content="Здравствуйте, ".$name." ".$lastName.".\n
+            $statement = $pdo->prepare("SELECT `email`, `login`, `name`, `lastname`, `secretKey`, `photo` FROM `TenID` WHERE `login`='" . $login . "'");
+        }
+        if ($go == "1")
+            $result = $pdo->query("SELECT * FROM `TenID` WHERE `login`='" . $login . "'");
+    }
+    if ($go == "0") {
+        $statement->execute();
+        $empty = $statement->rowCount() === 0;
+        if (! $empty) {
+            $userData_List = array();
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $userData_List['user'][] = $row;
+            }
+            $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
+            $json = unicode_escape_decode($json);
+            echo $json;
+        }
+        if ($go == "1") {
+            $assocArray = $result->fetch();
+            $secretKey = $assocArray['secretKey'];
+            $email = $assocArray['email'];
+            $name = $assocArray['name'];
+            $lastName = $assocArray['lastName'];
+            echo $name;
+            $content = "Здравствуйте, " . $name . " " . $lastName . ".\n
 Для завершения сброса пароля, вам необходимо пройти по ссылке ниже:\n
-thetenstore.ru/newpw.php?secretKey=".$secretKey."\n
+thetenstore.ru/newpw.php?secretKey=" . $secretKey . "\n
 C уважением,\n
 команда Press Team.\n
 \n
 Это были не вы? Проигнорируйте это письмо.";
-mail($email,"Изменение пароля на TenStore",$content);
-}}}
-//change new password and secretkey
-if ($_POST['action']=="6R2YVS"){
-	$key=$_POST['key'];
-	$password=$_POST['password'];
-	$secretKey=gen_password(8);
-	$statement = $pdo->prepare("UPDATE TenID SET `verified` = 1, `secretKey`=?, `password`=? WHERE `secretKey` = ?");
-	$statement->execute(array($secretKey, $password, $key));
+            mail($email, "Изменение пароля на TenStore", $content);
+        }
+    }
 }
-//search
-if($_POST['action']=="d6Gj59"){
-$search=$_POST['search'];
-	if(strlen($search )>2){
-$id = "%$search%";
-$appname = "%$search%";
-$devname = "%$search%";
-$description = "%$search%";
-$tag = "%$search%";
-$statement = $pdo->prepare("SELECT * FROM apps WHERE `id` LIKE ? || `appname` LIKE ? || `devname` LIKE ? || `description` LIKE ? || `tag` LIKE ?");
-$statement->execute(array($id, $appname, $devname, $description, $tag));
-$userData_List = array();
-while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['apps'][] = $row;
-	}
-$json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
-$json=unicode_escape_decode($json);
-echo $json;
-}}
-//register
-if($_POST['action']=="si8739JI"){
-isset($_POST['login']);
-$login=$_POST['login'];
-isset($_POST['password']);
-$password=$_POST['password'];
-isset($_POST['email']);
-$email=$_POST['email'];
-isset($_POST['name']);
-$name=$_POST['name'];
-isset($_POST['lastName']);
-$lastName=$_POST['lastName'];
-$secretKey=gen_password(8);
-isset($_POST['photo']);
-$folder ="images/userPics/";
-$image = $_FILES['photo']['name'];
-$filename=$_FILES['photo']['name'];
-$ext=pathinfo($filename, PATHINFO_EXTENSION);
-$photoPath = $folder . $login.".".$ext ;
-$target_file=$folder.basename($_FILES["photo"]["name"]);
-$imageFileType=pathinfo($target_file,PATHINFO_EXTENSION);
-$allowed=array('jpeg','png','jpg', 'bmp', 'gif', "");
-isset($_POST['library']);
-$library=$_POST['library'];
-isset($_POST['theme']);
-$theme=$_POST['theme'];
-$verified=0;
-$date = date('Y-m-d H:i:s');
-$f = strtotime($date);
-$start_time = strtotime($date);
-$end_time=strtotime($date)+86400;
-$result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='".$email."'");
-$assocArray = $result->fetch();
-$f=$assocArray['email'];
-if($f==$email){$text=['text' =>"Email занят!" ];
-header('Content-Type: application/json');
-echo json_encode($text);}
-else{ $result = $pdo->query("SELECT * FROM `TenID` WHERE `login`='".$login."'");
-$assocArray = $result->fetch();
-$f=$assocArray['login'];
-if($f==$login){$text=['text' =>"Login занят!" ];
-header('Content-Type: application/json');
-echo json_encode($text);} else{
-try{
-if(!in_array($ext,$allowed) )
-{
- echo "Sorry, only JPG, JPEG, PNG & GIF  photo are allowed.";
+// change new password and secretkey
+if ($_POST['action'] == "6R2YVS") {
+    $key = $_POST['key'];
+    $password = $_POST['password'];
+    $secretKey = gen_password(8);
+    $statement = $pdo->prepare("UPDATE TenID SET `verified` = 1, `secretKey`=?, `password`=? WHERE `secretKey` = ?");
+    $statement->execute(array(
+        $secretKey,
+        $password,
+        $key
+    ));
 }
-else{
-move_uploaded_file( $_FILES['photo'] ['tmp_name'], $photoPath);
-       $STH = $pdo->prepare("INSERT INTO `bomj2655_database`.`TenID` (`email`, `login`, `name`, `lastName`, `password`, `secretKey`, `photo`, `theme`, `library`, `verified`, `start_time`, `end_time`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-        $STH->bindParam(1, $email);
-        $STH->bindParam(2, $login);
-        $STH->bindParam(3, $name);
-        $STH->bindParam(4, $lastName);
-        $STH->bindParam(5, $password);
-        $STH->bindParam(6, $secretKey);
-        if($photoPath==$folder . $login.".") $photoPath="";
-        $STH->bindParam(7, $photoPath);
-        $STH->bindParam(8, $theme);
-        $STH->bindParam(9, $library);
-        $STH->bindParam(10, $verified);
-        $STH->bindParam(11, $start_time);
-        $STH->bindParam(12, $end_time);
-        $STH->execute();
-        $content="<!doctype html>
+// search
+if ($_POST['action'] == "d6Gj59") {
+    $search = $_POST['search'];
+    if (strlen($search) > 2) {
+        $id = "%$search%";
+        $appname = "%$search%";
+        $devname = "%$search%";
+        $description = "%$search%";
+        $tag = "%$search%";
+        $statement = $pdo->prepare("SELECT * FROM apps WHERE `id` LIKE ? || `name` LIKE ? || `dev` LIKE ? || `descr` LIKE ? || `tags` LIKE ?");
+        $statement->execute(array(
+            $id,
+            $appname,
+            $devname,
+            $description,
+            $tag
+        ));
+        $userData_List = array();
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $userData_List['apps'][] = $row;
+        }
+        $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
+        $json = unicode_escape_decode($json);
+        echo $json;
+    }
+}
+// register
+if ($_POST['action'] == "si8739JI") {
+    if (! $_POST["g-recaptcha"]) {
+        exit("errRecaptcha");
+    } else {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $key = "6LcY78EZAAAAAAS57kIxQKmJf52MDXt97AwCYJbq";
+        $query = array(
+            "secret" => $key,
+            "response" => $_POST["g-recaptcha"],
+            "remoteip" => $_SERVER['thetenstore.ru']
+        );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
+        $data = json_decode(curl_exec($ch), $assoc = true);
+        curl_close($ch);
+        if (! $data['success']) {
+            exit("errBot");
+        } else {
+            isset($_POST['login']);
+            $login = $_POST['login'];
+            isset($_POST['password']);
+            $password = $_POST['password'];
+            isset($_POST['email']);
+            $email = $_POST['email'];
+            isset($_POST['name']);
+            $name = $_POST['name'];
+            isset($_POST['lastName']);
+            $lastName = $_POST['lastName'];
+            $secretKey = gen_password(8);
+            isset($_POST['photo']);
+            $folder = "images/userPics/";
+            $filename = $_FILES['photo']['name'];
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            $photoPath = $folder . $login . "." . $ext;
+            $target_file = $folder . basename($_FILES["photo"]["name"]);
+            $allowed = array(
+                'jpeg',
+                'png',
+                'jpg',
+                'bmp',
+                'gif',
+                ""
+            );
+            isset($_POST['library']);
+            $library = $_POST['library'];
+            isset($_POST['theme']);
+            $theme = $_POST['theme'];
+            $verified = 0;
+            $date = date('Y-m-d H:i:s');
+            $f = strtotime($date);
+            $start_time = strtotime($date);
+            $end_time = strtotime($date) + 86400;
+            $result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='" . $email . "'");
+            $assocArray = $result->fetch();
+            $f = $assocArray['email'];
+            if ($f == $email) {
+                echo "errEmail";
+            } else {
+                $result = $pdo->query("SELECT * FROM `TenID` WHERE `login`='" . $login . "'");
+                $assocArray = $result->fetch();
+                $f = $assocArray['login'];
+                if ($f == $login) {
+                    echo "errLogin";
+                } else {
+                    try {
+                        if (! in_array($ext, $allowed)) {
+                            echo "errExt";
+                        } else {
+                            move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath);
+                            $STH = $pdo->prepare("INSERT INTO `bomj2655_database`.`TenID` (`email`, `login`, `name`, `lastName`, `password`, `secretKey`, `photo`, `theme`, `library`, `verified`, `start_time`, `end_time`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                            $STH->bindParam(1, $email);
+                            $STH->bindParam(2, $login);
+                            $STH->bindParam(3, $name);
+                            $STH->bindParam(4, $lastName);
+                            $STH->bindParam(5, $password);
+                            $STH->bindParam(6, $secretKey);
+                            if ($photoPath == $folder . $login . ".")
+                                $photoPath = "";
+                            $STH->bindParam(7, $photoPath);
+                            $STH->bindParam(8, $theme);
+                            $STH->bindParam(9, $library);
+                            $STH->bindParam(10, $verified);
+                            $STH->bindParam(11, $start_time);
+                            $STH->bindParam(12, $end_time);
+                            $STH->execute();
+                            echo "success";
+                            $content =$content="<!doctype html>
 <html>
   <head>
     <meta name=\"viewport\" content=\"width=device-width\" />
@@ -607,122 +644,370 @@ move_uploaded_file( $_FILES['photo'] ['tmp_name'], $photoPath);
   </body>
 </html>
 ";
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= "Content-type: text/html; charset=utf-8 \r\n";
-$headers .= "From: TenStore <webmaster@thetenstore.ru>\r\n"; // от кого
-mail($email,"Регистрация на TenStore",$content, $headers);
-}
+                            $headers = 'MIME-Version: 1.0' . "\r\n";
+                            $headers .= "Content-type: text/html; charset=utf-8 \r\n";
+                            $headers .= "From: TenStore <webmaster@thetenstore.ru>\r\n"; // от кого
+                            mail($email, "Регистрация на TenStore", $content, $headers);
+                        }
+                    } catch (PDOException $e) {
+                        echo $e->getMessage();
+                    }
+                }
+            }
+        }
     }
-    catch (PDOException $e) {
-        echo $e->getMessage();
-    }}
+}
+// update account
+if ($_POST['action'] == "QWE2e3FA") {
+    $id = $_POST['id'];
+    $isNewPhoto = $_POST['isNewPhoto'];
+    $login = $_POST['login'];
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $lastName = $_POST['lastName'];
+    $next = 0;
+    if ($email != null) {
+        $result = $pdo->query("SELECT * FROM `TenID` WHERE `email`='" . $email . "'");
+        $assocArray = $result->fetch();
+        $f = $assocArray['email'];
+        if ($f == $email) {
+            echo "errEmail";
+            $next = 1;
+        }
+    } else {
+        $result = $pdo->query("SELECT * FROM `TenID` WHERE `id`=" . $id);
+        $assocArray = $result->fetch();
+        $email = $assocArray['email'];
+    }
+    if ($login != null) {
+        $result = $pdo->query("SELECT * FROM `TenID` WHERE `login`='" . $login . "'");
+        $assocArray = $result->fetch();
+        $f = $assocArray['login'];
+        if ($f == $login) {
+            echo "errLogin";
+            $next = 1;
+        }
+    } else {
+        $result = $pdo->query("SELECT * FROM `TenID` WHERE `id`=" . $id);
+        $assocArray = $result->fetch();
+        $login = $assocArray['login'];
+    }
+    if ($name == null) {
+        $result = $pdo->query("SELECT * FROM `TenID` WHERE `id`=" . $id);
+        $assocArray = $result->fetch();
+        $name = $assocArray['name'];
+    }
+    if ($lastName == null) {
+        $result = $pdo->query("SELECT * FROM `TenID` WHERE `id`=" . $id);
+        $assocArray = $result->fetch();
+        $lastName = $assocArray['lastName'];
+    }
+    if ($next == 0) {
+        if ($isNewPhoto == "true") {
+            $folder = "images/userPics/";
+            $filename = $_FILES['photo']['name'];
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            $photoPath = $folder . $login . "." . $ext;
+            $target_file = $folder . basename($_FILES["photo"]["name"]);
+            $allowed = array(
+                'jpeg',
+                'png',
+                'jpg',
+                'bmp',
+                'gif',
+                ""
+            );
+            if (! in_array($ext, $allowed)) {
+                echo "errExt";
+            } else {
+                move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath);
+                $STH = $pdo->prepare("UPDATE `TenID` SET `email`=?, `login`=?, `name`=?, `lastName`=?, `photo`=? WHERE `id`=?");
+                if ($photoPath == $folder . $login . ".")
+                    $photoPath = "";
+                $STH->execute([
+                    $email,
+                    $login,
+                    $name,
+                    $lastName,
+                    $photoPath,
+                    $id
+                ]);
+            }
+        }
+        if ($isNewPhoto == "false") {
+            $result = $pdo->query("SELECT * FROM `TenID` WHERE `id`=" . $id);
+            $assocArray = $result->fetch();
+            $f = $assocArray['photo'];
+            $STH = $pdo->prepare("UPDATE `TenID` SET `email`=?, `login`=?, `name`=?, `lastName`=?, `photo`=? WHERE `id`=?");
+            $STH->execute([
+                $email,
+                $login,
+                $name,
+                $lastName,
+                $f,
+                $id
+            ]);
+        }
+        if ($isNewPhoto == null) {
+            $result = $pdo->query("SELECT * FROM `TenID` WHERE `id`=" . $id);
+            $assocArray = $result->fetch();
+            $f = $assocArray['photo'];
+            $STH = $pdo->prepare("UPDATE `TenID` SET `email`=?, `login`=?, `name`=?, `lastName`=?, `photo`='' WHERE `id`=?");
+            $STH->execute([
+                $email,
+                $login,
+                $name,
+                $lastName,
+                $id
+            ]);
+            unlink($f);
+        }
+        echo "success";
+    }
+}
+// autorize
+if ($_POST['action'] == 'fd92h20j') {
+    isset($_POST['secretKey']);
+    $secretKey = $_POST['secretKey'];
+    $statement = $pdo->prepare("SELECT * FROM `TenID` WHERE `secretKey`='" . $secretKey . "'");
+    $statement->execute();
+    $empty = $statement->rowCount() === 0;
+    if (! $empty) {
+        $userData_List = array();
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $userData_List['user'][] = $row;
+        }
+        $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
+        $json = unicode_escape_decode($json);
+        echo $json;
+    }
+}
+// login
+if ($_POST['action'] == 'h495ujh') {
+    isset($_POST['login']);
+    $login = $_POST['login'];
+    isset($_POST['password']);
+    $password = $_POST['password'];
+    if (filter_var($login, FILTER_VALIDATE_EMAIL) !== false) {
+        $statement = $pdo->prepare("SELECT * FROM `TenID` WHERE `email`='" . $login . "' AND `password`='" . $password . "'");
+    } else {
+        $statement = $pdo->prepare("SELECT * FROM `TenID` WHERE `login`='" . $login . "'AND `password`='" . $password . "'");
+    }
+    $statement->execute();
+    $empty = $statement->rowCount() === 0;
 
-}}
-//autorize
-if($_POST['action']=='fd92h20j'){
-isset($_POST['secretKey']);
-$secretKey=$_POST['secretKey'];
-$statement = $pdo->prepare("SELECT * FROM `TenID` WHERE `secretKey`='".$secretKey."'");
-$statement->execute();
-$empty = $statement->rowCount() === 0;
-if (!$empty) {
-$userData_List = array();
-while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['user'][] = $row;
-	}
-$json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
-$json=unicode_escape_decode($json);
-echo $json;
-}}
-//login
-if($_POST['action']=='h495ujh'){
-	isset($_POST['login']);
-$login=$_POST['login'];
-isset($_POST['password']);
-$password=$_POST['password'];
-if (filter_var($login, FILTER_VALIDATE_EMAIL) !== false)
-{
-    $statement = $pdo->prepare("SELECT * FROM `TenID` WHERE `email`='".$login."' AND `password`='".$password."'");
+    if (! $empty) {
+        $userData_List = array();
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $userData_List['user'][] = $row;
+        }
+        $json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
+        $json = unicode_escape_decode($json);
+        echo $json;
+    }
 }
-else
-{
-    $statement = $pdo->prepare("SELECT * FROM `TenID` WHERE `login`='".$login."'AND `password`='".$password."'");
-}
-$statement->execute();
-$empty = $statement->rowCount() === 0;
-
-if (!$empty) {
-$userData_List = array();
-while($row=$statement->fetch(PDO::FETCH_ASSOC)){
-		$userData_List['user'][] = $row;
-	}
-$json = json_encode($userData_List, JSON_UNESCAPED_SLASHES);
-$json=unicode_escape_decode($json);
-echo $json;}
-}
-//moderator delete
-if($_POST['action']=='EDIAdX'){
-    $key=$_POST['key'];
-    $id=$_POST['id'];
-    $result = $pdo->query("SELECT * FROM `TenID` WHERE `secretKey`='".$key."'");
+// moderator delete
+if ($_POST['action'] == 'EDIAdX') {
+    $key = $_POST['key'];
+    $id = $_POST['id'];
+    $result = $pdo->query("SELECT * FROM `TenID` WHERE `secretKey`='" . $key . "'");
     $assocArray = $result->fetch();
-    $f=$assocArray['userType'];
-    $login=$assocArray['login'];
-    if($f=='admin'){
-    $sql = $pdo->prepare("DELETE FROM `apps` WHERE `id`=".$id);
-    $sql->execute();
-    $text=['text' =>"Удалено!" ];
-    header('Content-Type: application/json');
-    echo json_encode($text);}
-    if($f=='dev'){
-   $result = $pdo->query("SELECT * FROM `apps` WHERE `id`=".$id);
-    $assocArray = $result->fetch();
-    $f=$assocArray['dev'];
-    if($f==$login){
-    $sql = $pdo->prepare("DELETE FROM `apps` WHERE `id`=".$id);
-    $sql->execute();
-    $text=['text' =>"Удалено!" ];
-    header('Content-Type: application/json');
-    echo json_encode($text);}
-    else{
-    $text=['text' =>"Вы не разработчик этого приложения!" ];
-    header('Content-Type: application/json');
-    echo json_encode($text);
+    $f = $assocArray['userType'];
+    $login = $assocArray['login'];
+    if ($f == 'admin') {
+        $sql = $pdo->prepare("DELETE FROM `apps` WHERE `id`=" . $id);
+        $sql->execute();
+        $text = [
+            'text' => "Удалено!"
+        ];
+        header('Content-Type: application/json');
+        echo json_encode($text);
     }
+    if ($f == 'dev') {
+        $result = $pdo->query("SELECT * FROM `apps` WHERE `id`=" . $id);
+        $assocArray = $result->fetch();
+        $f = $assocArray['dev'];
+        if ($f == $login) {
+            $sql = $pdo->prepare("DELETE FROM `apps` WHERE `id`=" . $id);
+            $sql->execute();
+            $text = [
+                'text' => "Удалено!"
+            ];
+            header('Content-Type: application/json');
+            echo json_encode($text);
+        } else {
+            $text = [
+                'text' => "Вы не разработчик этого приложения!"
+            ];
+            header('Content-Type: application/json');
+            echo json_encode($text);
+        }
     }
 }
-//uploadimage (don't use, need edit)
-if($_POST['action']=='v38yr0'){
-	$ten = $_POST["TEN"];
-$hinh = $_POST["HINH"];
-$path = "upload/asd.png";
-$pdo = new PDO("mysql:dbname=bomj2655_database;host=localhost;charset=UTF8", "user350312512e", "7T3d9C2r");
-$statement = $pdo->prepare("INSERT INTO image VALUES(null,'$ten','$path')");
-$statement->execute();
-if($statement->rowCount() > 0){
-  file_put_contents($path,base64_decode($hinh));
-}else{
-  echo "Loi";
+if ($_POST['action'] == "xK7NKf34") {
+    $id = $_POST['id'];
+    $login = $_POST['login'];
+    $comment = $_POST['comment'];
+    $like = $_POST['like'];
+    $comment = new Comment($login, $comment, $like);
+    $comments['CA'] = array();
+    array_push($comments, $comment);
+    $json = json_encode([
+        'CA'->$comments
+    ]);
+    echo $json;
 }
+// like
+if ($_POST['action'] == "ol3m0T8s") {
+    $id = $_POST['id'];
+    $login = $_POST['login'];
+    $like = $_POST['like'];
+    $result = $pdo->query("SELECT COUNT(*) as count FROM `TenID` WHERE `login`='" . $login . "'")->fetchColumn();
+    if ($result == 1) {}
 }
-function gen_password($length = 6){
-	$password = '';
-	$arr = array(
-		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-		'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-		'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
-	);
 
-	for ($i = 0; $i < $length; $i++) {
-		$password .= $arr[random_int(0, count($arr) - 1)];
-	}
-	return $password;
+class Comment
+{
+
+    public $login;
+
+    public $comment;
+
+    public $like;
+
+    /**
+     * @return mixed
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLike()
+    {
+        return $this->like;
+    }
+
+    /**
+     * @param mixed $login
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+    }
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * @param mixed $like
+     */
+    public function setLike($like)
+    {
+        $this->like = $like;
+    }
+
+    public function __construct($login, $comment, $like)
+    {
+        $this->login = $login;
+        $this->comment = $comment;
+        $this->like = $like;
+    }
+    
 }
-function unicode_escape_decode($str) {
-    return html_entity_decode(
-            preg_replace('~\\\u([a-zA-Z0-9]{4})~', '&#x$1;', $str), null, 'UTF-8'
+
+function gen_password($length = 6)
+{
+    $password = '';
+    $arr = array(
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'o',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'u',
+        'v',
+        'w',
+        'x',
+        'y',
+        'z',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0'
     );
+
+    for ($i = 0; $i < $length; $i ++) {
+        $password .= $arr[random_int(0, count($arr) - 1)];
+    }
+    return $password;
+}
+
+function unicode_escape_decode($str)
+{
+    return html_entity_decode(preg_replace('~\\\u([a-zA-Z0-9]{4})~', '&#x$1;', $str), null, 'UTF-8');
 }
 ?>

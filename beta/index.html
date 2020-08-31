@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,20 +12,18 @@
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
 	</head>
-
 	<body>
 
 		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<a id="mLogo">TENSTORE</a>
 				<a id="logo">TENSTORE</a>
-				<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 				<a class="separate" id="first">•</a>
 				<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
 				<a class="separate">•</a>
 				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
-				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
@@ -45,21 +42,20 @@
 			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
-			<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖивеБеларусь</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 
 		<div class="topCard-block">
-			<div onclick="window.open('https://thetenstore.ru/pre-release/app?id=44', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/fnafSimulator.jpg)" class="topCard">
+			<div onclick="window.open('https://thetenstore.ru/app?id=44', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/fnafSimulator.jpg)" class="topCard">
 				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ИГРА</h5>
 				<h1 class="topCard-text"></h1>
 			</div>
 
-			<div onclick="window.open('https://thetenstore.ru/pre-release/app?id=36', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/content/filesUWP/scr/1.jpg)" class="topCard">
+			<div onclick="window.open('https://thetenstore.ru/app?id=36', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/content/filesUWP/scr/1.jpg)" class="topCard">
 				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ПРИЛОЖЕНИЕ</h5>
 				<h1 class="topCard-text">Files UWP (Preview)</h1>
 			</div>

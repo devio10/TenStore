@@ -255,8 +255,8 @@ function accent_green () {
   document.getElementById('accent-reallyBlue').style.border = 0;
   chosenAccent = document.getElementById('accent-green');
 }
-function accent_silver () {
-  let accent = 'gray';
+function accent_custom () {
+  let accent = document.getElementById('colorPicker').value;
   document.documentElement.setAttribute('data-accent', accent);
   localStorage.setItem('accent', accent);
   showAlert('Тема сохранена.', 'images/check.svg');

@@ -20,8 +20,9 @@
   --alert: rgba(230, 230, 230, 0.65);
 	--userBox: rgba(255, 255, 255, 0.65);
   --font: black;
+	--font-light: #2f2f2f;
   --selection: #7a7a7a; /*ОТРЕДАКТИРОВАТЬ*/
-  --border: #929292;
+  --border: #b3b3b3;
 	--border-light: #b3b3b3;
   --bright: 255;
   --dark: 0;
@@ -149,6 +150,7 @@ a {
   background-repeat: no-repeat;
   background-size: 0% 2px;
 	transition: background-size .3s;
+	text-transform: uppercase;
 }
 h1, h2, h3 {
   font-family: var(--bold);
@@ -173,6 +175,7 @@ button {
 	display: flex;
   align-items: center;
   justify-content: center;
+	text-transform: uppercase;
 }
 button:hover {
   background-color: var(--primary);
@@ -203,7 +206,7 @@ button:focus {
 .accentButton {
 	color: white;
 	border: 0;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.18);
 	background-color: var(--accent);
 	border: 0;
 }
@@ -245,6 +248,7 @@ button:focus {
 	text-align: left;
   justify-content: flex-start;
 	padding-left: 20px;
+	text-transform: capitalize;
 }
 .boxButton:hover {
 	background: var(--secondary);
@@ -453,9 +457,11 @@ button:focus {
 .aCard-name {
 	margin: 5px 9px 0 9px;
 	font-family: var(--bold);
+	text-transform: none;
 }
 .aCard-dev {
 	margin: 3px 0 0 9px;
+	text-transform: none;
 }
 .aCard-block {
 	overflow-x: auto;
@@ -570,11 +576,13 @@ button:focus {
 	z-index: 5;
 	transition: .15s;
 }
-#picDiv {
+#picDiv, #CA-picDiv {
 	width: 100px;
+	height: 100px;
 	margin: 40px auto 15px auto;
+	display: none;
 }
-#boxPic {
+#boxPic, #CA-userPic {
 	width: 100px;
 	height: 100px;
 	background: white;
@@ -1001,6 +1009,58 @@ input[type='radio']:checked {
 	align-items: center;
 	margin: 30px 0 10px 0;
 }
+nav {
+	position: sticky;
+	top: 0;
+}
 #mobile-nav {
 	display: none;
+}
+#belarus {
+	height: 16px;
+	border-radius: 2px;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+	object-fit: cover;
+	display: none;
+}
+.fileInput {
+	width: 300px;
+	color: transparent;
+}
+.fileInput::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.fileInput::before {
+  content: 'ВЫБЕРИТЕ ФОТОГРАФИЮ';
+  display: inline-block;
+  padding: 10px;
+  outline: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+	color: var(--accent);
+	font-size: 16px;
+	border-radius: 6px;
+	background: var(--primary);
+	outline: 0;
+}
+.fileInput:active {
+  outline: 0;
+}
+.fileInput:active::before {
+  background: var(--secondary);
+	outline: 0;
+}
+#kingIcon {
+	background: white;
+	border-radius: 100%;
+	padding: 2px;
+	margin: -50px 0 30px 120px;
+	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+}
+#backButton {
+	cursor: pointer;
+	width: 15px;
+	padding: 6px;
+	margin: 0 15px 0 -15px;
+	filter: invert(var(--dark));
 }

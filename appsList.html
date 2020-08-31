@@ -6,8 +6,8 @@
 		<title>Приложения — TenStore</title>
 	  <link rel="shortcut icon" href="images/apps.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
-		<link href="styles/appsList-elements.css" rel="stylesheet" type="text/css">
 		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
+		<link href="styles/appsList-elements.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
@@ -22,28 +22,18 @@
 				<input placeholder="Начните вводить здесь..." class="textInput searchInput">
 			</div>
 		</div>
-
 		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
-				<a id="mLogo">TENSTORE</a>
+				<img onclick="goBack()" id="backButton" src="images/back2.svg">
+				<a id="mLogo2">Приложения</a>
 				<a id="logo">TENSTORE</a>
-				<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 				<a class="separate" id="first">•</a>
 				<a class="topItem" href="index">ГЛАВНАЯ</a>
 				<a class="separate">•</a>
 				<a class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
-				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
+				<a class="topItem" href="games">ИГРЫ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
-			</ul>
-		</nav>
-		<nav id="mobile-nav" style="margin: 0 auto 0 auto; width: auto">
-			<ul style="display: flex; align-items: center">
-				<a style="display: block" class="topItem" href="index">ГЛАВНАЯ</a>
-				<a style="display: block" class="separate">•</a>
-				<a style="display: block" class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
-				<a style="display: block" class="separate">•</a>
-				<a style="display: block" class="topItem" href="appsList?type=game">ИГРЫ</a>
 			</ul>
 		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
@@ -52,18 +42,17 @@
 			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
-			<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖивеБеларусь</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 
 		<div id="appsList-dS-block">
 			<div id="appsList-displaySettings">
-				<img style="margin: 20px 10px 20px 20px; float: left" src="images/sort.svg" class="userBox-close">
-				<h5 style="margin: 20px 20px 20px 0; font-family: var(--bold); float: left">СОРТИРОВКА</h5>
+				<img style="margin: 20px 10px 20px 20px; float: left" src="images/list.svg" class="userBox-close">
+				<h5 style="margin: 20px 20px 20px 0; font-family: var(--bold); float: left">НАСТРОЙКИ СПИСКА</h5>
 				<img style="margin: 20px" onclick="search()" src="images/cancel.svg" class="userBox-close">
 				<h3 style="margin: 70px 20px 0 20px">Содержание списка</h3>
 				<div style="margin: 20px">
@@ -93,20 +82,42 @@
 						</div>
 					<input id="r6" type="radio" name="content" value="4">
 					<label onclick="dev = true" for="r6">Определённый разработчик</label><p>
-						<input style="width: 324px; height: 45px; margin: 0 20px 20px 20px" id="inpDev" class="textInput" type="text" placeholder="Введите имя разработчика">
+					<input style="width: 324px; height: 45px; margin: 0 27px 27px 27px" id="inpDev" class="textInput" type="text" placeholder="Введите имя разработчика">
 				</div>
-
-				<h3 style="margin: 50px 20px 0 20px">Вид карточек</h3>
-				<div style="margin-left: 15px; width: 300px" id="warningBox">
-					<h5 style="color: black; padding: 10px">Включите эту функцию в настройках.</h5>
+				<button style="margin-left: 20px" onclick="confirm()" class="accentButton">Применить</button>
+				<h3 style="display: none" style="margin: 50px 20px 0 20px">Сортировка</h3>
+				<div style="display: none" style="margin-left: 20px; width: 300px" id="warningBox">
+					<h5 style="color: black; padding: 10px">Отключено.</h5>
 				</div>
-				<div style="margin: 20px 20px 30px 20px">
-					<input id="r3" type="radio" name="cards" value="1" disabled checked>
+				<div style="display: none" style="margin: 20px">
+					<input onclick="sType = 'app'" id="r7" type="radio" name="sortBy" value="1"checked>
+					<label for="r7">По возрастанию</label><p>
+					<input onclick="sType = 'game'" id="r8" type="radio" name="sortBy" value="2">
+					<label for="r8">По убыванию</label><p>
+					<div class="selectBox">
+						<label>
+							<select id="sortBy">
+								<option value="0" selected>Сортировать по...</option>
+								<option value="downloads">Количество скачиваний</option>
+								<option value="name">Название</option>
+								<option value="dev">Разработчик</option>
+								<option value="id">Идентификатор (ID)</option>
+								<option value="rating">Рейтинг</option>
+							</select>
+						</label>
+					</div>
+				</div>
+				<h3 style="display: none" style="margin: 50px 20px 0 20px">Вид карточек</h3>
+				<div style="display: none" style="margin-left: 20px; width: 300px" id="warningBox">
+					<h5 style="color: black; padding: 10px">Отключено.</h5>
+				</div>
+				<div style="display: none" style="margin: 20px 20px 30px 20px">
+					<input id="r3" type="radio" name="cards" value="1" checked>
 					<label for="r3">Подробный</label><p>
-					<input id="r4" type="radio" name="cards" value="2" disabled>
+					<input id="r4" type="radio" name="cards" value="2">
 					<label for="r4">Обложка</label>
 				</div>
-				<button onclick="confirm()" style="margin-left: 20px" class="accentButton">Применить</button>
+
 			</div>
 		</div>
 

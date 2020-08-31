@@ -16,8 +16,9 @@
 		<script src="scripts/settings.js"></script>
 	</head>
 	<body>
-		<nav>
+		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
+				<img onclick="goBack()" id="backButton" src="images/back2.svg">
 				<a id="mLogo2">НАСТРОЙКИ</a>
 				<a id="logo">TENSTORE</a>
 				<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
@@ -27,8 +28,6 @@
 				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
 				<a class="topItem" href="games">ИГРЫ</a>
-				<a class="separate">•</a>
-				<a class="topItem" id="chosen" href="settings">НАСТРОЙКИ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
@@ -38,112 +37,159 @@
 			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img style="filter: invert(0)" src="https://thetenstore.ru/images/belarus.png" class="boxButton-icon">#ЖивеБеларусь</button></form>
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button>
-			<!-- <h4 class="centerText"><a href="https://t.me/nexta_live">#ЖивеБеларусь</a></h4> -->
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖивеБеларусь</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
-
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/dark.svg">
-			<h3>Тема</h3>
-			<div id="themeBlock">
-				<div onclick="theme_light()" id="theme-light" class="theme-button"><h2 class="check3">Б</h2></div>
-				<div onclick="theme_dark()" id="theme-dark" class="theme-button chosen"><h2 class="check2">Т</h2></div>
-				<div onclick="theme_black()" id="theme-black" class="theme-button"><h2 class="check2">Ч</h2></div>
-			</div>
+		<div class="settings-nav" style="display: none">
+			<h4 id="chosen" class="settings-nav-item">• Тема</h4>
+			<h4 class="settings-nav-item">• Акцент</h4>
+			<h4 class="settings-nav-item">• Аккаунт</h4>
+			<h4 class="settings-nav-item">• Эффекты</h4>
+			<h4 class="settings-nav-item">• Потребление трафика</h4>
+			<h4 class="settings-nav-item">• Блок пользователя</h4>
+			<h4 class="settings-nav-item">• Шрифт</h4>
+			<h4 class="settings-nav-item">• Уведомления</h4>
+			<h4 class="settings-nav-item">• Экспериментальные функции</h4>
 		</div>
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/accent.svg">
-			<h3>Акцент</h3>
-			<div id="accentBlock">
-				<div onclick="accent_blue()" id="accent-reallyBlue" class="theme-button"><h2 class="check3">Г</h2></div>
-				<div onclick="accent_purple()" id="accent-purple" class="theme-button"><h2 class="check3">Ф</h2></div>
-				<div onclick="accent_red()" id="accent-red" class="theme-button"><h2 class="check3">К</h2></div>
-				<div onclick="accent_orange()" id="accent-ohSoOrange" class="theme-button"><h2 class="check3">О</h2></div>
-				<div onclick="accent_green()" id="accent-green" class="theme-button"><h2 class="check3">З</h2></div>
-				<div onclick="accent_silver()" id="accent-verySilver" class="theme-button"><h2 class="check3">С</h2></div>
-			</div>
-		</div>
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/download.svg">
-			<h3>Платформа</h3>
-			<div style="margin-left: 45px">
-				<input onclick="changeSetting('platform', 'windows')" id="r1" type="radio" name="platform" value="1">
-				<label for="r1">Windows</label><p>
-				<input onclick="changeSetting('platform', 'android')" id="r2" type="radio" name="platform" value="2">
-				<label for="r2">Android</label><p>
-				<input onclick="changeSetting('platform', 'ask')" id="r3" type="radio" name="platform" disabled value="2">
-				<label for="r2">Спрашивать каждый раз</label><p>
-				<input style="display: none" onclick="changeSetting('library')" id="s-library" type="checkbox" disabled class="switch">
-		    <label style="display: none" for="s-library">Добавлять приложения в библиотеку</label>
-			</div>
-
-		</div>
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/user.svg">
-			<h3>Аккаунт</h3>
-			<div>
-				<h4 id="settings-welcomeText" style="margin-left: 45px">Войдите в аккаунт, чтобы получить доступ ко всем возможностям TenStore.</h4>
-				<h4 style="margin-left: 45px">
-					<a style="display: none" id="settings-link1" href="https://thetenstore.ru/tenid">Настройки аккаунта</a>
-					<a style="display: none" id="settings-link2" onclick="logoff()" href="#" style="margin-left: 20px">Выйти</a>
-					<a id="settings-link3" href="login">Войти</a>
-				</h4>
-			</div>
-		</div>
-
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/userBox.svg">
-			<h3>Блок пользователя</h3>
-	    <input onclick="changeSetting('nameDisplay')" style="margin-left: 45px" id="s-nameDisplay" onclick="changeSetting('nameType', 'auto')" type="checkbox" class="switch">
-	    <label for="s-NameType">Отображать никнейм вместо имени</label>
-		</div>
-
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/font.svg">
-			<h3>Шрифт</h3>
-			<input onclick="changeSetting('newFont')" style="margin-left: 45px" id="s-newFont" type="checkbox" class="switch">
-			<label for="s-newFont">Использовать старый шрифт</label>
-		</div>
-
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/alertsOff.svg">
-			<h3>Уведомления</h3>
-			<div style="margin-left: 45px" id="warningBox">
-				<h5 style="color: black; padding: 10px">Уведомления временно недоступны.</h5>
-			</div>
-			<input disabled onclick="changeSetting('alUpdates')" style="margin-left: 45px" id="s-alUpdates" type="checkbox" class="switch">
-			<label for="s-alUpdates">Уведомления об обновлениях сайта</label><p>
-			<input disabled onclick="changeSetting('alUpdates2')" style="margin-left: 45px" id="s-alUpdates2" type="checkbox" class="switch">
-			<label for="s-alUpdates2">Уведомления об обновлениях приложений</label><p>
-			<input disabled onclick="changeSetting('mailSpam')" style="margin-left: 45px" id="s-mailSpam" type="checkbox" class="switch">
-			<label for="s-mailSpam">Еженедельная рассылка на почту</label>
-		</div>
-
-		<div class="settings-block">
-			<img class="settings-subtitleIcon" src="images/experimental.svg">
-			<h3>Экспериментальные функции</h3>
-			<div style="margin-left: 45px">
-				<div id="warningBox">
-					<h5 style="color: black; padding: 10px">После вступления в бета тестирование, вы будете использовать pre-release
-					версию сайта по умолчанию. Работоспособность не гарантирована.</h5>
-				</div>
-				<input onclick="changeSetting('betaTest')" id="s-betaTest" type="checkbox" class="switch">
-		    <label for="s-betaTest">Использовать пре-релиз версию</label><p>
-				<input onclick="changeSetting('appsListSort')" id="s-appsListSort" type="checkbox" class="switch">
-		    <label for="s-appsListSort">Пункт сортировки на странице приложений</label><p>
-				<input onclick="changeSetting('analytics')" id="s-analytics" type="checkbox" disabled class="switch">
-		    <label for="s-analytics">Отправлять некоторые данные об использовании</label><p>
-				<h4 style="font-size: 14px; margin-left: 45px; margin-top: -17px" href="analytics">(в целях улучшения сайта)</h4><p>
-				<input style="display: none" onclick="changeSetting('altDesign')" id="s-altDesign" type="checkbox" disabled class="switch">
-		    <label style="display: none" for="s-altDesign">Включить неоморфизм</label><p>
-				<div style="display: none" id="warningBox">
-					<h5 style="color: black; padding: 10px">Включает экспериментальный дизайн. Возможно, он так и не будет выпущен в релиз. Некоторые элементы могут быть сломаны или недоделаны. Включив этот параметр, вы получите неоморфизм, как только он выйдет.</h5>
+		<div class="settings">
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/dark.svg">
+				<h3>Тема</h3>
+				<div style="display: flex; align-items: center; margin: 30px 0 0 35px">
+					<div onclick="theme_light()" id="theme-light" class="theme-button"><h2 class="check3">Б</h2></div>
+					<div onclick="theme_dark()" id="theme-dark" class="theme-button chosen"><h2 class="check2">Т</h2></div>
+					<div onclick="theme_black()" id="theme-black" class="theme-button"><h2 class="check2">Ч</h2></div>
 				</div>
 			</div>
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/accent.svg">
+				<h3>Акцент</h3>
+				<div style="display: flex; align-items: center; margin: 30px 0 0 35px">
+					<div onclick="accent_blue()" id="accent-reallyBlue" class="theme-button"><h2 class="check3">Г</h2></div>
+					<div onclick="accent_purple()" id="accent-purple" class="theme-button"><h2 class="check3">Ф</h2></div>
+					<div onclick="accent_red()" id="accent-red" class="theme-button"><h2 class="check3">К</h2></div>
+					<div onclick="accent_orange()" id="accent-ohSoOrange" class="theme-button"><h2 class="check3">О</h2></div>
+					<div onclick="accent_green()" id="accent-green" class="theme-button"><h2 class="check3">З</h2></div>
+					<div style="display: none" onclick="accent_custom()" id="accent-verySilver" class="theme-button"><h2 class="check3">...</h2></div>
+				</div>
+				<input style="display: none" id="colorPicker" style="margin: 30px 0 0 45px" type="color">
+			</div>
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/download.svg">
+				<h3>Скачивание</h3>
+				<div style="margin-left: 45px">
+					<input onclick="changeSetting('platform', 'windows')" id="r1" type="radio" name="platform" value="1">
+					<label for="r1">Windows</label><p>
+					<input onclick="changeSetting('platform', 'android')" id="r2" type="radio" name="platform" value="2">
+					<label for="r2">Android</label><p>
+					<input onclick="changeSetting('platform', 'ask')" id="r3" type="radio" name="platform" disabled value="2">
+					<label for="r2">Спрашивать каждый раз</label><p>
+					<input style="display: none" onclick="changeSetting('library')" id="s-library" type="checkbox" disabled class="switch">
+			    <label style="display: none" for="s-library">Добавлять приложения в библиотеку</label>
+				</div>
+
+			</div>
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/user.svg">
+				<h3>Аккаунт</h3>
+				<div>
+					<h4 id="settings-welcomeText" style="margin-left: 45px; font-size: 15px">Войдите в аккаунт, чтобы получить доступ ко всем возможностям TenStore.</h4>
+					<h4 style="margin-left: 45px">
+						<a style="display: none; font-size: 15px" id="settings-link1" href="https://thetenstore.ru/tenid">Настройки аккаунта</a>
+						<a style="display: none; font-size: 15px" id="settings-link2" onclick="logoff()" href="#" style="margin-left: 20px">Выйти</a>
+						<a id="settings-link3" style="font-size: 15px" href="login">Войти</a>
+					</h4>
+				</div>
+			</div>
+
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/effects.svg">
+				<h3>Эффекты</h3>
+				<div style="margin-left: 45px">
+					<input id="s-blur" onclick="changeSetting('blur', 'auto')" type="checkbox" checked class="switch">
+			    <label for="s-blur">Размытие фона</label><p>
+					<input id="s-shadows" onclick="changeSetting('shadows', 'auto')" type="checkbox" checked class="switch">
+			    <label for="s-shadows">Тень у элементов</label><p>
+					<input id="s-animations" onclick="changeSetting('animations', 'auto')" type="checkbox" checked class="switch">
+			    <label for="s-animations">Анимации</label>
+				</div>
+			</div>
+
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/data.svg">
+				<h3>Потребление трафика</h3>
+				<div style="margin-left: 45px">
+					<input id="s-appBg" onclick="changeSetting('appBg', 'auto')" type="checkbox" checked class="switch">
+			    <label for="s-appBg">Фон на странице приложения</label>
+				</div>
+			</div>
+
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/userBox.svg">
+				<h3>Блок пользователя</h3>
+		    <input style="margin-left: 45px" id="s-nameDisplay" onclick="changeSetting('nameType', 'auto')" type="checkbox" class="switch">
+		    <label for="s-NameType">Отображать никнейм вместо имени</label>
+			</div>
+
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/font.svg">
+				<h3>Шрифт</h3>
+				<input onclick="changeSetting('newFont')" style="margin-left: 45px" id="s-newFont" type="checkbox" class="switch">
+				<label for="s-newFont">Использовать старый шрифт</label>
+			</div>
+
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/alertsOff.svg">
+				<h3>Уведомления</h3>
+				<div style="margin-left: 45px" id="warningBox">
+					<h5 style="color: black; padding: 10px">Уведомления временно недоступны.</h5>
+				</div>
+				<input disabled onclick="changeSetting('alUpdates')" style="margin-left: 45px" id="s-alUpdates" type="checkbox" class="switch">
+				<label for="s-alUpdates">Уведомления об обновлениях сайта</label><p>
+				<input disabled onclick="changeSetting('alUpdates2')" style="margin-left: 45px" id="s-alUpdates2" type="checkbox" class="switch">
+				<label for="s-alUpdates2">Уведомления об обновлениях приложений</label><p>
+				<input disabled onclick="changeSetting('mailSpam')" style="margin-left: 45px" id="s-mailSpam" type="checkbox" class="switch">
+				<label for="s-mailSpam">Еженедельная рассылка на почту</label>
+			</div>
+
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/experimental.svg">
+				<h3>Экспериментальные функции</h3>
+				<div style="margin-left: 45px">
+					<div id="warningBox">
+						<h5 style="color: black; padding: 10px">После вступления в бета тестирование, вы будете использовать pre-release
+						версию сайта по умолчанию. Работоспособность не гарантирована.</h5>
+					</div>
+					<input onclick="changeSetting('betaTest')" id="s-betaTest" type="checkbox" class="switch">
+			    <label for="s-betaTest">Использовать пре-релиз версию</label><p>
+					<input onclick="changeSetting('appsListSort')" id="s-appsListSort" type="checkbox" class="switch">
+			    <label for="s-appsListSort">Пункт сортировки на странице приложений</label><p>
+					<input onclick="changeSetting('analytics')" id="s-analytics" type="checkbox" disabled class="switch">
+			    <label for="s-analytics">Отправлять некоторые данные об использовании</label><p>
+					<h4 style="font-size: 14px; margin-left: 45px; margin-top: -17px" href="analytics">(в целях улучшения сайта)</h4><p>
+					<input onclick="changeSetting('altDesign')" id="s-altDesign" type="checkbox" disabled class="switch">
+			    <label for="s-altDesign">Включить неоморфизм</label><p>
+					<div id="warningBox">
+						<h5 style="color: black; padding: 10px">Включает экспериментальный дизайн. Возможно, он так и не будет выпущен в релиз. Некоторые элементы могут быть сломаны или недоделаны. Включив этот параметр, вы получите неоморфизм, как только он выйдет.</h5>
+					</div>
+				</div>
+			</div>
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/experimental.svg">
+				<h3>Канал</h3>
+				<div style="margin-left: 45px">
+					<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
+					<label for="release">Release</label><p>
+					<input onclick="changeSetting('channel', 'pre')" id="pre" type="radio" name="channel" value="2">
+					<label for="pre">Pre-release</label><p>
+					<input onclick="changeSetting('channel', 'beta')" id="beta" type="radio" name="channel" value="3">
+					<label for="beta">Beta</label><p>
+				</div>
+			</div>
+
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">

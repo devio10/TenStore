@@ -40,6 +40,7 @@ function checkSwitches() {
   let analytics = localStorage.getItem('analytics');
   let appsListSort = localStorage.getItem('appsListSort');
   let platform = localStorage.getItem('platform');
+  let channel = localStorage.getItem('channel');
 
   if (betaTest == "t") {
     document.getElementById('s-betaTest').checked = true;
@@ -72,5 +73,12 @@ function checkSwitches() {
     document.getElementById('r2').checked = true;
   } else {
     document.getElementById('r1').checked = true;
+  }
+  if (channel == 'rel') {
+    document.getElementById('release').checked = true;
+  } else if (channel == 'pre') {
+    document.getElementById('pre').checked = true;
+  } else if (channel == 'beta') {
+    document.getElementById('beta').checked = true;
   }
 }
