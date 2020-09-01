@@ -63,12 +63,30 @@
 #CA-fileInput {
   margin: 15px 0 0 140px;
 }
-#CA-userPic {
+#CA-userPic, #EA-userPic {
   width: 150px;
   height: 150px;
 }
-#CA-picDiv {
+#CA-picDiv, #EA-picDiv {
   width: 150px;
+  z-index: 1;
+}
+#EA-picDiv {
+  margin: 60px 0;
+}
+#EA-nameText, #EA-loginText {
+  float: left;
+  margin: 100px 0 -30px 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#EA-loginText {
+  margin: 0 0 0 30px;
+}
+#EA-block {
+  float: none;
+  margin: 40px 0;
 }
 .EA-input {
   width: 50%;
@@ -76,4 +94,27 @@
 }
 #randomPassLink {
   margin: 0 0 10px 20px;
+}
+#EA-fileInput::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background: white;
+  display: none;
+}
+#EA-fileInput {
+  width: 30px;
+  height: 30px;
+}
+#EA-fileInput-icon {
+  background: white;
+  padding: 3px;
+  border-radius: 100%;
+  z-index: 1000;
+}
+#EA-label {
+  margin: -35px 0 130px 130px;
+  float: left;
+  z-index: 1000;
 }

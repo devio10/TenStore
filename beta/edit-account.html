@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Редактировать аккаунт</title>
+		<title>Редактирование аккаунта</title>
 	  <link rel="shortcut icon" href="images/edit.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
@@ -21,8 +21,8 @@
 		<nav>
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
-				<a id="mLogo2">Редактировать аккаунт</a>
-				<a id="logo">TENID</a>
+				<a id="mLogo2">Редактирование аккаунта</a>
+				<a id="logo">Редактирование аккаунта</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
@@ -43,29 +43,24 @@
 			<h5 style="color: black; padding: 10px">Уведомления временно недоступны.</h5>
 		</div>
 
-		<div id="EA-1step" class="CA-block">
-			<img src="images/edit.svg" class="CA-block-icon">
-			<h5 id="CA-block-title">РЕДАКТИРОВАТЬ АККАУНТ</h5>
-			<div style="display: grid">
-				<div id="CA-picDiv" style="display: block"><img id="CA-userPic" src="images/user.svg"></div>
-				<input id="CA-fileInput" type="file" class="fileInput" accept="image/jpeg,image/gif,image/png">
+		<div style="width: 550px; margin: 0 auto 0 auto">
+			<div style="display: flex">
+				<div id="EA-picDiv" style="display: block">
+					<img id="EA-userPic" src="images/user.svg">
+					<label id="EA-label" for="EA-fileInput"><img id="EA-fileInput-icon" src="images/edit.svg"></label>
+				</div>
+				<div style="display: grid; grid-column: 1px">
+					<h2 id="EA-nameText">Dmitry Навальный<img src="https://thetenstore.ru/images/moderator.svg" style="width: 15px; height: 15px; background: white; padding: 2px; border-radius: 100%; margin-left: 3px"></h2>
+					<h4 id="EA-loginText">dnavalny</h4>
+				</div>
+			</div>
+<input id="EA-fileInput" type="file" class="fileInput" accept="image/jpeg,image/gif,image/png">
+			<div id="EA-block">
 				<input id="EA-name" placeholder="Имя" type="text" class="textInput CA-input EA-input">
 				<input id="EA-lastName" placeholder="Фамилия" type="text" class="textInput CA-input EA-input">
 				<input id="EA-login" placeholder="Логин" type="text" class="textInput CA-input EA-input">
 			</div>
-			<button onclick="EA('stage1')" class="accentButton CA-button CA-right">Подтвердить</button>
-		</div>
-
-		<div style="display: none" id="EA-2step" class="CA-block">
-			<img src="images/edit.svg" class="CA-block-icon">
-			<h5 id="CA-block-title">РЕДАКТИРОВАТЬ АККАУНТ</h5>
-			<h3 id="CA-block-title2">Защита от ботов</h3>
-			<h4 id="CA-block-text">Подтвердите, что вы не робот.</h4>
-			<div style="margin-left: 20px" class="g-recaptcha" data-sitekey="6LcY78EZAAAAAPHlMlm1evtyDO0jgGuDUoGcMAS_"></div>
-			<div style="display: flex; align-items: center">
-				<a onclick="back('EA-1step')" href="#" style="margin: 30px" class="link CA-link">Назад</a>
-				<button onclick="EA('stage2')" class="accentButton CA-button CA-right">Продолжить</button>
-			</div>
+			<button onclick="EditAccount()" class="accentButton CA-button CA-right">Подтвердить</button>
 		</div>
 
 		<script>login('edit-account'); ub_themeBtn(); var onBlock</script>

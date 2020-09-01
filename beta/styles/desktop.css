@@ -576,13 +576,13 @@ button:focus {
 	z-index: 5;
 	transition: .15s;
 }
-#picDiv, #CA-picDiv {
+#picDiv, #CA-picDiv, #EA-picDiv {
 	width: 100px;
 	height: 100px;
 	margin: 40px auto 15px auto;
 	display: none;
 }
-#boxPic, #CA-userPic {
+#boxPic, #CA-userPic, #EA-userPic {
 	width: 100px;
 	height: 100px;
 	background: white;
@@ -1046,6 +1046,10 @@ nav {
 .fileInput:active {
   outline: 0;
 }
+.fileInput:focus {
+  outline: 0;
+}
+
 .fileInput:active::before {
   background: var(--secondary);
 	outline: 0;
