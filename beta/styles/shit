@@ -1,0 +1,11 @@
+1 background-color 0.15s linear;
+2 background-size .3s;
+3 transition: .3s;
+4 transition: box-shadow .2s;
+5 background-color .2s;
+6 transition: .15s;
+7 transition: .6s;
+8 transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+9 transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+remove:
+transition: 0.3s;

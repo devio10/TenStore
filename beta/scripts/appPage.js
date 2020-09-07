@@ -1,7 +1,7 @@
 
 window.addEventListener('scroll', function() {
   if (pageYOffset > 0) {
-    document.getElementById('bg-blur').style.backdropFilter = 'blur(10px)';
+    document.getElementById('bg-blur').style.backdropFilter = 'blur(var(--blur))';
   } else {
     document.getElementById('bg-blur').style.backdropFilter = 'blur(0)';
   }

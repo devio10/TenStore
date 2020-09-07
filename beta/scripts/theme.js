@@ -1,31 +1,38 @@
-
+if (localStorage.getItem('newFont')=='true') {
+  document.documentElement.setAttribute('data-oldFont','true');
+}
+if (localStorage.getItem('effects-shadows')=='false') {
+  document.documentElement.setAttribute('effects-shadows','false');
+}
+if (localStorage.getItem('effects-blur')=='false') {
+  document.documentElement.setAttribute('effects-blur','false');
+}
+if (localStorage.getItem('effects-animations')=='false') {
+  document.documentElement.setAttribute('effects-animations','false');
+}
 let chosenAccent;
+let newTheme;
+let themeName;
+let piece1="<img src='images/";
+let piece2=".svg' class='boxButton-icon'>";
 function changeTheme(theme) {
-  if (theme == 1) {
-    if (localStorage.getItem('theme') == 'black' || localStorage.getItem('theme') == 'dark') {
-      localStorage.setItem('theme', 'light');
+  if (theme==1) {
+    themeName='Чёрная тема';
+    if ((localStorage.getItem('theme')=='black')||(localStorage.getItem('theme')=='dark')) {
+      localStorage.setItem('theme','light');
       document.documentElement.setAttribute('data-theme', 'light');
+      newTheme='light';
+      themeName='Светлая тема';
     } else {
-      let darkTheme = localStorage.getItem('darkTheme');
-      if (darkTheme != null) {
-        localStorage.setItem('theme', darkTheme);
-        document.documentElement.setAttribute('data-theme', darkTheme);
-      } else {
-        localStorage.setItem('darkTheme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        document.documentElement.setAttribute('data-theme', 'dark');
+      newTheme=localStorage.getItem('night-theme');
+      if ((newTheme==null)||(newTheme=='dark')) {
+        newTheme='dark';
+        themeName='Тёмная тема';
       }
+      localStorage.setItem('theme',newTheme);
+      document.documentElement.setAttribute('data-theme',newTheme);
     }
-    if (localStorage.getItem('theme') == 'dark') {
-      document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
-    } else if (localStorage.getItem('theme') == 'black') {
-      document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
-    } else {
-      document.getElementById('themeButton').innerHTML = "<img src='images/light.svg' class='boxButton-icon'>Светлая тема";
-    }
-  } else {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    document.getElementById('themeButton').innerHTML=piece1+newTheme+piece2+themeName;
   }
 }
 
@@ -52,50 +59,6 @@ function showAlert (text, icon, action) {
     document.getElementById('alert-button-confirm').onclick = "logoff()";
   }
 }
-
-let border;
-function theme_light() {
-  document.getElementById('themeButton').innerHTML = "<img src='images/light.svg' class='boxButton-icon'>Светлая тема";
-  document.documentElement.setAttribute('data-theme', 'light');
-  showAlert('Тема сохранена.', 'images/check.svg');
-  document.getElementById('theme-light').innerHTML = "<img class='check' src='images/check.svg'>";
-  document.getElementById('theme-dark').innerHTML = "<h2 class='check2'>Т</h2>";
-  document.getElementById('theme-black').innerHTML = "<h2 class='check2'>Ч</h2>";
-  document.getElementById('theme-light').style.border = "2px solid rgba(63,166,104,1)";
-  document.getElementById('theme-dark').style.border = 0;
-  document.getElementById('theme-black').style.border = 0;
-  localStorage.setItem('theme', 'light');
-  border = "black";
-  chosenAccent.style.border = "2px solid " + border;
-}
-function theme_dark() {
-  document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
-  document.documentElement.setAttribute('data-theme', 'dark');
-  showAlert('Тема сохранена.', 'images/check.svg');
-  document.getElementById('theme-dark').innerHTML = "<img class='check' src='images/check.svg'>";
-  document.getElementById('theme-light').innerHTML = "<h2 class='check3'>Б</h2>";
-  document.getElementById('theme-black').innerHTML = "<h2 class='check2'>Ч</h2>";
-  document.getElementById('theme-dark').style.border = "2px solid rgba(63,166,104,1)";
-  document.getElementById('theme-light').style.border = 0;
-  document.getElementById('theme-black').style.border = 0;
-  localStorage.setItem('theme', 'dark');
-  border = "white";
-  chosenAccent.style.border = "2px solid " + border;
-}
-function theme_black() {
-  document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
-  document.documentElement.setAttribute('data-theme', 'black');
-  showAlert('Тема сохранена.', 'images/check.svg');
-  document.getElementById('theme-black').innerHTML = "<img class='check' src='images/check.svg'>";
-  document.getElementById('theme-light').innerHTML = "<h2 class='check3'>Б</h2>";
-  document.getElementById('theme-dark').innerHTML = "<h2 class='check2'>Т</h2>";
-  document.getElementById('theme-black').style.border = "2px solid rgba(63,166,104,1)";
-  document.getElementById('theme-light').style.border = 0;
-  document.getElementById('theme-dark').style.border = 0;
-  localStorage.setItem('theme', 'black');
-  border = "white";
-  chosenAccent.style.border = "2px solid " + border;
-}
 function ub_themeBtn() {
   let localTheme = localStorage.getItem('theme');
   if (localTheme == 'dark') {
@@ -107,11 +70,6 @@ function ub_themeBtn() {
   }
 }
 function theme_check() {
-  if (localStorage.getItem('newFont') == "t") {
-    document.documentElement.setAttribute('data-oldFont', 'true');
-  } else {
-    document.documentElement.setAttribute('data-oldFont', 'false');
-  }
   theme = localStorage.getItem('theme');
   if (theme == "black") {
     document.documentElement.setAttribute('data-theme', 'black');
@@ -274,7 +232,6 @@ function accent_custom () {
   document.getElementById('accent-green').style.border = 0;
   chosenAccent = document.getElementById('accent-verySilver');
 }
-
 
 const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 if (currentTheme) {

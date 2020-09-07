@@ -11,59 +11,92 @@
 }
 
 /* ТЕМЫ */
-
 :root {
+	/*цвета*/
   --bg: white;
   --primary: #e6e6e6;
   --secondary: #eaeaea;
 	--secondary2: #dcdcdc;
+	--border: #b3b3b3;
+	--border-light: #b3b3b3;
   --alert: rgba(230, 230, 230, 0.65);
 	--userBox: rgba(255, 255, 255, 0.65);
-  --font: black;
-	--font-light: #2f2f2f;
-  --selection: #7a7a7a; /*ОТРЕДАКТИРОВАТЬ*/
-  --border: #b3b3b3;
-	--border-light: #b3b3b3;
-  --bright: 255;
-  --dark: 0;
-  --bold: "NotoSans Bold";
-  --regular: "NotoSans Regular";
-  --topBar: #0d0d0d;
+	--topBar: #0d0d0d;
 	--accent: #1e88e5;
   --accent-dark: #005cb2;
 	--accent-light: #6ab7ff;
-  --topShadow: 0px -1px 22px 25px rgba(255,255,255,1);
-  --gradient: linear-gradient( rgba(var(--bright), var(--bright), var(--bright), 0.4) 5%, rgba(var(--bright), var(--bright), var(--bright), 0.4) );
-}
 
+	/*тени*/
+  --topShadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
+	--shadow1: 0px 4px 9px 0px rgba(0,0,0,0.24);
+	--shadow2: 0px 4px 10px 0px rgba(0,0,0,0.18);
+	--shadow3: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	--shadow4: 0 6px 15px 0 rgba(90,90,90,0.12);
+	--shadow5: 0px 2px 4px 0px rgba(0,0,0,0.12);
+
+	/*шрифт*/
+  --font: black;
+	--font-light: #2f2f2f;
+	--bold: "NotoSans Bold";
+  --regular: "NotoSans Regular";
+	--weight: 400;
+
+	/*иконки*/
+  --bright: 255;
+  --dark: 0;
+
+	/*анимации*/
+	--transition1: background-color 0.15s linear;
+	--transition2: background-size .3s;
+	--transition3: .3s;
+	--transition4: box-shadow .2s;
+	--transition5: background-color .2s;
+	--transition6: .15s;
+	--transition7: .6s;
+	--transition8: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+	--transition9: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+
+	/*прочее*/
+	--blur: 10px;
+  --gradient: linear-gradient( rgba(255, 255, 255, 0.4) 5%, rgba(255, 255, 255, 0.4) );
+}
 [data-theme="dark"] {
+	/*цвета*/
   --bg: #1c1c1c;
   --primary: #121212;
   --secondary: #0d0d0d;
 	--secondary2: #020202;
   --alert: rgba(18, 18, 18, 0.65);
+
+	/*шрифт*/
   --font: #d6d6d6;
-  --selection: #e6e6e6; /* ОТРЕДАКТИРОВАТЬ */
   --border: #333333;
+
+	/*иконки*/
   --bright: 0;
   --dark: 1;
-  --topShadow: 0px -1px 22px 25px rgba(28,28,28,1);
-  --gradient: linear-gradient( rgba(var(--bright), var(--bright), var(--bright), 0.65) 5%, rgba(var(--bright), var(--bright), var(--bright), 0.4) );
-}
 
+	/*прочее*/
+  --gradient: linear-gradient( rgba(0, 0, 0, 0.65) 5%, rgba(0, 0, 0, 0.4) );
+}
 [data-theme="black"] {
+	/*цвета*/
   --bg: black;
   --primary: #0a0a0a;
   --secondary: #0d0d0d;
 	--secondary2: #020202;
   --alert: rgba(5, 5, 5, 0.65);
+	--border: #242424;
+
+	/*шрифт*/
   --font: #cac8c8;
-  --selection: #e6e6e6; /* ОТРЕДАКТИРОВАТЬ */
-  --border: #242424;
+
+	/*иконки*/
   --bright: 0;
   --dark: 1;
-  --topShadow: 0px -1px 22px 25px rgb(0, 0, 0);
-  --gradient: linear-gradient( rgba(var(--bright), var(--bright), var(--bright), 0.65) 5%, rgba(var(--bright), var(--bright), var(--bright), 0.4) );
+
+	/*прочее*/
+  --gradient: linear-gradient( rgba(0, 0, 0, 0.65) 5%, rgba(0, 0, 0, 0.4) );
 }
 
 /* АКЦЕНТЫ */
@@ -105,8 +138,27 @@
 [data-oldFont="true"] {
 	--weight: bold;
 }
-[data-oldFont="false"] {
-	--weight: 400;
+[effects-shadows='false'] {
+	--topShadow: 0px 0px 0px 0px rgba(0,0,0,0);
+	--shadow1: 0px 0px 0px 0px rgba(0,0,0,0);
+	--shadow2: 0px 0px 0px 0px rgba(0,0,0,0);
+	--shadow3: 0px 0px 0px 0px rgba(0,0,0,0);
+	--shadow4: 0px 0px 0px 0px rgba(0,0,0,0);
+	--shadow5: 0px 0px 0px 0px rgba(0,0,0,0);
+}
+[effects-blur='false'] {
+	--blur: 0;
+}
+[effects-animations='false'] {
+	--transition1: 0;
+	--transition2: 0;
+	--transition3: 0;
+	--transition4: 0;
+	--transition5: 0;
+	--transition6: 0;
+	--transition7: 0;
+	--transition8: 0;
+	--transition9: 0;
 }
 
 /* Элементы */
@@ -114,7 +166,7 @@
 html, body {
   background: var(--bg);
   font-family: var(--regular);
-  transition: background-color 0.15s linear;
+  transition: var(--transition1);
   margin: 0;
 }
 
@@ -149,7 +201,7 @@ a {
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
-	transition: background-size .3s;
+	transition: var(--transition2);
 	text-transform: uppercase;
 }
 h1, h2, h3 {
@@ -206,7 +258,7 @@ button:focus {
 .accentButton {
 	color: white;
 	border: 0;
-	box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.18);
+	box-shadow: var(--shadow2);
 	background-color: var(--accent);
 	border: 0;
 }
@@ -224,7 +276,7 @@ button:focus {
 	width: 200px;
 	height: 60px;
 	border-radius: 40px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 	border: 0;
 	font-size: 16px;
 	z-index: 100;
@@ -276,13 +328,13 @@ button:focus {
 	color: var(--font);
 	font-family: var(--regular);
 	font-size: 14px;
-	transition: box-shadow .2s;
+	transition: var(--transition4);
 	width: 240px;
 	height: 35px;
 	text-indent: 15px;
 }
 .textInput:hover {
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 }
 .textInput:focus {
 	outline: none;
@@ -330,7 +382,7 @@ button:focus {
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
-  transition: background-size .3s;
+  transition: var(--transition2);
   margin: 0 4px 0 4px;
 	color: var(--font);
 }
@@ -362,74 +414,9 @@ button:focus {
   font-size: 14px;
   height: 20px;
   color: white;
-  transition: 0.3s;
+  transition: var(--transition3);
   text-align: center;
   margin: 0;
-}
-
-/*Новые Карточки приложений*/
-
-#cardsList {
-  z-index: 0;
-  width: 90%;
-	margin: 0 5% 0 5%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.card:hover {
-	-webkit-transform: scale(1.02);
-	-moz-transform: scale(1.02);
-	-o-transform: scale(1.02);
-	box-shadow: 0px 12px 40px -5px rgba(0,0,0,0.4);
-}
-
-.card:active {
-	-webkit-transform: scale(0.99);
-	-moz-transform: scale(0.99);
-	-o-transform: scale(0.99);
-	box-shadow: 0px 5px 40px -5px rgba(0,0,0,0.2);
-}
-
-.card {
-  width: 180px;
-  height: 180px;
-  border-radius: 10px;
-	box-shadow: 0px 10px 40px -5px rgba(0,0,0,0.35);
-  cursor: pointer;
-  transition: 0.2s;
-  margin: 30px auto;
-}
-
-.card .cardImage {
-  width: inherit;
-  height: inherit;
-}
-
-.card .cardImage img {
-  width: inherit;
-  height: inherit;
-  border-radius: 10px;
-  object-fit: cover;
-	background: white;
-}
-
-.card .cardTitle {
-  text-align: center;
-  border-radius: 0px 0px 40px 40px;
-  font-family: var(--bold);
-  font-size: 22px;
-  margin-top: -70px;
-  height: 40px;
-}
-
-.titleWhite {
-  color: white;
-}
-
-.titleBlack {
-  color: black;
 }
 
 /*Карточки приложений*/
@@ -440,19 +427,19 @@ button:focus {
 	border: 1px solid var(--border);
 	border-radius: 10px;
 	font-size: 14px;
-	transition: background-color .2s;
+	transition: var(--transition5);
 	margin: 0 15px 15px 15px;
 }
 .aCard:hover {
 	background: var(--secondary);
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 }
 .aCardIcon {
 	width: 120px;
 	height: 120px;
 	background: var(--bg);
 	border-radius: 10px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 }
 .aCard-name {
 	margin: 5px 9px 0 9px;
@@ -491,7 +478,7 @@ button:focus {
 	border-radius: 5px;
 	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
 	border: thin solid var(--border);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(var(--blur));
 	transition: background-color .15s linear;
 	position: fixed;
 	top: 10px;
@@ -563,18 +550,18 @@ button:focus {
 /* ОКНО ПОЛЬЗОВАТЕЛЯ */
 #userBox {
 	background-color: var(--bg);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(var(--blur));
 	border: 1px solid var(--border-light);
 	border-radius: 10px;
 	width: 300px;
 	height: auto;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 	position: fixed;
 	top: 70px;
 	right: 30px;
 	display: none;
 	z-index: 5;
-	transition: .15s;
+	transition: var(--transition6);
 }
 #picDiv, #CA-picDiv, #EA-picDiv {
 	width: 100px;
@@ -587,7 +574,7 @@ button:focus {
 	height: 100px;
 	background: white;
 	border-radius: 100px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+	box-shadow: var(--shadow1);
 	object-fit: cover;
 }
 #name {
@@ -631,13 +618,13 @@ button:focus {
 .design::before {
 	background: var(--font);
 	opacity: 0;
-	transition: .3s;
+	transition: var(--transition3);
 }
 
 .design::after {
 	background: var(--accent);
 	opacity: .4;
-	transition: .6s;
+	transition: var(--transition7);
 }
 
 .text {
@@ -712,7 +699,7 @@ input[type='checkbox'], input[type='radio'] {
 	cursor: pointer;
 	border: 1px solid var(--bc, var(--border));
 	background: var(--b, var(--background));
-	transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
+	transition: var(--transition8);
 }
 input[type='checkbox']:after, input[type='radio']:after {
 	content: '';
@@ -720,13 +707,13 @@ input[type='checkbox']:after, input[type='radio']:after {
 	left: 0;
 	top: 0;
 	position: absolute;
-	transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+	transition: var(--transition9);
 }
 input[type='checkbox']:checked, input[type='radio']:checked {
 	--b: var(--active);
 	--bc: var(--active);
-	--d-o: 0.3s;
-	--d-t: 0.6s;
+	--d-o: var(--transition3);
+	--d-t: var(--transition7);
 	--d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
 }
 input[type='checkbox']:disabled, input[type='radio']:disabled {
@@ -827,11 +814,11 @@ input[type='radio']:checked {
 }
 .aCard:hover {
 	background: var(--secondary);
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 }
 .aCard-icon {
 	border-radius: 10px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 }
 .aCard-block {
 	overflow-x: auto;
@@ -846,16 +833,16 @@ input[type='radio']:checked {
 .theme-button {
 	width: 48px;
 	height: 48px;
-	box-shadow: 0 6px 15px 0 rgba(90,90,90,0.12);
+	box-shadow: var(--shadow4);
 	border-radius: 100%;
 	cursor: pointer;
-	transition: .3s;
+	transition: var(--transition3);
 	margin: 0 10px 0 10px;
 	display: flex;
 	align-items: center;
 }
 .theme-button:hover {
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+	box-shadow: var(--shadow1);
 }
 #theme-light {
 	background: white;
@@ -926,11 +913,11 @@ input[type='radio']:checked {
 	height: 50px;
 	border: 1px solid var(--border);
 	border-radius: 6px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 	bottom: 30px;
 	left: 30px;
 	background-color: var(--alert);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(var(--blur));
 	transition: background-color .15s linear;
 	display: flex;
 	align-items: center;
@@ -945,9 +932,9 @@ input[type='radio']:checked {
 }
 #alert-button-confirm, #alert-button-cancel {
 	background-color: var(--alert);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(var(--blur));
 	transition: background-color .15s linear;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 	border: 1px solid var(--border);
 	border-radius: 6px;
 	width: 50px;
@@ -974,7 +961,7 @@ input[type='radio']:checked {
 	height: 400px;
 	background: var(--primary);
 	border-radius: 10px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow3);
 	margin: 30px auto 30px auto;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -1001,7 +988,7 @@ input[type='radio']:checked {
 	width: 32px;
 	height: 32px;
 	border-radius: 2px;
-	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.12);
+	box-shadow: var(--shadow5);
 	margin: 30px 0 0 30px;
 }
 .LA-block1 {
@@ -1019,7 +1006,7 @@ nav {
 #belarus {
 	height: 16px;
 	border-radius: 2px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+	box-shadow: var(--shadow1);
 	object-fit: cover;
 	display: none;
 }
@@ -1059,7 +1046,7 @@ nav {
 	border-radius: 100%;
 	padding: 2px;
 	margin: -50px 0 30px 120px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
+	box-shadow: var(--shadow1);
 }
 #backButton {
 	cursor: pointer;
@@ -1067,4 +1054,9 @@ nav {
 	padding: 6px;
 	margin: 0 15px 0 -15px;
 	filter: invert(var(--dark));
+}
+.mobile-nav-button {
+	width: 40%;
+	height: 50px;
+	margin: 30px auto 0 auto;
 }

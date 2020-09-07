@@ -6,22 +6,20 @@
 .settings-block {
 	margin: 0 40px 50px 40px;
 }
-#accentBlock, #themeBlock {
-  display: flex;
-  align-items: center;
-  margin: 30px 0 0 35px;
+.settings {
+  width: 550px;
+  margin: 0 auto 0 auto;
 }
-
-@media (orientation: portrait) {
-  .settings-block, #accentBlock, #themeBlock {
-    width: 90%;
-  	margin: 0 5% 50px 5%;
-  }
-  #accentBlock, #themeBlock {
-    display: grid;
-    grid-template-rows: 60px 60px 60px;
-    grid-template-columns: 60px 60px 60px;
-    grid-gap: 10px;
-    margin-bottom: -80px;
-  }
+.settings-nav {
+  background: var(--bg);
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  transition: .2s background-color;
+  z-index: 0;
+}
+.settings-nav-item {
+  font-family: var(--regular);
+  font-weight: normal;
+  margin: 15px 15px 15px 30px;
 }

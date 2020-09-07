@@ -74,11 +74,11 @@ function checkSwitches() {
   } else {
     document.getElementById('r1').checked = true;
   }
-  if (channel == 'rel') {
-    document.getElementById('release').checked = true;
-  } else if (channel == 'pre') {
+  if (channel == 'pre') {
     document.getElementById('pre').checked = true;
   } else if (channel == 'beta') {
     document.getElementById('beta').checked = true;
+  } else{
+    document.getElementById('release').checked = true;
   }
 }

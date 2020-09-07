@@ -27,15 +27,19 @@
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
-		<nav id="mobile-nav" style="margin: 0 auto 0 auto; width: auto">
-			<ul style="display: flex; align-items: center">
+		<div id="mobile-nav" style="margin: 0 auto 0 auto; width: auto">
+			<!-- <ul style="display: flex; align-items: center">
 				<a style="display: block" class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
 				<a style="display: block" class="separate">•</a>
 				<a style="display: block" class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a style="display: block" class="separate">•</a>
 				<a style="display: block" class="topItem" href="appsList?type=game">ИГРЫ</a>
-			</ul>
-		</nav>
+			</ul> -->
+			<div style="display: flex">
+				<button class="accentButton mobile-nav-button">Приложения</button>
+				<button class="accentButton mobile-nav-button">Игры</button>
+			</div>
+		</div>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
@@ -49,6 +53,8 @@
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 
+		<h2 style="margin-left: 35px">Здравствуйте, dnavalny.</h2>
+
 		<div class="topCard-block">
 			<div onclick="window.open('https://thetenstore.ru/app?id=44', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/fnafSimulator.jpg)" class="topCard">
 				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ИГРА</h5>
@@ -58,6 +64,11 @@
 			<div onclick="window.open('https://thetenstore.ru/app?id=36', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/content/filesUWP/scr/1.jpg)" class="topCard">
 				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ПРИЛОЖЕНИЕ</h5>
 				<h1 class="topCard-text">Files UWP (Preview)</h1>
+			</div>
+
+			<div onclick="window.open('https://thetenstore.ru/app?id=44', '_self')" id="recommended" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.5634628851540616) 0%, rgba(0,0,0,0) 41%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/fnafSimulator.jpg)" class="topCard">
+				<h5 class="topCard-text">ВЫБОР РЕДАКЦИИ: ИГРА</h5>
+				<h1 class="topCard-text"></h1>
 			</div>
 		</div>
 		<h3 style="margin: 40px 40px 20px 40px">Недавно обновлено</h3>
