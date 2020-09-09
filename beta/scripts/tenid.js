@@ -181,7 +181,7 @@ function login (page) {
           userPhoto = "https://thetenstore.ru/" + obj.user[0].photo;
         }
         if (page == 'settings') {
-          if (localStorage.getItem('nameDisplay') == 't') {
+          if (localStorage.getItem('nameDisplay') == 'true') {
             document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].login + ".";
           } else {
             document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].name + ".";
@@ -202,7 +202,7 @@ function login (page) {
           userEmail = obj.user[0].email;
         }
 
-        if (localStorage.getItem('nameDisplay') == 't') {
+        if (localStorage.getItem('nameDisplay') == 'true') {
           document.getElementById('name').innerHTML = obj.user[0].login;
         } else {
           document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
