@@ -34,7 +34,6 @@ function getDefault (dSetting) {
 
 function changeSetting (par, val) {
   let choice;
-  console.log(localStorage.getItem(par));
   if (val == null) {
       //если не задаётся конкретное значение
       if (localStorage.getItem(par) == 'true') {
@@ -59,7 +58,6 @@ function changeSetting (par, val) {
       }
   } else {
     localStorage.setItem(par, val);
-    console.log('val != null');
   }
 }
 
@@ -83,8 +81,8 @@ function checkSwitches() {
   }
 
   /* потребление трафика */
-  if (localStorage.getItem('appBg') == 'true') {
-    document.getElementById('s-appBg').checked = true;
+  if (localStorage.getItem('app-background') == 'false') {
+    document.getElementById('s-app-background').checked = false;
   }
 
   /* блок пользователя */

@@ -63,6 +63,7 @@
 					<div onclick="setTheme('black')" id="theme-black" class="theme-button"><h2 class="check2">Ч</h2></div>
 				</div>
 			</div>
+
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/accent.svg">
 				<h3>Акцент</h3>
@@ -121,8 +122,8 @@
 				<img class="settings-subtitleIcon" src="images/data.svg">
 				<h3>Потребление трафика</h3>
 				<div style="margin-left: 45px">
-					<input id="s-appBg" onclick="changeSetting('appBg')" type="checkbox" checked class="switch">
-			    <label for="s-appBg">Фон на странице приложения</label>
+					<input id="s-app-background" onclick="changeSetting('app-background')" type="checkbox" checked class="switch">
+			    <label for="s-app-background">Фон на странице приложения</label>
 				</div>
 			</div>
 
@@ -171,13 +172,11 @@
 				<div style="margin-left: 45px">
 					<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
 					<label for="release">Release</label><p>
-					<input onclick="changeSetting('channel', 'pre')" id="pre" type="radio" name="channel" value="2">
-					<label for="pre">Pre-release</label><p>
 					<input onclick="changeSetting('channel', 'beta')" id="beta" type="radio" name="channel" value="3">
 					<label for="beta">Beta</label><p>
 				</div>
 			</div>
-
+			<h5 style="margin-left: 45px">TenStore v2.1.0 rc3-build4.1</h5>
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">
@@ -192,6 +191,6 @@
 		<div id="alert-button-confirm"><img src="images/check.svg" class="alert-button-icon"></div>
 		<div id="alert-button-cancel"><img src="images/cancel.svg" class="alert-button-icon"></div>
 		<script src="scripts/analytics.js"></script>
-		<script>login('settings'); theme_check(); checkSwitches(); console.log(localStorage.getItem('nameDisplay'))</script>
+		<script>login('settings'); theme_check(); checkSwitches()</script>
 	</body>
 </html>

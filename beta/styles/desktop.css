@@ -14,9 +14,9 @@
 :root {
 	/*цвета*/
   --bg: white;
-  --primary: #e6e6e6;
-  --secondary: #eaeaea;
-	--secondary2: #dcdcdc;
+  --primary: #eaeaea;
+  --secondary: #dcdcdc;
+	--secondary2: #cecece;
 	--border: #b3b3b3;
 	--border-light: #b3b3b3;
   --alert: rgba(230, 230, 230, 0.65);
@@ -25,6 +25,7 @@
 	--accent: #1e88e5;
   --accent-dark: #005cb2;
 	--accent-light: #6ab7ff;
+	--rgba: rgba(255, 255, 255, 1);
 
 	/*тени*/
   --topShadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
@@ -33,6 +34,7 @@
 	--shadow3: 0px 4px 9px 0px rgba(0,0,0,0.12);
 	--shadow4: 0 6px 15px 0 rgba(90,90,90,0.12);
 	--shadow5: 0px 2px 4px 0px rgba(0,0,0,0.12);
+	--shadow6: 0px 3px 30px -5px rgba(20,20,20,0.35);
 
 	/*шрифт*/
   --font: black;
@@ -55,6 +57,7 @@
 	--transition7: .6s;
 	--transition8: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
 	--transition9: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+	--transition10: stretch;
 
 	/*прочее*/
 	--blur: 10px;
@@ -62,11 +65,15 @@
 }
 [data-theme="dark"] {
 	/*цвета*/
-  --bg: #1c1c1c;
-  --primary: #121212;
-  --secondary: #0d0d0d;
+  --bg: #121212;
+  --primary: #0a0a0a;
+  --secondary: #060606;
 	--secondary2: #020202;
   --alert: rgba(18, 18, 18, 0.65);
+	--rgba: rgba(18, 18, 18, 1);
+
+	/*тени*/
+	--shadow6: 0px 3px 30px -5px rgba(0,0,0,0.4);
 
 	/*шрифт*/
   --font: #d6d6d6;
@@ -82,11 +89,12 @@
 [data-theme="black"] {
 	/*цвета*/
   --bg: black;
-  --primary: #0a0a0a;
-  --secondary: #0d0d0d;
-	--secondary2: #020202;
+	--primary: #060606;
+  --secondary: #020202;
+	--secondary2: black;
   --alert: rgba(5, 5, 5, 0.65);
 	--border: #242424;
+	--rgba: rgba(0, 0, 0, 1);
 
 	/*шрифт*/
   --font: #cac8c8;
@@ -159,6 +167,7 @@
 	--transition7: 0;
 	--transition8: 0;
 	--transition9: 0;
+	--transition10: 0;
 }
 
 /* Элементы */
@@ -562,6 +571,18 @@ button:focus {
 	display: none;
 	z-index: 5;
 	transition: var(--transition6);
+	animation-name: var(--transition10);
+  animation-duration: .15s;
+  animation-delay: 0;
+}
+@keyframes stretch {
+  0% {
+    transform: scale(.93);
+		transform: translate(10px, -10px);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 #picDiv, #CA-picDiv, #EA-picDiv {
 	width: 100px;
@@ -700,6 +721,7 @@ input[type='checkbox'], input[type='radio'] {
 	border: 1px solid var(--bc, var(--border));
 	background: var(--b, var(--background));
 	transition: var(--transition8);
+	z-index: 0;
 }
 input[type='checkbox']:after, input[type='radio']:after {
 	content: '';

@@ -17,6 +17,7 @@ function getUrlVars(key) {
 
 let action = "4LlFCT";
 let id = getUrlVars()["id"];
+redirect('app?id='+id);
 
 const request = new XMLHttpRequest();
 const url = "https://thetenstore.ru/api.php";
