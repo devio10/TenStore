@@ -138,10 +138,10 @@
 	--accent-dark: #ad1457;
 	--accent-light: #fa5788;
 }
-[data-accent="gray"] {
-	--accent: #757575;
-  --accent-dark: #494949;
-	--accent-light: #a4a4a4;
+[data-accent="custom"] {
+	--accent: 0;
+  --accent-dark: 0;
+	--accent-light: 0;
 }
 [data-oldFont="true"] {
 	--weight: bold;
@@ -853,8 +853,8 @@ input[type='radio']:checked {
 
 /*СТРАНИЦА ПЕРСОНАЛИЗАЦИИ*/
 .theme-button {
-	width: 48px;
-	height: 48px;
+	width: 42px;
+	height: 42px;
 	box-shadow: var(--shadow4);
 	border-radius: 100%;
 	cursor: pointer;
@@ -890,13 +890,13 @@ input[type='radio']:checked {
 	margin: 0 auto 0 auto;
 	color: black;
 }
-#accent-reallyBlue {
+#accent-blue {
 	background: #1e88e5;
 }
-#accent-verySilver {
+#accent-custom {
 	background: #757575;
 }
-#accent-ohSoOrange {
+#accent-orange {
 	background: #f4511e;
 }
 #accent-red {

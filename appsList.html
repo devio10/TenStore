@@ -13,8 +13,6 @@
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
 		<script src="scripts/appsList.js"></script>
-		<script src="scripts/redirect.js"></script>
-		<script>redirect('appsList')</script>
 		<script>let tag; let dev</script>
 	</head>
 	<body>
@@ -34,7 +32,7 @@
 				<a class="separate">•</a>
 				<a class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
-				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
@@ -47,7 +45,7 @@
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖивеБеларусь</button></form>
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 

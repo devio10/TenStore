@@ -26,7 +26,7 @@
 				<a class="separate">•</a>
 				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
-				<a class="topItem" href="games">ИГРЫ</a>
+				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
@@ -39,7 +39,7 @@
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖивеБеларусь</button></form>
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 		<div class="settings-nav" style="display: none">
@@ -56,30 +56,30 @@
 		<div class="settings">
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/dark.svg">
-				<h3>Тема</h3>
+				<h4 class="settings-block-title">Тема</h4>
 				<div style="display: flex; align-items: center; margin: 30px 0 0 35px">
-					<div onclick="setTheme('light')" id="theme-light" class="theme-button"><h2 class="check3">Б</h2></div>
-					<div onclick="setTheme('dark')" id="theme-dark" class="theme-button chosen"><h2 class="check2">Т</h2></div>
-					<div onclick="setTheme('black')" id="theme-black" class="theme-button"><h2 class="check2">Ч</h2></div>
+					<div onclick="setTheme('light')" id="theme-light" class="theme-button"></div>
+					<div onclick="setTheme('dark')" id="theme-dark" class="theme-button chosen"></div>
+					<div onclick="setTheme('black')" id="theme-black" class="theme-button"></div>
 				</div>
 			</div>
 
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/accent.svg">
-				<h3>Акцент</h3>
+				<h3 class="settings-block-title">Акцент</h3>
 				<div style="display: flex; align-items: center; margin: 30px 0 0 35px">
-					<div onclick="accent('blue')" id="accent-reallyBlue" class="theme-button"><h2 class="check3">Г</h2></div>
-					<div onclick="accent('purple')" id="accent-purple" class="theme-button"><h2 class="check3">Ф</h2></div>
-					<div onclick="accent('red')" id="accent-red" class="theme-button"><h2 class="check3">К</h2></div>
-					<div onclick="accent('orange')" id="accent-ohSoOrange" class="theme-button"><h2 class="check3">О</h2></div>
-					<div onclick="accent('green')" id="accent-green" class="theme-button"><h2 class="check3">З</h2></div>
-					<div style="display: none" onclick="accent_custom()" id="accent-verySilver" class="theme-button"><h2 class="check3">...</h2></div>
+					<div onclick="setAccent('blue')" id="accent-blue" class="theme-button"></div>
+					<div onclick="setAccent('purple')" id="accent-purple" class="theme-button"></div>
+					<div onclick="setAccent('red')" id="accent-red" class="theme-button"></div>
+					<div onclick="setAccent('orange')" id="accent-orange" class="theme-button"></div>
+					<div onclick="setAccent('green')" id="accent-green" class="theme-button"></div>
+					<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button"><img class='check1' src='images/custom.svg'></label>
 				</div>
-				<input style="display: none" id="colorPicker" style="margin: 30px 0 0 45px" type="color">
+				<input style="visibility: hidden" id="colorPicker" type="color">
 			</div>
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/download.svg">
-				<h3>Платформа</h3>
+				<h3 class="settings-block-title">Платформа</h3>
 				<div style="margin-left: 45px">
 					<input onclick="changeSetting('platform', 'windows')" id="r1" type="radio" name="platform" value="1">
 					<label for="r1">Windows</label><p>
@@ -92,9 +92,9 @@
 				</div>
 
 			</div>
-			<div class="settings-block">
+			<div class="settings-block" style="display: none">
 				<img class="settings-subtitleIcon" src="images/user.svg">
-				<h3>Аккаунт</h3>
+				<h3 class="settings-block-title">Аккаунт</h3>
 				<div>
 					<h4 id="settings-welcomeText" style="margin-left: 45px; font-size: 15px">Войдите в аккаунт, чтобы получить доступ ко всем возможностям TenStore.</h4>
 					<h4 style="margin-left: 45px">
@@ -107,7 +107,7 @@
 
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/effects.svg">
-				<h3>Эффекты</h3>
+				<h3 class="settings-block-title">Эффекты</h3>
 				<div style="margin-left: 45px">
 					<input id="s-blur" onclick="changeSetting('effects-blur')" type="checkbox" checked class="switch">
 			    <label for="s-blur">Размытие фона</label><p>
@@ -120,7 +120,7 @@
 
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/data.svg">
-				<h3>Потребление трафика</h3>
+				<h3 class="settings-block-title">Потребление трафика</h3>
 				<div style="margin-left: 45px">
 					<input id="s-app-background" onclick="changeSetting('app-background')" type="checkbox" checked class="switch">
 			    <label for="s-app-background">Фон на странице приложения</label>
@@ -129,21 +129,21 @@
 
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/userBox.svg">
-				<h3>Блок пользователя</h3>
+				<h3 class="settings-block-title">Блок пользователя</h3>
 		    <input style="margin-left: 45px" id="s-nameDisplay" onclick="changeSetting('nameDisplay')" type="checkbox" class="switch">
 		    <label for="s-NameType">Отображать никнейм вместо имени</label>
 			</div>
 
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/font.svg">
-				<h3>Шрифт</h3>
+				<h3 class="settings-block-title">Шрифт</h3>
 				<input onclick="changeSetting('newFont')" style="margin-left: 45px" id="s-newFont" type="checkbox" class="switch">
 				<label for="s-newFont">Использовать старый шрифт</label>
 			</div>
 
 			<div style="display: none" class="settings-block">
 				<img class="settings-subtitleIcon" src="images/alertsOff.svg">
-				<h3>Уведомления</h3>
+				<h3 class="settings-block-title">Уведомления</h3>
 				<div style="margin-left: 45px" id="warningBox">
 					<h5 style="color: black; padding: 10px">Уведомления временно недоступны.</h5>
 				</div>
@@ -157,10 +157,12 @@
 
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/experimental.svg">
-				<h3>Экспериментальные функции</h3>
+				<h3 class="settings-block-title">Экспериментальные функции</h3>
 				<div style="margin-left: 45px">
 					<input onclick="changeSetting('appsListSort')" id="s-appsListSort" type="checkbox" class="switch">
 			    <label for="s-appsListSort">Пункт сортировки на странице приложений</label><p>
+					<input onclick="autoDarkTheme(); changeSetting('autoDarkTheme')" id="s-autoDarkTheme" type="checkbox" class="switch">
+			    <label for="s-autoDarkTheme">Автоматическая тёмная тема</label><p>
 					<input onclick="changeSetting('analytics')" id="s-analytics" type="checkbox" disabled class="switch">
 			    <label for="s-analytics">Отправлять некоторые данные об использовании</label><p>
 					<h4 style="font-size: 14px; margin-left: 45px; margin-top: -17px" href="analytics">(в целях улучшения сайта)</h4><p>
@@ -168,7 +170,7 @@
 			</div>
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/experimental.svg">
-				<h3>Канал</h3>
+				<h3 class="settings-block-title">Канал</h3>
 				<div style="margin-left: 45px">
 					<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
 					<label for="release">Release</label><p>
@@ -176,7 +178,7 @@
 					<label for="beta">Beta</label><p>
 				</div>
 			</div>
-			<h5 style="margin-left: 45px">TenStore v2.1.0 rc3-build4.2</h5>
+			<h5 style="margin-left: 45px">TenStore v2.1.0 rc4</h5>
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">
@@ -191,6 +193,6 @@
 		<div id="alert-button-confirm"><img src="images/check.svg" class="alert-button-icon"></div>
 		<div id="alert-button-cancel"><img src="images/cancel.svg" class="alert-button-icon"></div>
 		<script src="scripts/analytics.js"></script>
-		<script>login('settings'); theme_check(); checkSwitches()</script>
+		<script>login('settings'); currentThemeCheck(); checkSwitches(); onchangef(); ; ub_themeBtn()</script>
 	</body>
 </html>

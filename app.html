@@ -16,12 +16,23 @@
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
-		<script src="scripts/redirect.js"></script>
 		<script src="scripts/appPage.js"></script>
 		<meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;" />
 	</head>
-	<body id="appPage">
-		<div id="bg-blur">
+	<body>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
+			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
+			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
+			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
+		</div>
+		<div id="appPage">
 			<div id="appPage-smallBg">
 				<nav style="position: sticky; top: 0;">
 					<ul id="topBar" style="display: flex; align-items: center">
@@ -38,22 +49,10 @@
 						<img onclick="userBox()" id="userPic" src="images/user.svg">
 					</ul>
 				</nav>
-				<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
-				<div id="userBox">
-					<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
-					<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
-					<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
-					<h3 id="name" class="centerText"></h3>
-					<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
-					<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-					<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-					<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖивеБеларусь</button></form>
-					<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
-				</div>
 
 				<div class="appPage-block first wide">
 					<div id="appPage-warningBox">
-						<h5 style="color: black; padding: 10px">Возникли проблемы с адаптацией этой страницы для телефонов, поэтому некоторые элементы вырезаны.</h5>
+						<h5 style="color: black; padding: 10px">Поддержка мобильной версии TenStore скоро прекратится.</h5>
 					</div>
 					<div id="appPage-icon-div"><img id="appPage-icon"></div>
 					<form id="appPage-downloadLink"><button id="appPage-download" class="accentButton">Скачать</button></form>
@@ -61,13 +60,12 @@
 						<h1 id="appPage-name"></h1>
 						<h2 id="appPage-dev"></h2>
 					</div>
-					<h4 id="appPage-rating">rating</h4>
+					<h4 id="appPage-rating"></h4>
 					<img id="appPage-windows" class="appPage-platform" src="images/windows.svg">
 					<img id="appPage-android" class="appPage-platform" src="images/android.svg">
-					<h4 id="appPage-category"><a class="link" href="">category</a></h4>
+					<h4 id="appPage-category"><a class="link" href=""></a></h4>
 				</div>
-				<div id="screenshots" class="appPage-block second wide">
-
+				<div id="screenshots" style="display: none" class="appPage-block second wide">
 				</div>
 				<div class="appPage-flexBlock" id="flex1">
 					<div class="appPage-block third" id="thirdBlock">
@@ -75,35 +73,36 @@
 						<h4 id="appPage-description"></h4>
 					</div>
 					<div class="appPage-block fourth" id="fourthBlock">
-						<h2 style="padding: 25px; margin: 0">Что нового</h2>
+						<h2 style="padding: 25px; margin: 0">Список изменений</h2>
 						<h4 id="appPage-whatsNew"></h4>
 					</div>
 				</div>
 
-				<div class="appPage-block sixth wide">
+				<div style="display: none" class="appPage-block sixth wide">
 					<h2 style="padding: 25px; margin: 0">Отзывы</h2>
 				</div>
 				<div class="appPage-block seventh wide">
-					<h2 style="padding: 25px; margin: 0">Больше от этого разработчика</h2>
-					<div id="aCard-block">
+					<h2 style="padding: 25px; margin: 0">Этот разработчик</h2>
+					<div id="aCard-block" style="margin-left: 0; margin-top: 0; border-radius: 0; width: 100%">
 
 					</div>
 				</div>
 				<div class="appPage-flexBlock">
-					<div class="appPage-block fifth">
+					<div style="margin-bottom: 150px" class="appPage-block seventh wide">
 						<h2 style="padding: 25px; margin: 0">Подробности</h2>
 						<h4 id="appPage-details1">
 
 						</h4>
 					</div>
-					<div class="appPage-block eighth">
+					<div style="display: none" class="appPage-block eighth">
 						<h2 style="padding: 25px; margin: 0">Бета версия</h2>
 						<h4 id="appPage-blockText">Бета тестирование недоступно для этого приложения.</h4>
 					</div>
 					<div style="display: none"></div>
 				</div>
 			</div>
-		</div>
+			</div>
+
 		<script>login(); ub_themeBtn()</script>
 	</body>
 </html>

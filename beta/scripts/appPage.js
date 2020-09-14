@@ -120,7 +120,6 @@ request.addEventListener("readystatechange", () => {
 
       const requestDev = new XMLHttpRequest();
       const paramsDev = "action=KdSqSAOC&select=dev" + "&value=" + devName;
-      console.log(paramsDev);
       requestDev.responseType =	"json";
       requestDev.open("POST", url, true);
       requestDev.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -152,6 +151,12 @@ request.addEventListener("readystatechange", () => {
       });
       requestDev.send(paramsDev);
   }
+} else {
+  let random = Math.floor(Math.random() * 10) + 1;
+  appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+  appPage.style.backgroundPosition = 'center';
+  appPage.style.backgroundRepeat = 'no-repeat';
+  appPage.style.backgroundSize = 'cover';
 }
 });
 request.send(params);
