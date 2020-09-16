@@ -36,10 +36,10 @@
 			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
 			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
+			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 		<div class="settings-nav" style="display: none">
@@ -157,6 +157,17 @@
 
 			<div class="settings-block">
 				<img class="settings-subtitleIcon" src="images/experimental.svg">
+				<h3 class="settings-block-title">Канал</h3>
+				<div style="margin-left: 45px">
+					<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
+					<label for="release">Release</label><p>
+					<input onclick="changeSetting('channel', 'beta')" id="beta" type="radio" name="channel" value="3">
+					<label for="beta">Beta</label><p>
+				</div>
+			</div>
+
+			<div class="settings-block">
+				<img class="settings-subtitleIcon" src="images/experimental.svg">
 				<h3 class="settings-block-title">Экспериментальные функции</h3>
 				<div style="margin-left: 45px">
 					<input onclick="changeSetting('appsListSort')" id="s-appsListSort" type="checkbox" class="switch">
@@ -168,16 +179,7 @@
 					<h4 style="font-size: 14px; margin-left: 45px; margin-top: -17px" href="analytics">(в целях улучшения сайта)</h4><p>
 				</div>
 			</div>
-			<div class="settings-block">
-				<img class="settings-subtitleIcon" src="images/experimental.svg">
-				<h3 class="settings-block-title">Канал</h3>
-				<div style="margin-left: 45px">
-					<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
-					<label for="release">Release</label><p>
-					<input onclick="changeSetting('channel', 'beta')" id="beta" type="radio" name="channel" value="3">
-					<label for="beta">Beta</label><p>
-				</div>
-			</div>
+
 			<h5 style="margin-left: 45px">TenStore v2.1.0 rc5.1</h5>
 		</div>
 
