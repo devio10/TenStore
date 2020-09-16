@@ -62,6 +62,8 @@
 	/*прочее*/
 	--blur: 10px;
   --gradient: linear-gradient( rgba(255, 255, 255, 0.4) 5%, rgba(255, 255, 255, 0.4) );
+	--topCard-gradient: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%);
+	--random-app-gradient: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%);
 }
 [data-theme="dark"] {
 	/*цвета*/
@@ -459,14 +461,6 @@ button:focus {
 	margin: 3px 0 0 9px;
 	text-transform: none;
 }
-.aCard-block {
-	overflow-x: auto;
-	overflow-y: hidden;
-	display: flex;
-	box-shadow: 0;
-	border-radius: 10px;
-	background: 0;
-}
 #aCard-block {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(60px, 160px));
@@ -842,13 +836,20 @@ input[type='radio']:checked {
 	border-radius: 10px;
 	box-shadow: var(--shadow3);
 }
-.aCard-block {
+.aCard-block, .homepage-aCard-block {
 	overflow-x: auto;
 	overflow-y: hidden;
 	display: flex;
 	box-shadow: 0;
 	border-radius: 10px;
 	background: var(--bg);
+}
+.homepage-aCard-block {
+	margin: 80px 35px 30px auto;
+	background: 0;
+	width: auto;
+	border-radius: 0;
+	height: 280px;
 }
 
 /*СТРАНИЦА ПЕРСОНАЛИЗАЦИИ*/
@@ -977,9 +978,9 @@ input[type='radio']:checked {
 	filter: invert(var(--dark));
 }
 
-.topCard {
+.topCard, #homepage-random-app {
 	cursor: pointer;
-	width: 40%;
+	width: 30%;
 	height: 400px;
 	background: var(--primary);
 	border-radius: 10px;
@@ -988,14 +989,58 @@ input[type='radio']:checked {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+#random-app-desc {
+	color: white;
+	width: 30%;
+	height: 250px;
+  text-overflow: ellipsis;
+	margin: 0 30px 30px 30px;
+}
+#homepage-random-app {
+	width: 90%;
+}
+#random-app-icon {
+	background: white;
+}
+#random-app-icon, #random-app-name {
+	margin: 30px;
+}
+#random-app-name {
+	margin-left: 0;
+}
 .topCard-text {
 	font-family: var(--bold);
 	color: white;
 	margin: 20px;
+	white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.topCard-icon {
+	width: 48px;
+	height: 48px;
+	margin: 0 0 0 20px;
+	border-radius: 6px;
+	background: white;
+}
+.topCard-icon-padding {
+	width: 40px;
+	height: 40px;
+	padding: 4px;
+}
+.topCard-name {
+	margin-top: 2px;
+	height: 48px;
+}
+.topCard-title {
+	text-transform: uppercase;
 }
 .topCard-block {
 	display: flex;
 	flex-direction: row;
+}
+.flex {
+	display: flex;
 }
 
 #warningBox, #appPage-warningBox {
@@ -1078,7 +1123,7 @@ nav {
 	filter: invert(var(--dark));
 }
 .mobile-nav-button {
-	width: 40%;
+	width: 37%;
 	height: 50px;
 	margin: 30px auto 0 auto;
 }

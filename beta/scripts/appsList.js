@@ -24,7 +24,6 @@ if (getUrlVars()['tag'] != null) {
   select = "type";
   value = "app";
 }
-
 const request = new XMLHttpRequest();
 const url = "https://thetenstore.ru/api.php";
 const params = "action=" + action + "&select=" + select + "&value=" + value;
@@ -33,28 +32,9 @@ request.open("POST", url, true);
 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 request.addEventListener("readystatechange", () => {
   if (request.readyState === 4 && request.status === 200) {
-    let obj = request.response;
+    let obj=request.response;
     for(let i=0; i<obj.apps.length; i++) {
-      let iconBg = obj.apps[i].icon_bg;
-      if (iconBg == 0) {
-        cssBg = 'var(--bg)';
-      } else {
-        cssBg = obj.apps[i].icon_bg;
-      }
-      var aCard = document.createElement('div');
-      let width = 0;
-      if (obj.apps[i].icon_pad == 15) {
-        width = '120px';
-      } else {
-        width = '150px';
-      }
-      aCard.className = 'aCard';
-      aCard.innerHTML = "<a href='app?&id="+ obj.apps[i].id +"'> \
-        <img class='aCard-icon' style='width: " + width + "; height: " + width + "; background: "+ cssBg +"; padding: "+ obj.apps[i].icon_pad +"px' src='https://thetenstore.ru/"+ obj.apps[i].icon +"'> \
-        <h4 class='aCard-name'>"+ obj.apps[i].name +"</h4> \
-        <h4 class='aCard-dev'>"+ obj.apps[i].dev +"</h4> \
-      </a>"
-      document.getElementById('aCard-block').appendChild(aCard);
+      showAppCard('aCard-block', obj.apps[i].icon, obj.apps[i].icon_pad, obj.apps[i].icon_bg, obj.apps[i].id, obj.apps[i].name, obj.apps[i].dev);
     }
   }
 });
