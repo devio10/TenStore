@@ -13,7 +13,7 @@
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
 	</head>
-	<body style="background-image: url(images/dnavalny.png); background-attachment: fixed; object-fit: cover; background-position: center; background-repeat: no-repeat; background-size: cover">
+	<body id="user-background">
 		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
@@ -28,36 +28,56 @@
 			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
 			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
+			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<form action="https://thetenstore.ru/user"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 
-		<div class="CA-block" style="width: 550px; margin-bottom: 0">
+		<div class="CA-block" id="not-logged-in" style="width: 550px; margin-bottom: 0">
 			<img src="images/user.svg" class="CA-block-icon">
 			<h5 id="CA-block-title">АККАУНТ</h5>
-			<div id="CA-picDiv" style="display: block"><img id="CA-userPic" src="images/dnavalny.jpg"><img src="images/moderator.svg" id="kingIcon"></div>
-			<h2 class="centerText">Дмитрий Навальный</h2>
-			<h4 class="centerText">23 года, дизайнер из Санкт-Петербурга.</h4>
+			<h3 class="CA-block-title2">Вы не вошли в аккаунт</h3>
+			<h4 class="CA-block-text">Кажется, вы не вошли в аккаунт. Для получения доступа ко всем функциям TenStore, войдите или зарегистрируйтесь.</h4>
 			<div style="display: flex; align-items: center; margin: 30px 0 20px 0">
-				<button style="margin: 0 auto 0 auto" class="accentButton">Редактировать</button>
-				<button style="margin: 0 auto 0 auto">Мои приложения</button>
+				<button onclick="window.open('https://thetenstore.ru/create-account', '_self')" style="margin: 0 auto 0 auto" class="accentButton">Создать аккаунт</button>
+				<button onclick="window.open('https://thetenstore.ru/login', '_self')" style="margin: 0 auto 0 auto">Войти в аккаунт</button>
 			</div>
 		</div>
-		<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
-			<h3 id="CA-block-title2">О себе</h3>
-			<h4 id="CA-block-text">Дмитрий по кличке Навальный</h4>
-			<h3 id="CA-block-title2">Связь</h3>
-			<h4 id="CA-block-text">Telegram: <a>@dnavalny</a><br>
-				Почта: скрыто<br>
-				Twitter: скрыто<br>
-				ВКонтакте: <a>@dmitrynavalny</a>
-			</h4>
-			<h3 id="CA-block-title2">Лучше купи Ryzen</h3>
-			<h4 id="CA-block-text">2700 райзен</h4>
+		<div id="logged-in" style="display: none">
+			<div class="CA-block" style="width: 550px; margin-bottom: 0">
+				<img src="images/user.svg" class="CA-block-icon">
+				<h5 id="CA-block-title">АККАУНТ</h5>
+				<div id="CA-picDiv" style="display: block"><img id="CA-userPic"><img id="kingIcon"></div>
+				<h2 class="centerText" id="user-name"></h2>
+				<h4 class="centerText" id="user-short-bio"></h4>
+				<h4 class="centerText" style="display: none" id="user-developer-info"></h4>
+				<div style="display: flex; align-items: center; margin: 30px 0 20px 0">
+					<button id="user-edit-button" style="margin: 0 auto 0 auto" class="accentButton">Редактировать</button>
+					<button id="user-my-apps" style="margin: 0 auto 0 auto">Мои приложения</button>
+				</div>
+			</div>
+			<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
+				<h3 class="CA-block-title2">Аккаунт разработчика</h3>
+				<h4 class="CA-block-text">Сделайте ваш профиль аккаунтом разработчика
+					и получите возможность публиковать свои приложения</h4>
+			</div>
+			<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
+				<h3 class="CA-block-title2">О себе</h3>
+				<h4 id="user-bio" class="CA-block-text"></h4>
+				<h3 class="CA-block-title2">Контакты</h3>
+				<h4 id="user-contacts" class="CA-block-text">Telegram: <a class="link">@dnavalny</a><br>
+					ВКонтакте: <a class="link">@dmitrynavalny</a><br>
+					Почта: <a class="link">dmitrynavalny@outlook.com</a>
+				</h4>
+			</div>
+			<div class="CA-block" id="user-appsBlock" style="width: 550px; margin-top: 40px; margin-bottom: 60px; display: none">
+				<h3 class="CA-block-title2">Приложения</h3>
+				<h4 class="CA-block-text">У этого разработчика нет приложений.</h4>
+			</div>
 		</div>
-		<script>login(); ub_themeBtn()</script>
+
+		<script>login('user'); ub_themeBtn()</script>
 	</body>
 </html>

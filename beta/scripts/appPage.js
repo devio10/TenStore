@@ -105,7 +105,16 @@ request.addEventListener("readystatechange", () => {
       } else {
         dPlatform = obj.apps[0].windows;
       }
-      document.getElementById('appPage-downloadLink').action = dPlatform;
+      let linkBegin;
+      if (dPlatform.includes('://')) {
+        console.log('true');
+        linkBegin='';
+      } else {
+        console.log('false');
+        linkBegin='https://thetenstore.ru/';
+      }
+      document.getElementById('appPage-downloadLink').action=linkBegin+dPlatform;
+      console.log(linkBegin+dPlatform);
       document.getElementById('appPage-title').innerHTML = obj.apps[0].name + " — TenStore";
       document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
       document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tag=" + obj.apps[0].tags + "'>" + tags + "</a>";

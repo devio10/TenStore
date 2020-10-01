@@ -200,6 +200,42 @@ function login (page) {
           userLastName = obj.user[0].lastname;
           userPic = obj.user[0].photo;
           userEmail = obj.user[0].email;
+        } else if (page=='user') {
+          document.getElementById('logged-in').style.display='block';
+          document.getElementById('not-logged-in').style.display='none';
+          let userPage=document.getElementById('user-background');
+          if (localStorage.getItem('nameDisplay')=='true') {
+            document.getElementById('user-name').innerHTML=obj.user[0].login;
+          } else {
+            document.getElementById('user-name').innerHTML=obj.user[0].name+" "+obj.user[0].lastname;
+          }
+          if (obj.user[0].userType=='dev') {
+            document.getElementById('user-appsBlock').style.display='block';
+            document.getElementById('kingIcon').src='images/developer.svg';
+            document.getElementById('user-developer-info').innerHTML='Разработчик';
+          } else if (obj.user[0].userType=='admin') {
+            document.getElementById('user-developer-info').style.display='block';
+            document.getElementById('user-appsBlock').style.display='block';
+            document.getElementById('kingIcon').src='images/moderator.svg';
+            document.getElementById('user-developer-info').innerHTML='Модератор';
+          } else {
+            document.getElementById('kingIcon').style.display='none';
+          }
+          document.getElementById('CA-userPic').src=userPhoto;
+          document.getElementById('user-short-bio').innerHTML=obj.user[0].shortBio;
+          document.getElementById('user-bio').innerHTML=obj.user[0].bio;
+          if (localStorage.getItem('app-background')!='false') {
+            if (obj.user[0].bg!=0) {
+              userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/"+obj.user[0].bg+")";
+            } else {
+              let random = Math.floor(Math.random() * 10) + 1;
+              userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/"+random+".jpg)";
+            }
+            userPage.style.backgroundPosition = 'center';
+            userPage.style.backgroundRepeat = 'no-repeat';
+            userPage.style.backgroundSize = 'cover';
+          }
+
         }
 
         if (localStorage.getItem('nameDisplay') == 'true') {
