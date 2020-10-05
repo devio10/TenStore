@@ -66,9 +66,15 @@
 #CA-fileInput {
   margin: 15px 0 0 140px;
 }
-#CA-userPic, #EA-userPic {
+#CA-userPic, #EA-userPic, #pub-app-icon {
   width: 150px;
   height: 150px;
+}
+#pub-app-icon {
+  border-radius: 5px;
+  padding: 15px;
+  width: 130px;
+  height: 130px;
 }
 #CA-picDiv, #EA-picDiv {
   width: 150px;
@@ -121,4 +127,8 @@
   margin: -35px 0 130px 130px;
   float: left;
   z-index: 1000;
+}
+.dev-button {
+	width: 45px;
+	height: 45px;
 }

@@ -584,7 +584,7 @@ button:focus {
 	margin: 40px auto 15px auto;
 	display: none;
 }
-#boxPic, #CA-userPic, #EA-userPic {
+#boxPic, #CA-userPic, #EA-userPic, #pub-app-icon {
 	width: 100px;
 	height: 100px;
 	background: white;
