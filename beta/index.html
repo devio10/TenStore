@@ -42,11 +42,9 @@
 			</div>
 		</div>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
-		<div id="userBox">
-			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
-			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
-			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
-			<h3 id="name" class="centerText"></h3>
+		<div id="userBox" style="display: block">
+			<div style="display: block" id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 style="display: block" id="name" class="centerText">Dmitry Navalny</h3>
 			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
@@ -120,7 +118,7 @@
 			</div>
 		</div>
 
-		<script>login(); ub_themeBtn()</script>
+		<script>ub_themeBtn()</script>
 		<script src="scripts/index.js"></script>
 		<script>
 			showAppCard('homepage-recently-updated', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');

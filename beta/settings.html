@@ -19,14 +19,7 @@
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
 				<a id="mLogo2">НАСТРОЙКИ</a>
-				<a id="logo">TENSTORE</a>
-				<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
-				<a class="separate" id="first">•</a>
-				<a class="topItem" href="index">ГЛАВНАЯ</a>
-				<a class="separate">•</a>
-				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
-				<a class="separate">•</a>
-				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
+				<a id="logo">НАСТРОЙКИ</a>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
@@ -42,16 +35,11 @@
 			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
-		<div class="settings-nav" style="display: none">
-			<h4 id="chosen" class="settings-nav-item">• Тема</h4>
-			<h4 class="settings-nav-item">• Акцент</h4>
-			<h4 class="settings-nav-item">• Аккаунт</h4>
-			<h4 class="settings-nav-item">• Эффекты</h4>
-			<h4 class="settings-nav-item">• Потребление трафика</h4>
-			<h4 class="settings-nav-item">• Блок пользователя</h4>
-			<h4 class="settings-nav-item">• Шрифт</h4>
-			<h4 class="settings-nav-item">• Уведомления</h4>
-			<h4 class="settings-nav-item">• Экспериментальные функции</h4>
+		<div class="settings-nav">
+			<h4 id="chosen" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/accent.svg">Персонализация</h4>
+			<h4 class="settings-nav-item"><img class="settings-subtitleIcon" src="images/user.svg">Аккаунт</h4>
+			<h4 class="settings-nav-item"><img class="settings-subtitleIcon" src="images/apps.svg">Приложения</h4>
+			<h4 class="settings-nav-item"><img class="settings-subtitleIcon" src="images/experimental.svg">debug</h4>
 		</div>
 		<div class="settings">
 			<div class="settings-block">
@@ -195,6 +183,6 @@
 		<div id="alert-button-confirm"><img src="images/check.svg" class="alert-button-icon"></div>
 		<div id="alert-button-cancel"><img src="images/cancel.svg" class="alert-button-icon"></div>
 		<script src="scripts/analytics.js"></script>
-		<script>login('settings'); currentThemeCheck(); checkSwitches(); onchangef(); ; ub_themeBtn()</script>
+		<script>let theme; login('settings'); currentThemeCheck(); checkSwitches(); onchangef(); ; ub_themeBtn()</script>
 	</body>
 </html>

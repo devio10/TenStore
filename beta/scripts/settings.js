@@ -196,6 +196,7 @@ function currentThemeCheck () {
       theme='light';
     }
   }
+  console.log(theme);
   document.getElementById('theme-'+theme).innerHTML = "<img class='check' src='images/check.svg'>";
   document.getElementById('theme-'+theme).style.border = "2px solid rgba(63,166,104,1)";
   border="white";
@@ -203,8 +204,13 @@ function currentThemeCheck () {
     border='black';
   }
 
+  let accent='blue';
   /*акцент*/
-  let accent=localStorage.getItem('accent');
+  console.log(localStorage.getItem('accent'));
+  if (localStorage.getItem('accent')!=null) {
+    accent=localStorage.getItem('accent');
+  }
+
   document.getElementById("colorPicker").value=localStorage.getItem('custom-accent');
   document.getElementById('accent-custom').style.background=localStorage.getItem('custom-accent');
   if (accent=='custom') {
