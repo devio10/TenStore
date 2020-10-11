@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Приложения — TenStore</title>
-	  <link rel="shortcut icon" href="images/apps.svg" type="image/png">
+		<title id="appsList-title">Список приложений — TenStore</title>
+	  <link id="appsList-icon" rel="shortcut icon" href="images/apps.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/settings.css" rel="stylesheet" type="text/css">
 		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<link href="styles/appsList-elements.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
@@ -13,16 +14,10 @@
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
-		<script src="scripts/appsList.js"></script>
+		<script charset="utf-8" src="scripts/appsList.js"></script>
 		<script>let tag; let dev</script>
 	</head>
 	<body>
-		<!--Окно поиска-->
-		<div id="appsList-searchWindow">
-			<div style="width: 100%; margin: 80px 10% 40px 10%">
-				<input placeholder="Начните вводить здесь..." class="textInput searchInput">
-			</div>
-		</div>
 		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
@@ -34,20 +29,48 @@
 				<a class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
 				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
+				<input type="text" id="siteSearch" class="textInput siteSearch" placeholder="Найти..."></input>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
-			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
-			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<h5 id="userbox-email" class="centerText"></h5>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><img src="images/library.svg" class="boxButton-icon">Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><img src="images/developer.svg" class="boxButton-icon">Панель разработчика</button></form>
+			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
+		</div>
+
+		<div class="settings-nav">
+			<div style="margin-top: 20px">
+				<div id="apps-categ">
+					<h4 onclick="category('rec-upd', 'Недавно обновлено')" id="item-rec-upd" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/rec-upd.svg">Недавно обновлено</h4>
+					<h4 onclick="category('communication', 'Связь')" id="item-communication" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/commun.svg">Связь</h4>
+					<h4 onclick="category('media', 'Музыка и видео')" id="item-media" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/media.svg">Музыка и видео</h4>
+					<h4 onclick="category('news', 'Новости')" id="item-news" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/news.svg">Новости</h4>
+					<h4 onclick="category('productivity', 'Продуктивность')" id="item-productivity" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/prod2.svg">Продуктивность</h4>
+					<h4 onclick="category('health', 'Здоровье')" id="item-health" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/health.svg">Здоровье</h4>
+					<h4 onclick="category('addons', 'Дополнения')" id="item-addons" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/addit.svg">Дополнения</h4>
+					<h4 onclick="category('shopping', 'Шоппинг')" id="item-shopping" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/shop.svg">Шоппинг</h4>
+					<h4 onclick="category('videocommunication', 'Видеосвязь')" id="item-videocommunication" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/webcam.svg">Видеосвязь</h4>
+					<h4 onclick="category('social', 'Социальные сети')" id="item-social" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/social.svg">Социальные сети</h4>
+					<h4 onclick="category('utilities', 'Инструменты')" id="item-utilities" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/util.svg">Инструменты</h4>
+					<h4 onclick="category('vpn', 'VPN и прокси')" id="item-vpn" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/vpn.svg">VPN и прокси</h4>
+				</div>
+
+				<div style="display: none" id="games-categ">
+					<h4 onclick="category('rpg', '')" id="item-rpg" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/rpg.svg">RPG</h4>
+					<h4 onclick="category('simulation', '')" id="item-simulation" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/simul.svg">Симуляторы</h4>
+					<h4 onclick="category('strategy', '')" id="item-strategy" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/strategy.svg">Стратегии</h4>
+					<h4 onclick="category('action', '')" id="item-action" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/action.svg">Экшен</h4>
+					<h4 onclick="category('arcade', '')" id="item-arcade" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/arcade.svg">Аркада</h4>
+				</div>
+			</div>
 		</div>
 
 		<div id="appsList-dS-block">
@@ -121,13 +144,13 @@
 
 			</div>
 		</div>
+		<div class="settings">
+			<h2 id="dev-title" class="settings-tab" style="margin: 25px 0 30px 50px">Недавно обновлено</h2>
+			<div id="aCard-block">
 
-		<div id="aCard-block">
-
+			</div>
 		</div>
-		<button id="sortButton" onclick="search()" class="floatButton squareButton">
-			<img src="images/sort.svg" class="buttonIcon accentIcon floatIcon">
-		</button>
-		<script>login(); ub_themeBtn(); sortButton()</script>
+		<script>login(); ub_themeBtn(); setTagName(); ifSearch()</script>
+		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

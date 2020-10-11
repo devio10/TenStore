@@ -24,19 +24,20 @@
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
 				<a id="mLogo2">Редактирование аккаунта</a>
 				<a id="logo">Редактирование аккаунта</a>
+				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
-			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
-			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<h5 id="userbox-email" class="centerText"></h5>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><img src="images/library.svg" class="boxButton-icon">Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><img src="images/developer.svg" class="boxButton-icon">Панель разработчика</button></form>
+			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 
@@ -66,5 +67,6 @@
 
 		<script>login('edit-account'); ub_themeBtn(); var onBlock; warningBox('show', 'hello')</script>
 		<script src="scripts/create-account.js"></script>
+		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

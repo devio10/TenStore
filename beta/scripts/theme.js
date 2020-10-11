@@ -16,6 +16,7 @@ let themeName;
 let piece1="<img src='images/";
 let piece2=".svg' class='boxButton-icon'>";
 function changeTheme(theme) {
+  localStorage.setItem('autoDarkTheme', 'false');
   if (theme==1) {
     themeName='Чёрная тема';
     if ((localStorage.getItem('theme')=='black')||(localStorage.getItem('theme')=='dark')) {

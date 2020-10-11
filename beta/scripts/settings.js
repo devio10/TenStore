@@ -83,19 +83,19 @@ function setAccent(accent) {
 
 function changeSetting (par, val) {
   let choice;
-  if (val == null) {
+  if (val==null) {
       //если не задаётся конкретное значение
-      if (localStorage.getItem(par) == 'true') {
+      if (localStorage.getItem(par)=='true') {
         localStorage.setItem(par, 'false');
-        choice = 'false';
-      } else if (localStorage.getItem(par) == 'false') {
+        choice='false';
+      } else if (localStorage.getItem(par)=='false') {
         localStorage.setItem(par, 'true');
-        choice = 'true';
+        choice='true';
       } else {
         localStorage.setItem(par, 'true');
-        choice = 'true';
+        choice='true';
       }
-      if (par == 'newFont') {
+      if (par=='newFont') {
         //если изменяется шрифт
         document.documentElement.setAttribute('data-oldFont', choice);
       } else if (par == 'effects-shadows') {
@@ -135,8 +135,11 @@ function checkSwitches() {
   }
 
   /* блок пользователя */
-  if (localStorage.getItem('nameDisplay') == 'true') {
-    document.getElementById('s-nameDisplay').checked = true;
+  if (localStorage.getItem('nameDisplay')=='true') {
+    document.getElementById('s-nameDisplay').checked=true;
+  }
+  if (localStorage.getItem('userbox-dontShowEmail')=='true') {
+    document.getElementById('s-dontShowEmail').checked=true;
   }
 
   /* шрифт */
@@ -145,14 +148,17 @@ function checkSwitches() {
   }
 
   /* экспериментальные функции */
-  if (localStorage.getItem('appsListSort') == 'true') {
-    document.getElementById('s-appsListSort').checked = true;
+  if (localStorage.getItem('appsListSort')=='true') {
+    document.getElementById('s-appsListSort').checked=true;
   }
-  if (localStorage.getItem('analytics') == 'true') {
-    document.getElementById('s-analytics').checked = true;
+  if (localStorage.getItem('analytics')=='true') {
+    document.getElementById('s-analytics').checked=true;
   }
-  if (localStorage.getItem('autoDarkTheme') == 'true') {
-    document.getElementById('s-autoDarkTheme').checked = true;
+  if (localStorage.getItem('autoDarkTheme')=='true') {
+    document.getElementById('s-autoDarkTheme').checked=true;
+  }
+  if (localStorage.getItem('alwaysLoggedIn')=='true') {
+    document.getElementById('s-alwaysLoggedIn').checked=true;
   }
 
   /* канал */
@@ -187,6 +193,7 @@ function onchangef() {
 }
 
 function currentThemeCheck () {
+  document.getElementById('item-personal').style.fontFamily='var(--bold)';
   /*тема*/
   if ((localStorage.getItem('autoDarkTheme')=='true')&&(userPrefersDark)) {
     theme=localStorage.getItem('night-theme');
@@ -196,7 +203,6 @@ function currentThemeCheck () {
       theme='light';
     }
   }
-  console.log(theme);
   document.getElementById('theme-'+theme).innerHTML = "<img class='check' src='images/check.svg'>";
   document.getElementById('theme-'+theme).style.border = "2px solid rgba(63,166,104,1)";
   border="white";
@@ -206,7 +212,6 @@ function currentThemeCheck () {
 
   let accent='blue';
   /*акцент*/
-  console.log(localStorage.getItem('accent'));
   if (localStorage.getItem('accent')!=null) {
     accent=localStorage.getItem('accent');
   }
@@ -222,4 +227,20 @@ function currentThemeCheck () {
     document.getElementById('accent-'+accent).style.border="2px solid "+border;
     chosenAccent=document.getElementById('accent-'+accent);
   }
+}
+
+function changeTab(tab, tabName) {
+  document.getElementById('settings-personal').style.display='none';
+  document.getElementById('settings-account').style.display='none';
+  document.getElementById('settings-apps').style.display='none';
+  document.getElementById('settings-other').style.display='none';
+  document.getElementById('settings-debug').style.display='none';
+  document.getElementById('item-personal').style.fontFamily='var(--regular)';
+  document.getElementById('item-account').style.fontFamily='var(--regular)';
+  document.getElementById('item-apps').style.fontFamily='var(--regular)';
+  document.getElementById('item-other').style.fontFamily='var(--regular)';
+  document.getElementById('item-debug').style.fontFamily='var(--regular)';
+  document.getElementById('settings-'+tab).style.display='block';
+  document.getElementById('item-'+tab).style.fontFamily='var(--bold)';
+  document.getElementById('settings-title').innerHTML=tabName;
 }

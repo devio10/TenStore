@@ -181,7 +181,7 @@ function login (page) {
           userPhoto = "https://thetenstore.ru/" + obj.user[0].photo;
         }
         if (page == 'settings') {
-          if (localStorage.getItem('nameDisplay') == 'true') {
+          if (localStorage.getItem('nameDisplay') == 'false') {
             document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].login + ".";
           } else {
             document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].name + ".";
@@ -202,21 +202,79 @@ function login (page) {
           userEmail = obj.user[0].email;
         }
 
+        document.getElementById('name').style.display='block';
         if (localStorage.getItem('nameDisplay') == 'true') {
           document.getElementById('name').innerHTML = obj.user[0].login;
         } else {
           document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
         }
-        let userPic = document.getElementById('userPic');
-        let boxPic = document.getElementById('boxPic');
-        let picDiv = document.getElementById('picDiv');
-        let lastBtn = document.getElementById('lastButton');
-        let lastBtnAccount = document.getElementById('boxBtn-account');
-        picDiv.style.display = "block";
-        lastBtn.innerHTML = "<img src='images/logout.svg' class='boxButton-icon'>Выйти";
-        lastBtnAccount.style.display = "flex";
-        userPic.src = userPhoto;
-        boxPic.src = userPhoto;
+        document.getElementById('picDiv').style.display="block";
+        document.getElementById('lastButton').innerHTML="<img src='images/logout.svg' class='boxButton-icon'>Выйти";
+        document.getElementById('lastButton').style.borderTop='0';
+        document.getElementById('boxbtn-library').style.display='flex';
+        document.getElementById('boxBtn-account').style.display='flex';
+        document.getElementById('themeButton').style.borderBottom='0';
+        document.getElementById('themeButton').style.marginTop='0';
+        document.getElementById('themeButton').style.borderBottomLeftRadius='0';
+        document.getElementById('themeButton').style.borderBottomRightRadius='0';
+        document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) 65%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/'+obj.user[0].bg+')';
+        document.getElementById('userBox').style.backgroundRepeat='no-repeat';
+        document.getElementById('userBox').style.backgroundPosition='center';
+        document.getElementById('userBox').style.backgroundSize='cover';
+        document.getElementById('userPic').src=userPhoto;
+        document.getElementById('boxPic').src=userPhoto;
+        document.getElementById('userbox-email').style.display='block';
+        if (localStorage.getItem('userbox-dontShowEmail')!='true') {
+          document.getElementById('userbox-email').innerHTML=obj.user[0].email;
+        }
+    } else if (localStorage.getItem('alwaysLoggedIn')=='true') {
+      let userPhoto='images/alwaysLoggedIn.svg';
+      if (page == 'settings') {
+        if (localStorage.getItem('nameDisplay') == 'false') {
+          document.getElementById('settings-welcomeText').innerHTML = "Включёна функция alwaysLoggedIn. Ваше имя здесь.";
+        } else {
+          document.getElementById('settings-welcomeText').innerHTML = "Включёна функция alwaysLoggedIn. Ваш логин здесь.";
+        }
+        document.getElementById('settings-link1').style.display = "block";
+        document.getElementById('settings-link2').style.display = "block";
+        document.getElementById('settings-link3').style.display = "none";
+      } else if (page == 'edit-account') {
+        document.getElementById('CA-userPic').src = userPhoto;
+        document.getElementById('EA-name').value = obj.user[0].name;
+        document.getElementById('EA-lastName').value = obj.user[0].lastname;
+        document.getElementById('EA-login').value = obj.user[0].login;
+        userId='id';
+        userLogin='login';
+        userName='name';
+        userLastName='lastName';
+        userPic=userPhoto;
+        userEmail='alwaysLoggedIn@thetenstore.ru';
+      }
+      document.getElementById('name').style.display='block';
+      if (localStorage.getItem('nameDisplay')=='true') {
+        document.getElementById('name').innerHTML='login';
+      } else {
+        document.getElementById('name').innerHTML = 'alwaysLoggedIn';
+      }
+      document.getElementById('picDiv').style.display="block";
+      document.getElementById('lastButton').innerHTML="<img src='images/logout.svg' class='boxButton-icon'>Выйти";
+      document.getElementById('lastButton').style.borderTop='0';
+      document.getElementById('boxbtn-library').style.display='flex';
+      document.getElementById('boxBtn-account').style.display='flex';
+      document.getElementById('themeButton').style.borderBottom='0';
+      document.getElementById('themeButton').style.marginTop='0';
+      document.getElementById('themeButton').style.borderBottomLeftRadius='0';
+      document.getElementById('themeButton').style.borderBottomRightRadius='0';
+      document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) 65%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/1.jpg)';
+      document.getElementById('userBox').style.backgroundRepeat='no-repeat';
+      document.getElementById('userBox').style.backgroundPosition='center';
+      document.getElementById('userBox').style.backgroundSize='cover';
+      document.getElementById('userbox-email').style.display='block';
+      document.getElementById('userPic').src=userPhoto;
+      document.getElementById('boxPic').src=userPhoto;
+      if (localStorage.getItem('userbox-dontShowEmail')!='true') {
+        document.getElementById('userbox-email').innerHTML='alwaysLoggedIn@thetenstore.ru';
+      }
     }
   };
 }
