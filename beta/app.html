@@ -29,7 +29,7 @@
 			<form action="library"><button class="boxButton" id="boxbtn-library"><img src="images/library.svg" class="boxButton-icon">Библиотека</button></form>
 			<form action="settings"><button class="boxButton" id="boxbtn-settings"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<form action="dev"><button class="boxButton" id="boxbtn-dev"><img src="images/developer.svg" class="boxButton-icon">Панель разработчика</button></form>
-			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 		<div id="appPage">
@@ -103,8 +103,13 @@
 				</div>
 			</div>
 			</div>
-
+			<div id="client-ad">
+				<img class="ad-icon" src="images/favicon.png">
+				<h5 class="ad-text">Скачивать приложения легче в TenStore для Windows. <a href="app?id=10&source=dev_ad">Скачать</a></h5>
+				<img class="pub-card-nexticon" onclick="closeAd()" src="images/cancel.svg">
+			</div>
 		<script>login(); ub_themeBtn()</script>
 		<script src='scripts/search-bar.js'></script>
+		<script src='scripts/ad.js'></script>
 	</body>
 </html>

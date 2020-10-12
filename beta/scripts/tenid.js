@@ -250,8 +250,7 @@ function login (page) {
         document.getElementById('boxBtn-account').style.display='flex';
         document.getElementById('themeButton').style.borderBottom='0';
         document.getElementById('themeButton').style.marginTop='0';
-        document.getElementById('themeButton').style.borderBottomLeftRadius='0';
-        document.getElementById('themeButton').style.borderBottomRightRadius='0';
+        document.getElementById('themeButton').style.borderRadius='0';
         document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) 65%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/'+obj.user[0].bg+')';
         document.getElementById('userBox').style.backgroundRepeat='no-repeat';
         document.getElementById('userBox').style.backgroundPosition='center';
@@ -291,7 +290,7 @@ function login (page) {
         if (localStorage.getItem('nameDisplay')=='true') {
           document.getElementById('user-name').innerHTML='login';
         } else {
-          document.getElementById('user-name').innerHTML'alwaysLoggedIn';
+          document.getElementById('user-name').innerHTML='alwaysLoggedIn';
         }
         if (localStorage.getItem('ali-userType')=='dev') {
           document.getElementById('user-appsBlock').style.display='block';
@@ -329,8 +328,7 @@ function login (page) {
       document.getElementById('boxBtn-account').style.display='flex';
       document.getElementById('themeButton').style.borderBottom='0';
       document.getElementById('themeButton').style.marginTop='0';
-      document.getElementById('themeButton').style.borderBottomLeftRadius='0';
-      document.getElementById('themeButton').style.borderBottomRightRadius='0';
+      document.getElementById('themeButton').style.borderRadius='0';
       document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) 65%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/1.jpg)';
       document.getElementById('userBox').style.backgroundRepeat='no-repeat';
       document.getElementById('userBox').style.backgroundPosition='center';

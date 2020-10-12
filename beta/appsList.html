@@ -28,7 +28,7 @@
 				<a class="separate">•</a>
 				<a class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
-				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
+				<a class="topItem" id="gameTab" href="appsList?type=game">ИГРЫ</a>
 				<input type="text" id="siteSearch" class="textInput siteSearch" placeholder="Найти..."></input>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
@@ -42,28 +42,29 @@
 			<form action="library"><button class="boxButton" id="boxbtn-library"><img src="images/library.svg" class="boxButton-icon">Библиотека</button></form>
 			<form action="settings"><button class="boxButton" id="boxbtn-settings"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
 			<form action="dev"><button class="boxButton" id="boxbtn-dev"><img src="images/developer.svg" class="boxButton-icon">Панель разработчика</button></form>
-			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
 		</div>
 
 		<div class="settings-nav">
 			<div style="margin-top: 20px">
 				<div id="apps-categ">
-					<h4 onclick="category('rec-upd', 'Недавно обновлено')" id="item-rec-upd" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/rec-upd.svg">Недавно обновлено</h4>
-					<h4 onclick="category('communication', 'Связь')" id="item-communication" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/commun.svg">Связь</h4>
-					<h4 onclick="category('media', 'Музыка и видео')" id="item-media" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/media.svg">Музыка и видео</h4>
-					<h4 onclick="category('news', 'Новости')" id="item-news" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/news.svg">Новости</h4>
-					<h4 onclick="category('productivity', 'Продуктивность')" id="item-productivity" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/prod2.svg">Продуктивность</h4>
-					<h4 onclick="category('health', 'Здоровье')" id="item-health" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/health.svg">Здоровье</h4>
-					<h4 onclick="category('addons', 'Дополнения')" id="item-addons" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/addit.svg">Дополнения</h4>
-					<h4 onclick="category('shopping', 'Шоппинг')" id="item-shopping" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/shop.svg">Шоппинг</h4>
-					<h4 onclick="category('videocommunication', 'Видеосвязь')" id="item-videocommunication" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/webcam.svg">Видеосвязь</h4>
-					<h4 onclick="category('social', 'Социальные сети')" id="item-social" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/social.svg">Социальные сети</h4>
-					<h4 onclick="category('utilities', 'Инструменты')" id="item-utilities" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/util.svg">Инструменты</h4>
-					<h4 onclick="category('vpn', 'VPN и прокси')" id="item-vpn" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/vpn.svg">VPN и прокси</h4>
+					<h4 onclick="category('rec-upd')" id="item-rec-upd" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/rec-upd.svg">Недавно обновлено</h4>
+					<h4 onclick="category('communication')" id="item-communication" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/commun.svg">Связь</h4>
+					<h4 onclick="category('media')" id="item-media" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/media.svg">Музыка и видео</h4>
+					<h4 onclick="category('news')" id="item-news" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/news.svg">Новости</h4>
+					<h4 onclick="category('productivity')" id="item-productivity" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/prod2.svg">Продуктивность</h4>
+					<h4 onclick="category('health')" id="item-health" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/health.svg">Здоровье</h4>
+					<h4 onclick="category('addons')" id="item-addons" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/addit.svg">Дополнения</h4>
+					<h4 onclick="category('shopping')" id="item-shopping" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/shop.svg">Шоппинг</h4>
+					<h4 onclick="category('videocommunication')" id="item-videocommunication" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/webcam.svg">Видеосвязь</h4>
+					<h4 onclick="category('social')" id="item-social" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/social.svg">Социальные сети</h4>
+					<h4 onclick="category('utilities')" id="item-utilities" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/util.svg">Инструменты</h4>
+					<h4 onclick="category('vpn')" id="item-vpn" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/vpn.svg">VPN и прокси</h4>
 				</div>
 
 				<div style="display: none" id="games-categ">
+					<h4 onclick="category('game-rec-upd')" id="item-game-rec-upd" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/rec-upd.svg">Недавно обновлено</h4>
 					<h4 onclick="category('rpg', '')" id="item-rpg" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/rpg.svg">RPG</h4>
 					<h4 onclick="category('simulation', '')" id="item-simulation" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/simul.svg">Симуляторы</h4>
 					<h4 onclick="category('strategy', '')" id="item-strategy" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/strategy.svg">Стратегии</h4>
@@ -146,11 +147,12 @@
 		</div>
 		<div class="settings">
 			<h2 id="dev-title" class="settings-tab" style="margin: 25px 0 30px 50px">Недавно обновлено</h2>
+			<h4 id="no-elements" style="margin: 0 0 0 50px">По вашему запросу ничего не нашлось.</h4>
 			<div id="aCard-block">
 
 			</div>
 		</div>
-		<script>login(); ub_themeBtn(); setTagName(); ifSearch()</script>
+		<script>login(); ub_themeBtn(); setTagName(); ifSearch(); ifGame()</script>
 		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

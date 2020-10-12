@@ -8,7 +8,7 @@ function search () {
 }
 let select;
 let action = "KdSqSAOC";
-if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')) {
+if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()['tag']!='game-rec-upd')) {
   select='tags';
   value=getUrlVars()['tag'];
 } else if (getUrlVars()['dev'] != null) {
@@ -27,6 +27,9 @@ if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')) {
   select = "type";
   value = "app";
 }
+if ((getUrlVars()['tag']=='game-rec-upd')) {
+  value='game';
+}
 const request = new XMLHttpRequest();
 const url = "https://thetenstore.ru/api.php";
 let params;
@@ -42,6 +45,7 @@ request.addEventListener("readystatechange", () => {
   if (request.readyState === 4 && request.status === 200) {
     let obj=request.response;
     for(let i=0; i<obj.apps.length; i++) {
+      document.getElementById('no-elements').style.display='none';
       showAppCard('aCard-block', obj.apps[i].icon, obj.apps[i].icon_pad, obj.apps[i].icon_bg, obj.apps[i].id, obj.apps[i].name, obj.apps[i].dev);
     }
   }
@@ -79,6 +83,20 @@ function ifSearch () {
     document.getElementById('appsList-icon').href='images/search.svg';
   }
 }
+function ifGame () {
+  if ((getUrlVars()['type']=='game')||(getUrlVars()['tab']=='game')) {
+    document.getElementById('chosen').style.fontFamily='var(--regular)';
+    document.getElementById('gameTab').style.fontFamily='var(--bold)';
+    document.getElementById('apps-categ').style.display='none';
+    document.getElementById('games-categ').style.display='block';
+  }
+}
+function isGame() {
+  document.getElementById('chosen').style.fontFamily='var(--regular)';
+  document.getElementById('gameTab').style.fontFamily='var(--bold)';
+  document.getElementById('apps-categ').style.display='none';
+  document.getElementById('games-categ').style.display='block';
+}
 function setTagName () {
   let tagName;
   if (getUrlVars()['tag']!=null) {
@@ -88,9 +106,6 @@ function setTagName () {
     } else if (getUrlVars()['tag']=='vpn') {
       tagName='VPN и прокси';
       tagIcon='vpn';
-    } else if (getUrlVars()['tag']=='rec-upd') {
-      tagName='Недавно обновлено';
-      tagIcon='rec-upd';
     } else if (getUrlVars()['tag']=='communication') {
       tagName='Связь';
       tagIcon='commun';
@@ -118,6 +133,33 @@ function setTagName () {
     } else if (getUrlVars()['tag']=='utilities') {
       tagName='Инструменты';
       tagIcon='util';
+    } else if (getUrlVars()['tag']=='game-rec-upd') {
+      tagName='Недавно обновлено';
+      tagIcon='rec-upd';
+      isGame();
+    } else if (getUrlVars()['tag']=='rpg') {
+      tagName='RPG';
+      tagIcon='rpg';
+      isGame();
+    } else if (getUrlVars()['tag']=='simulation') {
+      tagName='Симуляторы';
+      tagIcon='simul';
+      isGame();
+    } else if (getUrlVars()['tag']=='strategy') {
+      tagName='Стратегии';
+      tagIcon='strategy';
+      isGame();
+    } else if (getUrlVars()['tag']=='action') {
+      tagName='Экшен';
+      tagIcon='action';
+      isGame();
+    } else if (getUrlVars()['tag']=='arcade') {
+      tagName='Аркады';
+      tagIcon='arcade';
+      isGame();
+    } else {
+      tagName='Недавно обновлено';
+      tagIcon='rec-upd';
     }
     document.getElementById('appsList-title').innerHTML=tagName+' — TenStore';
     document.getElementById('dev-title').innerHTML=tagName;

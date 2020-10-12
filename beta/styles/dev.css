@@ -1,3 +1,104 @@
 .settings-block {
   width: 150%;
 }
+.dev-publish-card {
+  width: 350px;
+  height: 70px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: var(--transition6);
+}
+.dev-publish-card:hover {
+  background: var(--primary);
+  transform: translate(0, -5px);
+  box-shadow: var(--shadow4);
+}
+.dev-publish-card:hover > .pub-card-nexticon {
+  animation-name: var(--pubcard-animation);
+  animation-duration: .5s;
+  animation-delay: 0;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+.pub-card-icon {
+  width: 24px;
+  padding: 3px;
+  margin-left: 10px;
+  filter: invert(var(--dark));
+}
+.pub-card-nexticon, .dev-card-radio {
+  width: 28px;
+  padding: 3px;
+  margin-left: auto;
+  margin-right: 10px;
+  filter: invert(var(--dark));
+}
+.pub-card-title {
+  padding: 2px;
+  margin-left: 12px;
+}
+@keyframes pubcard {
+  0% {
+		transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-3px, 0);
+  }
+}
+.dev-codeExample {
+  background: #ffebee;
+  width: auto;
+  border-radius: 10px;
+  border: 2px solid #ffebee;
+}
+.dev-codeExample-text {
+  color: black;
+  padding: 7px;
+  margin-left: 15px;
+}
+.dev-textInput {
+  width: 525px;
+}
+.dev-textarea {
+  width: 500px;
+  height: 300px;
+}
+.dev-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-top: -30px;
+}
+#dev-app-win64 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+#dev-app-win32 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.dev-card-icon {
+  margin-left: 20px;
+  width: 20px;
+}
+.dev-publish-card:hover > .dev-card-icon {
+  animation-name: 0;
+}
+.dev-card-radio {
+  width: 20px;
+  margin-right: 20px;
+}
+.dev-fileInput::before {
+  content: 'ВЫБЕРИТЕ ФАЙЛ';
+}
+.smaller-cards {
+  width: 270px;
+  height: 60px;
+}
+.smaller-title {
+  font-size: 14px;
+}

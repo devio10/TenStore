@@ -18,7 +18,6 @@
   height: 100%;
   position: fixed;
   transition: var(--transition1);
-  z-index: 0;
 }
 .settings-nav-item {
   font-family: var(--regular);
@@ -31,6 +30,7 @@
 }
 .settings-nav-item:hover {
   color: var(--font3);
+  transform: translate(5px, 0);
 }
 .settings-block-title {
   text-transform: uppercase;
