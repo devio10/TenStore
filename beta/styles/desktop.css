@@ -33,8 +33,10 @@
 	--shadow2: 0px 4px 10px 0px rgba(0,0,0,0.18);
 	--shadow3: 0px 4px 9px 0px rgba(0,0,0,0.12);
 	--shadow4: 0 6px 15px 0 rgba(90,90,90,0.12);
+	--shadow4-inset: inset 0 6px 15px 0 rgba(90,90,90,0.12);
 	--shadow5: 0px 2px 4px 0px rgba(0,0,0,0.12);
 	--shadow6: 0px 3px 30px -5px rgba(20,20,20,0.35);
+	--no-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
 
 	/*шрифт*/
   --font: black;

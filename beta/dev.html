@@ -108,57 +108,21 @@
 					<h5 style="color: gray; margin-top: -4px">Оставьте поле пустым, чтобы придать иконке цвет фона.</h5>
 					<input onclick="padding('app')" id="dev-app-padding" type="checkbox" checked class="switch">
 					<label for="dev-app-padding">Отступ у иконки</label><p>
-					<h3>Платформы</h3>
+					<h3>Файлы</h3>
 					<div class="dev-grid" style="user-select: none">
-						<div onclick="platform('app', 'win64')" id="dev-app-win64" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/windows.svg">
-							<h4 class="pub-card-title smaller-title">Windows x64</h4>
-							<img id="app-win64-check" class="dev-card-radio" src="images/radio/unchecked.svg">
-						</div>
-						<div onclick="platform('app', 'win32')" id="dev-app-win32" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/windows.svg">
-							<h4 class="pub-card-title smaller-title">Windows x32</h4>
-							<img id="app-win32-check" class="dev-card-radio" src="images/radio/unchecked.svg">
-						</div>
-						<div onclick="platform('app', 'arm64')" id="dev-app-arm64" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/android.svg">
-							<h4 class="pub-card-title smaller-title">Android arm64</h4>
-							<img id="app-arm64-check" class="dev-card-radio" src="images/radio/unchecked.svg">
-						</div>
-						<div onclick="platform('app', 'arm32')" id="dev-app-arm32" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/android.svg">
-							<h4 class="pub-card-title smaller-title">Android arm32</h4>
-							<img id="app-arm32-check" class="dev-card-radio" src="images/radio/unchecked.svg">
-						</div>
-						<div onclick="platform('app', '10x64')" id="dev-app-10x64" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/windows.svg">
-							<h4 class="pub-card-title smaller-title">Windows 10 x64</h4>
-							<img id="app-10x64-check" class="dev-card-radio" src="images/radio/unchecked.svg">
+						<div onclick="platform('app', 'win64')" id="dev-app-win64" class="dev-publish-card smaller-cards inset-card">
+							<img class="pub-card-icon dev-card-icon" src="images/plus.svg">
+							<h4 class="pub-card-title smaller-title">Добавить файл...</h4>
 						</div>
 						<div onclick="platform('app', '10x32')" id="dev-app-10x32" class="dev-publish-card smaller-cards">
 							<img class="pub-card-icon dev-card-icon" src="images/windows.svg">
-							<h4 class="pub-card-title smaller-title">Windows 10 x32</h4>
-							<img id="app-10x32-check" class="dev-card-radio" src="images/radio/unchecked.svg">
+							<h4 class="pub-card-title smaller-title">Windows 10</h4>
+							<img id="app-10x32-check" class="dev-card-radio" src="images/edit.svg">
 						</div>
-						<div onclick="platform('app', 'lin64')" id="dev-app-lin64" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/platforms/linux.svg">
-							<h4 class="pub-card-title smaller-title">Linux (Debian) x64</h4>
-							<img id="app-lin64-check" class="dev-card-radio" src="images/radio/unchecked.svg">
-						</div>
-						<div onclick="platform('app', 'lin32')" id="dev-app-lin32" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/platforms/linux.svg">
-							<h4 class="pub-card-title smaller-title">Linux (Debian) x32</h4>
-							<img id="app-lin32-check" class="dev-card-radio" src="images/radio/unchecked.svg">
-						</div>
-						<div onclick="platform('app', 'lin64')" id="dev-app-lin64" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/platforms/linux.svg">
-							<h4 class="pub-card-title smaller-title">Linux (Arch) x64</h4>
-							<img id="app-lin64-check" class="dev-card-radio" src="images/radio/unchecked.svg">
-						</div>
-						<div onclick="platform('app', 'lin32')" id="dev-app-lin32" class="dev-publish-card smaller-cards">
-							<img class="pub-card-icon dev-card-icon" src="images/platforms/linux.svg">
-							<h4 class="pub-card-title smaller-title">Linux (Arch) x32</h4>
-							<img id="app-lin32-check" class="dev-card-radio" src="images/radio/unchecked.svg">
+						<div onclick="platform('app', '10x32')" id="dev-app-10x32" class="dev-publish-card smaller-cards">
+							<img class="pub-card-icon dev-card-icon" src="images/file.svg">
+							<h4 class="pub-card-title smaller-title">Дополнение</h4>
+							<img id="app-10x32-check" class="dev-card-radio" src="images/edit.svg">
 						</div>
 					</div>
 					<div>

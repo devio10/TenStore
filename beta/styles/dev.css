@@ -1,7 +1,7 @@
 .settings-block {
   width: 150%;
 }
-.dev-publish-card {
+.dev-publish-card, .smaller-cards, .inset-card {
   width: 350px;
   height: 70px;
   border: 1px solid var(--border);
@@ -13,9 +13,22 @@
   transition: var(--transition6);
 }
 .dev-publish-card:hover {
-  background: var(--primary);
   transform: translate(0, -5px);
   box-shadow: var(--shadow4);
+}
+.inset-card:hover {
+  transform: translate(0, 0);
+  background: var(--bg);
+  box-shadow: var(--shadow4-inset);
+}
+.inset-card:hover > .pub-card-title {
+  transform: translate(0, 3px);
+}
+.inset-card:hover > .pub-card-nexticon {
+  transform: translate(0, 3px);
+}
+.inset-card:hover > .pub-card-icon {
+  transform: translate(0, 3px);
 }
 .dev-publish-card:hover > .pub-card-nexticon {
   animation-name: var(--pubcard-animation);
@@ -29,6 +42,7 @@
   padding: 3px;
   margin-left: 10px;
   filter: invert(var(--dark));
+  transition: var(--transition6);
 }
 .pub-card-nexticon, .dev-card-radio {
   width: 28px;
@@ -36,10 +50,12 @@
   margin-left: auto;
   margin-right: 10px;
   filter: invert(var(--dark));
+  transition: var(--transition6);
 }
 .pub-card-title {
   padding: 2px;
   margin-left: 12px;
+  transition: var(--transition6);
 }
 @keyframes pubcard {
   0% {
@@ -95,7 +111,7 @@
 .dev-fileInput::before {
   content: 'ВЫБЕРИТЕ ФАЙЛ';
 }
-.smaller-cards {
+.smaller-cards, .inset-card {
   width: 270px;
   height: 60px;
 }

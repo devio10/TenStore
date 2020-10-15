@@ -18,6 +18,7 @@
   height: 100%;
   position: fixed;
   transition: var(--transition1);
+  user-select: none;
 }
 .settings-nav-item {
   font-family: var(--regular);
@@ -27,6 +28,7 @@
   padding: 7.5px;
   transition: var(--transition6);
   color: var(--font2);
+  user-select: none;
 }
 .settings-nav-item:hover {
   color: var(--font3);

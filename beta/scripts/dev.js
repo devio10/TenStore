@@ -43,8 +43,8 @@ function category(type, name) {
   document.getElementById('app-utilities-check').src='images/radio/unchecked.svg';
   document.getElementById('app-vpn-check').src='images/radio/unchecked.svg';
   document.getElementById(type+'-'+name+'-check').src='images/radio/checked.svg';
+  document.getElementById('dev-'+type+'-'+name).className='inset-card';
   appCategory=name;
-  console.log(appCategory);
 }
 
 $("#dev-app-name").change(function() {
