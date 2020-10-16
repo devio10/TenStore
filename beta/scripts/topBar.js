@@ -9,3 +9,13 @@ window.addEventListener('scroll', function() {
     document.getElementById('topBar').style.boxShadow = "0px 4px 9px 0px rgba(0,0,0,0)";
   }
 })
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById('nav').style.top = "0";
+  } else {
+    document.getElementById('nav').style.top = "-70px";
+  }
+  prevScrollpos = currentScrollPos;
+}

@@ -24,7 +24,7 @@
 .inset-card:hover > .pub-card-title {
   transform: translate(0, 3px);
 }
-.inset-card:hover > .pub-card-nexticon {
+.inset-card:hover > .dev-card-radio {
   transform: translate(0, 3px);
 }
 .inset-card:hover > .pub-card-icon {

@@ -43,6 +43,18 @@ function category(type, name) {
   document.getElementById('app-utilities-check').src='images/radio/unchecked.svg';
   document.getElementById('app-vpn-check').src='images/radio/unchecked.svg';
   document.getElementById(type+'-'+name+'-check').src='images/radio/checked.svg';
+
+  document.getElementById('dev-app-communication').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-media').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-news').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-productivity').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-health').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-shopping').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-videocommunication').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-social').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-utilities').className='dev-publish-card smaller-cards';
+  document.getElementById('dev-app-vpn').className='dev-publish-card smaller-cards';
+
   document.getElementById('dev-'+type+'-'+name).className='inset-card';
   appCategory=name;
 }
