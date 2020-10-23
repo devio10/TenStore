@@ -244,7 +244,7 @@ function login (page) {
           document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
         }
         document.getElementById('picDiv').style.display="block";
-        document.getElementById('lastButton').innerHTML="<img src='images/logout.svg' class='boxButton-icon'>Выйти";
+        document.getElementById('lastButton').innerHTML="<i class='ph-sign-out boxButton-icon'></i>Выйти";
         document.getElementById('lastButton').style.borderTop='0';
         document.getElementById('boxbtn-library').style.display='flex';
         document.getElementById('boxBtn-account').style.display='flex';
@@ -322,7 +322,7 @@ function login (page) {
         document.getElementById('name').innerHTML = 'alwaysLoggedIn';
       }
       document.getElementById('picDiv').style.display="block";
-      document.getElementById('lastButton').innerHTML="<img src='images/logout.svg' class='boxButton-icon'>Выйти";
+      document.getElementById('lastButton').innerHTML="<i class='ph-sign-out boxButton-icon'></i>Выйти";
       document.getElementById('lastButton').style.borderTop='0';
       document.getElementById('boxbtn-library').style.display='flex';
       document.getElementById('boxBtn-account').style.display='flex';

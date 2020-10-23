@@ -180,6 +180,10 @@ function checkSwitches() {
   if (localStorage.getItem('mailSpam') == 'true') {
     document.getElementById('s-mailSpam').checked = true;
   }
+
+  if (localStorage.getItem('mobileVersion') == 'true') {
+    document.getElementById('s-mobileVersion').checked = true;
+  }
 }
 function onchangef() {
   document.getElementById("colorPicker").onchange = function() {

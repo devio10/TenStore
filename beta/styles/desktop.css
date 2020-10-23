@@ -27,6 +27,7 @@
   --accent-dark: #005cb2;
 	--accent-light: #6ab7ff;
 	--rgba: rgba(255, 255, 255, 1);
+	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 0.6);
 
 	/*тени*/
   --topShadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
@@ -69,6 +70,13 @@
 	--searchbar-animation: searchbar;
 	--anim-aCard: aCardAnimation;
 	--anim-aCard-hover: aCardHover;
+
+	/*карточки приложений*/
+	--aCard-width: 148px;
+	--aCard-width2: 150px;
+	--aCard-icon: 150px;
+	--aCard-icon2: 120px;
+	--aCard-icon-padding: 15px;
 
 	/*прочее*/
 	--blur: 10px;
@@ -176,6 +184,7 @@
 }
 [effects-blur='false'] {
 	--blur: 0;
+	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 1);
 }
 [effects-animations='false'] {
 	--transition1: 0;
@@ -275,10 +284,9 @@ button:focus {
 }
 
 .buttonIcon, .boxButton-icon, .accentIcon {
-  filter: invert(var(--dark));
-  height: 20px;
-  width: 20px;
-  margin: 0 5px 0;
+  color: var(--font);
+	font-size: 20px;
+	margin: auto 5px auto 0;
 }
 .floatIcon {
 	height: 30px;
@@ -344,7 +352,6 @@ button:focus {
 }
 .boxButton-icon {
 	margin-right: 20px;
-	font-size: 150px;
 }
 .material-icons {
   font-weight: normal;
@@ -1375,10 +1382,12 @@ textarea {
   box-shadow: var(--shadow4);
 }
 .download-card-icon, .home-card-icon {
-  width: 20px;
+  font-size: 20px;
   padding: 3px;
+	margin-top: auto;
+	margin-bottom: auto;
   margin-left: 15px;
-  filter: invert(var(--dark));
+  color: var(--font);
   transition: var(--transition6);
 }
 .download-card-nexticon, .home-card-nexticon {

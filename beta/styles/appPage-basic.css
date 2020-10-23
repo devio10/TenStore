@@ -11,7 +11,7 @@
 #topBar {
 	backdrop-filter: blur(var(--blur));
 	box-shadow: var(--topShadow);
-	background: rgba(var(--bright), var(--bright), var(--bright), 0.6);
+	background: var(--nav-bg);
 }
 
 a {

@@ -12,9 +12,10 @@ if (localStorage.getItem('effects-animations')=='false') {
 }
 let chosenAccent;
 let newTheme;
+let themeIcon='moon';
 let themeName;
-let piece1="<img src='images/";
-let piece2=".svg' class='boxButton-icon'>";
+let piece1="<i class='ph-";
+let piece2=" boxButton-icon'></i>";
 function changeTheme(theme) {
   localStorage.setItem('autoDarkTheme', 'false');
   if (theme==1) {
@@ -23,17 +24,19 @@ function changeTheme(theme) {
       localStorage.setItem('theme','light');
       document.documentElement.setAttribute('data-theme', 'light');
       newTheme='light';
+      themeIcon='sun';
       themeName='Светлая тема';
     } else {
       newTheme=localStorage.getItem('night-theme');
       if ((newTheme==null)||(newTheme=='dark')) {
         newTheme='dark';
+        themeIcon='moon';
         themeName='Тёмная тема';
       }
       localStorage.setItem('theme',newTheme);
       document.documentElement.setAttribute('data-theme',newTheme);
     }
-    document.getElementById('themeButton').innerHTML=piece1+newTheme+piece2+themeName;
+    document.getElementById('themeButton').innerHTML=piece1+themeIcon+piece2+themeName;
   }
 }
 
@@ -57,19 +60,19 @@ function showAlert (text, icon, action) {
 }
 function ub_themeBtn() {
   let localTheme = localStorage.getItem('theme');
-
+  console.log('Да.');
   if (localTheme == 'dark') {
-    document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
+    document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Тёмная тема";
   } else if (localTheme == 'black') {
-    document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
+    document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Чёрная тема";
   } else if (userPrefersDark){
     if (localStorage.getItem('night-theme')=='dark') {
-      document.getElementById('themeButton').innerHTML = "<img src='images/dark.svg' class='boxButton-icon'>Тёмная тема";
+      document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Тёмная тема";
     } else {
-      document.getElementById('themeButton').innerHTML = "<img src='images/black.svg' class='boxButton-icon'>Чёрная тема";
+      document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Чёрная тема";
     }
   } else {
-    document.getElementById('themeButton').innerHTML = "<img src='images/light.svg' class='boxButton-icon'>Светлая тема";
+    document.getElementById('themeButton').innerHTML = "<i class='ph-sun boxButton-icon'></i>Светлая тема";
   }
 
 }
