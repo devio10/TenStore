@@ -6,12 +6,13 @@
 		<title>TenStore — магазин приложений</title>
 	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
+		<script src="https://unpkg.com/phosphor-icons"></script>
 		<script src="scripts/app-card.js"></script>
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
+		<script src='scripts/phone-check.js'></script>
 	</head>
 	<body>
 
@@ -29,19 +30,21 @@
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
-		<div id="mobile-nav" style="margin: 0 auto 0 auto; width: auto">
-			<!-- <ul style="display: flex; align-items: center">
-				<a style="display: block" class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
-				<a style="display: block" class="separate">•</a>
-				<a style="display: block" class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
-				<a style="display: block" class="separate">•</a>
-				<a style="display: block" class="topItem" href="appsList?type=game">ИГРЫ</a>
-			</ul> -->
-			<div style="display: flex">
-				<button class="accentButton mobile-nav-button">Приложения</button>
-				<button class="accentButton mobile-nav-button">Игры</button>
-			</div>
-		</div>
+
+		<nav class="phone-navigation">
+		  <a href="" class="phoneNav-link">
+		    <i class="ph-house-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span class="phoneNav-text phoneNav-link-active">Главная</span>
+		  </a>
+		  <a href="appsList" class="phoneNav-link">
+		    <i class="ph-command phoneNav-icon"></i>
+		    <span class="phoneNav-text">Приложения</span>
+		  </a>
+		  <a href="appsList?type=game" class="phoneNav-link">
+		    <i class="ph-game-controller phoneNav-icon"></i>
+		    <span class="phoneNav-text">Игры</span>
+		  </a>
+		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
@@ -53,6 +56,21 @@
 			<form action="dev"><button class="boxButton" id="boxbtn-dev"><img src="images/developer.svg" class="boxButton-icon">Панель разработчика</button></form>
 			<form action="user"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
+		</div>
+
+		<div class="flex-grid home-cards-grid">
+			<div class="home-card" onclick="window.open('appsList', '_self')">
+				<img class='home-card-icon' src='images/apps.svg'>
+				<div class='flex flex-column home-card-text'>
+					<h4 class='home-card-title'>Приложения</h4>
+				</div>
+			</div>
+			<div class="home-card" onclick="window.open('appsList?type=game', '_self')">
+				<img class='home-card-icon' src='images/games.svg'>
+				<div class='flex flex-column home-card-text'>
+					<h4 class='home-card-title'>Игры</h4>
+				</div>
+			</div>
 		</div>
 
 		<div class="topCard-block">

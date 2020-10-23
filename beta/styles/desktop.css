@@ -30,6 +30,7 @@
 
 	/*тени*/
   --topShadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
+	--phone-navigation-shadow: 0px 4px 9px 0px rgba(0,0,0,0.34);
 	--shadow1: 0px 4px 9px 0px rgba(0,0,0,0.24);
 	--shadow2: 0px 4px 10px 0px rgba(0,0,0,0.18);
 	--shadow3: 0px 4px 9px 0px rgba(0,0,0,0.12);
@@ -166,6 +167,7 @@
 }
 [effects-shadows='false'] {
 	--topShadow: 0px 0px 0px 0px rgba(0,0,0,0);
+	--phone-navigation-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
 	--shadow1: 0px 0px 0px 0px rgba(0,0,0,0);
 	--shadow2: 0px 0px 0px 0px rgba(0,0,0,0);
 	--shadow3: 0px 0px 0px 0px rgba(0,0,0,0);
@@ -434,6 +436,9 @@ button:focus {
 }
 #nav {
 	transition: top 0.2s;
+}
+.phone-navigation {
+	display: none;
 }
 
 #logo, #mLogo {
@@ -1224,7 +1229,7 @@ input[type='radio']:checked {
 	align-items: center;
 	margin: 30px 0 10px 0;
 }
-nav {
+#nav {
 	position: sticky;
 	top: 0;
 }
@@ -1353,4 +1358,58 @@ textarea {
 	justify-content: start;
 	align-items:flex-start;
   align-content:flex-start;
+}
+.download-card, .home-card {
+  width: 350px;
+  height: 70px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  cursor: pointer;
+  transition: var(--transition6);
+}
+.download-card:hover, .home-card:hover {
+  transform: translate(0, -5px);
+  box-shadow: var(--shadow4);
+}
+.download-card-icon, .home-card-icon {
+  width: 20px;
+  padding: 3px;
+  margin-left: 15px;
+  filter: invert(var(--dark));
+  transition: var(--transition6);
+}
+.download-card-nexticon, .home-card-nexticon {
+  width: 20px;
+  padding: 3px;
+  margin-left: auto;
+  margin-right: 15px;
+  filter: invert(var(--dark));
+  transition: var(--transition6);
+}
+.download-card-title, .home-card-title {
+	margin: 0 0 0 12px;
+	font-size: 14px;
+  transition: var(--transition6);
+}
+.download-card-description {
+	margin: 0 0 0 12px;
+}
+.download-card-text, .home-card-text {
+	margin: auto 0 auto 12px;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+	user-select: none;
+ 	margin: 0 auto 30px auto;
+	width: 95%;
+}
+.home-card {
+	display: none;
 }
