@@ -18,60 +18,28 @@ a {
 	text-transform: none;
 }
 
-/*КАРТОЧКИ ПРИЛОЖЕНИЙ*/
-.aCard {
-	background: var(--primary);
-	border: 1px solid var(--border);
-	border-radius: 10px;
-	width: 150px;
-	height: 245px;
-	transition: var(--transition1);
-}
-.aCard:hover {
-	background: var(--secondary);
-	box-shadow: var(--shadow3);
-}
-.aCard-icon {
-	border-radius: 10px;
-	box-shadow: var(--shadow3);
-}
 .aCard-block, #aCard-block {
 	overflow-x: auto;
 	overflow-y: hidden;
-	display: flex;
 	box-shadow: 0;
 	border-radius: 10px;
 	background: var(--bg);
 }
 
 .appPage-block {
-	background: var(--bg);
-	box-shadow: var(--shadow6);
 	border-radius: 10px;
-	height: 350px;
 	z-index: 1;
 }
 #appPage-icon {
 	width: 175px;
 	height: 175px;
 	box-shadow: var(--shadow2);
-	border-radius: 10px;
+	border-radius: 5px;
 	float: left;
+	margin-bottom: 30px;
 }
-#appPage-name {
+#appPage-name, #appPage-rating, #appPage-category, #appPage-download, #appPage-downloadBox, #appPage-details1 {
 	float: left;
-}
-#appPage-category {
-	float: left;
-}
-#appPage-rating {
-	float: left;
-}
-#appPage-download {
-	float: right;
-}
-#appPage-downloadBox {
-	float: right;
 }
 .appPage-platform {
 	float: left;
@@ -80,45 +48,186 @@ a {
 	z-index: 1;
 }
 .first {
-	height: 235px;
+	height: auto;
+	backdrop-filter: blur(var(--blur));
+	background: rgba(var(--bright), var(--bright), var(--bright), 0.6);
+	box-shadow: var(--shadow6);
+	z-index: 1;
+	margin-top: 400px;
 }
 .second {
 	height: 280px;
+	width: 75%;
 	overflow-x: auto;
 	overflow-y: hidden;
 	display: flex;
 }
-.third {
+.third, .fifth {
+	margin-right: 1.25%;
 	height: auto;
 }
-.fourth {
+.fourth, .eighth {
+	margin-left: 1.25%;
 	height: auto;
 }
 .fifth, .eighth {
-	height: 230px;
-}
-.seventh {
 	height: 290px;
-}
-
-#appPage-details1 {
-	float: left;
 }
 
 #bg-blur {
 	backdrop-filter: blur(0);
 }
-
 .screenshot {
+	box-shadow: var(--shadow3);
 	height: 250px;
 	width: auto;
 	background: var(--secondary);
 	border-radius: 7px;
-	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
+	margin: 15px;
+	cursor: pointer;
+}
+#screenshots {
+	overflow-x: auto;
+	overflow-y: hidden;
+	display: flex;
+	user-select: none
+}
+.screenshots-buttons {
+	background: white;
+	padding: 10px;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	margin-top: 110px;
+	opacity: 0.7;
+	border-radius: 100%;
+	box-shadow: var(--shadow3);
+	transition: var(--transition3);
+	user-select: none;
+}
+.screenshots-buttons:hover {
+	opacity: 1;
+}
+#scr-btn-forward {
+	margin-left: 61.2%;
 }
 
 #appPage {
 	background: linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%);
 	height: 600px;
 	transition: var(--transition1);
+}
+
+.reviews-flex {
+	margin-left: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: start;
+  align-items: auto;
+  align-content: start
+}
+.review-card {
+	width: 450px;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: var(--transition6);
+	flex: 0 0 auto;
+  margin: 10px;
+}
+.liked {
+	border-left: 4px solid #43a047;
+}
+.disliked {
+	border-left: 4px solid #e53935;
+}
+.review-card-userPic {
+	border-radius: 100%;
+	width: 28px;
+	height: 28px;
+	background: grey;
+	margin: 10px;
+}
+.review-card-name {
+	margin: auto 10px auto 5px;
+}
+.review-card-text {
+	margin: 0 10px 10px 10px;
+}
+
+.download-card {
+  width: 350px;
+  height: 70px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: var(--transition6);
+}
+.download-card:hover {
+  transform: translate(0, -5px);
+  box-shadow: var(--shadow4);
+}
+.download-card-icon {
+  width: 20px;
+  padding: 3px;
+  margin-left: 15px;
+  filter: invert(var(--dark));
+  transition: var(--transition6);
+}
+.download-card-nexticon {
+  width: 20px;
+  padding: 3px;
+  margin-left: auto;
+  margin-right: 15px;
+  filter: invert(var(--dark));
+  transition: var(--transition6);
+}
+.download-card-title {
+	margin: 0 0 0 12px;
+	font-size: 14px;
+  transition: var(--transition6);
+}
+.download-card-description {
+	margin: 0 0 0 12px;
+}
+.download-card-text {
+	margin: auto 0 auto 12px;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+	user-select: none;
+ 	margin: 0 auto 30px auto;
+	width: 95%;
+}
+.app-rating {
+	float: left;
+	width: 14px;
+	filter: invert(var(--dark));
+	z-index: 1;
+	margin: 7px;
+}
+.app-ratingNum {
+	float: left;
+	margin: 7px;
+	font-family: var(--bold);
+}
+#app-description, .desc-block {
+	margin: 10px 25px 25px 25px;
+}
+#appPage-whatsNew, #appPage-details1, #appPage-details2, #appPage-blockText {
+	padding: 0 25px 35px 25px;
+	margin: 0;
+}
+#showFull {
+	cursor: pointer;
 }

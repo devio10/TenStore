@@ -19,6 +19,7 @@
 	--secondary2: #cecece;
 	--border: #b3b3b3;
 	--border-light: #b3b3b3;
+	--aCard-border: #b3b3b3;
   --alert: rgba(230, 230, 230, 0.65);
 	--userBox: rgba(255, 255, 255, 0.65);
 	--topBar: #0d0d0d;
@@ -65,6 +66,8 @@
 	--transition11: settingstab;
 	--pubcard-animation: pubcard;
 	--searchbar-animation: searchbar;
+	--anim-aCard: aCardAnimation;
+	--anim-aCard-hover: aCardHover;
 
 	/*прочее*/
 	--blur: 10px;
@@ -81,6 +84,7 @@
   --alert: rgba(18, 18, 18, 0.65);
 	--rgba: rgba(18, 18, 18, 1);
 	--border: #333333;
+	--aCard-border: #333333;
 
 	/*тени*/
 	--shadow6: 0px 3px 30px -5px rgba(0,0,0,0.4);
@@ -105,6 +109,7 @@
 	--secondary2: black;
   --alert: rgba(5, 5, 5, 0.65);
 	--border: #242424;
+	--aCard-border: #242424;
 	--rgba: rgba(0, 0, 0, 1);
 
 	/*шрифт*/
@@ -192,20 +197,9 @@ html, body {
   transition: var(--transition1);
   margin: 0;
 }
-h1 {
-	font-size: 30px;
-}
-h2 {
-	font-size: 25px;
-}
-h3 {
-	font-size: 20px;
-}
-h4 {
-	font-size: 16px;
-}
-h5 {
-	font-size: 13px;
+
+.grey {
+	color: grey;
 }
 
 ::selection {
@@ -215,7 +209,7 @@ h5 {
 /*СКРОЛЛ-БАР*/
 ::-webkit-scrollbar {
 	width: 0;
-	height: 10px;
+	height: 0;
 }
 
 ::-webkit-scrollbar-track {
@@ -347,7 +341,7 @@ button:focus {
 	background: var(--secondary2);
 }
 .boxButton-icon {
-	margin-right: 5px;
+	margin-right: 20px;
 	font-size: 150px;
 }
 .material-icons {
@@ -436,7 +430,7 @@ button:focus {
   text-decoration: none;
   margin: 0;
 	height: 62px;
-	z-index: 1;
+	z-index: 100;
 }
 #nav {
 	transition: top 0.2s;
@@ -494,7 +488,7 @@ button:focus {
 	border-radius: 30px;
 	height: 32px;
 	animation-name: searchbar-notActive;
-	animation-duration: .25s;
+	animation-duration: .5s;
   animation-delay: 0;
 	animation-fill-mode: forwards;
 }
@@ -503,18 +497,20 @@ button:focus {
 }
 @keyframes searchbar-active {
 	75% {
-		width: 290px;
+		width: 285px;
 	}
 	85% {
 		width: 280px;
 	}
   100% {
     width: 275px;
+		border-radius: 10px;
   }
 }
 @keyframes searchbar-notActive {
 	0% {
 		width: 275px;
+		border-radius: 10px;
 	}
 	75% {
 		width: 185px;
@@ -524,6 +520,7 @@ button:focus {
 	}
 	100% {
 		width: 200px;
+		border-radius: 30px;
 	}
 }
 
@@ -537,44 +534,8 @@ button:focus {
   margin: 0;
 }
 
-/*Карточки приложений*/
-.aCard {
-	background: var(--bg);
-	width: 150px;
-	height: 245px;
-	border: 1px solid var(--border);
-	border-radius: 10px;
-	font-size: 14px;
-	transition: var(--transition5);
-	margin: 0 15px 15px 15px;
-}
-.aCard:hover {
-	background: var(--secondary);
-	box-shadow: var(--shadow3);
-}
-.aCardIcon {
-	width: 120px;
-	height: 120px;
-	background: var(--bg);
-	border-radius: 10px;
-	box-shadow: var(--shadow3);
-}
-.aCard-name {
-	margin: 5px 9px 0 9px;
-	font-family: var(--bold);
-	text-transform: none;
-}
-.aCard-dev {
-	margin: 3px 0 0 9px;
-	text-transform: none;
-}
-#aCard-block, .dev-aCard-block {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(60px, 160px));
-	margin-left: 30px;
-	margin-top: 15px;
-	margin-right: 30px;
-	margin: 15px 30px 0 30px;
+.settings {
+	width: 70%;
 }
 
 /* УВЕДОМЛЕНИЯ */
@@ -667,13 +628,13 @@ button:focus {
 	height: auto;
 	box-shadow: var(--shadow3);
 	position: fixed;
-	top: 70px;
+	top: 90px;
 	right: 30px;
 	display: none;
 	z-index: 5;
 	transition: var(--transition6);
 	animation-name: var(--transition10);
-  animation-duration: .15s;
+  animation-duration: 0.4s;
   animation-delay: 0;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -689,12 +650,16 @@ button:focus {
 }
 @keyframes stretch {
   0% {
-    transform: scale(.93);
-		transform: translate(10px, -10px);
+		transform: scale(1.05);
+		transform: translateY(-60px);
 		opacity: 0.3;
   }
+	70% {
+		transform: scale(1.07);
+	}
   100% {
     transform: scale(1);
+		transform: translateY(0);
 		opacity: 1;
   }
 }
@@ -714,11 +679,11 @@ button:focus {
 	object-fit: cover;
 }
 #picDiv, #boxPic {
-	width: 75px;
-	height: 75px;
+	width: 100px;
+	height: 100px;
 }
 #picDiv {
-	margin-top: 60px;
+	margin-top: 50px;
 }
 .userBox-close {
 	filter: invert(var(--dark));
@@ -947,21 +912,66 @@ input[type='radio']:checked {
 
 /*КАРТОЧКИ ПРИЛОЖЕНИЙ*/
 .aCard {
-	background: var(--primary);
-	border: 1px solid var(--border);
-	border-radius: 10px;
-	width: 150px;
-	height: 245px;
-	transition: background-color .15s linear;
+	background: var(--bg);
+	border: 1px solid var(--aCard-border);
+	border-radius: 5px;
+	width: 148px;
+	height: auto;
+	transition: .15s linear;
+	flex: 0 0 auto;
+	margin: 15px;
+	animation-name: var(--anim-aCard);
+	animation-duration: 0.5s;
+	font-size: 14px;
+	user-select: none;
+}
+@keyframes aCardAnimation {
+	0% {
+		transform: scale(0.7);
+		transform: translate(0, -100px);
+		opacity: 0;
+	}
+	70% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+		transform: translate(0, 0);
+	}
 }
 .aCard:hover {
-	background: var(--secondary);
-	box-shadow: var(--shadow3);
+	transform: translateY(-12px);
+	box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
+}
+.aCard:active {
+	transform: translateY(-7px);
+	box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.15);
 }
 .aCard-icon {
-	border-radius: 10px;
-	box-shadow: var(--shadow3);
+	border-radius: 5px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	margin: -1px 0 0 -1px;
 }
+.aCard-name {
+	margin: 5px 10px 0 10px;
+	font-family: var(--bold);
+	text-transform: none;
+}
+.aCard-dev {
+	margin: 3px 10px 10px 10px;
+	text-transform: none;
+	color: gray;
+}
+
+#aCard-block, .dev-aCard-block {
+	margin-left: 30px;
+	margin-top: 15px;
+	margin-right: 30px;
+	margin: 15px 30px 0 30px;
+}
+
 .aCard-block, .homepage-aCard-block {
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -1005,17 +1015,21 @@ input[type='radio']:checked {
 .check {
 	margin: 0 auto 0 auto;
 	filter: invert(var(--dark));
+	width: 24px;
 }
 .check1 {
 	margin: 0 auto 0 auto;
+	width: 24px;
 }
 .check2 {
 	margin: 0 auto 0 auto;
 	color: white;
+	width: 24px;
 }
 .check3 {
 	margin: 0 auto 0 auto;
 	color: black;
+	width: 24px;
 }
 #accent-blue {
 	background: #1e88e5;
@@ -1114,6 +1128,21 @@ input[type='radio']:checked {
 	margin: 30px auto 30px auto;
 	background-repeat: no-repeat;
 	background-position: center;
+	transition: var(--transition3);
+	animation-name: var(--anim-aCard);
+	animation-duration: 0.5s;
+	user-select: none;
+}
+#homepage-random-app {
+	animation-name: none;
+}
+.topCard:hover {
+	transform: translateY(-10px);
+	box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
+}
+.topCard:active {
+	transform: translateY(-7px);
+	box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.15);
 }
 #random-app-desc {
 	color: white;
@@ -1123,7 +1152,7 @@ input[type='radio']:checked {
 	margin: 0 30px 30px 30px;
 }
 #homepage-random-app {
-	width: 90%;
+	width: 85%;
 }
 #random-app-icon {
 	background: white;
@@ -1137,7 +1166,7 @@ input[type='radio']:checked {
 .topCard-text {
 	font-family: var(--bold);
 	color: white;
-	margin: 20px;
+	margin: 25px;
 	white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1145,8 +1174,8 @@ input[type='radio']:checked {
 .topCard-icon {
 	width: 48px;
 	height: 48px;
-	margin: 0 0 0 20px;
-	border-radius: 6px;
+	margin: 0 0 0 25px;
+	border-radius: 3px;
 	background: white;
 }
 .topCard-icon-padding {
@@ -1155,7 +1184,7 @@ input[type='radio']:checked {
 	padding: 4px;
 }
 .topCard-name {
-	margin-top: 2px;
+	margin-top: 5px;
 	height: 48px;
 }
 .topCard-title {
@@ -1167,6 +1196,12 @@ input[type='radio']:checked {
 }
 .flex {
 	display: flex;
+}
+.flex-column {
+	flex-direction: column;
+}
+.auto-height {
+	height: auto;
 }
 
 #warningBox, #appPage-warningBox {
@@ -1238,6 +1273,8 @@ nav {
 	background: white;
 	border-radius: 100%;
 	padding: 2px;
+	width: 24px;
+	height: 24px;
 	margin: -50px 0 30px 120px;
 	box-shadow: var(--shadow1);
 }
@@ -1307,4 +1344,13 @@ textarea {
 }
 .uk-link {
 	color: var(--accent);
+}
+.flex-grid {
+	margin-left: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: start;
+	align-items:flex-start;
+  align-content:flex-start;
 }

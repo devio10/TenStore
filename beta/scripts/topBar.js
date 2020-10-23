@@ -1,5 +1,5 @@
 window.addEventListener('scroll', function() {
-  if (pageYOffset > 24) {
+  if (pageYOffset > 50) {
     document.getElementById('topBar').style.background = "rgba(var(--bright), var(--bright), var(--bright), 0.6)";
     document.getElementById('topBar').style.backdropFilter = 'blur(var(--blur))';
     document.getElementById('topBar').style.boxShadow = "var(--topShadow)";

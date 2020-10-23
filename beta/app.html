@@ -8,16 +8,17 @@
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/appPage-basic.css" rel="stylesheet" type="text/css">
 		<link media="all and (orientation: portrait)" href="styles/mobile.css" rel="stylesheet" type="text/css">
-		<link media="screen and (max-width:1299px)" href="styles/appPage-smallest.css" rel="stylesheet" type="text/css">
-		<link media="screen and (min-width:1300px)" href="styles/appPage-small.css" rel="stylesheet" type="text/css">
-		<link media="screen and (min-width:1301px)" href="styles/appPage-medium.css" rel="stylesheet" type="text/css">
-		<link media="screen and (min-width:1601px)" href="styles/appPage-big.css" rel="stylesheet" type="text/css">
+		<!-- <link media="screen and (max-width:1299px)" href="styles/appPage-smallest.css" rel="stylesheet" type="text/css">
+		<link media="screen and (min-width:1300px)" href="styles/appPage-small.css" rel="stylesheet" type="text/css"> -->
+		<link href="styles/appPage-medium.css" rel="stylesheet" type="text/css">
+		<!-- <link media="screen and (min-width:1601px)" href="styles/appPage-big.css" rel="stylesheet" type="text/css"> -->
 
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
+		<script src="scripts/app-card.js"></script>
 		<script src="scripts/appPage.js"></script>
-		<meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;" />
+		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
 	<body>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
@@ -39,7 +40,6 @@
 						<img onclick="goBack()" id="backButton" src="images/back2.svg">
 						<a id="mLogo2">Страница приложения</a>
 						<a id="logo">TENSTORE</a>
-						<img id="belarus" style="width: 16px; margin: 0 5px 0 -2px" src="https://thetenstore.ru/images/belarus.png">
 						<a class="separate" id="first">•</a>
 						<a class="topItem" href="index">ГЛАВНАЯ</a>
 						<a class="separate">•</a>
@@ -52,55 +52,73 @@
 				</nav>
 
 				<div class="appPage-block first wide">
-					<div id="appPage-warningBox">
-						<h5 style="color: black; padding: 10px">Поддержка мобильной версии TenStore скоро прекратится.</h5>
-					</div>
-					<div id="appPage-icon-div"><img id="appPage-icon"></div>
-					<form id="appPage-downloadLink"><button id="appPage-download" class="accentButton">Скачать</button></form>
+					<div id="appPage-icon-div"><img id="appPage-icon" src='https://thetenstore.ru/images/icons/orpad.png'></div>
+					<form style="display: none" id="appPage-downloadLink"><button id="appPage-download" class="accentButton">Скачать</button></form>
 					<div style="display: grid; grid-column: 1px">
-						<h1 id="appPage-name"></h1>
-						<h2 id="appPage-dev"></h2>
+						<h2 id="appPage-name"></h2>
+						<h3 id="appPage-dev"></h3>
 					</div>
-					<h4 id="appPage-rating"></h4>
-					<img id="appPage-windows" class="appPage-platform" src="images/windows.svg">
-					<img id="appPage-android" class="appPage-platform" src="images/android.svg">
-					<h4 id="appPage-category"><a class="link" href=""></a></h4>
+					<div class="flex" style="margin: 5px 0 0 240px">
+						<img src="images/appPage/like.svg" class="app-rating"><h4 id="app-likes" class="app-ratingNum">0</h4>
+						<img src="images/appPage/dislike.svg" class="app-rating"><h4 id="app-dislikes" class="app-ratingNum">0</h4>
+					</div>
+					<h4 id="appPage-category" style="margin: 5px 35px 35px 35px"><a class="link" href=""></a></h4>
+
 				</div>
-				<div id="screenshots" style="display: none" class="appPage-block second wide">
+				<div class="appPage-block wide auto-height">
+					<div class="cards-grid" id="download-cards-block">
+						<div class="download-card" style="display: none">
+							<img class='download-card-icon' src='images/android.svg'>
+							<div class='flex flex-column download-card-text'>
+								<h4 class='download-card-title'>Android</h4>
+								<h5 class='download-card-description grey'>arm64 • 1.5.9 • 25 сентября • 35 Мб</h5>
+							</div>
+							<img class="download-card-nexticon" src="images/download.svg">
+						</div>
+					</div>
 				</div>
-				<div class="appPage-flexBlock" id="flex1">
-					<div class="appPage-block third" id="thirdBlock">
-						<h2 style="padding: 25px; margin: 0">Описание</h2>
-						<h4 id="appPage-description"></h4>
+				<div class="appPage-block wide">
+					<h3 style="padding: 25px; margin: 0">Скриншоты</h3>
+					<img onclick="scrollScreenshots()" id="scr-btn-back" class="screenshots-buttons" src="images/navigation/back.svg">
+					<div class="flex">
+						<div id="screenshots">
+
+						</div>
+						<img onclick="scrollScreenshots('forward')" id="scr-btn-forward" class="screenshots-buttons" src="images/navigation/forward.svg">
 					</div>
-					<div class="appPage-block fourth" id="fourthBlock">
-						<h2 style="padding: 25px; margin: 0">Список изменений</h2>
-						<h4 id="appPage-whatsNew"></h4>
-					</div>
+
+				</div>
+				<div class="appPage-block wide auto-height">
+					<h3 style="padding: 25px; margin: 0">О приложении</h3>
+					<h4 id="app-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
+						<a onclick="fullDescription()" id="showFull" class="desc-block">Показать полностью</a>
+				</div>
+				<div class="appPage-block wide auto-height">
+
 				</div>
 
-				<div style="display: none" class="appPage-block sixth wide">
-					<h2 style="padding: 25px; margin: 0">Отзывы</h2>
+				<div class="appPage-block wide auto-height">
+					<h3 style="padding: 25px; margin: 0">Комментарии</h3>
+						<div class="reviews-flex" id="reviews-block">
+							<div class='review-card liked' style='display: none'>
+								<div class='flex flex-row'>
+									<img class='review-card-userPic' src=''>
+									<h5 class='review-card-name'></h5>
+								</div>
+								<h5 class='review-card-text'></h5>
+							</div>
+					</div>
 				</div>
-				<div class="appPage-block seventh wide">
-					<h2 style="padding: 25px; margin: 0">Этот разработчик</h2>
+				<div class="appPage-block wide">
+					<h3 style="padding: 25px; margin: 0">Этот разработчик</h3>
 					<div id="aCard-block" style="margin-left: 0; margin-top: 0; border-radius: 0; width: 100%">
 
 					</div>
 				</div>
-				<div class="appPage-flexBlock">
-					<div style="margin-bottom: 150px" class="appPage-block seventh wide">
-						<h2 style="padding: 25px; margin: 0">Подробности</h2>
-						<h4 id="appPage-details1">
 
-						</h4>
-					</div>
-					<div style="display: none" class="appPage-block eighth">
-						<h2 style="padding: 25px; margin: 0">Бета версия</h2>
-						<h4 id="appPage-blockText">Бета тестирование недоступно для этого приложения.</h4>
-					</div>
-					<div style="display: none"></div>
-				</div>
 			</div>
 			</div>
 			<div id="client-ad">

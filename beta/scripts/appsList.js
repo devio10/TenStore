@@ -9,7 +9,7 @@ function search () {
 let select;
 let action = "KdSqSAOC";
 if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()['tag']!='game-rec-upd')) {
-  select='tags';
+  select='category';
   value=getUrlVars()['tag'];
 } else if (getUrlVars()['dev'] != null) {
   select = 'dev';
@@ -24,7 +24,7 @@ if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()
   action='d6Gj59';
   search=getUrlVars()['search'];
 } else {
-  select = "type";
+  select = "upd";
   value = "app";
 }
 if ((getUrlVars()['tag']=='game-rec-upd')) {
@@ -99,71 +99,90 @@ function isGame() {
 }
 function setTagName () {
   let tagName;
+  let tagCode;
   if (getUrlVars()['tag']!=null) {
-    if (getUrlVars()['tag']=='media') {
+    if (getUrlVars()['tag']=='Музыка и видео') {
       tagName='Музыка и видео';
+      tagCode='media';
       tagIcon='media';
-    } else if (getUrlVars()['tag']=='vpn') {
+    } else if (getUrlVars()['tag']=='VPN и прокси') {
       tagName='VPN и прокси';
+      tagCode='vpn';
       tagIcon='vpn';
-    } else if (getUrlVars()['tag']=='communication') {
+    } else if (getUrlVars()['tag']=='Связь') {
       tagName='Связь';
+      tagCode='communication';
       tagIcon='commun';
-    } else if (getUrlVars()['tag']=='news') {
+    } else if (getUrlVars()['tag']=='Новости') {
       tagName='Новости';
+      tagCode='news';
       tagIcon='news';
-    } else if (getUrlVars()['tag']=='productivity') {
+    } else if (getUrlVars()['tag']=='Продуктивность') {
       tagName='Продуктивность';
+      tagCode='productivity';
       tagIcon='prod2';
-    } else if (getUrlVars()['tag']=='health') {
+    } else if (getUrlVars()['tag']=='Здоровье') {
       tagName='Здоровье';
+      tagCode='health';
       tagIcon='health';
-    } else if (getUrlVars()['tag']=='addons') {
+    } else if (getUrlVars()['tag']=='Дополнения') {
       tagName='Дополнения';
+      tagCode='additions';
       tagIcon='addit';
-    } else if (getUrlVars()['tag']=='shopping') {
+    } else if (getUrlVars()['tag']=='Шоппинг') {
       tagName='Шоппинг';
+      tagCode='shopping';
       tagIcon='shop';
-    } else if (getUrlVars()['tag']=='videocommunication') {
+    } else if (getUrlVars()['tag']=='Видеосвязь') {
       tagName='Видеосвязь';
+      tagCode='videocommunication';
       tagIcon='webcam';
-    } else if (getUrlVars()['tag']=='social') {
+    } else if (getUrlVars()['tag']=='Социальные сети') {
       tagName='Социальные сети';
+      tagCode='social';
       tagIcon='social';
-    } else if (getUrlVars()['tag']=='utilities') {
+    } else if (getUrlVars()['tag']=='Инструменты') {
       tagName='Инструменты';
+      tagCode='utilities';
       tagIcon='util';
     } else if (getUrlVars()['tag']=='game-rec-upd') {
       tagName='Недавно обновлено';
+      tagCode='rec-upd';
       tagIcon='rec-upd';
       isGame();
-    } else if (getUrlVars()['tag']=='rpg') {
+    } else if (getUrlVars()['tag']=='RPG') {
       tagName='RPG';
+      tagCode='rpg';
       tagIcon='rpg';
       isGame();
-    } else if (getUrlVars()['tag']=='simulation') {
+    } else if (getUrlVars()['tag']=='Симуляторы') {
       tagName='Симуляторы';
+      tagCode='simulation';
       tagIcon='simul';
       isGame();
-    } else if (getUrlVars()['tag']=='strategy') {
+    } else if (getUrlVars()['tag']=='Стратегии') {
       tagName='Стратегии';
+      tagCode='strategy';
       tagIcon='strategy';
       isGame();
-    } else if (getUrlVars()['tag']=='action') {
+    } else if (getUrlVars()['tag']=='Экшен') {
       tagName='Экшен';
+      tagCode='action';
       tagIcon='action';
       isGame();
-    } else if (getUrlVars()['tag']=='arcade') {
-      tagName='Аркады';
+    } else if (getUrlVars()['tag']=='Аркада') {
+      tagName='Аркада';
+      tagCode='arcade';
       tagIcon='arcade';
       isGame();
     } else {
       tagName='Недавно обновлено';
+      tagCode='rec-upd';
       tagIcon='rec-upd';
     }
     document.getElementById('appsList-title').innerHTML=tagName+' — TenStore';
     document.getElementById('dev-title').innerHTML=tagName;
-    document.getElementById('item-'+getUrlVars()['tag']).style.fontFamily='var(--bold)';
+    document.getElementById('item-'+tagCode).style.fontFamily='var(--bold)';
     document.getElementById('appsList-icon').href='images/category/'+tagIcon+'.svg';
   }
 }

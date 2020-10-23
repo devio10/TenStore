@@ -15,7 +15,7 @@
 	</head>
 	<body>
 
-		<nav style="position: sticky; top: 0;">
+		<nav id="nav" style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<a id="mLogo">TENSTORE</a>
 				<a id="logo">TENSTORE</a>
@@ -60,7 +60,7 @@
 				<h5 class="topCard-text topCard-title">Выбор редакции: игра</h5>
 				<div class="flex">
 					<img class="topCard-icon">
-					<h1 id="recommended-game-name" class="topCard-text topCard-name">Возникла ошибка...</h1>
+					<h2 id="recommended-game-name" class="topCard-text topCard-name"></h2>
 				</div>
 			</div>
 
@@ -68,7 +68,7 @@
 				<h5 class="topCard-text topCard-title">Выбор редакции: приложение</h5>
 				<div class="flex">
 					<img class="topCard-icon">
-					<h1 id="recommended-app-name" class="topCard-text topCard-name">Возникла ошибка...</h1>
+					<h2 id="recommended-app-name" class="topCard-text topCard-name"></h2>
 				</div>
 			</div>
 
@@ -76,52 +76,48 @@
 				<h5 class="topCard-text topCard-title">Случайная игра</h5>
 				<div class="flex">
 					<img id="random-game-icon" class="topCard-icon">
-					<h1 id="random-game-name" class="topCard-text topCard-name">Возникла ошибка...</h1>
+					<h2 id="random-game-name" class="topCard-text topCard-name"></h2>
 				</div>
 			</div>
 		</div>
 
-		<div onclick="window.open('https://thetenstore.ru/appsList?list=recentlyupdated', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/2.jpg)">
+		<div onclick="window.open('appsList?tag=rec-upd', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/2.jpg)">
 			<div class="flex">
 				<div style="display: grid">
-					<h1 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Недавно обновлено</h1>
+					<h2 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Недавно обновлено</h2>
 					<h4 id="random-app-desc">Эти приложения и игры недавно получили обновления.</h4>
-					<button style="margin: 30px">показать полностью</button>
 				</div>
 				<div id="homepage-recently-updated" class="homepage-aCard-block"></div>
 			</div>
 		</div>
 
-		<div onclick="window.open('https://thetenstore.ru/appsList?list=highrated', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/7.jpg)">
+		<div onclick="window.open('appsList?tag=high-rated', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/7.jpg)">
 			<div class="flex">
 				<div style="display: grid">
-					<h1 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Высокий рейтинг</h1>
+					<h2 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Высокий рейтинг</h2>
 					<h4 id="random-app-desc">Лучшее по мнению пользователей сайта.</h4>
-					<button style="margin: 30px">показать полностью</button>
 				</div>
 				<div id="homepage-high-rated" class="homepage-aCard-block"></div>
 			</div>
 		</div>
 
-		<div onclick="window.open('https://thetenstore.ru/appsList?list=recommended', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/10.jpg)">
+		<div onclick="window.open('appsList?tag=recommended', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/10.jpg)">
 			<div class="flex">
 				<div style="display: grid">
-					<h1 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Специально для вас</h1>
+					<h2 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Специально для вас</h2>
 					<h4 id="random-app-desc">Приложения, подобранные специально для вас, на основе загрузок и оценок.</h4>
-					<button style="margin: 30px">показать полностью</button>
 				</div>
 				<div id="homepage-recommended" class="homepage-aCard-block"></div>
 			</div>
 		</div>
-		<div onclick="window.open('https://thetenstore.ru/app?&id=14', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/appTitles/edge.jpg)">
+		<div onclick="window.open('app?&id=14', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/appTitles/edge.jpg)">
 			<div style="display: grid">
 				<div class="flex">
 					<img id="random-app-icon" class="topCard-icon" src="https://thetenstore.ru/images/appIcons/edge.webp">
-					<h1 id="random-app-name" class="topCard-text topCard-name">Microsoft Edge</h1>
+					<h2 id="random-app-name" class="topCard-text topCard-name">Microsoft Edge</h2>
 				</div>
 				<h4 id="random-app-desc">Представляем новый Microsoft Edge. Пришло время ожидать большего. Больше конфиденциальности. Больше контроля. Больше производительности.
 				Больше значения. Ищите в любом месте с вашего телефона, компьютера и других зарегистрированных устройств.</h4>
-				<button style="margin: 30px; width: 130px">скачать</button>
 			</div>
 		</div>
 

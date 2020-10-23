@@ -22,39 +22,89 @@ request.addEventListener("readystatechange", () => {
     var obj = request.response;
     for(let i=0; i<obj.apps.length; i++) {
       let appPage = document.getElementById('appPage');
-      let rating = obj.apps[0].rating;
-      let tags = 0;
       devName = obj.apps[0].dev;
       let icon = document.getElementById('appPage-icon');
-      if (obj.apps[0].tags == 'action') {
-        tags = "Экшен";
-      } else if (obj.apps[0].tags == 'arcade') {
-        tags = "Аркады";
-      } else if (obj.apps[0].tags == 'communication') {
-        tags = "Связь";
-      } else if (obj.apps[0].tags == 'media') {
-        tags = "Музыка и видео";
-      } else if (obj.apps[0].tags == 'news') {
-        tags = "Новости";
-      } else if (obj.apps[0].tags == 'productivity') {
-        tags = "Продуктивность";
-      } else if (obj.apps[0].tags == 'simulation') {
-        tags = "Симуляторы";
-      } else if (obj.apps[0].tags == 'social') {
-        tags = "Социальные сети";
-      } else if (obj.apps[0].tags == 'strategy') {
-        tags = "Стратегии";
-      } else if (obj.apps[0].tags == 'utilities') {
-        tags = "Инструменты";
-      } else if (obj.apps[0].tags == 'RPG') {
-        tags = "RPG";
+      /*Новые загрузки*/
+      let files0=obj.apps[0].files;
+      if (obj.apps[0].files!=0) {
+        const files=JSON.parse(files0);
+        for(let i=0; i<files.files.length; i++) {
+          var downloadCard=document.createElement('div');
+          downloadCard.className='download-card';
+          let downloadCardIcon;
+          if ((files.files[i].icon==0)||(files.files[i].icon==undefined)) {
+            downloadCardIcon='file.svg';
+          } else {
+            downloadCardIcon=files.files[i].icon;
+          }
+          downloadCard.setAttribute('onclick',"window.open('https://thetenstore.ru/"+files.files[i].file+"', '_self')");
+          downloadCard.innerHTML="<img class='download-card-icon' src='https://thetenstore.ru/images/platforms/"+downloadCardIcon+"'> \
+          <div class='flex flex-column download-card-text'> \
+            <h4 class='download-card-title'>"+files.files[i].platform+"</h4> \
+            <h5 class='download-card-description grey'>"+files.files[i].architecture+" • "+files.files[i].version+" • "+files.files[i].published+" • "+files.files[i].size+" Мб</h5> \
+          </div> \
+          <img class='download-card-nexticon' src='images/download.svg'>";
+          document.getElementById('download-cards-block').appendChild(downloadCard);
+        }
       }
-      if (obj.apps[0].windows == 0) {
+
+      /*Скриншоты*/
+      let scr0=obj.apps[0].screenshots;
+      if (obj.apps[0].screenshots!=0) {
+        const screenshots=JSON.parse(scr0);
+        console.log(screenshots);
+        for(let s in screenshots.scr) {
+          var screenshot=document.createElement('img');
+          screenshot.className='screenshot';
+          screenshot.setAttribute('onclick',"window.open('https://thetenstore.ru/"+screenshots.scr[s].image+"', '_self')");
+          screenshot.src='https://thetenstore.ru/'+screenshots.scr[s].image;
+          document.getElementById('screenshots').appendChild(screenshot);
+        }
+      }
+
+      /*Отзывы*/
+      let com0=obj.apps[0].comments;
+      if (obj.apps[0].comments!=0) {
+        const comments=JSON.parse(com0);
+        console.log(comments);
+        for(let c in comments.comments) {
+
+          const userPicRequest=new XMLHttpRequest();
+          const userPicUrl="https://thetenstore.ru/api.php";
+          const userPicParams="action=FEhf42d&login="+comments.comments[c].login;
+          userPicRequest.responseType="json";
+          userPicRequest.open("POST", userPicUrl, true);
+          userPicRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          userPicRequest.addEventListener("readystatechange", () => {
+            if ((request.readyState === 4) && (request.status === 200)) {
+              var reviewPic=userrr.user[0].photo;
+            }
+          });
+          userPicRequest.send(userPicParams);
+
+          var comment=document.createElement('img');
+          if (comments.comments[c].isLiked=='1') {
+            comment.className='review-card liked';
+          } else {
+            comment.className='review-card disliked';
+          }
+          comment.innerHTML="<div class='flex flex-row'> \
+            <img class='review-card-userPic' src='"+reviewPic+"'> \
+            <h5 class='review-card-name'>"+comments.comments[c].login+"</h5> \
+          </div> \
+          <h5 class='review-card-text'></h5>"
+          console.log(comment);
+          document.getElementById('reviews-block').appendChild(comment);
+        }
+      }
+
+
+      /*if (obj.apps[0].windows == 0) {
         document.getElementById('appPage-windows').style.display = "none";
       }
       if (obj.apps[0].android == 0) {
         document.getElementById('appPage-android').style.display = "none";
-      }
+      }*/
       if (localStorage.getItem('app-background')!='false') {
         if (obj.apps[0].bg != 0) {
           appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/" + obj.apps[0].bg + ")";
@@ -80,19 +130,23 @@ request.addEventListener("readystatechange", () => {
       }
       icon.src = "https://thetenstore.ru/" + obj.apps[0].icon;
       icon.style.background = cssBg;
-
-      document.getElementById('appPage-rating').innerHTML = rating + "/5.0";
-      document.getElementById('appPage-name').innerHTML = obj.apps[0].name;
-      document.getElementById('mLogo2').innerHTML = obj.apps[0].name;
-      document.getElementById('appPage-dev').innerHTML = obj.apps[0].dev;
-      document.getElementById('appPage-description').innerHTML = obj.apps[0].descr;
-      document.getElementById('appPage-whatsNew').innerHTML = obj.apps[0].changelog;
-      if (obj.apps[0].changelog == 0) {
-        document.getElementById('fourthBlock').style.display = 'none';
-        document.getElementById('flex1').style.display = 'block';
-        document.getElementById('thirdBlock').className = "appPage-block third wide";
-        document.getElementById('thirdBlock').style.marginRight = "auto";
+      let liked=obj.apps[0].liked;
+      let disliked=obj.apps[0].disliked;
+      if (obj.apps[0].liked==0) {
+        liked='0';
       }
+      if (obj.apps[0].disliked==0) {
+        disliked='0';
+      }
+      var description=obj.apps[0].descr;
+      var shortDescription=description.split('<p>');
+      document.getElementById('app-description').innerHTML=shortDescription[0]+'..';
+
+      document.getElementById('app-likes').innerHTML=liked;
+      document.getElementById('app-dislikes').innerHTML=disliked;
+      document.getElementById('appPage-name').innerHTML=obj.apps[0].name;
+      document.getElementById('mLogo2').innerHTML=obj.apps[0].name;
+      document.getElementById('appPage-dev').innerHTML=obj.apps[0].dev;
       let publisher;
       if (obj.apps[0].pub == 0) {
         publisher = obj.apps[0].dev;
@@ -108,15 +162,11 @@ request.addEventListener("readystatechange", () => {
       document.getElementById('appPage-downloadLink').action = dPlatform;
       document.getElementById('appPage-title').innerHTML = obj.apps[0].name + " — TenStore";
       document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
-      document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tag=" + obj.apps[0].tags + "'>" + tags + "</a>";
-      document.getElementById('appPage-details1').innerHTML = "Версия (Windows): " + obj.apps[0].version + "<br> \
-      Вес: " + obj.apps[0].size + "<br> \
-      Разработчик: " + obj.apps[0].dev + "<br> \
+      document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tag=" + obj.apps[0].category + "'>" + obj.apps[0].category + "</a>";
+      /* document.getElementById('appPage-details1').innerHTML = "Разработчик: " + obj.apps[0].dev + "<br> \
       Издатель: " + publisher + "<br> \
-      Опубликовано: <br> \
       Скачано: " + obj.apps[0].downloads + "<br> \
-      Категория: <a class='link' href='appsList?tag=" + obj.apps[0].tags + "'>" + tags + "</a><br> \
-      Рейтинг: " + rating + "/5.0";
+      Категория: <a class='link' href='appsList?tag=" + obj.apps[0].category + "'>" + obj.apps[0].category + "</a><br>"; */
 
       const requestDev = new XMLHttpRequest();
       const paramsDev = "action=KdSqSAOC&select=dev" + "&value=" + devName;
@@ -127,25 +177,8 @@ request.addEventListener("readystatechange", () => {
         if (requestDev.readyState === 4 && requestDev.status === 200) {
           let maobj = requestDev.response;
           for(let i=0; i<maobj.apps.length; i++) {
-            let iconBg = maobj.apps[i].icon_bg;
-            if (iconBg == 0) {
-              cssBg = 'var(--bg)';
-            } else {
-              cssBg = maobj.apps[i].icon_bg;
-            }
-            var aCard = document.createElement('div');
-            //let width = 0;
-            if (maobj.apps[i].icon_pad == 15) {
-              width = '120px';
-            } else {
-              width = '150px';
-            }
-            aCard.className = 'aCard';
-            aCard.innerHTML = "<a href='app?&id="+ maobj.apps[i].id +"'> \
-              <img class='aCard-icon' style='width: " + width + "; height: " + width + "; background: "+ cssBg +"; padding: "+ maobj.apps[i].icon_pad +"px' src='https://thetenstore.ru/"+ maobj.apps[i].icon +"'> \
-              <h4 class='aCard-name'>"+ maobj.apps[i].name +"</h4> \
-            </a>"
-            document.getElementById('aCard-block').appendChild(aCard);
+            showAppCard('aCard-block', maobj.apps[i].icon, maobj.apps[i].icon_pad, maobj.apps[i].icon_bg, maobj.apps[i].id, maobj.apps[i].name, '');
+            console.log('done');
           }
         }
       });
@@ -160,3 +193,29 @@ request.addEventListener("readystatechange", () => {
 }
 });
 request.send(params);
+
+function fullDescription() {
+  if (descType=='full') {
+    descType='short';
+    document.getElementById('showFull').innerHTML='Скрыть';
+    document.getElementById('app-description').innerHTML=description;
+  } else {
+    var descType='long';
+    document.getElementById('showFull').innerHTML='Показать полностью';
+    document.getElementById('app-description').innerHTML=description;
+  }
+}
+function scrollScreenshots (direction) {
+  let newPosition;
+  let previousPosition=document.getElementById('screenshots').scrollLeft;
+  if (direction=='forward') {
+    newPosition=previousPosition+150;
+  } else {
+    newPosition=previousPosition-150;
+  }
+  document.getElementById('screenshots').scroll({
+    top: 0,
+    left: newPosition,
+    behavior: 'smooth'
+  });
+}

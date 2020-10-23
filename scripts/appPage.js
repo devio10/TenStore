@@ -45,6 +45,16 @@ request.addEventListener("readystatechange", () => {
         tags = "Новости";
       } else if (obj.apps[0].tags == 'productivity') {
         tags = "Продуктивность";
+      } else if (obj.apps[0].tags == 'health') {
+        tags = "Здоровье";
+      } else if (obj.apps[0].tags == 'addons') {
+        tags = "Дополнения";
+      } else if (obj.apps[0].tags == 'shopping') {
+        tags = "Шоппинг";
+      } else if (obj.apps[0].tags == 'vpn') {
+        tags = "VPN и прокси";
+      } else if (obj.apps[0].tags == 'videocommunication') {
+        tags = "Видеосвязь";
       } else if (obj.apps[0].tags == 'simulation') {
         tags = "Симуляторы";
       } else if (obj.apps[0].tags == 'social') {
