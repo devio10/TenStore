@@ -20,7 +20,7 @@ function showAppCard(block, app_icon, app_icon_pad, app_icon_bg, app_id, app_nam
   aCard.className='aCard';
   aCard.style.width=aCard_width;
   aCard.innerHTML = "<a href='app?&id="+app_id+"'> \
-    <img class='aCard-icon' style='width: "+icon_size+"; background: "+icon_bg+"; padding: "+icon_pad+""+icon_border+"' src='https://thetenstore.ru/"+app_icon+"'> \
+    <img loading='lazy' class='aCard-icon' style='width: "+icon_size+"; background: "+icon_bg+"; padding: "+icon_pad+""+icon_border+"' src='https://thetenstore.ru/"+app_icon+"'> \
     <h4 class='aCard-name'>"+app_name+"</h4> \
     <h4 class='aCard-dev'>"+app_dev+"</h4> \
   </a>"

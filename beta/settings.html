@@ -13,9 +13,12 @@
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/topBar.js"></script>
 		<script src="scripts/settings.js"></script>
+		<script src='scripts/phone-check.js'></script>
+		<script src="https://unpkg.com/phosphor-icons"></script>
+		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
 	<body>
-		<nav style="position: sticky; top: 0;">
+		<nav id="nav" style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
 				<a id="mLogo2">НАСТРОЙКИ</a>
@@ -29,29 +32,27 @@
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
 			<h5 id="userbox-email" class="centerText"></h5>
-			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="library"><button class="boxButton" id="boxbtn-library"><img src="images/library.svg" class="boxButton-icon">Библиотека</button></form>
-			<form action="settings"><button class="boxButton" id="boxbtn-settings"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
-			<form action="dev"><button class="boxButton" id="boxbtn-dev"><img src="images/developer.svg" class="boxButton-icon">Панель разработчика</button></form>
-			<form action="user"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
-			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-command boxButton-icon"></i>Войти</button></form>
 		</div>
 		<div class="settings-nav">
-			<div style="margin-top: 20px">
-				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/accent.svg">Персонализация</h4>
+				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="settings-nav-item chosen-nav-item"><img class="settings-subtitleIcon" src="images/accent.svg">Персонализация</h4>
 				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/user.svg">Аккаунт</h4>
 				<h4 onclick="changeTab('apps', 'Приложения')" id="item-apps" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/apps.svg">Приложения</h4>
 				<h4 onclick="changeTab('other', 'Прочее')" id="item-other" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/more.svg">Прочее</h4>
 				<h4 onclick="changeTab('debug', 'Полигон')" id="item-debug" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/experimental.svg">Полигон</h4>
-			</div>
 		</div>
 		<div class="settings">
-			<h2 id="settings-title" class="settings-tab" style="margin: 25px 0 30px 50px">Персонализация</h2>
+			<h2 id="settings-title" class="settings-tab" style="">Персонализация</h2>
 			<div id="settings-personal" class="settings-tab">
 				<div class="settings-block">
 					<img style="display: none" class="settings-subtitleIcon" src="images/dark.svg">
-					<h4 class="settings-block-title">Тема</h4>
-					<div style="display: flex; align-items: center; margin: 30px 0 0 15px">
+					<h3 class="settings-block-title">Тема</h3>
+					<div class="theme-buttons">
 						<div onclick="setTheme('light')" id="theme-light" class="theme-button"></div>
 						<div onclick="setTheme('dark')" id="theme-dark" class="theme-button chosen"></div>
 						<div onclick="setTheme('black')" id="theme-black" class="theme-button"></div>
@@ -64,7 +65,7 @@
 
 				<div class="settings-block">
 					<h3 class="settings-block-title">Акцент</h3>
-					<div style="display: flex; align-items: center; margin: 30px 0 0 15px">
+					<div class="theme-buttons">
 						<div onclick="setAccent('blue')" id="accent-blue" class="theme-button"></div>
 						<div onclick="setAccent('purple')" id="accent-purple" class="theme-button"></div>
 						<div onclick="setAccent('red')" id="accent-red" class="theme-button"></div>
@@ -158,30 +159,38 @@
 
 			<div id="settings-debug" class="settings-tab" style="display: none">
 				<div class="settings-block">
+					<h3 class="settings-block-title">debug</h3>
 					<div style="margin-left: 15px">
 						<input style="display: none" onclick="changeSetting('appsListSort')" id="s-appsListSort" type="checkbox" class="switch">
 				    <label style="display: none" for="s-appsListSort">Пункт сортировки на странице приложений</label><p>
 						<input onclick="changeSetting('alwaysLoggedIn')" id="s-alwaysLoggedIn" type="checkbox" class="switch">
-				    <label for="s-alwaysLoggedIn">alwaysLoggedIn</label><p>
+				    <label for="s-alwaysLoggedIn">debug-fakeUser</label><p>
 							<input onclick="changeSetting('mobileVersion')" id="s-mobileVersion" type="checkbox" class="switch">
-					    <label for="s-mobileVersion">mobileVersion</label><p>
-						<input id="s-siteSearch" onclick="changeSetting('siteSearch')" type="checkbox" checked class="switch">
-						<label for="s-siteSearch">siteSearch</label><p>
-						<input id="s-fakeAppsList" onclick="changeSetting('fakeAppsList')" type="checkbox" checked class="switch">
-						<label for="s-fakeAppsList">fakeAppsList</label><p>
-						<input id="s-fakeAppsList" onclick="changeSetting('fakeAppPage')" type="checkbox" checked class="switch">
-						<label for="s-fakeAppsList">fakeAppPage</label>
+					    <label for="s-mobileVersion">debug-mobileVersion</label><p>
+						<input id="s-fakeAppsList" onclick="changeSetting('fakeAppsList')" type="checkbox" class="switch">
+						<label for="s-fakeAppsList">debug-fakeApps</label><p>
+						<input id="s-fakeAppsList" onclick="changeSetting('fakeAppPage')" type="checkbox" class="switch">
+						<label for="s-fakeAppsList">debug-fakeAppPage</label><p>
+						<input id="s-debug-newVersionPopup" onclick="changeSetting('debug-newVersionPopup')" type="checkbox" class="switch">
+						<label for="s-debug-newVersionPopup">debug-newVersionPopup</label>
 					</div>
+
+					<h3 class="settings-block-title">beta</h3>
+					<div style="margin-left: 15px">
+						<input id="s-beta-mobileSearch" onclick="changeSetting('beta-mobileSearch')" type="checkbox" class="switch">
+						<label for="s-beta-mobileSearch">beta-mobileSearch</label>
+					</div>
+
 					<h3 class="settings-block-title">Канал</h3>
 					<div style="margin-left: 15px">
 						<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
-						<label for="release">Release</label><p>
+						<label for="release">Release (2.1.0)</label><p>
 						<input onclick="changeSetting('channel', 'beta')" id="beta" type="radio" name="channel" value="3">
-						<label for="beta">Beta</label><p>
+						<label for="beta">Beta (2.2.0)</label><p>
 					</div>
 				</div>
 			</div>
-			<h5 style="margin-left: 45px">TenStore v2.2.0 beta build 2310</h5>
+			<h5 style="margin-left: 30px">TenStore v2.2.0 beta build 1026</h5>
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">
@@ -194,7 +203,7 @@
 		</div>
 
 		<div id="alert-button-confirm"><img src="images/check.svg" class="alert-button-icon"></div>
-		<div id="alert-button-cancel"><img src="images/cancel.svg" class="alert-button-icon"></div>\
+		<div id="alert-button-cancel"><img src="images/cancel.svg" class="alert-button-icon"></div>
 		<script>let theme; login('settings'); currentThemeCheck(); checkSwitches(); onchangef(); ; ub_themeBtn()</script>
 		<script src='scripts/search-bar.js'></script>
 	</body>

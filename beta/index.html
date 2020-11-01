@@ -6,6 +6,7 @@
 		<title>TenStore — магазин приложений</title>
 	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/popup.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="https://unpkg.com/phosphor-icons"></script>
 		<script src="scripts/app-card.js"></script>
@@ -13,6 +14,7 @@
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
 		<script src='scripts/phone-check.js'></script>
+		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
 	<body>
 
@@ -31,13 +33,13 @@
 			</ul>
 		</nav>
 
-		<nav class="phone-navigation">
-		  <a href="" class="phoneNav-link">
+		<nav id="phoneNav" class="phone-navigation">
+		  <a href="index" class="phoneNav-link">
 		    <i class="ph-house-fill phoneNav-icon phoneNav-link-active"></i>
 		    <span class="phoneNav-text phoneNav-link-active">Главная</span>
 		  </a>
 		  <a href="appsList" class="phoneNav-link">
-		    <i class="ph-command phoneNav-icon"></i>
+		    <i class="ph-squares-four phoneNav-icon"></i>
 		    <span class="phoneNav-text">Приложения</span>
 		  </a>
 		  <a href="appsList?type=game" class="phoneNav-link">
@@ -45,6 +47,7 @@
 		    <span class="phoneNav-text">Игры</span>
 		  </a>
 		</nav>
+		<button id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
@@ -60,7 +63,7 @@
 
 		<div class="flex-grid home-cards-grid">
 			<div class="home-card" onclick="window.open('appsList', '_self')">
-				<i class="ph-command home-card-icon"></i>
+				<i class="ph-squares-four home-card-icon"></i>
 				<div class='flex flex-column home-card-text'>
 					<h4 class='home-card-title'>Приложения</h4>
 				</div>
@@ -94,72 +97,79 @@
 				<h5 class="topCard-text topCard-title">Случайная игра</h5>
 				<div class="flex">
 					<img id="random-game-icon" class="topCard-icon">
-					<h2 id="random-game-name" class="topCard-text topCard-name"></h2>
+					<h2 id="random-game-name" class="topCard-text topCard-name">Xpo Music — клиент Spotify</h2>
 				</div>
 			</div>
 		</div>
 
-		<div onclick="window.open('appsList?tag=rec-upd', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/2.jpg)">
-			<div class="flex">
-				<div style="display: grid">
-					<h2 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Недавно обновлено</h2>
-					<h4 id="random-app-desc">Эти приложения и игры недавно получили обновления.</h4>
-				</div>
-				<div id="homepage-recently-updated" class="homepage-aCard-block"></div>
+		<div onclick="window.open('appsList?tag=rec-upd', '_self')" class="home-card2 flex" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/headers/1.jpg)">
+			<div style="display: flex; flex-direction: column">
+				<h3 class="home-card2-title">Недавно обновлено</h3>
+				<div id="recently-updated" class="homepage-aCard-block"></div>
 			</div>
 		</div>
 
-		<div onclick="window.open('appsList?tag=high-rated', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/7.jpg)">
-			<div class="flex">
-				<div style="display: grid">
-					<h2 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Высокий рейтинг</h2>
-					<h4 id="random-app-desc">Лучшее по мнению пользователей сайта.</h4>
-				</div>
-				<div id="homepage-high-rated" class="homepage-aCard-block"></div>
+		<div onclick="window.open('appsList?tag=popular', '_self')" class="home-card2 flex" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/headers/3.jpg)">
+			<div style="display: flex; flex-direction: column">
+				<h3 class="home-card2-title">Популярно</h3>
+				<div id="popular" class="homepage-aCard-block"></div>
 			</div>
 		</div>
 
-		<div onclick="window.open('appsList?tag=recommended', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/10.jpg)">
-			<div class="flex">
-				<div style="display: grid">
-					<h2 id="random-app-name" style="margin: 30px" class="topCard-text topCard-name">Специально для вас</h2>
-					<h4 id="random-app-desc">Приложения, подобранные специально для вас, на основе загрузок и оценок.</h4>
-				</div>
-				<div id="homepage-recommended" class="homepage-aCard-block"></div>
+		<div onclick="window.open('appsList?tag=high-rated', '_self')" class="home-card2 flex" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/headers/4.jpg)">
+			<div style="display: flex; flex-direction: column">
+				<h3 class="home-card2-title">Высокий рейтинг</h3>
+				<div id="high-rated" class="homepage-aCard-block"></div>
 			</div>
 		</div>
-		<div onclick="window.open('app?&id=14', '_self')" id="homepage-random-app" class="flex" style="background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/appTitles/edge.jpg)">
-			<div style="display: grid">
+
+		<div onclick="window.open('appsList?tag=recommended', '_self')" class="home-card2 flex" style="display: none; /*background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/10.jpg)">
+			<div style="display: flex; flex-direction: column">
+				<h3 class="home-card2-title">Специально для вас</h3>
+				<div id="recommended" class="homepage-aCard-block"></div>
+			</div>
+		</div>
+		<div id="tenstore-2.0" class="popup-blur-bg">
+			<div id="window1" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-iconWhite"></i>
+				<h4 class="popup-title white">TenStore</h4>
+				<div class="popup-tenstore-logo-block"><img src="images/tenstore-2.2.svg" class="popup-tenstore-logo"></div>
+				<h1 class="popup-title2 centerText white">TenStore 2.2</h1>
+				<h4 class="popup-text2 centerText white">Ваш TenStore только что обновился и стал лучше.</h4>
+				<div class="popup-navigation-block">
+					<div class="popup-navigation back"><i class="ph-caret-left popup-navigation-icon"></i></div>
+					<div class="popup-navigation next"><i class="ph-caret-right popup-navigation-icon"></i></div>
+				</div>
 				<div class="flex">
-					<img id="random-app-icon" class="topCard-icon" src="https://thetenstore.ru/images/appIcons/edge.webp">
-					<h2 id="random-app-name" class="topCard-text topCard-name">Microsoft Edge</h2>
+					<button id="button1" onclick="popupNext('window2')" class="popup-button white">Что нового?</button>
+					<button id="button1" onclick="remindLater()" class="popup-button white">Напомнить позже</button>
 				</div>
-				<h4 id="random-app-desc">Представляем новый Microsoft Edge. Пришло время ожидать большего. Больше конфиденциальности. Больше контроля. Больше производительности.
-				Больше значения. Ищите в любом месте с вашего телефона, компьютера и других зарегистрированных устройств.</h4>
+			</div>
+			<div id="window2" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-iconWhite"></i>
+				<h4 class="popup-title white">TenStore</h4>
+				<h1 class="popup-title3 white">Файлы приложений</h1>
+				<h4 class="popup-text white">Отныне можно выкладывать бесконечное количество вариаций одного приложения. Больше возможностей и для разработчиков, и для пользователей.</h4>
+				<button id="button2" onclick="popupNext('window3')" class="popup-button white">Далее</button>
+			</div>
+			<div id="window3" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-icon window3-text"></i>
+				<h4 class="popup-title window3-text">TenStore</h4>
+				<h1 class="popup-title3 window3-text">Автоматическая тёмная тема</h1>
+				<h4 class="popup-text window3-text">При включении этой настройки, сайт будет принимать тему браузера.</h4>
+				<button id="button3" onclick="popupNext('window4')" class="popup-button">Далее</button>
+			</div>
+			<div id="window4" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-icon"></i>
+				<h4 class="popup-title">TenStore</h4>
+				<h1 class="popup-title3">Список приложений</h1>
+				<h4 class="popup-text">Полностью новый список приложений, позволяющий выбрать категорию, вместе с обновлёнными карточки.</h4>
+				<button id="button2" onclick="popupNext('window5')" class="popup-button black-border">Далее</button>
 			</div>
 		</div>
-
 		<script>login(); ub_themeBtn()</script>
 		<script src="scripts/index.js"></script>
-		<script>
-			showAppCard('homepage-recently-updated', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-			showAppCard('homepage-recently-updated', 'images/appIcons/files.png', '0', '', '36', 'Files UWP (Preview)', 'Yair A');
-			showAppCard('homepage-recently-updated', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-			showAppCard('homepage-recently-updated', 'images/appIcons/files.png', '0', '', '36', 'Files UWP (Preview)', 'Yair A');
-			showAppCard('homepage-recently-updated', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-
-			showAppCard('homepage-high-rated', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-			showAppCard('homepage-high-rated', 'images/appIcons/files.png', '0', '', '36', 'Files UWP (Preview)', 'Yair A');
-			showAppCard('homepage-high-rated', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-			showAppCard('homepage-high-rated', 'images/appIcons/files.png', '0', '', '36', 'Files UWP (Preview)', 'Yair A');
-			showAppCard('homepage-high-rated', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-
-			showAppCard('homepage-recommended', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-			showAppCard('homepage-recommended', 'images/appIcons/files.png', '0', '', '36', 'Files UWP (Preview)', 'Yair A');
-			showAppCard('homepage-recommended', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-			showAppCard('homepage-recommended', 'images/appIcons/files.png', '0', '', '36', 'Files UWP (Preview)', 'Yair A');
-			showAppCard('homepage-recommended', 'images/appIcons/musicx.png', '15', '', '1', 'Music X — музыка ВКонтакте', 'Fooxboy');
-		</script>
+		<script>/*popupNext('window3')</script>
 		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

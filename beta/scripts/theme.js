@@ -60,7 +60,6 @@ function showAlert (text, icon, action) {
 }
 function ub_themeBtn() {
   let localTheme = localStorage.getItem('theme');
-  console.log('Да.');
   if (localTheme == 'dark') {
     document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Тёмная тема";
   } else if (localTheme == 'black') {

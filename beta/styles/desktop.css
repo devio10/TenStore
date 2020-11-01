@@ -3,11 +3,13 @@
 @font-face {
 	font-family: "NotoSans Bold";
 	src: url("fonts/bold.ttf") format('truetype');
+	font-display: fallback;
 }
 
 @font-face {
 	font-family: 'NotoSans Regular';
 	src: url("fonts/regular.ttf") format('truetype');
+	font-display: fallback;
 }
 
 /* ТЕМЫ */
@@ -27,7 +29,8 @@
   --accent-dark: #005cb2;
 	--accent-light: #6ab7ff;
 	--rgba: rgba(255, 255, 255, 1);
-	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 0.6);
+	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 0.75);
+	--nav-click-bg: rgba(var(--bright), var(--bright), var(--bright), 0.5);
 
 	/*тени*/
   --topShadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
@@ -81,8 +84,8 @@
 	/*прочее*/
 	--blur: 10px;
   --gradient: linear-gradient( rgba(255, 255, 255, 0.4) 5%, rgba(255, 255, 255, 0.4) );
-	--topCard-gradient: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%);
-	--random-app-gradient: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 73%, rgba(0,0,0,0) 100%);
+	--topCard-gradient: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) 73%, rgba(0,0,0,0.2) 100%);
+	--card2-gradient: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.2) 100%);
 }
 [data-theme="dark"] {
 	/*цвета*/
@@ -314,7 +317,6 @@ button:focus {
 	right: 30px;
 	float: right;
 	color: white;
-	background: var(--accent);
 	width: 200px;
 	height: 60px;
 	border-radius: 40px;
@@ -322,9 +324,18 @@ button:focus {
 	border: 0;
 	font-size: 16px;
 	z-index: 100;
+	background: var(--nav-bg);
+	backdrop-filter: blur(var(--blur));
+	border: 1px solid var(--border);
 }
 .floatButton:hover {
-	background: var(--accent-dark);
+	background: var(--secondary);
+}
+.floatButton-icon {
+	color: white;
+	font-size: 20px;
+
+	color: var(--font);
 }
 .squareButton {
 	width: 60px;
@@ -352,29 +363,6 @@ button:focus {
 }
 .boxButton-icon {
 	margin-right: 20px;
-}
-.material-icons {
-  font-weight: normal;
-  font-style: normal;
-  font-size: 10px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
 }
 
 #boxbtn-settings, #boxbtn-dev {
@@ -438,7 +426,7 @@ button:focus {
   font-size: 18px;
   text-decoration: none;
   margin: 0;
-	height: 62px;
+	height: 55px;
 	z-index: 100;
 }
 #nav {
@@ -506,6 +494,9 @@ button:focus {
 }
 .siteSearch:hover, .siteSearch:focus {
 	animation-name: searchbar-active;
+}
+.searchButton {
+	display: none;
 }
 @keyframes searchbar-active {
 	75% {
@@ -640,7 +631,7 @@ button:focus {
 	height: auto;
 	box-shadow: var(--shadow3);
 	position: fixed;
-	top: 90px;
+	top: 80px;
 	right: 30px;
 	display: none;
 	z-index: 5;
@@ -984,7 +975,7 @@ input[type='radio']:checked {
 	margin: 15px 30px 0 30px;
 }
 
-.aCard-block, .homepage-aCard-block {
+.aCard-block {
 	overflow-x: auto;
 	overflow-y: hidden;
 	display: flex;
@@ -992,23 +983,18 @@ input[type='radio']:checked {
 	border-radius: 10px;
 	background: var(--bg);
 }
-.homepage-aCard-block {
-	margin: 80px 35px 30px auto;
-	background: 0;
-	width: auto;
-	border-radius: 0;
-	height: 280px;
-}
+
 
 /*СТРАНИЦА ПЕРСОНАЛИЗАЦИИ*/
 .theme-button {
-	width: 42px;
-	height: 42px;
-	box-shadow: var(--shadow4);
-	border-radius: 100%;
+	width: 45px;
+	height: 45px;
+	box-shadow: var(--shadow1);
+	border-radius: 5px;
+	outline-offset: -1px;
 	cursor: pointer;
 	transition: var(--transition3);
-	margin: 0 10px 0 10px;
+	margin: 10px;
 	display: flex;
 	align-items: center;
 }
@@ -1130,11 +1116,11 @@ input[type='radio']:checked {
 	filter: invert(var(--dark));
 }
 
-.topCard, #homepage-random-app {
+.topCard, .home-card2 {
 	cursor: pointer;
 	width: 30%;
 	height: 400px;
-	background: var(--primary);
+	background: var(--bg);
 	border-radius: 10px;
 	box-shadow: var(--shadow3);
 	margin: 30px auto 30px auto;
@@ -1145,8 +1131,28 @@ input[type='radio']:checked {
 	animation-duration: 0.5s;
 	user-select: none;
 }
-#homepage-random-app {
+.home-card2 {
 	animation-name: none;
+	width: 80%;
+	height: 275px;
+}
+.homepage-aCard-block {
+	background: 0;
+	width: 100%;
+	background: black;
+	margin-left: 0%;
+	border-radius: 0;
+	height: 280px;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	align-items: flex-start;
+	overflow-x: auto;
+	display: none;
+}
+.home-card2-title {
+	color: white;
+	margin: 30px;
 }
 .topCard:hover {
 	transform: translateY(-10px);
@@ -1163,17 +1169,11 @@ input[type='radio']:checked {
   text-overflow: ellipsis;
 	margin: 0 30px 30px 30px;
 }
-#homepage-random-app {
-	width: 85%;
-}
 #random-app-icon {
 	background: white;
 }
-#random-app-icon, #random-app-name {
+#random-app-icon {
 	margin: 30px;
-}
-#random-app-name {
-	margin-left: 0;
 }
 .topCard-text {
 	font-family: var(--bold);
@@ -1357,14 +1357,14 @@ textarea {
 .uk-link {
 	color: var(--accent);
 }
-.flex-grid {
+.flex-grid, .theme-buttons {
 	margin-left: 15px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: start;
-	align-items:flex-start;
-  align-content:flex-start;
+	align-items: flex-start;
+  align-content: flex-start;
 }
 .download-card, .home-card {
   width: 350px;
@@ -1390,24 +1390,32 @@ textarea {
   color: var(--font);
   transition: var(--transition6);
 }
+.download-card-icon {
+	width: 24px;
+	height: 24px;
+}
 .download-card-nexticon, .home-card-nexticon {
+	font-size: 20px;
+	color: var(--font);
   width: 20px;
   padding: 3px;
   margin-left: auto;
   margin-right: 15px;
+	margin: auto 10px auto auto;
   filter: invert(var(--dark));
   transition: var(--transition6);
 }
 .download-card-title, .home-card-title {
-	margin: 0 0 0 12px;
+	margin: 0 10px 0 0;
 	font-size: 14px;
   transition: var(--transition6);
+	font-family: var(--bold);
 }
 .download-card-description {
-	margin: 0 0 0 12px;
+	margin: 0;
 }
 .download-card-text, .home-card-text {
-	margin: auto 0 auto 12px;
+	margin: auto 5px auto 12px;
 }
 .cards-grid {
   display: grid;
@@ -1421,4 +1429,10 @@ textarea {
 }
 .home-card {
 	display: none;
+}
+#dev-title {
+	margin: 25px 0 30px 50px;
+}
+#no-elements {
+	margin: 0 0 0 50px;
 }

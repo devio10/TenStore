@@ -27,13 +27,21 @@
 .siteSearch {
   display: none;
 }
-#homepage-recently-updated, #homepage-recommended, #homepage-high-rated {
-  display: none;
+.searchButton {
+	display: flex;
+	bottom: 80px;
+	right: 30px;
+	height: 60px;
+	width: 60px;
+	box-shadow: var(--shadow1);
+}
+.searchButton:active, .searchButton:hover {
+	background: var(--nav-click-bg);
 }
 
 .home-card {
-  width: 200px;
-  height: 55px;
+  width: 180px;
+  height: 50px;
   display: flex;
 }
 .home-cards-grid {
@@ -42,14 +50,28 @@
   justify-content: center;
 }
 #userBox {
-  width: 300px;
+  width: 270px;
+	top: 70px;
+	right: 15px;
+}
+.boxButton {
+	height: 40px;
+}
+#picDiv {
+	margin-top: 30px;
+	width: 80px;
+	height: 80px;
+}
+#boxPic {
+	height: 80px;
+	width: 80px;
 }
 
 .phone-navigation {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 55px;
   backdrop-filter: blur(var(--blur));
 	box-shadow: var(--phone-navigation-shadow);
 	background: var(--nav-bg);
@@ -76,7 +98,7 @@
 }
 
 .phoneNav-link:active {
-  background-color: var(--primary);
+  background: var(--nav-click-bg);
 }
 
 .phoneNav-link-active {
@@ -88,7 +110,6 @@
 }
 
 .topCard-block {
-  margin-left: 15px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -107,7 +128,7 @@
   height: 300px;
 }
 
-.settings-nav, #apps-categ {
+.settings-nav, #apps-categ, #games-categ {
 	background: var(--bg);
   width: 100%;
 	overflow-x: auto;
@@ -117,21 +138,26 @@
   transition: var(--transition1);
   user-select: none;
 }
-#item-rec-upd {
-	margin-left: 3%;
+#item-rec-upd, #item-game-rec-upd, #item-personal {
+	margin-left: 1.5%;
 }
-#item-vpn {
+#item-vpn, #item-arcade {
 	margin-right: 3%;
 }
 .settings-nav-item {
 	display: flex;
 	flex-direction: row;
 	padding: 4px;
+	padding-right: 12px;
 	margin: 20px 5px 20px 5px;
 	white-space: nowrap;
 	background: var(--bg);
 	border-radius: 15px;
 	border: 1px solid var(--border);
+}
+.chosen-nav-item {
+	background: var(--primary);
+	font-family: var(--regular);
 }
 .settings-subtitleIcon {
 	float: none;
@@ -139,6 +165,23 @@
 }
 .settings {
 	margin-left: 0;
+	width: 100%;
+	margin-bottom: 80px;
+}
+#settings-title {
+  margin: 15px 5%;
+}
+.settings-block-title {
+	margin: 30px 5%;
+}
+#dev-title {
+	margin: 5px 0 20px 30px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#no-elements {
+	margin: 0 0 0 30px;
 }
 
 .CA-block {
@@ -207,6 +250,7 @@
 }
 .settings-block {
 	margin: 0;
+	width: 100%;
 }
 
 #appPage-icon-div {
@@ -241,4 +285,20 @@
 }
 #CA-picDiv {
   margin-left: 8%;
+}
+.games-show {
+  display: flex;
+}
+.popup-blur-bg {
+	background: var(--bg);
+	backdrop-filter: blur(0);
+}
+.popup-window {
+	border-radius: 0;
+	width: 100%;
+	height: 100%;
+}
+.popup-button {
+	width: 175px;
+	height: 50px;
 }

@@ -16,6 +16,7 @@
 		<script charset="utf-8" src="scripts/appsList.js"></script>
 		<script src='scripts/phone-check.js'></script>
 		<script src="https://unpkg.com/phosphor-icons"></script>
+		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 		<script>let tag; let dev</script>
 	</head>
 	<body>
@@ -35,19 +36,20 @@
 			</ul>
 		</nav>
 		<nav class="phone-navigation">
-		  <a href="" class="phoneNav-link">
+		  <a href="index" class="phoneNav-link">
 		    <i class="ph-house phoneNav-icon"></i>
 		    <span class="phoneNav-text">Главная</span>
 		  </a>
 		  <a href="appsList" class="phoneNav-link">
-		    <i class="ph-command-fill phoneNav-icon phoneNav-link-active"></i>
-		    <span class="phoneNav-text phoneNav-link-active">Приложения</span>
+		    <i id="apps-i" class="ph-squares-four-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span id="apps-span" class="phoneNav-text phoneNav-link-active">Приложения</span>
 		  </a>
 		  <a href="appsList?type=game" class="phoneNav-link">
-		    <i class="ph-game-controller phoneNav-icon"></i>
-		    <span class="phoneNav-text">Игры</span>
+		    <i id="games-i" class="ph-game-controller phoneNav-icon"></i>
+		    <span id="games-span" class="phoneNav-text">Игры</span>
 		  </a>
 		</nav>
+		<button class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
@@ -65,6 +67,9 @@
 			<div style="margin-top: 20px">
 				<div id="apps-categ">
 					<h4 onclick="category('rec-upd')" id="item-rec-upd" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/rec-upd.svg">Недавно обновлено</h4>
+					<h4 onclick="list('popular')" id="item-popular" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/popular.svg">Популярное</h4>
+					<h4 onclick="list('high-rated')" id="item-high-rated" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/high-rated.svg">Высокий рейтинг</h4>
+					<h4 onclick="list('editors-choice')" id="item-editors-choice" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/editors-choice.svg">Выбор редакции</h4>
 					<h4 onclick="category('Связь')" id="item-communication" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/commun.svg">Связь</h4>
 					<h4 onclick="category('Музыка и видео')" id="item-media" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/category/media.svg">Музыка и видео</h4>
 					<h4 onclick="category('Новости')" id="item-news" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/news.svg">Новости</h4>
@@ -91,17 +96,17 @@
 
 
 		<div class="settings">
-			<h2 id="dev-title" class="settings-tab" style="margin: 25px 0 30px 50px">Недавно обновлено</h2>
-			<h4 id="no-elements" style="margin: 0 0 0 50px">По вашему запросу ничего не нашлось.</h4>
+			<h2 id="dev-title" class="settings-tab">Недавно обновлено</h2>
+			<h4 id="no-elements">По вашему запросу ничего не нашлось.</h4>
 			<div id="aCard-block" class="flex-grid">
 
 			</div>
 		</div>
-		<script>login(); ub_themeBtn(); setTagName(); ifSearch(); ifGame();
-			showAppCard('aCard-block', 'images/appIcons/notepads.png', '0', 'white', '36', 'Notepads', 'Jackie Liu');
+		<script>login(); ub_themeBtn(); setTagName(); ifSearch(); ifGame(); ifList()
+			/* showAppCard('aCard-block', 'images/appIcons/notepads.png', '0', 'white', '36', 'Notepads', 'Jackie Liu');
 			showAppCard('aCard-block', 'images/appIcons/edge.webp', '0', '', '36', 'Microsoft Edge', 'Microsoft');
 			showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'white', '1', 'News', 'Microsoft');
-			showAppCard('aCard-block', 'images/icons/orpad.png', '15', '', '1', 'Orpad — блокнот', 'Li_is');
+			showAppCard('aCard-block', 'images/icons/orpad.png', '15', '', '1', 'Orpad — блокнот', 'Li_is'); */
 		</script>
 		<script src='scripts/search-bar.js'></script>
 	</body>

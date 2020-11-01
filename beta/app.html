@@ -18,20 +18,22 @@
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/app-card.js"></script>
 		<script src="scripts/appPage.js"></script>
+		<script src='scripts/phone-check.js'></script>
+		<script src="https://unpkg.com/phosphor-icons"></script>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
 	<body>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
-			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<div id="picDiv"><img loading='lazy' id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
 			<h5 id="userbox-email" class="centerText"></h5>
-			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="library"><button class="boxButton" id="boxbtn-library"><img src="images/library.svg" class="boxButton-icon">Библиотека</button></form>
-			<form action="settings"><button class="boxButton" id="boxbtn-settings"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
-			<form action="dev"><button class="boxButton" id="boxbtn-dev"><img src="images/developer.svg" class="boxButton-icon">Панель разработчика</button></form>
-			<form action="user"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Мой аккаунт</button></form>
-			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-command boxButton-icon"></i>Войти</button></form>
 		</div>
 		<div id="appPage">
 			<div id="appPage-smallBg">
@@ -47,12 +49,12 @@
 						<a class="separate">•</a>
 						<a class="topItem" href="appsList?type=game">ИГРЫ</a>
 						<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
-						<img onclick="userBox()" id="userPic" src="images/user.svg">
+						<img loading='lazy' onclick="userBox()" id="userPic" src="images/user.svg">
 					</ul>
 				</nav>
 
 				<div class="appPage-block first wide">
-					<div id="appPage-icon-div"><img id="appPage-icon" src='https://thetenstore.ru/images/icons/orpad.png'></div>
+					<div id="appPage-icon-div"><img id="appPage-icon"></div>
 					<form style="display: none" id="appPage-downloadLink"><button id="appPage-download" class="accentButton">Скачать</button></form>
 					<div style="display: grid; grid-column: 1px">
 						<h2 id="appPage-name"></h2>
@@ -73,6 +75,7 @@
 								<h4 class='download-card-title'>Android</h4>
 								<h5 class='download-card-description grey'>arm64 • 1.5.9 • 25 сентября • 35 Мб</h5>
 							</div>
+							<i class="ph-info-bold download-card-nexticon"></i>
 							<img class="download-card-nexticon" src="images/download.svg">
 						</div>
 					</div>
@@ -105,7 +108,7 @@
 						<div class="reviews-flex" id="reviews-block">
 							<div class='review-card liked' style='display: none'>
 								<div class='flex flex-row'>
-									<img class='review-card-userPic' src=''>
+									<img loading='lazy' class='review-card-userPic' src=''>
 									<h5 class='review-card-name'></h5>
 								</div>
 								<h5 class='review-card-text'></h5>

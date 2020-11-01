@@ -7,25 +7,28 @@ function search () {
   }
 }
 let select;
-let action = "KdSqSAOC";
-if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()['tag']!='game-rec-upd')) {
+let action='KdSqSAOC';
+if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()['tag']!='game-rec-upd')&&(getUrlVars()['tag']!='popular')) {
   select='category';
   value=getUrlVars()['tag'];
-} else if (getUrlVars()['dev'] != null) {
-  select = 'dev';
-  value = getUrlVars()['dev'];
-} else if (getUrlVars()['pub'] != null) {
-  select = 'pub';
-  value = getUrlVars()['pub'];
-} else if (getUrlVars()['type'] != null) {
-  select = 'type';
-  value = getUrlVars()['type'];
+} else if (getUrlVars()['dev']!=null) {
+  select='dev';
+  value=getUrlVars()['dev'];
+} else if (getUrlVars()['pub']!=null) {
+  select='pub';
+  value=getUrlVars()['pub'];
+} else if (getUrlVars()['type']!=null) {
+  select='type';
+  value=getUrlVars()['type'];
 } else if (getUrlVars()['search']!=null) {
   action='d6Gj59';
   search=getUrlVars()['search'];
+} else if (getUrlVars()['list']!=null) {
+  select=getUrlVars()['list'];
+  value=0;
 } else {
-  select = "upd";
-  value = "app";
+  select='upd';
+  value='app';
 }
 if ((getUrlVars()['tag']=='game-rec-upd')) {
   value='game';
@@ -75,6 +78,9 @@ function confirm() {
 function category(category, catName) {
   window.open('appsList?tag='+category, '_self');
 }
+function list(listName) {
+  window.open('appsList?list='+listName, '_self');
+}
 function ifSearch () {
   if (getUrlVars()['search']!=null) {
     document.getElementById('appsList-title').innerHTML='Поиск';
@@ -88,89 +94,98 @@ function ifGame () {
     document.getElementById('chosen').style.fontFamily='var(--regular)';
     document.getElementById('gameTab').style.fontFamily='var(--bold)';
     document.getElementById('apps-categ').style.display='none';
-    document.getElementById('games-categ').style.display='block';
+    document.getElementById('games-categ').className='games-show';
+    document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
+    document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
+    document.getElementById('apps-span').className='phoneNav-text';
+    document.getElementById('games-span').className='phoneNav-text phoneNav-link-active';
   }
 }
 function isGame() {
   document.getElementById('chosen').style.fontFamily='var(--regular)';
   document.getElementById('gameTab').style.fontFamily='var(--bold)';
+  document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
+  document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
+  document.getElementById('apps-span').className='phoneNav-text';
+  document.getElementById('games-span').className='phoneNav-text phoneNav-link-active';
   document.getElementById('apps-categ').style.display='none';
-  document.getElementById('games-categ').style.display='block';
+  document.getElementById('games-categ').className='games-show';
 }
 function setTagName () {
   let tagName;
   let tagCode;
   if (getUrlVars()['tag']!=null) {
-    if (getUrlVars()['tag']=='Музыка и видео') {
+    var decodedTag=decodeURIComponent(getUrlVars()['tag']);
+    if (decodedTag=='Музыка и видео') {
       tagName='Музыка и видео';
       tagCode='media';
       tagIcon='media';
-    } else if (getUrlVars()['tag']=='VPN и прокси') {
+    } else if (decodedTag=='VPN и прокси') {
       tagName='VPN и прокси';
       tagCode='vpn';
       tagIcon='vpn';
-    } else if (getUrlVars()['tag']=='Связь') {
+    } else if (decodedTag=='Связь') {
       tagName='Связь';
       tagCode='communication';
       tagIcon='commun';
-    } else if (getUrlVars()['tag']=='Новости') {
+    } else if (decodedTag=='Новости') {
       tagName='Новости';
       tagCode='news';
       tagIcon='news';
-    } else if (getUrlVars()['tag']=='Продуктивность') {
+    } else if (decodedTag=='Продуктивность') {
       tagName='Продуктивность';
       tagCode='productivity';
       tagIcon='prod2';
-    } else if (getUrlVars()['tag']=='Здоровье') {
+    } else if (decodedTag=='Здоровье') {
       tagName='Здоровье';
       tagCode='health';
       tagIcon='health';
-    } else if (getUrlVars()['tag']=='Дополнения') {
+    } else if (decodedTag=='Дополнения') {
       tagName='Дополнения';
       tagCode='additions';
       tagIcon='addit';
-    } else if (getUrlVars()['tag']=='Шоппинг') {
+    } else if (decodedTag=='Шоппинг') {
       tagName='Шоппинг';
       tagCode='shopping';
       tagIcon='shop';
-    } else if (getUrlVars()['tag']=='Видеосвязь') {
+    } else if (decodedTag=='Видеосвязь') {
       tagName='Видеосвязь';
       tagCode='videocommunication';
       tagIcon='webcam';
-    } else if (getUrlVars()['tag']=='Социальные сети') {
+    } else if (decodedTag=='Социальные сети') {
       tagName='Социальные сети';
       tagCode='social';
       tagIcon='social';
-    } else if (getUrlVars()['tag']=='Инструменты') {
+    } else if (decodedTag=='Инструменты') {
       tagName='Инструменты';
       tagCode='utilities';
       tagIcon='util';
-    } else if (getUrlVars()['tag']=='game-rec-upd') {
+    } else if (decodedTag=='game-rec-upd') {
       tagName='Недавно обновлено';
       tagCode='rec-upd';
       tagIcon='rec-upd';
       isGame();
-    } else if (getUrlVars()['tag']=='RPG') {
+    } else if (decodedTag=='RPG') {
       tagName='RPG';
       tagCode='rpg';
       tagIcon='rpg';
       isGame();
-    } else if (getUrlVars()['tag']=='Симуляторы') {
+    } else if (decodedTag=='Симуляторы') {
       tagName='Симуляторы';
       tagCode='simulation';
       tagIcon='simul';
       isGame();
-    } else if (getUrlVars()['tag']=='Стратегии') {
+    } else if (decodedTag=='Стратегии') {
       tagName='Стратегии';
       tagCode='strategy';
       tagIcon='strategy';
       isGame();
-    } else if (getUrlVars()['tag']=='Экшен') {
+    } else if (decodedTag=='Экшен') {
       tagName='Экшен';
       tagCode='action';
       tagIcon='action';
       isGame();
-    } else if (getUrlVars()['tag']=='Аркада') {
+    } else if (decodedTag=='Аркада') {
       tagName='Аркада';
       tagCode='arcade';
       tagIcon='arcade';
@@ -183,6 +198,28 @@ function setTagName () {
     document.getElementById('appsList-title').innerHTML=tagName+' — TenStore';
     document.getElementById('dev-title').innerHTML=tagName;
     document.getElementById('item-'+tagCode).style.fontFamily='var(--bold)';
+    document.getElementById('item-'+tagCode).className='settings-nav-item chosen-nav-item';
     document.getElementById('appsList-icon').href='images/category/'+tagIcon+'.svg';
+  }
+}
+function ifList () {
+  let urlList=getUrlVars()['list'];
+  let listIcon;
+  if (urlList!=null) {
+    listIcon='images/category/'+urlList+'.svg';
+    if (urlList=='popular') {
+      listTitle='Популярное';
+    } else if (urlList=='high-rated') {
+      listTitle='Высокий рейтинг';
+    } else if (urlList=='editors-choice') {
+      listTitle='Выбор редакции';
+    } else if (urlList=='recommended') {
+      listTitle='Специально для вас';
+    }
+    document.getElementById('appsList-title').innerHTML=listTitle+' — TenStore';
+    document.getElementById('dev-title').innerHTML=listTitle;
+    document.getElementById('item-'+urlList).style.fontFamily='var(--bold)';
+    document.getElementById('item-'+urlList).className='settings-nav-item chosen-nav-item';
+    document.getElementById('appsList-icon').href=listIcon;
   }
 }

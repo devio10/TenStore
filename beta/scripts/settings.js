@@ -3,9 +3,9 @@ function setTheme(theme, isAutoDarkTheme) {
   document.getElementById('theme-light').innerHTML="";
   document.getElementById('theme-dark').innerHTML="";
   document.getElementById('theme-black').innerHTML="";
-  document.getElementById('theme-light').style.border = 0;
-  document.getElementById('theme-dark').style.border = 0;
-  document.getElementById('theme-black').style.border = 0;
+  document.getElementById('theme-light').style.outline = 0;
+  document.getElementById('theme-dark').style.outline = 0;
+  document.getElementById('theme-black').style.outline = 0;
   localStorage.setItem('theme', theme);
   document.documentElement.setAttribute('data-theme', theme);
   changeSetting('autoDarkTheme', 'false');
@@ -26,7 +26,7 @@ function setTheme(theme, isAutoDarkTheme) {
     themeId='theme-black';
     localStorage.setItem('night-theme', 'black');
   }
-  document.getElementById(themeId).style.border="2px solid rgba(63,166,104,1)";
+  document.getElementById(themeId).style.outline="2px solid rgba(63,166,104,1)";
   document.getElementById(themeId).innerHTML="<img class='"+checkId+"' src='images/check.svg'>";
   chosenAccent.style.border="2px solid "+border;
 }
@@ -57,15 +57,15 @@ function setAccent(accent) {
   document.getElementById('accent-purple').innerHTML="";
   document.getElementById('accent-green').innerHTML="";
   document.getElementById('accent-custom').innerHTML="<img class='check1' src='images/custom.svg'>";
-  document.getElementById('accent-blue').style.border="";
-  document.getElementById('accent-orange').style.border="";
-  document.getElementById('accent-red').style.border="";
-  document.getElementById('accent-purple').style.border="";
-  document.getElementById('accent-green').style.border="";
-  document.getElementById('accent-custom').style.border="";
+  document.getElementById('accent-blue').style.outline='0px solid ';
+  document.getElementById('accent-orange').style.outline='none';
+  document.getElementById('accent-red').style.outline='none';
+  document.getElementById('accent-purple').style.outline='none';
+  document.getElementById('accent-green').style.outline='none';
+  document.getElementById('accent-custom').style.outline='none';
   if (accent=='custom') {
     document.getElementById('accent-custom').innerHTML="<img class='check1' src='images/check.svg'>";
-    document.getElementById('accent-custom').style.border="2px solid "+border;
+    document.getElementById('accent-custom').style.outline="2px solid "+border;
     chosenAccent=document.getElementById('accent-custom');
     document.documentElement.style.setProperty('--accent', document.getElementById("colorPicker").value);
     document.documentElement.style.setProperty('--accent-light', document.getElementById("colorPicker").value);
@@ -73,7 +73,7 @@ function setAccent(accent) {
     showAlert('Тема сохранена.', 'images/check.svg');
   } else {
     document.getElementById('accent-'+accent).innerHTML="<img class='check1' src='images/check.svg'>";
-    document.getElementById('accent-'+accent).style.border="2px solid "+border;
+    document.getElementById('accent-'+accent).style.outline="2px solid "+border;
     chosenAccent=document.getElementById('accent-'+accent);
     localStorage.setItem('accent', accent);
     document.documentElement.setAttribute('data-accent', accent);
@@ -171,18 +171,24 @@ function checkSwitches() {
   }
 
   /* уведомления */
-  if (localStorage.getItem('alUpdates') == 'true') {
-    document.getElementById('s-alUpdates').checked = true;
+  if (localStorage.getItem('alUpdates')=='true') {
+    document.getElementById('s-alUpdates').checked=true;
   }
-  if (localStorage.getItem('alUpdates2') == 'true') {
-    document.getElementById('s-alUpdates2').checked = true;
+  if (localStorage.getItem('alUpdates2')=='true') {
+    document.getElementById('s-alUpdates2').checked=true;
   }
-  if (localStorage.getItem('mailSpam') == 'true') {
-    document.getElementById('s-mailSpam').checked = true;
+  if (localStorage.getItem('mailSpam')=='true') {
+    document.getElementById('s-mailSpam').checked=true;
   }
 
-  if (localStorage.getItem('mobileVersion') == 'true') {
-    document.getElementById('s-mobileVersion').checked = true;
+  if (localStorage.getItem('mobileVersion')=='true') {
+    document.getElementById('s-mobileVersion').checked=true;
+  }
+  if (localStorage.getItem('debug-newVersionPopup')=='true') {
+    document.getElementById('s-debug-newVersionPopup').checked=true;
+  }
+  if (localStorage.getItem('beta-mobileSearch')=='true') {
+    document.getElementById('s-beta-mobileSearch').checked=true;
   }
 }
 function onchangef() {
@@ -207,8 +213,8 @@ function currentThemeCheck () {
       theme='light';
     }
   }
-  document.getElementById('theme-'+theme).innerHTML = "<img class='check' src='images/check.svg'>";
-  document.getElementById('theme-'+theme).style.border = "2px solid rgba(63,166,104,1)";
+  document.getElementById('theme-'+theme).innerHTML="<img class='check' src='images/check.svg'>";
+  document.getElementById('theme-'+theme).style.outline="2px solid rgba(63,166,104,1)";
   border="white";
   if (theme=='light') {
     border='black';
@@ -224,11 +230,11 @@ function currentThemeCheck () {
   document.getElementById('accent-custom').style.background=localStorage.getItem('custom-accent');
   if (accent=='custom') {
     document.getElementById('accent-custom').innerHTML="<img class='check1' src='images/check.svg'>";
-    document.getElementById('accent-custom').style.border="2px solid "+border;
+    document.getElementById('accent-custom').style.outline="2px solid "+border;
     chosenAccent=document.getElementById('accent-custom');
   } else {
     document.getElementById('accent-'+accent).innerHTML="<img class='check1' src='images/check.svg'>";
-    document.getElementById('accent-'+accent).style.border="2px solid "+border;
+    document.getElementById('accent-'+accent).style.outline="2px solid "+border;
     chosenAccent=document.getElementById('accent-'+accent);
   }
 }
@@ -239,12 +245,21 @@ function changeTab(tab, tabName) {
   document.getElementById('settings-apps').style.display='none';
   document.getElementById('settings-other').style.display='none';
   document.getElementById('settings-debug').style.display='none';
+
   document.getElementById('item-personal').style.fontFamily='var(--regular)';
   document.getElementById('item-account').style.fontFamily='var(--regular)';
   document.getElementById('item-apps').style.fontFamily='var(--regular)';
   document.getElementById('item-other').style.fontFamily='var(--regular)';
   document.getElementById('item-debug').style.fontFamily='var(--regular)';
+
+  document.getElementById('item-personal').className='settings-nav-item';
+  document.getElementById('item-account').className='settings-nav-item';
+  document.getElementById('item-apps').className='settings-nav-item';
+  document.getElementById('item-other').className='settings-nav-item';
+  document.getElementById('item-debug').className='settings-nav-item';
+
   document.getElementById('settings-'+tab).style.display='block';
   document.getElementById('item-'+tab).style.fontFamily='var(--bold)';
+  document.getElementById('item-'+tab).className='settings-nav-item chosen-nav-item';
   document.getElementById('settings-title').innerHTML=tabName;
 }

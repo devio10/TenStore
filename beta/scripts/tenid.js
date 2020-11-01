@@ -265,9 +265,9 @@ function login (page) {
       let userPhoto='images/alwaysLoggedIn.svg';
       if (page == 'settings') {
         if (localStorage.getItem('nameDisplay') == 'false') {
-          document.getElementById('settings-welcomeText').innerHTML = "Включёна функция alwaysLoggedIn. Ваше имя здесь.";
+          document.getElementById('settings-welcomeText').innerHTML = "Включёна функция fakeUser. Ваше имя здесь.";
         } else {
-          document.getElementById('settings-welcomeText').innerHTML = "Включёна функция alwaysLoggedIn. Ваш логин здесь.";
+          document.getElementById('settings-welcomeText').innerHTML = "Включёна функция fakeUser. Ваш логин здесь.";
         }
         document.getElementById('settings-link1').style.display = "block";
         document.getElementById('settings-link2').style.display = "block";
@@ -282,7 +282,7 @@ function login (page) {
         userName='name';
         userLastName='lastName';
         userPic=userPhoto;
-        userEmail='alwaysLoggedIn@thetenstore.ru';
+        userEmail='fakeUser@thetenstore.ru';
       } else if (page=='user') {
         document.getElementById('logged-in').style.display='block';
         document.getElementById('not-logged-in').style.display='none';
@@ -290,7 +290,7 @@ function login (page) {
         if (localStorage.getItem('nameDisplay')=='true') {
           document.getElementById('user-name').innerHTML='login';
         } else {
-          document.getElementById('user-name').innerHTML='alwaysLoggedIn';
+          document.getElementById('user-name').innerHTML='fakeUser';
         }
         if (localStorage.getItem('ali-userType')=='dev') {
           document.getElementById('user-appsBlock').style.display='block';
@@ -305,8 +305,8 @@ function login (page) {
           document.getElementById('kingIcon').style.display='none';
         }
         document.getElementById('CA-userPic').src=userPhoto;
-        document.getElementById('user-short-bio').innerHTML='Параметр alwaysLoggedIn включён. (shortBio)';
-        document.getElementById('user-bio').innerHTML='Параметр alwaysLoggedIn включён. (bio)';
+        document.getElementById('user-short-bio').innerHTML='Параметр fakeUser включён. (shortBio)';
+        document.getElementById('user-bio').innerHTML='Параметр fakeUser включён. (bio)';
         if (localStorage.getItem('app-background')!='false') {
           let random = Math.floor(Math.random() * 10) + 1;
           userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/"+random+".jpg)";
@@ -319,7 +319,7 @@ function login (page) {
       if (localStorage.getItem('nameDisplay')=='true') {
         document.getElementById('name').innerHTML='login';
       } else {
-        document.getElementById('name').innerHTML = 'alwaysLoggedIn';
+        document.getElementById('name').innerHTML = 'fakeUser';
       }
       document.getElementById('picDiv').style.display="block";
       document.getElementById('lastButton').innerHTML="<i class='ph-sign-out boxButton-icon'></i>Выйти";
@@ -337,7 +337,7 @@ function login (page) {
       document.getElementById('userPic').src=userPhoto;
       document.getElementById('boxPic').src=userPhoto;
       if (localStorage.getItem('userbox-dontShowEmail')!='true') {
-        document.getElementById('userbox-email').innerHTML='alwaysLoggedIn@thetenstore.ru';
+        document.getElementById('userbox-email').innerHTML='fakeUser@thetenstore.ru';
       }
     }
   };
