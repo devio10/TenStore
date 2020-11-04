@@ -85,11 +85,9 @@ if ((userPrefersDark)&&(localStorage.getItem('autoDarkTheme')=='true')){
 }
 
 
-const currentAccent = localStorage.getItem('accent') ? localStorage.getItem('accent') : null;
-if (localStorage.getItem('accent')=='custom') {
-  document.documentElement.style.setProperty('--accent', localStorage.getItem('custom-accent'));
-  document.documentElement.style.setProperty('--accent-light', localStorage.getItem('custom-accent'));
-  document.documentElement.style.setProperty('--accent-dark', localStorage.getItem('custom-accent'));
-} else if (currentAccent) {
-    document.documentElement.setAttribute('data-accent', currentAccent);
+const currentAccent=localStorage.getItem('accent') ? localStorage.getItem('accent'):null;
+if (currentAccent) {
+  document.documentElement.style.setProperty('--accent', localStorage.getItem('accent'));
+  document.documentElement.style.setProperty('--accent-light', localStorage.getItem('accent-light'));
+  document.documentElement.style.setProperty('--accent-dark', localStorage.getItem('accent-dark'));
 }

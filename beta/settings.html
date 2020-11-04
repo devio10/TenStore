@@ -37,14 +37,14 @@
 			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
 			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
-			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-command boxButton-icon"></i>Войти</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
-		<div class="settings-nav">
-				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="settings-nav-item chosen-nav-item"><img class="settings-subtitleIcon" src="images/accent.svg">Персонализация</h4>
-				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/user.svg">Аккаунт</h4>
-				<h4 onclick="changeTab('apps', 'Приложения')" id="item-apps" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/apps.svg">Приложения</h4>
-				<h4 onclick="changeTab('other', 'Прочее')" id="item-other" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/more.svg">Прочее</h4>
-				<h4 onclick="changeTab('debug', 'Полигон')" id="item-debug" class="settings-nav-item"><img class="settings-subtitleIcon" src="images/experimental.svg">Полигон</h4>
+		<div class="settings-nav" style="margin-top: 20px">
+				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="settings-nav-item chosen-nav-item"><i class="ph-circles-three-bold settings-subtitleIcon"></i>Персонализация</h4>
+				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="settings-nav-item"><i class="ph-user-circle-bold settings-subtitleIcon"></i>Аккаунт</h4>
+				<h4 onclick="changeTab('apps', 'Приложения')" id="item-apps" class="settings-nav-item"><i class="ph-squares-four-bold settings-subtitleIcon"></i>Приложения</h4>
+				<h4 onclick="changeTab('other', 'Прочее')" id="item-other" class="settings-nav-item"><i class="ph-dots-three-outline-bold settings-subtitleIcon"></i>Прочее</h4>
+				<h4 onclick="changeTab('debug', 'Полигон')" id="item-debug" class="settings-nav-item"><i class="ph-terminal-bold settings-subtitleIcon"></i>Полигон</h4>
 		</div>
 		<div class="settings">
 			<h2 id="settings-title" class="settings-tab" style="">Персонализация</h2>
@@ -56,22 +56,28 @@
 						<div onclick="setTheme('light')" id="theme-light" class="theme-button"></div>
 						<div onclick="setTheme('dark')" id="theme-dark" class="theme-button chosen"></div>
 						<div onclick="setTheme('black')" id="theme-black" class="theme-button"></div>
-					</div>
-					<div style="margin: 30px 0 0 30px">
-						<input onclick="autoDarkTheme(); changeSetting('autoDarkTheme')" id="s-autoDarkTheme" type="checkbox" class="switch">
-						<label for="s-autoDarkTheme">Автоматическая тёмная тема</label>
+						<div onclick="autoDarkTheme(); changeSetting('autoDarkTheme')" id="theme-auto" class="theme-button"></div>
 					</div>
 				</div>
 
 				<div class="settings-block">
 					<h3 class="settings-block-title">Акцент</h3>
 					<div class="theme-buttons">
-						<div onclick="setAccent('blue')" id="accent-blue" class="theme-button"></div>
-						<div onclick="setAccent('purple')" id="accent-purple" class="theme-button"></div>
-						<div onclick="setAccent('red')" id="accent-red" class="theme-button"></div>
-						<div onclick="setAccent('orange')" id="accent-orange" class="theme-button"></div>
-						<div onclick="setAccent('green')" id="accent-green" class="theme-button"></div>
-						<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button"><img class='check1' src='images/custom.svg'></label>
+						<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button"><i class='ph-dots-three-outline check1'></i></label>
+						<div onclick="setAccent('brown', '#4e342e', '#a1887f', '#3e2723')" id="accent-brown" style="background: #4e342e" class="theme-button"></div>
+						<div onclick="setAccent('grey', '#424242', '#9e9e9e', '#212121')" id="accent-grey" style="background: #424242" class="theme-button"></div>
+						<div onclick="setAccent('blue-grey', '#455a64', '#90a4ae', '#263238')" id="accent-blue-grey" style="background: #37474f" class="theme-button"></div>
+						<div onclick="setAccent('cyan', '#0097a7', '#4dd0e1', '#006064')" id="accent-cyan" style="background: #0097a7" class="theme-button"></div>
+						<div onclick="setAccent('blue', '#1565c0', '#82b1ff', '#0d47a1')" id="accent-blue" style="background: #1565c0" class="theme-button"></div>
+						<div onclick="setAccent('indigo', '#303f9f', '#7986cb', '#1a237e')" id="accent-indigo" style="background: #303f9f" class="theme-button"></div>
+						<div onclick="setAccent('purple', '#7b1fa2', '#ba68c8', '#4a148c')" id="accent-purple" style="background: #7b1fa2" class="theme-button"></div>
+						<div onclick="setAccent('pink', '#c2185b', '#ec407a', '#880e4f')" id="accent-pink" style="background: #c2185b" class="theme-button"></div>
+						<div onclick="setAccent('red', '#d32f2f', '#e57373', '#b71c1c')" id="accent-red" style="background: #d32f2f" class="theme-button"></div>
+						<div onclick="setAccent('orange', '#f57c00', '#ffab40', '#e65100')" id="accent-orange" style="background: #f57c00" class="theme-button"></div>
+						<div onclick="setAccent('yellow', '#f9a825', '#fbc02d', '#f57f17')" id="accent-yellow" style="background: #f9a825" class="theme-button"></div>
+						<div onclick="setAccent('green', '#388e3c', '#81c784', '#1b5e20')" id="accent-green" style="background: #388e3c" class="theme-button"></div>
+						<div onclick="setAccent('light-green', '#689f38', '#aed581', '#33691e')" id="accent-light-green" style="background: #689f38" class="theme-button"></div>
+
 					</div>
 					<input style="visibility: hidden" id="colorPicker" type="color">
 				</div>
@@ -91,7 +97,7 @@
 				<div class="settings-block">
 					<h3 class="settings-block-title">Шрифт</h3>
 					<input onclick="changeSetting('newFont')" style="margin-left: 15px" id="s-newFont" type="checkbox" class="switch">
-					<label for="s-newFont">Использовать старый шрифт</label>
+					<label for="s-newFont">Жирный шрифт</label>
 				</div>
 
 			</div>
@@ -190,7 +196,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 style="margin-left: 30px">TenStore v2.2.0 beta build 1026</h5>
+			<h5 style="margin-left: 30px">TenStore v2.2.0 beta build 1104</h5>
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">

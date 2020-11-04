@@ -1,8 +1,7 @@
 .settings-subtitleIcon {
   float: left;
-  filter: invert(var(--dark));
   margin: 0 10px 0;
-  width: 18px;
+  size: 20px;
   padding: 2px;
 }
 .settings-block {

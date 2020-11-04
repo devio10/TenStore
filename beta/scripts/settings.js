@@ -6,12 +6,10 @@ function setTheme(theme, isAutoDarkTheme) {
   document.getElementById('theme-light').style.outline = 0;
   document.getElementById('theme-dark').style.outline = 0;
   document.getElementById('theme-black').style.outline = 0;
+  document.getElementById('theme-auto').style.outline = 0;
   localStorage.setItem('theme', theme);
   document.documentElement.setAttribute('data-theme', theme);
   changeSetting('autoDarkTheme', 'false');
-  if (isAutoDarkTheme!=true) {
-    document.getElementById('s-autoDarkTheme').checked = false;
-  }
   let themeId;
   let checkId='check';
   border="white";
@@ -26,9 +24,14 @@ function setTheme(theme, isAutoDarkTheme) {
     themeId='theme-black';
     localStorage.setItem('night-theme', 'black');
   }
-  document.getElementById(themeId).style.outline="2px solid rgba(63,166,104,1)";
-  document.getElementById(themeId).innerHTML="<img class='"+checkId+"' src='images/check.svg'>";
-  chosenAccent.style.border="2px solid "+border;
+  if (isAutoDarkTheme==true) {
+    themeId='theme-auto';
+  }
+  if (isAutoDarkTheme!=true) {
+    document.getElementById(themeId).innerHTML="<img class='"+checkId+"' src='images/check.svg'>";
+  }
+  document.getElementById(themeId).style.outline="2px solid var(--accent)";
+  chosenAccent.style.outline="2px solid "+border;
 }
 function autoDarkTheme() {
   if (localStorage.getItem('autoDarkTheme') == 'false') {
@@ -50,7 +53,7 @@ function getDefault (dSetting) {
   }
 }
 
-function setAccent(accent) {
+function setAccentOld(accent) {
   document.getElementById('accent-blue').innerHTML="";
   document.getElementById('accent-orange').innerHTML="";
   document.getElementById('accent-red').innerHTML="";
@@ -79,6 +82,23 @@ function setAccent(accent) {
     document.documentElement.setAttribute('data-accent', accent);
     showAlert('Тема сохранена.', 'images/check.svg');
   }
+}
+function setAccent(accentId, accent, accentLight, accentDark) {
+  removeHighlights('accent');
+  document.documentElement.style.setProperty('--accent', accent);
+  document.documentElement.style.setProperty('--accent-light', accentLight);
+  document.documentElement.style.setProperty('--accent-dark', accentDark);
+
+  document.getElementById('accent-'+accentId).innerHTML="<i class='ph-check check1'></i>";
+  document.getElementById('accent-'+accentId).style.outline="2px solid "+border;
+  chosenAccent=document.getElementById('accent-'+accentId);
+
+  localStorage.setItem('accent', accent);
+  localStorage.setItem('accent-light', accentLight);
+  localStorage.setItem('accent-dark', accentDark);
+  localStorage.setItem('accent-id', accentId);
+
+  showAlert('Тема сохранена.', 'images/check.svg');
 }
 
 function changeSetting (par, val) {
@@ -155,7 +175,13 @@ function checkSwitches() {
     document.getElementById('s-analytics').checked=true;
   }
   if (localStorage.getItem('autoDarkTheme')=='true') {
-    document.getElementById('s-autoDarkTheme').checked=true;
+    document.getElementById('theme-light').innerHTML="";
+    document.getElementById('theme-dark').innerHTML="";
+    document.getElementById('theme-black').innerHTML="";
+    document.getElementById('theme-light').style.outline = 0;
+    document.getElementById('theme-dark').style.outline = 0;
+    document.getElementById('theme-black').style.outline = 0;
+    document.getElementById('theme-auto').style.outline="2px solid var(--accent)";
   }
   if (localStorage.getItem('alwaysLoggedIn')=='true') {
     document.getElementById('s-alwaysLoggedIn').checked=true;
@@ -214,14 +240,13 @@ function currentThemeCheck () {
     }
   }
   document.getElementById('theme-'+theme).innerHTML="<img class='check' src='images/check.svg'>";
-  document.getElementById('theme-'+theme).style.outline="2px solid rgba(63,166,104,1)";
+  document.getElementById('theme-'+theme).style.outline="2px solid var(--accent)";
   border="white";
   if (theme=='light') {
     border='black';
   }
-
+  /*
   let accent='blue';
-  /*акцент*/
   if (localStorage.getItem('accent')!=null) {
     accent=localStorage.getItem('accent');
   }
@@ -237,6 +262,7 @@ function currentThemeCheck () {
     document.getElementById('accent-'+accent).style.outline="2px solid "+border;
     chosenAccent=document.getElementById('accent-'+accent);
   }
+  */
 }
 
 function changeTab(tab, tabName) {
@@ -262,4 +288,53 @@ function changeTab(tab, tabName) {
   document.getElementById('item-'+tab).style.fontFamily='var(--bold)';
   document.getElementById('item-'+tab).className='settings-nav-item chosen-nav-item';
   document.getElementById('settings-title').innerHTML=tabName;
+}
+
+function removeHighlights (category) {
+  if (category=='accent') {
+    let blue=document.getElementById('accent-blue');
+    let purple=document.getElementById('accent-purple');
+    let red=document.getElementById('accent-red');
+    let orange=document.getElementById('accent-orange');
+    let green=document.getElementById('accent-green');
+    let pink=document.getElementById('accent-pink');
+    let indigo=document.getElementById('accent-indigo');
+    let cyan=document.getElementById('accent-cyan');
+    let lightGreen=document.getElementById('accent-light-green');
+    let yellow=document.getElementById('accent-yellow');
+    let brown=document.getElementById('accent-brown');
+    let grey=document.getElementById('accent-grey');
+    let blueGrey=document.getElementById('accent-blue-grey');
+    let custom=document.getElementById('accent-custom');
+
+    blue.innerHTML='';
+    purple.innerHTML='';
+    red.innerHTML='';
+    orange.innerHTML='';
+    green.innerHTML='';
+    pink.innerHTML='';
+    indigo.innerHTML='';
+    cyan.innerHTML='';
+    lightGreen.innerHTML='';
+    yellow.innerHTML='';
+    brown.innerHTML='';
+    grey.innerHTML='';
+    blueGrey.innerHTML='';
+    custom.innerHTML="<i class='ph-dots-three-outline check1'></i>";
+
+    blue.style.outline='';
+    purple.style.outline='';
+    red.style.outline='';
+    orange.style.outline='';
+    green.style.outline='';
+    pink.style.outline='';
+    indigo.style.outline='';
+    cyan.style.outline='';
+    lightGreen.style.outline='';
+    yellow.style.outline='';
+    brown.style.outline='';
+    grey.style.outline='';
+    blueGrey.style.outline='';
+    custom.style.outline='';
+  }
 }

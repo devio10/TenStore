@@ -25,12 +25,12 @@
   --alert: rgba(230, 230, 230, 0.65);
 	--userBox: rgba(255, 255, 255, 0.65);
 	--topBar: #0d0d0d;
-	--accent: #1e88e5;
-  --accent-dark: #005cb2;
-	--accent-light: #6ab7ff;
+	--accent: #1565c0;
+  --accent-dark: #0d47a1;
+	--accent-light: #82b1ff;
 	--rgba: rgba(255, 255, 255, 1);
 	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 0.75);
-	--nav-click-bg: rgba(var(--bright), var(--bright), var(--bright), 0.5);
+	--nav-click-bg: rgba(0, 0, 0, 0.25);
 
 	/*тени*/
   --topShadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
@@ -97,6 +97,7 @@
 	--rgba: rgba(18, 18, 18, 1);
 	--border: #333333;
 	--aCard-border: #333333;
+	--nav-click-bg: rgba(0, 0, 0, 0.5);
 
 	/*тени*/
 	--shadow6: 0px 3px 30px -5px rgba(0,0,0,0.4);
@@ -137,42 +138,6 @@
   --gradient: linear-gradient( rgba(0, 0, 0, 0.65) 5%, rgba(0, 0, 0, 0.4) );
 }
 
-/* АКЦЕНТЫ */
-[data-accent="blue"] {
-  --accent: #1e88e5;
-  --accent-dark: #005cb2;
-	--accent-light: #6ab7ff;
-}
-[data-accent="green"] {
-	--accent: #43a047;
-  --accent-dark: #00701a;
-	--accent-light: #76d275;
-}
-[data-accent="red"] {
-	--accent: #e53935;
-  --accent-dark: #c62828;
-	--accent-light: #ff6f60;
-}
-[data-accent="ohSoOrange"] {
-	--accent: #f4511e;
-  --accent-dark: #b91400;
-	--accent-light: #ff844c;
-}
-[data-accent="purple"] {
-	--accent: #8e24aa;
-  --accent-dark: #5c007a;
-	--accent-light: #c158dc;
-}
-[data-accent="pink"] {
-	--accent: #c2185b;
-	--accent-dark: #ad1457;
-	--accent-light: #fa5788;
-}
-[data-accent="custom"] {
-	--accent: 0;
-  --accent-dark: 0;
-	--accent-light: 0;
-}
 [data-oldFont="true"] {
 	--weight: bold;
 }
@@ -276,7 +241,7 @@ button {
 	text-transform: uppercase;
 }
 button:hover {
-  background-color: var(--primary);
+  background: var(--nav-click-bg);
 }
 button:active {
   outline: none;
@@ -1010,6 +975,9 @@ input[type='radio']:checked {
 #theme-black {
 	background: black;
 }
+#theme-auto {
+	background: linear-gradient(-135deg, #eaeaea 49%, #0a0a0a 50%);
+}
 .check {
 	margin: 0 auto 0 auto;
 	filter: invert(var(--dark));
@@ -1017,7 +985,7 @@ input[type='radio']:checked {
 }
 .check1 {
 	margin: 0 auto 0 auto;
-	width: 24px;
+	font-size: 22px;
 }
 .check2 {
 	margin: 0 auto 0 auto;
