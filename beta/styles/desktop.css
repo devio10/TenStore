@@ -213,7 +213,6 @@ a {
   background-repeat: no-repeat;
   background-size: 0% 2px;
 	transition: var(--transition2);
-	text-transform: uppercase;
 }
 h1, h2, h3 {
   font-family: var(--bold);
@@ -392,7 +391,6 @@ button:focus {
   text-decoration: none;
   margin: 0;
 	height: 55px;
-	z-index: 100;
 }
 #nav {
 	transition: top 0.2s;
@@ -976,7 +974,7 @@ input[type='radio']:checked {
 	background: black;
 }
 #theme-auto {
-	background: linear-gradient(-135deg, #eaeaea 49%, #0a0a0a 50%);
+	background: linear-gradient(-135deg, white 49%, #0a0a0a 50%);
 }
 .check {
 	margin: 0 auto 0 auto;
@@ -1403,4 +1401,7 @@ textarea {
 }
 #no-elements {
 	margin: 0 0 0 50px;
+}
+.uppercase {
+	text-transform: uppercase;
 }

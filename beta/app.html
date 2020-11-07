@@ -6,18 +6,16 @@
 		<title id="appPage-title">Страница приложения — TenStore</title>
 		<link id="appPage-titleIcon" rel="shortcut icon" href="images/favicon.png" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/popup.css" rel="stylesheet" type="text/css">
 		<link href="styles/appPage-basic.css" rel="stylesheet" type="text/css">
-		<link media="all and (orientation: portrait)" href="styles/mobile.css" rel="stylesheet" type="text/css">
-		<!-- <link media="screen and (max-width:1299px)" href="styles/appPage-smallest.css" rel="stylesheet" type="text/css">
-		<link media="screen and (min-width:1300px)" href="styles/appPage-small.css" rel="stylesheet" type="text/css"> -->
 		<link href="styles/appPage-medium.css" rel="stylesheet" type="text/css">
-		<!-- <link media="screen and (min-width:1601px)" href="styles/appPage-big.css" rel="stylesheet" type="text/css"> -->
+		<link media="all and (orientation: portrait)" href="styles/mobile.css" rel="stylesheet" type="text/css">
+
 
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/app-card.js"></script>
-		<script src="scripts/appPage.js"></script>
 		<script src='scripts/phone-check.js'></script>
 		<script src="https://unpkg.com/phosphor-icons"></script>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
@@ -129,7 +127,20 @@
 				<h5 class="ad-text">Скачивать приложения легче в TenStore для Windows. <a href="app?id=10&source=dev_ad">Скачать</a></h5>
 				<img class="pub-card-nexticon" onclick="closeAd()" src="images/cancel.svg">
 			</div>
+
+			<div id="app-popups" style="display: none" class="popup-blur-bg">
+				<div id="app-not-available" class="popup-window">
+					<i class="ph-prohibit-bold popup-iconBlack"></i>
+					<h4 class="popup-title black">TenStore</h4>
+					<h1 class="popup-title2 black" style="margin-left: 25px">Приложение недоступно</h1>
+					<h4 class="popup-text2 black" style="margin-left: 25px">Приложение, которое вы пытаетесь скачать, не существует или было удалено.</h4>
+					<div class="flex">
+						<button style="margin-top: 250px" onclick="window.open('index', '_self')" class="popup-button black black-border">Главная</button>
+					</div>
+				</div>
+			</div>
 		<script>login(); ub_themeBtn()</script>
+		<script src="scripts/appPage.js"></script>
 		<script src='scripts/search-bar.js'></script>
 		<script src='scripts/ad.js'></script>
 	</body>

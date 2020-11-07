@@ -6,10 +6,13 @@ function getUrlVars(key) {
   return vars;
 }
 
-let action = "4LlFCT";
-let id = getUrlVars()["id"];
+let action="4LlFCT";
+let id=getUrlVars()["id"];
 let appBackground;
 let devName;
+if ((localStorage.getItem('debug-noAppPageRedirect')!='true')&&(id==undefined)) {
+  window.open('index?source=emptyAppPage', '_self');
+}
 
 const request = new XMLHttpRequest();
 const url = "https://thetenstore.ru/api.php";
@@ -21,6 +24,9 @@ request.addEventListener("readystatechange", () => {
   if ((request.readyState === 4) && (request.status === 200)) {
     var obj = request.response;
     for(let i=0; i<obj.apps.length; i++) {
+
+      //document.getElementById('app-popups').style.display='none';
+
       let appPage = document.getElementById('appPage');
       devName = obj.apps[0].dev;
       let icon = document.getElementById('appPage-icon');
@@ -178,7 +184,6 @@ request.addEventListener("readystatechange", () => {
           let maobj = requestDev.response;
           for(let i=0; i<maobj.apps.length; i++) {
             showAppCard('aCard-block', maobj.apps[i].icon, maobj.apps[i].icon_pad, maobj.apps[i].icon_bg, maobj.apps[i].id, maobj.apps[i].name, '');
-            console.log('done');
           }
         }
       });

@@ -1,13 +1,4 @@
-.CA-block {
-  width: 500px;
-  height: auto;
-  background: var(--bg);
-  margin: 100px auto;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
-  box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
-  border: 1px solid var(--border-light);
-}
+
 .CA-button {
   width: 150px;
   margin: 30px 0 30px 0;
@@ -35,10 +26,6 @@
 }
 #LA-name {
   margin: 0 20px 0 20px;
-}
-#CA-block-title {
-  margin: 20px;
-  font-family: var(--bold);
 }
 #CA-block-title2 {
   margin: 25px 20px 0 20px;
@@ -112,10 +99,37 @@
   padding: 3px;
   border-radius: 100%;
   z-index: 1000;
-  box-shadow: 
+  box-shadow:
 }
 #EA-label {
   margin: -35px 0 130px 130px;
   float: left;
   z-index: 1000;
+}
+.tenid-blocks {
+  position: fixed;
+	left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  align-items: center;
+}
+.tenid-block-icon {
+  margin: 25px 0 25px 25px;
+}
+.tenid-block-title, #CA-block-title {
+  margin: 25px 25px 25px 15px;
+  font-family: var(--bold);
+  text-transform: uppercase;
+}
+.tenid-block, .CA-block {
+  width: 500px;
+  height: auto;
+  background: var(--bg);
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
+  border: 1px solid var(--border-light);
 }

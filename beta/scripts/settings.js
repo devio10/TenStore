@@ -216,6 +216,12 @@ function checkSwitches() {
   if (localStorage.getItem('beta-mobileSearch')=='true') {
     document.getElementById('s-beta-mobileSearch').checked=true;
   }
+  if (localStorage.getItem('debug-noAppPageRedirect')=='true') {
+    document.getElementById('s-debug-noAppPageRedirect').checked=true;
+  }
+  if (localStorage.getItem('debug-noAppPageProhibit')=='true') {
+    document.getElementById('s-debug-noAppPageProhibit').checked=true;
+  }
 }
 function onchangef() {
   document.getElementById("colorPicker").onchange = function() {
@@ -245,6 +251,10 @@ function currentThemeCheck () {
   if (theme=='light') {
     border='black';
   }
+  let currentAccent=document.getElementById('accent-'+localStorage.getItem('accent-id'));
+  currentAccent.innerHTML="<i class='ph-check check1'></i>";
+  currentAccent.style.outline="2px solid "+border;
+  chosenAccent=currentAccent;
   /*
   let accent='blue';
   if (localStorage.getItem('accent')!=null) {

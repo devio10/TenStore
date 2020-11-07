@@ -171,12 +171,16 @@
 				    <label style="display: none" for="s-appsListSort">Пункт сортировки на странице приложений</label><p>
 						<input onclick="changeSetting('alwaysLoggedIn')" id="s-alwaysLoggedIn" type="checkbox" class="switch">
 				    <label for="s-alwaysLoggedIn">debug-fakeUser</label><p>
-							<input onclick="changeSetting('mobileVersion')" id="s-mobileVersion" type="checkbox" class="switch">
-					    <label for="s-mobileVersion">debug-mobileVersion</label><p>
+						<input onclick="changeSetting('mobileVersion')" id="s-mobileVersion" type="checkbox" class="switch">
+				    <label for="s-mobileVersion">debug-mobileVersion</label><p>
 						<input id="s-fakeAppsList" onclick="changeSetting('fakeAppsList')" type="checkbox" class="switch">
 						<label for="s-fakeAppsList">debug-fakeApps</label><p>
 						<input id="s-fakeAppsList" onclick="changeSetting('fakeAppPage')" type="checkbox" class="switch">
 						<label for="s-fakeAppsList">debug-fakeAppPage</label><p>
+						<input id="s-debug-noAppPageRedirect" onclick="changeSetting('debug-noAppPageRedirect')" type="checkbox" class="switch">
+						<label for="s-debug-noAppPageRedirect">debug-noAppPageRedirect</label><p>
+						<input id="s-debug-noAppPageProhibit" onclick="changeSetting('debug-noAppPageProhibit')" type="checkbox" class="switch">
+						<label for="s-debug-noAppPageProhibit">debug-noAppPageProhibit</label><p>
 						<input id="s-debug-newVersionPopup" onclick="changeSetting('debug-newVersionPopup')" type="checkbox" class="switch">
 						<label for="s-debug-newVersionPopup">debug-newVersionPopup</label>
 					</div>
@@ -196,7 +200,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 style="margin-left: 30px">TenStore v2.2.0 beta build 1104</h5>
+			<h5 style="margin-left: 30px">TenStore v2.2.0 beta build 1106</h5>
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">
