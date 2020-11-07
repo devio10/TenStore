@@ -94,6 +94,7 @@ function ifGame () {
     document.getElementById('chosen').style.fontFamily='var(--regular)';
     document.getElementById('gameTab').style.fontFamily='var(--bold)';
     document.getElementById('apps-categ').style.display='none';
+    document.getElementById('games-categ').style.display='block';
     document.getElementById('games-categ').className='games-show';
     document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
     document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
@@ -101,16 +102,7 @@ function ifGame () {
     document.getElementById('games-span').className='phoneNav-text phoneNav-link-active';
   }
 }
-function isGame() {
-  document.getElementById('chosen').style.fontFamily='var(--regular)';
-  document.getElementById('gameTab').style.fontFamily='var(--bold)';
-  document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
-  document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
-  document.getElementById('apps-span').className='phoneNav-text';
-  document.getElementById('games-span').className='phoneNav-text phoneNav-link-active';
-  document.getElementById('apps-categ').style.display='none';
-  document.getElementById('games-categ').className='games-show';
-}
+
 function setTagName () {
   let tagName;
   let tagCode;
