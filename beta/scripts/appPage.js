@@ -30,7 +30,7 @@ request.addEventListener("readystatechange", () => {
       let appPage = document.getElementById('appPage');
       devName = obj.apps[0].dev;
       let icon = document.getElementById('appPage-icon');
-      /*Новые загрузки*/
+      /*Файлы*/
       let files0=obj.apps[0].files;
       if (obj.apps[0].files!=0) {
         const files=JSON.parse(files0);
@@ -58,7 +58,6 @@ request.addEventListener("readystatechange", () => {
       let scr0=obj.apps[0].screenshots;
       if (obj.apps[0].screenshots!=0) {
         const screenshots=JSON.parse(scr0);
-        console.log(screenshots);
         for(let s in screenshots.scr) {
           var screenshot=document.createElement('img');
           screenshot.className='screenshot';
@@ -72,9 +71,8 @@ request.addEventListener("readystatechange", () => {
       let com0=obj.apps[0].comments;
       if (obj.apps[0].comments!=0) {
         const comments=JSON.parse(com0);
-        console.log(comments);
         for(let c in comments.comments) {
-
+          var reviewPic;
           const userPicRequest=new XMLHttpRequest();
           const userPicUrl="https://thetenstore.ru/api.php";
           const userPicParams="action=FEhf42d&login="+comments.comments[c].login;
@@ -82,35 +80,33 @@ request.addEventListener("readystatechange", () => {
           userPicRequest.open("POST", userPicUrl, true);
           userPicRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           userPicRequest.addEventListener("readystatechange", () => {
-            if ((request.readyState === 4) && (request.status === 200)) {
-              var reviewPic=userrr.user[0].photo;
+            if ((userPicRequest.readyState === 4) && (userPicRequest.status === 200)) {
+              var userrr=userPicRequest.response;
+              if (userrr.user[0].photo==0) {
+                reviewPic='images/user.svg';
+              } else {
+                reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+              }
+              reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+
+              var comment=document.createElement('div');
+              if (comments.comments[c].isLiked=='1') {
+                comment.className='review-card disliked';
+              } else {
+                comment.className='review-card liked';
+              }
+              comment.innerHTML="<div class='flex flex-row'> \
+                <img loading='lazy' class='review-card-userPic' src='"+reviewPic+"'> \
+                <h5 class='review-card-name'>"+comments.comments[c].login+"</h5> \
+              </div> \
+              <h5 class='review-card-text'>"+comments.comments[c].comment+"</h5>"
+              document.getElementById('reviews-block').appendChild(comment);
             }
           });
           userPicRequest.send(userPicParams);
 
-          var comment=document.createElement('img');
-          if (comments.comments[c].isLiked=='1') {
-            comment.className='review-card liked';
-          } else {
-            comment.className='review-card disliked';
-          }
-          comment.innerHTML="<div class='flex flex-row'> \
-            <img class='review-card-userPic' src='"+reviewPic+"'> \
-            <h5 class='review-card-name'>"+comments.comments[c].login+"</h5> \
-          </div> \
-          <h5 class='review-card-text'></h5>"
-          console.log(comment);
-          document.getElementById('reviews-block').appendChild(comment);
         }
       }
-
-
-      /*if (obj.apps[0].windows == 0) {
-        document.getElementById('appPage-windows').style.display = "none";
-      }
-      if (obj.apps[0].android == 0) {
-        document.getElementById('appPage-android').style.display = "none";
-      }*/
       if (localStorage.getItem('app-background')!='false') {
         if (obj.apps[0].bg != 0) {
           appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/" + obj.apps[0].bg + ")";

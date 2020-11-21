@@ -2,11 +2,12 @@ function setTheme(theme, isAutoDarkTheme) {
   showAlert('Тема сохранена.', 'images/check.svg');
   document.getElementById('theme-light').innerHTML="";
   document.getElementById('theme-dark').innerHTML="";
-  document.getElementById('theme-black').innerHTML="";
+
   document.getElementById('theme-light').style.outline = 0;
   document.getElementById('theme-dark').style.outline = 0;
-  document.getElementById('theme-black').style.outline = 0;
-  document.getElementById('theme-auto').style.outline = 0;
+
+  document.getElementById('theme-light').style.boxShadow='var(--shadow1)';
+  document.getElementById('theme-dark').style.boxShadow='var(--shadow1)';
   localStorage.setItem('theme', theme);
   document.documentElement.setAttribute('data-theme', theme);
   changeSetting('autoDarkTheme', 'false');
@@ -30,6 +31,7 @@ function setTheme(theme, isAutoDarkTheme) {
   if (isAutoDarkTheme!=true) {
     document.getElementById(themeId).innerHTML="<img class='"+checkId+"' src='images/check.svg'>";
   }
+  document.getElementById(themeId).style.boxShadow='0px 0px 15px 2px var(--accent)';
   document.getElementById(themeId).style.outline="2px solid var(--accent)";
   chosenAccent.style.outline="2px solid "+border;
 }
@@ -91,6 +93,8 @@ function setAccent(accentId, accent, accentLight, accentDark) {
 
   document.getElementById('accent-'+accentId).innerHTML="<i class='ph-check check1'></i>";
   document.getElementById('accent-'+accentId).style.outline="2px solid "+border;
+  document.getElementById('accent-'+accentId).style.borderRadius='0';
+  document.getElementById('accent-'+accentId).style.boxShadow="0px 0px 15px 2px var(--accent)";
   chosenAccent=document.getElementById('accent-'+accentId);
 
   localStorage.setItem('accent', accent);
@@ -176,12 +180,11 @@ function checkSwitches() {
   }
   if (localStorage.getItem('autoDarkTheme')=='true') {
     document.getElementById('theme-light').innerHTML="";
-    document.getElementById('theme-dark').innerHTML="";
-    document.getElementById('theme-black').innerHTML="";
+    document.getElementById('theme-dark').innerHTML=""
     document.getElementById('theme-light').style.outline = 0;
     document.getElementById('theme-dark').style.outline = 0;
-    document.getElementById('theme-black').style.outline = 0;
     document.getElementById('theme-auto').style.outline="2px solid var(--accent)";
+    document.getElementById('theme-auto').style.boxShadow="0px 0px 15px 2px var(--accent)";
   }
   if (localStorage.getItem('alwaysLoggedIn')=='true') {
     document.getElementById('s-alwaysLoggedIn').checked=true;
@@ -247,6 +250,7 @@ function currentThemeCheck () {
   }
   document.getElementById('theme-'+theme).innerHTML="<img class='check' src='images/check.svg'>";
   document.getElementById('theme-'+theme).style.outline="2px solid var(--accent)";
+  document.getElementById('theme-'+theme).style.boxShadow='0px 0px 15px 2px var(--accent)';
   border="white";
   if (theme=='light') {
     border='black';
@@ -254,6 +258,7 @@ function currentThemeCheck () {
   let currentAccent=document.getElementById('accent-'+localStorage.getItem('accent-id'));
   currentAccent.innerHTML="<i class='ph-check check1'></i>";
   currentAccent.style.outline="2px solid "+border;
+  currentAccent.style.borderRadius="0";
   chosenAccent=currentAccent;
   /*
   let accent='blue';
@@ -278,19 +283,16 @@ function currentThemeCheck () {
 function changeTab(tab, tabName) {
   document.getElementById('settings-personal').style.display='none';
   document.getElementById('settings-account').style.display='none';
-  document.getElementById('settings-apps').style.display='none';
   document.getElementById('settings-other').style.display='none';
   document.getElementById('settings-debug').style.display='none';
 
   document.getElementById('item-personal').style.fontFamily='var(--regular)';
   document.getElementById('item-account').style.fontFamily='var(--regular)';
-  document.getElementById('item-apps').style.fontFamily='var(--regular)';
   document.getElementById('item-other').style.fontFamily='var(--regular)';
   document.getElementById('item-debug').style.fontFamily='var(--regular)';
 
   document.getElementById('item-personal').className='settings-nav-item';
   document.getElementById('item-account').className='settings-nav-item';
-  document.getElementById('item-apps').className='settings-nav-item';
   document.getElementById('item-other').className='settings-nav-item';
   document.getElementById('item-debug').className='settings-nav-item';
 
@@ -330,7 +332,7 @@ function removeHighlights (category) {
     brown.innerHTML='';
     grey.innerHTML='';
     blueGrey.innerHTML='';
-    custom.innerHTML="<i class='ph-dots-three-outline check1'></i>";
+    custom.innerHTML="<i class='ph-plus check1'></i>";
 
     blue.style.outline='';
     purple.style.outline='';
@@ -346,5 +348,35 @@ function removeHighlights (category) {
     grey.style.outline='';
     blueGrey.style.outline='';
     custom.style.outline='';
+
+    blue.style.borderRadius='5px';
+    purple.style.borderRadius='5px';
+    red.style.borderRadius='5px';
+    orange.style.borderRadius='5px';
+    green.style.borderRadius='5px';
+    pink.style.borderRadius='5px';
+    indigo.style.borderRadius='5px';
+    cyan.style.borderRadius='5px';
+    lightGreen.style.borderRadius='5px';
+    yellow.style.borderRadius='5px';
+    brown.style.borderRadius='5px';
+    grey.style.borderRadius='5px';
+    blueGrey.style.borderRadius='5px';
+    custom.style.borderRadius='5px';
+
+    blue.style.boxShadow='var(--shadow1)';
+    purple.style.boxShadow='var(--shadow1)';
+    red.style.boxShadow='var(--shadow1)';
+    orange.style.boxShadow='var(--shadow1)';
+    green.style.boxShadow='var(--shadow1)';
+    pink.style.boxShadow='var(--shadow1)';
+    indigo.style.boxShadow='var(--shadow1)';
+    cyan.style.boxShadow='var(--shadow1)';
+    lightGreen.style.boxShadow='var(--shadow1)';
+    yellow.style.boxShadow='var(--shadow1)';
+    brown.style.boxShadow='var(--shadow1)';
+    grey.style.boxShadow='var(--shadow1)';
+    blueGrey.style.boxShadow='var(--shadow1)';
+    custom.style.boxShadow='var(--no-shadow)';
   }
 }

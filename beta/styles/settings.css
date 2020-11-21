@@ -12,9 +12,11 @@
 }
 .settings-nav {
   background: var(--bg);
-  width: 300px;
+  width: 275px;
+  border-right: 1px solid var(--border);
   height: 100%;
   position: fixed;
+  overflow-y: auto;
   transition: var(--transition1);
   user-select: none;
 }
@@ -33,7 +35,8 @@
   transform: translate(5px, 0);
 }
 .settings-block-title {
-  font-family: var(--bold);
+  font-family: var(--regular);
+  font-weight: 500;
   margin-left: 10px;
 }
 .settings-tab {
@@ -65,4 +68,7 @@
   align-content: flex-start;
   width: 100%;
   margin: 30px 0 0 15px;
+}
+.theme-button-text {
+  margin-top: 7px;
 }

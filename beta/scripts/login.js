@@ -46,10 +46,7 @@ function LAcheckLogin () {
       if(request.status == 200) {
         let obj = request.response;
         if (obj.user[0].login != null) {
-          let x = document.getElementById('LA-1step');
-          x.style.display = 'none';
-          let y = document.getElementById('LA-alreadyLoggedIn');
-          y.style.display = 'block';
+          window.open('index', '_self');
         }
       }
     }

@@ -21,6 +21,10 @@
   text-align: left;
   text-transform: uppercase;
 }
+.theme-buttons {
+	width: 85%;
+	margin-left: 2.5%;
+}
 #logo, .separate, .topItem, #belarus {
   display: none;
 }
@@ -35,6 +39,23 @@
 	width: 60px;
 	box-shadow: var(--shadow1);
 }
+.CA-right, .CA-link {
+	margin: 0 30px 80px 30px;
+	text-transform: uppercase;
+	font-size: 15px;
+}
+.CA-right {
+	height: 60px;
+	width: 60px;
+	border-radius: 100%;
+	background: var(--nav-bg);
+	backdrop-filter: blur(var(--blur));
+	border: 1px solid var(--border);
+}
+.button-text {
+	display: none;
+}
+
 .searchButton:active, .searchButton:hover {
 	background: var(--nav-click-bg);
 }
@@ -164,15 +185,14 @@
 	margin: 0 5px 0 5px;
 }
 .settings {
-	margin-left: 0;
-	width: 100%;
-	margin-bottom: 80px;
+	width: 97.5%;
+	margin: 0 0 80px 0;
 }
 #settings-title {
-  margin: 15px 2%;
+  margin: 15px 3.5%;
 }
 .settings-block-title {
-	margin: 20px 1%;
+	margin: 20px 2%;
 }
 #dev-title {
 	margin: 5px 0 20px 30px;
@@ -184,18 +204,19 @@
 	margin: 0 0 0 30px;
 }
 
-.CA-block {
+.tenid-block, .CA-block {
   width: 100%;
   height: 100%;
   border: 0;
   box-shadow: 0 0 0 0 rgba(20,20,20,0);
   margin: 30px 0;
 }
+
 .CA-link {
-  position: fixed;
-  bottom: 12.5px;
-  left: 12.5px;
-  font-size: 14px;
+	position: fixed;
+	bottom: 100px;
+	left: 40px;
+	margin: 0;
 }
 .CA-button {
   position: fixed;
@@ -214,31 +235,31 @@
 #CA-block-text {
   margin: 20px 7.5%;
 }
-.CA-input {
-  width: 85%;
-  height: 50px;
-  margin-left: 6.9%;
-  margin-right: 6.9%;
+.tenid-input, .CA-input {
+  width: 300px;
+  height: 45px;
   margin-top: 30px;
+	margin: 30px auto 0 auto;
   font-size: 16px;
 }
 #LA-userPic {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   margin: 0;
 }
 #LA-picDiv {
-  width: 150px;
+  width: 100px;
 	margin: 40px auto 15px auto;
 }
-.LA-block1 {
-  display: block;
-}
+
 #LA-name {
-  margin: 30px auto 30px auto;
-  width: 100%;
+  margin: 15px auto 30px auto;
+  width: 80%;
   text-align: center;
-  font-size: 25px;
+  font-size: 22px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 #appPage-icon {
   margin-left: auto;
@@ -301,4 +322,26 @@
 .popup-button {
 	width: 175px;
 	height: 50px;
+}
+
+#alert {
+	width: 80%;
+	left: 10%;
+	top: 10%;
+}
+.tenid-title {
+	display: block;
+	margin-top: 80px;
+}
+.login-buttons {
+	display: block;
+}
+.CA-right:active, .CA-right:hover {
+  background: var(--nav-click-bg);
+}
+.login-button-icon {
+  display: block;
+}
+#notMe-button {
+	left: 5px;
 }

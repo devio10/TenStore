@@ -9,10 +9,10 @@
 		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
 		<link href="styles/user.css" rel="stylesheet" type="text/css">
 		<link href="styles/edit-account.css" rel="stylesheet" type="text/css">
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
+		<script src='scripts/phone-check.js'></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 		<script src="https://unpkg.com/phosphor-icons"></script>
 	</head>
@@ -25,6 +25,25 @@
 				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
+		</nav>
+
+		<nav id="phoneNav" class="phone-navigation">
+		  <a href="library" class="phoneNav-link">
+		    <i class="ph-archive phoneNav-icon"></i>
+		    <span class="phoneNav-text">Библиотека</span>
+		  </a>
+		  <a href="settings" class="phoneNav-link">
+		    <i class="ph-gear-six phoneNav-icon"></i>
+		    <span class="phoneNav-text">Настройки</span>
+		  </a>
+		  <a href="edit-account" class="phoneNav-link">
+		    <i class="ph-pencil-simple-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span class="phoneNav-text phoneNav-link-active">Редактирование</span>
+		  </a>
+			<a href="user" class="phoneNav-link">
+		    <i class="ph-user-circle phoneNav-icon"></i>
+		    <span class="phoneNav-text">Профиль</span>
+		  </a>
 		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">

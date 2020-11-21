@@ -9,23 +9,51 @@
   margin-right: auto;
 }
 .CA-right {
-  margin-right: 30px;
-  margin-left: auto;
+  margin: 30px auto 30px auto;
+	height: 60px;
+	width: 60px;
+	border-radius: 100%;
+	background: var(--nav-bg);
+	backdrop-filter: blur(var(--blur));
+	border: 1px solid var(--border);
 }
-.CA-input {
-  margin: 15px 0 0 20px;
+.CA-right:hover > .floatButton-icon {
+  color: var(--accent);
+}
+.button-text {
+	display: none;
+}
+.CA-right:active, .CA-right:hover {
+  background: var(--nav-bg);
+}
+.tenid-input, .CA-input {
+  margin: 25px auto 0 auto;
+  width: 300px;
+  height: 40px;
+}
+#LA-picDiv {
+  width: 100px;
+	margin: 40px auto 15px auto;
 }
 #LA-userPic {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
 	background: white;
 	border-radius: 100px;
 	box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.24);
 	object-fit: cover;
-  margin-left: 30px;
+}
+.LA-block1 {
+  display: block;
 }
 #LA-name {
-  margin: 0 20px 0 20px;
+  margin: 15px auto 0px auto;
+  width: 80%;
+  text-align: center;
+  font-size: 22px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 #CA-block-title2 {
   margin: 25px 20px 0 20px;
@@ -118,6 +146,7 @@
 }
 .tenid-block-icon {
   margin: 25px 0 25px 25px;
+  color: var(--font);
 }
 .tenid-block-title, #CA-block-title {
   margin: 25px 25px 25px 15px;
@@ -128,8 +157,44 @@
   width: 500px;
   height: auto;
   background: var(--bg);
-  border-radius: 10px;
+  border-radius: 30px;
   -webkit-box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
-  box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
-  border: 1px solid var(--border-light);
+  box-shadow:  20px 20px 60px var(--bg-dark),
+             -20px -20px 60px var(--bg-light);
+}
+.inputs-block {
+	display: flex;
+	flex-direction: column;
+}
+.CA-link {
+  margin: 30px;
+}
+.tenid-title {
+  margin-top: 40px;
+}
+.login-title {
+	display: none;
+}
+.button-text {
+	font-style: normal;
+}
+.split {
+  width: 200px;
+  height: 1px;
+  margin: 30px auto 0 auto;
+  background-color: var(--border);
+}
+#notMe-button {
+  background-color: rgba(229, 57, 53, 0.3);
+  box-shadow: 0px 0px 31px 0px rgba(229,57,53,0.37);
+}
+#confirm-button {
+  background-color: rgba(67, 160, 71, 0.3);
+  box-shadow: 0px 0px 31px 0px rgba(67,160,71,0.37)
+}
+#confirm-button, #notMe-button {
+  border-width: 0;
+}
+#confirm-button:hover > .floatButton-icon, #notMe-button:hover >  .floatButton-icon {
+  color: var(--font);
 }

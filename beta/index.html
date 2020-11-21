@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>TenStore — магазин приложений</title>
 	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/popup.css" rel="stylesheet" type="text/css">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+
 		<!-- СКРИПТЫ -->
 		<script src="https://unpkg.com/phosphor-icons"></script>
 		<script src="scripts/app-card.js"></script>
@@ -61,74 +62,47 @@
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
 
-		<div class="flex-grid home-cards-grid">
-			<div class="home-card" onclick="window.open('appsList', '_self')">
-				<i class="ph-squares-four home-card-icon"></i>
-				<div class='flex flex-column home-card-text'>
-					<h4 class='home-card-title'>Приложения</h4>
-				</div>
-			</div>
-			<div class="home-card" onclick="window.open('appsList?type=game', '_self')">
-				<i class="ph-game-controller home-card-icon"></i>
-				<div class='flex flex-column home-card-text'>
-					<h4 class='home-card-title'>Игры</h4>
-				</div>
-			</div>
-		</div>
-
 		<div class="topCard-block">
-			<div onclick="window.open('https://thetenstore.ru/app?id=39', '_self')" id="recommended-game" style="background-image: var(--topCard-gradient)" class="topCard">
-				<h5 class="topCard-text topCard-title">Выбор редакции: игра</h5>
-				<div class="flex">
-					<img class="topCard-icon">
-					<h2 id="recommended-game-name" class="topCard-text topCard-name"></h2>
-				</div>
+			<div id="ec-game" class="topCard">
+				<h5 class="topCard-text topCard-title">Выбор редакции • игра</h5>
+				<h2 id="ec-game-name" class="topCard-text topCard-name"></h2>
 			</div>
 
-			<div onclick="window.open('https://thetenstore.ru/app?id=36', '_self')" id="recommended-app" style="background-image: var(--topCard-gradient)" class="topCard">
-				<h5 class="topCard-text topCard-title">Выбор редакции: приложение</h5>
-				<div class="flex">
-					<img class="topCard-icon">
-					<h2 id="recommended-app-name" class="topCard-text topCard-name"></h2>
-				</div>
+			<div id="ec-app" class="topCard">
+				<h5 class="topCard-text topCard-title">Выбор редакции • приложение</h5>
+				<h2 id="ec-app-name" class="topCard-text topCard-name"></h2>
 			</div>
 
-			<div id="random-game" class="topCard" style="background-image: var(--topCard-gradient)">
+			<div id="random-game" class="topCard">
 				<h5 class="topCard-text topCard-title">Случайная игра</h5>
-				<div class="flex">
-					<img id="random-game-icon" class="topCard-icon">
-					<h2 id="random-game-name" class="topCard-text topCard-name">Xpo Music — клиент Spotify</h2>
+				<h2 id="random-game-name" class="topCard-text topCard-name"></h2>
+			</div>
+
+			<div onclick="window.open('appsList?tag=rec-upd', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/rec-upd.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Недавно обновлено</h3>
+				</div>
+			</div>
+
+			<div onclick="window.open('appsList?list=popular', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/popular.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Популярное</h3>
+				</div>
+			</div>
+
+			<div onclick="window.open('appsList?list=high-rated', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/high-rated.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Высокий рейтинг</h3>
+				</div>
+			</div>
+
+			<div onclick="window.open('appsList?list=classic', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/classic.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Классика</h3>
 				</div>
 			</div>
 		</div>
 
-		<div onclick="window.open('appsList?tag=rec-upd', '_self')" class="home-card2 flex" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/headers/1.jpg)">
-			<div style="display: flex; flex-direction: column">
-				<h3 class="home-card2-title">Недавно обновлено</h3>
-				<div id="recently-updated" class="homepage-aCard-block"></div>
-			</div>
-		</div>
-
-		<div onclick="window.open('appsList?tag=popular', '_self')" class="home-card2 flex" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/headers/3.jpg)">
-			<div style="display: flex; flex-direction: column">
-				<h3 class="home-card2-title">Популярно</h3>
-				<div id="popular" class="homepage-aCard-block"></div>
-			</div>
-		</div>
-
-		<div onclick="window.open('appsList?tag=high-rated', '_self')" class="home-card2 flex" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/headers/4.jpg)">
-			<div style="display: flex; flex-direction: column">
-				<h3 class="home-card2-title">Высокий рейтинг</h3>
-				<div id="high-rated" class="homepage-aCard-block"></div>
-			</div>
-		</div>
-
-		<div onclick="window.open('appsList?tag=recommended', '_self')" class="home-card2 flex" style="display: none; /*background-image: var(--random-app-gradient), url(https://thetenstore.ru/images/headers/10.jpg)">
-			<div style="display: flex; flex-direction: column">
-				<h3 class="home-card2-title">Специально для вас</h3>
-				<div id="recommended" class="homepage-aCard-block"></div>
-			</div>
-		</div>
 		<div id="tenstore-2.0" class="popup-blur-bg">
 			<div id="window1" class="popup-window">
 				<i class="ph-shopping-bag-open-bold popup-iconWhite"></i>

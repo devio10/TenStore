@@ -7,7 +7,6 @@
 	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
@@ -18,24 +17,24 @@
 	</head>
 	<body>
 		<nav id="phoneNav" class="phone-navigation">
-		  <a href="index" class="phoneNav-link">
-		    <i class="ph-house-fill phoneNav-icon phoneNav-link-active"></i>
-		    <span class="phoneNav-text phoneNav-link-active">Библиотека</span>
+		  <a href="library" class="phoneNav-link">
+		    <i class="ph-archive phoneNav-icon"></i>
+		    <span class="phoneNav-text">Библиотека</span>
 		  </a>
-		  <a href="appsList" class="phoneNav-link">
-		    <i class="ph-squares-four phoneNav-icon"></i>
+		  <a href="settings" class="phoneNav-link">
+		    <i class="ph-gear-six phoneNav-icon"></i>
 		    <span class="phoneNav-text">Настройки</span>
 		  </a>
-		  <a href="appsList?type=game" class="phoneNav-link">
-		    <i class="ph-game-controller phoneNav-icon"></i>
+		  <a href="edit-account" class="phoneNav-link">
+		    <i class="ph-pencil-simple phoneNav-icon"></i>
 		    <span class="phoneNav-text">Редактирование</span>
 		  </a>
-			<a href="appsList?type=game" class="phoneNav-link">
-		    <i class="ph-game-controller phoneNav-icon"></i>
-		    <span class="phoneNav-text">Профиль</span>
+			<a href="user" class="phoneNav-link">
+		    <i class="ph-user-circle-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span class="phoneNav-text phoneNav-link-active">Профиль</span>
 		  </a>
 		</nav>
-		<nav>
+		<nav style="display: none">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
 				<a id="mLogo2">ВОЙТИ В АККАУНТ</a>
@@ -68,32 +67,42 @@
 			</div>
 
 			<div id="LA-1step" class="tenid-block">
-				<div class="flex">
-					<i class="ph-sign-in-bold tenid-block-icon"></i>
-					<h5 class="tenid-block-title">Войти в TenID</h5>
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Вход</h4>
+				<div class="inputs-block">
+					<input id="login" placeholder="Логин" type="text" class="textInput CA-input">
+					<input id="password" placeholder="Пароль" type="password" class="textInput CA-input">
 				</div>
 
-				<input id="login" placeholder="Логин" type="text" class="textInput CA-input">
-				<input id="password" placeholder="Пароль" type="password" class="textInput CA-input">
-				<div style="display: flex; align-items: center">
-					<a href="create-account" style="margin: 30px" class="link CA-link uppercase">Создать аккаунт</a>
-					<button onclick="LALogin()" class="accentButton CA-button CA-right">Войти</button>
+				<div class="center-flex login-buttons">
+					<a style="display: none" href="create-account" class="link CA-link">Создать аккаунт</a>
+					<button onclick="LALogin()" class="accentButton CA-button CA-right"><i class="ph-key floatButton-icon publish-icon"></i></button>
 				</div>
 			</div>
 
-			<div style="display: none" id="LA-2step" class="CA-block">
-				<h5 id="CA-block-title" style="margin: 20px; font-family: var(--bold)">ВОЙТИ В АККАУНТ</h5>
+			<div style="display: none" id="LA-2step" class="tenid-block">
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Вход</h4>
 				<div class="LA-block1">
 					<div id="LA-picDiv">
 						<img id="LA-userPic" src="images/user.svg">
 					</div>
 					<h3 id="LA-name"></h3>
 				</div>
-				<div style="display: flex; align-items: center">
-					<a href="login#" onclick="notMe()" style="margin: 30px" class="link CA-link">Это не я</a>
-					<button onclick="LASave()" class="accentButton CA-button CA-right"><img src="images/login.svg" class="buttonIcon accentIcon">Всё верно</button>
+				<div class="center-flex login-buttons">
+					<button id="notMe-button" onclick="notMe()" class="accentButton CA-button CA-right">
+						<i class="ph-x floatButton-icon login-button-icon"></i>
+					</button>
+					<button id="confirm-button" onclick="LASave()" class="accentButton CA-button CA-right">
+						<i class="ph-check floatButton-icon login-button-icon"></i>
+					</button>
 				</div>
 			</div>
+		</div>
+
+		<div id="alert">
+			<img id="alertIcon" src="images/user.svg">
+			<h4 id="alertText">Не удалось выполнить вход. Код ошибки: WRONG_PASS_OR_LOGIN</h4>
 		</div>
 		<script>login(); ub_themeBtn(); LAcheckLogin()</script>
 		<script src='scripts/search-bar.js'></script>

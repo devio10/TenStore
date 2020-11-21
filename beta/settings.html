@@ -7,7 +7,6 @@
 	  <link rel="shortcut icon" href="images/settings.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/settings.css" rel="stylesheet" type="text/css">
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/theme.js"></script>
@@ -27,6 +26,25 @@
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
+
+		<nav id="phoneNav" class="phone-navigation">
+		  <a href="https://thetenstore.ru/" class="phoneNav-link">
+		    <i class="ph-shopping-bag phoneNav-icon"></i>
+		    <span class="phoneNav-text">TenStore</span>
+		  </a>
+		  <a href="settings" class="phoneNav-link">
+		    <i class="ph-gear-six-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span class="phoneNav-text phoneNav-link-active">Настройки</span>
+		  </a>
+			<a href="library" class="phoneNav-link">
+		    <i class="ph-archive phoneNav-icon"></i>
+		    <span class="phoneNav-text">Библиотека</span>
+		  </a>
+			<a href="user" class="phoneNav-link">
+		    <i class="ph-user-circle phoneNav-icon"></i>
+		    <span class="phoneNav-text">Профиль</span>
+		  </a>
+		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
@@ -42,48 +60,57 @@
 		<div class="settings-nav" style="margin-top: 20px">
 				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="settings-nav-item chosen-nav-item"><i class="ph-circles-three-bold settings-subtitleIcon"></i>Персонализация</h4>
 				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="settings-nav-item"><i class="ph-user-circle-bold settings-subtitleIcon"></i>Аккаунт</h4>
-				<h4 onclick="changeTab('apps', 'Приложения')" id="item-apps" class="settings-nav-item"><i class="ph-squares-four-bold settings-subtitleIcon"></i>Приложения</h4>
 				<h4 onclick="changeTab('other', 'Прочее')" id="item-other" class="settings-nav-item"><i class="ph-dots-three-outline-bold settings-subtitleIcon"></i>Прочее</h4>
 				<h4 onclick="changeTab('debug', 'Полигон')" id="item-debug" class="settings-nav-item"><i class="ph-terminal-bold settings-subtitleIcon"></i>Полигон</h4>
 		</div>
 		<div class="settings">
-			<h2 id="settings-title" class="settings-tab" style="">Персонализация</h2>
+			<h2 id="settings-title" class="settings-tab" style="">Персонализация<script src="scripts/appPage.js"></script></h2>
 			<div id="settings-personal" class="settings-tab">
 				<div class="settings-block">
 					<img style="display: none" class="settings-subtitleIcon" src="images/dark.svg">
-					<h3 class="settings-block-title">Тема</h3>
+					<h2 class="settings-block-title">Тема</h2>
+					<h4 style="margin-left: 10px">Тёмная тема помогает расслабить глаза в ночное время суток, и сохранить заряд батареи.</h4>
+
 					<div class="theme-buttons">
-						<div onclick="setTheme('light')" id="theme-light" class="theme-button"></div>
-						<div onclick="setTheme('dark')" id="theme-dark" class="theme-button chosen"></div>
-						<div onclick="setTheme('black')" id="theme-black" class="theme-button"></div>
-						<div onclick="autoDarkTheme(); changeSetting('autoDarkTheme')" id="theme-auto" class="theme-button"></div>
+						<div style="display: flex; flex-direction: column">
+							<div onclick="setTheme('light')" id="theme-light" class="theme-button"></div>
+							<h5 class="grey theme-button-text centerText">светлая</h5>
+						</div>
+						<div style="display: flex; flex-direction: column; margin-left: 20px">
+							<div onclick="setTheme('dark')" id="theme-dark" class="theme-button chosen"></div>
+							<h5 class="grey theme-button-text centerText">тёмная</h5>
+						</div>
+					</div>
+					<div style="margin: 15px 0 0 20px">
+						<input id="s-blur" onclick="autoDarkTheme(); changeSetting('autoDarkTheme')" type="checkbox" class="switch">
+						<label for="s-blur">Использовать тему системы</label>
 					</div>
 				</div>
 
 				<div class="settings-block">
-					<h3 class="settings-block-title">Акцент</h3>
+					<h2 class="settings-block-title">Акцент</h2>
 					<div class="theme-buttons">
-						<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button"><i class='ph-dots-three-outline check1'></i></label>
-						<div onclick="setAccent('brown', '#4e342e', '#a1887f', '#3e2723')" id="accent-brown" style="background: #4e342e" class="theme-button"></div>
-						<div onclick="setAccent('grey', '#424242', '#9e9e9e', '#212121')" id="accent-grey" style="background: #424242" class="theme-button"></div>
-						<div onclick="setAccent('blue-grey', '#455a64', '#90a4ae', '#263238')" id="accent-blue-grey" style="background: #37474f" class="theme-button"></div>
-						<div onclick="setAccent('cyan', '#0097a7', '#4dd0e1', '#006064')" id="accent-cyan" style="background: #0097a7" class="theme-button"></div>
-						<div onclick="setAccent('blue', '#1565c0', '#82b1ff', '#0d47a1')" id="accent-blue" style="background: #1565c0" class="theme-button"></div>
-						<div onclick="setAccent('indigo', '#303f9f', '#7986cb', '#1a237e')" id="accent-indigo" style="background: #303f9f" class="theme-button"></div>
-						<div onclick="setAccent('purple', '#7b1fa2', '#ba68c8', '#4a148c')" id="accent-purple" style="background: #7b1fa2" class="theme-button"></div>
-						<div onclick="setAccent('pink', '#c2185b', '#ec407a', '#880e4f')" id="accent-pink" style="background: #c2185b" class="theme-button"></div>
-						<div onclick="setAccent('red', '#d32f2f', '#e57373', '#b71c1c')" id="accent-red" style="background: #d32f2f" class="theme-button"></div>
-						<div onclick="setAccent('orange', '#f57c00', '#ffab40', '#e65100')" id="accent-orange" style="background: #f57c00" class="theme-button"></div>
-						<div onclick="setAccent('yellow', '#f9a825', '#fbc02d', '#f57f17')" id="accent-yellow" style="background: #f9a825" class="theme-button"></div>
-						<div onclick="setAccent('green', '#388e3c', '#81c784', '#1b5e20')" id="accent-green" style="background: #388e3c" class="theme-button"></div>
-						<div onclick="setAccent('light-green', '#689f38', '#aed581', '#33691e')" id="accent-light-green" style="background: #689f38" class="theme-button"></div>
+						<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button"><i class='ph-plus check1'></i></label>
+						<div onclick="setAccent('brown', '#4e342e', '#a1887f', '#3e2723')" id="accent-brown" class="theme-button"></div>
+						<div onclick="setAccent('grey', '#424242', '#9e9e9e', '#212121')" id="accent-grey" class="theme-button"></div>
+						<div onclick="setAccent('blue-grey', '#455a64', '#90a4ae', '#263238')" id="accent-blue-grey" class="theme-button"></div>
+						<div onclick="setAccent('cyan', '#0097a7', '#4dd0e1', '#006064')" id="accent-cyan" class="theme-button"></div>
+						<div onclick="setAccent('blue', '#1565c0', '#82b1ff', '#0d47a1')" id="accent-blue" class="theme-button"></div>
+						<div onclick="setAccent('indigo', '#303f9f', '#7986cb', '#1a237e')" id="accent-indigo" class="theme-button"></div>
+						<div onclick="setAccent('purple', '#7b1fa2', '#ba68c8', '#4a148c')" id="accent-purple" class="theme-button"></div>
+						<div onclick="setAccent('pink', '#c2185b', '#ec407a', '#880e4f')" id="accent-pink" class="theme-button"></div>
+						<div onclick="setAccent('red', '#d32f2f', '#e57373', '#b71c1c')" id="accent-red" class="theme-button"></div>
+						<div onclick="setAccent('orange', '#f57c00', '#ffab40', '#e65100')" id="accent-orange" class="theme-button"></div>
+						<div onclick="setAccent('yellow', '#f9a825', '#fbc02d', '#f57f17')" id="accent-yellow" class="theme-button"></div>
+						<div onclick="setAccent('green', '#388e3c', '#81c784', '#1b5e20')" id="accent-green" class="theme-button"></div>
+						<div onclick="setAccent('light-green', '#689f38', '#aed581', '#33691e')" id="accent-light-green" class="theme-button"></div>
 
 					</div>
 					<input style="visibility: hidden" id="colorPicker" type="color">
 				</div>
 
 				<div class="settings-block">
-					<h3 class="settings-block-title">Эффекты</h3>
+					<h2 class="settings-block-title">Эффекты</h2>
 					<div style="margin-left: 15px">
 						<input id="s-blur" onclick="changeSetting('effects-blur')" type="checkbox" checked class="switch">
 				    <label for="s-blur">Размытие фона</label><p>
@@ -95,7 +122,7 @@
 				</div>
 
 				<div class="settings-block">
-					<h3 class="settings-block-title">Шрифт</h3>
+					<h2 class="settings-block-title">Шрифт</h2>
 					<input onclick="changeSetting('newFont')" style="margin-left: 15px" id="s-newFont" type="checkbox" class="switch">
 					<label for="s-newFont">Жирный шрифт</label>
 				</div>
@@ -115,7 +142,7 @@
 				</div>
 
 				<div class="settings-block">
-					<h3 class="settings-block-title">Блок пользователя</h3>
+					<h2 class="settings-block-title">Блок пользователя</h2>
 			    <input style="margin-left: 15px" id="s-nameDisplay" onclick="changeSetting('nameDisplay')" type="checkbox" class="switch">
 			    <label for="s-NameType">Отображать никнейм вместо имени</label><p>
 					<input style="margin-left: 15px" id="s-dontShowEmail" onclick="changeSetting('userbox-dontShowEmail')" type="checkbox" class="switch">
@@ -127,7 +154,7 @@
 
 			<div id="settings-apps" class="settings-tab" style="display: none">
 				<div class="settings-block">
-					<h3 class="settings-block-title">Платформа</h3>
+					<h2 class="settings-block-title">Платформа</h2>
 					<div style="margin-left: 15px">
 						<input onclick="changeSetting('platform', 'windows')" id="r1" type="radio" name="platform" value="1">
 						<label for="r1">Windows</label><p>
@@ -144,7 +171,7 @@
 			<div id="settings-other" class="settings-tab" style="display: none">
 				<div class="settings-block">
 
-					<h3 class="settings-block-title">Потребление трафика</h3>
+					<h2 class="settings-block-title">Потребление трафика</h2>
 					<div style="margin-left: 15px">
 						<input id="s-app-background" onclick="changeSetting('app-background')" type="checkbox" checked class="switch">
 						<label for="s-app-background">Фон на странице приложения</label>
@@ -152,7 +179,7 @@
 				</div>
 
 				<div class="settings-block">
-					<h3 class="settings-block-title">Уведомления</h3>
+					<h2 class="settings-block-title">Уведомления</h2>
 					<div style="margin-left: 15px" id="warningBox">
 						<h5 style="color: black; padding: 10px">Уведомления временно недоступны.</h5>
 					</div>
@@ -165,7 +192,7 @@
 
 			<div id="settings-debug" class="settings-tab" style="display: none">
 				<div class="settings-block">
-					<h3 class="settings-block-title">debug</h3>
+					<h2 class="settings-block-title">debug</h2>
 					<div style="margin-left: 15px">
 						<input style="display: none" onclick="changeSetting('appsListSort')" id="s-appsListSort" type="checkbox" class="switch">
 				    <label style="display: none" for="s-appsListSort">Пункт сортировки на странице приложений</label><p>
@@ -185,13 +212,13 @@
 						<label for="s-debug-newVersionPopup">debug-newVersionPopup</label>
 					</div>
 
-					<h3 class="settings-block-title">beta</h3>
+					<h2 class="settings-block-title">beta</h2>
 					<div style="margin-left: 15px">
 						<input id="s-beta-mobileSearch" onclick="changeSetting('beta-mobileSearch')" type="checkbox" class="switch">
 						<label for="s-beta-mobileSearch">beta-mobileSearch</label>
 					</div>
 
-					<h3 class="settings-block-title">Канал</h3>
+					<h2 class="settings-block-title">Канал</h2>
 					<div style="margin-left: 15px">
 						<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
 						<label for="release">Release (2.1.0)</label><p>
@@ -200,7 +227,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 style="margin-left: 30px">TenStore v2.2.0 beta build 1107</h5>
+			<h5 style="margin-left: 30px">TenStore v2.2.0 beta build 1111</h5>
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">
