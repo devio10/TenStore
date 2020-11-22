@@ -25,21 +25,17 @@ function setTheme(theme, isAutoDarkTheme) {
     themeId='theme-black';
     localStorage.setItem('night-theme', 'black');
   }
-  if (isAutoDarkTheme==true) {
-    themeId='theme-auto';
-  }
   if (isAutoDarkTheme!=true) {
-    document.getElementById(themeId).innerHTML="<img class='"+checkId+"' src='images/check.svg'>";
+    document.getElementById('s-autoDarkTheme').checked = false;
   }
+  document.getElementById(themeId).innerHTML="<img class='"+checkId+"' src='images/check.svg'>";
   document.getElementById(themeId).style.boxShadow='0px 0px 15px 2px var(--accent)';
   document.getElementById(themeId).style.outline="2px solid var(--accent)";
   chosenAccent.style.outline="2px solid "+border;
 }
 function autoDarkTheme() {
   if (localStorage.getItem('autoDarkTheme') == 'false') {
-    if ((userPrefersDark)&&(localStorage.getItem('night-mode')=='black')){
-      setTheme('black',true);
-    } else if ((userPrefersDark)&&(localStorage.getItem('night-mode')=='dark')) {
+    if (userPrefersDark) {
       setTheme('dark',true);
     } else {
       setTheme('light',true);
@@ -122,12 +118,12 @@ function changeSetting (par, val) {
       if (par=='newFont') {
         //если изменяется шрифт
         document.documentElement.setAttribute('data-oldFont', choice);
-      } else if (par == 'effects-shadows') {
-        document.documentElement.setAttribute('effects-shadows', choice);
-      } else if (par == 'effects-blur') {
-        document.documentElement.setAttribute('effects-blur', choice);
-      } else if (par == 'effects-animations') {
-        document.documentElement.setAttribute('effects-animations', choice);
+      } else if (par == 'no-effects-shadows') {
+        document.documentElement.setAttribute('no-effects-shadows', choice);
+      } else if (par == 'no-effects-blur') {
+        document.documentElement.setAttribute('no-effects-blur', choice);
+      } else if (par == 'no-effects-animations') {
+        document.documentElement.setAttribute('no-effects-animations', choice);
       }
   } else {
     localStorage.setItem(par, val);
@@ -143,13 +139,13 @@ function checkSwitches() {
   }
 
   /* эффекты */
-  if (localStorage.getItem('effects-blur') == 'false') {
+  if (localStorage.getItem('no-effects-blur') == 'false') {
     document.getElementById('s-blur').checked = false;
   }
-  if (localStorage.getItem('effects-shadows') == 'false') {
+  if (localStorage.getItem('no-effects-shadows') == 'false') {
     document.getElementById('s-shadows').checked = false;
   }
-  if (localStorage.getItem('effects-animations') == 'false') {
+  if (localStorage.getItem('no-effects-animations') == 'false') {
     document.getElementById('s-animations').checked = false;
   }
 
@@ -178,14 +174,7 @@ function checkSwitches() {
   if (localStorage.getItem('analytics')=='true') {
     document.getElementById('s-analytics').checked=true;
   }
-  if (localStorage.getItem('autoDarkTheme')=='true') {
-    document.getElementById('theme-light').innerHTML="";
-    document.getElementById('theme-dark').innerHTML=""
-    document.getElementById('theme-light').style.outline = 0;
-    document.getElementById('theme-dark').style.outline = 0;
-    document.getElementById('theme-auto').style.outline="2px solid var(--accent)";
-    document.getElementById('theme-auto').style.boxShadow="0px 0px 15px 2px var(--accent)";
-  }
+
   if (localStorage.getItem('alwaysLoggedIn')=='true') {
     document.getElementById('s-alwaysLoggedIn').checked=true;
   }
@@ -195,8 +184,10 @@ function checkSwitches() {
     document.getElementById('pre').checked = true;
   } else if (localStorage.getItem('channel') == 'beta') {
     document.getElementById('beta').checked = true;
+    document.getElementById('use-beta').style.display='block';
   } else {
     document.getElementById('release').checked = true;
+    document.getElementById('use-beta').style.display='block';
   }
 
   /* уведомления */
@@ -224,6 +215,9 @@ function checkSwitches() {
   }
   if (localStorage.getItem('debug-noAppPageProhibit')=='true') {
     document.getElementById('s-debug-noAppPageProhibit').checked=true;
+  }
+  if (localStorage.getItem('autoDarkTheme')=='true') {
+    document.getElementById('s-autoDarkTheme').checked=true;
   }
 }
 function onchangef() {
@@ -256,6 +250,9 @@ function currentThemeCheck () {
     border='black';
   }
   let currentAccent=document.getElementById('accent-'+localStorage.getItem('accent-id'));
+  if (localStorage.getItem('accent-id')==null) {
+    currentAccent=document.getElementById('accent-blue');
+  }
   currentAccent.innerHTML="<i class='ph-check check1'></i>";
   currentAccent.style.outline="2px solid "+border;
   currentAccent.style.borderRadius="0";

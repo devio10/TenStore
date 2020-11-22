@@ -41,6 +41,9 @@ a {
 #appPage-name, #appPage-rating, #appPage-category, #appPage-download, #appPage-downloadBox, #appPage-details1 {
 	float: left;
 }
+.rating-div {
+	margin: 5px 0 0 240px;
+}
 .appPage-platform {
 	float: left;
 	width: 14px;
@@ -218,4 +221,7 @@ a {
 .second-b {
 	margin: auto 10px auto 15px;
 	box-shadow: var(--no-shadow);
+}
+.ph-info-bold {
+	display: none;
 }

@@ -100,6 +100,7 @@
   --alert: rgba(18, 18, 18, 0.65);
 	--rgba: rgba(18, 18, 18, 1);
 	--border: #333333;
+	--border-light: #333333;
 	--aCard-border: #333333;
 	--nav-click-bg: rgba(0, 0, 0, 0.5);
 
@@ -145,7 +146,7 @@
 [data-oldFont="true"] {
 	--weight: bold;
 }
-[effects-shadows='false'] {
+[no-effects-shadows='true'] {
 	--topShadow: 0px 0px 0px 0px rgba(0,0,0,0);
 	--phone-navigation-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
 	--shadow1: 0px 0px 0px 0px rgba(0,0,0,0);
@@ -154,11 +155,11 @@
 	--shadow4: 0px 0px 0px 0px rgba(0,0,0,0);
 	--shadow5: 0px 0px 0px 0px rgba(0,0,0,0);
 }
-[effects-blur='false'] {
+[no-effects-blur='true'] {
 	--blur: 0;
 	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 1);
 }
-[effects-animations='false'] {
+[no-effects-animations='true'] {
 	--transition1: 0;
 	--transition2: 0;
 	--transition3: 0;
@@ -211,7 +212,7 @@ html, body {
 
 ::-webkit-scrollbar {
     width: 14px;
-    height: 18px;
+    height: 0;
 }
 ::-webkit-scrollbar-thumb {
     height: 6px;
@@ -1256,6 +1257,12 @@ input[type='radio']:checked {
 .ad-text {
 	padding: 2px;
 	margin: auto 0 auto 12px;
+}
+.pub-card-nexticon {
+	width: 25px;
+	height: 25px;
+	padding: 2px;
+	margin: auto 15px auto auto;
 }
 textarea {
   background-color: var(--bg);

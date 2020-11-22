@@ -78,6 +78,63 @@
 .boxButton {
 	height: 40px;
 }
+#client-ad {
+	width: 90%;
+	left: 5%;
+	bottom: 20px;
+	margin: 0;
+}
+
+/*страница приложения*/
+.appPage-block {
+	width: 90%;
+}
+.first {
+	height: auto;
+	margin-top: 200px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.download-card {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+.reviews-flex {
+	margin-left: 0
+}
+#appPage-icon {
+	width: 125px;
+	height: 125px;
+	margin: 25px 0 0 0;
+	float: none;
+}
+#appPage-icon-div {
+	margin: 0;
+}
+#appPage-name, #appPage-dev {
+	margin: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+}
+#appPage-name {
+	margin-top: 10px;
+	font-size: 20px;
+}
+#appPage-category {
+	float: none;
+	margin: 0 auto 0 auto;
+}
+.rating-div {
+	margin: 5px 0 0 0;
+}
+
 #picDiv {
 	margin-top: 30px;
 	width: 80px;
@@ -274,22 +331,6 @@
 	width: 100%;
 }
 
-#appPage-icon-div {
-}
-#appPage-name, #appPage-dev, #appPage-category, #appPage-rating, #appPage-windows, #appPage-android {
-  display: none;
-}
-#appPage-download {
-  width: 90%;
-  height: 40px;
-  margin: 40px 5% 0 5%;
-  float: right;
-}
-#appPage-warningBox {
-  display: block;
-  width: 95%;
-  margin: 30px 2.25% 30px 2.25%;
-}
 .CA-block-icon {
   display: none;
 }
@@ -344,4 +385,8 @@
 }
 #notMe-button {
 	left: 5px;
+}
+.settings-alert {
+	width: 80%;
+	margin: 15px auto 15px auto;
 }

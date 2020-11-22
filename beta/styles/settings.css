@@ -1,6 +1,6 @@
 .settings-subtitleIcon {
   float: left;
-  margin: auto 10px auto 0;
+  margin: auto 20px auto 0;
   font-size: 18px;
 }
 .settings-block {
@@ -71,4 +71,12 @@
 }
 .theme-button-text {
   margin-top: 7px;
+}
+.settings-alert {
+  background: var(--bg);
+  width: 400px;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  margin: 30px;
 }
