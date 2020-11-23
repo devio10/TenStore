@@ -218,7 +218,5 @@ function ifList () {
   }
 }
 function ifNotFound () {
-  if (isNotFound!='false') {
-    document.getElementById('no-elements').style.display='block';
-  }
+  document.getElementById('no-elements').style.display='none';
 }

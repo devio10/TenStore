@@ -392,3 +392,15 @@
 	width: 80%;
 	margin: 15px auto 15px auto;
 }
+.appsList-block {
+	margin: 0;
+}
+#aCard-block {
+	margin: 0;
+	width: 100%;
+	flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: auto;
+  align-content: center;
+}

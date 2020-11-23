@@ -251,7 +251,16 @@ function login (page) {
         document.getElementById('themeButton').style.borderBottom='0';
         document.getElementById('themeButton').style.marginTop='0';
         document.getElementById('themeButton').style.borderRadius='0';
-        document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) 65%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/'+obj.user[0].bg+')';
+        let userBox=document.getElementById('userBox');
+        if (obj.user[0].bg!=0) {
+          userBox.style.background='linear-gradient(0deg, var(--rgba) var(--grad-percent), rgba(0,0,0,0) 100%), url(https://thetenstore.ru/'+obj.user[0].bg+')';
+        } else {
+          let random2 = Math.floor(Math.random() * 10) + 1;
+          userBox.style.background="linear-gradient(0deg, var(--rgba) var(--grad-percent), rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/"+random2+".jpg)";
+          userBox.style.backgroundPosition = 'center';
+          userBox.style.backgroundRepeat = 'no-repeat';
+          userBox.style.backgroundSize = 'cover';
+        }
         document.getElementById('userBox').style.backgroundRepeat='no-repeat';
         document.getElementById('userBox').style.backgroundPosition='center';
         document.getElementById('userBox').style.backgroundSize='cover';
@@ -329,7 +338,7 @@ function login (page) {
       document.getElementById('themeButton').style.borderBottom='0';
       document.getElementById('themeButton').style.marginTop='0';
       document.getElementById('themeButton').style.borderRadius='0';
-      document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) 65%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/1.jpg)';
+      document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) var(--grad-percent), rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/7.jpg)';
       document.getElementById('userBox').style.backgroundRepeat='no-repeat';
       document.getElementById('userBox').style.backgroundPosition='center';
       document.getElementById('userBox').style.backgroundSize='cover';
