@@ -33,6 +33,7 @@ if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()
 if ((getUrlVars()['tag']=='game-rec-upd')) {
   value='game';
 }
+var isNotFound;
 const request = new XMLHttpRequest();
 const url = "https://thetenstore.ru/api.php";
 let params;
@@ -48,12 +49,13 @@ request.addEventListener("readystatechange", () => {
   if (request.readyState === 4 && request.status === 200) {
     let obj=request.response;
     for(let i=0; i<obj.apps.length; i++) {
-      document.getElementById('no-elements').style.display='none';
+      isNotFound='false';
       showAppCard('aCard-block', obj.apps[i].icon, obj.apps[i].icon_pad, obj.apps[i].icon_bg, obj.apps[i].id, obj.apps[i].name, obj.apps[i].dev);
     }
   }
 });
 request.send(params);
+
 
 function confirm() {
   let selector = document.getElementById('selectBox');
@@ -213,5 +215,10 @@ function ifList () {
     document.getElementById('item-'+urlList).style.fontFamily='var(--bold)';
     document.getElementById('item-'+urlList).className='settings-nav-item chosen-nav-item';
     document.getElementById('appsList-icon').href=listIcon;
+  }
+}
+function ifNotFound () {
+  if (isNotFound!='false') {
+    document.getElementById('no-elements').style.display='block';
   }
 }

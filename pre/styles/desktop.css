@@ -185,6 +185,9 @@ html, body {
 .grey {
 	color: grey;
 }
+.accent-text {
+	color: var(--accent);
+}
 
 ::selection {
 	background: var(--accent);
@@ -1376,4 +1379,14 @@ textarea {
 }
 .hidden {
 	display: none;
+}
+.center-block {
+	left: 0;
+  display: flex;
+	flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 90vh;
+  top: 0;
+  align-items: center;
 }

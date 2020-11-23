@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>TenID</title>
-	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<title>Войти в TenID</title>
+	  <link rel="shortcut icon" href="images/login.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
@@ -56,15 +56,6 @@
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
 		<div class="tenid-blocks">
-			<div style="display: none" id="LA-alreadyLoggedIn" class="CA-block">
-				<h5 id="CA-block-title">ВОЙТИ В АККАУНТ</h5>
-				<h3 id="CA-block-title2">Вы уже вошли в аккаунт.</h3>
-				<h4 id="CA-block-text">Перед тем как войти в новый, выйдите из текущего.</h4>
-				<div style="display: flex; align-items: center">
-					<button class="CA-button CA-left"><img src="images/back.svg" class="buttonIcon">Назад</button>
-					<button class="accentButton CA-button CA-right"><img src="images/logout.svg" class="buttonIcon accentIcon">Выйти</button>
-				</div>
-			</div>
 
 			<div id="LA-1step" class="tenid-block">
 				<h1 class="tenid-title centerText">TENID</h1>
@@ -78,6 +69,7 @@
 					<a style="display: none" href="create-account" class="link CA-link">Создать аккаунт</a>
 					<button onclick="LALogin()" class="accentButton CA-button CA-right"><i class="ph-key floatButton-icon publish-icon"></i></button>
 				</div>
+				<button style="margin: 75px auto -120px auto">Регистрация</button>
 			</div>
 
 			<div style="display: none" id="LA-2step" class="tenid-block">

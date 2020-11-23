@@ -161,6 +161,7 @@
   -webkit-box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
   box-shadow:  20px 20px 60px var(--bg-dark),
              -20px -20px 60px var(--bg-light);
+  transition: var(--transition3);
 }
 .inputs-block {
 	display: flex;

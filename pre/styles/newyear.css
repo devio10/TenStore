@@ -1,5 +1,8 @@
-
-
+#topBar {
+	backdrop-filter: blur(var(--blur));
+	box-shadow: var(--topShadow);
+	background: var(--nav-bg);
+}
 .rainbow {
     text-align: center;
     text-decoration: underline;
@@ -15,12 +18,25 @@
     animation: rainbow_animation 6s ease-in-out infinite;
     background-size: 400% 100%;
 }
+#remaining {
+  font-size: 50px;
+  margin: 0;
+}
+.newyear-pic {
+  width: 300px;
+}
+.newyear-main-block {
+  background: #2196f3;
+  margin-top: -60px;
+  z-index: 0;
+  position: fixed;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
 
 @keyframes rainbow_animation {
     0%,100% {
         background-position: 0 0;
     }
-
     50% {
         background-position: 100% 0;
     }

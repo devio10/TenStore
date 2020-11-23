@@ -62,47 +62,42 @@
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
+		<div id="apps-categ" class="settings-nav">
+			<h4 onclick="category('rec-upd')" id="item-rec-upd" class="settings-nav-item"><i class="ph-clock-bold settings-subtitleIcon"></i>Недавно обновлено</h4>
+			<h4 onclick="list('popular')" id="item-popular" class="settings-nav-item"><i class="ph-star-bold settings-subtitleIcon"></i>Популярное</h4>
+			<h4 onclick="list('high-rated')" id="item-high-rated" class="settings-nav-item"><i class="ph-thumbs-up-bold settings-subtitleIcon"></i>Высокий рейтинг</h4>
+			<h4 onclick="list('editors-choice')" id="item-editors-choice" class="settings-nav-item"><i class="ph-shopping-bag-open-bold settings-subtitleIcon"></i>Выбор редакции</h4>
+			<h4 onclick="category('Связь')" id="item-communication" class="settings-nav-item"><i class="ph-chats-bold settings-subtitleIcon"></i>Связь</h4>
+			<h4 onclick="category('Музыка и видео')" id="item-media" class="settings-nav-item"><i class="ph-music-notes-bold settings-subtitleIcon"></i>Музыка и видео</h4>
+			<h4 onclick="category('Новости')" id="item-news" class="settings-nav-item"><i class="ph-newspaper-clipping-bold settings-subtitleIcon"></i>Новости</h4>
+			<h4 onclick="category('Продуктивность')" id="item-productivity" class="settings-nav-item"><i class="ph-list-numbers-bold settings-subtitleIcon"></i>Продуктивность</h4>
+			<h4 onclick="category('Здоровье')" id="item-health" class="settings-nav-item"><i class="ph-heartbeat-bold settings-subtitleIcon"></i>Здоровье</h4>
+			<h4 onclick="category('Дополнения')" id="item-addons" class="settings-nav-item"><i class="ph-paperclip-bold settings-subtitleIcon"></i>Дополнения</h4>
+			<h4 onclick="category('Шоппинг')" id="item-shopping" class="settings-nav-item"><i class="ph-handbag-bold settings-subtitleIcon"></i>Шоппинг</h4>
+			<h4 onclick="category('Видеосвязь')" id="item-videocommunication" class="settings-nav-item"><i class="ph-video-camera-bold settings-subtitleIcon"></i>Видеосвязь</h4>
+			<h4 onclick="category('Социальные сети')" id="item-social" class="settings-nav-item"><i class="ph-users-bold settings-subtitleIcon"></i>Социальные сети</h4>
+			<h4 onclick="category('Инструменты')" id="item-utilities" class="settings-nav-item"><i class="ph-nut-bold settings-subtitleIcon"></i>Инструменты</h4>
+			<h4 onclick="category('VPN и прокси')" id="item-vpn" class="settings-nav-item"><i class="ph-key-bold settings-subtitleIcon"></i>VPN и прокси</h4>
+		</div>
 
-		<div class="settings-nav">
-			<div style="margin-top: 20px">
-				<div id="apps-categ">
-					<h4 onclick="category('rec-upd')" id="item-rec-upd" class="settings-nav-item"><i class="ph-clock-bold settings-subtitleIcon"></i>Недавно обновлено</h4>
-					<h4 onclick="list('popular')" id="item-popular" class="settings-nav-item"><i class="ph-star-bold settings-subtitleIcon"></i>Популярное</h4>
-					<h4 onclick="list('high-rated')" id="item-high-rated" class="settings-nav-item"><i class="ph-thumbs-up-bold settings-subtitleIcon"></i>Высокий рейтинг</h4>
-					<h4 onclick="list('editors-choice')" id="item-editors-choice" class="settings-nav-item"><i class="ph-shopping-bag-open-bold settings-subtitleIcon"></i>Выбор редакции</h4>
-					<h4 onclick="category('Связь')" id="item-communication" class="settings-nav-item"><i class="ph-chats-bold settings-subtitleIcon"></i>Связь</h4>
-					<h4 onclick="category('Музыка и видео')" id="item-media" class="settings-nav-item"><i class="ph-music-notes-bold settings-subtitleIcon"></i>Музыка и видео</h4>
-					<h4 onclick="category('Новости')" id="item-news" class="settings-nav-item"><i class="ph-newspaper-clipping-bold settings-subtitleIcon"></i>Новости</h4>
-					<h4 onclick="category('Продуктивность')" id="item-productivity" class="settings-nav-item"><i class="ph-list-numbers-bold settings-subtitleIcon"></i>Продуктивность</h4>
-					<h4 onclick="category('Здоровье')" id="item-health" class="settings-nav-item"><i class="ph-heartbeat-bold settings-subtitleIcon"></i>Здоровье</h4>
-					<h4 onclick="category('Дополнения')" id="item-addons" class="settings-nav-item"><i class="ph-paperclip-bold settings-subtitleIcon"></i>Дополнения</h4>
-					<h4 onclick="category('Шоппинг')" id="item-shopping" class="settings-nav-item"><i class="ph-handbag-bold settings-subtitleIcon"></i>Шоппинг</h4>
-					<h4 onclick="category('Видеосвязь')" id="item-videocommunication" class="settings-nav-item"><i class="ph-video-camera-bold settings-subtitleIcon"></i>Видеосвязь</h4>
-					<h4 onclick="category('Социальные сети')" id="item-social" class="settings-nav-item"><i class="ph-users-bold settings-subtitleIcon"></i>Социальные сети</h4>
-					<h4 onclick="category('Инструменты')" id="item-utilities" class="settings-nav-item"><i class="ph-nut-bold settings-subtitleIcon"></i>Инструменты</h4>
-					<h4 onclick="category('VPN и прокси')" id="item-vpn" class="settings-nav-item"><i class="ph-key-bold settings-subtitleIcon"></i>VPN и прокси</h4>
-				</div>
-
-				<div style="display: none" id="games-categ">
-					<h4 onclick="category('game-rec-upd')" id="item-game-rec-upd" class="settings-nav-item"><i class="ph-clock-bold settings-subtitleIcon"></i>Недавно обновлено</h4>
-					<h4 onclick="category('RPG', '')" id="item-rpg" class="settings-nav-item"><i class="ph-map-trifold-bold settings-subtitleIcon"></i>RPG</h4>
-					<h4 onclick="category('Симуляторы', '')" id="item-simulation" class="settings-nav-item"><i class="ph-pedestrian-bold settings-subtitleIcon"></i>Симуляторы</h4>
-					<h4 onclick="category('Стратегии', '')" id="item-strategy" class="settings-nav-item"><i class="ph-lightbulb-bold settings-subtitleIcon"></i>Стратегии</h4>
-					<h4 onclick="category('Экшен', '')" id="item-action" class="settings-nav-item"><i class="ph-timer-bold settings-subtitleIcon"></i>Экшен</h4>
-					<h4 onclick="category('Аркада', '')" id="item-arcade" class="settings-nav-item"><i class="ph-game-controller-bold settings-subtitleIcon"></i>Аркада</h4>
-				</div>
-			</div>
+		<div style="display: none" id="games-categ" class="settings-nav">
+			<h4 onclick="category('game-rec-upd')" id="item-game-rec-upd" class="settings-nav-item"><i class="ph-clock-bold settings-subtitleIcon"></i>Недавно обновлено</h4>
+			<h4 onclick="category('RPG', '')" id="item-rpg" class="settings-nav-item"><i class="ph-map-trifold-bold settings-subtitleIcon"></i>RPG</h4>
+			<h4 onclick="category('Симуляторы', '')" id="item-simulation" class="settings-nav-item"><i class="ph-pedestrian-bold settings-subtitleIcon"></i>Симуляторы</h4>
+			<h4 onclick="category('Стратегии', '')" id="item-strategy" class="settings-nav-item"><i class="ph-lightbulb-bold settings-subtitleIcon"></i>Стратегии</h4>
+			<h4 onclick="category('Экшен', '')" id="item-action" class="settings-nav-item"><i class="ph-timer-bold settings-subtitleIcon"></i>Экшен</h4>
+			<h4 onclick="category('Аркада', '')" id="item-arcade" class="settings-nav-item"><i class="ph-game-controller-bold settings-subtitleIcon"></i>Аркада</h4>
 		</div>
 
 
 		<div class="settings">
 			<h2 id="dev-title" class="settings-tab">Недавно обновлено</h2>
-			<h4 id="no-elements">По вашему запросу ничего не нашлось.</h4>
+			<h4 id="no-elements" style="display: none">По вашему запросу ничего не нашлось.</h4>
 			<div id="aCard-block" class="flex-grid">
 
 			</div>
 		</div>
-		<script>login(); ub_themeBtn(); setTagName(); ifSearch(); ifGame(); ifList()
+		<script>login(); ub_themeBtn(); setTagName(); ifSearch(); ifGame(); ifList(); ifNotFound();
 			/* showAppCard('aCard-block', 'images/appIcons/notepads.png', '0', 'white', '36', 'Notepads', 'Jackie Liu');
 			showAppCard('aCard-block', 'images/appIcons/edge.webp', '0', '', '36', 'Microsoft Edge', 'Microsoft');
 			showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'white', '1', 'News', 'Microsoft');
