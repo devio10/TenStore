@@ -19,24 +19,6 @@
 		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
 	<body>
-		<nav id="phoneNav" class="phone-navigation">
-		  <a href="library" class="phoneNav-link">
-		    <i class="ph-archive phoneNav-icon"></i>
-		    <span class="phoneNav-text">Библиотека</span>
-		  </a>
-		  <a href="settings" class="phoneNav-link">
-		    <i class="ph-gear-six phoneNav-icon"></i>
-		    <span class="phoneNav-text">Настройки</span>
-		  </a>
-		  <a href="edit-account" class="phoneNav-link">
-		    <i class="ph-pencil-simple phoneNav-icon"></i>
-		    <span class="phoneNav-text">Редактирование</span>
-		  </a>
-			<a href="user" class="phoneNav-link">
-		    <i class="ph-user-circle-fill phoneNav-icon phoneNav-link-active"></i>
-		    <span class="phoneNav-text phoneNav-link-active">Профиль</span>
-		  </a>
-		</nav>
 		<nav style="display: none">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
@@ -66,7 +48,7 @@
 
 		<div class="tenid-blocks">
 
-			<div id="CA-1step" class="CA-block">
+			<div id="CA-1step" class="tenid-block">
 				<h1 class="tenid-title centerText">TENID</h1>
 				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
 				<div style="display: grid">
@@ -74,10 +56,10 @@
 					<input id="CA-lastName" placeholder="Фамилия" type="text" class="textInput CA-input">
 					<input id="CA-login" placeholder="Логин" type="text" class="textInput CA-input">
 				</div>
-				<button onclick="CAFirst()" class="accentButton CA-button CA-right"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+				<button onclick="CAFirst()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
 			</div>
 
-			<div style="display: none" id="CA-2step" class="CA-block">
+			<div style="display: none" id="CA-2step" class="tenid-block">
 				<h1 class="tenid-title centerText">TENID</h1>
 				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
 				<div style="display: grid; margin-bottom: 10px">
@@ -94,23 +76,23 @@
 				</div>
 
 				<div style="display: flex; align-items: center">
-					<button onclick="back('CA-1step')" class="accentButton CA-button CA-right"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
-					<button onclick="CASecond()" class="accentButton CA-button CA-right"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+					<button onclick="back('CA-1step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CASecond()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
 				</div>
 			</div>
 
-			<div style="display: none" id="CA-3step" class="CA-block">
+			<div style="display: none" id="CA-3step" class="tenid-block">
 				<h1 class="tenid-title centerText">TENID</h1>
 				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
 				<div id="CA-picDiv" style="display: block"><img id="CA-userPic" src="images/user.svg"></div>
 				<input id="CA-fileInput" type="file" class="fileInput" accept="image/jpeg,image/gif,image/png">
 				<div style="display: flex; align-items: center">
-					<button onclick="back('CA-2step')" class="accentButton CA-button CA-right"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
-					<button onclick="CAThird()" class="accentButton CA-button CA-right"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+					<button onclick="back('CA-2step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CAThird()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
 				</div>
 			</div>
 
-			<div style="display: none" id="CA-4step" class="CA-block">
+			<div style="display: none" id="CA-4step" class="tenid-block">
 				<h1 class="tenid-title centerText">TENID</h1>
 				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
 				<div style="display: grid; margin-bottom: 10px">
@@ -118,24 +100,24 @@
 				</div>
 				<h5 class="grey centerText">На указанную почту придёт письмо с ссылкой<br> для подтверждения. <a href='help?code=activation'>Подробнее</a></h5>
 				<div style="display: flex; align-items: center">
-					<button onclick="back('CA-3step')" class="accentButton CA-button CA-right"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
-					<button onclick="CAFourth()" class="accentButton CA-button CA-right"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+					<button onclick="back('CA-3step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CAFourth()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
 				</div>
 			</div>
 
-			<div style="display: none" id="CA-5step" class="CA-block">
+			<div style="display: none" id="CA-5step" class="tenid-block">
 				<h1 class="tenid-title centerText">TENID</h1>
 				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
 				<div style="text-align: center; margin-top: 25px">
 					<div style="display: inline-block" class="g-recaptcha" data-sitekey="6LcY78EZAAAAAPHlMlm1evtyDO0jgGuDUoGcMAS_"></div>
 				</div>
 				<div style="display: flex; align-items: center">
-					<button onclick="back('CA-4step')" class="accentButton CA-button CA-right"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
-					<button onclick="CAFifth()" class="accentButton CA-button CA-right"><i class="ph-check floatButton-icon publish-icon"></i></button>
+					<button onclick="back('CA-4step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CAFifth()" class="accentButton CA-button tenid-main-button"><i class="ph-check floatButton-icon publish-icon"></i></button>
 				</div>
 			</div>
 
-			<div style="display: none" id="CA-6step" class="CA-block">
+			<div style="display: none" id="CA-6step" class="tenid-block">
 				<h1 class="tenid-title centerText">TENID</h1>
 				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
 				<div style="display: grid">
