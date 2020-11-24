@@ -96,8 +96,7 @@ function ifGame () {
     document.getElementById('chosen').style.fontFamily='var(--regular)';
     document.getElementById('gameTab').style.fontFamily='var(--bold)';
     document.getElementById('apps-categ').style.display='none';
-    document.getElementById('games-categ').style.display='block';
-    document.getElementById('games-categ').className='games-show';
+    document.getElementById('games-categ').style.display='var(--tabs-display)';
     document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
     document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
     document.getElementById('apps-span').className='phoneNav-text';

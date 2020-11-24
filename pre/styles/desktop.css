@@ -89,6 +89,7 @@
   --gradient: linear-gradient( rgba(255, 255, 255, 0.4) 5%, rgba(255, 255, 255, 0.4) );
 	--topCard-gradient: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) 73%, rgba(0,0,0,0.2) 100%);
 	--card2-gradient: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.2) 100%);
+	--tabs-display: block;
 }
 [data-theme="dark"] {
 	/*цвета*/
@@ -1421,4 +1422,7 @@ textarea {
 .build-pic {
 	width: 300px;
 	margin: 0 auto 0 auto;
+}
+#item-rec-upd, #item-game-rec-upd, #item-personal {
+	margin-top: 20px;
 }

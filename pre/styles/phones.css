@@ -5,6 +5,9 @@
 	--aCard-icon: 125px;
 	--aCard-icon2: 111px;
 	--aCard-icon-padding: 7px;
+
+	/*прочее*/
+	--tabs-display: flex;
 }
 #mLogo, #mLogo2 {
 	margin: 15px 0 15px 0;
@@ -218,8 +221,12 @@
   user-select: none;
 	margin: 0 0 0 0;
 }
+.tabs-flex {
+	display: flex;
+}
 #item-rec-upd, #item-game-rec-upd, #item-personal {
-	margin-left: 0.5%;
+	margin-left: 3%;
+	margin-top: 10px;
 }
 #item-vpn, #item-arcade {
 	margin-right: 3%;
@@ -396,7 +403,7 @@
 	margin: 0;
 }
 #aCard-block {
-	margin: 0;
+	margin: 0 0 60px 0;
 	width: 100%;
 	flex-wrap: wrap;
   flex-direction: row;
