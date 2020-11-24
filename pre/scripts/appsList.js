@@ -22,7 +22,7 @@ if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()
   value=getUrlVars()['type'];
 } else if (getUrlVars()['search']!=null) {
   action='d6Gj59';
-  search=getUrlVars()['search'];
+  search=decodeURIComponent(getUrlVars()['search']);
 } else if (getUrlVars()['list']!=null) {
   select=getUrlVars()['list'];
   value=0;
@@ -86,8 +86,8 @@ function list(listName) {
 function ifSearch () {
   if (getUrlVars()['search']!=null) {
     document.getElementById('appsList-title').innerHTML='Поиск';
-    document.getElementById('dev-title').innerHTML='Поиск по запросу "'+getUrlVars()['search']+'"';
-    document.getElementById('siteSearch').value=getUrlVars()['search'];
+    document.getElementById('dev-title').innerHTML='Поиск по запросу "'+decodeURIComponent(getUrlVars()['search'])+'"';
+    document.getElementById('siteSearch').value=decodeURIComponent(getUrlVars()['search']);
     document.getElementById('appsList-icon').href='images/search.svg';
   }
 }
