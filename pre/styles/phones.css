@@ -360,12 +360,12 @@
 .CA-block-icon {
   display: none;
 }
-#randomPassLink {
-  margin-left: 7.5%;
-}
+
 #CA-warningBox {
-  margin: 15px 7.5% -20px 7.5%;
-  width: 85%;
+  width: 80%;
+	left: 10%;
+	top: 30px;
+	bottom: auto;
 }
 #CA-fileInput {
   width: 60%;
