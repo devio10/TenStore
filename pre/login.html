@@ -16,7 +16,24 @@
 		<script src="https://unpkg.com/phosphor-icons"></script>
 	</head>
 	<body>
-
+		<nav id="phoneNav" class="phone-navigation">
+		  <a href="library" class="phoneNav-link">
+		    <i class="ph-archive phoneNav-icon"></i>
+		    <span class="phoneNav-text">Библиотека</span>
+		  </a>
+		  <a href="settings" class="phoneNav-link">
+		    <i class="ph-gear-six phoneNav-icon"></i>
+		    <span class="phoneNav-text">Настройки</span>
+		  </a>
+		  <a href="edit-account" class="phoneNav-link">
+		    <i class="ph-pencil-simple phoneNav-icon"></i>
+		    <span class="phoneNav-text">Редактирование</span>
+		  </a>
+			<a href="user" class="phoneNav-link">
+		    <i class="ph-user-circle-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span class="phoneNav-text phoneNav-link-active">Профиль</span>
+		  </a>
+		</nav>
 		<nav style="display: none">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
@@ -50,7 +67,7 @@
 
 				<div class="center-flex login-buttons">
 					<a style="display: none" href="create-account" class="link CA-link">Создать аккаунт</a>
-					<button onclick="LALogin()" class="accentButton CA-button tenid-main-button"><i class="ph-key floatButton-icon publish-icon"></i></button>
+					<button onclick="LALogin()" class="accentButton CA-button CA-right"><i class="ph-key floatButton-icon publish-icon"></i></button>
 				</div>
 				<button onclick="window.open('create-account', '_self')" style="margin: 75px auto -120px auto">Регистрация</button>
 			</div>
@@ -65,10 +82,10 @@
 					<h3 id="LA-name"></h3>
 				</div>
 				<div class="center-flex login-buttons">
-					<button id="notMe-button" onclick="notMe()" class="accentButton CA-button tenid-main-button main-button-left">
+					<button id="notMe-button" onclick="notMe()" class="accentButton CA-button CA-right">
 						<i class="ph-x floatButton-icon login-button-icon"></i>
 					</button>
-					<button id="confirm-button" onclick="LASave()" class="accentButton CA-button tenid-main-button">
+					<button id="confirm-button" onclick="LASave()" class="accentButton CA-button CA-right">
 						<i class="ph-check floatButton-icon login-button-icon"></i>
 					</button>
 				</div>
