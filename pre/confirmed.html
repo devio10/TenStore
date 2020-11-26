@@ -37,25 +37,31 @@
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
+		<div class="tenid-blocks">
+			<div id="CoA-code0" class="tenid-block">
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/completed.png">
+				</div>
+				<h3 class="centerText" style="margin: 20px 0 0 0">Всё готово!</h3>
+				<h5 style="margin-bottom: 0" class="grey centerText">
+					Мы не успели сделать библиотеку и отложили её<br> до Нового Года. Оставайтесь на связи!
+				</h5>
+				<div style="display: flex; align-items: center">
+					<button onclick="window.open('https://thetenstore.ru/', '_self');" class="accentButton CA-button tenid-main-button"><i class="ph-house floatButton-icon publish-icon"></i></button>
+				</div>
+			</div>
+			<div style="display: none" id="CoA-code1" class="CA-block">
+				<h5 style="margin: 20px; font-family: var(--bold)">ПОДТВЕРДИТЬ АККАУНТ</h5>
+				<h3 style="margin: 50px 20px 0 20px">Кажется, что-то пошло не так</h3>
+				<h4 style="margin: 20px 20px">Сервер вернул код ошибки 1 (недействительная ссылка).</h4>
+				<div style="display: flex; align-items: center">
+					<button onclick="window.open('https://t.me/dnavalny', '_self');" class="accentButton CA-button CA-right">
+						<img src="images/support.svg" class="buttonIcon accentIcon">Поддержка
+					</button>
+				</div>
+			</div>
+		</div>
 
-		<div id="CoA-code0" class="CA-block">
-			<h5 style="margin: 20px; font-family: var(--bold)">ПОДТВЕРДИТЬ АККАУНТ</h5>
-			<h3 style="margin: 50px 20px 0 20px">Вы подтвердили аккаунт</h3>
-			<h4 style="margin: 20px 20px">Теперь вы можете устанавливать приложения и игры с TenStore, а также обновлять свои данные.</h4>
-			<div style="display: flex; align-items: center">
-				<button onclick="window.open('https://thetenstore.ru', '_self');" class="accentButton CA-button CA-right"><img src="images/home.svg" class="buttonIcon accentIcon">Главная</button>
-			</div>
-		</div>
-		<div style="display: none" id="CoA-code1" class="CA-block">
-			<h5 style="margin: 20px; font-family: var(--bold)">ПОДТВЕРДИТЬ АККАУНТ</h5>
-			<h3 style="margin: 50px 20px 0 20px">Кажется, что-то пошло не так</h3>
-			<h4 style="margin: 20px 20px">Сервер вернул код ошибки 1 (недействительная ссылка).</h4>
-			<div style="display: flex; align-items: center">
-				<button onclick="window.open('https://t.me/dnavalny', '_self');" class="accentButton CA-button CA-right">
-					<img src="images/support.svg" class="buttonIcon accentIcon">Поддержка
-				</button>
-			</div>
-		</div>
 
 		<script>login(); ub_themeBtn(); LAcheckLogin(); confirmedPage()</script>
 		<script src='scripts/search-bar.js'></script>
