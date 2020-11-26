@@ -83,7 +83,7 @@ function CASecond () {
   pass = SHA256(document.getElementById('CA-password').value);
   let passRep = SHA256(document.getElementById('CA-repeatPassword').value);
   if ((pass == 0) || (passRep == 0)) {
-    alert("Заполните все поля.");
+    warningBox('show', "Заполните все поля.");
   } else if (passRep != pass) {
     warningBox('show', 'Проверьте правильность введённых паролей.');
   } else if (document.getElementById('CA-password').value.length < 8) {
@@ -147,7 +147,8 @@ function CAFifth () {
             warningBox('hide');
             localStorage.setItem('login', login);
             localStorage.setItem('password', pass);
-            window.open('https://thetenstore.ru/account-created?code=' + request.responseText, '_self');
+            console.log('yee');
+            window.open('account-created?code=' + encodeURI(request.responseText), '_self');
           }
     });
     request.send(params);
@@ -173,4 +174,9 @@ function CACheckLogin () {
       }
     }
   };
+}
+function copy() {
+  var copyText = document.querySelector("#copy-pass");
+  copyText.select();
+  document.execCommand("copy");
 }
