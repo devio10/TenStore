@@ -5,18 +5,145 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>TenStore — магазин приложений</title>
 	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-		<link href="styles/old-version.css" rel="stylesheet" type="text/css">
+		<link href="styles/popup.css" rel="stylesheet" type="text/css">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 
 		<!-- СКРИПТЫ -->
 		<script src="https://unpkg.com/phosphor-icons"></script>
+		<script src="scripts/app-card.js"></script>
 		<script src="scripts/theme.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/topBar.js"></script>
+		<script src='scripts/phone-check.js'></script>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
 	<body>
-		<h2 class="centerText">Бета версия больше не поддерживается</h2>
-		<div style="margin: 0 auto 0 auto; display: flex; flex-direction: column; align-content: center">
-			<h4 style="margin: 0 auto 40px auto; width: 45%; text-align: center">Доступна более новая и стабильная PR версия сайта. Чтобы выключить перенаправление сюда, переключитесь на другую ветку.</h4>
-			<button onclick="window.open('https://thetenstore.ru/pre/settings', '_self')">Переключить</button>
+
+		<nav id="nav" style="position: sticky; top: 0;">
+			<ul id="topBar" style="display: flex; align-items: center">
+				<a id="mLogo">TENSTORE</a>
+				<a id="logo">TENSTORE</a>
+				<a class="separate" id="first">•</a>
+				<a class="topItem" id="chosen" href="index">ГЛАВНАЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+				<a class="separate">•</a>
+				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
+				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+
+		<nav id="phoneNav" class="phone-navigation">
+		  <a href="index" class="phoneNav-link">
+		    <i class="ph-house-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span class="phoneNav-text phoneNav-link-active">Главная</span>
+		  </a>
+		  <a href="appsList" class="phoneNav-link">
+		    <i class="ph-squares-four phoneNav-icon"></i>
+		    <span class="phoneNav-text">Приложения</span>
+		  </a>
+		  <a href="appsList?type=game" class="phoneNav-link">
+		    <i class="ph-game-controller phoneNav-icon"></i>
+		    <span class="phoneNav-text">Игры</span>
+		  </a>
+		</nav>
+		<button id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<h5 id="userbox-email" class="centerText"></h5>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
+
+		<div class="topCard-block">
+			<div id="ec-game" class="topCard">
+				<h5 class="topCard-text topCard-title">Выбор редакции • игра</h5>
+				<h2 id="ec-game-name" class="topCard-text topCard-name"></h2>
+			</div>
+
+			<div id="ec-app" class="topCard">
+				<h5 class="topCard-text topCard-title">Выбор редакции • приложение</h5>
+				<h2 id="ec-app-name" class="topCard-text topCard-name"></h2>
+			</div>
+
+			<div id="random-game" class="topCard">
+				<h5 class="topCard-text topCard-title">Случайная игра</h5>
+				<h2 id="random-game-name" class="topCard-text topCard-name"></h2>
+			</div>
+
+			<div onclick="window.open('appsList?tag=rec-upd', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/rec-upd.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Недавно обновлено</h3>
+				</div>
+			</div>
+
+			<div onclick="window.open('appsList?list=popular', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/popular.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Популярное</h3>
+				</div>
+			</div>
+
+			<div onclick="window.open('appsList?list=high-rated', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/high-rated.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Высокий рейтинг</h3>
+				</div>
+			</div>
+
+			<div onclick="window.open('appsList?list=classic', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/backgrounds/classic.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title">Классика</h3>
+				</div>
+			</div>
+		</div>
+
+		<div id="tenstore-2.0" class="popup-blur-bg">
+			<div id="window1" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-iconWhite"></i>
+				<h4 class="popup-title white">TenStore</h4>
+				<div class="popup-tenstore-logo-block"><img src="images/tenstore-2.2.svg" class="popup-tenstore-logo"></div>
+				<h1 class="popup-title2 centerText white">TenStore 2.2</h1>
+				<h4 class="popup-text2 centerText white">Ваш TenStore только что обновился и стал лучше.</h4>
+				<div class="popup-navigation-block">
+					<div class="popup-navigation back"><i class="ph-caret-left popup-navigation-icon"></i></div>
+					<div class="popup-navigation next"><i class="ph-caret-right popup-navigation-icon"></i></div>
+				</div>
+				<div class="flex">
+					<button id="button1" onclick="popupNext('window2')" class="popup-button white">Что нового?</button>
+					<button id="button1" onclick="remindLater()" class="popup-button white">Напомнить позже</button>
+				</div>
+			</div>
+			<div id="window2" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-iconWhite"></i>
+				<h4 class="popup-title white">TenStore</h4>
+				<h1 class="popup-title3 white">Файлы приложений</h1>
+				<h4 class="popup-text white">Отныне можно выкладывать бесконечное количество вариаций одного приложения. Больше возможностей и для разработчиков, и для пользователей.</h4>
+				<button id="button2" onclick="popupNext('window3')" class="popup-button white">Далее</button>
+			</div>
+			<div id="window3" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-icon window3-text"></i>
+				<h4 class="popup-title window3-text">TenStore</h4>
+				<h1 class="popup-title3 window3-text">Автоматическая тёмная тема</h1>
+				<h4 class="popup-text window3-text">При включении этой настройки, сайт будет принимать тему браузера.</h4>
+				<button id="button3" onclick="popupNext('window4')" class="popup-button">Далее</button>
+			</div>
+			<div id="window4" class="popup-window">
+				<i class="ph-shopping-bag-open-bold popup-icon"></i>
+				<h4 class="popup-title">TenStore</h4>
+				<h1 class="popup-title3">Список приложений</h1>
+				<h4 class="popup-text">Полностью новый список приложений, позволяющий выбрать категорию, вместе с обновлёнными карточки.</h4>
+				<button id="button2" onclick="popupNext('window5')" class="popup-button black-border">Далее</button>
+			</div>
+		</div>
+		<script>login(); ub_themeBtn()</script>
+		<script src="scripts/index.js"></script>
+		<script>/*popupNext('window3')</script>
+		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

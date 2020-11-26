@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Создать аккаунт TenID</title>
+	  <link rel="shortcut icon" href="images/newUser.svg" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/topBar.js"></script>
+		<script src="scripts/login.js"></script>
+		<script src='scripts/phone-check.js'></script>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+		<script src="https://unpkg.com/phosphor-icons"></script>
+		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
+	</head>
+	<body>
+		<nav style="display: none">
+			<ul id="topBar" style="display: flex; align-items: center">
+				<img onclick="goBack()" id="backButton" src="images/back2.svg">
+				<a id="mLogo2">Создать аккаунт</a>
+				<a id="logo">TENID</a>
+				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<h5 id="userbox-email" class="centerText"></h5>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
+		</div>
+
+		<div id="CA-warningBox">
+			<h5 id="warningBox-text"></h5>
+		</div>
+
+
+		<div class="tenid-blocks">
+
+			<div id="CA-1step" class="tenid-block">
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
+				<div style="display: grid">
+					<input id="CA-name" placeholder="Имя" type="text" class="textInput CA-input">
+					<input id="CA-lastName" placeholder="Фамилия" type="text" class="textInput CA-input">
+					<input id="CA-login" placeholder="Логин" type="text" class="textInput CA-input">
+				</div>
+				<button onclick="CAFirst()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+			</div>
+
+			<div style="display: none" id="CA-2step" class="tenid-block">
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
+				<div style="display: grid; margin-bottom: 10px">
+					<input id="CA-password" placeholder="Пароль" type="password" class="textInput CA-input">
+					<input id="CA-repeatPassword" placeholder="Повторите пароль" type="password" class="textInput CA-input">
+				</div>
+
+				<div id="copy-block">
+					<h4 style="margin: 0">Ваш пароль: <input type="text" value="@Tg%gdzhfGjbqnM" id="copy-pass" style="margin: 0 0 0 5px"></input></h4>
+					<button onclick="copy()" class="copy-button"><i class="ph-copy-simple-bold floatButton-icon copy-icon"></i></button>
+				</div>
+				<div style="text-align: center; margin-top: 15px">
+					<a id="randomPassLink" class="centerText" href="#" onclick="randomPass()">Сгенерировать пароль</a>
+				</div>
+
+				<div style="display: flex; align-items: center">
+					<button onclick="back('CA-1step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CASecond()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+				</div>
+			</div>
+
+			<div style="display: none" id="CA-3step" class="tenid-block">
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
+				<div id="CA-picDiv" style="display: block"><img id="CA-userPic" src="images/user.svg"></div>
+				<input id="CA-fileInput" type="file" class="fileInput" accept="image/jpeg,image/gif,image/png">
+				<div style="display: flex; align-items: center">
+					<button onclick="back('CA-2step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CAThird()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+				</div>
+			</div>
+
+			<div style="display: none" id="CA-4step" class="tenid-block">
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
+				<div style="display: grid; margin-bottom: 10px">
+					<input id="CA-email" placeholder="Почта" type="text" class="textInput CA-input">
+				</div>
+				<h5 class="grey centerText">На указанную почту придёт письмо с ссылкой<br> для подтверждения. <a href='help?code=activation'>Подробнее</a></h5>
+				<div style="display: flex; align-items: center">
+					<button onclick="back('CA-3step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CAFourth()" class="accentButton CA-button tenid-main-button"><i class="ph-caret-right floatButton-icon publish-icon"></i></button>
+				</div>
+			</div>
+
+			<div style="display: none" id="CA-5step" class="tenid-block">
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
+				<div style="text-align: center; margin-top: 25px">
+					<div style="display: inline-block" class="g-recaptcha" data-sitekey="6LcY78EZAAAAAPHlMlm1evtyDO0jgGuDUoGcMAS_"></div>
+				</div>
+				<div style="display: flex; align-items: center">
+					<button onclick="back('CA-4step')" class="accentButton CA-button tenid-main-button main-button-left"><i class="ph-caret-left floatButton-icon publish-icon"></i></button>
+					<button onclick="CAFifth()" class="accentButton CA-button tenid-main-button"><i class="ph-check floatButton-icon publish-icon"></i></button>
+				</div>
+			</div>
+
+			<div style="display: none" id="CA-6step" class="tenid-block">
+				<h1 class="tenid-title centerText">TENID</h1>
+				<h4 style="margin-top: 5px" class="tenid-title centerText grey">Регистрация</h4>
+				<div style="display: grid">
+					<img class="build-pic" src="images/vectors/build.png">
+				</div>
+				<h3 class="centerText" style="margin: 0 0 0 0">Создание аккаунта...</h3>
+				<h5 style="margin-bottom: 60px" class="grey centerText">
+					Вы будете перенаправлены на другую<br> страницу, когда всё будет готово.
+				</h5>
+			</div>
+		</div>
+		<script src="scripts/create-account.js"></script>
+		<script>login(); ub_themeBtn(); CACheckLogin(); var onBlock</script>
+		<script src='scripts/search-bar.js'></script>
+	</body>
+</html>

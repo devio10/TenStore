@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TenStore</title>
+	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
+		<link href="styles/user.css" rel="stylesheet" type="text/css">
+		<!-- СКРИПТЫ -->
+		<script src="https://unpkg.com/phosphor-icons"></script>
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/phone-check.js"></script>
+	</head>
+	<body id="user-background">
+		<nav style="position: sticky; top: 0;">
+			<ul id="topBar" style="display: flex; align-items: center">
+				<img onclick="goBack()" id="backButton" src="images/back2.svg">
+				<a id="mLogo2">dnavalny</a>
+				<a id="logo">TENID</a>
+				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+				<img onclick="userBox()" id="userPic" src="images/user.svg">
+			</ul>
+		</nav>
+		<nav id="phoneNav" class="phone-navigation">
+		  <a href="index" class="phoneNav-link">
+		    <i class="ph-user-circle-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span class="phoneNav-text phoneNav-link-active">Профиль</span>
+		  </a>
+		  <a href="appsList" class="phoneNav-link">
+		    <i class="ph-pencil-simple phoneNav-icon"></i>
+		    <span class="phoneNav-text">Редактирование</span>
+		  </a>
+		  <a href="appsList?type=game" class="phoneNav-link">
+		    <i class="ph-gear-six phoneNav-icon"></i>
+		    <span class="phoneNav-text">Настройки</span>
+		  </a>
+		</nav>
+		<button id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<h5 id="userbox-email" class="centerText"></h5>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
+		</div>
+
+		<div class="CA-block" id="not-logged-in" style="width: 550px; margin-bottom: 0">
+			<img src="images/user.svg" class="CA-block-icon">
+			<h5 id="CA-block-title">АККАУНТ</h5>
+			<h3 class="CA-block-title2">Вы не вошли в аккаунт</h3>
+			<h4 class="CA-block-text">Кажется, вы не вошли в аккаунт. Для получения доступа ко всем функциям TenStore, войдите или зарегистрируйтесь.</h4>
+			<div style="display: flex; align-items: center; margin: 30px 0 20px 0">
+				<button onclick="window.open('https://thetenstore.ru/create-account', '_self')" style="margin: 0 auto 0 auto" class="accentButton">Создать аккаунт</button>
+				<button onclick="window.open('https://thetenstore.ru/login', '_self')" style="margin: 0 auto 0 auto">Войти в аккаунт</button>
+			</div>
+		</div>
+		<div id="logged-in" style="display: none">
+			<div class="CA-block" id="main-block" style="width: 550px; margin-bottom: 0">
+				<div id="CA-picDiv" style="display: block"><img id="CA-userPic"><img id="kingIcon"></div>
+				<h2 class="centerText" id="user-name"></h2>
+				<h4 class="centerText" id="user-short-bio"></h4>
+				<h4 class="centerText" style="display: none" id="user-developer-info"></h4>
+				<div style="display: flex; align-items: center; margin: 30px 0 20px 0">
+					<button id="user-edit-button" style="margin: 0 auto 0 auto" class="accentButton">Редактировать</button>
+					<button id="user-my-apps" style="margin: 0 auto 0 auto">Мои приложения</button>
+				</div>
+			</div>
+			<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
+				<h3 class="CA-block-title2">Аккаунт разработчика</h3>
+				<h4 class="CA-block-text">Сделайте ваш профиль аккаунтом разработчика
+					и получите возможность публиковать свои приложения</h4>
+			</div>
+			<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
+				<h3 class="CA-block-title2">О себе</h3>
+				<h4 id="user-bio" class="CA-block-text"></h4>
+				<h3 class="CA-block-title2">Контакты</h3>
+				<h4 id="user-contacts" class="CA-block-text">Telegram: <a class="link">@dnavalny</a><br>
+					ВКонтакте: <a class="link">@dmitrynavalny</a><br>
+					Почта: <a class="link">dmitrynavalny@outlook.com</a>
+				</h4>
+			</div>
+			<div class="CA-block" id="user-appsBlock" style="width: 550px; margin-top: 40px; margin-bottom: 60px; display: none">
+				<h3 class="CA-block-title2">Приложения</h3>
+				<h4 class="CA-block-text">У этого разработчика нет приложений.</h4>
+			</div>
+		</div>
+
+		<script>login('user'); ub_themeBtn()</script>
+		<script src='scripts/search-bar.js'></script>
+	</body>
+</html>

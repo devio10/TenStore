@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title id="appPage-title">Страница приложения — TenStore</title>
+		<link id="appPage-titleIcon" rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
+		<link href="styles/popup.css" rel="stylesheet" type="text/css">
+		<link href="styles/appPage-basic.css" rel="stylesheet" type="text/css">
+		<link href="styles/appPage-medium.css" rel="stylesheet" type="text/css">
+
+
+		<!-- СКРИПТЫ -->
+		<script src="scripts/theme.js"></script>
+		<script src="scripts/tenid.js"></script>
+		<script src="scripts/app-card.js"></script>
+		<script src='scripts/phone-check.js'></script>
+		<script src="https://unpkg.com/phosphor-icons"></script>
+		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
+	</head>
+	<body>
+		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
+		<div id="userBox">
+			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
+			<h3 id="name" class="centerText"></h3>
+			<h5 id="userbox-email" class="centerText"></h5>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
+		</div>
+		<div id="appPage">
+			<div id="appPage-smallBg">
+				<nav style="position: sticky; top: 0;">
+					<ul id="topBar" style="display: flex; align-items: center">
+						<img onclick="goBack()" id="backButton" src="images/back2.svg">
+						<a id="mLogo2">Страница приложения</a>
+						<a id="logo">TENSTORE</a>
+						<a class="separate" id="first">•</a>
+						<a class="topItem" href="index">ГЛАВНАЯ</a>
+						<a class="separate">•</a>
+						<a class="topItem" href="appsList">ПРИЛОЖЕНИЯ</a>
+						<a class="separate">•</a>
+						<a class="topItem" href="appsList?type=game">ИГРЫ</a>
+						<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+						<img loading='lazy' onclick="userBox()" id="userPic" src="images/user.svg">
+					</ul>
+				</nav>
+
+				<div class="appPage-block first wide">
+					<div id="appPage-icon-div"><img id="appPage-icon"></div>
+					<div id="afb" style="display: flex; flex-direction: column">
+						<h2 id="appPage-name"></h2>
+						<h3 id="appPage-dev"></h3>
+					</div>
+					<div class="flex rating-div">
+						<i class="ph-thumbs-up-bold app-rating"></i><h4 id="app-likes" class="app-ratingNum"></h4>
+						<i class="ph-thumbs-down-bold app-rating"></i><h4 id="app-dislikes" class="app-ratingNum"></h4>
+					</div>
+					<h4 id="appPage-category" style="margin: 5px 35px 35px 35px"><a class="link" href=""></a></h4>
+				</div>
+
+				<div class="appPage-block wide auto-height">
+					<h3 style="margin: 35px 25px 10px 25px">Файлы</h3>
+					<div class="reviews-flex" id="download-cards-block">
+
+						<div style="display: none" class="download-card">
+							<img class='download-card-icon'>
+							<div class='flex flex-column download-card-text'>
+								<h4 class='download-card-title'>Название платформы</h4>
+								<h5 class='download-card-description grey'>разрядность • версия • дата • вес</h5>
+							</div>
+							<i class='ph-info-bold download-card-nexticon'></i>
+							<i class='ph-download-simple-bold download-card-nexticon'></i>
+						</div>
+
+					</div>
+				</div>
+				<div class="appPage-block wide">
+					<h3 style="padding: 25px; margin: 0">Скриншоты</h3>
+					<img onclick="scrollScreenshots()" id="scr-btn-back" class="screenshots-buttons" src="images/navigation/back.svg">
+					<div class="flex">
+						<div id="screenshots">
+
+						</div>
+						<img onclick="scrollScreenshots('forward')" id="scr-btn-forward" class="screenshots-buttons" src="images/navigation/forward.svg">
+					</div>
+
+				</div>
+				<div class="appPage-block wide auto-height">
+					<h3 style="padding: 25px; margin: 0">О приложении</h3>
+					<h4 id="app-description"></h4>
+						<a onclick="fullDescription()" id="showFull" class="desc-block">Показать полностью</a>
+				</div>
+				<div class="appPage-block wide auto-height">
+
+				</div>
+
+				<div class="appPage-block wide auto-height">
+					<h3 style="padding: 25px; margin: 0">Комментарии</h3>
+						<div class="reviews-flex" id="reviews-block">
+
+							<div style="display: none" class='review-card'>
+								<div class='flex flex-row'>
+									<img loading='lazy' class='review-card-userPic' src='images/user.svg'>
+									<h5 class='review-card-name'>dnavalny</h5>
+									<button onclick="LALogin()" class="accentButton publish-button first-b"><i class="ph-thumbs-up floatButton-icon login-button-icon like-button"></i></button>
+									<button onclick="LALogin()" class="accentButton publish-button second-b"><i class="ph-thumbs-down floatButton-icon login-button-icon dislike-button"></i></button>
+								</div>
+								<textarea id="review-text" placeholder="Ваш комментарий..."></textarea>
+
+							</div>
+
+							<div style="display: none" class='review-card disliked'>
+								<div class='flex flex-row'>
+									<img loading='lazy' class='review-card-userPic' src='images/user.svg'>
+									<h5 class='review-card-name'>ZeroKatya</h5>
+								</div>
+								<h5 class='review-card-text'>на вкус вкусно</h5>
+							</div>
+
+					</div>
+
+				</div>
+				<div class="appPage-block wide">
+					<h3 style="padding: 25px; margin: 0">Этот разработчик</h3>
+					<div id="aCard-block" style="margin-left: 0; margin-top: 0; border-radius: 0; width: 100%">
+
+					</div>
+				</div>
+
+			</div>
+			</div>
+			<div id="client-ad">
+				<img class="ad-icon" src="images/favicon.png">
+				<h5 class="ad-text">Скачивать приложения легче в TenStore для Windows. <a href="app?id=10&source=dev_ad">Скачать</a></h5>
+				<img class="pub-card-nexticon" onclick="closeAd()" src="images/cancel.svg">
+			</div>
+
+			<div id="app-popups" style="display: none" class="popup-blur-bg">
+				<div id="app-not-available" class="popup-window">
+					<i class="ph-prohibit-bold popup-iconBlack"></i>
+					<h4 class="popup-title black">TenStore</h4>
+					<h1 class="popup-title2 black" style="margin-left: 25px">Приложение недоступно</h1>
+					<h4 class="popup-text2 black" style="margin-left: 25px">Приложение, которое вы пытаетесь скачать, не существует или было удалено.</h4>
+					<div class="flex">
+						<button style="margin-top: 250px" onclick="window.open('index', '_self')" class="popup-button black black-border">Главная</button>
+					</div>
+				</div>
+			</div>
+		<script>login(); ub_themeBtn()</script>
+		<script src="scripts/appPage.js"></script>
+		<script src='scripts/search-bar.js'></script>
+		<script src='scripts/ad.js'></script>
+	</body>
+</html>
