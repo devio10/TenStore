@@ -5,9 +5,10 @@ function randomPass() {
     for (var i = 0, n = charset.length; i < length; ++i) {
         retVal += charset.charAt(Math.floor(Math.random() * n));
     }
-    warningBox('show', 'Ваш пароль: ' + retVal);
-    document.getElementById('CA-repeatPassword').value = retVal;
-    document.getElementById('CA-password').value = retVal;
+    document.getElementById('copy-block').style.display='flex';
+    document.getElementById('copy-pass').value=retVal;
+    document.getElementById('CA-repeatPassword').value=retVal;
+    document.getElementById('CA-password').value=retVal;
 }
 function userBox () {
   let box = document.getElementById('userBox');
@@ -389,9 +390,9 @@ function confirmedPage () {
 }
 function warningBox (action, text) {
   if (action == 'hide') {
-    document.getElementById('CA-warningBox').style.display = 'none';
+    document.getElementById('CA-warningBox').style.display='none';
   } else {
-    document.getElementById('CA-warningBox').innerHTML = "<h5 style='color: black; padding: 10px'>" + text + '</h5>';
-    document.getElementById('CA-warningBox').style.display = 'block';
+    document.getElementById('warningBox-text').innerHTML=text;
+    document.getElementById('CA-warningBox').style.display='block';
   }
 }
