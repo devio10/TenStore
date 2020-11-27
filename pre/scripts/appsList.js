@@ -22,7 +22,7 @@ if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()
   value=getUrlVars()['type'];
 } else if (getUrlVars()['search']!=null) {
   action='d6Gj59';
-  search=decodeURIComponent(getUrlVars()['search']);
+  search=getUrlVars()['search'];
 } else if (getUrlVars()['list']!=null) {
   select=getUrlVars()['list'];
   value=0;
@@ -86,8 +86,8 @@ function list(listName) {
 function ifSearch () {
   if (getUrlVars()['search']!=null) {
     document.getElementById('appsList-title').innerHTML='Поиск';
-    document.getElementById('dev-title').innerHTML='Поиск по запросу "'+decodeURIComponent(getUrlVars()['search'])+'"';
-    document.getElementById('siteSearch').value=decodeURIComponent(getUrlVars()['search']);
+    document.getElementById('dev-title').innerHTML='Поиск по запросу "'+getUrlVars()['search']+'"';
+    document.getElementById('siteSearch').value=getUrlVars()['search'];
     document.getElementById('appsList-icon').href='images/search.svg';
   }
 }
@@ -96,7 +96,8 @@ function ifGame () {
     document.getElementById('chosen').style.fontFamily='var(--regular)';
     document.getElementById('gameTab').style.fontFamily='var(--bold)';
     document.getElementById('apps-categ').style.display='none';
-    document.getElementById('games-categ').style.display='var(--tabs-display)';
+    document.getElementById('games-categ').style.display='block';
+    document.getElementById('games-categ').className='games-show';
     document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
     document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
     document.getElementById('apps-span').className='phoneNav-text';

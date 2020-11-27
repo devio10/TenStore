@@ -8,7 +8,7 @@
   margin-left: 30px;
   margin-right: auto;
 }
-.tenid-main-button {
+.CA-right {
   margin: 30px auto 30px auto;
 	height: 60px;
 	width: 60px;
@@ -17,13 +17,13 @@
 	backdrop-filter: blur(var(--blur));
 	border: 1px solid var(--border);
 }
-.tenid-main-button:hover > .floatButton-icon {
+.CA-right:hover > .floatButton-icon {
   color: var(--accent);
 }
 .button-text {
 	display: none;
 }
-.tenid-main-button:active, .tenid-main-button:hover {
+.CA-right:active, .CA-right:hover {
   background: var(--nav-bg);
 }
 .tenid-input, .CA-input {
@@ -69,24 +69,14 @@
 	cursor: pointer;
 }
 #CA-warningBox {
-  background: var(--nav-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  width: 350px;
-  height: auto;
-  position: fixed;
-  bottom: 60px;
-  left: 60px;
-  z-index: 1000;
-  box-shadow: var(--shadow1);
+  background: #ffccbc;
+	width: 475px;
+  margin: 0 auto -60px auto;
+	border-radius: 5px;
   display: none;
 }
-#warningBox-text {
-  padding: 0;
-  margin: 10px;
-}
 #CA-fileInput {
-  margin: 55px 0 0 140px;
+  margin: 15px 0 0 140px;
 }
 #CA-userPic, #EA-userPic {
   width: 150px;
@@ -117,7 +107,9 @@
   width: 50%;
   margin-left: 25%;
 }
-
+#randomPassLink {
+  margin: 0 0 10px 20px;
+}
 #EA-fileInput::before {
   content: "";
   width: 10px;

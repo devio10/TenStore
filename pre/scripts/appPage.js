@@ -49,8 +49,7 @@ request.addEventListener("readystatechange", () => {
             <h4 class='download-card-title'>"+files.files[i].platform+"</h4> \
             <h5 class='download-card-description grey'>"+files.files[i].architecture+" • "+files.files[i].version+" • "+files.files[i].published+" • "+files.files[i].size+" Мб</h5> \
           </div> \
-          <i class='ph-info-bold download-card-nexticon'></i> \
-          <i class='ph-download-simple-bold download-card-nexticon'></i>";
+          <img class='download-card-nexticon' src='images/download.svg'>";
           document.getElementById('download-cards-block').appendChild(downloadCard);
         }
       }

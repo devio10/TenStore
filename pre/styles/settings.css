@@ -20,9 +20,6 @@
   transition: var(--transition1);
   user-select: none;
 }
-.tabs-flex {
-	display: block;
-}
 .settings-nav-item {
   font-family: var(--regular);
   font-weight: normal;

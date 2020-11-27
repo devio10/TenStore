@@ -89,7 +89,6 @@
   --gradient: linear-gradient( rgba(255, 255, 255, 0.4) 5%, rgba(255, 255, 255, 0.4) );
 	--topCard-gradient: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) 73%, rgba(0,0,0,0.2) 100%);
 	--card2-gradient: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.2) 100%);
-	--tabs-display: block;
 }
 [data-theme="dark"] {
 	/*цвета*/
@@ -1392,37 +1391,4 @@ textarea {
   height: 90vh;
   top: 0;
   align-items: center;
-}
-.copy-button {
-	width: 24px;
-	height: 24px;
-	border-radius: 100%;
-	margin: 0 0 0 5px;
-}
-.copy-icon {
-	font-size: 16px;
-}
-#copy-block {
-	margin-top: 15px;
-	display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: auto;
-  align-content: center;
-	display: none;
-}
-#copy-pass {
-	border: 0px solid black;
-	font-size: 16px;
-	padding: 0;
-	width: 145px;
-	color: var(--font);
-	background-color: var(--bg);
-}
-.build-pic {
-	width: 300px;
-	margin: 0 auto 0 auto;
-}
-#item-rec-upd, #item-game-rec-upd, #item-personal {
-	margin-top: 20px;
 }
