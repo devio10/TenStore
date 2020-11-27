@@ -48,7 +48,11 @@
 		    <span class="phoneNav-text">Игры</span>
 		  </a>
 		</nav>
-		<button id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
+		<div id="mobile-search-block">
+			<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
+		</div>
+		<button onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
