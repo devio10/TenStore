@@ -65,13 +65,24 @@ function popupNext(windowName) {
   document.getElementById('window1').style.display='none';
   document.getElementById('window2').style.display='none';
   document.getElementById('window3').style.display='none';
+  document.getElementById('window4').style.display='none';
+  document.getElementById('window5').style.display='none';
+  document.getElementById('window6').style.display='none';
+  document.getElementById('window7').style.display='none';
 
   document.getElementById(windowName).style.display='block';
 }
-if (localStorage.getItem('debug-newVersionPopup')=='true') {
-  document.getElementById('tenstore-2.0').style.display='flex';
+function closePopup(isWatched) {
+  if (isWatched=='true') {
+    localStorage.setItem('version-2.2-popup', 'watched');
+  }
+  document.getElementById('tenstore-2.2').style.display='none';
+}
+
+if (localStorage.getItem('version-2.2-popup')!='watched') {
+  document.getElementById('tenstore-2.2').style.display='flex';
   document.getElementById('mobileSearch').style.display='none';
   document.getElementById('phoneNav').style.display='none';
 } else {
-  document.getElementById('tenstore-2.0').style.display='none';
+  document.getElementById('tenstore-2.2').style.display='none';
 }

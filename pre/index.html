@@ -129,49 +129,75 @@
 			</div>
 		</div>
 
-		<div id="tenstore-2.0" class="popup-blur-bg">
+		<div id="tenstore-2.2" class="popup-blur-bg">
 			<div id="window1" class="popup-window">
-				<i class="ph-shopping-bag-open-bold popup-iconWhite"></i>
-				<h4 class="popup-title white">TenStore</h4>
-				<div class="popup-tenstore-logo-block"><img src="images/tenstore-2.2.png" class="popup-tenstore-logo"></div>
-				<h1 class="popup-title2 centerText white">TenStore 2.2</h1>
-				<h4 class="popup-text2 centerText white">Ваш TenStore только что обновился и стал лучше.</h4>
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/welcome.png">
+				</div>
+				<h2 class="popup-title2 centerText">Добро пожаловать</h2>
+				<h5 class="popup-text2 centerText grey">TenStore только что обновился до версии 2.2 и стал лучше.</h5>
 				<div class="popup-navigation-block">
 					<div class="popup-navigation back"><i class="ph-caret-left popup-navigation-icon"></i></div>
 					<div class="popup-navigation next"><i class="ph-caret-right popup-navigation-icon"></i></div>
 				</div>
-				<div class="flex">
-					<button id="button1" onclick="popupNext('window2')" class="popup-button white">Что нового?</button>
-					<button id="button1" onclick="remindLater()" class="popup-button white">Напомнить позже</button>
-				</div>
+				<button onclick="popupNext('window2')" class="accent-button-2 popup-button">Что нового?</button>
+				<button onclick="closePopup()" class="button-2 popup-button">Напомнить позже</button>
 			</div>
 			<div id="window2" class="popup-window">
-				<i class="ph-shopping-bag-open-bold popup-iconWhite"></i>
-				<h4 class="popup-title white">TenStore</h4>
-				<h1 class="popup-title3 white">Файлы приложений</h1>
-				<h4 class="popup-text white">Отныне можно выкладывать бесконечное количество вариаций одного приложения. Больше возможностей и для разработчиков, и для пользователей.</h4>
-				<button id="button2" onclick="popupNext('window3')" class="popup-button white">Далее</button>
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/files.png">
+				</div>
+				<h2 class="popup-title3 centerText">Файлы приложений</h2>
+				<h5 class="popup-text centerText grey">Дают возможность скачать приложение определённой версии, разрядности или платформы. Возможности ограничены лишь вашей фантазией.</h5>
+				<button onclick="popupNext('window3')" class="accent-button-2 popup-button">Далее</button>
 			</div>
 			<div id="window3" class="popup-window">
-				<i class="ph-shopping-bag-open-bold popup-icon window3-text"></i>
-				<h4 class="popup-title window3-text">TenStore</h4>
-				<h1 class="popup-title3 window3-text">Автоматическая тёмная тема</h1>
-				<h4 class="popup-text window3-text">При включении этой настройки, сайт будет принимать тему браузера.</h4>
-				<button id="button3" onclick="popupNext('window4')" class="popup-button">Далее</button>
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/dark-theme.png">
+				</div>
+				<h2 class="popup-title3 centerText window3-text">Автоматическая тёмная тема</h2>
+				<h5 class="popup-text centerText window3-text">Меняйтесь между светлой и тёмной темами автоматически — сайт будет брать тему браузера.</h5>
+				<button onclick="popupNext('window4')" class="accent-button-2 popup-button">Далее</button>
 			</div>
 			<div id="window4" class="popup-window">
-				<i class="ph-shopping-bag-open-bold popup-icon"></i>
-				<h4 class="popup-title">TenStore</h4>
-				<h1 class="popup-title3">Список приложений</h1>
-				<h4 class="popup-text">Полностью новый список приложений, позволяющий выбрать категорию, вместе с обновлёнными карточки.</h4>
-				<button id="button2" onclick="popupNext('window5')" class="popup-button black-border">Далее</button>
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/appsList.png">
+				</div>
+				<h2 class="popup-title3 centerText">Список приложений</h2>
+				<h5 class="popup-text centerText grey">Полностью новый список приложений с категориями и обновлёнными карточками.</h5>
+				<button onclick="popupNext('window5')" class="accent-button-2 popup-button">Далее</button>
 			</div>
 			<div id="window5" class="popup-window">
-				<i class="ph-shopping-bag-open-bold popup-icon"></i>
-				<h4 class="popup-title">TenStore</h4>
-				<h1 class="popup-title3">Мобильная версия</h1>
-				<h4 class="popup-text">Все страницы были оптимизированы для мобильных устройств.</h4>
-				<button id="button2" onclick="popupNext('window5')" class="popup-button black-border">Далее</button>
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/phone.png">
+				</div>
+				<h2 class="popup-title3 centerText">Мобильная версия</h2>
+				<h5 class="popup-text centerText grey">Добавлена полная поддержка мобильных устройств — все страницы адаптированы под телефоны и планшеты.</h5>
+				<button onclick="popupNext('window6')" class="accent-button-2 popup-button">Далее</button>
+			</div>
+			<div id="window6" class="popup-window">
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/search.png">
+				</div>
+				<h2 class="popup-title3 centerText">Поиск</h2>
+				<h5 class="popup-text centerText grey">Добавлена строка поиска среди всего контента на сайте. Для более обширных результатов, у приложений появились поисковые теги.</h5>
+				<button onclick="popupNext('window7')" class="accent-button-2 popup-button">Далее</button>
+			</div>
+			<div id="window7" class="popup-window">
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/homepage.png">
+				</div>
+				<h2 class="popup-title3 centerText">Главная страница</h2>
+				<h5 class="popup-text centerText grey">Главная претерпела изменения — она получила динамические карточки с приложениями и играми. Истории пока что не появились.</h5>
+				<button onclick="popupNext('window8')" class="accent-button-2 popup-button">Далее</button>
+			</div>
+			<div id="window8" class="popup-window">
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/forest.png">
+				</div>
+				<h2 class="popup-title3 centerText">..и много всего остального</h2>
+				<h5 class="popup-text centerText grey">Это ещё не всё — но, чтобы не занимать много Вашего времени, на этом мы закончим. С полным списком изменений вы можете ознакомиться <a href=''>здесь</a>.</h5>
+				<button onclick="closePopup('true')" class="accent-button-2 popup-button">Закрыть</button>
 			</div>
 		</div>
 		<div id="google-apps-ad" class="tenstore-promo">

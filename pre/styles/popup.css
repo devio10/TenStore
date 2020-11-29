@@ -1,26 +1,16 @@
 .popup-window {
 	background: var(--bg);
+	box-shadow: var(--shadow3);
 	border-radius: 10px;
-	width: 700px;
-	height: 500px;
+	width: 500px;
+	height: auto;
 }
 #app-not-available {
 	background: url(https://thetenstore.ru/images/backgrounds/prohibit.jpg);
 	background-repeat: no-repeat;
   background-position: center;
 }
-#window1 {
-  /*background: linear-gradient(-90deg, #f55b31, #00065c); TODO: оставить это для уведомления о press team*/
-	background: linear-gradient(-90deg, #1976d2, #388e3c, #ffa000);
-	background-size: 150% 150%;
-	animation: gradient 5s ease-in-out infinite;
-}
-#window2 {
-  background: linear-gradient(0deg, rgba(0,0,0,0.35) 59%, rgba(0,0,0,0.35) 59%), url(https://thetenstore.ru/images/bg1.svg), black;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
+
 #window3 {
   background: white;
 }
@@ -42,7 +32,7 @@
 #window3 {
 	display: none;
 }
-#window2, #window4, #window5, #window6 {
+#window2, #window4, #window5, #window6, #window7, #window8  {
   animation: show-window .5s;
   display: none;
 }
@@ -204,12 +194,7 @@
   margin-top: 5px;
 }
 .popup-button {
-  margin-left: auto;
-  margin-right: auto;
-  background: 0;
-  border: 1px solid white;
-  transition: .3s;
-	backdrop-filter: blur(var(--blur));
+  margin: 20px auto 20px auto;
 }
 #button1 {
   margin-top: 60px;
