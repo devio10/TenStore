@@ -121,6 +121,9 @@ function login (page) {
           requestDev.send(paramsDev);
 
 
+        } else if (page=='app') {
+          document.getElementById('review-userpic').src=userPhoto;
+          document.getElementById('review-username').innerHTML=obj.user[0].name + " " + obj.user[0].lastname;
         }
 
         document.getElementById('name').style.display='block';
@@ -285,13 +288,11 @@ function getUrlVars(key) {
   return vars;
 }
 function confirmedPage () {
-  let code = getUrlVars()["code"];
-  if (code == '0') {
-    let c0 = document.getElementById('CoA-code0');
-    c0.style.display = "block";
-  } else if (code == '1') {
-    let c1 = document.getElementById('CoA-code1');
-    c1.style.display = "block";
+  let code=getUrlVars()['code'];
+  if (code=='0') {
+    document.getElementById('code0').style.display='block';
+  } else if (code=='1') {
+    document.getElementById('code1').style.display='block';
   }
 }
 function warningBox (action, text) {

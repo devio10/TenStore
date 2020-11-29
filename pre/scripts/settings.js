@@ -205,9 +205,6 @@ function checkSwitches() {
   if (localStorage.getItem('mobileVersion')=='true') {
     document.getElementById('s-mobileVersion').checked=true;
   }
-  if (localStorage.getItem('debug-newVersionPopup')=='true') {
-    document.getElementById('s-debug-newVersionPopup').checked=true;
-  }
   if (localStorage.getItem('beta-mobileSearch')=='true') {
     document.getElementById('s-beta-mobileSearch').checked=true;
   }
