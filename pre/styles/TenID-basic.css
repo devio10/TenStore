@@ -55,13 +55,13 @@
 	overflow: hidden;
 	white-space: nowrap;
 }
-#CA-block-title2 {
+#tenid-block-title2 {
   margin: 25px 20px 0 20px;
 }
-#CA-block-text {
+#tenid-block-text {
   margin: 20px 20px;
 }
-.CA-block-icon {
+.tenid-block-icon {
   filter: invert(var(--dark));
 	float: right;
 	margin: 20px;
@@ -156,12 +156,12 @@
   margin: 25px 0 25px 25px;
   color: var(--font);
 }
-.tenid-block-title, #CA-block-title {
+.tenid-block-title, #tenid-block-title {
   margin: 25px 25px 25px 15px;
   font-family: var(--bold);
   text-transform: uppercase;
 }
-.tenid-block, .CA-block {
+.tenid-block, .tenid-block {
   width: 500px;
   height: auto;
   background: var(--bg);

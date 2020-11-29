@@ -173,7 +173,7 @@ a {
 	font-size: 18px;
 	font-family: var(--regular);
 }
-#app-description, .desc-block {
+#app-description, .desc-block, #app-description-short {
 	margin: 10px 25px 0 25px;
 }
 #appPage-whatsNew, #appPage-details1, #appPage-details2, #appPage-blockText {

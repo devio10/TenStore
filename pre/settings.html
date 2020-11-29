@@ -30,26 +30,9 @@
 			<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
 			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
 		</div>
-		<button onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
+		<button style="bottom: 30px" onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 
-		<nav id="phoneNav" class="phone-navigation">
-		  <a href="https://thetenstore.ru/" class="phoneNav-link">
-		    <i class="ph-shopping-bag phoneNav-icon"></i>
-		    <span class="phoneNav-text">TenStore</span>
-		  </a>
-		  <a href="settings" class="phoneNav-link">
-		    <i class="ph-gear-six-fill phoneNav-icon phoneNav-link-active"></i>
-		    <span class="phoneNav-text phoneNav-link-active">Настройки</span>
-		  </a>
-			<a href="library" class="phoneNav-link">
-		    <i class="ph-archive phoneNav-icon"></i>
-		    <span class="phoneNav-text">Библиотека</span>
-		  </a>
-			<a href="user" class="phoneNav-link">
-		    <i class="ph-user-circle phoneNav-icon"></i>
-		    <span class="phoneNav-text">Профиль</span>
-		  </a>
-		</nav>
+
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
@@ -77,7 +60,8 @@
 				<div class="settings-block">
 					<img style="display: none" class="settings-subtitleIcon" src="images/dark.svg">
 					<h2 class="settings-block-title">Тема</h2>
-					<h4 style="margin-left: 10px">Тёмная тема помогает расслабить глаза в ночное время суток, и сохранить заряд батареи.</h4>
+					<img src="images/vectors/dark-theme.png" class="settings-img">
+					<h4 class="settings-text grey">Тёмная тема помогает расслабить глаза в ночное время суток, и сохранить заряд батареи.</h4>
 
 					<div class="theme-buttons">
 						<div style="display: flex; flex-direction: column">
@@ -98,18 +82,18 @@
 				<div class="settings-block">
 					<h2 class="settings-block-title">Акцент</h2>
 					<div class="theme-buttons">
-						<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button"><i class='ph-plus check1'></i></label>
+						<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button hidden"><i class='ph-plus check1'></i></label>
 						<div onclick="setAccent('brown', '#4e342e', '#a1887f', '#3e2723')" id="accent-brown" class="theme-button"></div>
 						<div onclick="setAccent('grey', '#424242', '#9e9e9e', '#212121')" id="accent-grey" class="theme-button"></div>
 						<div onclick="setAccent('blue-grey', '#455a64', '#90a4ae', '#263238')" id="accent-blue-grey" class="theme-button"></div>
 						<div onclick="setAccent('cyan', '#0097a7', '#4dd0e1', '#006064')" id="accent-cyan" class="theme-button"></div>
 						<div onclick="setAccent('blue', '#1565c0', '#82b1ff', '#0d47a1')" id="accent-blue" class="theme-button"></div>
 						<div onclick="setAccent('indigo', '#303f9f', '#7986cb', '#1a237e')" id="accent-indigo" class="theme-button"></div>
-						<div onclick="setAccent('purple', '#7b1fa2', '#ba68c8', '#4a148c')" id="accent-purple" class="theme-button"></div>
-						<div onclick="setAccent('pink', '#c2185b', '#ec407a', '#880e4f')" id="accent-pink" class="theme-button"></div>
-						<div onclick="setAccent('red', '#d32f2f', '#e57373', '#b71c1c')" id="accent-red" class="theme-button"></div>
+						<div onclick="setAccent('purple', '#7b1fa2', '#ba68c8', '#4a0072')" id="accent-purple" class="theme-button"></div>
+						<div onclick="setAccent('pink', '#c2185b', '#fa5788', '#8c0032')" id="accent-pink" class="theme-button"></div>
+						<div onclick="setAccent('red', '#d32f2f', '#ff7961', '#9a0007')" id="accent-red" class="theme-button"></div>
 						<div onclick="setAccent('orange', '#f57c00', '#ffab40', '#e65100')" id="accent-orange" class="theme-button"></div>
-						<div onclick="setAccent('yellow', '#f9a825', '#fbc02d', '#f57f17')" id="accent-yellow" class="theme-button"></div>
+						<div onclick="setAccent('yellow', '#f9a825', '#ffeb3b', '#c17900')" id="accent-yellow" class="theme-button"></div>
 						<div onclick="setAccent('green', '#388e3c', '#81c784', '#1b5e20')" id="accent-green" class="theme-button"></div>
 						<div onclick="setAccent('light-green', '#689f38', '#aed581', '#33691e')" id="accent-light-green" class="theme-button"></div>
 
@@ -129,7 +113,7 @@
 					</div>
 				</div>
 
-				<div class="settings-block">
+				<div class="settings-block hidden">
 					<h2 class="settings-block-title">Шрифт</h2>
 					<input onclick="changeSetting('newFont')" style="margin-left: 15px" id="s-newFont" type="checkbox" class="switch">
 					<label for="s-newFont">Жирный шрифт</label>
@@ -139,14 +123,25 @@
 
 			<div id="settings-account" class="settings-tab" style="display: none">
 				<div class="settings-block">
-					<div>
-						<h4 id="settings-welcomeText" style="margin-left: 15px; font-size: 15px">Войдите в аккаунт, чтобы получить доступ ко всем возможностям TenStore.</h4>
-						<h4 style="margin-left: 15px">
-							<a style="display: none; font-size: 15px" id="settings-link1" href="user">Настройки аккаунта</a>
-							<a style="display: none; font-size: 15px" id="settings-link2" onclick="logoff()" href="#" style="margin-left: 20px">Выйти</a>
-							<a id="settings-link3" style="font-size: 15px" href="login">Войти</a>
-						</h4>
+
+					<div class="settings-user-card" id="card1">
+						<div class="img2-block">
+							<img src="images/vectors/no-connection.png" class="settings-img2">
+						</div>
+						<h5 id="settings-welcomeText" class="centerText grey">Вы не вошли в TenID, который позволяет вам<br> скачивать приложения и комментировать их.<br> Давайте исправим это.</h5>
+						<button onclick="window.open('create-account', '_self')" style="margin: 0 auto 0 auto" class="accent-button-2">Создать аккаунт</button>
+						<h5 class="centerText grey" style="margin: 10px 0 10px 0; color: grey">или</h5>
+						<button onclick="window.open('login', '_self')" style="margin: 0 auto 20px auto" class="button-2">Войти</button>
 					</div>
+
+					<div class="settings-user-card" id="card2">
+						<div id="sc-userPic-block"><img id="sc-userPic" src="images/user.svg"></div>
+						<h3 id="settings-name" class="centerText"></h3>
+						<h5 id="settings-email" class="centerText"></h5>
+						<button onclick="window.open('user', '_self')" style="margin: 0 auto 15px auto" class="accent-button-2">Открыть в TenID</button>
+						<button onclick="logoff(), window.open('login', '_self')" style="margin: 0 auto 20px auto" class="accent-button-2">Выйти</button>
+					</div>
+
 				</div>
 
 				<div class="settings-block">
@@ -155,8 +150,8 @@
 			    <label for="s-NameType">Отображать никнейм вместо имени</label><p>
 					<input style="margin-left: 15px" id="s-dontShowEmail" onclick="changeSetting('userbox-dontShowEmail')" type="checkbox" class="switch">
 			    <label for="s-dontShowEmail">Не показывать почту</label><p>
-					<input style="margin-left: 15px" id="s-userBg" onclick="changeSetting('userBg')" type="checkbox" class="switch">
-			    <label for="s-userBg">Фон пользователя</label>
+					<input style="margin-left: 15px; display: none" id="s-userBg" onclick="changeSetting('userBg')" type="checkbox" class="switch">
+			    <label style="display: none" for="s-userBg">Фон пользователя</label>
 				</div>
 			</div>
 
@@ -186,7 +181,7 @@
 					</div>
 				</div>
 
-				<div class="settings-block">
+				<div class="settings-block hidden">
 					<h2 class="settings-block-title">Уведомления</h2>
 					<div style="margin-left: 15px" id="warningBox">
 						<h5 style="color: black; padding: 10px">Уведомления временно недоступны.</h5>
@@ -200,6 +195,15 @@
 
 			<div id="settings-debug" class="settings-tab" style="display: none">
 				<div class="settings-block">
+					<h2 class="settings-block-title">Канал</h2>
+					<div style="margin-left: 15px">
+						<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
+						<label for="release">2.1.0 (основная версия)</label><p>
+						<input style="display: none" onclick="changeSetting('channel', 'beta')" id="beta" type="radio" disabled name="channel" value="3">
+						<label style="display: none" for="beta">2.2.0 (бета)</label><p>
+						<input onclick="changeSetting('channel', 'pre')" id="pre" type="radio" name="channel" value="3">
+						<label for="pre">2.2.0 (PR)</label>
+					</div>
 					<h2 class="settings-block-title">debug</h2>
 					<div style="margin-left: 15px">
 						<input style="display: none" onclick="changeSetting('appsListSort')" id="s-appsListSort" type="checkbox" class="switch">
@@ -220,24 +224,14 @@
 						<label for="s-debug-newVersionPopup">debug-newVersionPopup</label>
 					</div>
 
-					<h2 class="settings-block-title">beta</h2>
+					<h2 class="settings-block-title hidden">beta</h2>
 					<div style="margin-left: 15px">
 						<input style="display: none" id="s-beta-mobileSearch" onclick="changeSetting('beta-mobileSearch')" type="checkbox" class="switch">
 						<label style="display: none" for="s-beta-mobileSearch">beta-mobileSearch</label>
 					</div>
-
-					<h2 class="settings-block-title">Канал</h2>
-					<div style="margin-left: 15px">
-						<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
-						<label for="release">2.1.0 (основная версия, релиз)</label><p>
-						<input onclick="changeSetting('channel', 'beta')" id="beta" type="radio" disabled name="channel" value="3">
-						<label for="beta">2.2.0 (бета)</label><p>
-						<input onclick="changeSetting('channel', 'pre')" id="pre" type="radio" name="channel" value="3">
-						<label for="pre">2.2.0 (PR)</label>
-					</div>
 				</div>
 			</div>
-			<h5 style="margin-left: 30px">TenStore v2.2.0 PR build 1122</h5>
+			<h5 style="margin-left: 20px">TenStore v2.2.0 PR build 1129</h5>
 		</div>
 
 		<button id="refreshButton" style="display: none" onclick="location.reload()" class="floatButton squareButton">

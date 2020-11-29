@@ -92,8 +92,9 @@
 				</div>
 				<div class="appPage-block wide auto-height">
 					<h3 style="padding: 25px; margin: 0">О приложении</h3>
-					<h4 id="app-description"></h4>
-						<a onclick="fullDescription()" id="showFull" class="desc-block">Показать полностью</a>
+					<h4 id="app-description-short"></h4>
+					<h4 id="app-description" style="display: none"></h4>
+					<a onclick="fullDescription()" id="showFull" class="desc-block">Показать полностью</a>
 				</div>
 				<div class="appPage-block wide auto-height">
 
@@ -134,10 +135,10 @@
 
 			</div>
 			</div>
-			<div id="client-ad">
+			<div id="client-ad" class="tenstore-promo">
 				<img class="ad-icon" src="images/favicon.png">
 				<h5 class="ad-text">Скачивать приложения легче в TenStore для Windows. <a href="app?id=10&source=dev_ad">Скачать</a></h5>
-				<img class="pub-card-nexticon" onclick="closeAd()" src="images/cancel.svg">
+				<img class="pub-card-nexticon" onclick="closeAd('client-ad')" src="images/cancel.svg">
 			</div>
 
 			<div id="app-popups" style="display: none" class="popup-blur-bg">

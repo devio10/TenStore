@@ -278,10 +278,13 @@
 	margin: 0 0 80px 0;
 }
 #settings-title {
-  margin: 15px 3.5%;
+  margin: 15px;
 }
 .settings-block-title {
-	margin: 20px 2%;
+	margin: 20px;
+}
+.settings-text {
+	margin-left: 20px;
 }
 #dev-title {
 	margin: 5px 0 20px 30px;
@@ -372,7 +375,7 @@
   width: 300px;
 }
 .settings-block {
-	margin: 0 2% 0 2%;
+	margin: 0 0 0 0;
 	width: 100%;
 }
 
@@ -452,4 +455,38 @@
 #item-rec-upd, #item-game-rec-upd, #item-personal {
 	margin-left: 3%;
 	margin-top: 10px;
+}
+
+/*user page*/
+.tenid-block2 {
+	width: 80%;
+}
+#user-name {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+#user-short-bio {
+	font-size: 16px;
+	margin-top: 0;
+}
+#main-block {
+	width: 80%;
+}
+
+.tenstore-ad {
+	width: 75%;
+	margin: 65px 12.5% 0 12.5%;
+	bottom: auto;
+	top: 0;
+}
+
+.img2-block, .settings-img2 {
+	width: 250px;
+}
+.img2-block {
+	margin-top: 20px;
+}
+.settings-user-card {
+	width: 80%;
+	margin: 0 auto 0 auto;
 }

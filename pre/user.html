@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>TenStore</title>
-	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<title>Ваш профиль TenID</title>
+	  <link rel="shortcut icon" href="images/user.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
 		<link href="styles/user.css" rel="stylesheet" type="text/css">
@@ -12,13 +12,14 @@
 		<script src="https://unpkg.com/phosphor-icons"></script>
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
+		<script src="scripts/app-card.js"></script>
 		<script src="scripts/phone-check.js"></script>
 	</head>
 	<body id="user-background">
 		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
-				<a id="mLogo2">dnavalny</a>
+				<a id="mLogo2">Ваш профиль</a>
 				<a id="logo">TENID</a>
 				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
@@ -29,21 +30,6 @@
 			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
 		</div>
 		<button onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
-		<nav id="phoneNav" class="phone-navigation">
-		  <a href="index" class="phoneNav-link">
-		    <i class="ph-user-circle-fill phoneNav-icon phoneNav-link-active"></i>
-		    <span class="phoneNav-text phoneNav-link-active">Профиль</span>
-		  </a>
-		  <a href="appsList" class="phoneNav-link">
-		    <i class="ph-pencil-simple phoneNav-icon"></i>
-		    <span class="phoneNav-text">Редактирование</span>
-		  </a>
-		  <a href="appsList?type=game" class="phoneNav-link">
-		    <i class="ph-gear-six phoneNav-icon"></i>
-		    <span class="phoneNav-text">Настройки</span>
-		  </a>
-		</nav>
-		<button id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
@@ -56,45 +42,48 @@
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
-
-		<div class="CA-block" id="not-logged-in" style="width: 550px; margin-bottom: 0">
-			<img src="images/user.svg" class="CA-block-icon">
-			<h5 id="CA-block-title">АККАУНТ</h5>
-			<h3 class="CA-block-title2">Вы не вошли в аккаунт</h3>
-			<h4 class="CA-block-text">Кажется, вы не вошли в аккаунт. Для получения доступа ко всем функциям TenStore, войдите или зарегистрируйтесь.</h4>
-			<div style="display: flex; align-items: center; margin: 30px 0 20px 0">
-				<button onclick="window.open('https://thetenstore.ru/create-account', '_self')" style="margin: 0 auto 0 auto" class="accentButton">Создать аккаунт</button>
-				<button onclick="window.open('https://thetenstore.ru/login', '_self')" style="margin: 0 auto 0 auto">Войти в аккаунт</button>
+		<div class="tenid-blocks" id="not-logged-in">
+			<div class="tenid-block">
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/welcome.png">
+				</div>
+				<h3 class="centerText" style="margin: 20px 0 0 0">Добро пожаловать в TenID</h3>
+				<h5 style="margin-bottom: 0" class="grey centerText">
+					Для продолжения, вам нужно создать новый<br> аккаунт или войти в существующий.
+				</h5>
+				<button onclick="window.open('create-account', '_self')" style="margin: 30px auto 0 auto" class="accent-button-2">Создать аккаунт</button>
+				<button onclick="window.open('login', '_self')" style="margin: 20px auto 40px auto" class="button-2">Войти в аккаунт</button>
 			</div>
 		</div>
+
 		<div id="logged-in" style="display: none">
-			<div class="CA-block" id="main-block" style="width: 550px; margin-bottom: 0">
+			<div class="tenid-block2" id="main-block">
 				<div id="CA-picDiv" style="display: block"><img id="CA-userPic"><img id="kingIcon"></div>
 				<h2 class="centerText" id="user-name"></h2>
 				<h4 class="centerText" id="user-short-bio"></h4>
 				<h4 class="centerText" style="display: none" id="user-developer-info"></h4>
-				<div style="display: flex; align-items: center; margin: 30px 0 20px 0">
-					<button id="user-edit-button" style="margin: 0 auto 0 auto" class="accentButton">Редактировать</button>
-					<button id="user-my-apps" style="margin: 0 auto 0 auto">Мои приложения</button>
-				</div>
+				<button onclick="window.open('edit-account', '_self')" id="user-edit-button" class="accent-button-2">Редактировать</button>
+				<button onclick="logoff()" id="user-logout-button" class="accent-button-2">Выйти</button>
 			</div>
-			<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
-				<h3 class="CA-block-title2">Аккаунт разработчика</h3>
-				<h4 class="CA-block-text">Сделайте ваш профиль аккаунтом разработчика
+			<div class="tenid-block2 hidden">
+				<h3 class="tenid-block-title2">Аккаунт разработчика</h3>
+				<h4 class="tenid-block-text">Сделайте ваш профиль аккаунтом разработчика
 					и получите возможность публиковать свои приложения</h4>
 			</div>
-			<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
-				<h3 class="CA-block-title2">О себе</h3>
-				<h4 id="user-bio" class="CA-block-text"></h4>
-				<h3 class="CA-block-title2">Контакты</h3>
-				<h4 id="user-contacts" class="CA-block-text">Telegram: <a class="link">@dnavalny</a><br>
+			<div class="tenid-block2">
+				<h3 class="tenid-block-title2">О себе</h3>
+				<h4 id="user-bio" class="tenid-block-text"></h4>
+				<h3 class="tenid-block-title2 hidden">Контакты</h3>
+				<h4 id="user-contacts" class="tenid-block-text hidden">Telegram: <a class="link">@dnavalny</a><br>
 					ВКонтакте: <a class="link">@dmitrynavalny</a><br>
 					Почта: <a class="link">dmitrynavalny@outlook.com</a>
 				</h4>
 			</div>
-			<div class="CA-block" id="user-appsBlock" style="width: 550px; margin-top: 40px; margin-bottom: 60px; display: none">
-				<h3 class="CA-block-title2">Приложения</h3>
-				<h4 class="CA-block-text">У этого разработчика нет приложений.</h4>
+			<div style="margin-bottom: 60px" class="tenid-block2" id="user-appsBlock">
+				<h3 class="tenid-block-title2">Приложения</h3>
+				<h4 class="tenid-block-text" id="no-apps">У этого разработчика нет приложений.</h4>
+				<div id="aCard-block" style="margin-left: 0; margin-top: 0; border-radius: 0; width: 100%">
+				</div>
 			</div>
 		</div>
 

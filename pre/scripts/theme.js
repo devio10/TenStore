@@ -20,7 +20,7 @@ function changeTheme(theme) {
   localStorage.setItem('autoDarkTheme', 'false');
   if (theme==1) {
     themeName='Чёрная тема';
-    if ((localStorage.getItem('theme')=='black')||(localStorage.getItem('theme')=='dark')) {
+    if (localStorage.getItem('theme')=='dark') {
       localStorage.setItem('theme','light');
       document.documentElement.setAttribute('data-theme', 'light');
       newTheme='light';
@@ -79,7 +79,7 @@ function ub_themeBtn() {
 const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 if ((userPrefersDark)&&(localStorage.getItem('autoDarkTheme')=='true')){
-    document.documentElement.setAttribute('data-theme', localStorage.getItem('night-theme'));
+    document.documentElement.setAttribute('data-theme', 'dark');
 } else if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 }
@@ -87,7 +87,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     const newColorScheme=e.matches?'dark':'light';
     if (localStorage.getItem('autoDarkTheme')=='true') {
       if (newColorScheme=='dark') {
-        document.documentElement.setAttribute('data-theme', localStorage.getItem('night-theme'));
+        document.documentElement.setAttribute('data-theme', 'dark');
         console.log('dark');
       } else {
         document.documentElement.setAttribute('data-theme', 'light');

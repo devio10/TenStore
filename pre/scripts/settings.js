@@ -34,7 +34,7 @@ function setTheme(theme, isAutoDarkTheme) {
   chosenAccent.style.outline="2px solid "+border;
 }
 function autoDarkTheme() {
-  if (localStorage.getItem('autoDarkTheme') == 'false') {
+  if (localStorage.getItem('autoDarkTheme')!='true') {
     if (userPrefersDark) {
       setTheme('dark',true);
     } else {
@@ -103,27 +103,28 @@ function setAccent(accentId, accent, accentLight, accentDark) {
 
 function changeSetting (par, val) {
   let choice;
+  let negativeChoice;
   if (val==null) {
       //если не задаётся конкретное значение
       if (localStorage.getItem(par)=='true') {
         localStorage.setItem(par, 'false');
         choice='false';
+        negativeChoice='true';
       } else if (localStorage.getItem(par)=='false') {
         localStorage.setItem(par, 'true');
         choice='true';
+        negativeChoice='false';
       } else {
         localStorage.setItem(par, 'true');
         choice='true';
+        negativeChoice='false';
       }
-      if (par=='newFont') {
-        //если изменяется шрифт
-        document.documentElement.setAttribute('data-oldFont', choice);
-      } else if (par == 'no-effects-shadows') {
-        document.documentElement.setAttribute('no-effects-shadows', choice);
+      if (par == 'no-effects-shadows') {
+        document.documentElement.setAttribute('no-effects-shadows', negativeChoice);
       } else if (par == 'no-effects-blur') {
-        document.documentElement.setAttribute('no-effects-blur', choice);
+        document.documentElement.setAttribute('no-effects-blur', negativeChoice);
       } else if (par == 'no-effects-animations') {
-        document.documentElement.setAttribute('no-effects-animations', choice);
+        document.documentElement.setAttribute('no-effects-animations', negativeChoice);
       }
   } else {
     localStorage.setItem(par, val);
@@ -235,7 +236,7 @@ function currentThemeCheck () {
   document.getElementById('item-personal').style.fontFamily='var(--bold)';
   /*тема*/
   if ((localStorage.getItem('autoDarkTheme')=='true')&&(userPrefersDark)) {
-    theme=localStorage.getItem('night-theme');
+    theme='dark';
   } else {
     theme=localStorage.getItem('theme');
     if (theme==null) {
@@ -256,6 +257,7 @@ function currentThemeCheck () {
   currentAccent.innerHTML="<i class='ph-check check1'></i>";
   currentAccent.style.outline="2px solid "+border;
   currentAccent.style.borderRadius="0";
+  currentAccent.style.boxShadow='0px 0px 15px 2px var(--accent)';
   chosenAccent=currentAccent;
   /*
   let accent='blue';

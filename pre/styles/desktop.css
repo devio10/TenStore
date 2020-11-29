@@ -122,33 +122,6 @@
 	/*прочее*/
   --gradient: linear-gradient( rgba(0, 0, 0, 0.65) 5%, rgba(0, 0, 0, 0.4) );
 }
-[data-theme="black"] {
-	/*цвета*/
-  --bg: black;
-	--primary: #060606;
-  --secondary: #020202;
-	--secondary2: black;
-  --alert: rgba(5, 5, 5, 0.65);
-	--border: #242424;
-	--aCard-border: #242424;
-	--rgba: rgba(0, 0, 0, 1);
-
-	/*шрифт*/
-  --font: #cac8c8;
-	--font2: #cccccc;
-	--font3: white;
-
-	/*иконки*/
-  --bright: 0;
-  --dark: 1;
-
-	/*прочее*/
-  --gradient: linear-gradient( rgba(0, 0, 0, 0.65) 5%, rgba(0, 0, 0, 0.4) );
-}
-
-[data-oldFont="true"] {
-	--weight: bold;
-}
 [no-effects-shadows='true'] {
 	--topShadow: 0px 0px 0px 0px rgba(0,0,0,0);
 	--phone-navigation-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
@@ -299,6 +272,24 @@ button:focus {
 .accentButton:hover {
 	background-color: var(--accent-dark);
 }
+.accent-button-2 {
+	color: var(--accent-dark);
+	background-color: var(--accent-light);
+	border: none;
+	width: auto;
+	height: 35px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.accent-button-2:hover {
+	background-color: var(--accent-light);
+}
+.button-2 {
+	width: auto;
+	height: 35px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
 
 .floatButton {
 	position: fixed;
@@ -405,9 +396,7 @@ button:focus {
 }
 
 .centerText {
-	width: 100%;
 	text-align: center;
-	margin: 15px 0;
 }
 
 #topBar {
@@ -1240,7 +1229,7 @@ input[type='radio']:checked {
 	height: 50px;
 	margin: 30px auto 0 auto;
 }
-#client-ad {
+.tenstore-promo {
 	width: 400px;
   height: 70px;
   border: 1px solid var(--border);
@@ -1257,13 +1246,13 @@ input[type='radio']:checked {
 	box-shadow: var(--topShadow);
 	display: none;
 }
-.ad-icon {
+.promo-icon {
 	width: 24px;
 	height: 24px;
 	padding: 3px;
 	margin: auto 0 auto 10px;
 }
-.ad-text {
+.promo-text {
 	padding: 2px;
 	margin: auto 0 auto 12px;
 }
@@ -1428,4 +1417,10 @@ textarea {
 	width: 145px;
 	color: var(--font);
 	background-color: var(--bg);
+}
+.promo-close {
+	padding: 2px;
+	margin: auto 15px auto auto;
+	font-size: 16px;
+	color: var(--font);
 }

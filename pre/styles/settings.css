@@ -80,3 +80,46 @@
   border-radius: 5px;
   margin: 30px;
 }
+.settings-text {
+	margin-left: 10px;
+}
+.settings-img, .settings-img2 {
+  width: 300px;
+  margin-left: 10px;
+}
+.settings-img2 {
+  margin: 0;
+}
+.img2-block {
+  width: 300px;
+  margin: 50px auto 0 auto;
+}
+.settings-user-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 400px;
+}
+#card2 {
+  display: none;
+}
+
+#sc-userPic-block {
+  width: 125px;
+  height: 125px;
+  margin: 50px auto 0 auto;
+}
+#sc-userPic {
+  width: 125px;
+  height: 125px;
+  background: white;
+  border-radius: 100%;
+  box-shadow: var(--shadow1);
+  object-fit: cover;
+}
+#settings-email {
+  margin-top: 0;
+}
+#settings-name {
+  margin-bottom: 5px;
+}

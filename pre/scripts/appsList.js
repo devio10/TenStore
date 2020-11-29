@@ -13,7 +13,7 @@ if ((getUrlVars()['tag']!=null)&&(getUrlVars()['tag']!='rec-upd')&&(getUrlVars()
   value=getUrlVars()['tag'];
 } else if (getUrlVars()['dev']!=null) {
   select='dev';
-  value=getUrlVars()['dev'];
+  value=decodeURIComponent(getUrlVars()['dev']);
 } else if (getUrlVars()['pub']!=null) {
   select='pub';
   value=getUrlVars()['pub'];
@@ -89,6 +89,10 @@ function ifSearch () {
     document.getElementById('dev-title').innerHTML='Поиск по запросу "'+decodeURIComponent(getUrlVars()['search'])+'"';
     document.getElementById('siteSearch').value=decodeURIComponent(getUrlVars()['search']);
     document.getElementById('appsList-icon').href='images/search.svg';
+  } else if (getUrlVars()['dev']!=null) {
+    document.getElementById('appsList-title').innerHTML='Приложения от '+decodeURIComponent(getUrlVars()['dev']);
+    document.getElementById('dev-title').innerHTML='Приложения от '+decodeURIComponent(getUrlVars()['dev']);
+    document.getElementById('appsList-icon').href='images/search.svg';
   }
 }
 function ifGame () {
@@ -102,6 +106,17 @@ function ifGame () {
     document.getElementById('apps-span').className='phoneNav-text';
     document.getElementById('games-span').className='phoneNav-text phoneNav-link-active';
   }
+}
+
+function isGame () {
+  document.getElementById('chosen').style.fontFamily='var(--regular)';
+  document.getElementById('gameTab').style.fontFamily='var(--bold)';
+  document.getElementById('apps-categ').style.display='none';
+  document.getElementById('games-categ').style.display='var(--tabs-display)';
+  document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
+  document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
+  document.getElementById('apps-span').className='phoneNav-text';
+  document.getElementById('games-span').className='phoneNav-text phoneNav-link-active';
 }
 
 function setTagName () {
@@ -182,6 +197,11 @@ function setTagName () {
       tagName='Аркада';
       tagCode='arcade';
       tagIcon='arcade';
+      isGame();
+    } else if (decodedTag=='Файтинги') {
+      tagName='Файтинги';
+      tagCode='fighting';
+      tagIcon='fighting';
       isGame();
     } else {
       tagName='Недавно обновлено';

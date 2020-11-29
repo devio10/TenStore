@@ -21,8 +21,11 @@ request.responseType = "json";
 request.open("POST", url, true);
 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 request.addEventListener("readystatechange", () => {
-  if ((request.readyState === 4) && (request.status === 200)) {
-    var obj = request.response;
+  if ((request.readyState===4)&&(request.status===200)) {
+    var obj=request.response;
+    if ((obj==0)&&(id!=0)) {
+      document.getElementById('app-popups').style.display='flex';
+    }
     for(let i=0; i<obj.apps.length; i++) {
 
       //document.getElementById('app-popups').style.display='none';
@@ -143,7 +146,8 @@ request.addEventListener("readystatechange", () => {
       }
       var description=obj.apps[0].descr;
       var shortDescription=description.split('<p>');
-      document.getElementById('app-description').innerHTML=shortDescription[0]+'..';
+      document.getElementById('app-description-short').innerHTML=shortDescription[0]+'..';
+      document.getElementById('app-description').innerHTML=description;
 
       document.getElementById('app-likes').innerHTML=liked;
       document.getElementById('app-dislikes').innerHTML=disliked;
@@ -190,14 +194,17 @@ request.addEventListener("readystatechange", () => {
 request.send(params);
 
 function fullDescription() {
-  if (descType=='full') {
-    descType='short';
+  let fullDesc=document.getElementById('app-description');
+  let shortDesc=document.getElementById('app-description-short');
+  if (fullDesc.style.display=='none') {
     document.getElementById('showFull').innerHTML='Скрыть';
-    document.getElementById('app-description').innerHTML=description;
+    fullDesc.style.display='block';
+    shortDesc.style.display='none';
   } else {
-    var descType='long';
     document.getElementById('showFull').innerHTML='Показать полностью';
-    document.getElementById('app-description').innerHTML=description;
+
+    fullDesc.style.display='none';
+    shortDesc.style.display='block';
   }
 }
 function scrollScreenshots (direction) {

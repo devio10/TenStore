@@ -3,7 +3,7 @@ function showAppCard(block, app_icon, app_icon_pad, app_icon_bg, app_id, app_nam
   let aCard_width='var(--aCard-width)';
   let icon_border='';
   let icon_size='var(--aCard-icon)';
-  if ((app_icon_bg==0)||(app_icon_bg=='white')||(app_icon_bg=='#ffffff')||(app_icon_bg=='#fff')){
+  if ((app_icon_bg==0)||(app_icon_bg=='white')||(app_icon_bg=='#ffffff')||(app_icon_bg=='#fff')||(app_icon_bg=='#FFFFFF')){
     icon_bg='var(--bg)';
     icon_border='; border: 1px solid var(--aCard-border); border-bottom: 0';
     aCard_width='var(--aCard-width2)';
