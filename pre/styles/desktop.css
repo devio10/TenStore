@@ -1129,6 +1129,7 @@ input[type='radio']:checked {
 	justify-content: center;
 	align-items: center;
   align-content: center;
+	margin-bottom: 80px;
 }
 .flex {
 	display: flex;
@@ -1420,8 +1421,11 @@ textarea {
 	background-color: var(--bg);
 }
 .promo-close {
-	padding: 2px;
+	padding: 4px;
 	margin: auto 15px auto auto;
 	font-size: 16px;
 	color: var(--font);
+}
+.ph-info-Bold {
+	display: none;
 }

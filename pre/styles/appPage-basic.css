@@ -163,7 +163,7 @@ a {
 .app-rating {
 	float: left;
 	font-size: 20px;
-	filter: invert(var(--dark));
+	color: var(--font);
 	z-index: 1;
 	margin: auto 7px auto 7px;
 }
@@ -223,5 +223,8 @@ a {
 	box-shadow: var(--no-shadow);
 }
 .ph-info-bold {
+	display: none;
+}
+#my-review {
 	display: none;
 }

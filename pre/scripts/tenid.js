@@ -18,11 +18,11 @@ function login (page) {
   request.onreadystatechange = function() {
     if ((request.readyState == 4) && (request.status == 200)) {
         let obj = request.response;
-        let userPhoto;
+        var userPhoto;
         if (obj.user[0].photo == null) {
-          userPhoto = 'images/user.svg';
+          userPhoto='images/user.svg';
         } else {
-          userPhoto = "https://thetenstore.ru/" + obj.user[0].photo;
+          userPhoto="https://thetenstore.ru/"+obj.user[0].photo;
         }
         if (page == 'settings') {
 
@@ -122,6 +122,7 @@ function login (page) {
 
 
         } else if (page=='app') {
+          document.getElementById('my-review').style.display='block';
           document.getElementById('review-userpic').src=userPhoto;
           document.getElementById('review-username').innerHTML=obj.user[0].name + " " + obj.user[0].lastname;
         }
@@ -160,7 +161,7 @@ function login (page) {
           document.getElementById('userbox-email').innerHTML=obj.user[0].email;
         }
     } else if (localStorage.getItem('alwaysLoggedIn')=='true') {
-      let userPhoto='images/alwaysLoggedIn.svg';
+      var userPhoto='images/alwaysLoggedIn.svg';
       if (page == 'settings') {
 
         let card2=document.getElementById('card2');
@@ -233,6 +234,10 @@ function login (page) {
         showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
         showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
 
+      } else if (page=='app') {
+        document.getElementById('my-review').style.display='block';
+        document.getElementById('review-userpic').src=userPhoto;
+        document.getElementById('review-username').innerHTML='fake user';
       }
       document.getElementById('name').style.display='block';
       if (localStorage.getItem('nameDisplay')=='true') {

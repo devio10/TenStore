@@ -69,8 +69,8 @@
 	cursor: pointer;
 }
 #CA-warningBox {
-  background: var(--nav-bg);
-  border: 1px solid var(--border);
+  background: #ff7961;
+  border: 1px solid #ff7961;
   border-radius: 6px;
   width: 350px;
   height: auto;
@@ -80,6 +80,19 @@
   z-index: 1000;
   box-shadow: var(--shadow1);
   display: none;
+  animation-name: warningBox;
+  animation-duration: 2s;
+  animation-delay: .5s;
+  animation-fill-mode: forwards;
+}
+@keyframes warningBox {
+  0% {
+    background: #ff7961;
+  }
+  100% {
+    background: var(--nav-bg);
+    border: 1px solid var(--border);
+  }
 }
 #warningBox-text {
   padding: 0;
@@ -206,4 +219,7 @@
 }
 #confirm-button:hover > .floatButton-icon, #notMe-button:hover >  .floatButton-icon {
   color: var(--font);
+}
+#reg-button {
+  margin: 75px auto -120px auto;
 }

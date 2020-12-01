@@ -25,11 +25,6 @@
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
-		<div id="mobile-search-block">
-			<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
-			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
-		</div>
-		<button onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
@@ -58,12 +53,12 @@
 
 		<div id="logged-in" style="display: none">
 			<div class="tenid-block2" id="main-block">
-				<div id="CA-picDiv" style="display: block"><img id="CA-userPic"><img id="kingIcon"></div>
+				<div id="user-pic-block" style="width: 150px; margin: 40px auto 0 auto"><img id="CA-userPic" style=""><img id="kingIcon"></div>
 				<h2 class="centerText" id="user-name"></h2>
 				<h4 class="centerText" id="user-short-bio"></h4>
 				<h4 class="centerText" style="display: none" id="user-developer-info"></h4>
 				<button onclick="window.open('edit-account', '_self')" id="user-edit-button" class="accent-button-2">Редактировать</button>
-				<button onclick="logoff()" id="user-logout-button" class="accent-button-2">Выйти</button>
+				<button onclick="logoff()" id="user-logout-button" class="button-2">Выйти</button>
 			</div>
 			<div class="tenid-block2 hidden">
 				<h3 class="tenid-block-title2">Аккаунт разработчика</h3>
@@ -73,11 +68,6 @@
 			<div class="tenid-block2">
 				<h3 class="tenid-block-title2">О себе</h3>
 				<h4 id="user-bio" class="tenid-block-text"></h4>
-				<h3 class="tenid-block-title2 hidden">Контакты</h3>
-				<h4 id="user-contacts" class="tenid-block-text hidden">Telegram: <a class="link">@dnavalny</a><br>
-					ВКонтакте: <a class="link">@dmitrynavalny</a><br>
-					Почта: <a class="link">dmitrynavalny@outlook.com</a>
-				</h4>
 			</div>
 			<div style="margin-bottom: 60px" class="tenid-block2" id="user-appsBlock">
 				<h3 class="tenid-block-title2">Приложения</h3>

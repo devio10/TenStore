@@ -100,6 +100,7 @@
   margin-right: auto;
   justify-content: center;
 }
+
 #userBox {
   width: 270px;
 	top: 70px;
@@ -132,7 +133,16 @@
 	margin-right: auto;
 	margin-top: 10px;
 }
-
+.screenshots-buttons {
+	display: none;
+}
+#app-scr-block {
+	width: 95%;
+	margin-left: 5%;
+}
+.screenshot {
+	height: 175px;
+}
 .reviews-flex {
 	margin-left: 0
 }
@@ -224,6 +234,7 @@
 	justify-content: center;
 	align-items: center;
   align-content: center;
+
 }
 .topCard {
   width: 400px;
@@ -231,6 +242,9 @@
   margin: 20px;
   display: flex;
   flex-direction: column;
+}
+#last-topCard {
+
 }
 #homepage-random-app {
   height: 300px;
@@ -271,7 +285,7 @@
 }
 .settings-subtitleIcon {
 	float: none;
-	margin: 0 5px 0 5px;
+	margin: auto 5px auto 5px;
 }
 .settings {
 	width: 97.5%;
@@ -410,10 +424,6 @@
 	width: 100%;
 	height: 100%;
 }
-.popup-button {
-	width: 175px;
-	height: 50px;
-}
 
 #alert {
 	width: 80%;
@@ -473,7 +483,7 @@
 	width: 80%;
 }
 
-.tenstore-ad {
+.tenstore-promo {
 	width: 75%;
 	margin: 65px 12.5% 0 12.5%;
 	bottom: auto;
@@ -489,4 +499,22 @@
 .settings-user-card {
 	width: 80%;
 	margin: 0 auto 0 auto;
+}
+/*login page*/
+#reg-button {
+  margin: 0;
+	position: fixed;
+  bottom: 42.5px;
+  left: 35px;
+}
+/*комментарии*/
+.reviews-flex {
+	justify-content: center;
+}
+.review-card {
+	width: 300px;
+}
+#review-text {
+	width: 262px;
+	padding: 8px;
 }

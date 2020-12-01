@@ -61,7 +61,7 @@ request.addEventListener("readystatechange", () => {
 
       /*Скриншоты*/
       let scr0=obj.apps[0].screenshots;
-      if (obj.apps[0].screenshots!=0) {
+      if (scr0!='[]') {
         const screenshots=JSON.parse(scr0);
         for(let s in screenshots.scr) {
           var screenshot=document.createElement('img');
@@ -97,10 +97,11 @@ request.addEventListener("readystatechange", () => {
               reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
 
               var comment=document.createElement('div');
+              console.log(comments.comments[c]);
               if (comments.comments[c].isLiked=='1') {
-                comment.className='review-card disliked';
-              } else {
                 comment.className='review-card liked';
+              } else {
+                comment.className='review-card disliked';
               }
               comment.innerHTML="<div class='flex flex-row'> \
                 <img loading='lazy' class='review-card-userPic' src='"+reviewPic+"'> \
@@ -224,10 +225,13 @@ function reviewParameter (parameter, value) {
   if (parameter=='rate') {
     rate=value;
     let iconName;
+    let reviewCard=document.getElementById('my-review');
     if (value=='like') {
       iconName='ph-thumbs-up';
+      reviewCard.className='review-card liked';
     } else {
       iconName='ph-thumbs-down';
+      reviewCard.className='review-card disliked';
     }
     document.getElementById('send-btn').style.display='block';
     document.getElementById('like').className='ph-thumbs-up floatButton-icon login-button-icon';
@@ -240,7 +244,7 @@ function sendReview () {
   if (rate=='like') {
     isLiked='1';
   } else {
-    isLiked='0';
+    isLiked='-1';
   }
   let action="DF7dcbw";
   const request=new XMLHttpRequest();
@@ -260,4 +264,13 @@ function sendReview () {
         }
   });
   request.send(params);
+
+  var comment=document.createElement('div');
+  comment.className='review-card '+rate+'d';
+  comment.innerHTML="<div class='flex flex-row'> \
+    <img loading='lazy' class='review-card-userPic' src='"+document.getElementById('review-userpic').src+"'> \
+    <h5 class='review-card-name'>"+document.getElementById('review-username').innerHTML+"</h5> \
+  </div> \
+  <h5 class='review-card-text'>"+document.getElementById('review-text').value+"</h5>"
+  document.getElementById('reviews-block').appendChild(comment);
 }

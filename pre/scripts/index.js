@@ -77,9 +77,10 @@ function closePopup(isWatched) {
     localStorage.setItem('version-2.2-popup', 'watched');
   }
   document.getElementById('tenstore-2.2').style.display='none';
+  document.getElementById('phoneNav').style.display='flex';
 }
 
-if (localStorage.getItem('version-2.2-popup')!='watched') {
+if ((localStorage.getItem('version-2.2-popup')!='watched')||(localStorage.getItem('debug-popups')=='true')) {
   document.getElementById('tenstore-2.2').style.display='flex';
   document.getElementById('mobileSearch').style.display='none';
   document.getElementById('phoneNav').style.display='none';
