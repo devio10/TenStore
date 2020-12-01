@@ -3,61 +3,81 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>TenStore</title>
-	  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<title>Ваш профиль TenID</title>
+	  <link rel="shortcut icon" href="images/user.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
 		<link href="styles/user.css" rel="stylesheet" type="text/css">
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
+		<script src="https://unpkg.com/phosphor-icons"></script>
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
+		<script src="scripts/app-card.js"></script>
+		<script src="scripts/phone-check.js"></script>
 	</head>
-	<body style="background-image: url(images/dnavalny.png); background-attachment: fixed; object-fit: cover; background-position: center; background-repeat: no-repeat; background-size: cover">
+	<body id="user-background">
 		<nav style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
-				<a id="mLogo2">dnavalny</a>
+				<a id="mLogo2">Ваш профиль</a>
 				<a id="logo">TENID</a>
+				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
-			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
-			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
-			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="https://thetenstore.ru/tenid"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
-			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
+			<h5 id="userbox-email" class="centerText"></h5>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
-
-		<div class="CA-block" style="width: 550px; margin-bottom: 0">
-			<img src="images/user.svg" class="CA-block-icon">
-			<h5 id="CA-block-title">АККАУНТ</h5>
-			<div id="CA-picDiv" style="display: block"><img id="CA-userPic" src="images/dnavalny.jpg"><img src="images/moderator.svg" id="kingIcon"></div>
-			<h2 class="centerText">Дмитрий Навальный</h2>
-			<h4 class="centerText">23 года, дизайнер из Санкт-Петербурга.</h4>
-			<div style="display: flex; align-items: center; margin: 30px 0 20px 0">
-				<button style="margin: 0 auto 0 auto" class="accentButton">Редактировать</button>
-				<button style="margin: 0 auto 0 auto">Мои приложения</button>
+		<div class="tenid-blocks" id="not-logged-in">
+			<div class="tenid-block">
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/welcome.png">
+				</div>
+				<h3 class="centerText" style="margin: 20px 0 0 0">Добро пожаловать в TenID</h3>
+				<h5 style="margin-bottom: 0" class="grey centerText">
+					Для продолжения, вам нужно создать новый<br> аккаунт или войти в существующий.
+				</h5>
+				<button onclick="window.open('create-account', '_self')" style="margin: 30px auto 0 auto" class="accent-button-2">Создать аккаунт</button>
+				<button onclick="window.open('login', '_self')" style="margin: 20px auto 40px auto" class="button-2">Войти в аккаунт</button>
 			</div>
 		</div>
-		<div class="CA-block" style="width: 550px; margin-top: 40px; margin-bottom: 0">
-			<h3 id="CA-block-title2">О себе</h3>
-			<h4 id="CA-block-text">Дмитрий по кличке Навальный</h4>
-			<h3 id="CA-block-title2">Связь</h3>
-			<h4 id="CA-block-text">Telegram: <a>@dnavalny</a><br>
-				Почта: скрыто<br>
-				Twitter: скрыто<br>
-				ВКонтакте: <a>@dmitrynavalny</a>
-			</h4>
-			<h3 id="CA-block-title2">Лучше купи Ryzen</h3>
-			<h4 id="CA-block-text">2700 райзен</h4>
+
+		<div id="logged-in" style="display: none">
+			<div class="tenid-block2" id="main-block">
+				<div id="user-pic-block" style="width: 150px; margin: 40px auto 0 auto"><img id="CA-userPic" style=""><img id="kingIcon"></div>
+				<h2 class="centerText" id="user-name"></h2>
+				<h4 class="centerText" id="user-short-bio"></h4>
+				<h4 class="centerText" style="display: none" id="user-developer-info"></h4>
+				<button onclick="window.open('edit-account', '_self')" id="user-edit-button" class="accent-button-2">Редактировать</button>
+				<button onclick="logoff()" id="user-logout-button" class="button-2">Выйти</button>
+			</div>
+			<div class="tenid-block2 hidden">
+				<h3 class="tenid-block-title2">Аккаунт разработчика</h3>
+				<h4 class="tenid-block-text">Сделайте ваш профиль аккаунтом разработчика
+					и получите возможность публиковать свои приложения</h4>
+			</div>
+			<div class="tenid-block2">
+				<h3 class="tenid-block-title2">О себе</h3>
+				<h4 id="user-bio" class="tenid-block-text"></h4>
+			</div>
+			<div style="margin-bottom: 60px" class="tenid-block2" id="user-appsBlock">
+				<h3 class="tenid-block-title2">Приложения</h3>
+				<h4 class="tenid-block-text" id="no-apps">У этого разработчика нет приложений.</h4>
+				<div id="aCard-block" style="margin-left: 0; margin-top: 0; border-radius: 0; width: 100%">
+				</div>
+			</div>
 		</div>
-		<script>login(); ub_themeBtn()</script>
+
+		<script>login('user'); ub_themeBtn()</script>
+		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

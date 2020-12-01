@@ -36,3 +36,98 @@ function EditAccount () {
     request.send(params);
   }
 }
+
+var isPicChanged = false;
+let done = false;
+let didReadText = false;
+
+var isBgChanged = false;
+let bgDone = false;
+let bgDidReadText = false;
+function readAsDataByURL(file) {
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+    reader.onerror = reject;
+
+    reader.readAsDataURL(file);
+  });
+}
+
+/* function readAsByteArrayByURL(file) {
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+
+    reader.onloadend = (e) => {
+      if (e.target.readyState == FileReader.DONE) {
+        let bytesArray = [];
+        let array = new Uint8Array(e.target.result);
+        for (byte of array) {
+          bytesArray.push(byte);
+        }
+        resolve(bytesArray);
+      }
+    };
+    reader.onerror = reject;
+
+    reader.readAsArrayBuffer(file);
+  });
+}
+*/
+
+var picFile;
+var bgFile;
+async function readURL(input) {
+  if (input.files && input.files[0]) {
+    const picture = await readAsDataByURL(input.files[0]);
+    $('#CA-userPic').attr('src', picture);
+    picFile = input.files[0];
+    console.log(input.files[0]);
+  }
+}
+$("#EA-fileInput").change(function(){
+  readURL(this);
+  isPicChanged = true;
+  document.getElementById('all-save').className='accentButton';
+});
+
+async function BgReadURL(input) {
+  if (input.files && input.files[0]) {
+    const picture = await readAsDataByURL(input.files[0]);
+    $('#EA-userBg').attr('src', picture);
+    picFile = input.files[0];
+    console.log(input.files[0]);
+  }
+}
+$("#bg-fileInput").change(function(){
+  BgReadURL(this);
+  isBgChanged = true;
+  document.getElementById('bg-save').className='accentButton';
+  document.getElementById('all-save').className='accentButton';
+});
+
+function resetFields () {
+  document.getElementById('bio-save').className='';
+  document.getElementById('main-save').className='';
+  document.getElementById('all-save').className='';
+}
+
+$("#name-field").change(function() {
+  document.getElementById('main-save').className='accentButton';
+  document.getElementById('all-save').className='accentButton';
+});
+$("#lastName-field").change(function() {
+  document.getElementById('main-save').className='accentButton';
+  document.getElementById('all-save').className='accentButton';
+});
+$("#bio-field").change(function() {
+  document.getElementById('bio-save').className='accentButton';
+  document.getElementById('all-save').className='accentButton';
+});
+$("#shortBio-field").change(function() {
+  document.getElementById('bio-save').className='accentButton';
+  document.getElementById('all-save').className='accentButton';
+});

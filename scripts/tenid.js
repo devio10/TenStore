@@ -1,3 +1,313 @@
+
+var userId;
+var userId;
+var userLogin;
+var userName;
+var userLastName;
+var userEmail;
+var userPic;
+function login (page) {
+  var password = localStorage.getItem('password');
+  var login = localStorage.getItem('login');
+  let action = 'h495ujh';
+  var request = getXMLHTTP();
+  request.responseType =	"json";
+  request.open('POST', 'https://thetenstore.ru/api.php', true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send("action=" + action + "&login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
+  request.onreadystatechange = function() {
+    if ((request.readyState == 4) && (request.status == 200)) {
+        let obj = request.response;
+        var userPhoto;
+        if (obj.user[0].photo == null) {
+          userPhoto='images/user.svg';
+        } else {
+          userPhoto="https://thetenstore.ru/"+obj.user[0].photo;
+        }
+        if (page == 'settings') {
+
+
+          let card2=document.getElementById('card2');
+          let card1=document.getElementById('card1');
+          card1.style.display='none';
+          card2.style.display='block';
+          if (localStorage.getItem('app-background')!='false') {
+            if (obj.user[0].bg!=0) {
+              card2.style.background="linear-gradient(0deg, var(--rgba) 49%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/"+obj.user[0].bg+")";
+            } else {
+              let random=Math.floor(Math.random() * 10) + 1;
+              card2.style.background="linear-gradient(0deg, var(--rgba) 49%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/"+random+".jpg)";
+            }
+            card2.style.backgroundPosition='center';
+            card2.style.backgroundRepeat='no-repeat';
+            card2.style.backgroundSize='cover';
+          }
+          if (localStorage.getItem('nameDisplay')=='true') {
+            document.getElementById('settings-name').innerHTML=obj.user[0].login;
+          } else {
+            document.getElementById('settings-name').innerHTML=obj.user[0].name+" "+obj.user[0].lastname;
+          }
+          document.getElementById('sc-userPic').src=userPhoto;
+          if (localStorage.getItem('userbox-dontShowEmail')!='true') {
+            document.getElementById('settings-email').innerHTML=obj.user[0].email;
+          }
+
+
+        } else if (page == 'edit-account') {
+
+
+          document.getElementById('CA-userPic').src = userPhoto;
+          document.getElementById('EA-name').value = obj.user[0].name;
+          document.getElementById('EA-lastName').value = obj.user[0].lastname;
+          document.getElementById('EA-login').value = obj.user[0].login;
+          userId = obj.user[0].id;
+          userLogin = obj.user[0].login;
+          userName = obj.user[0].name;
+          userLastName = obj.user[0].lastname;
+          userPic = obj.user[0].photo;
+          userEmail = obj.user[0].email;
+
+
+        } else if (page=='user') {
+
+
+          document.getElementById('logged-in').style.display='block';
+          document.getElementById('not-logged-in').style.display='none';
+          let userPage=document.getElementById('user-background');
+          if (localStorage.getItem('nameDisplay')=='true') {
+            document.getElementById('user-name').innerHTML=obj.user[0].login;
+          } else {
+            document.getElementById('user-name').innerHTML=obj.user[0].name+" "+obj.user[0].lastname;
+          }
+          if (obj.user[0].userType=='dev') {
+            document.getElementById('user-appsBlock').style.display='block';
+            document.getElementById('kingIcon').src='images/developer.svg';
+            document.getElementById('user-developer-info').innerHTML='Разработчик';
+          } else if (obj.user[0].userType=='admin') {
+            document.getElementById('user-developer-info').style.display='block';
+            document.getElementById('user-appsBlock').style.display='block';
+            document.getElementById('kingIcon').src='images/moderator.svg';
+            document.getElementById('user-developer-info').innerHTML='Модератор';
+          } else {
+            document.getElementById('kingIcon').style.display='none';
+          }
+          document.getElementById('CA-userPic').src=userPhoto;
+          document.getElementById('user-short-bio').innerHTML=obj.user[0].shortBio;
+          document.getElementById('user-bio').innerHTML=obj.user[0].bio;
+          if (localStorage.getItem('app-background')!='false') {
+            if (obj.user[0].bg!=0) {
+              userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), url(https://thetenstore.ru/"+obj.user[0].bg+")";
+            } else {
+              let random = Math.floor(Math.random() * 10) + 1;
+              userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), url(https://thetenstore.ru/images/headers/"+random+".jpg)";
+            }
+            userPage.style.backgroundPosition = 'center';
+            userPage.style.backgroundRepeat = 'no-repeat';
+            userPage.style.backgroundSize = 'cover';
+          }
+          const requestDev = new XMLHttpRequest();
+          const paramsDev = "action=KdSqSAOC&select=dev" + "&value=" + devName;
+          requestDev.responseType =	"json";
+          requestDev.open("POST", url, true);
+          requestDev.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          requestDev.addEventListener("readystatechange", () => {
+            if (requestDev.readyState === 4 && requestDev.status === 200) {
+              let maobj = requestDev.response;
+              for(let i=0; i<maobj.apps.length; i++) {
+                showAppCard('aCard-block', maobj.apps[i].icon, maobj.apps[i].icon_pad, maobj.apps[i].icon_bg, maobj.apps[i].id, maobj.apps[i].name, '');
+              }
+            }
+          });
+          requestDev.send(paramsDev);
+
+
+        } else if (page=='app') {
+          document.getElementById('my-review').style.display='block';
+          document.getElementById('review-userpic').src=userPhoto;
+          document.getElementById('review-username').innerHTML=obj.user[0].name + " " + obj.user[0].lastname;
+        }
+
+        document.getElementById('name').style.display='block';
+        if (localStorage.getItem('nameDisplay') == 'true') {
+          document.getElementById('name').innerHTML = obj.user[0].login;
+        } else {
+          document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
+        }
+        document.getElementById('picDiv').style.display="block";
+        document.getElementById('lastButton').innerHTML="<i class='ph-sign-out boxButton-icon'></i>Выйти";
+        document.getElementById('lastButton').style.borderTop='0';
+        document.getElementById('boxbtn-library').style.display='flex';
+        document.getElementById('boxBtn-account').style.display='flex';
+        document.getElementById('themeButton').style.borderBottom='0';
+        document.getElementById('themeButton').style.marginTop='0';
+        document.getElementById('themeButton').style.borderRadius='0';
+        let userBox=document.getElementById('userBox');
+        if (obj.user[0].bg!=0) {
+          userBox.style.background='linear-gradient(0deg, var(--rgba) var(--grad-percent), rgba(0,0,0,0) 100%), url(https://thetenstore.ru/'+obj.user[0].bg+')';
+        } else {
+          let random2 = Math.floor(Math.random() * 10) + 1;
+          userBox.style.background="linear-gradient(0deg, var(--rgba) var(--grad-percent), rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/"+random2+".jpg)";
+          userBox.style.backgroundPosition = 'center';
+          userBox.style.backgroundRepeat = 'no-repeat';
+          userBox.style.backgroundSize = 'cover';
+        }
+        document.getElementById('userBox').style.backgroundRepeat='no-repeat';
+        document.getElementById('userBox').style.backgroundPosition='center';
+        document.getElementById('userBox').style.backgroundSize='cover';
+        document.getElementById('userPic').src=userPhoto;
+        document.getElementById('boxPic').src=userPhoto;
+        document.getElementById('userbox-email').style.display='block';
+        if (localStorage.getItem('userbox-dontShowEmail')!='true') {
+          document.getElementById('userbox-email').innerHTML=obj.user[0].email;
+        }
+    } else if (localStorage.getItem('alwaysLoggedIn')=='true') {
+      var userPhoto='images/alwaysLoggedIn.svg';
+      if (page == 'settings') {
+
+        let card2=document.getElementById('card2');
+        let card1=document.getElementById('card1');
+        card1.style.display='none';
+        card2.style.display='block';
+        card2.style.background='linear-gradient(0deg, var(--rgba) 49%, rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/7.jpg)';
+        card2.style.backgroundPosition='center';
+        card2.style.backgroundRepeat='no-repeat';
+        card2.style.backgroundSize='cover';
+        if (localStorage.getItem('nameDisplay')=='true') {
+          document.getElementById('settings-name').innerHTML='login';
+        } else {
+          document.getElementById('settings-name').innerHTML='fakeUser';
+        }
+        document.getElementById('sc-userPic').src=userPhoto;
+        if (localStorage.getItem('userbox-dontShowEmail')!='true') {
+          document.getElementById('settings-email').innerHTML='fakeUser@thetenstore.ru';
+        }
+
+      } else if (page == 'edit-account') {
+
+        document.getElementById('CA-userPic').src = userPhoto;
+        document.getElementById('EA-name').value = 'name';
+        document.getElementById('EA-lastName').value = 'lastName';
+        document.getElementById('EA-login').value = 'login';
+        userId='id';
+        userLogin='login';
+        userName='name';
+        userLastName='lastName';
+        userPic=userPhoto;
+        userEmail='fakeUser@thetenstore.ru';
+
+      } else if (page=='user') {
+
+        document.getElementById('logged-in').style.display='block';
+        document.getElementById('not-logged-in').style.display='none';
+        let userPage=document.getElementById('user-background');
+        if (localStorage.getItem('nameDisplay')=='true') {
+          document.getElementById('user-name').innerHTML='login';
+        } else {
+          document.getElementById('user-name').innerHTML='fakeUser';
+        }
+        if (localStorage.getItem('ali-userType')=='dev') {
+          document.getElementById('user-appsBlock').style.display='block';
+          document.getElementById('kingIcon').src='images/developer.svg';
+          document.getElementById('user-developer-info').innerHTML='Разработчик';
+        } else if (localStorage.getItem('ali-userType')=='admin') {
+          document.getElementById('user-developer-info').style.display='block';
+          document.getElementById('user-appsBlock').style.display='block';
+          document.getElementById('kingIcon').src='images/moderator.svg';
+          document.getElementById('user-developer-info').innerHTML='Модератор';
+        } else {
+          document.getElementById('kingIcon').style.display='none';
+        }
+        document.getElementById('CA-userPic').src=userPhoto;
+        document.getElementById('user-short-bio').innerHTML='Параметр fakeUser включён. (shortBio)';
+        document.getElementById('user-bio').innerHTML='Параметр fakeUser включён. (bio)';
+        if (localStorage.getItem('app-background')!='false') {
+          let random = Math.floor(Math.random() * 10) + 1;
+          userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), url(https://thetenstore.ru/images/headers/"+random+".jpg)";
+          userPage.style.backgroundPosition = 'center';
+          userPage.style.backgroundRepeat = 'no-repeat';
+          userPage.style.backgroundSize = 'cover';
+        }
+        showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
+        showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
+        showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
+        showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
+        showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
+        showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'black', '57', 'Microsoft News', '');
+
+      } else if (page=='app') {
+        document.getElementById('my-review').style.display='block';
+        document.getElementById('review-userpic').src=userPhoto;
+        document.getElementById('review-username').innerHTML='fake user';
+      }
+      document.getElementById('name').style.display='block';
+      if (localStorage.getItem('nameDisplay')=='true') {
+        document.getElementById('name').innerHTML='login';
+      } else {
+        document.getElementById('name').innerHTML = 'fakeUser';
+      }
+      document.getElementById('picDiv').style.display="block";
+      document.getElementById('lastButton').innerHTML="<i class='ph-sign-out boxButton-icon'></i>Выйти";
+      document.getElementById('lastButton').style.borderTop='0';
+      document.getElementById('boxbtn-library').style.display='flex';
+      document.getElementById('boxBtn-account').style.display='flex';
+      document.getElementById('themeButton').style.borderBottom='0';
+      document.getElementById('themeButton').style.marginTop='0';
+      document.getElementById('themeButton').style.borderRadius='0';
+      document.getElementById('userBox').style.background='linear-gradient(0deg, var(--rgba) var(--grad-percent), rgba(0,0,0,0) 100%), url(https://thetenstore.ru/images/headers/7.jpg)';
+      document.getElementById('userBox').style.backgroundRepeat='no-repeat';
+      document.getElementById('userBox').style.backgroundPosition='center';
+      document.getElementById('userBox').style.backgroundSize='cover';
+      document.getElementById('userbox-email').style.display='block';
+      document.getElementById('userPic').src=userPhoto;
+      document.getElementById('boxPic').src=userPhoto;
+      if (localStorage.getItem('userbox-dontShowEmail')!='true') {
+        document.getElementById('userbox-email').innerHTML='fakeUser@thetenstore.ru';
+      }
+    }
+  };
+}
+function logoff() {
+  if (localStorage.getItem('login') != null) {
+    localStorage.setItem('password', null);
+    localStorage.setItem('login', null);
+    location.reload();
+  }
+}
+function validateEmail (email) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+function back(block) {
+  document.getElementById('CA-1step').style.display = 'none';
+  document.getElementById('CA-2step').style.display = 'none';
+  document.getElementById('CA-3step').style.display = 'none';
+  document.getElementById('CA-4step').style.display = 'none';
+  document.getElementById('CA-5step').style.display = 'none';
+  document.getElementById(block).style.display = 'block';
+}
+function getUrlVars(key) {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+  vars[key] = value;
+  });
+  return vars;
+}
+function confirmedPage () {
+  let code=getUrlVars()['code'];
+  if (code=='0') {
+    document.getElementById('code0').style.display='block';
+  } else if (code=='1') {
+    document.getElementById('code1').style.display='block';
+  }
+}
+function warningBox (action, text) {
+  if (action == 'hide') {
+    document.getElementById('CA-warningBox').style.display='none';
+  } else {
+    document.getElementById('warningBox-text').innerHTML=text;
+    document.getElementById('CA-warningBox').style.display='block';
+  }
+}
 function randomPass() {
     var length = 15,
         charset = "!@#$%^&*abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
@@ -5,9 +315,10 @@ function randomPass() {
     for (var i = 0, n = charset.length; i < length; ++i) {
         retVal += charset.charAt(Math.floor(Math.random() * n));
     }
-    warningBox('show', 'Ваш пароль: ' + retVal);
-    document.getElementById('CA-repeatPassword').value = retVal;
-    document.getElementById('CA-password').value = retVal;
+    document.getElementById('copy-block').style.display='flex';
+    document.getElementById('copy-pass').value=retVal;
+    document.getElementById('CA-repeatPassword').value=retVal;
+    document.getElementById('CA-password').value=retVal;
 }
 function userBox () {
   let box = document.getElementById('userBox');
@@ -153,114 +464,4 @@ function getXMLHTTP() {
 }
 function goBack() {
   window.history.go(-1);
-}
-
-var userId;
-var userId;
-var userLogin;
-var userName;
-var userLastName;
-var userEmail;
-var userPic;
-function login (page) {
-  var password = localStorage.getItem('password');
-  var login = localStorage.getItem('login');
-  let action = 'h495ujh';
-  var request = getXMLHTTP();
-  request.responseType =	"json";
-  request.open('POST', 'https://thetenstore.ru/api.php', true);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send("action=" + action + "&login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
-  request.onreadystatechange = function() {
-    if ((request.readyState == 4) && (request.status == 200)) {
-        let obj = request.response;
-        let userPhoto;
-        if (obj.user[0].photo == null) {
-          userPhoto = 'images/user.svg';
-        } else {
-          userPhoto = "https://thetenstore.ru/" + obj.user[0].photo;
-        }
-        if (page == 'settings') {
-          if (localStorage.getItem('nameDisplay') == 't') {
-            document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].login + ".";
-          } else {
-            document.getElementById('settings-welcomeText').innerHTML = "Здравствуйте, " + obj.user[0].name + ".";
-          }
-          document.getElementById('settings-link1').style.display = "block";
-          document.getElementById('settings-link2').style.display = "block";
-          document.getElementById('settings-link3').style.display = "none";
-        } else if (page == 'edit-account') {
-          document.getElementById('CA-userPic').src = userPhoto;
-          document.getElementById('EA-name').value = obj.user[0].name;
-          document.getElementById('EA-lastName').value = obj.user[0].lastname;
-          document.getElementById('EA-login').value = obj.user[0].login;
-          userId = obj.user[0].id;
-          userLogin = obj.user[0].login;
-          userName = obj.user[0].name;
-          userLastName = obj.user[0].lastname;
-          userPic = obj.user[0].photo;
-          userEmail = obj.user[0].email;
-        }
-
-        if (localStorage.getItem('nameDisplay') == 't') {
-          document.getElementById('name').innerHTML = obj.user[0].login;
-        } else {
-          document.getElementById('name').innerHTML = obj.user[0].name + " " + obj.user[0].lastname;
-        }
-        let userPic = document.getElementById('userPic');
-        let boxPic = document.getElementById('boxPic');
-        let picDiv = document.getElementById('picDiv');
-        let lastBtn = document.getElementById('lastButton');
-        let lastBtnAccount = document.getElementById('boxBtn-account');
-        picDiv.style.display = "block";
-        lastBtn.innerHTML = "<img src='images/logout.svg' class='boxButton-icon'>Выйти";
-        lastBtnAccount.style.display = "flex";
-        userPic.src = userPhoto;
-        boxPic.src = userPhoto;
-    }
-  };
-}
-function logoff() {
-  if (localStorage.getItem('login') != null) {
-    localStorage.setItem('password', null);
-    localStorage.setItem('login', null);
-    location.reload();
-  }
-}
-function validateEmail (email) {
-  var re = /\S+@\S+\.\S+/;
-  return re.test(email);
-}
-function back(block) {
-  document.getElementById('CA-1step').style.display = 'none';
-  document.getElementById('CA-2step').style.display = 'none';
-  document.getElementById('CA-3step').style.display = 'none';
-  document.getElementById('CA-4step').style.display = 'none';
-  document.getElementById('CA-5step').style.display = 'none';
-  document.getElementById(block).style.display = 'block';
-}
-function getUrlVars(key) {
-  var vars = {};
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-  vars[key] = value;
-  });
-  return vars;
-}
-function confirmedPage () {
-  let code = getUrlVars()["code"];
-  if (code == '0') {
-    let c0 = document.getElementById('CoA-code0');
-    c0.style.display = "block";
-  } else if (code == '1') {
-    let c1 = document.getElementById('CoA-code1');
-    c1.style.display = "block";
-  }
-}
-function warningBox (action, text) {
-  if (action == 'hide') {
-    document.getElementById('CA-warningBox').style.display = 'none';
-  } else {
-    document.getElementById('CA-warningBox').innerHTML = "<h5 style='color: black; padding: 10px'>" + text + '</h5>';
-    document.getElementById('CA-warningBox').style.display = 'block';
-  }
 }
