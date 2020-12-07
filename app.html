@@ -51,10 +51,10 @@
 				</nav>
 
 				<div class="appPage-block first wide">
-					<div id="appPage-icon-div"><img id="appPage-icon"></div>
+					<div id="appPage-icon-div"><img src='images/appPage/no-image.svg' id="appPage-icon"></div>
 					<div id="afb" style="display: flex; flex-direction: column">
 						<h2 id="appPage-name"></h2>
-						<h3 id="appPage-dev" class="grey"></h3>
+						<a id="appPage-dev-link"><h3 id="appPage-dev" class="grey"></h3></a>
 					</div>
 					<div class="flex rating-div">
 						<i class="ph-thumbs-up-bold app-rating"></i><h4 id="app-likes" class="app-ratingNum"></h4>
@@ -73,7 +73,6 @@
 								<h4 class='download-card-title'>Название платформы</h4>
 								<h5 class='download-card-description grey'>разрядность • версия • дата • вес</h5>
 							</div>
-							<i class='ph-info-bold download-card-nexticon'></i>
 							<i class='ph-download-simple-bold download-card-nexticon'></i>
 						</div>
 
@@ -107,11 +106,18 @@
 								<div class='flex flex-row'>
 									<img loading='lazy' id="review-userpic" class='review-card-userPic' src='images/user.svg'>
 									<h5 id="review-username" class='review-card-name'></h5>
-									<button onclick="reviewParameter('rate', 'like')" class="accentButton publish-button first-b"><i id="like" class="ph-thumbs-up floatButton-icon login-button-icon"></i></button>
-									<button onclick="reviewParameter('rate', 'dislike')" class="accentButton publish-button second-b"><i id="dislike" class="ph-thumbs-down floatButton-icon login-button-icon"></i></button>
+									<button id="like-btn" onclick="reviewParameter('rate', 'like')" class="accentButton publish-button first-b"><i id="like" class="ph-thumbs-up floatButton-icon login-button-icon"></i></button>
+									<button id="dislike-btn" onclick="reviewParameter('rate', 'dislike')" class="accentButton publish-button second-b"><i id="dislike" class="ph-thumbs-down floatButton-icon login-button-icon"></i></button>
+									<button id="edit-btn" onclick="editReview()" class="accentButton publish-button third-b"><i class="ph-pencil-simple floatButton-icon login-button-icon"></i></button>
 								</div>
+								<h5 id="my-review-text" class='review-card-text'></h5>
 								<textarea id="review-text" placeholder="Ваш комментарий..."></textarea>
-								<button id="send-btn" onclick="sendReview()" style="margin: 0 auto 15px auto; display: none" class="accent-button-2">Отправить</button>
+								<h5 id="review-warning" style="margin: 0 0 15px 15px" class="grey">Поставьте оценку, чтобы отправить комментарий</h5>
+								<div class="flex">
+									<button id="send-btn" onclick="sendReview()" style="margin: 0 auto 15px auto; display: none" class="accent-button-2">Отправить</button>
+									<button id="remove-btn" onclick="document.getElementById('remove-confirmation').style.display='flex'" style="margin: 0 auto 15px auto; display: none" class="button-2">Удалить</button>
+								</div>
+
 							</div>
 
 							<div style="display: none" class='review-card disliked'>
@@ -149,6 +155,18 @@
 					<div class="flex">
 						<button style="margin-top: 250px" onclick="window.open('index', '_self')" class="popup-button black black-border">Главная</button>
 					</div>
+				</div>
+			</div>
+
+			<div id="remove-confirmation" style="display: none" class="popup-blur-bg">
+				<div class="popup-window">
+					<div style="display: grid; margin-top: 60px">
+						<img style="width: 250px" class="build-pic" src="images/vectors/remove-confirmation.png">
+					</div>
+					<h2 class="popup-title3 centerText">Удаление комментария</h2>
+					<h5 class="popup-text centerText grey">Вы действительно хотите удалить ваш комментарий?</h5>
+					<button onclick="removeReview()" class="accent-button-2 popup-button">Да, удалить</button>
+					<button onclick="document.getElementById('remove-confirmation').style.display='none'" class="button-2 popup-button">Отмена</button>
 				</div>
 			</div>
 		<script>login('app'); ub_themeBtn()</script>

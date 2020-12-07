@@ -187,7 +187,11 @@ a {
 #review-text {
 	margin: 0 10px 10px 10px;
 	width: 408px;
+	height: auto;
 	padding: 10px;
+}
+#my-review-text {
+	display: none;
 }
 
 .publish-button {
@@ -195,12 +199,10 @@ a {
 	height: 30px;
 	width: 30px;
 	border-radius: 100%;
-	background: var(--nav-bg);
-	backdrop-filter: blur(var(--blur));
-	border: 1px solid var(--border);
+	background: var(--bg);
 }
 .publish-button:active, .publish-button:hover {
-  background: var(--nav-bg);
+  background: var(--primary);
 }
 .publish-icon {
 	font-size: 16px;
@@ -218,13 +220,21 @@ a {
 	margin: auto 0 auto auto;
 	box-shadow: var(--no-shadow);
 }
-.second-b {
+.second-b, .third-b {
 	margin: auto 10px auto 15px;
 	box-shadow: var(--no-shadow);
+}
+.third-b {
+	margin: auto 10px auto auto;
+	display: none;
 }
 .ph-info-bold {
 	display: none;
 }
 #my-review {
 	display: none;
+}
+#appPage-dev {
+	font-family: var(--regular);
+	font-weight: 400;
 }

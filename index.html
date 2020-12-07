@@ -61,17 +61,30 @@
 			<h5 id="userbox-email" class="centerText"></h5>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
 			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
-			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
-			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-dev"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
 
 		<div class="topCard-block">
+			<div onclick="window.open('appsList?dev=Microsoft', '_self')" class="topCard card-new-year" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/promo/get-ready-for-new-year.png)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title white" style="margin-bottom: 10px">Готовимся к Новому году</h3>
+					<h4 class="white" style="margin: 0 0 0 30px">Приложения на каждый день</h4>
+				</div>
+			</div>
+
 			<div onclick="window.open('app?&id=54', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/promo/googlefit.gif)">
 				<div style="display: flex; flex-direction: column">
 					<h3 class="home-card2-title" style="margin-bottom: 10px; color: white">Google Fit</h3>
 					<h4 class="white" style="margin: 0 0 0 30px">Следите за своим здоровьем</h4>
+				</div>
+			</div>
+
+			<div onclick="window.open('app?id=65', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/headers/spotify.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title" style="margin-bottom: 10px"></h3>
+					<h4 class="white" style="margin: 0 0 0 30px"></h4>
 				</div>
 			</div>
 
@@ -82,8 +95,8 @@
 
 			<div onclick="window.open('app?id=65', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/promo/crunchyroll.png)">
 				<div style="display: flex; flex-direction: column">
-					<h3 class="home-card2-title" style="margin-bottom: 10px; color: white">Crunchyroll</h3>
-					<h4 class="white" style="margin: 0 0 0 30px">Лицензионное аниме</h4>
+					<h3 class="home-card2-title" style="margin-bottom: 10px; color: white"></h3>
+					<h4 class="white" style="margin: 0 0 0 30px"></h4>
 				</div>
 			</div>
 
@@ -125,6 +138,13 @@
 			<div onclick="window.open('appsList?list=classic', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/backgrounds/classic.jpg)">
 				<div style="display: flex; flex-direction: column">
 					<h3 class="home-card2-title" style="color: black">Классика</h3>
+				</div>
+			</div>
+
+			<div onclick="window.open('app?id=65', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/cardbg/kinopoisk.jpg)">
+				<div style="display: flex; flex-direction: column">
+					<h3 class="home-card2-title" style="margin-bottom: 10px; color: white"></h3>
+					<h4 class="white" style="margin: 0 0 0 30px"></h4>
 				</div>
 			</div>
 		</div>
@@ -197,6 +217,17 @@
 				</div>
 				<h2 class="popup-title3 centerText">..и много всего остального</h2>
 				<h5 class="popup-text centerText grey">Это ещё не всё — но, чтобы не занимать много Вашего времени, на этом мы закончим. С полным списком изменений вы можете ознакомиться <a href=''>здесь</a>.</h5>
+				<button onclick="closePopup('true')" class="accent-button-2 popup-button">Закрыть</button>
+			</div>
+		</div>
+
+		<div id="error-logging-in" class="popup-blur-bg">
+			<div class="popup-window">
+				<div style="display: grid; margin-top: 60px">
+					<img style="width: 250px" class="build-pic" src="images/vectors/server-problems.png">
+				</div>
+				<h2 class="popup-title3 centerText">Не удалось войти в аккаунт</h2>
+				<h5 class="popup-text centerText grey">Возникли проблемы при входе в аккаунт. Возможно,<br> на сервере проводятся технические работы.</h5>
 				<button onclick="closePopup('true')" class="accent-button-2 popup-button">Закрыть</button>
 			</div>
 		</div>

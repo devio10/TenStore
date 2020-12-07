@@ -34,7 +34,7 @@ request.addEventListener("readystatechange", () => {
 
       /*Файлы*/
       let files0=obj.apps[0].files;
-      if (obj.apps[0].files!=0) {
+      if ((obj.apps[0].files!='')||(obj.apps[0].files!='[]')) {
         const files=JSON.parse(files0);
         for(let i=0; i<files.files.length; i++) {
           var downloadCard=document.createElement('div');
@@ -51,7 +51,6 @@ request.addEventListener("readystatechange", () => {
             <h4 class='download-card-title'>"+files.files[i].platform+"</h4> \
             <h5 class='download-card-description grey'>"+files.files[i].architecture+" • "+files.files[i].version+" • "+files.files[i].published+" • "+files.files[i].size+" Мб</h5> \
           </div> \
-          <i class='ph-info-bold download-card-nexticon'></i> \
           <i class='ph-download-simple-bold download-card-nexticon'></i>";
           document.getElementById('download-cards-block').appendChild(downloadCard);
         }
@@ -61,7 +60,7 @@ request.addEventListener("readystatechange", () => {
 
       /*Скриншоты*/
       let scr0=obj.apps[0].screenshots;
-      if (scr0!='[]') {
+      if ((scr0!='[]')||(scr0!=0)) {
         const screenshots=JSON.parse(scr0);
         for(let s in screenshots.scr) {
           var screenshot=document.createElement('img');
@@ -89,26 +88,49 @@ request.addEventListener("readystatechange", () => {
           userPicRequest.addEventListener("readystatechange", () => {
             if ((userPicRequest.readyState === 4) && (userPicRequest.status === 200)) {
               var userrr=userPicRequest.response;
-              if (userrr.user[0].photo==0) {
-                reviewPic='images/user.svg';
-              } else {
-                reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
-              }
-              reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
 
-              var comment=document.createElement('div');
-              console.log(comments.comments[c]);
-              if (comments.comments[c].isLiked=='1') {
-                comment.className='review-card liked';
+              if ((comments.comments[c].login==localStorage.getItem('login'))||(localStorage.getItem('debug-erg12')=='true')) {
+                document.getElementById('review-text').style.display='none';
+                document.getElementById('like-btn').style.display='none';
+                document.getElementById('dislike-btn').style.display='none';
+                document.getElementById('review-warning').style.display='none';
+
+                document.getElementById('my-review-text').style.display='block';
+                document.getElementById('edit-btn').style.display='flex';
+                document.getElementById('my-review-text').innerHTML=comments.comments[c].comment;
+                document.getElementById('review-text').value=comments.comments[c].comment;
+                var comment=document.getElementById('my-review');
+                if (comments.comments[c].isLiked=='1') {
+                  comment.className='review-card liked';
+                  rate='like';
+                  document.getElementById('like').className='ph-thumbs-up floatButton-icon login-button-icon like-button';
+                } else {
+                  comment.className='review-card disliked';
+                  rate='dislike';
+                  document.getElementById('dislike').className='ph-thumbs-down floatButton-icon login-button-icon like-button';
+                }
               } else {
-                comment.className='review-card disliked';
+                if (userrr.user[0].photo==0) {
+                  reviewPic='images/user.svg';
+                } else {
+                  reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+                }
+                reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+
+                var comment=document.createElement('div');
+                console.log(comments.comments[c]);
+                if (comments.comments[c].isLiked=='1') {
+                  comment.className='review-card liked';
+                } else {
+                  comment.className='review-card disliked';
+                }
+                comment.innerHTML="<div class='flex flex-row'> \
+                  <img loading='lazy' class='review-card-userPic' src='"+reviewPic+"'> \
+                  <h5 class='review-card-name'>"+comments.comments[c].login+"</h5> \
+                </div> \
+                <h5 class='review-card-text'>"+comments.comments[c].comment+"</h5>"
+                document.getElementById('reviews-block').appendChild(comment);
               }
-              comment.innerHTML="<div class='flex flex-row'> \
-                <img loading='lazy' class='review-card-userPic' src='"+reviewPic+"'> \
-                <h5 class='review-card-name'>"+comments.comments[c].login+"</h5> \
-              </div> \
-              <h5 class='review-card-text'>"+comments.comments[c].comment+"</h5>"
-              document.getElementById('reviews-block').appendChild(comment);
             }
           });
           userPicRequest.send(userPicParams);
@@ -158,11 +180,12 @@ request.addEventListener("readystatechange", () => {
       document.getElementById('appPage-name').innerHTML=obj.apps[0].name;
       document.getElementById('mLogo2').innerHTML=obj.apps[0].name;
       document.getElementById('appPage-dev').innerHTML=obj.apps[0].dev;
+      document.getElementById('appPage-dev-link').href='appsList?dev='+obj.apps[0].dev;
       let publisher;
-      if (obj.apps[0].pub == 0) {
-        publisher = obj.apps[0].dev;
+      if (obj.apps[0].pub==0) {
+        publisher=obj.apps[0].dev;
       } else {
-        publisher = obj.apps[0].pub;
+        publisher=obj.apps[0].pub;
       }
       document.getElementById('appPage-title').innerHTML = obj.apps[0].name + " — TenStore";
       document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
@@ -221,6 +244,7 @@ function scrollScreenshots (direction) {
   });
 }
 var rate;
+var isEdit;
 function reviewParameter (parameter, value) {
   if (parameter=='rate') {
     rate=value;
@@ -234,6 +258,8 @@ function reviewParameter (parameter, value) {
       reviewCard.className='review-card disliked';
     }
     document.getElementById('send-btn').style.display='block';
+    document.getElementById('review-warning').style.display='none';
+    document.getElementById('review-text').style.height='100px';
     document.getElementById('like').className='ph-thumbs-up floatButton-icon login-button-icon';
     document.getElementById('dislike').className='ph-thumbs-down floatButton-icon login-button-icon';
     document.getElementById(value).className=iconName+' floatButton-icon login-button-icon '+value+'-button';
@@ -260,11 +286,11 @@ function sendReview () {
   request.addEventListener("readystatechange", () => {
       if (request.readyState === 4 && request.status === 200) {
           warningBox('hide');
-          console.log('yee');
         }
   });
   request.send(params);
 
+  /*
   var comment=document.createElement('div');
   comment.className='review-card '+rate+'d';
   comment.innerHTML="<div class='flex flex-row'> \
@@ -273,4 +299,35 @@ function sendReview () {
   </div> \
   <h5 class='review-card-text'>"+document.getElementById('review-text').value+"</h5>"
   document.getElementById('reviews-block').appendChild(comment);
+  */
+  location.reload();
 }
+
+function editReview () {
+  document.getElementById('review-text').style.display='block';
+  document.getElementById('like-btn').style.display='flex';
+  document.getElementById('dislike-btn').style.display='flex';
+  document.getElementById('review-text').style.height='100px';
+  document.getElementById('send-btn').style.display='block';
+  document.getElementById('remove-btn').style.display='block';
+  document.getElementById('send-btn').innerHTML='Изменить';
+
+  document.getElementById('my-review-text').style.display='none';
+  document.getElementById('edit-btn').style.display='none';
+}
+
+function removeReview () {
+  document.getElementById('review-text').value='$%delete%$';
+  sendReview();
+}
+
+/*
+document.getElementById('review-text').style.display='none';
+document.getElementById('like-btn').style.display='none';
+document.getElementById('dislike-btn').style.display='none';
+document.getElementById('review-warning').style.display='none';
+
+document.getElementById('my-review-text').style.display='block';
+document.getElementById('edit-btn').style.display='flex';
+
+*/
