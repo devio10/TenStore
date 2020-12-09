@@ -31,7 +31,7 @@
   --accent-dark: #0d47a1;
 	--accent-light: #82b1ff;
 	--rgba: rgba(255, 255, 255, 1);
-	--grad-percent: 65%;
+	--grad-percent: 60%;
 	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 0.75);
 	--nav-click-bg: rgba(0, 0, 0, 0.25);
 
@@ -334,13 +334,25 @@ button:focus {
 	text-align: left;
   justify-content: flex-start;
 	padding-left: 20px;
-	text-transform: capitalize;
+	text-transform: none;
 }
 .boxButton:hover {
 	background: var(--secondary);
+	color: var(--accent);
+	transform: scale(0.99);
+}
+.boxButton:hover >.boxButton-icon {
+	color: var(--accent);
+}
+#lastButton:hover {
+	color: #d32f2f
+}
+#lastButton:hover >.boxButton-icon {
+	color: #d32f2f
 }
 .boxButton:active {
 	background: var(--secondary2);
+	transform: scale(0.98);
 }
 .boxButton-icon {
 	margin-right: 20px;
@@ -359,10 +371,13 @@ button:focus {
 	border-top: 1px solid var(--border-light);
 }
 #themeButton {
+	/*
 	border-bottom: 1px solid var(--border-light);
 	margin-top: -1.5px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+	*/
+
 }
 
 #boxBtn-account {

@@ -6,19 +6,20 @@ var userName;
 var userLastName;
 var userEmail;
 var userPic;
+var userPhoto;
+var tenidVersion=localStorage.getItem('tenid-version');
 function login (page) {
-  var password = localStorage.getItem('password');
-  var login = localStorage.getItem('login');
-  let action = 'h495ujh';
-  var request = getXMLHTTP();
-  request.responseType =	"json";
+  var password=localStorage.getItem('password');
+  var login=localStorage.getItem('login');
+  let action='h495ujh';
+  var request=getXMLHTTP();
+  request.responseType="json";
   request.open('POST', 'https://thetenstore.ru/api.php', true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send("action=" + action + "&login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
+  request.send("action="+action+"&login="+encodeURIComponent(login)+"&password="+encodeURIComponent(password));
   request.onreadystatechange = function() {
-    if ((request.readyState == 4) && (request.status == 200)) {
+    if ((request.readyState==4)&&(request.status==200)&&(tenidVersion>110)) {
         let obj = request.response;
-        var userPhoto;
         if (obj.user[0].photo == null) {
           userPhoto='images/user.svg';
         } else {
@@ -125,6 +126,12 @@ function login (page) {
           document.getElementById('my-review').style.display='block';
           document.getElementById('review-userpic').src=userPhoto;
           document.getElementById('review-username').innerHTML=obj.user[0].name + " " + obj.user[0].lastname;
+          if (obj.user[0].verified==0) {
+            document.getElementById('review-text').style.display='none';
+            document.getElementById('like-btn').style.display='none';
+            document.getElementById('dislike-btn').style.display='none';
+            document.getElementById('review-warning').innerHTML='Активируйте свой аккаунт, чтобы оставлять комментарии.';
+          }
         }
 
         document.getElementById('name').style.display='block';
@@ -263,13 +270,28 @@ function login (page) {
       if (localStorage.getItem('userbox-dontShowEmail')!='true') {
         document.getElementById('userbox-email').innerHTML='fakeUser@thetenstore.ru';
       }
+    } else if ((tenidVersion==null)||((tenidVersion<1100)&&(localStorage.getItem('login'))!=null)) {
+      userPhoto='images/tenid-error.svg';
+      document.getElementById('name').style.display='block';
+      document.getElementById('userbox-email').style.display='block';
+      document.getElementById('name').innerHTML='Не удалось войти';
+      document.getElementById('userbox-email').innerHTML='Метод входа в TenID изменился, <br>поэтому вам необходимо заново войти в аккаунт. <a href=`https://t.me/pressteam/444`>Подробнее</a>';
+      document.getElementById('userPic').src=userPhoto;
+      document.getElementById('boxPic').src=userPhoto;
+      document.getElementById('themeButton').style.borderBottom='0';
+      document.getElementById('themeButton').style.marginTop='0';
+      document.getElementById('themeButton').style.borderRadius='0';
+      document.getElementById('userbox-email').style.marginBottom='10px';
+      document.getElementById('userbox-email').style.marginTop='5px';
+      document.getElementById('name').style.marginTop='20px';
+      document.getElementById('userbox-email').style.color='grey';
     }
   };
 }
 function logoff() {
-  if (localStorage.getItem('login') != null) {
-    localStorage.setItem('password', null);
-    localStorage.setItem('login', null);
+  if (localStorage.getItem('login')!=null) {
+    localStorage.removeItem('password');
+    localStorage.removeItem('login');
     location.reload();
   }
 }

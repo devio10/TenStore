@@ -1,3 +1,4 @@
+var userLogin;
 function LALogin () {
   let action='h495ujh';
   var login=document.getElementById("login").value;
@@ -13,7 +14,9 @@ function LALogin () {
       let obj=request.response;
       if (obj!=null) {
         warningBox('hide');
-        if (obj.user[0].photo != 0) {
+        userLogin=obj.user[0].login;
+        console.log(userLogin+' '+obj.user[0].login);
+        if (obj.user[0].photo!=0) {
           document.getElementById("LA-userPic").src = "https://thetenstore.ru/" + obj.user[0].photo;
         }
         document.getElementById("LA-name").innerHTML=obj.user[0].name+" "+obj.user[0].lastname;
@@ -26,10 +29,10 @@ function LALogin () {
   };
 }
 function LASave () {
-  var login = document.getElementById("login").value;
-  var password = SHA256(document.getElementById("password").value);
-  localStorage.setItem('login', login);
+  var password=SHA256(document.getElementById("password").value);
+  localStorage.setItem('login', userLogin);
   localStorage.setItem('password', password);
+  localStorage.setItem('tenid-version', 1100);
   goBack();
 }
 function notMe () {

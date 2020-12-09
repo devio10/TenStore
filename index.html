@@ -14,7 +14,7 @@
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
-		<script src="scripts/ad.js"></script>
+		<script src="scripts/tenid-login.js"></script>
 		<script src='scripts/phone-check.js'></script>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
@@ -62,6 +62,7 @@
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
 			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
 			<form action="settings"><button class="boxButton" id="boxbtn-dev"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
@@ -221,7 +222,7 @@
 			</div>
 		</div>
 
-		<div id="error-logging-in" class="popup-blur-bg">
+		<div id="error-logging-in" class="popup-blur-bg" style="display: none">
 			<div class="popup-window">
 				<div style="display: grid; margin-top: 60px">
 					<img style="width: 250px" class="build-pic" src="images/vectors/server-problems.png">
@@ -231,12 +232,12 @@
 				<button onclick="closePopup('true')" class="accent-button-2 popup-button">Закрыть</button>
 			</div>
 		</div>
-		<div id="google-apps-ad" class="tenstore-promo">
+		<div id="google-apps-promo" class="tenstore-promo">
 			<img class="promo-icon" src="https://thetenstore.ru/images/promo/google.png">
 			<h5 class="promo-text">Приложения от Google. Теперь в TenStore. <a href="appsList?search=Google LLC">Открыть</a></h5>
-			<i class="ph-x promo-close" onclick="closeAd('google-apps-ad')"></i>
+			<i class="ph-x promo-close" onclick="closePromo('google-apps-promo')"></i>
 		</div>
-		<script>login(); ub_themeBtn(); showAds('homepage')</script>
+		<script>login(); ub_themeBtn(); showPromo('homepage')</script>
 		<script src="scripts/index.js"></script>
 		<script>/*popupNext('window3')</script>
 		<script src='scripts/search-bar.js'></script>

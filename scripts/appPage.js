@@ -14,6 +14,24 @@ if ((localStorage.getItem('debug-noAppPageRedirect')!='true')&&(id==undefined)) 
   window.open('index?source=emptyAppPage', '_self');
 }
 
+function addToLibrary () {
+  let pass=localStorage.getItem('password');
+  let login=localStorage.getItem('login');
+  const libReq=new XMLHttpRequest();
+  let libPars=new FormData();
+  libPars.append("action", '95dease');
+  libPars.append("login", login);
+  libPars.append("password", pass);
+  libPars.append("id", id);
+  libReq.open("POST", url, true);
+  libReq.addEventListener("readystatechange", () => {
+    if (libReq.readyState === 4 && libReq.status === 200) {
+      console.log('added to library');
+    }
+  });
+  libReq.send(libPars);
+}
+
 const request = new XMLHttpRequest();
 const url = "https://thetenstore.ru/api.php";
 const params = "action=" + action + "&id=" + id;
@@ -45,7 +63,7 @@ request.addEventListener("readystatechange", () => {
           } else {
             downloadCardIcon=files.files[i].icon;
           }
-          downloadCard.setAttribute('onclick',"window.open('https://thetenstore.ru/"+files.files[i].file+"', '_self')");
+          downloadCard.setAttribute('onclick',"window.open('https://thetenstore.ru/"+files.files[i].file+"', '_self'); addToLibrary()");
           downloadCard.innerHTML="<img class='download-card-icon' src='https://thetenstore.ru/images/platforms/"+downloadCardIcon+"'> \
           <div class='flex flex-column download-card-text'> \
             <h4 class='download-card-title'>"+files.files[i].platform+"</h4> \
@@ -285,7 +303,7 @@ function sendReview () {
   request.open("POST", url, true);
   request.addEventListener("readystatechange", () => {
       if (request.readyState === 4 && request.status === 200) {
-          warningBox('hide');
+          location.reload();
         }
   });
   request.send(params);
@@ -300,7 +318,7 @@ function sendReview () {
   <h5 class='review-card-text'>"+document.getElementById('review-text').value+"</h5>"
   document.getElementById('reviews-block').appendChild(comment);
   */
-  location.reload();
+
 }
 
 function editReview () {
