@@ -3,26 +3,24 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Приложения — TenStore</title>
-	  <link rel="shortcut icon" href="images/apps.svg" type="image/png">
+		<title id="appsList-title">Список приложений — TenStore</title>
+	  <link id="appsList-icon" rel="shortcut icon" href="images/apps.svg" type="image/png">
+		<link href="styles/settings.css" rel="stylesheet" type="text/css">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<link href="styles/appsList-elements.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
+		<script src="scripts/app-card.js"></script>
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/topBar.js"></script>
-		<script src="scripts/appsList.js"></script>
+		<script charset="utf-8" src="scripts/appsList.js"></script>
+		<script src='scripts/phone-check.js'></script>
+		<script src="https://unpkg.com/phosphor-icons"></script>
+		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 		<script>let tag; let dev</script>
 	</head>
 	<body>
-		<!--Окно поиска-->
-		<div id="appsList-searchWindow">
-			<div style="width: 100%; margin: 80px 10% 40px 10%">
-				<input placeholder="Начните вводить здесь..." class="textInput searchInput">
-			</div>
-		</div>
-		<nav style="position: sticky; top: 0;">
+		<nav id="nav" style="position: sticky; top: 0;">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
 				<a id="mLogo2">Приложения</a>
@@ -32,101 +30,84 @@
 				<a class="separate">•</a>
 				<a class="topItem" id="chosen" href="appsList">ПРИЛОЖЕНИЯ</a>
 				<a class="separate">•</a>
-				<a class="topItem" href="appsList?type=game">ИГРЫ</a>
+				<a class="topItem" id="gameTab" href="appsList?type=game">ИГРЫ</a>
+				<input type="text" id="siteSearch" class="textInput siteSearch" placeholder="Найти..."></input>
 				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
+		<nav class="phone-navigation">
+		  <a href="index" class="phoneNav-link">
+		    <i class="ph-house phoneNav-icon"></i>
+		    <span class="phoneNav-text">Главная</span>
+		  </a>
+		  <a href="appsList" class="phoneNav-link">
+		    <i id="apps-i" class="ph-squares-four-fill phoneNav-icon phoneNav-link-active"></i>
+		    <span id="apps-span" class="phoneNav-text phoneNav-link-active">Приложения</span>
+		  </a>
+		  <a href="appsList?type=game" class="phoneNav-link">
+		    <i id="games-i" class="ph-game-controller phoneNav-icon"></i>
+		    <span id="games-span" class="phoneNav-text">Игры</span>
+		  </a>
+		</nav>
+		<div id="mobile-search-block">
+			<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
+		</div>
+		<button onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
-			<h5 style="margin: 15px; font-family: var(--bold); float: left">TENID</h5>
-			<img onclick="userBox()" src="images/cancel.svg" class="userBox-close">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
 			<h3 id="name" class="centerText"></h3>
-			<form action="settings"><button class="boxButton"><img src="images/settings.svg" class="boxButton-icon">Настройки</button></form>
-			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><img src='images/light.svg' class='boxButton-icon'>Светлая тема</button>
-			<form action="https://thetenstore.ru/user"><button id="boxBtn-account" class="boxButton"><img src="images/user.svg" class="boxButton-icon">Аккаунт</button></form>
-			<form action="https://t.me/nexta_live"><button class="boxButton"><img src="https://thetenstore.ru/images/belarus.svg" class="boxButton-icon">#ЖывеБеларусь</button></form>
-			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><img src='images/login.svg' class='boxButton-icon'>Войти</button></form>
+			<h5 id="userbox-email" class="centerText"></h5>
+			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
+			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
+			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
+			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
+		</div>
+		<div id="apps-categ" class="settings-nav">
+			<h4 onclick="category('rec-upd')" id="item-rec-upd" class="settings-nav-item"><i class="ph-clock-bold settings-subtitleIcon"></i>Недавно обновлено</h4>
+			<h4 onclick="list('popular')" id="item-popular" class="settings-nav-item"><i class="ph-star-bold settings-subtitleIcon"></i>Популярное</h4>
+			<h4 onclick="list('high-rated')" id="item-high-rated" class="settings-nav-item"><i class="ph-thumbs-up-bold settings-subtitleIcon"></i>Высокий рейтинг</h4>
+			<h4 onclick="list('editors-choice')" id="item-editors-choice" class="settings-nav-item"><i class="ph-shopping-bag-open-bold settings-subtitleIcon"></i>Выбор редакции</h4>
+			<h4 onclick="category('Связь')" id="item-communication" class="settings-nav-item"><i class="ph-chats-bold settings-subtitleIcon"></i>Связь</h4>
+			<h4 onclick="category('Музыка и видео')" id="item-media" class="settings-nav-item"><i class="ph-music-notes-bold settings-subtitleIcon"></i>Музыка и видео</h4>
+			<h4 onclick="category('Новости')" id="item-news" class="settings-nav-item"><i class="ph-newspaper-clipping-bold settings-subtitleIcon"></i>Новости</h4>
+			<h4 onclick="category('Продуктивность')" id="item-productivity" class="settings-nav-item"><i class="ph-list-numbers-bold settings-subtitleIcon"></i>Продуктивность</h4>
+			<h4 onclick="category('Здоровье')" id="item-health" class="settings-nav-item"><i class="ph-heartbeat-bold settings-subtitleIcon"></i>Здоровье</h4>
+			<h4 onclick="category('Дополнения')" id="item-addons" class="settings-nav-item"><i class="ph-paperclip-bold settings-subtitleIcon"></i>Дополнения</h4>
+			<h4 onclick="category('Шоппинг')" id="item-shopping" class="settings-nav-item"><i class="ph-shopping-cart-simple-bold settings-subtitleIcon"></i>Шоппинг</h4>
+			<h4 onclick="category('Видеосвязь')" id="item-videocommunication" class="settings-nav-item"><i class="ph-video-camera-bold settings-subtitleIcon"></i>Видеосвязь</h4>
+			<h4 onclick="category('Социальные сети')" id="item-social" class="settings-nav-item"><i class="ph-users-bold settings-subtitleIcon"></i>Социальные сети</h4>
+			<h4 onclick="category('Инструменты')" id="item-utilities" class="settings-nav-item"><i class="ph-nut-bold settings-subtitleIcon"></i>Инструменты</h4>
+			<h4 onclick="category('VPN и прокси')" id="item-vpn" class="settings-nav-item"><i class="ph-key-bold settings-subtitleIcon"></i>VPN и прокси</h4>
 		</div>
 
-		<div id="appsList-dS-block">
-			<div id="appsList-displaySettings">
-				<img style="margin: 20px 10px 20px 20px; float: left" src="images/list.svg" class="userBox-close">
-				<h5 style="margin: 20px 20px 20px 0; font-family: var(--bold); float: left">НАСТРОЙКИ СПИСКА</h5>
-				<img style="margin: 20px" onclick="search()" src="images/cancel.svg" class="userBox-close">
-				<h3 style="margin: 70px 20px 0 20px">Содержание списка</h3>
-				<div style="margin: 20px">
-					<input onclick="sType = 'app'" id="r1" type="radio" name="content" value="1" checked>
-					<label for="r1">Приложения</label><p>
-					<input onclick="sType = 'game'" id="r2" type="radio" name="content" value="2">
-					<label for="r2">Игры</label><p>
-					<input onclick="tag = true" id="r5" type="radio" name="content" value="3">
-					<label for="r5">Определённая категория</label><p>
-						<div class="selectBox">
-							<label>
-								<select id="selectBox">
-									<option value="0" selected>Выберите категорию</option>
-									<option value="action">Экшен</option>
-									<option value="arcade">Аркада</option>
-									<option value="communication">Связь</option>
-									<option value="media">Музыка и видео</option>
-									<option value="news">Новости</option>
-									<option value="productivity">Продуктивность</option>
-									<option value="RPG">RPG</option>
-									<option value="simulator">Симуляторы</option>
-									<option value="social">Социальные сети</option>
-									<option value="strategy">Стратегии</option>
-									<option value="utilities">Утилиты</option>
-								</select>
-							</label>
-						</div>
-					<input id="r6" type="radio" name="content" value="4">
-					<label onclick="dev = true" for="r6">Определённый разработчик</label><p>
-					<input style="width: 324px; height: 45px; margin: 0 27px 27px 27px" id="inpDev" class="textInput" type="text" placeholder="Введите имя разработчика">
-				</div>
-				<button style="margin-left: 20px" onclick="confirm()" class="accentButton">Применить</button>
-				<h3 style="display: none" style="margin: 50px 20px 0 20px">Сортировка</h3>
-				<div style="display: none" style="margin-left: 20px; width: 300px" id="warningBox">
-					<h5 style="color: black; padding: 10px">Отключено.</h5>
-				</div>
-				<div style="display: none" style="margin: 20px">
-					<input onclick="sType = 'app'" id="r7" type="radio" name="sortBy" value="1"checked>
-					<label for="r7">По возрастанию</label><p>
-					<input onclick="sType = 'game'" id="r8" type="radio" name="sortBy" value="2">
-					<label for="r8">По убыванию</label><p>
-					<div class="selectBox">
-						<label>
-							<select id="sortBy">
-								<option value="0" selected>Сортировать по...</option>
-								<option value="downloads">Количество скачиваний</option>
-								<option value="name">Название</option>
-								<option value="dev">Разработчик</option>
-								<option value="id">Идентификатор (ID)</option>
-								<option value="rating">Рейтинг</option>
-							</select>
-						</label>
-					</div>
-				</div>
-				<h3 style="display: none" style="margin: 50px 20px 0 20px">Вид карточек</h3>
-				<div style="display: none" style="margin-left: 20px; width: 300px" id="warningBox">
-					<h5 style="color: black; padding: 10px">Отключено.</h5>
-				</div>
-				<div style="display: none" style="margin: 20px 20px 30px 20px">
-					<input id="r3" type="radio" name="cards" value="1" checked>
-					<label for="r3">Подробный</label><p>
-					<input id="r4" type="radio" name="cards" value="2">
-					<label for="r4">Обложка</label>
-				</div>
+		<div style="display: none" id="games-categ" class="settings-nav">
+			<h4 onclick="category('game-rec-upd')" id="item-game-rec-upd" class="settings-nav-item"><i class="ph-clock-bold settings-subtitleIcon"></i>Недавно обновлено</h4>
+			<h4 onclick="category('RPG', '')" id="item-rpg" class="settings-nav-item"><i class="ph-map-trifold-bold settings-subtitleIcon"></i>RPG</h4>
+			<h4 onclick="category('Симуляторы', '')" id="item-simulation" class="settings-nav-item"><i class="ph-pedestrian-bold settings-subtitleIcon"></i>Симуляторы</h4>
+			<h4 onclick="category('Стратегии', '')" id="item-strategy" class="settings-nav-item"><i class="ph-lightbulb-bold settings-subtitleIcon"></i>Стратегии</h4>
+			<h4 onclick="category('Экшен', '')" id="item-action" class="settings-nav-item"><i class="ph-timer-bold settings-subtitleIcon"></i>Экшен</h4>
+			<h4 onclick="category('Аркада', '')" id="item-arcade" class="settings-nav-item"><i class="ph-game-controller-bold settings-subtitleIcon"></i>Аркада</h4>
+			<h4 onclick="category('Файтинги', '')" id="item-fighting" class="settings-nav-item"><i class="ph-sword-bold settings-subtitleIcon"></i>Файтинги</h4>
+		</div>
+
+
+		<div class="settings appsList-block">
+			<h2 id="dev-title" class="settings-tab">Недавно обновлено</h2>
+			<h4 id="no-elements" style="display: none">По вашему запросу ничего не нашлось.</h4>
+			<div id="aCard-block" class="flex-grid">
 
 			</div>
 		</div>
-
-		<div id="aCard-block">
-
-		</div>
-		<button id="sortButton" onclick="search()" class="floatButton squareButton">
-			<img src="images/sort.svg" class="buttonIcon accentIcon floatIcon">
-		</button>
-		<script>login(); ub_themeBtn(); sortButton()</script>
+		<script>login(); ub_themeBtn(); setTagName(); ifSearch(); ifGame(); ifList(); ifNotFound();
+			/*showAppCard('aCard-block', 'images/appIcons/notepads.png', '0', 'white', '36', 'Notepads', 'Jackie Liu');
+			showAppCard('aCard-block', 'images/appIcons/edge.webp', '0', '', '36', 'Microsoft Edge', 'Microsoft');
+			showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'white', '1', 'News', 'Microsoft');
+			showAppCard('aCard-block', 'images/icons/orpad.png', '15', '', '1', 'Orpad — блокнот', 'Li_is');*/
+		</script>
+		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

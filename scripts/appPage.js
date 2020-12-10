@@ -1,12 +1,3 @@
-
-window.addEventListener('scroll', function() {
-  if (pageYOffset > 0) {
-    document.getElementById('bg-blur').style.backdropFilter = 'blur(10px)';
-  } else {
-    document.getElementById('bg-blur').style.backdropFilter = 'blur(0)';
-  }
-})
-
 function getUrlVars(key) {
   var vars = {};
   var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -15,9 +6,31 @@ function getUrlVars(key) {
   return vars;
 }
 
-let action = "4LlFCT";
-let id = getUrlVars()["id"];
-redirect('app?id='+id);
+let action="4LlFCT";
+let id=getUrlVars()["id"];
+let appBackground;
+let devName;
+if ((localStorage.getItem('debug-noAppPageRedirect')!='true')&&(id==undefined)) {
+  window.open('index?source=emptyAppPage', '_self');
+}
+
+function addToLibrary () {
+  let pass=localStorage.getItem('password');
+  let login=localStorage.getItem('login');
+  const libReq=new XMLHttpRequest();
+  let libPars=new FormData();
+  libPars.append("action", '95dease');
+  libPars.append("login", login);
+  libPars.append("password", pass);
+  libPars.append("id", id);
+  libReq.open("POST", url, true);
+  libReq.addEventListener("readystatechange", () => {
+    if (libReq.readyState === 4 && libReq.status === 200) {
+      console.log('added to library');
+    }
+  });
+  libReq.send(libPars);
+}
 
 const request = new XMLHttpRequest();
 const url = "https://thetenstore.ru/api.php";
@@ -26,48 +39,134 @@ request.responseType = "json";
 request.open("POST", url, true);
 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 request.addEventListener("readystatechange", () => {
-  if ((request.readyState === 4) && (request.status === 200)) {
-    var obj = request.response;
+  if ((request.readyState===4)&&(request.status===200)) {
+    var obj=request.response;
+    if ((obj==0)&&(id!=0)) {
+      document.getElementById('app-popups').style.display='flex';
+    }
     for(let i=0; i<obj.apps.length; i++) {
+
       let appPage = document.getElementById('appPage');
-      let rating = obj.apps[0].rating;
-      let tags = 0;
+      devName = obj.apps[0].dev;
       let icon = document.getElementById('appPage-icon');
-      if (obj.apps[0].tags == 'action') {
-        tags = "Экшен";
-      } else if (obj.apps[0].tags == 'arcade') {
-        tags = "Аркады";
-      } else if (obj.apps[0].tags == 'communication') {
-        tags = "Связь";
-      } else if (obj.apps[0].tags == 'media') {
-        tags = "Музыка и видео";
-      } else if (obj.apps[0].tags == 'news') {
-        tags = "Новости";
-      } else if (obj.apps[0].tags == 'productivity') {
-        tags = "Продуктивность";
-      } else if (obj.apps[0].tags == 'simulation') {
-        tags = "Симуляторы";
-      } else if (obj.apps[0].tags == 'social') {
-        tags = "Социальные сети";
-      } else if (obj.apps[0].tags == 'strategy') {
-        tags = "Стратегии";
-      } else if (obj.apps[0].tags == 'utilities') {
-        tags = "Инструменты";
-      } else if (obj.apps[0].tags == 'RPG') {
-        tags = "RPG";
-      }
-      if (obj.apps[0].windows == 0) {
-        document.getElementById('appPage-windows').style.display = "none";
-      }
-      if (obj.apps[0].android == 0) {
-        document.getElementById('appPage-android').style.display = "none";
-      }
-      if (obj.apps[0].bg != 0) {
-        appPage.style.background = "url(https://thetenstore.ru/" + obj.apps[0].bg + ")";
+
+      /*Файлы*/
+      let files0=obj.apps[0].files;
+      if ((obj.apps[0].files!='')||(obj.apps[0].files!='[]')) {
+        const files=JSON.parse(files0);
+        for(let i=0; i<files.files.length; i++) {
+          var downloadCard=document.createElement('div');
+          downloadCard.className='download-card';
+          let downloadCardIcon;
+          if ((files.files[i].icon==0)||(files.files[i].icon==undefined)) {
+            downloadCardIcon='file.svg';
+          } else {
+            downloadCardIcon=files.files[i].icon;
+          }
+          downloadCard.setAttribute('onclick',"window.open('https://thetenstore.ru/"+files.files[i].file+"', '_self'); addToLibrary()");
+          downloadCard.innerHTML="<img class='download-card-icon' src='https://thetenstore.ru/images/platforms/"+downloadCardIcon+"'> \
+          <div class='flex flex-column download-card-text'> \
+            <h4 class='download-card-title'>"+files.files[i].platform+"</h4> \
+            <h5 class='download-card-description grey'>"+files.files[i].architecture+" • "+files.files[i].version+" • "+files.files[i].published+" • "+files.files[i].size+" Мб</h5> \
+          </div> \
+          <i class='ph-download-simple-bold download-card-nexticon'></i>";
+          document.getElementById('download-cards-block').appendChild(downloadCard);
+        }
       } else {
-        let random = Math.floor(Math.random() * 10) + 1;
-        appPage.style.background = "url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+        document.getElementById('app-files-block').style.display='none';
       }
+
+      /*Скриншоты*/
+      let scr0=obj.apps[0].screenshots;
+      if ((scr0!='[]')||(scr0!=0)) {
+        const screenshots=JSON.parse(scr0);
+        for(let s in screenshots.scr) {
+          var screenshot=document.createElement('img');
+          screenshot.className='screenshot';
+          screenshot.setAttribute('onclick',"window.open('https://thetenstore.ru/"+screenshots.scr[s].image+"', '_self')");
+          screenshot.src='https://thetenstore.ru/'+screenshots.scr[s].image;
+          document.getElementById('screenshots').appendChild(screenshot);
+        }
+      } else {
+        document.getElementById('app-scr-block').style.display='none';
+      }
+
+      /*Отзывы*/
+      let com0=obj.apps[0].comments;
+      if (obj.apps[0].comments!=0) {
+        const comments=JSON.parse(com0);
+        for(let c in comments.comments) {
+          var reviewPic;
+          const userPicRequest=new XMLHttpRequest();
+          const userPicUrl="https://thetenstore.ru/api.php";
+          const userPicParams="action=FEhf42d&login="+comments.comments[c].login;
+          userPicRequest.responseType="json";
+          userPicRequest.open("POST", userPicUrl, true);
+          userPicRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          userPicRequest.addEventListener("readystatechange", () => {
+            if ((userPicRequest.readyState === 4) && (userPicRequest.status === 200)) {
+              var userrr=userPicRequest.response;
+
+              if ((comments.comments[c].login==localStorage.getItem('login'))||(localStorage.getItem('debug-erg12')=='true')) {
+                document.getElementById('review-text').style.display='none';
+                document.getElementById('like-btn').style.display='none';
+                document.getElementById('dislike-btn').style.display='none';
+                document.getElementById('review-warning').style.display='none';
+
+                document.getElementById('my-review-text').style.display='block';
+                document.getElementById('edit-btn').style.display='flex';
+                document.getElementById('my-review-text').innerHTML=comments.comments[c].comment;
+                document.getElementById('review-text').value=comments.comments[c].comment;
+                var comment=document.getElementById('my-review');
+                if (comments.comments[c].isLiked=='1') {
+                  comment.className='review-card liked';
+                  rate='like';
+                  document.getElementById('like').className='ph-thumbs-up floatButton-icon login-button-icon like-button';
+                } else {
+                  comment.className='review-card disliked';
+                  rate='dislike';
+                  document.getElementById('dislike').className='ph-thumbs-down floatButton-icon login-button-icon like-button';
+                }
+              } else {
+                if (userrr.user[0].photo==0) {
+                  reviewPic='images/user.svg';
+                } else {
+                  reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+                }
+                reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+
+                var comment=document.createElement('div');
+                console.log(comments.comments[c]);
+                if (comments.comments[c].isLiked=='1') {
+                  comment.className='review-card liked';
+                } else {
+                  comment.className='review-card disliked';
+                }
+                comment.innerHTML="<div class='flex flex-row'> \
+                  <img loading='lazy' class='review-card-userPic' src='"+reviewPic+"'> \
+                  <h5 class='review-card-name'>"+comments.comments[c].login+"</h5> \
+                </div> \
+                <h5 class='review-card-text'>"+comments.comments[c].comment+"</h5>"
+                document.getElementById('reviews-block').appendChild(comment);
+              }
+            }
+          });
+          userPicRequest.send(userPicParams);
+
+        }
+      }
+      if (localStorage.getItem('app-background')!='false') {
+        if (obj.apps[0].bg != 0) {
+          appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/" + obj.apps[0].bg + ")";
+        } else {
+          let random = Math.floor(Math.random() * 10) + 1;
+          appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+        }
+        appPage.style.backgroundPosition = 'center';
+        appPage.style.backgroundRepeat = 'no-repeat';
+        appPage.style.backgroundSize = 'cover';
+      }
+
       if (obj.apps[0].icon_pad != 0) {
         icon.style.width = '150px';
         icon.style.height = '150px';
@@ -81,83 +180,172 @@ request.addEventListener("readystatechange", () => {
       }
       icon.src = "https://thetenstore.ru/" + obj.apps[0].icon;
       icon.style.background = cssBg;
-      appPage.style.objectFit = 'cover';
-      appPage.style.backgroundAttachment = 'fixed';
-      appPage.style.backgroundPosition = 'center';
-      appPage.style.backgroundRepeat = 'no-repeat';
-      appPage.style.backgroundSize = 'cover';
-      document.getElementById('appPage-rating').innerHTML = rating + "/5.0";
-      document.getElementById('appPage-name').innerHTML = obj.apps[0].name;
-      document.getElementById('mLogo2').innerHTML = obj.apps[0].name;
-      document.getElementById('appPage-dev').innerHTML = obj.apps[0].dev;
-      document.getElementById('appPage-description').innerHTML = obj.apps[0].descr;
-      document.getElementById('appPage-whatsNew').innerHTML = obj.apps[0].changelog;
-      if (obj.apps[0].changelog == 0) {
-        document.getElementById('fourthBlock').style.display = 'none';
-        document.getElementById('flex1').style.display = 'block';
-        document.getElementById('thirdBlock').className = "appPage-block third wide";
-        document.getElementById('thirdBlock').style.marginRight = "auto";
+      let liked=obj.apps[0].liked;
+      let disliked=obj.apps[0].disliked;
+      if (obj.apps[0].liked==0) {
+        liked='0';
       }
+      if (obj.apps[0].disliked==0) {
+        disliked='0';
+      }
+      var description=obj.apps[0].descr;
+      var shortDescription=description.split('<p>');
+      document.getElementById('app-description-short').innerHTML=shortDescription[0]+'..';
+      document.getElementById('app-description').innerHTML=description;
+
+      document.getElementById('app-likes').innerHTML=liked;
+      document.getElementById('app-dislikes').innerHTML=disliked;
+      document.getElementById('appPage-name').innerHTML=obj.apps[0].name;
+      document.getElementById('mLogo2').innerHTML=obj.apps[0].name;
+      document.getElementById('appPage-dev').innerHTML=obj.apps[0].dev;
+      document.getElementById('appPage-dev-link').href='appsList?dev='+obj.apps[0].dev;
       let publisher;
-      if (obj.apps[0].pub == 0) {
-        publisher = obj.apps[0].dev;
+      if (obj.apps[0].pub==0) {
+        publisher=obj.apps[0].dev;
       } else {
-        publisher = obj.apps[0].pub;
+        publisher=obj.apps[0].pub;
       }
-      let dPlatform;
-      if (localStorage.getItem('platform') == 'android') {
-        dPlatform = obj.apps[0].android;
-      } else {
-        dPlatform = obj.apps[0].windows;
-      }
-      document.getElementById('appPage-downloadLink').action = dPlatform;
       document.getElementById('appPage-title').innerHTML = obj.apps[0].name + " — TenStore";
       document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
-      document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tags=" + obj.apps[0].tags + "'>" + tags + "</a>";
-      document.getElementById('appPage-details1').innerHTML = "Версия (Windows): " + obj.apps[0].version + "<br> \
-      Вес: " + obj.apps[0].size + "<br> \
-      Разработчик: " + obj.apps[0].dev + "<br> \
-      Издатель: " + publisher + "<br> \
-      Опубликовано: <br> \
-      Скачано: " + obj.apps[0].downloads + "<br> \
-      Категория: <a class='link' href='appsList?tags=" + obj.apps[0].tags + "'>" + tags + "</a><br> \
-      Рейтинг: " + rating + "/5.0";
+      document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tag=" + obj.apps[0].category + "'>" + obj.apps[0].category + "</a>";
+      const requestDev = new XMLHttpRequest();
+      const paramsDev = "action=KdSqSAOC&select=dev" + "&value=" + devName;
+      requestDev.responseType =	"json";
+      requestDev.open("POST", url, true);
+      requestDev.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      requestDev.addEventListener("readystatechange", () => {
+        if (requestDev.readyState === 4 && requestDev.status === 200) {
+          let maobj = requestDev.response;
+          for(let i=0; i<maobj.apps.length; i++) {
+            showAppCard('aCard-block', maobj.apps[i].icon, maobj.apps[i].icon_pad, maobj.apps[i].icon_bg, maobj.apps[i].id, maobj.apps[i].name, '');
+          }
+        }
+      });
+      requestDev.send(paramsDev);
   }
+} else {
+  let random = Math.floor(Math.random() * 10) + 1;
+  appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+  appPage.style.backgroundPosition = 'center';
+  appPage.style.backgroundRepeat = 'no-repeat';
+  appPage.style.backgroundSize = 'cover';
 }
 });
 request.send(params);
-let selectDev = "name";
-let aaa = document.getElementById('appPage-dev');
-valueDev = aaa.innerHTML;
-const requestDev = new XMLHttpRequest();
-const paramsDev = "action=" + action + "&select=" + selectDev + "&value=" + valueDev;
-requestDev.responseType =	"json";
-requestDev.open("POST", url, true);
-requestDev.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-requestDev.addEventListener("readystatechange", () => {
-  if (requestDev.readyState === 4 && requestDev.status === 200) {
-    let objDev = requestDev.response;
-    for(let i=0; i<objDev.apps.length; i++) {
-      var aCardDev = document.createElement('div');
-      let width = 0;
-      if (objDev.apps[i].icon_pad == 15) {
-        width = '120px';
-      } else {
-        width = '150px';
-      }
-      let iconBg1 = obj.apps[i].icon_bg;
-      if (iconBg1 == 0) {
-        cssBg1 = 'var(--bg)';
-      } else {
-        cssBg1 = obj.apps[i].icon_bg;
-      }
-      aCardDev.className = 'aCard';
-      aCardDev.innerHTML = "<a href='app?&id="+ objDev.apps[i].id +"'> \
-        <img class='aCard-icon' style='width: " + width + "; height: " + width + "; background: "+ cssBg1 +"; padding: "+ objDev.apps[i].icon_pad +"px' src='"+ objDev.apps[i].icon +"'> \
-        <h4 class='aCard-name'>"+ objDev.apps[i].name +"</4> \
-      </a>"
-      document.getElementById('aCard-block').appendChild(aCardDev);
-    }
+
+function fullDescription() {
+  let fullDesc=document.getElementById('app-description');
+  let shortDesc=document.getElementById('app-description-short');
+  if (fullDesc.style.display=='none') {
+    document.getElementById('showFull').innerHTML='Скрыть';
+    fullDesc.style.display='block';
+    shortDesc.style.display='none';
+  } else {
+    document.getElementById('showFull').innerHTML='Показать полностью';
+
+    fullDesc.style.display='none';
+    shortDesc.style.display='block';
   }
-});
-requestDev.send(paramsDev);
+}
+function scrollScreenshots (direction) {
+  let newPosition;
+  let previousPosition=document.getElementById('screenshots').scrollLeft;
+  if (direction=='forward') {
+    newPosition=previousPosition+150;
+  } else {
+    newPosition=previousPosition-150;
+  }
+  document.getElementById('screenshots').scroll({
+    top: 0,
+    left: newPosition,
+    behavior: 'smooth'
+  });
+}
+var rate;
+var isEdit;
+function reviewParameter (parameter, value) {
+  if (parameter=='rate') {
+    rate=value;
+    let iconName;
+    let reviewCard=document.getElementById('my-review');
+    if (value=='like') {
+      iconName='ph-thumbs-up';
+      reviewCard.className='review-card liked';
+    } else {
+      iconName='ph-thumbs-down';
+      reviewCard.className='review-card disliked';
+    }
+    document.getElementById('send-btn').style.display='block';
+    document.getElementById('review-warning').style.display='none';
+    document.getElementById('review-text').style.height='100px';
+    document.getElementById('like').className='ph-thumbs-up floatButton-icon login-button-icon';
+    document.getElementById('dislike').className='ph-thumbs-down floatButton-icon login-button-icon';
+    document.getElementById(value).className=iconName+' floatButton-icon login-button-icon '+value+'-button';
+  }
+}
+function sendReview () {
+  let isLiked;
+  if (rate=='like') {
+    isLiked='1';
+  } else {
+    isLiked='-1';
+  }
+  let action="DF7dcbw";
+  const request=new XMLHttpRequest();
+  const url="https://thetenstore.ru/api.php";
+  var params=new FormData();
+  params.append("action", action);
+  params.append("login", localStorage.getItem('login'));
+  params.append("password", localStorage.getItem('password'));
+  params.append("isLiked", isLiked);
+  params.append("comment", document.getElementById('review-text').value);
+  params.append("id", id);
+  request.open("POST", url, true);
+  request.addEventListener("readystatechange", () => {
+      if (request.readyState === 4 && request.status === 200) {
+          location.reload();
+        }
+  });
+  request.send(params);
+
+  /*
+  var comment=document.createElement('div');
+  comment.className='review-card '+rate+'d';
+  comment.innerHTML="<div class='flex flex-row'> \
+    <img loading='lazy' class='review-card-userPic' src='"+document.getElementById('review-userpic').src+"'> \
+    <h5 class='review-card-name'>"+document.getElementById('review-username').innerHTML+"</h5> \
+  </div> \
+  <h5 class='review-card-text'>"+document.getElementById('review-text').value+"</h5>"
+  document.getElementById('reviews-block').appendChild(comment);
+  */
+
+}
+
+function editReview () {
+  document.getElementById('review-text').style.display='block';
+  document.getElementById('like-btn').style.display='flex';
+  document.getElementById('dislike-btn').style.display='flex';
+  document.getElementById('review-text').style.height='100px';
+  document.getElementById('send-btn').style.display='block';
+  document.getElementById('remove-btn').style.display='block';
+  document.getElementById('send-btn').innerHTML='Изменить';
+
+  document.getElementById('my-review-text').style.display='none';
+  document.getElementById('edit-btn').style.display='none';
+}
+
+function removeReview () {
+  document.getElementById('review-text').value='$%delete%$';
+  sendReview();
+}
+
+/*
+document.getElementById('review-text').style.display='none';
+document.getElementById('like-btn').style.display='none';
+document.getElementById('dislike-btn').style.display='none';
+document.getElementById('review-warning').style.display='none';
+
+document.getElementById('my-review-text').style.display='block';
+document.getElementById('edit-btn').style.display='flex';
+
+*/

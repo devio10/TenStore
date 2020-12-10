@@ -1,0 +1,44 @@
+#topBar {
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
+}
+#CA-picDiv {
+  margin-bottom: 65px;
+}
+
+.tenid-block2 {
+  width: 45%;
+  margin: 30px auto 0 auto;
+}
+#main-block {
+  backdrop-filter: blur(var(--blur));
+	background: rgba(var(--bright), var(--bright), var(--bright), 0.7);
+  box-shadow: var(--shadow6);
+  border: 1px solid rgba(0,0,0,0);
+  width: 50%;
+  margin-top: 150px;
+  border-radius: 10px;
+}
+#user-background {
+  height: 550px;
+}
+#no-apps {
+  display: none;
+}
+.aCard-block, #aCard-block {
+	overflow-x: auto;
+	overflow-y: hidden;
+  display: flex;
+	box-shadow: 0;
+	border-radius: 10px;
+	background: var(--bg);
+}
+#user-edit-button, #user-logout-button {
+	margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+#user-edit-button {
+  margin-top: 30px;
+}

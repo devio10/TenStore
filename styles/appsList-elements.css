@@ -85,3 +85,6 @@ select:hover {
 select:focus {
   outline: none;
 }
+.games-show {
+  display: block;
+}
