@@ -5,11 +5,13 @@
   padding: 3px;
 }
 .settings-block {
-	margin: 0 40px 50px 40px;
+	margin: 35px;
 }
 .settings {
-  width: 550px;
-  margin: 0 auto 0 275px;
+  width: 585px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 80px auto 80px auto;
 }
 .settings-nav {
   background: var(--bg);
@@ -36,13 +38,11 @@
   transform: translate(5px, 0);
 }
 .settings-block-title {
-  font-family: var(--regular);
-  font-weight: 500;
-  margin-left: 10px;
+  margin: 20px 0 20px 0
 }
 .settings-tab {
   animation-name: var(--transition11);
-  animation-duration: .15s;
+  animation-duration: .25s;
   animation-delay: 0;
 }
 @keyframes settingstab {
@@ -57,7 +57,7 @@
   }
 }
 #settings-title {
-  margin: 25px 0 30px 50px;
+  margin: 30px;
 }
 .theme-buttons {
   margin-left: 15px;
@@ -82,11 +82,11 @@
   margin: 30px;
 }
 .settings-text {
-	margin-left: 10px;
+	margin: 0;
 }
 .settings-img, .settings-img2 {
-  width: 300px;
-  margin-left: 10px;
+  width: 250px;
+  margin: 10px;
 }
 .settings-img2 {
   margin: 0;
@@ -123,4 +123,38 @@
 }
 #settings-name {
   margin-bottom: 5px;
+}
+::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+#userBox {
+  top: auto;
+  bottom: 60px;
+}
+#ub2-name {
+  margin: auto 5px auto 10px;
+}
+.userblock2 {
+  display: flex;
+  align-items: flex-start;
+  position: fixed;
+  right: 30px;
+  bottom: 12.5px;
+  border-radius: 5px;
+  width: auto;
+  height: 30px;
+  background: var(--nav-bg);
+	backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+}
+#userPic {
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  height: 30px;
+  width: 30px;
+  margin: 0;
 }

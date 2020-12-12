@@ -57,6 +57,13 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
 
   if (page=='settings') {
 
+    let objLibName=document.getElementById('ub2-name');
+    if (localStorage.getItem('nameDisplay')=='true') {
+      objLibName.innerText=lLogin;
+    } else {
+      objLibName.innerText=lName+' '+lLastname;
+    }
+
     let card2=document.getElementById('card2');
     let card1=document.getElementById('card1');
     card1.style.display='none';

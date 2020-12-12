@@ -10,28 +10,24 @@
 		<!-- СКРИПТЫ -->
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/theme.js"></script>
-		<script src="scripts/topBar.js"></script>
 		<script src="scripts/settings.js"></script>
 		<script src='scripts/phone-check.js'></script>
 		<script src="https://unpkg.com/phosphor-icons"></script>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
 	</head>
 	<body>
-		<nav id="nav" style="position: sticky; top: 0;">
+		<nav id="nav" style="position: relative">
 			<ul id="topBar" style="display: flex; align-items: center">
 				<img onclick="goBack()" id="backButton" src="images/back2.svg">
 				<a id="mLogo2">НАСТРОЙКИ</a>
 				<a id="logo">НАСТРОЙКИ</a>
-				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
-				<img onclick="userBox()" id="userPic" src="images/user.svg">
 			</ul>
 		</nav>
-		<div id="mobile-search-block">
-			<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
-			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
+		<div class="bottom-elements"></div>
+		<div onclick="userBox()" class="userblock2">
+			<img id="userPic" src="images/user.svg">
+			<h5 id="ub2-name">Войти</h5>
 		</div>
-		<button style="bottom: 30px" onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
-
 
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
@@ -45,22 +41,22 @@
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
-		<div class="settings-nav">
-				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="settings-nav-item chosen-nav-item"><i class="ph-circles-three-bold settings-subtitleIcon"></i>Персонализация</h4>
-				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="settings-nav-item"><i class="ph-user-circle-bold settings-subtitleIcon"></i>Аккаунт</h4>
-				<h4 onclick="changeTab('other', 'Прочее')" id="item-other" class="settings-nav-item"><i class="ph-dots-three-outline-bold settings-subtitleIcon"></i>Прочее</h4>
-				<h4 onclick="changeTab('debug', 'Полигон')" id="item-debug" class="settings-nav-item"><i class="ph-terminal-bold settings-subtitleIcon"></i>Полигон</h4>
+		<div class="tabs-2" style="position: absolute">
+				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="tab-2 selected-tab-2"><i class="ph-circles-three-bold tab-icon-2"></i>Персонализация</h4>
+				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="tab-2"><i class="ph-user-circle-bold tab-icon-2"></i>Аккаунт</h4>
+				<h4 onclick="changeTab('other', 'Прочее')" id="item-other" class="tab-2"><i class="ph-dots-three-outline-bold tab-icon-2"></i>Прочее</h4>
+				<h4 onclick="changeTab('debug', 'Полигон')" id="item-debug" class="tab-2"><i class="ph-terminal-bold tab-icon-2"></i>Полигон</h4>
 		</div>
 		<div class="settings">
 			<div class="settings-alert" id="use-beta" style="display: none">
 				<h5 style="margin: 15px">Ветки Beta и PR закрыты. Спасибо за тестирование TenStore 2.2.0! <a href="#" onclick="changeSetting('channel', 'rel')">Перейти на основную ветку</a></h5>
 			</div>
-			<h2 id="settings-title" class="settings-tab" style="">Персонализация</h2>
+			<h2 id="settings-title" class="settings-tab">Персонализация</h2>
 			<div id="settings-personal" class="settings-tab">
 				<div class="settings-block">
-					<h2 class="settings-block-title">Тема</h2>
+					<h3 class="settings-block-title">Тема</h3>
 					<img src="images/vectors/dark-theme.png" class="settings-img">
-					<h5 class="settings-text">Тёмная тема помогает расслабить глаза в ночное время суток, и сохранить заряд батареи.</h5>
+					<h4 class="settings-text">Тёмная тема помогает сохранить заряд батареи и расслабить глаза в ночное время суток</h4>
 
 					<div class="theme-buttons">
 						<div style="display: flex; flex-direction: column">
@@ -76,10 +72,8 @@
 						<input id="s-autoDarkTheme" onclick="autoDarkTheme(); changeSetting('autoDarkTheme')" type="checkbox" class="switch">
 						<label for="s-autoDarkTheme">Использовать тему системы</label>
 					</div>
-				</div>
 
-				<div class="settings-block">
-					<h2 class="settings-block-title">Акцент</h2>
+					<h3 class="settings-block-title">Акцент</h3>
 					<div class="theme-buttons">
 						<label onclick="setAccent('custom')" for="colorPicker" id="accent-custom" class="theme-button hidden"><i class='ph-plus check1'></i></label>
 						<div onclick="setAccent('brown', '#4e342e', '#a1887f', '#3e2723')" id="accent-brown" class="theme-button"></div>
@@ -98,10 +92,8 @@
 
 					</div>
 					<input style="visibility: hidden" id="colorPicker" type="color">
-				</div>
 
-				<div class="settings-block">
-					<h2 class="settings-block-title">Эффекты</h2>
+					<h3 class="settings-block-title">Эффекты</h3>
 					<div style="margin-left: 15px">
 						<input id="s-blur" onclick="changeSetting('no-effects-blur')" type="checkbox" checked class="switch">
 				    <label for="s-blur">Размытие фона</label><p>
@@ -230,7 +222,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 style="margin-left: 20px; color: grey">TenStore v2.2.2</h5>
+			<h5 class="centerText grey">TenStore v2.2.3</h5>
 		</div>
 
 		<div id="alert">
@@ -238,6 +230,5 @@
 			<h4 id="alertText"></h4>
 		</div>
 		<script>let theme; login('settings'); currentThemeCheck(); checkSwitches(); onchangef(); ; ub_themeBtn()</script>
-		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

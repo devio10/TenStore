@@ -283,19 +283,13 @@ function changeTab(tab, tabName) {
   document.getElementById('settings-other').style.display='none';
   document.getElementById('settings-debug').style.display='none';
 
-  document.getElementById('item-personal').style.fontFamily='var(--regular)';
-  document.getElementById('item-account').style.fontFamily='var(--regular)';
-  document.getElementById('item-other').style.fontFamily='var(--regular)';
-  document.getElementById('item-debug').style.fontFamily='var(--regular)';
-
-  document.getElementById('item-personal').className='settings-nav-item';
-  document.getElementById('item-account').className='settings-nav-item';
-  document.getElementById('item-other').className='settings-nav-item';
-  document.getElementById('item-debug').className='settings-nav-item';
+  document.getElementById('item-personal').className='tab-2';
+  document.getElementById('item-account').className='tab-2';
+  document.getElementById('item-other').className='tab-2';
+  document.getElementById('item-debug').className='tab-2';
 
   document.getElementById('settings-'+tab).style.display='block';
-  document.getElementById('item-'+tab).style.fontFamily='var(--bold)';
-  document.getElementById('item-'+tab).className='settings-nav-item chosen-nav-item';
+  document.getElementById('item-'+tab).className='tab-2 selected-tab-2';
   document.getElementById('settings-title').innerHTML=tabName;
 }
 
