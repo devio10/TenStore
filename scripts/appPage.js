@@ -115,7 +115,7 @@ request.addEventListener("readystatechange", () => {
 
                 document.getElementById('my-review-text').style.display='block';
                 document.getElementById('edit-btn').style.display='flex';
-                document.getElementById('my-review-text').innerHTML=comments.comments[c].comment;
+                document.getElementById('my-review-text').innerText=comments.comments[c].comment;
                 document.getElementById('review-text').value=comments.comments[c].comment;
                 var comment=document.getElementById('my-review');
                 if (comments.comments[c].isLiked=='1') {
@@ -193,11 +193,11 @@ request.addEventListener("readystatechange", () => {
       document.getElementById('app-description-short').innerHTML=shortDescription[0]+'..';
       document.getElementById('app-description').innerHTML=description;
 
-      document.getElementById('app-likes').innerHTML=liked;
-      document.getElementById('app-dislikes').innerHTML=disliked;
-      document.getElementById('appPage-name').innerHTML=obj.apps[0].name;
-      document.getElementById('mLogo2').innerHTML=obj.apps[0].name;
-      document.getElementById('appPage-dev').innerHTML=obj.apps[0].dev;
+      document.getElementById('app-likes').innerText=liked;
+      document.getElementById('app-dislikes').innerText=disliked;
+      document.getElementById('appPage-name').innerText=obj.apps[0].name;
+      document.getElementById('mLogo2').innerText=obj.apps[0].name;
+      document.getElementById('appPage-dev').innerText=obj.apps[0].dev;
       document.getElementById('appPage-dev-link').href='appsList?dev='+obj.apps[0].dev;
       let publisher;
       if (obj.apps[0].pub==0) {
@@ -205,7 +205,7 @@ request.addEventListener("readystatechange", () => {
       } else {
         publisher=obj.apps[0].pub;
       }
-      document.getElementById('appPage-title').innerHTML = obj.apps[0].name + " — TenStore";
+      document.getElementById('appPage-title').innerText = obj.apps[0].name + " — TenStore";
       document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
       document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tag=" + obj.apps[0].category + "'>" + obj.apps[0].category + "</a>";
       const requestDev = new XMLHttpRequest();
@@ -237,11 +237,11 @@ function fullDescription() {
   let fullDesc=document.getElementById('app-description');
   let shortDesc=document.getElementById('app-description-short');
   if (fullDesc.style.display=='none') {
-    document.getElementById('showFull').innerHTML='Скрыть';
+    document.getElementById('showFull').innerText='Скрыть';
     fullDesc.style.display='block';
     shortDesc.style.display='none';
   } else {
-    document.getElementById('showFull').innerHTML='Показать полностью';
+    document.getElementById('showFull').innerText='Показать полностью';
 
     fullDesc.style.display='none';
     shortDesc.style.display='block';
@@ -328,7 +328,7 @@ function editReview () {
   document.getElementById('review-text').style.height='100px';
   document.getElementById('send-btn').style.display='block';
   document.getElementById('remove-btn').style.display='block';
-  document.getElementById('send-btn').innerHTML='Изменить';
+  document.getElementById('send-btn').innerText='Изменить';
 
   document.getElementById('my-review-text').style.display='none';
   document.getElementById('edit-btn').style.display='none';

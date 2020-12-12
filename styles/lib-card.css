@@ -1,0 +1,32 @@
+.lib-card {
+  border: 1px solid var(--border);
+  width: 375px;
+  height: 65px;
+  display: flex;
+  margin: 5px;
+  align-items: center;
+  border-radius: 5px; }
+
+.lib-card-icon {
+  width: 45px;
+  height: 45px;
+  margin: auto 10px auto 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: var(--shadow5); }
+
+#lib-cards {
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  transition: var(--transition1); }
+
+.lib-card-name, .lib-card-dev {
+  margin: 0 0 0 5px;
+  width: 260px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
+
+.lib-card-dev {
+  color: gray; }

@@ -7,6 +7,7 @@
 	  <link id="appsList-icon" rel="shortcut icon" href="images/library.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/library.css" rel="stylesheet" type="text/css">
+		<link href="styles/lib-card.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
@@ -44,12 +45,48 @@
 		</div>
 
 
-		<div class="settings appsList-block" style="margin-left: 0">
+		<div style="margin-top: 50px">
 			<h4 id="no-elements" style="display: none">По вашему запросу ничего не нашлось.</h4>
-			<div id="aCard-block" class="flex-grid">
-
+			<div id="lib-cards" class="flex-grid">
+				<div class='lib-card'>
+					<img src='images/favicon.png' class='lib-card-icon'>
+					<div class='flex flex-column'>
+						<h5 class='lib-card-name'>TenStore для Android</h5>
+						<h5 class='lib-card-dev'>Press Team</h5>
+					</div>
+					<a href='app?id=0'><i class='ph-share lib-card-open-icon'></i></a>
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
+				<div class="lib-card">
+					<img src="images/favicon.png" class="lib-card-icon">
+				</div>
 			</div>
-		</div>
 		<script charset="utf-8" src="scripts/library.js"></script>
 		<script>login('lib'); ub_themeBtn(); ifNotFound()
 			/*showAppCard('aCard-block', 'images/appIcons/notepads.png', '0', 'white', '36', 'Notepads', 'Jackie Liu');
@@ -57,5 +94,7 @@
 			showAppCard('aCard-block', 'images/icons/microsoftNews.png', '0', 'white', '1', 'News', 'Microsoft');
 			showAppCard('aCard-block', 'images/icons/orpad.png', '15', '', '1', 'Orpad — блокнот', 'Li_is');*/
 		</script>
+
+
 	</body>
 </html>

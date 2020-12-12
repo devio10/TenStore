@@ -28,3 +28,11 @@
   top: auto;
   bottom: 60px;
 }
+.lib-card-open-icon {
+	color: var(--font);
+  padding: 3px;
+  font-size: 20px;
+	margin: auto 15px auto auto;
+  transition: var(--transition6);
+	text-align: right;
+}
