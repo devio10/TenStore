@@ -3,12 +3,18 @@ function homeCard(cardId, name, appId, background, background2) {
   if (background==0) {
     background=background2;
   }
-  if ((background2==0)&&(background==0)) {
-    let random = Math.floor(Math.random() * 10) + 1;
-    document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://thetenstore.ru/images/headers/'+random+'.jpg)';
-  } else if (background!=0) {
-    document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://thetenstore.ru/'+background+')';
+  if (localStorage.getItem('save-traffic')!='true') {
+    if ((background2==0)&&(background==0)) {
+      document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://thetenstore.ru/images/cardbg/empty.jpg)';
+    } else if (background!=0) {
+      document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://thetenstore.ru/'+background+')';
+    }
+  } else {
+    document.getElementById(cardId).style.background='var(--bg)';
+    document.getElementById(cardId+'-name').style.color='var(--font)';
+    document.getElementById(cardId+'-title').style.color='var(--font)';
   }
+
   document.getElementById(cardId).style.backgroundRepeat='no-repeat';
   document.getElementById(cardId).style.backgroundPosition='center';
   document.getElementById(cardId).setAttribute('onclick',"window.open('app?id="+appId+"', '_self')");

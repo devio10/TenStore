@@ -173,10 +173,12 @@
 			<div id="settings-other" class="settings-tab" style="display: none">
 				<div class="settings-block">
 
-					<h2 class="settings-block-title">Потребление трафика</h2>
+					<h2 class="settings-block-title">Экономия трафика</h2>
+					<img src="images/vectors/save-traffic.png" class="settings-img">
+					<h5 class="settings-text">Этот режим позволяет загружать страницы быстрее и тратить меньше трафика.</h5>
 					<div style="margin-left: 15px">
-						<input id="s-app-background" onclick="changeSetting('app-background')" type="checkbox" checked class="switch">
-						<label for="s-app-background">Фон на странице приложения</label>
+						<input id="s-save-traffic" onclick="changeSetting('save-traffic')" type="checkbox" class="switch">
+						<label for="s-save-traffic">Экономия трафика</label>
 					</div>
 				</div>
 
@@ -197,7 +199,7 @@
 					<h2 class="settings-block-title">Канал</h2>
 					<div style="margin-left: 15px">
 						<input onclick="changeSetting('channel', 'rel')" id="release" type="radio" name="channel" value="1">
-						<label for="release">2.2.0 (основная версия)</label><p>
+						<label for="release">2.2.2 (основная версия)</label><p>
 						<input style="display: none" onclick="changeSetting('channel', 'beta')" id="beta" type="radio" disabled name="channel" value="3">
 						<label style="display: none" for="beta">2.2.0 (бета)</label><p>
 						<input onclick="changeSetting('channel', 'pre')" id="pre" type="radio" name="channel" value="3">
@@ -228,7 +230,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 style="margin-left: 20px; color: grey">TenStore v2.2.1</h5>
+			<h5 style="margin-left: 20px; color: grey">TenStore v2.2.2</h5>
 		</div>
 
 		<div id="alert">

@@ -150,9 +150,9 @@ function checkSwitches() {
     document.getElementById('s-animations').checked = false;
   }
 
-  /* потребление трафика */
-  if (localStorage.getItem('app-background') == 'false') {
-    document.getElementById('s-app-background').checked = false;
+  /* экономия трафика */
+  if (localStorage.getItem('save-traffic')=='true') {
+    document.getElementById('s-save-traffic').checked=true;
   }
 
   /* блок пользователя */
