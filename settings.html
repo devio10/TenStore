@@ -107,24 +107,36 @@
 						<div id="sc-userPic-block"><img id="sc-userPic" src="images/user.svg"></div>
 						<h3 id="settings-name" class="centerText"></h3>
 						<h5 id="settings-email" class="centerText"></h5>
-						<button onclick="window.open('user', '_self')" style="margin: 0 auto 15px auto" class="accent-button-2 tenid-accent">Открыть в TenID</button>
+						<button onclick="window.open('user')" style="margin: 0 auto 15px auto" class="accent-button-2 tenid-accent">Открыть в TenID</button>
 						<button onclick="logoff(), window.open('login', '_self')" style="margin: 0 auto 20px auto" class="button-2">Выйти</button>
 					</div>
 
 					<h3 class="settings-block-title">Аккаунт разработчика</h3>
-					<div class="settings-user-card">
+					<div class="settings-user-card hidden" id="settings-not-dev">
 						<h5 class="centerText grey" style="margin-bottom: 10px; margin-left: 40px; margin-right: 40px">Станьте разработчиком и получите возможность выкладывать свои приложения. Бесплатно.</h5>
-						<button onclick="window.open('user', '_self')" style="margin: 0 auto 15px auto" class="accent-button-2 tenid-accent">Оставить заявку</button>
+						<button onclick="window.open('dev-request', '_self')" style="margin: 0 auto 15px auto" class="accent-button-2">Оставить заявку</button>
 						<h5 style="margin-bottom: 10px; margin-left: 40px; margin-right: 40px" class="centerText grey">Вас пригласили присоединиться к команде?</h5>
-						<button onclick="logoff(), window.open('login', '_self')" style="margin: 0 auto 20px auto" class="button-2">Присоединиться</button>
+						<button onclick="window.open('dev-invite', '_self')" style="margin: 0 auto 20px auto" class="button-2">Присоединиться</button>
 					</div>
+
+					<div class="settings-user-card" id="settings-dev">
+						<div style="display: flex; flex-direction: row">
+							<img id="dev-teamlogo" src="images/teamlogo/Press Team.png">
+							<div id="dev-text">
+								<h3 id="dev-teamname" class="centerText">Press Team</h3>
+								<h5 id="dev-position" class="centerText">Главный разработчик</h5>
+							</div>
+							<i onclick="window.open('dev-team')" class="ph-gear-six dev-right-icon"></i>
+						</div>
+					</div>
+					<button onclick="window.open('dev', '_self')" style="margin: 20px auto 0 auto" class="button-2">Открыть консоль</button>
 
 					<h3 class="settings-block-title">Блок пользователя</h3>
 			    <input id="s-nameDisplay" onclick="changeSetting('nameDisplay')" type="checkbox" class="switch">
 			    <label for="s-NameType">Отображать логин</label><p>
-					<input id="s-dev-link" disabled onclick="changeSetting('dev-link')" type="checkbox" class="switch">
+					<input disabled id="s-dev-link" onclick="changeSetting('dev-link')" type="checkbox" class="switch">
 			    <label for="s-dev-link">Ссылка на панель разработчика</label><p>
-					<h5 class="grey" style="margin-top: -5px">Чтобы включить этот параметр, вы должны быть разработчиком.</h5>
+					<h5 id="youre-not-dev" class="grey" style="margin-top: -5px; display: none">Чтобы включить этот параметр, вы должны быть разработчиком.</h5>
 				</div>
 			</div>
 

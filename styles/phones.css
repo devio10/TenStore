@@ -31,30 +31,36 @@
   display: none;
 }
 #siteSearch-mobile {
-	width: 300px;
-	height: 45px;
-	margin: 0 0 0 0;
+	width: calc(100% - 40px);
+	height: 37.5px;
+	max-width: 300px;
+	min-width: 200px;
+	margin: 10px auto 0 auto;
 	animation-name: none;
 }
+.search-block {
+	margin: 0 auto 0 auto;
+	display: flex;
+}
 #mobile-search-block {
-	background: var(--nav-bg);
-	backdrop-filter: blur(var(--blur));
+	background: var(--bg);
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	width: calc(100% - 40px);
+	max-width: 500px;
+	left: 20px;
+	bottom: 0;
+	z-index: 1000;
+	transition: var(--transition6);
+	animation-duration: .4s;
+	animation-name: var(--userbox-phone);
+	animation-timing-function: ease-in-out;
 	position: fixed;
-	left: 0;
   display: none;
-	flex-direction: column;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  align-items: center;
 }
 #mobile-search-button {
-	background: 0;
-  border: 1px solid var(--border);
-  transition: .3s;
-	backdrop-filter: blur(var(--blur));
 	margin-top: 60px;
+	margin: 30px auto 30px auto;
 	width: 125px;
 }
 .searchButton {
@@ -261,7 +267,7 @@
   height: 300px;
 }
 
-.tabs-2 {
+.tabs-2, .tabs {
 	justify-content: flex-start;
 	flex-wrap: nowrap;
   width: 100%;
@@ -324,6 +330,10 @@
 	bottom: auto;
 	top: 10px;
 	transition: var(--transition3);
+}
+#dev-teamlogo {
+	width: 50px;
+	height: 50px;
 }
 
 
@@ -484,7 +494,6 @@
 }
 #item-rec-upd, #item-game-rec-upd, #item-personal {
 	margin-left: 3%;
-	margin-top: 10px;
 }
 
 /*user page*/

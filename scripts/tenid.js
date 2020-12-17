@@ -86,6 +86,13 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
     document.getElementById('sc-userPic').src=userPhoto;
     document.getElementById('settings-email').innerText=lEmail;
 
+    if ((lType=='dev')||(lType=='admin')) {
+      document.getElementById('youre-not-dev').style.display='none';
+      document.getElementById('s-dev-link').disabled='';
+    } else {
+
+    }
+
   } else if (page=='lib') {
 
     let objLibName=document.getElementById('lib-name');

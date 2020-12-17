@@ -49,9 +49,13 @@
 		  </a>
 		</nav>
 		<div id="mobile-search-block">
-			<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
-			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
+			<h3 style="margin: 20px">Поиск</h3>
+			<div class="search-block">
+				<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+			</div>
+			<button onclick="mobileSearch()" class="accent-button-2" id="mobile-search-button">поиск</button>
 		</div>
+		<div onclick="toggleSearchBar()" id="search-dark-bg"></div>
 		<button onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">

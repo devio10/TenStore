@@ -252,3 +252,35 @@
 .pos-absolute {
 	position: absolute;
 }
+
+#settings-dev {
+	/*border-left: 4px solid #f23927;*/
+	border-width: 0;
+	box-shadow: var(--shadow6);
+	background: linear-gradient(124deg, var(--rgba2) 0%, var(--rgba2) 100%), linear-gradient(124deg, rgba(242,57,39,1) 0%, rgba(5,2,89,1) 100%);
+}
+.dev-right-icon {
+	font-size: 22px;
+	margin: auto 20px auto auto;
+	color: var(--font);
+	cursor: pointer;
+}
+#dev-teamlogo {
+	width: 75px;
+	height: 75px;
+	border-radius: 5px;
+	margin: 15px;
+}
+#dev-teamname {
+	margin: auto 0 5px 0;
+	overflow: hidden;
+	white-space: nowrap;
+}
+#dev-position {
+	margin: 0 0 auto 0;
+}
+#dev-text {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
