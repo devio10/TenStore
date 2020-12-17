@@ -559,7 +559,7 @@ button:focus {
 	background-size: cover;
 }
 #userBox-dark-bg, #search-dark-bg {
-	background: rgba(0, 0, 0, 0.75);
+	background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%);
 	animation-name: var(--a-dark-bg);
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
