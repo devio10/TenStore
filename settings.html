@@ -10,7 +10,6 @@
 		<!-- СКРИПТЫ -->
 		<script src="scripts/tenid.js"></script>
 		<script src="scripts/theme.js"></script>
-		<script src="scripts/settings.js"></script>
 		<script src='scripts/phone-check.js'></script>
 		<script src="https://unpkg.com/phosphor-icons"></script>
 		<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
@@ -21,7 +20,7 @@
 		</div>
 
 
-		<div onclick="userBox()" class="userblock2">
+		<div onclick="userBox()" id="userblock2">
 			<img id="userPic" src="images/user.svg">
 			<h5 id="ub2-name">Войти</h5>
 		</div>
@@ -40,7 +39,7 @@
 		</div>
 		<div onclick="userBox()" id="userBox-dark-bg"></div>
 
-		<div class="tabs-2" style="position: absolute">
+		<div class="tabs-2 pos-absolute">
 				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="tab-2 selected-tab-2"><i class="ph-circles-three-bold tab-icon-2"></i>Персонализация</h4>
 				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="tab-2"><i class="ph-user-circle-bold tab-icon-2"></i>Аккаунт</h4>
 				<h4 onclick="changeTab('other', 'Прочее')" id="item-other" class="tab-2"><i class="ph-dots-three-outline-bold tab-icon-2"></i>Прочее</h4>
@@ -58,7 +57,7 @@
 				<div class="settings-block">
 					<h3 class="settings-block-title">Тема</h3>
 					<img src="images/vectors/dark-theme.png" class="settings-img">
-					<h4 class="settings-text" style="margin-bottom: 15px">Тёмная тема помогает сохранить заряд батареи и расслабить глаза в ночное время суток</h4>
+					<h4 class="settings-text" style="margin-bottom: 15px">Тёмная тема помогает сохранить заряд батареи и расслабить глаза.</h4>
 					<input id="s-autoDarkTheme" onclick="autoDarkTheme(); changeSetting('autoDarkTheme')" type="checkbox" class="switch">
 					<label for="s-autoDarkTheme">Использовать тему системы</label>
 					<div class="theme-buttons" style="margin-top: 15px">
@@ -71,7 +70,6 @@
 							<h5 class="grey theme-button-text centerText">тёмная</h5>
 						</div>
 					</div>
-
 
 					<h3 class="settings-block-title">Акцент</h3>
 					<div class="theme-buttons">
@@ -111,6 +109,14 @@
 						<h5 id="settings-email" class="centerText"></h5>
 						<button onclick="window.open('user', '_self')" style="margin: 0 auto 15px auto" class="accent-button-2 tenid-accent">Открыть в TenID</button>
 						<button onclick="logoff(), window.open('login', '_self')" style="margin: 0 auto 20px auto" class="button-2">Выйти</button>
+					</div>
+
+					<h3 class="settings-block-title">Аккаунт разработчика</h3>
+					<div class="settings-user-card">
+						<h5 class="centerText grey" style="margin-bottom: 10px; margin-left: 40px; margin-right: 40px">Станьте разработчиком и получите возможность выкладывать свои приложения. Бесплатно.</h5>
+						<button onclick="window.open('user', '_self')" style="margin: 0 auto 15px auto" class="accent-button-2 tenid-accent">Оставить заявку</button>
+						<h5 style="margin-bottom: 10px; margin-left: 40px; margin-right: 40px" class="centerText grey">Вас пригласили присоединиться к команде?</h5>
+						<button onclick="logoff(), window.open('login', '_self')" style="margin: 0 auto 20px auto" class="button-2">Присоединиться</button>
 					</div>
 
 					<h3 class="settings-block-title">Блок пользователя</h3>
@@ -155,8 +161,8 @@
 					<h5 style="margin-top: 10px" class="grey">Список настроек пуст.</h5>
 
 					<h3 style="margin-bottom: 0" class="settings-block-title">debug</h3>
-					<h5 style="margin-top: 10px" class="grey">Список настроек пуст.</h5>
-					<div style="margin-top: 30px; display: none">
+					<h5 id="no-debug" style="margin-top: 10px" class="grey">Список настроек пуст.</h5>
+					<div id="debug-settings" style="margin-top: 30px; display: none">
 						<input onclick="changeSetting('alwaysLoggedIn')" id="s-alwaysLoggedIn" type="checkbox" class="switch">
 				    <label for="s-alwaysLoggedIn">fakeUser</label><p>
 						<input onclick="changeSetting('mobileVersion')" id="s-mobileVersion" type="checkbox" class="switch">
@@ -177,6 +183,7 @@
 			<img id="alertIcon">
 			<h4 id="alertText"></h4>
 		</div>
+		<script src="scripts/settings.js"></script>
 		<script>let theme; login('settings'); currentThemeCheck(); checkSwitches(); ub_themeBtn()</script>
 	</body>
 </html>

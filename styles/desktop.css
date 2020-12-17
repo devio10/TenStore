@@ -346,7 +346,7 @@ button:focus {
 	text-transform: none;
 }
 .boxButton:hover {
-	background: var(--secondary);
+	background: var(--primary);
 	color: var(--accent);
 	transform: scale(0.99);
 }

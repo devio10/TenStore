@@ -211,7 +211,7 @@
 #ub2-name {
   margin: auto 5px auto 10px;
 }
-.userblock2 {
+#userblock2 {
   display: flex;
   align-items: flex-start;
   position: fixed;
@@ -248,4 +248,7 @@
 }
 #settings-logo:hover {
   background-size: 0% 2px;
+}
+.pos-absolute {
+	position: absolute;
 }

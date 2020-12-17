@@ -120,6 +120,10 @@ function checkSwitches() {
   /*прочее*/
   checkSwitch('slow-device', 'true', 'true');
   checkSwitch('save-traffic', 'true', 'true');
+  if (localStorage.getItem('debug')=='true') {
+    document.getElementById('debug-settings').style.display='block';
+    document.getElementById('no-debug').style.display='none';
+  }
 
   /*персонализация*/
   checkSwitch('autoDarkTheme', 'true');
@@ -279,5 +283,26 @@ function removeHighlights (category) {
     brown.style.boxShadow='var(--shadow1)';
     grey.style.boxShadow='var(--shadow1)';
     blueGrey.style.boxShadow='var(--shadow1)';
+  }
+}
+if((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))||(localStorage.getItem('mobileVersion')=='true')){
+  var head=document.getElementsByTagName('HEAD')[0];
+  var link=document.createElement('link');
+  link.rel='stylesheet';
+  link.type='text/css';
+  link.href='styles/phones-settings.css';
+  head.appendChild(link);
+  
+  var prevScrollpos=window.pageYOffset;
+  window.onscroll=function() {
+    var currentScrollPos=window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById('userblock2').style.transform="scale(1)";
+      document.getElementById('userblock2').style.opacity="1";
+    } else {
+      document.getElementById('userblock2').style.transform="scale(.3)";
+      document.getElementById('userblock2').style.opacity="0";
+    }
+    prevScrollpos=currentScrollPos;
   }
 }
