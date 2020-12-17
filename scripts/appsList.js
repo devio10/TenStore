@@ -97,6 +97,13 @@ function ifSearch () {
 }
 function ifGame () {
   if ((getUrlVars()['type']=='game')||(getUrlVars()['tab']=='game')) {
+    if (getUrlVars()['tag']==null) {
+      document.getElementById('appsList-title').innerHTML='Недавно обновлено — TenStore';
+      document.getElementById('dev-title').innerHTML='Недавно обновлено';
+      document.getElementById('item-game-rec-upd').classList.add('tab-selected');
+      document.getElementById('appsList-icon').href='images/category/rec-upd.svg';
+      isGame();
+    }
     document.getElementById('chosen').style.fontFamily='var(--regular)';
     document.getElementById('gameTab').style.fontFamily='var(--bold)';
     document.getElementById('apps-categ').style.display='none';
@@ -112,7 +119,7 @@ function isGame () {
   document.getElementById('chosen').style.fontFamily='var(--regular)';
   document.getElementById('gameTab').style.fontFamily='var(--bold)';
   document.getElementById('apps-categ').style.display='none';
-  document.getElementById('games-categ').style.display='var(--tabs-display)';
+  document.getElementById('games-categ').style.display='flex';
   document.getElementById('apps-i').className='ph-squares-four phoneNav-icon';
   document.getElementById('games-i').className='ph-game-controller-fill phoneNav-icon phoneNav-link-active';
   document.getElementById('apps-span').className='phoneNav-text';
@@ -124,6 +131,7 @@ function setTagName () {
   let tagCode;
   if (getUrlVars()['tag']!=null) {
     var decodedTag=decodeURIComponent(getUrlVars()['tag']);
+    var type=getUrlVars()['type'];
     if (decodedTag=='Музыка и видео') {
       tagName='Музыка и видео';
       tagCode='media';
@@ -210,7 +218,6 @@ function setTagName () {
     }
     document.getElementById('appsList-title').innerHTML=tagName+' — TenStore';
     document.getElementById('dev-title').innerHTML=tagName;
-    document.getElementById('item-'+tagCode).style.fontFamily='var(--bold)';
     document.getElementById('item-'+tagCode).classList.add('tab-selected');
     document.getElementById('appsList-icon').href='images/category/'+tagIcon+'.svg';
   }
