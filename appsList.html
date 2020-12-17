@@ -61,11 +61,12 @@
 			<h5 id="userbox-email" class="centerText"></h5>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
 			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
-			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-set"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
 			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
+		<div onclick="userBox()" id="userBox-dark-bg"></div>
 		<div id="apps-categ" class="settings-nav">
 			<h4 onclick="category('rec-upd')" id="item-rec-upd" class="settings-nav-item"><i class="ph-clock-bold settings-subtitleIcon"></i>Недавно обновлено</h4>
 			<h4 onclick="list('popular')" id="item-popular" class="settings-nav-item"><i class="ph-star-bold settings-subtitleIcon"></i>Популярное</h4>

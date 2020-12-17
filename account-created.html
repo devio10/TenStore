@@ -7,7 +7,6 @@
 	  <link rel="shortcut icon" href="images/user.svg" type="image/png">
 		<link href="styles/desktop.css" rel="stylesheet" type="text/css">
 		<link href="styles/TenID-basic.css" rel="stylesheet" type="text/css">
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css">
 		<!-- СКРИПТЫ -->
 		<script src="scripts/theme.js"></script>
 		<script src="scripts/tenid.js"></script>
@@ -35,11 +34,12 @@
 			<h5 id="userbox-email" class="centerText"></h5>
 			<button onclick="changeTheme(1)" id="themeButton" class="boxButton"><i class="ph-sun boxButton-icon"></i>Светлая тема</button>
 			<form action="library"><button class="boxButton" id="boxbtn-library"><i class="ph-archive boxButton-icon"></i>Библиотека</button></form>
-			<form action="settings"><button class="boxButton" id="boxbtn-settings"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
+			<form action="settings"><button class="boxButton" id="boxbtn-set"><i class="ph-gear-six boxButton-icon"></i>Настройки</button></form>
 			<form action="dev"><button class="boxButton" id="boxbtn-dev"><i class="ph-code boxButton-icon"></i>Панель разработчика</button></form>
 			<form action="user"><button id="boxBtn-account" class="boxButton"><i class="ph-user-circle boxButton-icon"></i>Мой аккаунт</button></form>
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
+		<div onclick="userBox()" id="userBox-dark-bg"></div>
 
 		<div id="CA-warningBox">
 			<h5 style="color: black; padding: 10px">Уведомления временно недоступны.</h5>

@@ -28,7 +28,7 @@ function setTheme(theme, isAutoDarkTheme) {
   if (isAutoDarkTheme!=true) {
     document.getElementById('s-autoDarkTheme').checked = false;
   }
-  document.getElementById(themeId).innerHTML="<img class='"+checkId+"' src='images/check.svg'>";
+  document.getElementById(themeId).innerHTML="<i class='ph-check "+checkId+"'></i>";
   document.getElementById(themeId).style.boxShadow='0px 0px 15px 2px var(--accent)';
   document.getElementById(themeId).style.outline="2px solid var(--accent)";
   chosenAccent.style.outline="2px solid "+border;
@@ -51,36 +51,6 @@ function getDefault (dSetting) {
   }
 }
 
-function setAccentOld(accent) {
-  document.getElementById('accent-blue').innerHTML="";
-  document.getElementById('accent-orange').innerHTML="";
-  document.getElementById('accent-red').innerHTML="";
-  document.getElementById('accent-purple').innerHTML="";
-  document.getElementById('accent-green').innerHTML="";
-  document.getElementById('accent-custom').innerHTML="<img class='check1' src='images/custom.svg'>";
-  document.getElementById('accent-blue').style.outline='0px solid ';
-  document.getElementById('accent-orange').style.outline='none';
-  document.getElementById('accent-red').style.outline='none';
-  document.getElementById('accent-purple').style.outline='none';
-  document.getElementById('accent-green').style.outline='none';
-  document.getElementById('accent-custom').style.outline='none';
-  if (accent=='custom') {
-    document.getElementById('accent-custom').innerHTML="<img class='check1' src='images/check.svg'>";
-    document.getElementById('accent-custom').style.outline="2px solid "+border;
-    chosenAccent=document.getElementById('accent-custom');
-    document.documentElement.style.setProperty('--accent', document.getElementById("colorPicker").value);
-    document.documentElement.style.setProperty('--accent-light', document.getElementById("colorPicker").value);
-    document.documentElement.style.setProperty('--accent-dark', document.getElementById("colorPicker").value);
-    showAlert('Тема сохранена.', 'images/check.svg');
-  } else {
-    document.getElementById('accent-'+accent).innerHTML="<img class='check1' src='images/check.svg'>";
-    document.getElementById('accent-'+accent).style.outline="2px solid "+border;
-    chosenAccent=document.getElementById('accent-'+accent);
-    localStorage.setItem('accent', accent);
-    document.documentElement.setAttribute('data-accent', accent);
-    showAlert('Тема сохранена.', 'images/check.svg');
-  }
-}
 function setAccent(accentId, accent, accentLight, accentDark) {
   removeHighlights('accent');
   document.documentElement.style.setProperty('--accent', accent);
@@ -131,107 +101,43 @@ function changeSetting (par, val) {
   }
 }
 
+
+function checkSwitch(name, argum) {
+  if (localStorage.getItem(name)==argum) {
+    document.getElementById('s-'+name).checked=argum;
+  }
+}
 function checkSwitches() {
-  /* платформа */
-  if (localStorage.getItem('platform') == 'android') {
-    document.getElementById('r2').checked = true;
+  /*прочее*/
+  checkSwitch('no-effects-blur', 'false');
+  checkSwitch('save-traffic', 'true');
+
+  /*персонализация*/
+  checkSwitch('autoDarkTheme', 'true');
+
+  /*аккаунт*/
+  checkSwitch('nameDisplay', 'true');
+  checkSwitch('dev-link', 'true');
+
+  /*полигон*/
+  // TODO: появление рычага fake user, если включена настройка
+  checkSwitch('alwaysLoggedIn', 'true');
+  checkSwitch('mobileVersion', 'true');
+  checkSwitch('debug-noAppPageRedirect', 'true');
+  checkSwitch('debug-noAppPageProhibit', 'true');
+  let objUseBeta=document.getElementById('use-beta');
+  let dataChannel=localStorage.getItem('channel');
+  if (dataChannel=='pre') {
+    document.getElementById('pre').checked=true;
+    objUseBeta.style.display='block';
+  } else if (dataChannel=='beta') {
+    document.getElementById('beta').checked=true;
+    objUseBeta.style.display='block';
   } else {
-    document.getElementById('r1').checked = true;
-  }
-
-  /* эффекты */
-  if (localStorage.getItem('no-effects-blur') == 'false') {
-    document.getElementById('s-blur').checked = false;
-  }
-  if (localStorage.getItem('no-effects-shadows') == 'false') {
-    document.getElementById('s-shadows').checked = false;
-  }
-  if (localStorage.getItem('no-effects-animations') == 'false') {
-    document.getElementById('s-animations').checked = false;
-  }
-
-  /* экономия трафика */
-  if (localStorage.getItem('save-traffic')=='true') {
-    document.getElementById('s-save-traffic').checked=true;
-  }
-
-  /* блок пользователя */
-  if (localStorage.getItem('nameDisplay')=='true') {
-    document.getElementById('s-nameDisplay').checked=true;
-  }
-  if (localStorage.getItem('userbox-dontShowEmail')=='true') {
-    document.getElementById('s-dontShowEmail').checked=true;
-  }
-
-  /* шрифт */
-  if (localStorage.getItem('newFont') == 'true') {
-    document.getElementById('s-newFont').checked = true;
-  }
-
-  /* экспериментальные функции */
-  if (localStorage.getItem('appsListSort')=='true') {
-    document.getElementById('s-appsListSort').checked=true;
-  }
-  if (localStorage.getItem('analytics')=='true') {
-    document.getElementById('s-analytics').checked=true;
-  }
-
-  if (localStorage.getItem('alwaysLoggedIn')=='true') {
-    document.getElementById('s-alwaysLoggedIn').checked=true;
-  }
-
-  /* канал */
-  if (localStorage.getItem('channel') == 'pre') {
-    document.getElementById('pre').checked = true;
-    document.getElementById('use-beta').style.display='block';
-  } else if (localStorage.getItem('channel') == 'beta') {
-    document.getElementById('beta').checked = true;
-    document.getElementById('use-beta').style.display='block';
-  } else {
-    document.getElementById('release').checked = true;
-
-  }
-
-  /* уведомления */
-  if (localStorage.getItem('alUpdates')=='true') {
-    document.getElementById('s-alUpdates').checked=true;
-  }
-  if (localStorage.getItem('alUpdates2')=='true') {
-    document.getElementById('s-alUpdates2').checked=true;
-  }
-  if (localStorage.getItem('mailSpam')=='true') {
-    document.getElementById('s-mailSpam').checked=true;
-  }
-
-  if (localStorage.getItem('mobileVersion')=='true') {
-    document.getElementById('s-mobileVersion').checked=true;
-  }
-  if (localStorage.getItem('beta-mobileSearch')=='true') {
-    document.getElementById('s-beta-mobileSearch').checked=true;
-  }
-  if (localStorage.getItem('debug-noAppPageRedirect')=='true') {
-    document.getElementById('s-debug-noAppPageRedirect').checked=true;
-  }
-  if (localStorage.getItem('debug-noAppPageProhibit')=='true') {
-    document.getElementById('s-debug-noAppPageProhibit').checked=true;
-  }
-  if (localStorage.getItem('autoDarkTheme')=='true') {
-    document.getElementById('s-autoDarkTheme').checked=true;
+    document.getElementById('release').checked=true;
   }
 }
-function onchangef() {
-  document.getElementById("colorPicker").onchange = function() {
-    document.documentElement.style.setProperty('--accent', document.getElementById("colorPicker").value);
-    document.documentElement.style.setProperty('--accent-light', document.getElementById("colorPicker").value);
-    document.documentElement.style.setProperty('--accent-dark', document.getElementById("colorPicker").value);
-    document.getElementById('accent-custom').style.background = document.getElementById("colorPicker").value;
-    localStorage.setItem('accent', 'custom');
-    localStorage.setItem('custom-accent', document.getElementById("colorPicker").value);
-  }
-}
-
 function currentThemeCheck () {
-  document.getElementById('item-personal').style.fontFamily='var(--bold)';
   /*тема*/
   if ((localStorage.getItem('autoDarkTheme')=='true')&&(userPrefersDark)) {
     theme='dark';
@@ -241,7 +147,7 @@ function currentThemeCheck () {
       theme='light';
     }
   }
-  document.getElementById('theme-'+theme).innerHTML="<img class='check' src='images/check.svg'>";
+  document.getElementById('theme-'+theme).innerHTML="<i class='ph-check check'></i>";
   document.getElementById('theme-'+theme).style.outline="2px solid var(--accent)";
   document.getElementById('theme-'+theme).style.boxShadow='0px 0px 15px 2px var(--accent)';
   border="white";
@@ -308,7 +214,6 @@ function removeHighlights (category) {
     let brown=document.getElementById('accent-brown');
     let grey=document.getElementById('accent-grey');
     let blueGrey=document.getElementById('accent-blue-grey');
-    let custom=document.getElementById('accent-custom');
 
     blue.innerHTML='';
     purple.innerHTML='';
@@ -323,7 +228,6 @@ function removeHighlights (category) {
     brown.innerHTML='';
     grey.innerHTML='';
     blueGrey.innerHTML='';
-    custom.innerHTML="<i class='ph-plus check1'></i>";
 
     blue.style.outline='';
     purple.style.outline='';
@@ -338,7 +242,6 @@ function removeHighlights (category) {
     brown.style.outline='';
     grey.style.outline='';
     blueGrey.style.outline='';
-    custom.style.outline='';
 
     blue.style.borderRadius='5px';
     purple.style.borderRadius='5px';
@@ -353,7 +256,6 @@ function removeHighlights (category) {
     brown.style.borderRadius='5px';
     grey.style.borderRadius='5px';
     blueGrey.style.borderRadius='5px';
-    custom.style.borderRadius='5px';
 
     blue.style.boxShadow='var(--shadow1)';
     purple.style.boxShadow='var(--shadow1)';
@@ -368,6 +270,5 @@ function removeHighlights (category) {
     brown.style.boxShadow='var(--shadow1)';
     grey.style.boxShadow='var(--shadow1)';
     blueGrey.style.boxShadow='var(--shadow1)';
-    custom.style.boxShadow='var(--no-shadow)';
   }
 }

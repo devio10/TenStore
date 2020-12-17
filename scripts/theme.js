@@ -42,8 +42,6 @@ function changeTheme(theme) {
 
 function hideAlert () {
   document.getElementById('alert').style.display = "none";
-  document.getElementById('alert-button-cancel').style.display = "none";
-  document.getElementById('alert-button-confirm').style.display = "none";
 }
 
 function showAlert (text, icon, action) {

@@ -21,9 +21,7 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
   document.getElementById('boxPic').src=userPhoto;
   let objEmail=document.getElementById('userbox-email');
   objEmail.style.display='block';
-  if (localStorage.getItem('userbox-dontShowEmail')!='true') {
-    objEmail.innerText=lEmail;
-  }
+  objEmail.innerText=lEmail;
   let objName=document.getElementById('name');
   objName.style.display='block';
   if (localStorage.getItem('nameDisplay')=='true') {
@@ -88,9 +86,7 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
       objSetName.innerText=lName+' '+lLastname;
     }
     document.getElementById('sc-userPic').src=userPhoto;
-    if (localStorage.getItem('userbox-dontShowEmail')!='true') {
-      document.getElementById('settings-email').innerText=lEmail;
-    }
+    document.getElementById('settings-email').innerText=lEmail;
 
   } else if (page=='lib') {
 
@@ -269,11 +265,25 @@ function randomPass() {
     document.getElementById('CA-password').value=retVal;
 }
 function userBox () {
-  let box = document.getElementById('userBox');
-  if (box.style.display == "block") {
-    box.style.display = "none";
+  let box=document.getElementById('userBox');
+  let darkBg=document.getElementById('userBox-dark-bg');
+  if (box.style.display=="block") {
+
+    setTimeout(function () {
+      box.style.display="none";
+      darkBg.style.display="none";
+
+      box.style.transform='scale(1)';
+      box.style.opacity='1';
+      darkBg.style.opacity='1';
+    }, 200);
+
+    box.style.transform='scale(.8)';
+    box.style.opacity='0';
+    darkBg.style.opacity='.1';
   } else {
-    box.style.display = "block";
+    box.style.display="block";
+    darkBg.style.display="block";
   }
 }
 function SHA256(s){

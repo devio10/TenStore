@@ -102,12 +102,28 @@
 }
 
 #userBox {
-  width: 270px;
-	top: 70px;
-	right: 15px;
+  width: calc(100% - 40px);
+	right: 20px;
+	bottom: 20px;
+	top: auto;
+	z-index: 1000;
+	animation-name: userbox-phone;
+	animation-timing-function: ease-in-out;
+	max-width: 400px;
 }
+@keyframes userbox-phone {
+	0% {
+		transform: translateY(100%);
+		opacity: .3;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
 .boxButton {
-	height: 40px;
+	height: 45px;
 }
 #client-ad {
 	width: 90%;

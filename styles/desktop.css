@@ -212,6 +212,9 @@ a {
   background-size: 0% 2px;
 	transition: var(--transition2);
 }
+a:hover {
+	background-size: 100% 2px;
+}
 h1, h2, h3 {
   font-family: var(--bold);
   color: var(--font);
@@ -429,7 +432,7 @@ button:focus {
 	display: none;
 }
 
-#logo, #mLogo, #centerLogo {
+#logo, #mLogo, #centerLogo, #settings-logo {
   margin: 0 5px 0 -5px;
 	cursor: default;
   font-family: var(--bold);
@@ -545,7 +548,7 @@ button:focus {
 	top: 80px;
 	right: 30px;
 	display: none;
-	z-index: 5;
+	z-index: 1000;
 	transition: var(--transition6);
 	animation-name: var(--transition10);
   animation-duration: 0.4s;
@@ -553,6 +556,26 @@ button:focus {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	user-select: none;
+}
+#userBox-dark-bg {
+	background: rgba(0, 0, 0, 0.75);
+	animation-name: dark-bg;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	animation-duration: .3s;
+	z-index: 999;
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+@keyframes dark-bg {
+	0% {
+		background: 0;
+	}
 }
 #userbox-email {
 	margin: 0 0 25px 0;
@@ -564,15 +587,12 @@ button:focus {
 }
 @keyframes stretch {
   0% {
-		transform: scale(1.05);
 		transform: translateY(-60px);
 		opacity: 0.3;
   }
 	70% {
-		transform: scale(1.07);
 	}
   100% {
-    transform: scale(1);
 		transform: translateY(0);
 		opacity: 1;
   }
@@ -584,6 +604,21 @@ button:focus {
 	display: none;
 }
 
+
+@keyframes userpicture {
+  0% {
+    transform: scale(.3);
+    opacity: 0;
+  }
+  50% {
+    transition: scale(1.3);
+    opacity: .5;
+  }
+  100% {
+    transition: scale(1);
+    opacity: 1;
+  }
+}
 #boxPic, #CA-userPic, #EA-userPic {
 	width: 100px;
 	height: 100px;
@@ -591,6 +626,8 @@ button:focus {
 	border-radius: 100px;
 	box-shadow: var(--shadow1);
 	object-fit: cover;
+	animation-name: userpicture;
+  animation-duration: .5s;
 }
 #picDiv, #boxPic {
 	width: 100px;
@@ -709,7 +746,6 @@ input[type='checkbox'], input[type='radio'] {
 	-moz-appearance: none;
 	height: 21px;
 	outline: none;
-	display: inline-block;
 	vertical-align: top;
 	position: relative;
 	margin: 0;
@@ -718,6 +754,7 @@ input[type='checkbox'], input[type='radio'] {
 	background: var(--b, var(--background));
 	transition: var(--transition8);
 	z-index: 0;
+	margin-left: auto;
 }
 input[type='checkbox']:after, input[type='radio']:after {
 	content: '';
@@ -767,7 +804,7 @@ input[type='checkbox'] + label, input[type='radio'] + label {
 	display: inline-block;
 	vertical-align: top;
 	cursor: pointer;
-	margin-left: 4px;
+	margin-left: 10px;
 }
 input[type='checkbox']:not(.switch) {
 	border-radius: 7px;
@@ -893,93 +930,7 @@ input[type='radio']:checked {
 }
 
 
-/*СТРАНИЦА ПЕРСОНАЛИЗАЦИИ*/
-.theme-button {
-	width: 45px;
-	height: 45px;
-	box-shadow: var(--shadow1);
-	border-radius: 5px;
-	outline-offset: -1px;
-	cursor: pointer;
-	transition: var(--transition3);
-	margin: 10px;
-	display: flex;
-	align-items: center;
-}
-.theme-button:hover {
-	box-shadow: var(--shadow1);
-}
-#theme-light {
-	background: white;
-}
-#theme-dark {
-	background: #121212;
-}
-#theme-auto {
-	background: linear-gradient(-135deg, white 49%, #0a0a0a 50%);
-}
-.check {
-	margin: 0 auto 0 auto;
-	filter: invert(var(--dark));
-	width: 24px;
-}
-.check1 {
-	margin: 0 auto 0 auto;
-	font-size: 22px;
-}
-.check2 {
-	margin: 0 auto 0 auto;
-	color: white;
-	width: 24px;
-}
-.check3 {
-	margin: 0 auto 0 auto;
-	color: black;
-	width: 24px;
-}
-#accent-blue {
-	background: linear-gradient(138deg, #1565c0 4%, #82b1ff 96%);
-}
-#accent-brown {
-	background: linear-gradient(138deg, #4e342e 4%, #a1887f 96%);
-}
-#accent-grey {
-	background: linear-gradient(138deg, #424242 4%, #9e9e9e 96%);
-}
-#accent-blue-grey {
-	background: linear-gradient(138deg, #455a64 4%, #90a4ae 96%);
-}
-#accent-cyan {
-	background: linear-gradient(138deg, #0097a7 4%, #4dd0e1 96%);
-}
-#accent-indigo {
-	background: linear-gradient(138deg, #303f9f 4%, #7986cb 96%);
-}
-#accent-purple {
-	background: linear-gradient(138deg, #7b1fa2 4%, #ba68c8 96%);
-}
-#accent-pink {
-	background: linear-gradient(138deg, #c2185b 4%, #ec407a 96%);
-}
-#accent-red {
-	background: linear-gradient(138deg, #d32f2f 4%, #e57373 96%);
-}
-#accent-orange {
-	background: linear-gradient(138deg, #f57c00 4%, #ffab40 96%);
-}
-#accent-yellow {
-	background: linear-gradient(138deg, #f9a825 4%, #fbc02d 96%);
-}
-#accent-green {
-	background: linear-gradient(138deg, #388e3c 4%, #81c784 96%);
-}
-#accent-light-green {
-	background: linear-gradient(138deg, #689f38 4%, #aed581 96%);
-}
-#accent-custom {
-	background: 0;
-	box-shadow: var(--no-shadow);
-}
+
 .theme-blockExample {
 	width: 120px;
 	height: 120px;
@@ -1464,6 +1415,8 @@ textarea {
   transition: var(--transition1);
   user-select: none;
 	margin: 0;
+	animation-name: navigation;
+  animation-duration: .5s;
 }
 .tab-2 {
 	transition: var(--transition6);
