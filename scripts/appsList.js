@@ -211,7 +211,7 @@ function setTagName () {
     document.getElementById('appsList-title').innerHTML=tagName+' — TenStore';
     document.getElementById('dev-title').innerHTML=tagName;
     document.getElementById('item-'+tagCode).style.fontFamily='var(--bold)';
-    document.getElementById('item-'+tagCode).className='settings-nav-item chosen-nav-item';
+    document.getElementById('item-'+tagCode).classList.add('tab-selected');
     document.getElementById('appsList-icon').href='images/category/'+tagIcon+'.svg';
   }
 }
@@ -232,7 +232,7 @@ function ifList () {
     document.getElementById('appsList-title').innerHTML=listTitle+' — TenStore';
     document.getElementById('dev-title').innerHTML=listTitle;
     document.getElementById('item-'+urlList).style.fontFamily='var(--bold)';
-    document.getElementById('item-'+urlList).className='settings-nav-item chosen-nav-item';
+    document.getElementById('item-'+urlList).classList.add('tab-selected');
     document.getElementById('appsList-icon').href=listIcon;
   }
 }

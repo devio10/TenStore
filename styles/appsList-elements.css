@@ -31,7 +31,6 @@
 	right: 12.5%;
 	margin: 0;
 }
-/* IE11 hide native button (thanks Matt!) */
 select::-ms-expand {
 display: none;
 }
@@ -87,4 +86,11 @@ select:focus {
 }
 .games-show {
   display: block;
+}
+.appsList-block {
+  margin: 30px;
+  width: 100%;
+}
+#aCard-block {
+	margin: 0 5px;
 }
