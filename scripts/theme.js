@@ -48,19 +48,13 @@ function showAlert (text, icon, action) {
   }
 }
 function ub_themeBtn() {
-  let localTheme = localStorage.getItem('theme');
-  if (localTheme == 'dark') {
-    document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Тёмная тема";
-  } else if (localTheme == 'black') {
-    document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Чёрная тема";
+  let localTheme=localStorage.getItem('theme');
+  if (localTheme=='dark') {
+    document.getElementById('themeButton').innerHTML="<i class='ph-moon boxButton-icon'></i>Тёмная тема";
   } else if (userPrefersDark){
-    if (localStorage.getItem('night-theme')=='dark') {
-      document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Тёмная тема";
-    } else {
-      document.getElementById('themeButton').innerHTML = "<i class='ph-moon boxButton-icon'></i>Чёрная тема";
-    }
+    document.getElementById('themeButton').innerHTML="<i class='ph-moon boxButton-icon'></i>Тёмная тема";
   } else {
-    document.getElementById('themeButton').innerHTML = "<i class='ph-sun boxButton-icon'></i>Светлая тема";
+    document.getElementById('themeButton').innerHTML="<i class='ph-sun boxButton-icon'></i>Светлая тема";
   }
 
 }

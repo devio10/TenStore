@@ -34,6 +34,8 @@
 	--grad-percent: 60%;
 	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 0.75);
 	--nav-click-bg: rgba(0, 0, 0, 0.25);
+	--selection: var(--accent-light);
+	--caret: var(--accent-dark);
 
 	/*тени*/
   --topShadow: 0px 4px 9px 0px rgba(0,0,0,0.17);
@@ -113,6 +115,8 @@
 	--border-light: #333333;
 	--aCard-border: #333333;
 	--nav-click-bg: rgba(0, 0, 0, 0.5);
+	--selection: var(--accent-dark);
+	--caret: var(--accent-light);
 
 	/*тени*/
 	--shadow6: 0px 3px 30px -5px rgba(0,0,0,0.4);
@@ -174,7 +178,7 @@ html, body {
 }
 
 ::selection {
-	background: var(--accent);
+	background: var(--selection);
 }
 
 /*СКРОЛЛ-БАР*/
@@ -363,7 +367,7 @@ button:focus {
 	margin-right: 20px;
 }
 
-#boxbtn-settings, #boxbtn-dev {
+#boxbtn-set, #boxbtn-dev {
 	border: 0;
 }
 #boxbtn-library {
@@ -400,6 +404,7 @@ button:focus {
 	width: 240px;
 	height: 35px;
 	text-indent: 15px;
+	caret-color: var(--caret);
 }
 .textInput:hover {
 	box-shadow: var(--shadow3);
@@ -550,11 +555,10 @@ button:focus {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	user-select: none;
 }
 #userBox-dark-bg {
 	background: rgba(0, 0, 0, 0.75);
-	animation-name: var(--dark-bg);
+	animation-name: var(--a-dark-bg);
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
 	animation-duration: .3s;
@@ -1498,4 +1502,13 @@ textarea {
 .tab-selected, .tab-selected:hover {
 	border: 2px solid var(--accent);
 	font-family: var(--bold);
+}
+.tenid-accent {
+  background: linear-gradient(144deg, rgba(78,142,192,1) 0%, rgba(135,147,217,1) 50%, rgba(183,133,224,1) 100%);
+  color: white;
+  transition: .15s;
+}
+.tenid-accent:hover {
+  background: linear-gradient(144deg, rgba(135,147,217,1) 0%, rgba(135,147,217,1) 50%, rgba(135,147,217,1) 100%);
+  transform: translateY(-2px);
 }

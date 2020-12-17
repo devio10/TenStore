@@ -10,6 +10,7 @@ var userPhoto;
 var tenidVersion=localStorage.getItem('tenid-version');
 
 function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio, lShortBio, page) {
+  document.getElementById('boxbtn-dev').style.display='none';
 
   /*блок пользователя: основные данные*/
   if (lPhoto==null) {
@@ -43,15 +44,15 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
 
   let userBox=document.getElementById('userBox');
   let userBoxGradient='linear-gradient(0deg, var(--rgba) var(--grad-percent), rgba(0,0,0,0) 100%)';
-  if (lBg!=0) {
+  if ((localStorage.getItem('save-traffic')!='true')&&(lBg!=0)) {
     userBox.style.background=userBoxGradient+', url(https://thetenstore.ru/'+lBg+')';
+    userBox.style.backgroundPosition='center';
+    userBox.style.backgroundRepeat='no-repeat';
+    userBox.style.backgroundSize='cover';
   } else {
-    let random2=Math.floor(Math.random() * 10) + 1;
-    userBox.style.background=userBoxGradient+', url(https://thetenstore.ru/images/headers/'+random2+'.jpg)';
+    userBox.style.background=userBoxGradient+', linear-gradient(124deg, rgba(50,80,106,1) 0%, rgba(135,147,217,1) 50%, rgba(183,133,224,1) 100%)';
   }
-  userBox.style.backgroundPosition='center';
-  userBox.style.backgroundRepeat='no-repeat';
-  userBox.style.backgroundSize='cover';
+
 
   if (page=='settings') {
 
@@ -68,16 +69,13 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
     card2.style.display='block';
 
     let userCardGradient='linear-gradient(0deg, var(--rgba) 49%, rgba(0,0,0,0) 100%)';
-    if (localStorage.getItem('app-background')!='false') {
-      if (lBg!=0) {
-        card2.style.background=userCardGradient+', url(https://thetenstore.ru/'+lBg+')';
-      } else {
-        let random=Math.floor(Math.random() * 10) + 1;
-        card2.style.background=userCardGradient+', url(https://thetenstore.ru/images/headers/'+random+'.jpg)';
-      }
+    if ((localStorage.getItem('save-traffic')!='true')&&(lBg!=0)) {
+      card2.style.background=userCardGradient+', url(https://thetenstore.ru/'+lBg+')';
       card2.style.backgroundPosition='center';
       card2.style.backgroundRepeat='no-repeat';
       card2.style.backgroundSize='cover';
+    } else {
+      card2.style.background=userCardGradient+', linear-gradient(124deg, rgba(50,80,106,1) 0%, rgba(78,142,192,1) 33%, rgba(135,147,217,1) 66%, rgba(183,133,224,1) 100%)';
     }
     let objSetName=document.getElementById('settings-name');
     if (localStorage.getItem('nameDisplay')=='true') {
@@ -143,16 +141,13 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
     document.getElementById('user-bio').innerText=lBio;
 
     let userPage=document.getElementById('user-background');
-    if (localStorage.getItem('app-background')!='false') {
-      if (lBg!=0) {
-        userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), url(https://thetenstore.ru/"+lBg+")";
-      } else {
-        let random = Math.floor(Math.random() * 10) + 1;
-        userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), url(https://thetenstore.ru/images/headers/"+random+".jpg)";
-      }
+    if ((localStorage.getItem('save-traffic')!='true')&&(lBg!=0)) {
+      userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), url(https://thetenstore.ru/"+lBg+")";
       userPage.style.backgroundPosition='center';
       userPage.style.backgroundRepeat='no-repeat';
       userPage.style.backgroundSize='cover';
+    } else {
+      userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), linear-gradient(124deg, rgba(50,80,106,1) 0%, rgba(78,142,192,1) 20%, rgba(135,147,217,1) 40%, rgba(183,133,224,1) 60%, rgba(214,128,224,1) 80%, rgba(206,174,203,1) 100%)";
     }
 
     const requestDev=new XMLHttpRequest();

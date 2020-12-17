@@ -155,16 +155,16 @@ request.addEventListener("readystatechange", () => {
 
         }
       }
-      if (localStorage.getItem('app-background')!='false') {
-        if (obj.apps[0].bg != 0) {
-          appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/" + obj.apps[0].bg + ")";
+      if (localStorage.getItem('save-traffic')!='true') {
+        if (obj.apps[0].bg!=0) {
+          appPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/" + obj.apps[0].bg + ")";
         } else {
-          let random = Math.floor(Math.random() * 10) + 1;
-          appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+          let random=Math.floor(Math.random() * 10) + 1;
+          appPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
         }
-        appPage.style.backgroundPosition = 'center';
-        appPage.style.backgroundRepeat = 'no-repeat';
-        appPage.style.backgroundSize = 'cover';
+        appPage.style.backgroundPosition='center';
+        appPage.style.backgroundRepeat='no-repeat';
+        appPage.style.backgroundSize='cover';
       }
 
       if (obj.apps[0].icon_pad != 0) {
@@ -224,11 +224,13 @@ request.addEventListener("readystatechange", () => {
       requestDev.send(paramsDev);
   }
 } else {
-  let random = Math.floor(Math.random() * 10) + 1;
-  appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
-  appPage.style.backgroundPosition = 'center';
-  appPage.style.backgroundRepeat = 'no-repeat';
-  appPage.style.backgroundSize = 'cover';
+  if(localStorage.getItem('save-traffic')!='true') {
+    let random = Math.floor(Math.random() * 10) + 1;
+    appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+    appPage.style.backgroundPosition = 'center';
+    appPage.style.backgroundRepeat = 'no-repeat';
+    appPage.style.backgroundSize = 'cover';
+  }
 }
 });
 request.send(params);

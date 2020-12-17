@@ -249,12 +249,3 @@
 #settings-logo:hover {
   background-size: 0% 2px;
 }
-.tenid-accent {
-  background: linear-gradient(144deg, rgba(78,142,192,1) 0%, rgba(135,147,217,1) 50%, rgba(183,133,224,1) 100%);
-  color: white;
-  transition: .15s;
-}
-.tenid-accent:hover {
-  background: linear-gradient(144deg, rgba(135,147,217,1) 0%, rgba(135,147,217,1) 50%, rgba(135,147,217,1) 100%);
-  transform: translateY(-2px);
-}
