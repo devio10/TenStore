@@ -71,7 +71,7 @@ function setAccent(accentId, accent, accentLight, accentDark) {
   showAlert('Тема сохранена.', 'images/check.svg');
 }
 
-function changeSetting (par, val) {
+function changeSetting (par, val, isLabel) {
   let choice;
   let negativeChoice;
   if (val==null) {
@@ -79,38 +79,47 @@ function changeSetting (par, val) {
       if (localStorage.getItem(par)=='true') {
         localStorage.setItem(par, 'false');
         choice='false';
+        choiceLabel='Выключено';
         negativeChoice='true';
       } else if (localStorage.getItem(par)=='false') {
         localStorage.setItem(par, 'true');
         choice='true';
+        choiceLabel='Включено';
         negativeChoice='false';
       } else {
         localStorage.setItem(par, 'true');
         choice='true';
+        choiceLabel='Включено';
         negativeChoice='false';
       }
-      if (par == 'no-effects-shadows') {
-        document.documentElement.setAttribute('no-effects-shadows', negativeChoice);
-      } else if (par == 'no-effects-blur') {
-        document.documentElement.setAttribute('no-effects-blur', negativeChoice);
-      } else if (par == 'no-effects-animations') {
-        document.documentElement.setAttribute('no-effects-animations', negativeChoice);
+      if (par == 'slow-device') {
+        document.documentElement.setAttribute('slow-device', choice);
       }
   } else {
     localStorage.setItem(par, val);
   }
+  if ((par=='slow-device')||(par=='save-traffic')) {
+    document.getElementById('l-'+par).innerText=choiceLabel;
+  }
 }
 
 
-function checkSwitch(name, argum) {
+function checkSwitch(name, argum, isLabel) {
   if (localStorage.getItem(name)==argum) {
     document.getElementById('s-'+name).checked=argum;
+  }
+  if (isLabel=='true') {
+    if (localStorage.getItem(name)=='true') {
+      document.getElementById('l-'+name).innerText='Включено';
+    } else {
+      document.getElementById('l-'+name).innerText='Выключено';
+    }
   }
 }
 function checkSwitches() {
   /*прочее*/
-  checkSwitch('no-effects-blur', 'false');
-  checkSwitch('save-traffic', 'true');
+  checkSwitch('slow-device', 'true', 'true');
+  checkSwitch('save-traffic', 'true', 'true');
 
   /*персонализация*/
   checkSwitch('autoDarkTheme', 'true');

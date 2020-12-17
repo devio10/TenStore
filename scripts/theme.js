@@ -1,14 +1,5 @@
-if (localStorage.getItem('newFont')=='true') {
-  document.documentElement.setAttribute('data-oldFont','true');
-}
-if (localStorage.getItem('no-effects-shadows')=='false') {
-  document.documentElement.setAttribute('no-effects-shadows','true');
-}
-if (localStorage.getItem('no-effects-blur')=='false') {
-  document.documentElement.setAttribute('no-effects-blur','true');
-}
-if (localStorage.getItem('no-effects-animations')=='false') {
-  document.documentElement.setAttribute('no-effects-animations','true');
+if (localStorage.getItem('slow-device')=='true') {
+  document.documentElement.setAttribute('slow-device','true');
 }
 let chosenAccent;
 let newTheme;

@@ -76,6 +76,13 @@
 	--searchbar-animation: searchbar;
 	--anim-aCard: aCardAnimation;
 	--anim-aCard-hover: aCardHover;
+	--a-searchbar: .5s;
+	--a-dark-bg: dark-bg;
+	--a-userpicture: userpicture;
+	--a-navigation: navigation;
+	--userbox-phone: userbox-phone;
+	--a-appear-scale: appear-scale;
+	--a-usercard: usercard;
 
 	/*карточки приложений*/
 	--aCard-width: 148px;
@@ -122,20 +129,9 @@
 	/*прочее*/
   --gradient: linear-gradient( rgba(0, 0, 0, 0.65) 5%, rgba(0, 0, 0, 0.4) );
 }
-[no-effects-shadows='true'] {
-	--topShadow: 0px 0px 0px 0px rgba(0,0,0,0);
-	--phone-navigation-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
-	--shadow1: 0px 0px 0px 0px rgba(0,0,0,0);
-	--shadow2: 0px 0px 0px 0px rgba(0,0,0,0);
-	--shadow3: 0px 0px 0px 0px rgba(0,0,0,0);
-	--shadow4: 0px 0px 0px 0px rgba(0,0,0,0);
-	--shadow5: 0px 0px 0px 0px rgba(0,0,0,0);
-}
-[no-effects-blur='true'] {
+[slow-device='true'] {
 	--blur: 0;
 	--nav-bg: rgba(var(--bright), var(--bright), var(--bright), 1);
-}
-[no-effects-animations='true'] {
 	--transition1: 0;
 	--transition2: 0;
 	--transition3: 0;
@@ -145,9 +141,21 @@
 	--transition7: 0;
 	--transition8: 0;
 	--transition9: 0;
-	--transition10: 0;
-	--transition11: 0;
+	--transition10: none;
+	--transition11: none;
+	--pubcard-animation: none;
+	--searchbar-animation: none;
+	--anim-aCard: none;
+	--anim-aCard-hover: none;
+	--a-searchbar: 0;
+	--a-dark-bg: none;
+	--a-userpicture: none;
+	--a-navigation: none;
+	--userbox-phone: none;
+	--a-appear-scale: none;
+	--a-usercard: none;
 }
+
 
 /* Элементы */
 
@@ -484,7 +492,7 @@ button:focus {
 	padding: 2px;
 	height: 28px;
 	animation-name: searchbar-notActive;
-	animation-duration: .5s;
+	animation-duration: var(--a-searchbar);
 	animation-timing-function: cubic-bezier(0.85, 0, 0.15, 1);
   animation-delay: 0;
 	animation-fill-mode: forwards;
@@ -546,7 +554,7 @@ button:focus {
 }
 #userBox-dark-bg {
 	background: rgba(0, 0, 0, 0.75);
-	animation-name: dark-bg;
+	animation-name: var(--dark-bg);
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
 	animation-duration: .3s;
@@ -612,7 +620,7 @@ button:focus {
 	border-radius: 100px;
 	box-shadow: var(--shadow1);
 	object-fit: cover;
-	animation-name: userpicture;
+	animation-name: var(--a-userpicture);
   animation-duration: .5s;
 }
 #picDiv, #boxPic {
@@ -1398,7 +1406,7 @@ textarea {
   transition: var(--transition1);
   user-select: none;
 	margin: 0;
-	animation-name: navigation;
+	animation-name: var(--navigation);
   animation-duration: .5s;
 }
 .tab-2 {

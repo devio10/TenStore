@@ -42,7 +42,7 @@
 	margin: 10px;
 	display: flex;
 	align-items: center;
-  animation-name: appear-scale;
+  animation-name: var(--a-appear-scale);
   animation-duration: .5s;
 }
 .theme-button:hover {
@@ -123,7 +123,7 @@
 .settings-img, .settings-img2 {
   width: 250px;
   margin: 0 0 10px 0;
-  animation-name: appear-scale;
+  animation-name: var(--a-appear-scale);
   animation-duration: .5s;
 }
 .settings-img2 {
@@ -138,7 +138,7 @@
   border: 1px solid var(--border);
   border-radius: 6px;
   width: calc(var(--settings-width) - 60px);
-  animation-name: usercard;
+  animation-name: var(--a-usercard);
   animation-duration: .25s;
 }
 @keyframes navigation {
@@ -183,7 +183,7 @@
   width: 125px;
   height: 125px;
   margin: 50px auto 0 auto;
-  animation-name: userpicture;
+  animation-name: var(--a-userpicture);
   animation-duration: .75s;
 }
 #sc-userPic {

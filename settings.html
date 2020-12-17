@@ -39,7 +39,7 @@
 			<form id="loginForm" action="login"><button onclick="logoff()" id="lastButton" class="boxButton"><i class="ph-sign-in boxButton-icon"></i>Войти</button></form>
 		</div>
 		<div onclick="userBox()" id="userBox-dark-bg"></div>
-		
+
 		<div class="tabs-2" style="position: absolute">
 				<h4 onclick="changeTab('personal', 'Персонализация')" id="item-personal" class="tab-2 selected-tab-2"><i class="ph-circles-three-bold tab-icon-2"></i>Персонализация</h4>
 				<h4 onclick="changeTab('account', 'Аккаунт')" id="item-account" class="tab-2"><i class="ph-user-circle-bold tab-icon-2"></i>Аккаунт</h4>
@@ -130,14 +130,14 @@
 					<h4 class="settings-text">Этот режим позволяет загружать страницы быстрее и тратить меньше трафика.</h4>
 					<div style="margin-top: 25px">
 						<input id="s-save-traffic" onclick="changeSetting('save-traffic')" type="checkbox" class="switch">
-						<label for="s-save-traffic">Выключено</label>
+						<label id="l-save-traffic" for="s-save-traffic">Выключено</label>
 					</div>
 					<h3 class="settings-block-title">Низкая производительность</h3>
 					<img src="images/vectors/phone.png" class="settings-img">
 					<h4 class="settings-text">Отключите некоторые эффекты, чтобы сделать просмотр сайта более плавным на слабых устройствах</h4>
 					<div style="margin-top: 25px">
-						<input id="s-optimization" onclick="changeSetting('optimization')" type="checkbox" class="switch">
-						<label for="s-optimization">Выключено</label>
+						<input id="s-slow-device" onclick="changeSetting('slow-device')" type="checkbox" class="switch">
+						<label id="l-slow-device" for="s-slow-device">Выключено</label>
 					</div>
 				</div>
 			</div>
