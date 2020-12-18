@@ -9,6 +9,9 @@
 	/*прочее*/
 	--tabs-display: flex;
 }
+#userBox-dark-bg, #search-dark-bg {
+	background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%);
+}
 #mLogo, #mLogo2 {
 	margin: 15px 0 15px 0;
 	font-family: var(--bold);
