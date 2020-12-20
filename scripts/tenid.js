@@ -147,6 +147,7 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
     document.getElementById('user-short-bio').innerText=lShortBio;
     document.getElementById('user-bio').innerText=lBio;
 
+    /*
     let userPage=document.getElementById('user-background');
     if ((localStorage.getItem('save-traffic')!='true')&&(lBg!=0)) {
       userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), url(https://thetenstore.ru/"+lBg+")";
@@ -156,6 +157,7 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
     } else {
       userPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 89%), linear-gradient(124deg, rgba(50,80,106,1) 0%, rgba(78,142,192,1) 20%, rgba(135,147,217,1) 40%, rgba(183,133,224,1) 60%, rgba(214,128,224,1) 80%, rgba(206,174,203,1) 100%)";
     }
+    */
 
     const requestDev=new XMLHttpRequest();
     const paramsDev="action=KdSqSAOC&select=dev"+"&value="+devName;

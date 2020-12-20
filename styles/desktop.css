@@ -441,7 +441,7 @@ button:focus {
 	display: none;
 }
 
-#logo, #mLogo, #centerLogo, #settings-logo {
+#logo, #mLogo, #centerLogo, #settings-logo, #u-logo {
   margin: 0 5px 0 -5px;
 	cursor: default;
   font-family: var(--bold);

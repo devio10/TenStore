@@ -16,15 +16,15 @@
 		<script src="scripts/phone-check.js"></script>
 	</head>
 	<body id="user-background">
-		<nav style="position: sticky; top: 0;">
-			<ul id="topBar" style="display: flex; align-items: center">
-				<img onclick="goBack()" id="backButton" src="images/back2.svg">
-				<a id="mLogo2">Ваш профиль</a>
-				<a id="logo">TENID</a>
-				<input id="siteSearch" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
-				<img onclick="userBox()" id="userPic" src="images/user.svg">
-			</ul>
-		</nav>
+		<div style="display: grid">
+			<a id="u-logo">TENID</a>
+		</div>
+
+
+		<div onclick="userBox()" id="userblock2">
+			<img id="userPic" src="images/user.svg">
+			<h5 id="ub2-name">Войти</h5>
+		</div>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
 			<div id="picDiv"><img id="boxPic" src="images/user.svg"></div>
