@@ -180,3 +180,39 @@ function copy() {
   copyText.select();
   document.execCommand("copy");
 }
+
+let nameInput=document.getElementById('CA-name');
+let lnameInput=document.getElementById('CA-lastName');
+let loginInput=document.getElementById('CA-login');
+let elementsArray=[nameInput, lnameInput, loginInput];
+elementsArray.forEach(function(elem) {
+  elem.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("cre-first").click();
+    }
+  });
+});
+
+let passInput=document.getElementById('CA-password');
+let rpassInput=document.getElementById('CA-repeatPassword');
+let elementsArray2=[passInput, rpassInput];
+elementsArray2.forEach(function(elem) {
+  elem.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("cre-second").click();
+    }
+  });
+});
+
+let emailInput=document.getElementById('CA-email');
+let elementsArray3=[emailInput];
+elementsArray3.forEach(function(elem) {
+  elem.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("cre-fourth").click();
+    }
+  });
+});

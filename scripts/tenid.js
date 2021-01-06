@@ -1,4 +1,6 @@
-
+if (localStorage.getItem('save-traffic')==null) {
+  localStorage.getItem('save-traffic')='true';
+}
 var userId;
 var userId;
 var userLogin;
@@ -118,7 +120,25 @@ function login2(lLogin, lEmail, lPhoto, lName, lLastname, lBg, lId, lType, lBio,
 
   } else if (page=='user') {
 
-    document.getElementById('logged-in').style.display='block';
+    let objLibName=document.getElementById('ub2-name');
+    if (localStorage.getItem('nameDisplay')=='true') {
+      objLibName.innerText=lLogin;
+    } else {
+      objLibName.innerText=lName+' '+lLastname;
+    }
+
+    let userBlock=document.getElementById('main-block');
+    let userBlockGradient='linear-gradient(0deg, var(--rgba) 49%, rgba(0,0,0,0) 100%)';
+    if ((localStorage.getItem('save-traffic')!='true')&&(lBg!=0)) {
+      userBlock.style.background=userBlockGradient+', url(https://thetenstore.ru/'+lBg+')';
+      userBlock.style.backgroundPosition='center';
+      userBlock.style.backgroundRepeat='no-repeat';
+      userBlock.style.backgroundSize='cover';
+    } else {
+      userBlock.style.background=userCardGradient+', linear-gradient(124deg, rgba(50,80,106,1) 0%, rgba(78,142,192,1) 33%, rgba(135,147,217,1) 66%, rgba(183,133,224,1) 100%)';
+    }
+
+    document.getElementById('logged-in').style.display='flex';
     document.getElementById('not-logged-in').style.display='none';
 
     let objUserName=document.getElementById('user-name');

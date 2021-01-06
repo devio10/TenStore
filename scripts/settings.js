@@ -126,7 +126,9 @@ function checkSwitches() {
   }
 
   /*персонализация*/
-  checkSwitch('autoDarkTheme', 'true');
+  if (localStorage.getItem('autoDarkTheme')!='false') {
+    document.getElementById('s-autoDarkTheme').checked='true';
+  }
 
   /*аккаунт*/
   checkSwitch('nameDisplay', 'true');
@@ -292,7 +294,7 @@ if((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
   link.type='text/css';
   link.href='styles/phones-settings.css';
   head.appendChild(link);
-  
+
   var prevScrollpos=window.pageYOffset;
   window.onscroll=function() {
     var currentScrollPos=window.pageYOffset;

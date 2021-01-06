@@ -1,4 +1,14 @@
-
+:root {
+  --bg-gradient: linear-gradient(180deg, rgba(78,142,192,1) 0%, rgba(183,133,224,1) 100%);
+  --placeholder: #3d3d3d;
+}
+[data-theme='dark'] {
+  --bg-gradient: linear-gradient(180deg, rgba(50,80,106,1) 0%, rgba(135,147,217,1) 100%);
+  --placeholder: #a6a6a6;
+}
+::placeholder {
+  color: var(--placeholder);
+}
 .CA-button {
   width: 150px;
   margin: 30px 0 30px 0;
@@ -13,9 +23,9 @@
 	height: 60px;
 	width: 60px;
 	border-radius: 100%;
-	background: var(--nav-bg);
+	background: rgba( var(--bright), var(--bright), var(--bright), 0.5 );
 	backdrop-filter: blur(var(--blur));
-	border: 1px solid var(--border);
+	border: 1px solid rgba( var(--bright), var(--bright), var(--bright), 0.25 );
 }
 .tenid-main-button:hover > .floatButton-icon {
   color: var(--accent);
@@ -23,13 +33,16 @@
 .button-text {
 	display: none;
 }
-.tenid-main-button:active, .tenid-main-button:hover {
-  background: var(--nav-bg);
+.tenid-main-button:active, .tenid-main-button:hover, .tenid-main-button:focus {
+  background: rgba( var(--bright), var(--bright), var(--bright), 0.6 );
+  transform: scale(.97);
 }
 .tenid-input, .CA-input {
   margin: 25px auto 0 auto;
   width: 300px;
   height: 40px;
+  background: rgba(var(--bright), var(--bright), var(--bright), 0.4);
+  border: 1px solid rgba( var(--bright), var(--bright), var(--bright), 0.3 );
 }
 #LA-picDiv {
   width: 100px;
@@ -70,7 +83,7 @@
 }
 #CA-warningBox {
   background: #ff7961;
-  border: 1px solid #ff7961;
+  border: 1px solid rgba( var(--bright), var(--bright), var(--bright), 0.3 );
   border-radius: 6px;
   width: 350px;
   height: auto;
@@ -79,6 +92,7 @@
   left: 60px;
   z-index: 1000;
   box-shadow: var(--shadow1);
+  backdrop-filter: blur(2px);
   display: none;
   animation-name: warningBox;
   animation-duration: 2s;
@@ -90,8 +104,8 @@
     background: #ff7961;
   }
   100% {
-    background: var(--nav-bg);
-    border: 1px solid var(--border);
+    background: rgba( var(--bright), var(--bright), var(--bright), 0.5 );
+    border: 1px solid rgba( var(--bright), var(--bright), var(--bright), 0.3 );
   }
 }
 #warningBox-text {
@@ -164,6 +178,7 @@
   height: 100vh;
   top: 0;
   align-items: center;
+  background: var(--bg-gradient);
 }
 .tenid-block-icon {
   margin: 25px 0 25px 25px;
@@ -174,15 +189,28 @@
   font-family: var(--bold);
   text-transform: uppercase;
 }
-.tenid-block, .tenid-block {
+.tenid-block {
   width: 500px;
   height: auto;
   background: var(--bg);
-  border-radius: 30px;
-  -webkit-box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.3);
-  box-shadow:  20px 20px 60px var(--bg-dark),
-             -20px -20px 60px var(--bg-light);
+  border-radius: 10px;
+  background: rgba( var(--bright), var(--bright), var(--bright), 0.25 );
+  border: 1px solid rgba( var(--bright), var(--bright), var(--bright), 0.18 );
+  backdrop-filter: blur( 4px );
   transition: var(--transition3);
+  animation-name: tenid-block;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+@keyframes tenid-block {
+  0% {
+    transform: translateX(-20px);
+    opacity: .3;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 .inputs-block {
 	display: flex;
@@ -207,19 +235,28 @@
   background-color: var(--border);
 }
 #notMe-button {
-  background-color: rgba(229, 57, 53, 0.3);
-  box-shadow: 0px 0px 31px 0px rgba(229,57,53,0.37);
+  box-shadow: 0px 0px 31px 0px rgba(229,57,53,0.5);
+  border: 1px solid rgba(229,57,53,1);
 }
 #confirm-button {
-  background-color: rgba(67, 160, 71, 0.3);
-  box-shadow: 0px 0px 31px 0px rgba(67,160,71,0.37)
+  box-shadow: 0px 0px 31px 0px rgba(67,160,71,0.5)
 }
 #confirm-button, #notMe-button {
   border-width: 0;
 }
-#confirm-button:hover > .floatButton-icon, #notMe-button:hover >  .floatButton-icon {
-  color: var(--font);
+#notMe-button:hover > .floatButton-icon {
+  color: rgba(229,57,53,1);
+}
+#confirm-button:hover >  .floatButton-icon {
+  color: rgba(67,160,71,1);
 }
 #reg-button {
   margin: 75px auto -120px auto;
+}
+.fileinput-label {
+  width: 200px;
+  height: 35px;
+}
+#cre-first {
+  margin-bottom: 110px
 }

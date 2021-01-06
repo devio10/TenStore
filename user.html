@@ -43,19 +43,19 @@
 				<div style="display: grid; margin-top: 60px">
 					<img style="width: 250px" class="build-pic" src="images/vectors/welcome.png">
 				</div>
-				<h3 class="centerText" style="margin: 20px 0 0 0">Добро пожаловать в TenID</h3>
-				<h5 style="margin-bottom: 0" class="grey centerText">
+				<h3 class="centerText" style="margin: 30px 0 0 0">Добро пожаловать в TenID</h3>
+				<h5 style="margin: 10px auto 0 auto" class="centerText">
 					Для продолжения, вам нужно создать новый<br> аккаунт или войти в существующий.
 				</h5>
-				<button onclick="window.open('create-account', '_self')" style="margin: 30px auto 0 auto" class="accent-button-2 tenid-accent">Создать аккаунт</button>
-				<button onclick="window.open('login', '_self')" style="margin: 20px auto 40px auto" class="button-2">Войти в аккаунт</button>
+				<button onclick="window.open('create-account', '_self')" style="margin: 30px auto 0 auto" class="button-2 glass-button">Создать аккаунт</button>
+				<button onclick="window.open('login', '_self')" style="margin: 20px auto 40px auto" class="button-2 glass-button">Войти</button>
 			</div>
 		</div>
 
 		<div id="logged-in" style="display: none">
 			<div class="tenid-block2" id="main-block">
 				<div id="user-pic-block" style="width: 150px; margin: 40px auto 0 auto"><img id="CA-userPic" style=""><img id="kingIcon"></div>
-				<h2 class="centerText" id="user-name"></h2>
+				<h3 class="centerText" id="user-name"></h3>
 				<h4 class="centerText" id="user-short-bio"></h4>
 				<h4 class="centerText" style="display: none" id="user-developer-info"></h4>
 				<button onclick="window.open('edit-account', '_self')" id="user-edit-button" class="accent-button-2 tenid-accent">Редактировать</button>
@@ -66,19 +66,23 @@
 				<h4 class="tenid-block-text">Сделайте ваш профиль аккаунтом разработчика
 					и получите возможность публиковать свои приложения</h4>
 			</div>
-			<div class="tenid-block2">
+			<div class="tenid-block2 hidden">
 				<h3 class="tenid-block-title2">О себе</h3>
 				<h4 id="user-bio" class="tenid-block-text"></h4>
 			</div>
-			<div style="margin-bottom: 60px" class="tenid-block2" id="user-appsBlock">
+			<div class="tenid-block2 hidden" id="user-appsBlock">
 				<h3 class="tenid-block-title2">Приложения</h3>
 				<h4 class="tenid-block-text" id="no-apps">У этого разработчика нет приложений.</h4>
 				<div id="aCard-block" style="margin-left: 0; margin-top: 0; border-radius: 0; width: 100%">
 				</div>
 			</div>
+			<div class="tenid-block2" id="user-appsBlock">
+				<h3 class="tenid-block-title2">Библиотека</h3>
+				<h4 class="tenid-block-text">Ваша библиотека доступна <a href="library">здесь.</a></h4>
+				</div>
+			</div>
 		</div>
 
 		<script>login('user'); ub_themeBtn()</script>
-		<script src='scripts/search-bar.js'></script>
 	</body>
 </html>

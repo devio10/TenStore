@@ -1,3 +1,4 @@
+
 function homeCard(cardId, name, appId, background, background2) {
   document.getElementById(cardId+'-name').innerHTML=name;
   if (background==0) {
@@ -11,6 +12,7 @@ function homeCard(cardId, name, appId, background, background2) {
     }
   } else {
     document.getElementById(cardId).style.background='var(--bg)';
+    document.getElementById(cardId).style.border='2px solid var(--accent)';
     document.getElementById(cardId+'-name').style.color='var(--font)';
     document.getElementById(cardId+'-title').style.color='var(--font)';
   }
@@ -86,10 +88,29 @@ function closePopup(isWatched) {
   // TODO: document.getElementById('phoneNav').style.display='flex';
 }
 
+/*
 if ((localStorage.getItem('version-2.2-popup')!='watched')||(localStorage.getItem('debug-popups')=='true')) {
   document.getElementById('tenstore-2.2').style.display='flex';
   document.getElementById('mobileSearch').style.display='none';
   document.getElementById('phoneNav').style.display='none';
 } else {
   document.getElementById('tenstore-2.2').style.display='none';
+}
+*/
+function fixBg(obj) {
+  document.getElementById(obj).style.backgroundRepeat='no-repeat';
+  document.getElementById(obj).style.backgroundSize='cover';
+  document.getElementById(obj).style.backgroundPosition='center';
+}
+if (localStorage.getItem('save-traffic')!='true') {
+  document.getElementById('popular').style.backgroundImage="url(https://thetenstore.ru/images/backgrounds/popular.jpg)";
+  document.getElementById('high-rated').style.backgroundImage="url(https://thetenstore.ru/images/backgrounds/high-rated.jpg)";
+  document.getElementById('rec-upd').style.backgroundImage="url(https://thetenstore.ru/images/backgrounds/rec-upd.jpg)";
+  document.getElementById('googlefit').style.backgroundImage="var(--card2-gradient), url(https://thetenstore.ru/images/promo/googlefit.gif)";
+  document.getElementById('Microsoft').style.backgroundImage="url(https://thetenstore.ru/images/promo/microsoft-bg.jpg)";
+  fixBg('popular');
+  fixBg('high-rated');
+  fixBg('rec-upd');
+  fixBg('googlefit');
+  fixBg('Microsoft');
 }

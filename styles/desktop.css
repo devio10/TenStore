@@ -1,6 +1,6 @@
-@charset "utf-8";
 
 @font-face {
+	@charset "utf-8";
 	font-family: "NotoSans Bold";
 	src: url("fonts/bold.ttf") format('truetype');
 	font-display: fallback;
@@ -232,7 +232,7 @@ h4, h5, h6 {
 	font-weight: var(--weight);
 }
 
-button {
+button, .fileinput-label {
   width: 240px;
   height: 40px;
   font-size: 14px;
@@ -301,6 +301,15 @@ button:focus {
 	color: grey;
 	padding-left: 20px;
 	padding-right: 20px;
+}
+.glass-button {
+	background: rgba( var(--bright), var(--bright), var(--bright), 0.5 );
+	border: 1px solid rgba( var(--bright), var(--bright), var(--bright), 0.3 );
+	color: var(--font);
+}
+.glass-button:hover, .glass-button:active, .glass-button:focus {
+	transform: scale(.97);
+	background: rgba( var(--bright), var(--bright), var(--bright), 0.7 );
 }
 
 .floatButton {
@@ -408,8 +417,8 @@ button:focus {
 	text-indent: 15px;
 	caret-color: var(--caret);
 }
-.textInput:hover {
-	box-shadow: var(--shadow3);
+.textInput:hover, .textInput:focus, .textInput:active {
+	box-shadow: var(--shadow6);
 }
 .textInput:focus {
 	outline: none;
@@ -1202,18 +1211,17 @@ input[type='radio']:checked {
 .tenstore-promo {
 	width: 400px;
   height: 70px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba( var(--bright), var(--bright), var(--bright), 0.25 );
   border-radius: 8px;
 	position: fixed;
   flex-direction: row;
   margin: 35px;
 	bottom: 0;
 	left: 0;
-  cursor: pointer;
   transition: var(--transition6);
-	background: var(--alert);
+	background: rgba( var(--bright), var(--bright), var(--bright), 0.5 );
 	backdrop-filter: blur(var(--blur));
-	box-shadow: var(--topShadow);
+	box-shadow: var(--shadow3);
 	display: none;
 }
 .promo-icon {
@@ -1363,6 +1371,7 @@ textarea {
 	height: 24px;
 	border-radius: 100%;
 	margin: 0 0 0 5px;
+	background: rgba(var(--bright), var(--bright), var(--bright), 0.5);
 }
 .copy-icon {
 	font-size: 16px;
@@ -1376,19 +1385,27 @@ textarea {
   align-content: center;
 	display: none;
 }
+#randomPassLink {
+	color: var(--font);
+	font-size: 14px;
+}
 #copy-pass {
 	border: 0px solid black;
 	font-size: 16px;
 	padding: 0;
 	width: 145px;
 	color: var(--font);
-	background-color: var(--bg);
+	background: 0;
+}
+#copy-pass:focus {
+	outline: none;
 }
 .promo-close {
 	padding: 4px;
 	margin: auto 15px auto auto;
 	font-size: 16px;
 	color: var(--font);
+	cursor: pointer;
 }
 
 .card-new-year {

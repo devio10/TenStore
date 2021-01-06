@@ -50,9 +50,14 @@
 		  </a>
 		</nav>
 		<div id="mobile-search-block">
-			<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
-			<button onclick="mobileSearch()" id="mobile-search-button">поиск</button>
+			<h3 id="m-s-title">Поиск</h3>
+			<div class="search-block">
+				<input id="siteSearch-mobile" type="text" class="textInput siteSearch" placeholder="Найти..."></input>
+			</div>
+			<button onclick="mobileSearch()" class="accent-button-2" id="mobile-search-button">Найти</button>
 		</div>
+
+		<div onclick="toggleSearchBar()" id="search-dark-bg"></div>
 		<button onclick="toggleSearchBar()" id="mobileSearch" class="floatButton searchButton squareButton"><i class="ph-magnifying-glass-bold floatButton-icon"></i></button>
 		<!-- ОКНО ПОЛЬЗОВАТЕЛЯ -->
 		<div id="userBox">
@@ -70,7 +75,7 @@
 
 		<div class="topCard-block">
 
-			<div onclick="window.open('app?&id=54', '_self')" class="topCard" style="background-image: var(--card2-gradient), url(https://thetenstore.ru/images/promo/googlefit.gif)">
+			<div id="googlefit" onclick="window.open('app?&id=54', '_self')" class="topCard" style="background: rgba(0,195,166,1)">
 				<div style="display: flex; flex-direction: column">
 					<h3 class="home-card2-title" style="margin-bottom: 10px; color: white">Google Fit</h3>
 					<h4 class="white" style="margin: 0 0 0 30px">Следите за своим здоровьем</h4>
@@ -99,26 +104,26 @@
 				<h2 id="random-game-name" class="topCard-text topCard-name"></h2>
 			</div>
 
-			<div onclick="window.open('appsList?dev=Microsoft', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/promo/microsoft-bg.jpg)">
+			<div id="Microsoft" onclick="window.open('appsList?dev=Microsoft', '_self')" class="topCard" style="background: rgba(242,80,34,1)">
 				<div style="display: flex; flex-direction: column">
 					<h3 class="home-card2-title" style="margin-bottom: 10px; color: black">Microsoft</h3>
 					<h4 class="black" style="margin: 0 0 0 30px">Приложения на каждый день</h4>
 				</div>
 			</div>
 
-			<div onclick="window.open('appsList?tag=rec-upd', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/backgrounds/rec-upd.jpg)">
+			<div id="rec-upd" onclick="window.open('appsList?tag=rec-upd', '_self')" class="topCard" style="background-image: linear-gradient(180deg, rgba(160,234,197,1) 0%, rgba(234,194,185,1) 50%, rgba(95,169,173,1) 100%)">
 				<div style="display: flex; flex-direction: column">
 					<h3 class="home-card2-title" style="color: black">Недавно обновлено</h3>
 				</div>
 			</div>
 
-			<div onclick="window.open('appsList?list=popular', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/backgrounds/popular.jpg)">
+			<div id="popular" onclick="window.open('appsList?list=popular', '_self')" class="topCard" style="background-image: linear-gradient(145deg, rgba(165,227,238,1) 25%, rgba(240,154,178,1) 75%)">
 				<div style="display: flex; flex-direction: column">
 					<h3 class="home-card2-title" style="color: black">Популярное</h3>
 				</div>
 			</div>
 
-			<div onclick="window.open('appsList?list=high-rated', '_self')" class="topCard" style="background-image: url(https://thetenstore.ru/images/backgrounds/high-rated.jpg)">
+			<div id="high-rated" onclick="window.open('appsList?list=high-rated', '_self')" class="topCard" style="background: #91e0cd">
 				<div style="display: flex; flex-direction: column">
 					<h3 class="home-card2-title" style="color: black">Высокий рейтинг</h3>
 				</div>
@@ -126,7 +131,7 @@
 
 		</div>
 
-		<div id="tenstore-2.2" class="popup-blur-bg">
+		<div id="tenstore-2.2" style="display: none" class="popup-blur-bg">
 			<div id="window1" class="popup-window">
 				<div style="display: grid; margin-top: 60px">
 					<img style="width: 250px" class="build-pic" src="images/vectors/welcome.png">
@@ -212,6 +217,12 @@
 			<img class="promo-icon" src="https://thetenstore.ru/images/promo/google.png">
 			<h5 class="promo-text">Приложения от Google. Теперь в TenStore. <a href="appsList?search=Google LLC">Открыть</a></h5>
 			<i class="ph-x promo-close" onclick="closePromo('google-apps-promo')"></i>
+		</div>
+		<div id="save-traffic-info" class="tenstore-promo">
+			<h5 class="promo-text">
+				Чтобы сайт загружался быстрее, мы временно включили режим экономии трафика. <a onclick="localStorage.setItem('save-traffic', 'false')" href='#'>Нажмите, чтобы выключить его.</a>
+			</h5>
+			<i class="ph-x promo-close" onclick="closePromo('save-traffic-info')"></i>
 		</div>
 		<script>login(); ub_themeBtn(); showPromo('homepage')</script>
 		<script src="scripts/index.js"></script>
