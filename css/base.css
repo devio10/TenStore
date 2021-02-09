@@ -2,8 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap'); /*логотип*/
 :root {
   --bg: #f5f5f5;
+  --abs-bg: white;
   --text: black;
   --gray-light: #ebebeb;
+  --gray-mid: #bfbfbf;
   --gray: gray;
   --accent: #1565c0;
 
@@ -17,6 +19,82 @@ html, body {
 * {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
+}
+.user-block {
+  width: 360px;
+  border-radius: 16px;
+  position: fixed;
+  top: 96px;
+  left: 32px;
+  background: var(--gray-light);
+  height: auto;
+  z-index: 8;
+}
+.ub-btn {
+  border-top: 1px solid var(--gray-mid);
+  border-radius: 0;
+  width: 100%;
+  margin: 0 0 0 0;
+  height: 40px;
+  padding: 0;
+  background: var(--abs-bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+}
+.ub-btn-txt, .ub-btn-txt2 {
+  margin: 0 0 0 16px;
+  text-align: left;
+  font-size: 14px;
+}
+.ub-btn-txt2 {
+  color: var(--gray);
+  margin-left: auto;
+  margin-right: 8px;
+}
+.ub-openbtn2, .ub-openbtn3 {
+  color: var(--gray);
+  font-size: 16px;
+  margin-right: 16px;
+}
+.ub-openbtn3 {
+  margin-left: auto;
+}
+.tenid-ver {
+  color: var(--gray);
+  text-align: center;
+  margin: 8px 0 8px 0;
+}
+.space-up {
+  margin-top: 16px;
+}
+.ub-last-btn {
+  border-bottom: 1px solid var(--gray-mid);
+}
+#ub-name {
+  margin: 0 24px 4px 0;
+}
+#ub-email {
+  margin: 0 24px 4px 0;
+}
+.ub-openbtn {
+  margin: auto 16px auto auto;
+  font-size: 20px;
+  cursor: pointer;
+}
+.dark-bg {
+  z-index: 7;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.ub-hide {
+  font-size: 22px;
+  color: var(--text);
+  margin: 8px auto 8px auto;
 }
 button {
   border: none;
@@ -38,6 +116,10 @@ button:focus {
   display: flex;
   align-items: center;
 }
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
 header {
   display: flex;
   align-items: center;
@@ -53,13 +135,18 @@ img {
   text-align: center;
   margin: 24px;
 }
-#hd-user {
+#hd-user, #ub-user {
   width: 32px;
   height: 32px;
   object-fit: cover;
   border-radius: 100%;
   cursor: pointer;
   margin: 0 24px 0 auto;
+}
+#ub-user {
+  margin: 0 24px 24px 24px;
+  width: 48px;
+  height: 48px;
 }
 .hm-content {
   display: flex;
@@ -70,7 +157,7 @@ img {
 }
 .hm-card {
   height: auto;
-  background: var(--bg);
+  background: var(--abs-bg);
   box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
   border-radius: 16px;
   cursor: pointer;
