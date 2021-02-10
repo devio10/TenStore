@@ -6,63 +6,66 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="js/theme.js" charset="utf-8"></script>
+    <script src="js/user-block.js" charset="utf-8"></script>
   </head>
   <body>
     <header>
       <h3 id='hd-logo'>TenStore</h3>
-      <img id='hd-user' src='img/sexxx.jpg'>
+      <img onclick="toggleUB()" id='hd-user' src='img/sexxx.jpg'>
     </header>
-
-    <div class="user-block">
-
-      <div class="flex-row">
-        <i class="ph-caret-down-bold ub-hide"></i>
-      </div>
-
-      <div class="flex-row">
-        <img id="ub-user" src="img/sexxx.jpg">
-        <div class="flex-column">
-          <h4 id="ub-name">Dmitry Navalny</h4>
-          <h5 id="ub-email">dmitrynavalny@outlook.com</h5>
-        </div>
-        <i class="ph-caret-right-bold ub-openbtn"></i>
-      </div>
-
-      <button class="ub-btn ub-last-btn">
-        <h4 class="ub-btn-txt">TenStore 3.0 beta</h4>
-        <h4 class="ub-btn-txt2">Настройки</h4>
-        <i class="ph-caret-right-bold ub-openbtn2"></i>
-      </button>
-
-      <button class="ub-btn space-up">
-        <h4 class="ub-btn-txt">Библиотека</h4>
-        <i class="ph-caret-right-bold ub-openbtn3"></i>
-      </button>
-      <button class="ub-btn">
-        <h4 class="ub-btn-txt">Обновления</h4>
-        <h4 class="ub-btn-txt2">обновлений нет</h4>
-        <i class="ph-caret-right-bold ub-openbtn2"></i>
-      </button>
-      <button class="ub-btn ub-last-btn">
-        <h4 class="ub-btn-txt">Консоль разработчика</h4>
-        <h4 class="ub-btn-txt2">Press Team</h4>
-        <i class="ph-caret-right-bold ub-openbtn2"></i>
-      </button>
-
-      <button class="ub-btn space-up ub-last-btn">
-        <h4 class="ub-btn-txt">Тёмная тема</h4>
-      </button>
-
-      <button class="ub-btn space-up ub-last-btn">
-        <h4 style="color: #d32f2f" class="ub-btn-txt">Выйти из TenID</h4>
-        <i class="ph-caret-right-bold ub-openbtn3"></i>
-      </button>
-      <h5 class="tenid-ver">TenID 1.1</h5>
+    <div onclick="toggleUB()" id="hide-ub">
 
     </div>
-    <div class="dark-bg"></div>
+    <div id="user-block-bg">
+      <div id="user-block">
 
-    <nav>
+        <div class="flex-row">
+          <i class="ph-caret-down-bold ub-hide"></i>
+        </div>
+
+        <div class="flex-row" style="align-items: stretch; margin: 8px 0 16px 0">
+          <img id="ub-user" src="img/sexxx.jpg">
+          <div class="flex-column">
+            <h4 id="ub-name">Dmitry Navalny</h4>
+            <h5 id="ub-email">dmitrynavalny@outlook.com</h5>
+          </div>
+          <i class="ph-caret-right-bold ub-openbtn"></i>
+        </div>
+
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">TenStore 3.0 beta</h4>
+          <h4 class="ub-btn-txt2">Настройки</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Библиотека</h4>
+          <i class="ph-caret-right-bold ub-openbtn3"></i>
+        </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Обновления</h4>
+          <h4 class="ub-btn-txt2">обновлений нет</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Консоль разработчика</h4>
+          <h4 class="ub-btn-txt2">Press Team</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button onclick="toggleDarkTheme()" class="ub-btn">
+          <h4 class="ub-btn-txt">Тёмная тема</h4>
+        </button>
+
+        <button class="ub-btn ub-last-btn">
+          <h4 style="color: #d32f2f" class="ub-btn-txt">Выйти из TenID</h4>
+          <i class="ph-caret-right-bold ub-openbtn3"></i>
+        </button>
+        <h5 class="tenid-ver">TenID 1.1</h5>
+
+      </div>
+    </div>
 
     </nav>
     <div class="hm-content">
@@ -104,7 +107,7 @@
         </div>
       </div>
 
-
     </div>
+    <script src="js/afterload.js"></script>
   </body>
 </html>
