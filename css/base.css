@@ -21,7 +21,8 @@
 }
 html, body {
   background: var(--bg);
-  width: 56%;
+  width: 100%;
+  max-width: 580px;
   margin: 0 auto 0 auto;
 }
 * {
@@ -64,6 +65,7 @@ html, body {
   transition: var(--trans-03s);
 }
 #hide-ub {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -234,6 +236,7 @@ img {
 .hm-card-title, .hm-card-title2 {
   margin: 0 16px;
   font-weight: bold;
+  word-wrap: break-word;
 }
 .hm-card-title2 {
   margin: 8px 16px 8px 16px;
