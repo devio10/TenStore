@@ -7,6 +7,7 @@ function toggleUB() {
       ubObj.style.display="none";
       hideubObj.style.display="none";
       ubBgObj.style.display="none";
+
       ubObj.style.transform='scale(1)';
       ubObj.style.opacity='1';
       ubBgObj.style.opacity='1';

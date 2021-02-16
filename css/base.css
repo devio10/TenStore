@@ -44,6 +44,7 @@ html, body {
   position: fixed;
   top: 80px;
   left: calc(50% - 180px);
+  display: none;
 }
 #user-block-bg {
   display: none;
