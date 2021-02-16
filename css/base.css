@@ -203,6 +203,7 @@ img {
   position: relative;
   flex: 0 0 calc(50% - 16px);
   max-width: calc(50% - 16px);
+  padding-bottom: 16px;
 }
 .hm-card:hover, .hm-card:focus {
   transform: scale(.96);
@@ -215,6 +216,7 @@ img {
 .hm-card-wide {
   flex: 0 0 100%;
   max-width: 100%;
+  padding-bottom: 0;
 }
 .hm-card-toptext1 {
   margin: 0 0 4px 24px;
@@ -246,7 +248,7 @@ img {
   text-transform: uppercase;
 }
 .hm-card-text, .hm-card-text2 {
-  margin: 8px 16px 0 16px;
+  margin: 8px 16px 16px;
   color: var(--gray);
 }
 .hm-card-text2 {

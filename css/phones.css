@@ -1,0 +1,12 @@
+.hm-card-compText {
+  display: none;
+}
+button {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.hm-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
