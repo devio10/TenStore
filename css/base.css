@@ -3,17 +3,18 @@
 :root {
   --bg: #f5f5f5;
   --abs-bg: white;
+  --abs-bg-dark: var(--gray-light);
   --text: black;
   --gray-light: #ebebeb;
   --gray-mid: #bfbfbf;
   --gray: gray;
   --accent: #1565c0;
-
   --trans-03s: .3s;
 }
 [dark-theme='true'] {
   --bg: black;
-  --abs-bg: #121212;
+  --abs-bg: #171717;
+  --abs-bg-dark: #121212;
   --text: white;
   --gray: #8f8f8f;
   --gray-light: #1c1c1c;
@@ -29,6 +30,9 @@ html, body {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: var(--text);
+}
+.pointer {
+  cursor: pointer;
 }
 #user-block {
   width: 360px;
@@ -87,6 +91,9 @@ html, body {
   color: var(--text);
   display: flex;
   align-items: center;
+}
+.ub-btn:hover {
+  background: var(--abs-bg-dark);
 }
 .ub-btn-txt, .ub-btn-txt2 {
   margin: 0 0 0 16px;

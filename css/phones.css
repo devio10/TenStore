@@ -4,9 +4,18 @@
 button {
   padding-top: 8px;
   padding-bottom: 8px;
+  font-size: 14px;
 }
 
 .hm-card {
   flex: 0 0 100%;
   max-width: 100%;
+}
+#user-block {
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
