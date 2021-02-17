@@ -26,10 +26,19 @@ html, body {
   max-width: 580px;
   margin: 0 auto 0 auto;
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 * {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: var(--text);
+}
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--gray-mid);
 }
 .hidden {
   display: none;
@@ -49,7 +58,6 @@ html, body {
   animation-name: ub-show;
   animation-duration: var(--trans-03s);
   animation-fill-mode: forwards;
-  padding-bottom: 32px;
   position: fixed;
   top: calc(50% - var(--ab-half-height));
   left: calc(50% - 210px);
@@ -76,6 +84,53 @@ html, body {
 #ab-short-desc {
   color: var(--gray);
   margin: 0 16px 0 0;
+}
+.ab-hr {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+#ab-desc {
+  font-weight: lighter;
+  margin: 16px;
+}
+#ab-index {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  border-radius: 16px;
+  margin-top: -60px;
+}
+#ab-scrs {
+  overflow-x: auto;
+  margin: 16px 0 16px 0;
+}
+#ab-scrs .ab-scr:first-child {
+  margin-left: 16px;
+}
+.ab-scr {
+  width: auto;
+  height: 200px;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+.ab-title {
+  font-weight: bolder;
+  margin: 16px;
+}
+.ab-back {
+  position: sticky;
+  margin: 16px;
+  border-radius: 100%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+}
+.ab-back-icon {
+  color: black;
+  font-size: 18px;
 }
 #user-block {
   width: 360px;
