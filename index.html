@@ -20,7 +20,7 @@
     <div onclick="toggleUB()" id="hide-ub">
 
     </div>
-    <div onclick="toggleUB()" id="user-block-bg"></div>
+    <div style="display: block" onclick="toggleUB()" id="user-block-bg"></div>
     <div id="user-block">
 
       <div onclick="toggleUB()" class="flex-row">
@@ -33,7 +33,7 @@
           <h4 id="ub-name">Dmitry Navalny</h4>
           <h5 id="ub-email">dmitrynavalny@outlook.com</h5>
         </div>
-        <i class="ph-caret-right-bold ub-openbtn"></i>
+        <i class="ph-caret-right-bold ub-openbtn hidden"></i>
       </div>
 
       <button class="ub-btn" onclick="UBwindow('settings')">
@@ -92,15 +92,33 @@
       </div>
 
       <div class="hm-card">
-        <img style="height: 200px" class="hm-card-img" src='img/communication.jpg'>
+        <img class="hm-card-img short-img" src='img/communication.jpg'>
         <h2 class="hm-card-title2">Коммуникация</h2>
         <h4 class="hm-card-text2">Приложения для связи с вашими друзьями и коллегами</h4>
       </div>
 
       <div class="hm-card">
-        <img style="height: 200px" class="hm-card-img" src='img/bowie.jpg'>
+        <img class="hm-card-img short-img" src='img/bowie.jpg'>
         <h2 class="hm-card-title2">Музыка</h2>
         <h4 class="hm-card-text2">Охуенное описание категории здесь, кликайте</h4>
+      </div>
+
+    </div>
+
+    <!-- БЛОК ПРИЛОЖЕНИЯ -->
+    <div id="app-block">
+      <img src="img/sexxx.jpg" id="ab-header">
+      <div class="flex-row flex-align-top">
+        <img src="img/files.png" id="ab-icon">
+        <div class="flex-column">
+          <h3 id="ab-name">Files UWP</h3>
+          <h5 id="ab-short-desc">Превратите вашу жизнь во что-то уникальное</h5>
+        </div>
+      </div>
+      <div class="flex-row">
+        <button>Скачать</button>
+        <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 8px 0 0 ">Windows 10</h5>
+        <i class="hm-card-compatibility ph-caret-down-bold"></i>
       </div>
 
     </div>

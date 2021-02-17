@@ -31,8 +31,51 @@ html, body {
   font-weight: 400;
   color: var(--text);
 }
+.hidden {
+  display: none;
+}
 .pointer {
   cursor: pointer;
+}
+#app-block {
+  --ab-height: 580px;
+  --ab-half-height: calc(var(--ab-height) / 2);
+  width: 420px;
+  border-radius: 16px;
+  background: var(--bg);
+  height: var(--ab-height);
+  z-index: 8;
+  transition: var(--trans-03s);
+  animation-name: ub-show;
+  animation-duration: var(--trans-03s);
+  animation-fill-mode: forwards;
+  padding-bottom: 32px;
+  position: fixed;
+  top: calc(50% - var(--ab-half-height));
+  left: calc(50% - 210px);
+  box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
+}
+#ab-header {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+#ab-icon {
+  width: 100px;
+  height: 100px;
+  margin: 16px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+#ab-name {
+  font-weight: bold;
+  margin: 24px 16px 8px 0;
+}
+#ab-short-desc {
+  color: var(--gray);
+  margin: 0 16px 0 0;
 }
 #user-block {
   width: 360px;
@@ -49,6 +92,7 @@ html, body {
   top: 80px;
   left: calc(50% - 180px);
   display: none;
+  box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
 }
 #user-block-bg {
   display: none;
@@ -160,6 +204,9 @@ button:focus {
   display: flex;
   align-items: center;
 }
+.flex-align-top {
+  align-items: flex-start;
+}
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -236,6 +283,9 @@ img {
   width: 100%;
   height: 320px;
   object-fit: cover;
+}
+.short-img {
+  height: 200px;
 }
 .hm-card-smalltext {
   color: var(--gray);

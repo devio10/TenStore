@@ -11,6 +11,12 @@ button {
   flex: 0 0 100%;
   max-width: 100%;
 }
+.hm-card-img {
+  height: 380px;
+}
+.short-img {
+  height: 280px;
+}
 #user-block {
   top: auto;
   bottom: 0;
