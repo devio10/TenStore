@@ -25,3 +25,14 @@ button {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+#app-block, #ab-index {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#app-block {
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  height: calc(100% - 60px);
+}

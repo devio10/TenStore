@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
     <script src="js/user-block.js" charset="utf-8"></script>
+    <script src="js/app-block.js" charset="utf-8"></script>
     <script src="js/mobile-version.js" charset="utf-8"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
@@ -17,10 +18,8 @@
       <h3 id='hd-logo'>TenStore</h3>
       <img onclick="toggleUB()" id='hd-user' src='img/sexxx.jpg'>
     </header>
-    <div onclick="toggleUB()" id="hide-ub">
-
-    </div>
-    <div style="display: block" onclick="toggleUB()" id="user-block-bg"></div>
+    <div onclick="toggleAB()" id="app-block-bg"> </div>
+    <div onclick="toggleUB()" id="user-block-bg"> </div>
     <div id="user-block">
 
       <div onclick="toggleUB()" class="flex-row">
@@ -75,7 +74,7 @@
       <div id="hm-content-editors-choice">
         <h2 class="hm-card-toptext1">Выбор редакции</h2>
         <div class="hm-card hm-card-wide no-scale">
-          <img class="hm-card-img" src='img/spotify.jpg'>
+          <img onclick="showAB(17)" class="hm-card-img" src='img/spotify.jpg'>
           <div class="flex-row">
             <h5 class="hm-card-smalltext">Spotify LLC</h5>
             <h5 class="hm-card-smalltext hm-card-smtxt-right">6+ • есть транзакции</h5>
@@ -84,7 +83,7 @@
           <h4 class="hm-card-text">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
              создания плейлистов и поиска новых песен.</h4>
           <div class="flex-row">
-            <button>Скачать</button>
+            <button onclick="showAB(17)">Скачать</button>
             <i class="hm-card-compatibility ph-check-bold"></i>
             <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">совместимо с вашим устройством</h5>
           </div>
@@ -107,12 +106,12 @@
 
     <!-- БЛОК ПРИЛОЖЕНИЯ -->
     <div id="app-block">
-      <div class="ab-back">
+      <div onclick="abBack()" class="ab-back">
         <i class="ph-caret-left-bold ab-back-icon pointer"></i>
       </div>
 
       <div id="ab-index">
-        <img src="img/office.png" id="ab-header">
+        <div id="ab-header"> </div>
         <div class="flex-row flex-align-top">
           <img src="img/files.png" id="ab-icon">
           <div class="flex-column">

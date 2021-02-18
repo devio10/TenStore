@@ -62,13 +62,17 @@ hr {
   top: calc(50% - var(--ab-half-height));
   left: calc(50% - 210px);
   box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
+  display: none;
 }
 #ab-header {
   width: 100%;
   height: 180px;
-  object-fit: cover;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  background-image: url(https://thetenstore.ru/images/headers/4.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #ab-icon {
   width: 100px;
@@ -149,13 +153,13 @@ hr {
   display: none;
   box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
 }
-#user-block-bg {
+#user-block-bg, #app-block-bg {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 6;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   width: 100%;
   height: 100%;
   transition: var(--trans-03s);
@@ -326,6 +330,7 @@ img {
   flex: 0 0 100%;
   max-width: 100%;
   padding-bottom: 0;
+  cursor: auto;
 }
 .hm-card-toptext1 {
   margin: 0 0 4px 24px;
@@ -338,6 +343,7 @@ img {
   width: 100%;
   height: 320px;
   object-fit: cover;
+  cursor: pointer;
 }
 .short-img {
   height: 200px;
