@@ -15,9 +15,11 @@ function toggleAB () {
    ab.style.transform='scale(1.08)';
    ab.style.opacity='.4';
    abBg.style.opacity='.1';
+   body.style.overflow='auto';
  } else {
    abBg.style.display='block';
    ab.style.display='block';
+   body.style.overflow='none';
  }
 }
 function showAB(appid) {

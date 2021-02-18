@@ -1,0 +1,58 @@
+/* шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: var(--text);
+}
+
+/* колесо загрузки */
+.ui-loading-wheel {
+  border: 3px solid rgba(21,101,192, 0.4);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: ui-loading-wheel-spin 1s linear infinite;
+}
+@keyframes ui-loading-wheel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* кнопки */
+button {
+  border: none;
+  background: var(--accent);
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 8px;
+  margin: 16px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+button:focus {
+  outline: none;
+}
+
+/* разделитель */
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--gray-mid);
+}
+
+img {
+  user-select: none;
+}
+
+/* скроллбар */
+/* TODO: сделать скроллбар */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

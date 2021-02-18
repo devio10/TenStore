@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap'); /*логотип*/
 :root {
   --bg: #f5f5f5;
@@ -8,7 +7,7 @@
   --gray-light: #ebebeb;
   --gray-mid: #bfbfbf;
   --gray: gray;
-  --accent: #1565c0;
+  --accent: rgb(21,101,192);
   --trans-03s: .3s;
 }
 [dark-theme='true'] {
@@ -26,20 +25,7 @@ html, body {
   max-width: 580px;
   margin: 0 auto 0 auto;
 }
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-* {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  color: var(--text);
-}
-hr {
-  border: 0;
-  height: 1px;
-  background: var(--gray-mid);
-}
+
 .hidden {
   display: none;
 }
@@ -243,22 +229,6 @@ hr {
   color: var(--text);
   margin: 8px auto 8px auto;
 }
-button {
-  border: none;
-  background: var(--accent);
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 8px;
-  margin: 16px;
-  color: white;
-  cursor: pointer;
-  user-select: none;
-}
-button:focus {
-  outline: none;
-}
 .flex-row {
   display: flex;
   align-items: center;
@@ -273,9 +243,6 @@ button:focus {
 header {
   display: flex;
   align-items: center;
-}
-img {
-  user-select: none;
 }
 #hd-logo {
   font-family: 'Kanit', sans-serif;
