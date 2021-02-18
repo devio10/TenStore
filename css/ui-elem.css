@@ -56,3 +56,10 @@ img {
   width: 0;
   height: 0;
 }
+
+.ui-gray {
+  color: gray;
+}
+.ui-hidden {
+  display: none;
+}

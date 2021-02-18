@@ -26,9 +26,6 @@ html, body {
   margin: 0 auto 0 auto;
 }
 
-.hidden {
-  display: none;
-}
 .pointer {
   cursor: pointer;
 }
@@ -174,12 +171,13 @@ html, body {
   border-radius: 0;
   width: 100%;
   margin: 0 0 0 0;
-  height: 40px;
+  height: 42px;
   padding: 0;
   background: var(--abs-bg);
   color: var(--text);
   display: flex;
   align-items: center;
+  transition: .08s;
 }
 .ub-btn:hover {
   background: var(--abs-bg-dark);
@@ -354,4 +352,10 @@ header {
 }
 .not-compatible-btn {
   background: #d32f2f;
+}
+.hm-bottom-loading {
+  margin: 16px auto 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
