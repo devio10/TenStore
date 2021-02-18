@@ -173,7 +173,7 @@ html, body {
   margin: 0 0 0 0;
   height: 42px;
   padding: 0;
-  background: var(--abs-bg);
+  background: var(--gray-light);
   color: var(--text);
   display: flex;
   align-items: center;
@@ -189,7 +189,7 @@ html, body {
 }
 .ub-btn-txt2 {
   color: var(--gray);
-  margin-left: auto;
+  margin-left: 8px;
   margin-right: 8px;
 }
 .ub-openbtn2, .ub-openbtn3 {
