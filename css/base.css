@@ -35,6 +35,7 @@ html, body {
 .no-scrolling {
   height: 100%;
   overflow: hidden;
+  touch-action: none;
 }
 
 .pointer {

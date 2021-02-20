@@ -40,11 +40,12 @@ function abBack () {
 let positions;
 let previousTop=ab.style.top;
 let abIndex=document.getElementById('ab-index');
-abIndex.addEventListener('scroll', function(){
+abIndex.onscroll=function(){
   positions=abIndex.scrollTop;
   if (positions > 60) {
     positions=60;
   }
   let newTop=60 - positions;
+  console.log(newTop);
   ab.style.height='calc(100% - '+newTop+'px)';
-});
+};
