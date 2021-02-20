@@ -8,8 +8,9 @@ function checkPlatform () {
     link.href='css/phones.css';
     head.appendChild(link);
     platform='mobile';
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)!=true) {
+      scrollableBlocks();
+    }
   }
-  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)!=true) {
-    scrollableBlocks();
-  }
+
 }

@@ -49,6 +49,13 @@ function scrollableBlocks() {
     positions=abIndex.scrollTop;
     if (positions > 60) {
       positions=60;
+      ab.style.borderRadius='0';
+      abIndex.style.borderRadius='0';
+    } else {
+      ab.style.borderTopLeftRadius='16px';
+      ab.style.borderTopRightRadius='16px';
+      abIndex.style.borderTopLeftRadius='16px';
+      abIndex.style.borderTopRightRadius='16px';
     }
     let newTop=60 - positions;
     ab.style.height='calc(100% - '+newTop+'px)';

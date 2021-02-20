@@ -6,10 +6,13 @@
     <link rel="stylesheet" href="css/ui-elem.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
     <script src="js/user-block.js" charset="utf-8"></script>
     <script src="js/mobile-version.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
   </head>
@@ -149,11 +152,15 @@
         <hr class="ab-hr">
         <h5 id="ab-desc">Files UWP Preview is the modern Files Explorer app you always wanted. The app is still in its early stages and some features have not been implemented, but the app is already packed with features...</h5>
         <hr class="ab-hr">
-        <div id="ab-scrs" class="flex-row">
-          <img src="img/scr1.png" class="ab-scr">
-          <img src="img/scr2.png" class="ab-scr">
-          <img src="img/scr3.png" class="ab-scr">
+        <div class="swiper-container">
+          <div id="ab-scrs" class="swiper-wrapper">
+            <img src="img/scr1.png" class="swiper-slide ab-scr">
+            <img src="img/scr2.png" class="swiper-slide ab-scr">
+            <img src="img/scr3.png" class="swiper-slide ab-scr">
+          </div>
         </div>
+         <div class="swiper-pagination"></div>
+
         <hr class="ab-hr">
         <h3 class="ab-title">Комментарии</h3>
       </div>
