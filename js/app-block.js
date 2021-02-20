@@ -47,7 +47,6 @@ function scrollableBlocks() {
       positions=60;
     }
     let newTop=60 - positions;
-    console.log(newTop);
     ab.style.height='calc(100% - '+newTop+'px)';
   };
 }
