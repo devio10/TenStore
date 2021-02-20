@@ -25,7 +25,7 @@ button {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#app-block, #ab-index {
+#app-block, #ab-index, #ab-loading {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }

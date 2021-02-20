@@ -9,6 +9,9 @@
   --gray: gray;
   --accent: rgb(21,101,192);
   --trans-03s: .3s;
+  --bg-percentage: .8;
+  --nav-bg: rgba(239, 239, 239, 0.85);
+  --nav-bg-active: rgba(0, 0, 0, 0.24);
 }
 [dark-theme='true'] {
   --bg: black;
@@ -18,12 +21,20 @@
   --gray: #8f8f8f;
   --gray-light: #1c1c1c;
   --gray-mid: #404040;
+  --bg-percentage: .9;
+  --nav-bg: rgba(16, 16, 16, 0.9);
+  --nav-bg-active: rgba(255, 255, 255, 0.08);
 }
 html, body {
   background: var(--bg);
   width: 100%;
   max-width: 580px;
   margin: 0 auto 0 auto;
+  transition: .3s;
+}
+.no-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
 
 .pointer {
@@ -80,7 +91,7 @@ html, body {
   font-weight: lighter;
   margin: 16px;
 }
-#ab-index {
+#ab-index, #ab-loading {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
@@ -142,7 +153,7 @@ html, body {
   top: 0;
   left: 0;
   z-index: 6;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, var(--bg-percentage));
   width: 100%;
   height: 100%;
   transition: var(--trans-03s);
@@ -353,9 +364,17 @@ header {
 .not-compatible-btn {
   background: #d32f2f;
 }
-.hm-bottom-loading {
+.hm-bottom-loading, .ab-loading-block {
   margin: 16px auto 40px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.ab-loading-block {
+  margin: 0 auto 0 auto;
+}
+#ab-loading {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }

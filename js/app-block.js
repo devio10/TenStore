@@ -16,7 +16,9 @@ function toggleAB () {
    ab.style.opacity='.4';
    abBg.style.opacity='.1';
    body.style.overflow='auto';
+   toggleScrolling('add');
  } else {
+   toggleScrolling('remove');
    abBg.style.display='block';
    ab.style.display='block';
    body.style.overflow='none';

@@ -1,5 +1,6 @@
 let currentTheme=localStorage.getItem('dark-theme');
 function toggleDarkTheme () {
+  currentTheme=localStorage.getItem('dark-theme');
   if (currentTheme!='true') {
     localStorage.setItem('dark-theme', 'true');
     document.documentElement.setAttribute('dark-theme', 'true');

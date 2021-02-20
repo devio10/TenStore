@@ -11,11 +11,22 @@ function toggleUB() {
       ubObj.style.opacity='1';
       ubBgObj.style.opacity='1';
     }, 200);
+    toggleScrolling('add');
     ubObj.style.transform='scale(1.08)';
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
   } else {
+    toggleScrolling('remove');
     ubBgObj.style.display='block';
     ubObj.style.display='block';
+
+  }
+}
+
+function toggleScrolling(state) {
+  if (state=='remove') {
+    body.classList.add('no-scrolling');
+  } else {
+    body.classList.remove('no-scrolling');
   }
 }

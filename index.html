@@ -19,6 +19,22 @@
       <h3 id='hd-logo'>TenStore</h3>
       <img onclick="toggleUB()" id='hd-user' src='img/sexxx.jpg'>
     </header>
+
+    <nav class="ui-nav">
+		  <a class="ui-nav-item">
+		    <i class="ph-house-fill ui-nav-icon ui-nav-active"></i>
+		    <span class="ui-nav-name ui-nav-active">Главная</span>
+		  </a>
+		  <a class="ui-nav-item">
+		    <i class="ph-squares-four ui-nav-icon"></i>
+		    <span class="ui-nav-name">Приложения</span>
+		  </a>
+		  <a class="ui-nav-item">
+		    <i class="ph-game-controller ui-nav-icon"></i>
+		    <span class="ui-nav-name">Игры</span>
+		  </a>
+		</nav>
+
     <div onclick="toggleAB()" id="app-block-bg"> </div>
     <div onclick="toggleUB()" id="user-block-bg"> </div>
     <div id="user-block">
@@ -111,7 +127,12 @@
       <div onclick="abBack()" class="ab-back">
         <i class="ph-caret-left-bold ab-back-icon pointer"></i>
       </div>
-
+      <div id="ab-loading" style="display: none">
+        <div class="ab-loading-block">
+          <div class="ui-loading-wheel"> </div>
+          <h5 class="ui-gray">Получение информации о приложении</h5>
+        </div>
+      </div>
       <div id="ab-index">
         <div id="ab-header"> </div>
         <div class="flex-row flex-align-top">
