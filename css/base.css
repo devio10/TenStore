@@ -49,10 +49,9 @@ html, body {
   background: var(--bg);
   height: var(--ab-height);
   z-index: 8;
-  transition: var(--trans-03s);
+  transition: var(--trans-03s) transform;
   animation-name: ub-show;
   animation-duration: var(--trans-03s);
-  animation-fill-mode: forwards;
   position: fixed;
   top: calc(50% - var(--ab-half-height));
   left: calc(50% - 210px);
@@ -140,7 +139,6 @@ html, body {
   transition: var(--trans-03s);
   animation-name: ub-show;
   animation-duration: var(--trans-03s);
-  animation-fill-mode: forwards;
   padding-bottom: 8px;
   position: fixed;
   top: 80px;

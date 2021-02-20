@@ -11,8 +11,12 @@ function toggleAB () {
      ab.style.transform='scale(1)';
      ab.style.opacity='1';
      abBg.style.opacity='1';
-   }, 200);
-   ab.style.transform='scale(1.08)';
+   }, 150);
+   if (platform=='mobile') {
+     ab.style.transform='translateY(64px)';
+   } else if (platform=='pc') {
+     ab.style.transform='scale(1.08)';
+   }
    ab.style.opacity='.4';
    abBg.style.opacity='.1';
    body.style.overflow='auto';

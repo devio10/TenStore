@@ -10,9 +10,13 @@ function toggleUB() {
       ubObj.style.transform='scale(1)';
       ubObj.style.opacity='1';
       ubBgObj.style.opacity='1';
-    }, 200);
+    }, 150);
     toggleScrolling('add');
-    ubObj.style.transform='scale(1.08)';
+    if (platform=='mobile') {
+      ubObj.style.transform='translateY(64px)';
+    } else if (platform=='pc') {
+      ubObj.style.transform='scale(1.08)';
+    }
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
   } else {
