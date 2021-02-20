@@ -1,7 +1,7 @@
 let currentAppScreen;
+var ab=document.getElementById('app-block');
 function toggleAB () {
  let abBg=document.getElementById('app-block-bg');
- let ab=document.getElementById('app-block');
  currentAppScreen='index';
  if (ab.style.display=='block') {
    setTimeout(function () {
@@ -36,3 +36,15 @@ function abBack () {
 
   }
 }
+
+let positions;
+let previousTop=ab.style.top;
+let abIndex=document.getElementById('ab-index');
+abIndex.addEventListener('scroll', function(){
+  positions=abIndex.scrollTop;
+  if (positions > 60) {
+    positions=60;
+  }
+  let newTop=60 - positions;
+  ab.style.height='calc(100% - '+newTop+'px)';
+});
