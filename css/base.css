@@ -7,6 +7,7 @@
   --gray-light: #ebebeb;
   --gray-mid: #bfbfbf;
   --gray: gray;
+  --gray-dark: #4a4a4a;
   --accent: rgb(21,101,192);
   --trans-03s: .3s;
   --bg-percentage: .8;
@@ -21,6 +22,7 @@
   --gray: #8f8f8f;
   --gray-light: #1c1c1c;
   --gray-mid: #404040;
+  --gray-dark: #919191;
   --bg-percentage: .9;
   --nav-bg: rgba(16, 16, 16, 0.9);
   --nav-bg-active: rgba(255, 255, 255, 0.08);
@@ -31,6 +33,7 @@ html, body {
   max-width: 580px;
   margin: 0 auto 0 auto;
   transition: .3s;
+  padding-bottom: 30px;
 }
 .no-scrolling {
   height: 100%;
@@ -323,7 +326,7 @@ header {
   cursor: pointer;
 }
 .short-img {
-  height: 200px;
+  height: 240px;
 }
 .hm-card-smalltext {
   color: var(--gray);
