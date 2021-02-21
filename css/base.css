@@ -9,6 +9,8 @@
   --gray: gray;
   --gray-dark: #4a4a4a;
   --accent: rgb(21,101,192);
+  --dot: var(--gray-mid);
+  --dot-active: var(--gray);
   --trans-03s: .3s;
   --bg-percentage: .8;
   --nav-bg: rgba(239, 239, 239, 0.85);
@@ -102,19 +104,59 @@ html, body {
   margin-top: -60px;
 }
 #ab-scrs {
-  margin: 16px 0 16px 0;
-}
-.swiper-container {
-  width: 100%;
+  margin: 16px 0 12px 0;
+  overflow-x: auto;
+  align-items: center;
+  justify-content: center;
 }
 #ab-scrs .ab-scr:first-child {
-  margin-left: 16px;
+  display: block;
+}
+.scrs-nav-btn > i {
+  font-size: 18px;
+  margin: 0;
+  color: var(--gray);
+}
+.scrs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scrs-nav > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  height: 32px;
+  width: 32px;
+  border-radius: 100%;
+  margin: 8px 8px 0 8px;
+}
+.scrs-nav > button:hover {
+  background: var(--nav-bg-active);
+}
+.scrs-pag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.scr-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--dot);
+  margin: 0 2px 0 2px;
+  border-radius: 100%;
+}
+.scr-dot-active {
+  background: var(--dot-active);
 }
 .ab-scr {
+  display: none;
   width: auto;
-  height: 150px;
+  height: 200px;
   border-radius: 8px;
-  margin-right: 8px;
+  margin: 0 auto 0 auto;
 }
 .ab-title {
   font-weight: bolder;

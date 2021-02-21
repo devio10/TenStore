@@ -38,7 +38,13 @@ button {
   height: calc(100% - 60px);
   animation-name: phone-block-appear;
 }
-
+.ab-scr {
+  display: block;
+  margin-right: 8px;
+}
+#ab-scrs .ab-scr:first-child {
+  margin-left: 16px;
+}
 @keyframes phone-block-appear {
   0% {
     transform: translateY(128px);

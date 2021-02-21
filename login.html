@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Войти в TenID — TenStore</title>
+    <link rel="stylesheet" href="css/ui-elem.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="js/theme.js" charset="utf-8"></script>
+    <script src="js/user-block.js" charset="utf-8"></script>
+    <script src="js/mobile-version.js" charset="utf-8"></script>
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
+  </head>
+  <body>
+    <header>
+      <h3 id='hd-logo'>TenStore</h3>
+      <img onclick="toggleUB()" id='hd-user' src='img/sexxx.jpg'>
+    </header>
+
+    <nav class="ui-nav">
+		  <a class="ui-nav-item">
+		    <i class="ph-house-fill ui-nav-icon ui-nav-active"></i>
+		    <span class="ui-nav-name ui-nav-active">Главная</span>
+		  </a>
+      <a class="ui-nav-item">
+		    <i class="ph-magnifying-glass ui-nav-icon"></i>
+		    <span class="ui-nav-name">Поиск</span>
+		  </a>
+		  <a class="ui-nav-item">
+		    <i class="ph-squares-four ui-nav-icon"></i>
+		    <span class="ui-nav-name">Приложения</span>
+		  </a>
+		  <a class="ui-nav-item">
+		    <i class="ph-game-controller ui-nav-icon"></i>
+		    <span class="ui-nav-name">Игры</span>
+		  </a>
+
+		</nav>
+
+    <div onclick="toggleAB()" id="app-block-bg"> </div>
+    <div onclick="toggleUB()" id="user-block-bg"> </div>
+    <div id="user-block">
+
+      <div onclick="toggleUB()" class="flex-row">
+        <i class="ph-caret-down-bold ub-hide pointer"></i>
+      </div>
+
+      <div onclick="window.open('user?pers=1', '_self')" class="flex-row pointer" style="align-items: stretch; margin: 8px 0 16px 0">
+        <img id="ub-user" src="img/sexxx.jpg">
+        <div class="flex-column">
+          <h4 id="ub-name">Dmitry Navalny</h4>
+          <h5 id="ub-email">dmitrynavalny@outlook.com</h5>
+        </div>
+        <i class="ph-caret-right-bold ub-openbtn hidden"></i>
+      </div>
+
+      <button class="ub-btn" onclick="UBwindow('settings')">
+        <h4 class="ub-btn-txt">TenStore 3.0 beta</h4>
+        <h4 class="ub-btn-txt2">Настройки</h4>
+        <i class="ph-caret-right-bold ub-openbtn2"></i>
+      </button>
+
+      <button class="ub-btn">
+        <h4 class="ub-btn-txt">Библиотека</h4>
+        <h4 class="ub-btn-txt2">обновлений нет</h4>
+        <i class="ph-caret-right-bold ub-openbtn2"></i>
+      </button>
+      <button class="ub-btn">
+        <h4 class="ub-btn-txt">Консоль разработчика</h4>
+        <h4 class="ub-btn-txt2">Press Team</h4>
+        <i class="ph-caret-right-bold ub-openbtn2"></i>
+      </button>
+
+      <button onclick="toggleDarkTheme()" class="ub-btn">
+        <h4 class="ub-btn-txt">Тёмная тема</h4>
+      </button>
+
+      <button class="ub-btn ub-last-btn" onclick="UBwindow('logout')">
+        <h4 style="color: #d32f2f" class="ub-btn-txt">Выйти из TenID</h4>
+        <i class="ph-caret-right-bold ub-openbtn3"></i>
+      </button>
+      <h5 class="tenid-ver">TenID 1.1</h5>
+    </div>
+
+
+    </nav>
+    <div class="hm-content">
+
+      <div id="hm-content-editors-choice">
+        <h2 class="hm-card-toptext1">Выбор редакции</h2>
+        <div class="hm-card hm-card-wide no-scale">
+          <img onclick="showAB(17)" class="hm-card-img" src='img/spotify.jpg'>
+          <div class="flex-row">
+            <h5 class="hm-card-smalltext">Spotify LLC</h5>
+            <h5 class="hm-card-smalltext hm-card-smtxt-right">6+ • есть транзакции</h5>
+          </div>
+          <h2 class="hm-card-title">Spotify</h2>
+          <h4 class="hm-card-text">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
+             создания плейлистов и поиска новых песен.</h4>
+          <div class="flex-row">
+            <button onclick="showAB(17)">Скачать</button>
+            <i class="hm-card-compatibility ph-check-bold"></i>
+            <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">совместимо с вашим устройством</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="hm-card">
+        <img class="hm-card-img short-img" src='img/communication.jpg'>
+        <h2 class="hm-card-title2">Коммуникация</h2>
+        <h4 class="hm-card-text2">Приложения для связи с вашими друзьями и коллегами</h4>
+      </div>
+
+      <div class="hm-card">
+        <img class="hm-card-img short-img" src='img/bowie.jpg'>
+        <h2 class="hm-card-title2">Музыка</h2>
+        <h4 class="hm-card-text2">То, чего не хватает вашим ушам...</h4>
+      </div>
+
+    </div>
+    <div class="hm-bottom-loading">
+      <div class="ui-loading-wheel"> </div>
+      <h5 class="ui-gray">Контент загружается</h5>
+    </div>
+
+
+    <!-- БЛОК ПРИЛОЖЕНИЯ -->
+    <div id="app-block">
+      <div onclick="abBack()" class="ab-back">
+        <i class="ph-caret-left-bold ab-back-icon pointer"></i>
+      </div>
+      <div id="ab-loading" style="display: none">
+        <div class="ab-loading-block">
+          <div class="ui-loading-wheel"> </div>
+          <h5 class="ui-gray">Получение информации о приложении</h5>
+        </div>
+      </div>
+      <div id="ab-index">
+        <div id="ab-header"> </div>
+        <div class="flex-row flex-align-top">
+          <img src="img/files.png" id="ab-icon">
+          <div class="flex-column">
+            <h3 id="ab-name">Files UWP</h3>
+            <h5 id="ab-short-desc">Превратите вашу жизнь во что-то уникальное</h5>
+          </div>
+        </div>
+        <div class="flex-row">
+          <button>Скачать</button>
+          <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 8px 0 0 ">Windows 10</h5>
+          <i class="hm-card-compatibility ph-caret-down-bold"></i>
+        </div>
+        <hr class="ab-hr">
+        <h5 id="ab-desc">Files UWP Preview is the modern Files Explorer app you always wanted. The app is still in its early stages and some features have not been implemented, but the app is already packed with features...</h5>
+        <hr class="ab-hr">
+        <div id="ab-scrs" class="flex-row">
+          <img src="img/scr1.png" class="ab-scr">
+          <img src="img/scr2.png" class="ab-scr">
+          <img src="img/scr3.png" class="ab-scr">
+        </div>
+        <div class="scrs-pag">
+          <div class="scr-dot scr-dot-active"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+          <div class="scr-dot"> </div>
+        </div>
+        <div class="scrs-nav">
+          <button class="scrs-nav-btn"><i class="ph-caret-left-bold"></i></button>
+          <button class="scrs-nav-btn"><i class="ph-caret-right-bold"></i></button>
+        </div>
+
+        <hr class="ab-hr">
+        <h3 class="ab-title">Комментарии</h3>
+        <h5 style="margin: 16px; color: gray">Будьте первым, кто оставил здесь комментарий.</h5>
+      </div>
+
+    </div>
+    <script src="js/app-block.js" charset="utf-8"></script>
+    <script src="js/afterload.js"></script>
+  </body>
+</html>
