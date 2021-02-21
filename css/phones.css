@@ -45,3 +45,14 @@ button {
     opacity: .4;
   }
 }
+
+.ui-nav {
+  --width: 100%;
+  left: 0;
+  bottom: 0;
+  border-radius: 0;
+  box-shadow: none;
+  height: 56px;
+  border: none;
+  border-top: 1px solid var(--gray-mid);
+}

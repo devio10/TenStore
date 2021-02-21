@@ -65,17 +65,18 @@ img {
 }
 
 .ui-nav {
-  --width: 275px;
+  --width: 325px;
   --half-width: calc(var(--width) / 2);
   position: fixed;
-  border-radius: 16px;
+  border-radius: 8px;
   bottom: 24px;
-  width: 275px;
+  width: var(--width);
   left: calc(50% - var(--half-width));
   height: 64px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.34);
+  /*box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.34);*/
+  border: 1px solid var(--gray-mid);
   background: var(--nav-bg);
   display: flex;
   overflow-x: auto;
@@ -87,7 +88,7 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 33.3%;
+  flex-basis: 100%;
   overflow: hidden;
   white-space: nowrap;
   font-size: 12px;
@@ -98,6 +99,9 @@ img {
 }
 .ui-nav-item:active {
   background: var(--nav-bg-active);
+}
+.ui-nav-active {
+  color: var(--accent);
 }
 .ui-nav-icon {
   font-size: 20px;
