@@ -1,0 +1,35 @@
+html, body {
+  max-width: 500px;
+  height: 100%;
+}
+.ti-body-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+#tenid-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100px;
+  width: 200px;
+  position: fixed;
+  left: calc(50% - 100px);
+  top: calc(50% - 50px);
+}
+
+h1 {
+  font-family: 'Kanit', sans-serif;
+  text-transform: uppercase;
+  margin: 0 0 0 0;
+}
+button {
+  margin: 32px 0 0 0;
+}
+
+.ti-subtext {
+  margin: 8px 0 0 0;
+  color: gray;
+}

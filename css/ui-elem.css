@@ -110,3 +110,33 @@ img {
 .ui-nav-active {
   color: var(--accent);
 }
+
+input[type=text] {
+  background: var(--gray-light);
+  border: none;
+  border-radius: 16px;
+  width: calc(100% - 32px);
+  height: 56px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  transition: .3s;
+  font-weight: lighter;
+}
+input[type=text]:focus, input[type=text]:hover {
+  outline: none;
+}
+::-webkit-input-placeholder {
+  text-align: center;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+::-moz-placeholder {
+   text-align: center;
+   text-transform: uppercase;
+}
+
+a {
+  color: var(--accent);
+  cursor: pointer;
+}

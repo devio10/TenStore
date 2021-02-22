@@ -62,3 +62,6 @@ button {
   border: none;
   border-top: 1px solid var(--gray-mid);
 }
+input[type=text] {
+  height: 52px;
+}
