@@ -15,6 +15,7 @@ function saveAccount() {
   document.getElementById('tenid-form2').style.display='flex';
   let login=document.getElementById('ti-login').value;
   let password=SHA256(document.getElementById('ti-pass').value);
+  console.log(login + ' ' + password);
   const saveAccount=new XMLHttpRequest();
   let saData=new FormData();
   saData.append('action', 'h495ujh');
@@ -24,7 +25,8 @@ function saveAccount() {
   saveAccount.addEventListener('readystatechange', () => {
     if ((saveAccount.readyState===4)&&(saveAccount.status===200)) {
       let user=saveAccount.response;
-      localStorage.setItem('login', user.user[0].login);
+      console.log(user);
+      localStorage.setItem('login', user[0].login);
       localStorage.setItem('password', password);
       console.log('успешно вошли в аккаунт!!');
       login=null;
