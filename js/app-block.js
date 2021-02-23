@@ -2,6 +2,9 @@ let currentAppScreen;
 var ab=document.getElementById('app-block');
 var loadScreen=document.getElementById('ab-loading');
 var indexScreen=document.getElementById('ab-index');
+var lastscr=0;
+var curscr=0;
+var nextscr=1;
 function toggleAB () {
  let abBg=document.getElementById('app-block-bg');
  currentAppScreen='index';
@@ -82,6 +85,7 @@ function showAB(appid) {
         if ((scrsData!='[]')||(scrsData!=0)) {
           var screenshots=JSON.parse(scrsData);
           for(let s in screenshots.scr) {
+            lastscr=s;
             var screenshot=document.createElement('img');
             var scrDot=document.createElement('div');
             if (s==0) {
@@ -90,8 +94,9 @@ function showAB(appid) {
               scrDot.className='scr-dot';
             }
             scrDot.setAttribute('onclick', 'switchScreenshot('+s+')');
-            scrDot.id='scr-'+s;
+            scrDot.id='dot-'+s;
             screenshot.className='ab-scr';
+            screenshot.id='scr-'+s;
             screenshot.setAttribute('onclick',"window.open('https://thetenstore.ru/"+screenshots.scr[s].image+"', '_self')");
             screenshot.src='https://thetenstore.ru/'+screenshots.scr[s].image;
             document.getElementById('ab-scrs').appendChild(screenshot);
@@ -136,4 +141,36 @@ function scrollableBlocks() {
     let newTop=60 - positions;
     ab.style.height='calc(100% - '+newTop+'px)';
   };
+}
+
+function switchScreenshot(action) {
+  for (let i=0; i <= lastscr; i++) {
+    document.getElementById('scr-'+i).style.display='none';
+    document.getElementById('dot-'+i).className='scr-dot';
+  }
+  document.getElementById('nav-prev').disabled=false;
+  document.getElementById('nav-next').disabled=false;
+  if (action=='next') {
+    nextscr=curscr + 1;
+    if (nextscr > lastscr) {
+      nextscr=lastscr;
+    }
+    if (nextscr==lastscr) {
+      document.getElementById('nav-next').disabled=true;
+    }
+    document.getElementById('scr-'+nextscr).style.display='block';
+    document.getElementById('dot-'+nextscr).className='scr-dot scr-dot-active';
+    curscr=nextscr;
+  } else if (action=='prev') {
+    nextscr=curscr - 1;
+    if (nextscr < 0) {
+      nextscr=0;
+    }
+    if (nextscr==0) {
+      document.getElementById('nav-prev').disabled=true;
+    }
+    document.getElementById('scr-'+nextscr).style.display='block';
+    document.getElementById('dot-'+nextscr).className='scr-dot scr-dot-active';
+    curscr=nextscr;
+  }
 }

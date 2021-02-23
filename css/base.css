@@ -118,6 +118,10 @@ html, body {
   margin: 0;
   color: var(--gray);
 }
+.scrs-nav-btn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
 .scrs-nav {
   display: flex;
   align-items: center;
