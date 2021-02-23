@@ -177,6 +177,12 @@ html, body {
   color: black;
   font-size: 18px;
 }
+.ub-window {
+  display: none;
+}
+#ub-main {
+  display: block;
+}
 #user-block {
   width: 360px;
   border-radius: 16px;

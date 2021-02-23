@@ -20,6 +20,7 @@ function toggleUB() {
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
   } else {
+    ubWindow('main');
     toggleScrolling('remove');
     ubBgObj.style.display='block';
     ubObj.style.display='block';
@@ -32,5 +33,16 @@ function toggleScrolling(state) {
     body.classList.add('no-scrolling');
   } else {
     body.classList.remove('no-scrolling');
+  }
+}
+
+function ubWindow(windowName) {
+  if ((windowName=='logout-confirm')&&(localStorage.getItem('login')==null)) {
+    window.open('login', '_self');
+  } else {
+    document.getElementById('ub-settings').style.display='none';
+    document.getElementById('ub-main').style.display='none';
+    document.getElementById('ub-logout-confirm').style.display='none';
+    document.getElementById('ub-'+windowName).style.display='block';
   }
 }

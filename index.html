@@ -50,40 +50,56 @@
         <i class="ph-caret-down-bold ub-hide pointer"></i>
       </div>
 
-      <div onclick="window.open('user?pers=1', '_self')" class="flex-row pointer" style="align-items: stretch; margin: 8px 0 16px 0">
-        <img id="ub-user" src="img/user.svg" alt="img/user.svg">
-        <div class="flex-column">
-          <h4 id="ub-name">Вы не вошли в аккаунт</h4>
-          <h5 id="ub-email"></h5>
+      <div id="ub-main" class="ub-window">
+        <div onclick="window.open('user?pers=1', '_self')" class="flex-row pointer" style="align-items: stretch; margin: 8px 0 16px 0">
+          <img id="ub-user" src="img/user.svg" alt="img/user.svg">
+          <div class="flex-column">
+            <h4 id="ub-name">Вы не вошли в аккаунт</h4>
+            <h5 id="ub-email"></h5>
+          </div>
+        </div>
+
+        <button class="ub-btn" onclick="ubWindow('settings')">
+          <h4 class="ub-btn-txt">TenStore 3.0 beta</h4>
+          <h4 class="ub-btn-txt2">настройки</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button id="ub-library" class="ub-btn">
+          <h4 class="ub-btn-txt">Библиотека</h4>
+          <h4 class="ub-btn-txt2">обновлений нет</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Консоль разработчика</h4>
+          <h4 class="ub-btn-txt2"></h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button id="ub-theme" onclick="toggleDarkTheme()" class="ub-btn">
+          <h4 class="ub-btn-txt">Тёмная тема</h4>
+        </button>
+
+        <button class="ub-btn ub-last-btn" onclick="ubWindow('logout-confirm')">
+          <h4 id="ub-logout" class="ub-btn-txt">Войти в TenID</h4>
+          <i class="ph-caret-right-bold ub-openbtn3"></i>
+        </button>
+        <h5 class="tenid-ver">TenID 1.1</h5>
+      </div>
+      <div id="ub-settings" class="ub-window">
+
+      </div>
+      <div id="ub-logout-confirm" class="ub-window">
+        <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Выйти из TenID</h3>
+        <h5 style='margin: 8px 16px 16px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
+           скачиванию приложений и библиотеке. Всё это останется в вашем аккаунте.</h5>
+           <hr class="ab-hr">
+        <div class="flex-row">
+          <button style="margin: 8px 8px 16px 16px">Да</button>
+          <button onclick="ubWindow('main')" style="margin: 8px 16px 16px 8px">Нет</button>
         </div>
       </div>
 
-      <button class="ub-btn" onclick="UBwindow('settings')">
-        <h4 class="ub-btn-txt">TenStore 3.0 beta</h4>
-        <h4 class="ub-btn-txt2">настройки</h4>
-        <i class="ph-caret-right-bold ub-openbtn2"></i>
-      </button>
-
-      <button id="ub-library" class="ub-btn">
-        <h4 class="ub-btn-txt">Библиотека</h4>
-        <h4 class="ub-btn-txt2">обновлений нет</h4>
-        <i class="ph-caret-right-bold ub-openbtn2"></i>
-      </button>
-      <button class="ub-btn">
-        <h4 class="ub-btn-txt">Консоль разработчика</h4>
-        <h4 class="ub-btn-txt2"></h4>
-        <i class="ph-caret-right-bold ub-openbtn2"></i>
-      </button>
-
-      <button id="ub-theme" onclick="toggleDarkTheme()" class="ub-btn">
-        <h4 class="ub-btn-txt">Тёмная тема</h4>
-      </button>
-
-      <button class="ub-btn ub-last-btn" onclick="UBwindow('logout')">
-        <h4 id="ub-logout" class="ub-btn-txt">Войти в TenID</h4>
-        <i class="ph-caret-right-bold ub-openbtn3"></i>
-      </button>
-      <h5 class="tenid-ver">TenID 1.1</h5>
     </div>
 
     </nav>
