@@ -27,6 +27,26 @@ h1 {
 }
 button {
   margin: 0 0 0 0;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+@keyframes wrong-data-btn {
+  3% {
+    background: #d32f2f;
+  }
+  100% {
+    background: var(--accent);
+  }
+}
+input {
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+@keyframes wrong-data-input {
+  3% {
+    background: #d1abab;
+    color: #d32f2f;
+  }
 }
 
 .ti-subtext {
@@ -36,4 +56,8 @@ button {
 
 #ti-login, #ti-pass {
   margin-top: 32px;
+}
+#wrong-data {
+  margin: 8px 0 8px 0;
+  visibility: hidden;
 }

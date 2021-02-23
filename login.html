@@ -26,11 +26,10 @@
         <h4 class="ti-subtext">Войти в аккаунт</h4>
         <input id="ti-login" type="text" placeholder="TenID или почта">
         <input id="ti-pass" type="password" placeholder="Пароль">
-        <div style="margin-top: 32px" class="flex-row">
-          <button onclick='saveAccount()'>Войти</button>
-          <h5 style="margin-left: 8px; " class="ui-gray ui-hidden">Указанные данные неверны. <a>Забыли пароль?</a></h5>
-        </div>
-        <h5 style="margin-top: 16px" class="ui-gray">или создать <a>новый аккаунт.</a></h5>
+        <h5 id="wrong-data" class="ui-gray">Указанные данные неверны. <a>Забыли пароль?</a></h5>
+        <button id="login-btn" onclick='saveAccount()'>Войти</button>
+        <h5 style="margin-top: 16px" class="ui-gray">или создать <a href='new-account'>новый аккаунт.</a></h5>
+
       </div>
       <div id="tenid-form2" style="display: none">
         <div class="ui-loading-wheel"> </div>
@@ -40,5 +39,7 @@
 
     <script src="js/afterload.js"></script>
     <script src="js/ti-login.js"></script>
+    <script type="text/javascript">
+    </script>
   </body>
 </html>

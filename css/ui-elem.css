@@ -134,6 +134,7 @@ input[type=password]:focus, input[type=password]:hover {
 }
 ::-moz-placeholder {
    text-align: center;
+   font-weight: lighter;
    text-transform: uppercase;
 }
 
