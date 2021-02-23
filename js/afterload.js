@@ -3,3 +3,4 @@ checkTheme();
 checkPlatform();
 var body=document.getElementsByTagName('body')[0];
 login();
+checkUrlVars();
