@@ -192,6 +192,11 @@ html, body {
 #ub-main {
   display: block;
 }
+#ub-top {
+  align-items: stretch;
+  margin: 8px 0 16px 0;
+  display: none;
+}
 #user-block {
   width: 360px;
   border-radius: 8px;

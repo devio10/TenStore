@@ -39,6 +39,10 @@ function toggleAB () {
 }
 function showAB(appid) {
   toggleAB();
+  if (localStorage.getItem('debug')=='true') {
+    loadScreen.style.display='none';
+    indexScreen.style.display='block';
+  }
   var appBlock=new XMLHttpRequest();
   var appId='action=4LlFCT&id='+appid;
   appBlock.responseType = "json";
