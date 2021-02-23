@@ -32,3 +32,8 @@ function login() {
     };
   }
 }
+function logout() {
+  localStorage.removeItem('login');
+  localStorage.removeItem('password');
+  window.location.reload();
+}

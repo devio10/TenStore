@@ -65,3 +65,6 @@ button {
 input[type=text] {
   height: 52px;
 }
+.ub-hide-block {
+  display: flex;
+}

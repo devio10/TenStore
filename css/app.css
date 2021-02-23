@@ -1,0 +1,16 @@
+html, body {
+  max-width: 620px;
+}
+#ab-header {
+  height: 200px;
+  border-radius: 0;
+}
+#ab-index {
+  border-radius: 0;
+}
+header {
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100%;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Приложение — TenStore</title>
+    <link rel="stylesheet" href="css/ui-elem.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="js/theme.js" charset="utf-8"></script>
+    <script src="js/tenid.js" charset="utf-8"></script>
+    <script src="js/user-block.js" charset="utf-8"></script>
+    <script src="js/mobile-version.js" charset="utf-8"></script>
+    <script src="js/xmlhttp.js" charset="utf-8"></script>
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
+  </head>
+  <body>
+    <header>
+      <div onclick="window.history.go(-1);" class="ab-back">
+        <i class="ph-caret-left-bold ab-back-icon pointer"></i>
+      </div>
+      <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
+    </header>
+    <div onclick="toggleUB()" id="user-block-bg"> </div>
+
+    <div id="user-block">
+
+      <div onclick="toggleUB()" class="flex-row ub-hide-block">
+        <i class="ph-caret-down-bold ub-hide pointer"></i>
+      </div>
+
+      <div id="ub-main" style="display: none" class="ub-window">
+        <div onclick="window.open('user?pers=1', '_self')" class="flex-row pointer" style="align-items: stretch; margin: 8px 0 16px 0">
+          <img id="ub-user" src="img/user.svg" alt="img/user.svg">
+          <div class="flex-column">
+            <h4 id="ub-name">Вы не вошли в аккаунт</h4>
+            <h5 id="ub-email"></h5>
+          </div>
+        </div>
+
+        <button class="ub-btn" onclick="ubWindow('settings')">
+          <h4 class="ub-btn-txt">TenStore 3.0 beta</h4>
+          <h4 class="ub-btn-txt2">настройки</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button id="ub-library" class="ub-btn">
+          <h4 class="ub-btn-txt">Библиотека</h4>
+          <h4 class="ub-btn-txt2">обновлений нет</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Консоль разработчика</h4>
+          <h4 class="ub-btn-txt2"></h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button id="ub-theme" onclick="toggleDarkTheme()" class="ub-btn">
+          <h4 class="ub-btn-txt">Тёмная тема</h4>
+        </button>
+
+        <button class="ub-btn ub-last-btn" onclick="ubWindow('logout-confirm')">
+          <h4 id="ub-logout" class="ub-btn-txt">Войти в TenID</h4>
+          <i class="ph-caret-right-bold ub-openbtn3"></i>
+        </button>
+        <h5 class="tenid-ver">TenID 1.1</h5>
+      </div>
+
+      <div id="ub-settings" class="ub-window">
+        <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Настройки</h3>
+        <h5 style='margin: 4px 16px 16px 16px; color: gray'>TenStore 3.0 alpha</h5>
+        <button class="ub-btn btm-border">
+          <h4 class="ub-btn-txt">Экономия траффика</h4>
+        </button>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>При включении будут
+           использоваться сжатые версии изображений, и фоны приложений будут
+           заменены сплошным цветом.</h5>
+        <button class="ub-btn btm-border">
+          <h4 class="ub-btn-txt">Низкая производительность</h4>
+        </button>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Выключает многие эффекты
+        и анимации, полезно на слабых устройствах.</h5>
+        <button class="ub-btn" onclick="toggleDarkTheme()">
+          <h4 class="ub-btn-txt">Тёмная тема</h4>
+        </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Акцент</h4>
+          <h4 class="ub-btn-txt2">синий</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <button class="ub-btn btm-border">
+          <h4 class="ub-btn-txt">Платформа</h4>
+          <h4 class="ub-btn-txt2">Windows</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Все приложения будут
+        скачиваться для выбранной платформы, но в любой момент это можно изменить, выбрав
+        необходимый файл в списке около кнопки скачивания</h5>
+      </div>
+
+      <div id="ub-logout-confirm" style="display: block" class="ub-window">
+        <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Выйти из TenID</h3>
+        <h5 style='margin: 8px 16px 8px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
+           скачиванию приложений и библиотеке. Всё это останется в вашем аккаунте.</h5>
+        <div class="flex-row">
+          <button onclick="ubWindow('main')" style="margin: 8px 0 16px auto" class="no-accent wide">Нет</button>
+          <button onclick='logout()' style="margin: 8px 16px 16px 16px" class="wide">Да</button>
+        </div>
+      </div>
+
+    </div>
+
+    </nav>
+
+    <div id="ab-loading" style="display: none">
+      <div class="ab-loading-block">
+        <div class="ui-loading-wheel"> </div>
+        <h5 class="ui-gray">Получение информации о приложении</h5>
+      </div>
+    </div>
+    <div id="ab-index">
+      <div id="ab-header"> </div>
+      <div class="flex-row flex-align-top">
+        <img src="img/files.png" id="ab-icon">
+        <div class="flex-column">
+          <h3 id="ab-name">Files UWP</h3>
+          <h5 id="ab-short-desc">Превратите вашу жизнь во что-то уникальное</h5>
+        </div>
+      </div>
+      <div class="flex-row">
+        <button>Скачать</button>
+        <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 8px 0 0 ">Windows 10</h5>
+        <i class="hm-card-compatibility ph-caret-down-bold"></i>
+      </div>
+      <hr class="ab-hr">
+      <h5 id="ab-desc">Files UWP Preview is the modern Files Explorer app you always wanted. The app is still in its early stages and some features have not been implemented, but the app is already packed with features...</h5>
+      <hr class="ab-hr">
+      <div id="ab-scrs" class="flex-row">
+        <img src="img/scr1.png" class="ab-scr">
+        <img src="img/scr2.png" class="ab-scr">
+        <img src="img/scr3.png" class="ab-scr">
+      </div>
+      <div class="scrs-pag">
+        <div class="scr-dot scr-dot-active"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+        <div class="scr-dot"> </div>
+      </div>
+      <div class="scrs-nav">
+        <button class="scrs-nav-btn"><i class="ph-caret-left-bold"></i></button>
+        <button class="scrs-nav-btn"><i class="ph-caret-right-bold"></i></button>
+      </div>
+
+      <hr class="ab-hr">
+      <h3 class="ab-title">Комментарии</h3>
+      <h5 style="margin: 16px; color: gray">Будьте первым, кто оставил здесь комментарий.</h5>
+    </div>
+    <script src="js/app-block.js" charset="utf-8"></script>
+    <script src="js/afterload.js"></script>
+  </body>
+</html>

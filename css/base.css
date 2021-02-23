@@ -185,7 +185,7 @@ html, body {
 }
 #user-block {
   width: 360px;
-  border-radius: 16px;
+  border-radius: 8px;
   background: var(--gray-light);
   height: auto;
   z-index: 8;
@@ -242,6 +242,9 @@ html, body {
   align-items: center;
   transition: .08s;
 }
+.btm-border {
+  border-bottom: 1px solid var(--gray-mid);
+}
 .ub-btn:hover {
   background: var(--abs-bg-dark);
 }
@@ -288,7 +291,7 @@ html, body {
 .ub-hide {
   font-size: 22px;
   color: var(--text);
-  margin: 8px auto 8px auto;
+  margin: 8px auto 0 auto;
 }
 .flex-row {
   display: flex;
@@ -436,5 +439,17 @@ header {
   color: var(--accent);
 }
 #ub-library {
+  display: none;
+}
+button.no-accent {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--gray-mid);
+}
+button.wide {
+  padding-left: 36px;
+  padding-right: 36px;
+}
+.ub-hide-block {
   display: none;
 }

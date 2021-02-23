@@ -46,7 +46,7 @@
     <div onclick="toggleUB()" id="user-block-bg"> </div>
     <div id="user-block">
 
-      <div onclick="toggleUB()" class="flex-row">
+      <div onclick="toggleUB()" class="flex-row ub-hide-block">
         <i class="ph-caret-down-bold ub-hide pointer"></i>
       </div>
 
@@ -86,17 +86,46 @@
         </button>
         <h5 class="tenid-ver">TenID 1.1</h5>
       </div>
-      <div id="ub-settings" class="ub-window">
 
+      <div id="ub-settings" class="ub-window">
+        <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Настройки</h3>
+        <h5 style='margin: 4px 16px 16px 16px; color: gray'>TenStore 3.0 alpha</h5>
+        <button class="ub-btn btm-border">
+          <h4 class="ub-btn-txt">Экономия траффика</h4>
+        </button>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>При включении будут
+           использоваться сжатые версии изображений, и фоны приложений будут
+           заменены сплошным цветом.</h5>
+        <button class="ub-btn btm-border">
+          <h4 class="ub-btn-txt">Низкая производительность</h4>
+        </button>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Выключает многие эффекты
+        и анимации, полезно на слабых устройствах.</h5>
+        <button class="ub-btn" onclick="toggleDarkTheme()">
+          <h4 class="ub-btn-txt">Тёмная тема</h4>
+        </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Акцент</h4>
+          <h4 class="ub-btn-txt2">синий</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <button class="ub-btn btm-border">
+          <h4 class="ub-btn-txt">Платформа</h4>
+          <h4 class="ub-btn-txt2">Windows</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Все приложения будут
+        скачиваться для выбранной платформы, но в любой момент это можно изменить, выбрав
+        необходимый файл в списке около кнопки скачивания</h5>
       </div>
-      <div id="ub-logout-confirm" class="ub-window">
+
+      <div id="ub-logout-confirm" style="display: block" class="ub-window">
         <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Выйти из TenID</h3>
-        <h5 style='margin: 8px 16px 16px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
+        <h5 style='margin: 8px 16px 8px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
            скачиванию приложений и библиотеке. Всё это останется в вашем аккаунте.</h5>
-           <hr class="ab-hr">
         <div class="flex-row">
-          <button style="margin: 8px 8px 16px 16px">Да</button>
-          <button onclick="ubWindow('main')" style="margin: 8px 16px 16px 8px">Нет</button>
+          <button onclick="ubWindow('main')" style="margin: 8px 0 16px auto" class="no-accent wide">Нет</button>
+          <button onclick='logout()' style="margin: 8px 16px 16px 16px" class="wide">Да</button>
         </div>
       </div>
 
