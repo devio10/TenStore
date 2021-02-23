@@ -146,7 +146,7 @@
           <h4 class="hm-card-text">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
              создания плейлистов и поиска новых песен.</h4>
           <div class="flex-row">
-            <button onclick="showAB(17)">Скачать</button>
+            <button onclick="showAB(12)">Скачать</button>
             <i class="hm-card-compatibility ph-check-bold"></i>
             <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">совместимо с вашим устройством</h5>
           </div>
@@ -186,10 +186,10 @@
       <div id="ab-index">
         <div id="ab-header"> </div>
         <div class="flex-row flex-align-top" id="topcontent">
-          <img src="img/files.png" id="ab-icon">
+          <img id="ab-icon">
           <div class="flex-column">
-            <h3 id="ab-name">Files UWP</h3>
-            <h5 id="ab-short-desc">Превратите вашу жизнь во что-то уникальное</h5>
+            <h3 id="ab-name"></h3>
+            <h5 id="ab-short-desc"></h5>
           </div>
         </div>
         <div class="flex-row">
@@ -198,27 +198,20 @@
           <i class="hm-card-compatibility ph-caret-down-bold"></i>
         </div>
         <hr class="ab-hr">
-        <h5 id="ab-desc">Files UWP Preview is the modern Files Explorer app you always wanted. The app is still in its early stages and some features have not been implemented, but the app is already packed with features...</h5>
-        <hr class="ab-hr">
-        <div id="ab-scrs" class="flex-row">
+        <h5 id="ab-desc"></h5>
 
-        </div>
-        <div class="scrs-pag">
-          <div class="scr-dot scr-dot-active"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-          <div class="scr-dot"> </div>
-        </div>
-        <div class="scrs-nav">
-          <button class="scrs-nav-btn"><i class="ph-caret-left-bold"></i></button>
-          <button class="scrs-nav-btn"><i class="ph-caret-right-bold"></i></button>
+        <div id="scrs-block" style="display: none">
+          <hr class="ab-hr">
+          <div id="ab-scrs" class="flex-row">
+
+          </div>
+          <div id="scrs-pag">
+
+          </div>
+          <div class="scrs-nav">
+            <button class="scrs-nav-btn"><i class="ph-caret-left-bold"></i></button>
+            <button class="scrs-nav-btn"><i class="ph-caret-right-bold"></i></button>
+          </div>
         </div>
 
         <hr class="ab-hr">

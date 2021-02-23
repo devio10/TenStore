@@ -68,3 +68,10 @@ input[type=text] {
 .ub-hide-block {
   display: flex;
 }
+#scrs-pag, .scrs-nav {
+  display: none;
+}
+#ab-scrs {
+  align-items: flex-start;
+  justify-content: flex-start;
+}

@@ -75,16 +75,29 @@ function showAB(appid) {
           abHeader.style.display='none';
           document.getElementById('topcontent').style.marginTop='40px';
         }
-
-        let scrsData=obj.apps[0].screenshots;
+        document.getElementById('ab-scrs').innerHTML='';
+        document.getElementById('scrs-pag').innerHTML='';
+        document.getElementById('scrs-block').style.display='none';
+        let scrsData=appData.apps[0].screenshots;
         if ((scrsData!='[]')||(scrsData!=0)) {
           var screenshots=JSON.parse(scrsData);
           for(let s in screenshots.scr) {
             var screenshot=document.createElement('img');
+            var scrDot=document.createElement('div');
+            if (s==0) {
+              scrDot.className='scr-dot scr-dot-active';
+            } else {
+              scrDot.className='scr-dot';
+            }
+            scrDot.setAttribute('onclick', 'switchScreenshot('+s+')');
+            scrDot.id='scr-'+s;
             screenshot.className='ab-scr';
             screenshot.setAttribute('onclick',"window.open('https://thetenstore.ru/"+screenshots.scr[s].image+"', '_self')");
             screenshot.src='https://thetenstore.ru/'+screenshots.scr[s].image;
             document.getElementById('ab-scrs').appendChild(screenshot);
+            document.getElementById('scrs-pag').appendChild(scrDot);
+
+            document.getElementById('scrs-block').style.display='block';
           }
         }
 

@@ -136,7 +136,7 @@ html, body {
 .scrs-nav > button:hover {
   background: var(--nav-bg-active);
 }
-.scrs-pag {
+#scrs-pag {
   display: flex;
   justify-content: center;
   align-items: center;
