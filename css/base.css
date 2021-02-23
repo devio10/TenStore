@@ -152,16 +152,20 @@ html, body {
   background: var(--dot);
   margin: 0 2px 0 2px;
   border-radius: 100%;
+  cursor: pointer;
 }
 .scr-dot-active {
   background: var(--dot-active);
 }
 .ab-scr {
+  cursor: pointer;
   display: none;
   width: auto;
-  height: 200px;
+  height: 225px;
   border-radius: 8px;
   margin: 0 auto 0 auto;
+  max-width: calc(100% - 32px);
+  object-fit: cover;
 }
 .ab-title {
   font-weight: bolder;
