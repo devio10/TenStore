@@ -12,13 +12,14 @@
     <script src="js/tenid.js" charset="utf-8"></script>
     <script src="js/user-block.js" charset="utf-8"></script>
     <script src="js/mobile-version.js" charset="utf-8"></script>
+    <script src="js/xmlhttp.js" charset="utf-8"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
   </head>
   <body>
     <header>
       <h3 id='hd-logo'>TenStore</h3>
-      <img onclick="toggleUB()" id='hd-user' src='img/sexxx.jpg'>
+      <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
     </header>
 
     <nav class="ui-nav">
@@ -50,42 +51,40 @@
       </div>
 
       <div onclick="window.open('user?pers=1', '_self')" class="flex-row pointer" style="align-items: stretch; margin: 8px 0 16px 0">
-        <img id="ub-user" src="img/sexxx.jpg">
+        <img id="ub-user" src="img/user.svg" alt="img/user.svg">
         <div class="flex-column">
-          <h4 id="ub-name">Dmitry Navalny</h4>
-          <h5 id="ub-email">dmitrynavalny@outlook.com</h5>
+          <h4 id="ub-name">Вы не вошли в аккаунт</h4>
+          <h5 id="ub-email"></h5>
         </div>
-        <i class="ph-caret-right-bold ub-openbtn hidden"></i>
       </div>
 
       <button class="ub-btn" onclick="UBwindow('settings')">
         <h4 class="ub-btn-txt">TenStore 3.0 beta</h4>
-        <h4 class="ub-btn-txt2">Настройки</h4>
+        <h4 class="ub-btn-txt2">настройки</h4>
         <i class="ph-caret-right-bold ub-openbtn2"></i>
       </button>
 
-      <button class="ub-btn">
+      <button id="ub-library" class="ub-btn">
         <h4 class="ub-btn-txt">Библиотека</h4>
         <h4 class="ub-btn-txt2">обновлений нет</h4>
         <i class="ph-caret-right-bold ub-openbtn2"></i>
       </button>
       <button class="ub-btn">
         <h4 class="ub-btn-txt">Консоль разработчика</h4>
-        <h4 class="ub-btn-txt2">Press Team</h4>
+        <h4 class="ub-btn-txt2"></h4>
         <i class="ph-caret-right-bold ub-openbtn2"></i>
       </button>
 
-      <button onclick="toggleDarkTheme()" class="ub-btn">
+      <button id="ub-theme" onclick="toggleDarkTheme()" class="ub-btn">
         <h4 class="ub-btn-txt">Тёмная тема</h4>
       </button>
 
       <button class="ub-btn ub-last-btn" onclick="UBwindow('logout')">
-        <h4 style="color: #d32f2f" class="ub-btn-txt">Выйти из TenID</h4>
+        <h4 id="ub-logout" class="ub-btn-txt">Войти в TenID</h4>
         <i class="ph-caret-right-bold ub-openbtn3"></i>
       </button>
       <h5 class="tenid-ver">TenID 1.1</h5>
     </div>
-
 
     </nav>
     <div class="hm-content">

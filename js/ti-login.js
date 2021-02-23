@@ -16,7 +16,7 @@ function saveAccount() {
   let login=document.getElementById('ti-login').value;
   let password=SHA256(document.getElementById('ti-pass').value);
   var saveAccount=getXMLHTTP();
-  saveAccount.responseType =	"json";
+  saveAccount.responseType="json";
   saveAccount.open('POST', 'https://thetenstore.ru/api.php', true);
   saveAccount.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   saveAccount.send("action=h495ujh"+"&login="+login+"&password="+password);
