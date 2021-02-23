@@ -10,6 +10,7 @@ function checkPlatform () {
     platform='mobile';
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)!=true) {
       scrollableBlocks();
+      scrollableUB();
     }
   }
 

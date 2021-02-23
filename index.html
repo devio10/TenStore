@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <title>TenStore</title>
     <link rel="stylesheet" href="css/ui-elem.css">
+    <link rel="stylesheet" href="css/ui-switch.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
 
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
     <script src="js/tenid.js" charset="utf-8"></script>
-    <script src="js/user-block.js" charset="utf-8"></script>
+
     <script src="js/mobile-version.js" charset="utf-8"></script>
     <script src="js/xmlhttp.js" charset="utf-8"></script>
 
@@ -76,8 +77,9 @@
           <i class="ph-caret-right-bold ub-openbtn2"></i>
         </button>
 
-        <button id="ub-theme" onclick="toggleDarkTheme()" class="ub-btn">
+        <button id="ub-theme" disabled class="ub-btn no-hover">
           <h4 class="ub-btn-txt">Тёмная тема</h4>
+          <input style="margin-right: 16px" id="ub-theme-sw" onclick="toggleDarkTheme('ub')" type="checkbox" class="switch">
         </button>
 
         <button style="margin-bottom: 8px" class="ub-btn ub-last-btn" onclick="ubWindow('logout-confirm')">
@@ -92,19 +94,22 @@
         </div>
         <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Настройки</h3>
         <h5 style='margin: 4px 16px 16px 16px; color: gray'>TenStore 3.0 alpha</h5>
-        <button class="ub-btn btm-border">
+        <button class="ub-btn btm-border no-hover">
           <h4 class="ub-btn-txt">Экономия траффика</h4>
+          <input style="margin-right: 16px" type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>При включении будут
            использоваться сжатые версии изображений, и фоны приложений будут
            заменены сплошным цветом.</h5>
-        <button class="ub-btn btm-border">
+        <button class="ub-btn btm-border no-hover">
           <h4 class="ub-btn-txt">Низкая производительность</h4>
+          <input style="margin-right: 16px" type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Выключает многие эффекты
         и анимации, полезно на слабых устройствах.</h5>
-        <button class="ub-btn" onclick="toggleDarkTheme()">
+        <button disabled class="ub-btn no-hover">
           <h4 class="ub-btn-txt">Тёмная тема</h4>
+          <input style="margin-right: 16px" id="s-theme" onclick="toggleDarkTheme()" type="checkbox" class="switch">
         </button>
         <button class="ub-btn">
           <h4 class="ub-btn-txt">Акцент</h4>
@@ -224,6 +229,7 @@
     </div>
     <script src="js/app-block.js" charset="utf-8"></script>
     <script src="js/index.js"></script>
+    <script src="js/user-block.js" charset="utf-8"></script>
     <script src="js/afterload.js"></script>
   </body>
 </html>

@@ -9,6 +9,8 @@
   --gray: gray;
   --gray-dark: #4a4a4a;
   --accent: rgb(21,101,192);
+  --accent-light: rgb(130,177,255);
+  --accent-dark: rgb(13,71,161);
   --dot: var(--gray-mid);
   --dot-active: var(--gray);
   --trans-03s: .3s;
@@ -46,19 +48,19 @@ html, body {
 .pointer {
   cursor: pointer;
 }
-#app-block {
-  --ab-height: 580px;
-  --ab-half-height: calc(var(--ab-height) / 2);
+#app-block, #user-block {
+  --height: 580px;
+  --half-height: calc(var(--height) / 2);
   width: 420px;
   border-radius: 16px;
   background: var(--bg);
-  height: var(--ab-height);
+  height: var(--height);
   z-index: 8;
   transition: var(--trans-03s) transform;
   animation-name: ub-show;
   animation-duration: var(--trans-03s);
   position: fixed;
-  top: calc(50% - var(--ab-half-height));
+  top: calc(50% - var(--half-height));
   left: calc(50% - 210px);
   box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
   display: none;
@@ -92,12 +94,15 @@ html, body {
   font-weight: lighter;
   margin: 16px;
 }
-#ab-index, #ab-loading {
+#ab-index, #ab-loading, #ub-main, #ub-settings {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
   border-radius: 16px;
   margin-top: -60px;
+}
+#ub-main, #ub-settings {
+  margin-top: 0;
 }
 #ab-scrs {
   margin: 16px 0 12px 0;
@@ -198,20 +203,9 @@ html, body {
   display: none;
 }
 #user-block {
-  width: 360px;
-  border-radius: 8px;
+  --height: 400px;
+  --half-height: calc(var(--height) / 2);
   background: var(--gray-light);
-  height: auto;
-  z-index: 8;
-  transition: var(--trans-03s);
-  animation-name: ub-show;
-  animation-duration: var(--trans-03s);
-  padding-bottom: 8px;
-  position: fixed;
-  top: 80px;
-  left: calc(50% - 180px);
-  display: none;
-  box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
 }
 #user-block-bg, #app-block-bg {
   display: none;
@@ -290,6 +284,10 @@ html, body {
 }
 .ub-last-btn {
   border-bottom: 1px solid var(--gray-mid);
+}
+.no-hover:hover {
+  background: var(--abs-bg);
+  cursor: default;
 }
 #ub-name {
   margin: auto 24px 4px 0;

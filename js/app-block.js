@@ -150,6 +150,7 @@ function scrollableBlocks() {
   };
 }
 
+
 function switchScreenshot(action) {
   for (let i=0; i <= lastscr; i++) {
     document.getElementById('scr-'+i).style.display='none';

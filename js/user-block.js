@@ -1,7 +1,8 @@
+var ubObj=document.getElementById('user-block');
 function toggleUB() {
   let ubBgObj=document.getElementById('user-block-bg');
   let hideubObj=document.getElementById('hide-ub');
-  let ubObj=document.getElementById('user-block');
+
   if (ubBgObj.style.display=='block') {
     setTimeout(function () {
       ubObj.style.display="none";
@@ -27,7 +28,26 @@ function toggleUB() {
 
   }
 }
-
+function scrollableUB() {
+  let ubpositions;
+  let previousTopub=ubObj.style.top;
+  let ubIndex=document.getElementById('ub-main');
+  ubIndex.onscroll=function(){
+    ubpositions=ubIndex.scrollTop;
+    if (ubpositions > 60) {
+      ubpositions=60;
+      ubObj.style.borderRadius='0';
+      ubIndex.style.borderRadius='0';
+    } else {
+      ubObj.style.borderTopLeftRadius='16px';
+      ubObj.style.borderTopRightRadius='16px';
+      ubIndex.style.borderTopLeftRadius='16px';
+      ubIndex.style.borderTopRightRadius='16px';
+    }
+    let ubnewTop=60 - ubpositions;
+    ubObj.style.height='calc(100% - '+ubnewTop+'px)';
+  };
+}
 function toggleScrolling(state) {
   if (state=='remove') {
     body.classList.add('no-scrolling');

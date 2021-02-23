@@ -17,20 +17,11 @@ button {
 .short-img {
   height: 280px;
 }
-#user-block {
-  top: auto;
-  bottom: 0;
-  width: 100%;
-  left: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  animation-name: phone-block-appear;
-}
-#app-block, #ab-index, #ab-loading {
+#app-block, #ab-index, #ab-loading, #ub-main, #ub-settings, #user-block {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#app-block {
+#app-block, #user-block {
   top: auto;
   bottom: 0;
   width: 100%;
