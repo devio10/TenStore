@@ -1,7 +1,6 @@
 var platform='pc';
 function checkPlatform () {
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    var head=document.getElementsByTagName('HEAD')[0];
     var link=document.createElement('link');
     link.rel='stylesheet';
     link.type='text/css';
@@ -11,7 +10,9 @@ function checkPlatform () {
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)!=true) {
       scrollableBlocks();
       scrollableUB();
+      scrollableList();
     }
+    link=null;
   }
 
 }

@@ -48,7 +48,7 @@ html, body {
 .pointer {
   cursor: pointer;
 }
-#app-block, #user-block {
+#app-block, #user-block, #list {
   --height: 580px;
   --half-height: calc(var(--height) / 2);
   width: 420px;
@@ -64,6 +64,57 @@ html, body {
   left: calc(50% - 210px);
   box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
   display: none;
+}
+#list-block {
+  display: flex;
+  flex-direction: column;
+}
+#list-block .app-item:first-child {
+  border-top: 1px solid var(--gray-mid);
+}
+.list-hr {
+  width: calc(100% - 78px);
+  margin: 0 0 0 71px;
+}
+.app-item {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid var(--gray-mid);
+}
+.ai-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  margin: auto 8px auto 16px;
+  background: white;
+}
+.ai-name {
+  margin: 0 24px 2px 2px;
+  font-weight: bold;
+}
+.ai-dev {
+  margin: 0 24px 0 2px;
+  color: gray;
+  width: calc(100% - 200px);
+  text-overflow: clip;
+  white-space: nowrap;
+}
+.ai-down, .ai-info {
+  cursor: pointer;
+  margin: auto 16px auto 8px;
+  font-size: 20px;
+  color: gray;
+}
+.ai-info {
+  margin-left: auto;
+  margin-right: 8px;
+}
+.ai-text {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 #ab-header {
   width: 100%;
@@ -94,12 +145,23 @@ html, body {
   font-weight: lighter;
   margin: 16px;
 }
-#ab-index, #ab-loading, #ub-main, #ub-settings {
+#ab-index, #ab-loading, #ub-main, #ub-settings, #list-loading, #list-main {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
   border-radius: 16px;
   margin-top: -60px;
+}
+#list-name {
+  margin: 66px 16px 0 16px;
+  font-weight: bold;
+}
+#list-subtext {
+  margin: 4px 16px 16px 16px;
+  color: gray;
+}
+#list-block {
+  margin-bottom: 30px;
 }
 #ub-main, #ub-settings {
   margin-top: 0;
@@ -207,7 +269,7 @@ html, body {
   --half-height: calc(var(--height) / 2);
   background: var(--gray-light);
 }
-#user-block-bg, #app-block-bg {
+#user-block-bg, #app-block-bg, #list-block-bg {
   display: none;
   position: fixed;
   top: 0;
@@ -441,7 +503,7 @@ header {
 .ab-loading-block {
   margin: 0 auto 0 auto;
 }
-#ab-loading {
+#ab-loading, #list-loading {
   justify-content: center;
   align-items: center;
   display: flex;

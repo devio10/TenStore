@@ -45,6 +45,7 @@
 
     <div onclick="toggleAB()" id="app-block-bg"> </div>
     <div onclick="toggleUB()" id="user-block-bg"> </div>
+    <div onclick="toggleList()" id="list-block-bg"> </div>
     <div id="user-block">
 
       <div onclick="toggleUB()" class="flex-row ub-hide-block">
@@ -126,6 +127,13 @@
         необходимый файл в списке около кнопки скачивания</h5>
       </div>
 
+      <div id="ub-platform" class="ub-window">
+        <div onclick="ubWindow('main')" class="ab-back">
+          <i class="ph-caret-left-bold ab-back-icon pointer"></i>
+        </div>
+        <h3 style="margin: 16px; font-weight: bold">Платформа</h3>
+      </div>
+
       <div id="ub-logout-confirm" style="display: block" class="ub-window">
         <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Выйти из TenID</h3>
         <h5 style='margin: 8px 16px 8px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
@@ -160,13 +168,13 @@
         </div>
       </div>
 
-      <div class="hm-card">
+      <div class="hm-card" onclick="showList('category', 'Связь')">
         <img class="hm-card-img short-img" src='img/communication.jpg'>
         <h2 class="hm-card-title2">Коммуникация</h2>
         <h4 class="hm-card-text2">Приложения для связи с вашими друзьями и коллегами</h4>
       </div>
 
-      <div class="hm-card">
+      <div class="hm-card" onclick="showList('category', 'Музыка и видео')">
         <img class="hm-card-img short-img" src='img/bowie.jpg'>
         <h2 class="hm-card-title2">Музыка</h2>
         <h4 class="hm-card-text2">То, чего не хватает вашим ушам...</h4>
@@ -225,9 +233,127 @@
         <h3 class="ab-title">Комментарии</h3>
         <h5 style="margin: 16px; color: gray">Будьте первым, кто оставил здесь комментарий.</h5>
       </div>
+    </div>
+    <div id="list">
+      <div onclick="toggleList()" class="ab-back">
+        <i class="ph-caret-left-bold ab-back-icon pointer"></i>
+      </div>
+      <div id="list-loading" style="display: none">
+        <div class="ab-loading-block">
+          <div class="ui-loading-wheel"> </div>
+          <h5 class="ui-gray">Список загружается</h5>
+        </div>
+      </div>
+      <div id="list-main">
+        <h3 id="list-name">Популярное</h3>
+        <h5 id="list-subtext">Описание списка здесь</h5>
+        <div id="list-block">
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          <div class='app-item'>
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'></h5>
+              <h5 class='ai-dev'></h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down ai-down'></i>
+          </div>
+          
+        </div>
+      </div>
 
     </div>
     <script src="js/app-block.js" charset="utf-8"></script>
+    <script src="js/list.js" charset="utf-8"></script>
     <script src="js/index.js"></script>
     <script src="js/user-block.js" charset="utf-8"></script>
     <script src="js/afterload.js"></script>

@@ -17,11 +17,11 @@ button {
 .short-img {
   height: 280px;
 }
-#app-block, #ab-index, #ab-loading, #ub-main, #ub-settings, #user-block {
+#app-block, #ab-index, #ab-loading, #ub-main, #ub-settings, #user-block, #list, #list-main {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#app-block, #user-block {
+#app-block, #user-block, #list {
   top: auto;
   bottom: 0;
   width: 100%;
