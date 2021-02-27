@@ -1,10 +1,15 @@
 let currentAppScreen;
 var ab=document.getElementById('app-block');
 var loadScreen=document.getElementById('ab-loading');
+var shortDescription;
+var longDescription;
 var indexScreen=document.getElementById('ab-index');
 var lastscr=0;
 var curscr=0;
 var nextscr=1;
+var showFull='<a onclick="toggleDescription()"> Показать полностью...</a>';
+var hideFull='<a onclick="toggleDescription()"> Скрыть</a>';
+var curDescType='short';
 function toggleAB () {
  let abBg=document.getElementById('app-block-bg');
  currentAppScreen='index';
@@ -66,8 +71,9 @@ function showAB(appid) {
           abIconBg=appData.apps[0].icon_bg;
         }
         abIcon.style.background=abIconBg;
-        let shortDescription=appData.apps[0].descr.split('<p>');
-        document.getElementById('ab-desc').innerHTML=shortDescription[0]+'...';
+        shortDescription=appData.apps[0].descr.split('<p>');
+        longDescription=appData.apps[0].descr;
+        document.getElementById('ab-desc').innerHTML=shortDescription[0]+showFull;
         document.getElementById('ab-name').innerText=appData.apps[0].name;
         document.getElementById('ab-short-desc').innerText=appData.apps[0].dev; // TODO: добавить сюда краткое описание
         let abHeader=document.getElementById('ab-header');
@@ -119,6 +125,16 @@ function showAB(appid) {
     }
   });
   appBlock.send(appId);
+}
+
+function toggleDescription() {
+  if (curDescType=='long') {
+    curDescType='short';
+    document.getElementById('ab-desc').innerHTML=shortDescription[0]+showFull;
+  } else {
+    curDescType='long';
+    document.getElementById('ab-desc').innerHTML=longDescription+hideFull;
+  }
 }
 
 function abBack () {
