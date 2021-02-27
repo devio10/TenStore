@@ -1,14 +1,63 @@
-function showList() {
-  toggleList();
-
-  loadScrn.style.display='none';
-  mainScrn.style.display='block';
+function showList(par1, par2, donotToggle) {
+  if (donotToggle!=true) {
+    toggleList();
+  } else {
+    loadScrn.style.display='flex';
+    mainScrn.style.display='none';
+  }
+  if (localStorage.getItem('debug')=='true') {
+    loadScrn.style.display='none';
+    mainScrn.style.display='block';
+  }
+  document.getElementById('list-block').innerHTML='';
+  document.getElementById('list-subtext').innerText='';
+  var appsList=new XMLHttpRequest();
+  var listId;
+  if (par1!='search') {
+    listId='action=KdSqSAOC&select='+par1+'&value='+par2;
+    document.getElementById('list-name').innerText=par2;
+  } else {
+    listId='action=d6Gj59&search='+par2;
+    document.getElementById('list-name').innerText='Поиск';
+    document.getElementById('list-subtext').innerText='по запросу "'+par2+'"';
+  }
+  appsList.responseType='json';
+  appsList.open('POST', api, true);
+  appsList.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  appsList.addEventListener("readystatechange", () => {
+    if ((appsList.readyState===4)&&(appsList.status===200)) {
+      var listData=appsList.response;
+      loadScrn.style.display='none';
+      mainScrn.style.display='block';
+      for (let i=0; i<listData.apps.length; i++) {
+        let iconPadding='0';
+        let iconBg='white';
+        let iconSize='40px';
+        let liIcon='https://thetenstore.ru/'+listData.apps[i].icon;
+        if (listData.apps[i].icon_bg!=0) {
+          iconBg=listData.apps[i].icon_bg;
+        }
+        if (listData.apps[i].icon_pad!=0) {
+          iconPadding='5px';
+          iconSize='30px';
+        }
+        var listItem=document.createElement('div');
+        listItem.className='app-item';
+        listItem.innerHTML="<img class='ai-icon' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
+        <div class='ai-text'> <h5 class='ai-name'>"+listData.apps[i].name+"</h5> <h5 class='ai-dev'>"+listData.apps[i].dev+"</h5> </div> \
+        <i onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ph-info ai-info'></i> <i class='ph-cloud-arrow-down ai-down'></i>"
+        document.getElementById('list-block').appendChild(listItem);
+      }
+    }
+  });
+  appsList.send(listId);
 }
 let currentListScreen;
 var list=document.getElementById('list');
 var loadScrn=document.getElementById('list-loading');
 var mainScrn=document.getElementById('list-main');
-function toggleList() {
+function toggleList(isSearch) {
+  document.getElementById('search-block').style.display='none';
   let listBg=document.getElementById('list-block-bg');
   currentListScreen='index';
   if (list.style.display=='block') {
@@ -39,6 +88,13 @@ function toggleList() {
     list.style.display='block';
     body.style.overflow='none';
   }
+  if (isSearch==true) {
+    loadScrn.style.display='none';
+    mainScrn.style.display='block';
+    document.getElementById('list-subtext').innerText='';
+    document.getElementById('list-name').innerText='';
+    document.getElementById('search-block').style.display='block';
+  }
 }
 
 function scrollableList() {
@@ -60,3 +116,9 @@ function scrollableList() {
     list.style.height='calc(100% - '+newTopList+'px)';
   };
 }
+
+document.getElementById('list-search').addEventListener("keyup", function(event) {
+  if (event.keyCode===13) {
+    showList('search', document.getElementById('list-search').value, true);
+  }
+});

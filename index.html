@@ -28,7 +28,7 @@
 		    <i class="ph-house-fill ui-nav-icon ui-nav-active"></i>
 		    <span class="ui-nav-name ui-nav-active">Главная</span>
 		  </a>
-      <a class="ui-nav-item">
+      <a onclick="toggleList(true)" class="ui-nav-item">
 		    <i class="ph-magnifying-glass ui-nav-icon"></i>
 		    <span class="ui-nav-name">Поиск</span>
 		  </a>
@@ -245,10 +245,14 @@
         </div>
       </div>
       <div id="list-main">
-        <h3 id="list-name">Популярное</h3>
-        <h5 id="list-subtext">Описание списка здесь</h5>
+        <input type="text" placeholder="Поиск" id="list-search">
+        <div id="search-block">
+
+        </div>
+        <h3 id="list-name"></h3>
+        <h5 id="list-subtext"></h5>
         <div id="list-block">
-          <div class='app-item'>
+          <div class='app-item' style="display: none">
             <img class='ai-icon'>
             <div class='ai-text'>
               <h5 class='ai-name'></h5>
@@ -257,97 +261,6 @@
             <i onclick='showAB()' class='ph-info ai-info'></i>
             <i class='ph-cloud-arrow-down ai-down'></i>
           </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          <div class='app-item'>
-            <img class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
-          </div>
-          
         </div>
       </div>
 
