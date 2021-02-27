@@ -11,3 +11,4 @@ if ((localStorage.getItem('platform')==null)&&(localStorage.getItem('manual-plat
   script.src='js/detect-os.js';
   head.appendChild(script);
 }
+document.getElementById('s-platform').innerText=localStorage.getItem('platform');

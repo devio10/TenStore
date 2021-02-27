@@ -199,7 +199,7 @@
     'Screen Size: ' + jscd.screen + '\n\n' +
     'Full User Agent: ' + navigator.userAgent
 );*/
-localStorage.setItem('platform', jscd);
+localStorage.setItem('platform', jscd.os);
 if ((jscd.os=='Windows')&&(jscd.osVersion=='10')) {
   localStorage.setItem('platform-uwp-support', 'true');
 }
