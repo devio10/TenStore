@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/ui-elem.css">
     <link rel="stylesheet" href="css/ui-switch.css">
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/blocks.css">
 
     <script src="https://unpkg.com/phosphor-icons"></script>
@@ -48,9 +47,75 @@
     <div onclick="toggleAB()" id="app-block-bg"> </div>
     <div onclick="toggleUB()" id="user-block-bg"> </div>
     <div onclick="toggleList()" id="list-block-bg"> </div>
-    <div id="settings-block">
-      <div id="ub-settings" class="ub-window">
+    <div onclick="toggleSettings()" id="set-block-bg"> </div>
+    <div id="user-block">
+
+      <div class="ub-hide-block"> </div>
+
+      <div id="ub-main" class="ub-window">
+        <div id="ub-top" onclick="window.open('user?pers=1', '_self')" class="flex-row">
+          <img id="ub-user" src="img/user.svg" alt="img/user.svg">
+          <div class="flex-column">
+            <h4 id="ub-name"></h4>
+            <h5 id="ub-email"></h5>
+          </div>
+        </div>
+        <div id="ub-no-account">
+          <h3 id="ub-na-title">Добро пожаловать</h3>
+          <h5 id="ub-na-text">Аккаунт TenID позволяет вам скачивать приложения,
+            оставлять комментарии и <a href='help?q=tenid-features'>делать другие вещи.</a>
+            <a href="reg">Создайте новый</a> или <a href="login">войдите</a>, если он уже есть.</h5>
+        </div>
+
+        <button style="margin-top: 16px" class="ub-btn" onclick="toggleUB(), toggleSettings()">
+          <h4 class="ub-btn-txt">TenStore 3.0 alpha</h4>
+          <h4 class="ub-btn-txt2">настройки</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button id="ub-library" class="ub-btn">
+          <h4 class="ub-btn-txt">Библиотека</h4>
+          <h4 class="ub-btn-txt2">обновлений нет</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Консоль разработчика</h4>
+          <h4 class="ub-btn-txt2"></h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
+
+        <button id="ub-theme" disabled class="ub-btn no-hover">
+          <h4 class="ub-btn-txt">Тёмная тема</h4>
+          <input style="margin-right: 16px" id="ub-theme-sw" onclick="toggleDarkTheme('ub')" type="checkbox" class="switch">
+        </button>
+
+        <button style="margin-bottom: 8px" class="ub-btn ub-last-btn" onclick="ubWindow('logout-confirm')">
+          <h4 id="ub-logout" class="ub-btn-txt">Войти в TenID</h4>
+          <i class="ph-caret-right-bold ub-openbtn3"></i>
+        </button>
+      </div>
+      <div id="ub-platform" class="ub-window">
         <div onclick="ubWindow('main')" class="ab-back">
+          <i class="ph-caret-left-bold ab-back-icon pointer"></i>
+        </div>
+        <h3 style="margin: 16px; font-weight: bold">Платформа</h3>
+      </div>
+    </div>
+
+    <div id="ub-logout-confirm" style="display: none" class="ub-window">
+      <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Выйти из TenID</h3>
+      <h5 style='margin: 8px 16px 8px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
+         скачиванию приложений и библиотеке. Всё это останется в вашем аккаунте.</h5>
+      <div class="flex-row">
+        <button onclick="ubWindow('main')" style="margin: 8px 0 16px auto" class="no-accent wide">Нет</button>
+        <button onclick='logout()' style="margin: 8px 16px 16px 16px" class="wide">Да</button>
+      </div>
+
+    </div>
+
+    <div id='settings-block'>
+      <div id="set-main" class="ub-window">
+        <div onclick="toggleSettings()" class="ab-back">
           <i class="ph-caret-left-bold ab-back-icon pointer"></i>
         </div>
         <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Настройки</h3>
@@ -72,6 +137,11 @@
           <h4 class="ub-btn-txt">Тёмная тема</h4>
           <input style="margin-right: 16px" id="s-theme" onclick="toggleDarkTheme()" type="checkbox" class="switch">
         </button>
+        <button class="ub-btn">
+          <h4 class="ub-btn-txt">Акцент</h4>
+          <h4 class="ub-btn-txt2">синий</h4>
+          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        </button>
         <button class="ub-btn btm-border">
           <h4 class="ub-btn-txt">Платформа</h4>
           <h4 class="ub-btn-txt2" id="s-platform">Windows</h4>
@@ -81,62 +151,8 @@
         скачиваться для выбранной платформы, но в любой момент это можно изменить, выбрав
         необходимый файл в списке около кнопки скачивания</h5>
       </div>
-
-      <div id="ub-platform" class="ub-window">
-        <div onclick="ubWindow('main')" class="ab-back">
-          <i class="ph-caret-left-bold ab-back-icon pointer"></i>
-        </div>
-        <h3 style="margin: 16px; font-weight: bold">Платформа</h3>
-      </div>
-    </div>
-    <div id="user-block">
-
-
-      <div id="ub-main">
-        <div id="ub-top" onclick="window.open('user?pers=1', '_self')" class="flex-row">
-          <img id="ub-user" src="img/user.svg" alt="img/user.svg">
-          <div class="flex-column">
-            <h4 id="ub-name"></h4>
-            <h5 id="ub-email"></h5>
-          </div>
-        </div>
-
-        <button id="ub-settings-btn" class="ub-btn-2" onclick="ubWindow('settings')">
-          <h4 class="ub-btn2-txt">Настройки</h4>
-          <i class="ph-caret-right-bold ub-openbtn3"></i>
-        </button>
-
-        <button id="ub-library" class="ub-btn-2">
-          <h4 class="ub-btn2-txt">Библиотека</h4>
-          <i class="ph-caret-right-bold ub-openbtn3"></i>
-        </button>
-        <button class="ub-btn-2">
-          <h4 class="ub-btn2-txt">Консоль разработчика</h4>
-          <i class="ph-caret-right-bold ub-openbtn3"></i>
-        </button>
-
-        <button id="ub-theme" disabled class="ub-btn-2 no-hover">
-          <h4 class="ub-btn2-txt">Тёмная тема</h4>
-          <input style="margin-right: 16px" id="ub-theme-sw" onclick="toggleDarkTheme('ub')" type="checkbox" class="switch">
-        </button>
-
-        <button class="ub-btn-2 ub-last-btn" onclick="ubWindow('logout-confirm')">
-          <h4 id="ub-logout" class="ub-btn2-txt">Войти в TenID</h4>
-          <i class="ph-caret-right-bold ub-openbtn3"></i>
-        </button>
-      </div>
-    </div>
-    <div id="ub-logout-confirm" style="display: none" class="ub-window">
-      <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Выйти из TenID</h3>
-      <h5 style='margin: 8px 16px 8px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
-         скачиванию приложений и библиотеке. Всё это останется в вашем аккаунте.</h5>
-      <div class="flex-row">
-        <button onclick="ubWindow('main')" style="margin: 8px 0 16px auto" class="no-accent wide">Нет</button>
-        <button onclick='logout()' style="margin: 8px 16px 16px 16px" class="wide">Да</button>
-      </div>
     </div>
 
-    </nav>
     <div id="hm-content">
 
       <div id="hm-content-editors-choice" style="display: none">
@@ -191,7 +207,7 @@
       <div id="ab-index">
         <div id="ab-header"> </div>
         <div class="flex-row flex-align-top" id="topcontent">
-          <img id="ab-icon">
+          <img id="ab-icon" src='img/prohibit.svg' alt="img/prohibit.svg">
           <div class="flex-column">
             <h3 id="ab-name"></h3>
             <h5 id="ab-short-desc"></h5>

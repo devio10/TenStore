@@ -1,7 +1,9 @@
-#app-block, #list {
+#app-block, #list, #user-block, #settings-block {
   --height: 580px;
   --half-height: calc(var(--height) / 2);
-  width: 420px;
+  --width: 420px;
+  --half-width: calc(var(--width) / 2);
+  width: var(--width);
   border-radius: 16px;
   background: var(--bg);
   height: var(--height);
@@ -11,7 +13,7 @@
   animation-duration: var(--trans-03s);
   position: fixed;
   top: calc(50% - var(--half-height));
-  left: calc(50% - 210px);
+  left: calc(50% - var(--half-width));
   box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
   display: none;
 }
@@ -20,44 +22,15 @@
   flex-direction: column;
   margin-bottom: 30px;
 }
+#list-block .app-item:first-child {
+  border-top: 1px solid var(--gray-mid);
+}
 #user-block {
-  width: 100%;
-  max-width: 580px;
-  position: fixed;
-  top: 60px;
-  z-index: 8;
+  --height: auto;
+  --width: 380px;
+  background: var(--gray-light);
 }
-.ub-btn-2 {
-  width: calc(50% - 32px);
-  margin: 32px 16px 0 16px;
-  height: 56px;
-  background: rgba(0, 0, 0, .35);
-  border-radius: 16px;
-  border: none;
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-}
-.ub-btn-2:hover {
-  background: rgba(30, 30, 30, .35)
-}
-.ub-btn2-txt {
-  text-transform: uppercase;
-  margin-left: 16px;
-  font-weight: bold;
-  color: white;
-}
-#ub-logout-btn {
-  background: rgba(21,101,192, 0.3)
-}
-#ub-main {
-  width: 100%;
-  display: flex;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-#user-block-bg, #app-block-bg, #list-block-bg {
+#user-block-bg, #app-block-bg, #list-block-bg, #set-block-bg {
   display: none;
   position: fixed;
   top: 0;
@@ -68,7 +41,21 @@
   height: 100%;
   transition: var(--trans-03s);
 }
-#user-block-bg {
-  backdrop-filter: blur(20px);
-  display: block;
+#ab-index, #ab-loading, #ub-main, #list-loading, #list-main, #set-main {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  border-radius: 16px;
+  margin-top: -60px;
+}
+#ub-main { margin-top: 0; }
+#set-main { margin-top: 0; display: block; }
+
+#ub-na-title {
+  font-weight: bold;
+  margin: 32px 16px 0 16px;
+}
+#ub-na-text {
+  margin: 8px 16px 16px 16px;
+  color: gray;
 }

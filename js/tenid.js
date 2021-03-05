@@ -13,12 +13,11 @@ function login() {
         if (userData!=null) {
           var userEmail=userData.user[0].email;
           var userName=userData.user[0].name+' '+userData.user[0].lastname;
-          var userPhoto;
+          var userPhoto='https://thetenstore.ru/'+userData.user[0].photo;
           if ((userData.user[0].photo==0)||(userData.user[0].photo==null)) {
             userPhoto='img/user.svg';
-          } else {
-            userPhoto='https://thetenstore.ru/'+userData.user[0].photo;
           }
+          document.getElementById('ub-no-account').style.display='none';
           document.getElementById('hd-user').src=userPhoto;
           document.getElementById('ub-user').src=userPhoto;
           document.getElementById('ub-name').innerText=userName;

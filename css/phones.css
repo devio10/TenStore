@@ -17,11 +17,13 @@ button {
 .short-img {
   height: 280px;
 }
-#app-block, #ab-index, #ab-loading, #ub-main, #ub-settings, #user-block, #list, #list-main {
+#app-block, #ab-index, #ab-loading, #ub-main,
+#ub-settings, #user-block, #list, #list-main,
+#settings-block, #set-main {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#app-block, #user-block, #list {
+#app-block, #user-block, #list, #settings-block {
   top: auto;
   bottom: 0;
   width: 100%;
@@ -29,6 +31,7 @@ button {
   height: calc(100% - 60px);
   animation-name: phone-block-appear;
 }
+#user-block { height: auto; padding-bottom: 64px }
 .ab-scr {
   display: block;
   margin-right: 8px;
@@ -61,7 +64,11 @@ input[type=text] {
   height: 52px;
 }
 .ub-hide-block {
-  display: flex;
+  height: 6px;
+  width: 32px;
+  border-radius: 8px;
+  margin: 16px auto 0 auto;
+  background: gray;
 }
 #scrs-pag, .scrs-nav {
   display: none;
