@@ -25,6 +25,9 @@
 #list-block .app-item:first-child {
   border-top: 1px solid var(--gray-mid);
 }
+#settings-block {
+  background: var(--gray-light);
+}
 #user-block {
   --height: auto;
   --width: 380px;

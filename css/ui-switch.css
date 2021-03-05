@@ -1,18 +1,24 @@
+:root {
+	--ui-switch-bg: rgba(50, 50, 50, 0.3);
+}
+[dark-theme='true'] {
+	--ui-switch-bg: rgba(50, 50, 50, 0.6);
+}
 input[type='checkbox'], input[type='radio'] {
-	--border-hover: var(--accent-light);
-	--background: var(--abs-bg);
+	--background: var(--ui-switch-bg);
 	--disabled: var(--abs-bg);
 	--disabled-inner: var(--accent-light);
-	--checkbox-bg: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+	--checkbox-bg: var(--accent);
+	--white: white;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	height: 21px;
+	height: 24px;
 	outline: none;
 	vertical-align: top;
 	position: relative;
 	margin: 0;
 	cursor: pointer;
-	border: 1px solid var(--bc, var(--accent-light));
+	border: none;
 	background: var(--b, var(--background));
 	transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
 	z-index: 0;
@@ -24,13 +30,13 @@ input[type='checkbox']:after, input[type='radio']:after {
 	left: 0;
 	top: 0;
 	position: absolute;
-	transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+	transition: transform var(--d-t, 0.16s) var(--d-t-e, ease), opacity var(--d-o, 0.16s);
 }
 input[type='checkbox']:checked, input[type='radio']:checked {
 	--b: var(--checkbox-bg);
 	--bc: var(--accent);
-	--d-o: .3s;
-	--d-t: .6s;
+	--d-o: .16s;
+	--d-t: .16s;
 	--d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
 }
 input[type='checkbox']:disabled, input[type='radio']:disabled {
@@ -66,7 +72,7 @@ input[type='checkbox'] + label, input[type='radio'] + label {
 	margin-left: 10px;
 }
 input[type='checkbox']:not(.switch) {
-	border-radius: 7px;
+	border-radius: 24px;
 }
 input[type='checkbox']:not(.switch):after {
 	width: 5px;
@@ -89,14 +95,14 @@ input[type='checkbox'].switch:after {
 	left: 2px;
 	top: 2px;
 	border-radius: 50%;
-	width: 15px;
-	height: 15px;
-	background: var(--ab, var(--checkbox-bg));
+	width: 20px;
+	height: 20px;
+	background: var(--ab, var(--white));
 	transform: translateX(var(--x, 0));
 }
 input[type='checkbox'].switch:checked {
 	--ab: white;
-	--x: 17px;
+	--x: 14px;
 }
 input[type='checkbox'].switch:disabled:not(:checked):after {
 	opacity: 0.6;
