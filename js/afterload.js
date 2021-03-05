@@ -12,3 +12,7 @@ if ((localStorage.getItem('platform')==null)&&(localStorage.getItem('manual-plat
   head.appendChild(script);
 }
 document.getElementById('s-platform').innerText=localStorage.getItem('platform');
+
+window.onpopstate=function(event) {
+  checkUrlVars();
+};

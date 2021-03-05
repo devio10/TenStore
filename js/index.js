@@ -6,8 +6,14 @@ function getUrlVars(key) {
   return vars;
 }
 function checkUrlVars() {
-  if (getUrlVars()['id']!=null) {
+  if (getUrlVars()['app']!=null) {
     showAB(getUrlVars()['id']);
+  } else if (getUrlVars()['list']!=null) {
+    showList(getUrlVars()['par1'], getUrlVars()['par2'], getUrlVars()['donotToggle'], getUrlVars()['par3'], getUrlVars()['background'], getUrlVars()['font'], getUrlVars()['nameColor'], getUrlVars()['subColor'], getUrlVars()['nameSize']);
+  } else if (getUrlVars()['search']!=null) {
+    toggleList(true);
+  } else {
+    
   }
 }
 
@@ -20,7 +26,7 @@ function loadCards() {
   cards.addEventListener("readystatechange", () => {
     if ((cards.readyState===4)&&(cards.status===200)) {
       var cardsData=cards.response;
-      
+
     }
   });
 }

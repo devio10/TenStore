@@ -1,4 +1,5 @@
 function showList(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize) {
+  window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
   if (donotToggle!=true) {
     toggleList();
   } else {
@@ -105,6 +106,7 @@ function toggleList(isSearch) {
     listBg.style.opacity='.1';
     body.style.overflow='auto';
     toggleScrolling('add');
+    window.history.pushState(null, null, '?');
   } else {
     loadScrn.style.display='flex';
     mainScrn.style.display='none';

@@ -33,6 +33,7 @@ function toggleAB () {
    abBg.style.opacity='.1';
    body.style.overflow='auto';
    toggleScrolling('add');
+   window.history.pushState(null, null, '?');
  } else {
    loadScreen.style.display='flex';
    indexScreen.style.display='none';
@@ -43,6 +44,7 @@ function toggleAB () {
  }
 }
 function showAB(appid) {
+  window.history.pushState(null, null, '?ab=true&id='+appid);
   toggleAB();
   if (localStorage.getItem('debug')=='true') {
     loadScreen.style.display='none';
