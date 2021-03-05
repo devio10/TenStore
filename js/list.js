@@ -1,4 +1,4 @@
-function showList(par1, par2, donotToggle) {
+function showList(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize) {
   if (donotToggle!=true) {
     toggleList();
   } else {
@@ -9,8 +9,33 @@ function showList(par1, par2, donotToggle) {
     loadScrn.style.display='none';
     mainScrn.style.display='block';
   }
+  let listName=document.getElementById('list-name');
+  let listHeader=document.getElementById('list-header');
+
   document.getElementById('list-block').innerHTML='';
-  document.getElementById('list-subtext').innerText='';
+  document.getElementById('list-subtext').innerText=par3;
+  listHeader.style.background='';
+  listHeader.style.display='none';
+  listName.style.marginTop='8px';
+  listName.style.fontSize='1.5em';
+  listName.style.color='var(--text)';
+  document.getElementById('list-subtext').style.color='gray';
+
+  if ((background==null)||(background==0)) {
+    listName.style.marginTop='60px';
+  } else {
+    listHeader.style.display='block';
+    listHeader.style.background='url(https://thetenstore.ru/'+background+')';
+    listHeader.style.backgroundPosition='center';
+    listHeader.style.backgroundRepeat='no-repeat';
+    listHeader.style.backgroundSize='cover';
+  }
+
+  if ((font!=null)||(font!=0)) { listName.style.fontFamily=font; }
+  if ((nameColor!=null)||(nameColor!=0)) { listName.style.color=nameColor; }
+  if ((nameSize!=null)||(nameSize!=0)) { listName.style.fontSize=nameSize; }
+  if ((subColor!=null)||(subColor!=0)) { document.getElementById('list-subtext').style.color=subColor; }
+
   var appsList=new XMLHttpRequest();
   var listId;
   if (par1!='search') {

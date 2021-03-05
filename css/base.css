@@ -49,9 +49,9 @@ html, body {
   cursor: pointer;
 }
 #list-search {
-  margin: 60px 16px 16px 16px;
+  margin: 8px 16px 16px 16px;
   width: calc(100% - 64px);
-  height: 48px;
+  height: 42px;
 }
 
 .list-hr {
@@ -98,7 +98,7 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-#ab-header {
+#ab-header, #list-header {
   width: 100%;
   height: 180px;
   border-top-left-radius: 16px;
@@ -131,6 +131,7 @@ html, body {
 #list-name {
   margin: 8px 16px 0 16px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 #list-subtext {
   margin: 4px 16px 16px 16px;
@@ -372,80 +373,7 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.hm-card {
-  height: auto;
-  background: var(--abs-bg);
-  box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
-  border-radius: 16px;
-  cursor: pointer;
-  transition: var(--trans-03s);
-  margin-bottom: 32px;
-  position: relative;
-  flex: 0 0 calc(50% - 16px);
-  max-width: calc(50% - 16px);
-  padding-bottom: 16px;
-}
-.hm-card:hover, .hm-card:focus {
-  transform: scale(.96);
-}
-.hm-card-open {
-  font-size: 20px;
-  color: var(--gray);
-  margin: 16px auto 16px auto;
-}
-.hm-card-wide {
-  flex: 0 0 100%;
-  max-width: 100%;
-  padding-bottom: 0;
-  cursor: auto;
-}
-.hm-card-toptext1 {
-  margin: 0 0 4px 24px;
-  font-weight: bold;
-  color: var(--gray);
-}
-.hm-card-img {
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  cursor: pointer;
-}
-.short-img {
-  height: 240px;
-}
-.hm-card-smalltext {
-  color: var(--gray);
-  font-weight: bold;
-  margin: 16px 16px 8px 16px;
-}
-.hm-card-smtxt-right {
-  margin-left: auto;
-}
-.hm-card-title, .hm-card-title2 {
-  margin: 0 16px;
-  font-weight: bold;
-  word-wrap: break-word;
-}
-.hm-card-title2 {
-  margin: 8px 16px 8px 16px;
-  text-transform: uppercase;
-}
-.hm-card-text, .hm-card-text2 {
-  margin: 8px 16px 16px;
-  color: var(--gray);
-}
-.hm-card-text2 {
-  margin: 8px 16px 0 16px;
-}
-.hm-card-compatibility {
-  font-size: 16px;
-  color: var(--gray);
-}
-.no-scale:hover, .no-scale:focus {
-  transform: scale(1);
-}
+
 .regular-font {
   font-weight: 400;
 }
@@ -455,12 +383,7 @@ header {
 .not-compatible-btn {
   background: #d32f2f;
 }
-.hm-bottom-loading, .ab-loading-block {
-  margin: 16px auto 40px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 .ab-loading-block {
   margin: 0 auto 0 auto;
 }
