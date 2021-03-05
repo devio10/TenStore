@@ -21,10 +21,9 @@ function toggleUB() {
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
   } else {
-    ubWindow('main');
     toggleScrolling('remove');
     ubBgObj.style.display='block';
-    ubObj.style.display='block';
+    ubObj.style.display='flex';
 
   }
 }
