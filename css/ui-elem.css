@@ -69,19 +69,23 @@ img {
   --half-width: calc(var(--width) / 2);
   position: fixed;
   border-radius: 8px;
-  bottom: 24px;
+  bottom: 16px;
   width: var(--width);
   left: calc(50% - var(--half-width));
   height: 56px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   /*box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.34);*/
-  border: 1px solid var(--gray-mid);
-  background: var(--nav-bg);
+  background: #171717;
   display: flex;
-  overflow-x: auto;
   z-index: 2;
   user-select: none;
+}
+.ui-nav-block {
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+  margin: 0 auto;
 }
 .ui-nav-item {
   display: flex;
@@ -97,12 +101,12 @@ img {
   transition: .08s;
 }
 .ui-nav-name {
-  color: var(--gray-dark);
+  color: #919191;
 }
 .ui-nav-icon {
   font-size: 20px;
   margin-bottom: 2px;
-  color: var(--gray-dark);
+  color: #919191;
 }
 .ui-nav-item:active {
   background: var(--nav-bg-active);
@@ -131,6 +135,7 @@ input[type=password]:focus, input[type=password]:hover {
   text-align: center;
   font-weight: lighter;
   text-transform: uppercase;
+  letter-spacing: 5px;
 }
 ::-moz-placeholder {
    text-align: center;

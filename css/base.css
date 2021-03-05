@@ -371,7 +371,7 @@ header {
   width: 48px;
   height: 48px;
 }
-.hm-content {
+#hm-content {
   display: flex;
   box-sizing: border-box;
   width: 100%;
@@ -490,4 +490,10 @@ button.wide {
 }
 .ub-hide-block {
   display: none;
+}
+.ui-nav-name {
+  display: none;
+}
+.ui-nav-icon {
+  margin: 0;
 }

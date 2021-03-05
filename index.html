@@ -25,23 +25,24 @@
     </header>
 
     <nav class="ui-nav">
-		  <a class="ui-nav-item">
-		    <i class="ph-house-fill ui-nav-icon ui-nav-active"></i>
-		    <span class="ui-nav-name ui-nav-active">Главная</span>
-		  </a>
-      <a onclick="toggleList(true)" class="ui-nav-item">
-		    <i class="ph-magnifying-glass ui-nav-icon"></i>
-		    <span class="ui-nav-name">Поиск</span>
-		  </a>
-		  <a class="ui-nav-item">
-		    <i class="ph-squares-four ui-nav-icon"></i>
-		    <span class="ui-nav-name">Приложения</span>
-		  </a>
-		  <a class="ui-nav-item">
-		    <i class="ph-game-controller ui-nav-icon"></i>
-		    <span class="ui-nav-name">Игры</span>
-		  </a>
-
+      <div class="ui-nav-block">
+        <a class="ui-nav-item">
+  		    <i class="ph-house-fill ui-nav-icon ui-nav-active"></i>
+  		    <span class="ui-nav-name ui-nav-active">Главная</span>
+  		  </a>
+        <a onclick="toggleList(true)" class="ui-nav-item">
+  		    <i class="ph-magnifying-glass ui-nav-icon"></i>
+  		    <span class="ui-nav-name">Поиск</span>
+  		  </a>
+  		  <a class="ui-nav-item">
+  		    <i class="ph-squares-four ui-nav-icon"></i>
+  		    <span class="ui-nav-name">Приложения</span>
+  		  </a>
+  		  <a class="ui-nav-item">
+  		    <i class="ph-game-controller ui-nav-icon"></i>
+  		    <span class="ui-nav-name">Игры</span>
+  		  </a>
+      </div>
 		</nav>
 
     <div onclick="toggleAB()" id="app-block-bg"> </div>
@@ -90,6 +91,7 @@
     </div>
     <div id="user-block">
 
+
       <div id="ub-main">
         <div id="ub-top" onclick="window.open('user?pers=1', '_self')" class="flex-row">
           <img id="ub-user" src="img/user.svg" alt="img/user.svg">
@@ -118,7 +120,7 @@
           <input style="margin-right: 16px" id="ub-theme-sw" onclick="toggleDarkTheme('ub')" type="checkbox" class="switch">
         </button>
 
-        <button id="ub-logout-btn" class="ub-btn-2 ub-last-btn" onclick="ubWindow('logout-confirm')">
+        <button class="ub-btn-2 ub-last-btn" onclick="ubWindow('logout-confirm')">
           <h4 id="ub-logout" class="ub-btn2-txt">Войти в TenID</h4>
           <i class="ph-caret-right-bold ub-openbtn3"></i>
         </button>
@@ -135,9 +137,9 @@
     </div>
 
     </nav>
-    <div class="hm-content">
+    <div id="hm-content">
 
-      <div id="hm-content-editors-choice">
+      <div id="hm-content-editors-choice" style="display: none">
         <h2 class="hm-card-toptext1">Выбор редакции</h2>
         <div class="hm-card hm-card-wide no-scale">
           <img onclick="showAB(17)" class="hm-card-img" src='img/spotify.jpg'>
@@ -156,13 +158,13 @@
         </div>
       </div>
 
-      <div class="hm-card" onclick="showList('category', 'Связь')">
+      <div class="hm-card" onclick="showList('category', 'Связь')" style="display: none">
         <img class="hm-card-img short-img" src='img/communication.jpg'>
         <h2 class="hm-card-title2">Коммуникация</h2>
         <h4 class="hm-card-text2">Приложения для связи с вашими друзьями и коллегами</h4>
       </div>
 
-      <div class="hm-card" onclick="showList('category', 'Музыка и видео')">
+      <div class="hm-card" onclick="showList('category', 'Музыка и видео')" style="display: none">
         <img class="hm-card-img short-img" src='img/bowie.jpg'>
         <h2 class="hm-card-title2">Музыка</h2>
         <h4 class="hm-card-text2">То, чего не хватает вашим ушам...</h4>

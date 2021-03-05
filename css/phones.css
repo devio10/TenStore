@@ -49,9 +49,13 @@ button {
   bottom: 0;
   border-radius: 0;
   box-shadow: none;
-  height: 48px;
+  height: 56px;
   border: none;
-  border-top: 1px solid var(--gray-mid);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.ui-nav-block {
+  max-width: 300px;
 }
 input[type=text] {
   height: 52px;
