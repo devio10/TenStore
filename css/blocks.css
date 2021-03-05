@@ -26,7 +26,6 @@
   position: fixed;
   top: 60px;
   z-index: 8;
-  display: none;
 }
 .ub-btn-2 {
   width: calc(50% - 32px);
@@ -71,4 +70,5 @@
 }
 #user-block-bg {
   backdrop-filter: blur(20px);
+  display: block;
 }
