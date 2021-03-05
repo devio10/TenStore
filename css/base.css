@@ -310,12 +310,6 @@ html, body {
   background: var(--abs-bg);
   cursor: default;
 }
-#ub-name {
-  margin: auto 24px 4px 0;
-}
-#ub-email {
-  margin: 0 24px auto 0;
-}
 .ub-openbtn {
   margin: auto 16px auto auto;
   font-size: 20px;
@@ -359,9 +353,17 @@ header {
   background: #f5f5f5;
 }
 #ub-user {
-  margin: auto 24px auto 24px;
-  width: 32px;
-  height: 48px;
+  margin: 8px auto;
+  width: 42px;
+  height: 42px;
+}
+#ub-name {
+  margin: 0 auto 4px auto;
+  font-weight: bold;
+}
+#ub-email {
+  margin: 0 auto 0 auto;
+  color: gray;
 }
 #hm-content {
   display: flex;

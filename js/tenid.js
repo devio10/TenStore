@@ -18,6 +18,7 @@ function login() {
             userPhoto='img/user.svg';
           }
           document.getElementById('ub-no-account').style.display='none';
+          document.getElementById('ub-top').style.display='flex';
           document.getElementById('hd-user').src=userPhoto;
           document.getElementById('ub-user').src=userPhoto;
           document.getElementById('ub-name').innerText=userName;
