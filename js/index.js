@@ -6,7 +6,7 @@ function getUrlVars(key) {
   return vars;
 }
 function checkUrlVars() {
-  if (getUrlVars()['ab']!=null) {
+  if (getUrlVars()['id']!=null) {
     showAB(getUrlVars()['id']);
   } else if (getUrlVars()['list']!=null) {
     showList(getUrlVars()['par1'], getUrlVars()['par2'], getUrlVars()['donotToggle'], getUrlVars()['par3'], getUrlVars()['background'], getUrlVars()['font'], getUrlVars()['nameColor'], getUrlVars()['subColor'], getUrlVars()['nameSize']);

@@ -1,3 +1,4 @@
+var loggedIn=false;
 function login() {
   let login=localStorage.getItem('login');
   let password=localStorage.getItem('password');
@@ -11,6 +12,7 @@ function login() {
       if ((loginID.readyState===4) && (loginID.status===200)) {
         let userData=loginID.response;
         if (userData!=null) {
+          loggedIn=true;
           var userEmail=userData.user[0].email;
           var userName=userData.user[0].name+' '+userData.user[0].lastname;
           var userPhoto='https://thetenstore.ru/'+userData.user[0].photo;

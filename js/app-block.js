@@ -10,6 +10,7 @@ var nextscr=1;
 var showFull='<a onclick="toggleDescription()"> Показать полностью...</a>';
 var hideFull='<a onclick="toggleDescription()"> Скрыть</a>';
 var curDescType='short';
+var selectedPlatform;
 function toggleAB () {
  let abBg=document.getElementById('app-block-bg');
  currentAppScreen='index';
@@ -44,7 +45,8 @@ function toggleAB () {
  }
 }
 function showAB(appid) {
-  window.history.pushState(null, null, '?ab=true&id='+appid);
+  selectedPlatform=localStorage.getItem('platform');
+  window.history.pushState(null, null, '?id='+appid);
   toggleAB();
   if (localStorage.getItem('debug')=='true') {
     loadScreen.style.display='none';
@@ -142,6 +144,8 @@ function showAB(appid) {
           }
 
         }
+
+        document.getElementById('ab-download').setAttribute('onclick',"download("+appid+")");
 
         loadScreen.style.display='none';
         indexScreen.style.display='block';
