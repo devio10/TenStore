@@ -1,5 +1,9 @@
 function showList(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize) {
-  window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
+  if (par1!='search') {
+    window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
+  } else {
+    window.history.pushState(null, 'Поиск', '?search='+par2);
+  }
   if (donotToggle!=true) {
     toggleList();
   } else {
@@ -20,6 +24,7 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   listName.style.marginTop='8px';
   listName.style.fontSize='1.5em';
   listName.style.color='var(--text)';
+  listName.style.fontFamily='Roboto';
   document.getElementById('list-subtext').style.color='gray';
 
   if ((background==null)||(background==0)) {
@@ -31,12 +36,13 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
     listHeader.style.backgroundRepeat='no-repeat';
     listHeader.style.backgroundSize='cover';
   }
-
-  if ((font!=null)||(font!=0)) { listName.style.fontFamily=font; }
+  if ((font!=null)||(font!=0)||(font!=undefined)) { listName.style.fontFamily=font; }
   if ((nameColor!=null)||(nameColor!=0)) { listName.style.color=nameColor; }
   if ((nameSize!=null)||(nameSize!=0)) { listName.style.fontSize=nameSize; }
   if ((subColor!=null)||(subColor!=0)) { document.getElementById('list-subtext').style.color=subColor; }
-
+  if (par1=='search') {
+    listName.style.fontFamily='Roboto';
+  }
   var appsList=new XMLHttpRequest();
   var listId;
   if (par1!='search') {
@@ -69,9 +75,9 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
         }
         var listItem=document.createElement('div');
         listItem.className='app-item';
-        listItem.innerHTML="<img class='ai-icon' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
-        <div class='ai-text'> <h5 class='ai-name'>"+listData.apps[i].name+"</h5> <h5 class='ai-dev'>"+listData.apps[i].dev+"</h5> </div> \
-        <i onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ph-info ai-info'></i> <i class='ph-cloud-arrow-down ai-down'></i>"
+        listItem.innerHTML="<img class='ai-icon' onclick='showAB("+listData.apps[i].id+"); toggleList()' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
+        <div class='ai-text'> <h5 onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ai-name'>"+listData.apps[i].name+"</h5> <h5 onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ai-dev'>"+listData.apps[i].dev+"</h5> </div> \
+        <i onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ph-info ai-info'></i> <i onclick='download("+listData.apps[i].id+")' class='ph-cloud-arrow-down ai-down'></i>"
         document.getElementById('list-block').appendChild(listItem);
       }
     }
@@ -121,6 +127,7 @@ function toggleList(isSearch) {
     document.getElementById('list-subtext').innerText='';
     document.getElementById('list-name').innerText='';
     document.getElementById('search-block').style.display='block';
+    document.getElementById('list-header').style.display='none';
   }
 }
 

@@ -6,14 +6,14 @@ function getUrlVars(key) {
   return vars;
 }
 function checkUrlVars() {
+  hideAllBlocks();
   if (getUrlVars()['id']!=null) {
     showAB(getUrlVars()['id']);
   } else if (getUrlVars()['list']!=null) {
     showList(getUrlVars()['par1'], getUrlVars()['par2'], getUrlVars()['donotToggle'], getUrlVars()['par3'], getUrlVars()['background'], getUrlVars()['font'], getUrlVars()['nameColor'], getUrlVars()['subColor'], getUrlVars()['nameSize']);
   } else if (getUrlVars()['search']!=null) {
     toggleList(true);
-  } else {
-
+    showList('search', getUrlVars()['search'], true);
   }
 }
 
@@ -29,4 +29,15 @@ function loadCards() {
 
     }
   });
+}
+function hideAllBlocks () {
+  if (ab.style.display=='block') {
+    toggleAB();
+  }
+  if (list.style.display=='block') {
+    toggleList();
+  }
+  if (ubObj.style.display=='block') {
+    toggleUB();
+  }
 }

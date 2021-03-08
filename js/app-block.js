@@ -10,7 +10,7 @@ var nextscr=1;
 var showFull='<a onclick="toggleDescription()"> Показать полностью...</a>';
 var hideFull='<a onclick="toggleDescription()"> Скрыть</a>';
 var curDescType='short';
-var selectedPlatform;
+var selectedPlatform=localStorage.getItem('platform');
 function toggleAB () {
  let abBg=document.getElementById('app-block-bg');
  currentAppScreen='index';
@@ -67,6 +67,10 @@ function showAB(appid) {
           abIcon.style.width='80px';
           abIcon.style.height='80px';
           abIcon.style.padding='10px';
+        } else {
+          abIcon.style.width='100px';
+          abIcon.style.height='100px';
+          abIcon.style.padding='0';
         }
         let abIconBg;
         if (appData.apps[0].icon_bg==0) {
@@ -77,7 +81,11 @@ function showAB(appid) {
         abIcon.style.background=abIconBg;
         shortDescription=appData.apps[0].descr.split('<p>');
         longDescription=appData.apps[0].descr;
-        document.getElementById('ab-desc').innerHTML=shortDescription[0]+showFull;
+        if (shortDescription[0]==longDescription) {
+          document.getElementById('ab-desc').innerHTML=shortDescription[0];
+        } else {
+          document.getElementById('ab-desc').innerHTML=shortDescription[0]+showFull;
+        }
         document.getElementById('ab-name').innerText=appData.apps[0].name;
         document.getElementById('ab-short-desc').innerText=appData.apps[0].dev; // TODO: добавить сюда краткое описание
         let abHeader=document.getElementById('ab-header');
@@ -99,7 +107,7 @@ function showAB(appid) {
         document.getElementById('nav-next').disabled=false;
         curscr=0;
         let scrsData=appData.apps[0].screenshots;
-        if ((scrsData!='[]')||(scrsData!=0)) {
+        if ((scrsData!='[]')||(scrsData!='')) {
           var screenshots=JSON.parse(scrsData);
           for(let s in screenshots.scr) {
             lastscr=s;
@@ -144,7 +152,11 @@ function showAB(appid) {
           }
 
         }
-
+        if ((appData.apps[0].files=='')||(appData.apps[0].files=='[]')) {
+          document.getElementById('ab-download').disabled=true;
+          document.getElementById('ab-platform-select').style.display='none';
+          document.getElementById('ab-platform').style.display='none';
+        }
         document.getElementById('ab-download').setAttribute('onclick',"download("+appid+")");
 
         loadScreen.style.display='none';

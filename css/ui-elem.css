@@ -38,6 +38,10 @@ button {
 button:focus {
   outline: none;
 }
+button:disabled {
+  cursor: not-allowed;
+  background: gray;
+}
 
 /* разделитель */
 hr {
