@@ -121,6 +121,28 @@ function showAB(appid) {
           }
         }
 
+        let revJson=appData.apps[0].comments;
+        if (revJson!=0) {
+        const revs=JSON.parse(revJson);
+          for(let c in revs.comments) {
+            var reviewObj=document.createElement('div');
+
+            if (revs.comments[c].isLiked=='1') {
+              reviewObj.className='ab-review rev-pos';
+            } else {
+              reviewObj.className='ab-review rev-neg';
+            }
+
+            reviewObj.innerHTML="<h3 class='rev-title'>"+revs.comments[c].title+"</h3> \
+            <h5 class='rev-text'>"+revs.comments[c].comment+"</h5> \
+            <h5 class='rev-author'>от пользователя "+revs.comments[c].login+"</h5>";
+            document.getElementById('ab-reviews').appendChild(reviewObj);
+            document.getElementById('ab-no-reviews').style.display='none';
+
+          }
+
+        }
+
         loadScreen.style.display='none';
         indexScreen.style.display='block';
       }

@@ -6,14 +6,14 @@ function getUrlVars(key) {
   return vars;
 }
 function checkUrlVars() {
-  if (getUrlVars()['app']!=null) {
+  if (getUrlVars()['ab']!=null) {
     showAB(getUrlVars()['id']);
   } else if (getUrlVars()['list']!=null) {
     showList(getUrlVars()['par1'], getUrlVars()['par2'], getUrlVars()['donotToggle'], getUrlVars()['par3'], getUrlVars()['background'], getUrlVars()['font'], getUrlVars()['nameColor'], getUrlVars()['subColor'], getUrlVars()['nameSize']);
   } else if (getUrlVars()['search']!=null) {
     toggleList(true);
   } else {
-    
+
   }
 }
 
