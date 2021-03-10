@@ -75,7 +75,7 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
         }
         var listItem=document.createElement('div');
         listItem.className='app-item';
-        listItem.innerHTML="<img class='ai-icon' onclick='showAB("+listData.apps[i].id+"); toggleList()' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
+        listItem.innerHTML="<img class='ai-icon' onclick='toggleList(); showAB("+listData.apps[i].id+")' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
         <div class='ai-text'> <h5 onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ai-name'>"+listData.apps[i].name+"</h5> <h5 onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ai-dev'>"+listData.apps[i].dev+"</h5> </div> \
         <i onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ph-info ai-info'></i> <i onclick='download("+listData.apps[i].id+")' class='ph-cloud-arrow-down ai-down'></i>"
         document.getElementById('list-block').appendChild(listItem);
