@@ -246,3 +246,10 @@ function switchScreenshot(action) {
   }
   curscr=nextscr;
 }
+
+function platforms() {
+  let psBlock=document.getElementById('ab-platforms');
+  if (psBlock.style.display=='flex') {
+    psBlock.style.display='none';
+  }
+}

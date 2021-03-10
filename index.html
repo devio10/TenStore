@@ -2,7 +2,7 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>TenStore</title>
+    <title>TENSTORE</title>
     <link rel="stylesheet" href="css/ui-elem.css">
     <link rel="stylesheet" href="css/ui-switch.css">
     <link rel="stylesheet" href="css/base.css">
@@ -250,8 +250,15 @@
         </div>
         <div class="flex-row">
           <button id="ab-download" onclick='download(17, "Windows")'>Скачать</button>
-          <h5 id="ab-platform" class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 8px 0 0 ">Windows 10</h5>
-          <i id="ab-platform-select" class="hm-card-compatibility ph-caret-down-bold"></i>
+          <h5 id="ab-platform" onclick="platforms()" class="hm-card-smalltext">platform</h5>
+          <i id="ab-platform-select" onclick="platforms()" class="hm-card-compatibility ph-caret-down-bold"></i>
+        </div>
+        <div id="ab-platforms">
+          <div class="platform-check selected">Windows 10 (x64_86)</div>
+          <div class="platform-check">Windows (x32)</div>
+          <div class="platform-check">Windows (x32)</div>
+          <div class="platform-check">Windows (x32)</div>
+          <div class="platform-check">Windows (x32)</div>
         </div>
         <hr class="ab-hr">
         <h5 id="ab-desc"></h5>

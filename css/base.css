@@ -102,6 +102,38 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+#ab-platform {
+  margin: 0 8px 0 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+#ab-platform-select {
+  cursor: pointer;
+}
+#ab-platforms {
+  margin: 0 16px 8px 16px;
+  display: flex;
+  width: calc(100% - 32px);
+  flex-wrap: wrap;
+  display: none;
+}
+.platform-check {
+  width: auto;
+  height: auto;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 2px solid var(--accent);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+.platform-check.selected {
+  background: var(--accent);
+  color: white;
+}
 #ab-header, #list-header {
   width: 100%;
   height: 180px;
