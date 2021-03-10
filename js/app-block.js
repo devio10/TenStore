@@ -11,6 +11,7 @@ var showFull='<a onclick="toggleDescription()"> Показать полност�
 var hideFull='<a onclick="toggleDescription()"> Скрыть</a>';
 var curDescType='short';
 var selectedPlatform=localStorage.getItem('platform');
+let selectedFile;
 function toggleAB () {
  let abBg=document.getElementById('app-block-bg');
  currentAppScreen='index';
@@ -131,6 +132,7 @@ function showAB(appid) {
           }
         }
 
+        document.getElementById('ab-reviews').innerHTML='';
         let revJson=appData.apps[0].comments;
         if (revJson!=0) {
         const revs=JSON.parse(revJson);
@@ -152,7 +154,25 @@ function showAB(appid) {
           }
 
         }
-        if ((appData.apps[0].files=='')||(appData.apps[0].files=='[]')) {
+        document.getElementById('ab-platforms').innerHTML='';
+        if ((appData.apps[0].files!='')||(appData.apps[0].files!='[]')) {
+          let psJson=JSON.parse(appData.apps[0].files);
+          for (var i = 0; i < psJson.files.length; i++) {
+            let psItem=document.createElement('div');
+            let psBlock;
+            if (psJson.files[i].platform==selectedPlatform) {
+              psItem.className='platform-check selected';
+              selectedFile=psJson.files[i].file;
+              document.getElementById('ab-platform').innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+            } else {
+              psItem.className='platform-check';
+            }
+            psItem.innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+            psItem.setAttribute('onclick','selectPlatform("'+psJson.files[i].platform+'", "'+psJson.files[i].file+'", "'+psJson.files[i].architecture+'")');
+            psItem.id='ps-'+psJson.files[i].platform+'-'+psJson.files[i].architecture;
+            document.getElementById('ab-platforms').appendChild(psItem);
+          }
+        } else {
           document.getElementById('ab-download').disabled=true;
           document.getElementById('ab-platform-select').style.display='none';
           document.getElementById('ab-platform').style.display='none';
@@ -166,6 +186,19 @@ function showAB(appid) {
   });
   appBlock.send(appId);
 }
+function selectPlatform(psName, fileName, psArc) {
+  const highlightedItems=document.querySelectorAll(".platform-check");
+  highlightedItems.forEach(function(userItem) {
+    hiId=userItem.id;
+    document.getElementById(hiId).className='platform-check';
+  });
+  document.getElementById('ps-'+psName+'-'+psArc).className='platform-check selected';
+  selectedFile=fileName;
+  document.getElementById('ab-platform').innerText=psName+' ('+psArc+')';
+
+  platforms();
+}
+
 
 function toggleDescription() {
   if (curDescType=='long') {
@@ -249,7 +282,12 @@ function switchScreenshot(action) {
 
 function platforms() {
   let psBlock=document.getElementById('ab-platforms');
+  let psIcon=document.getElementById('ab-platform-select');
   if (psBlock.style.display=='flex') {
     psBlock.style.display='none';
+    psIcon.className='hm-card-compatibility ph-caret-down-bold';
+  } else {
+    psBlock.style.display='flex';
+    psIcon.className='hm-card-compatibility ph-caret-up-bold';
   }
 }

@@ -27,14 +27,17 @@ function checkTheme () {
     document.getElementById('ub-theme-sw').checked=true;
     document.getElementById('s-theme-sw').checked=true;
     document.getElementById('adt-help').style.display='block';
+    document.getElementById('tab-icon').href='img/store-dark.svg';
   } else if (localStorage.getItem('autoDarkTheme')!='false') {
     document.getElementById('ub-theme-sw').checked=false;
     document.getElementById('s-theme-sw').checked=false;
     document.getElementById('adt-help').style.display='block';
+    document.getElementById('tab-icon').href='img/store-light.svg';
   } else if (currentTheme=='true') {
     document.documentElement.setAttribute('dark-theme', 'true');
     document.getElementById('ub-theme-sw').checked=true;
     document.getElementById('s-theme-sw').checked=true;
+    document.getElementById('tab-icon').href='img/store-dark.svg';
   }
 }
 

@@ -249,7 +249,7 @@ html, body {
   font-weight: bolder;
   margin: 16px;
 }
-.ab-back {
+.ab-back, .ab-qr {
   position: sticky;
   margin: 16px;
   border-radius: 100%;
@@ -259,6 +259,10 @@ html, body {
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+.ab-qr {
+  margin: 16px 16px 16px auto;
 }
 .ab-back-icon {
   color: black;

@@ -13,7 +13,7 @@ function download (appid) {
           ddFiles=JSON.parse(ddFiles);
           for(let i=0; i<ddFiles.files.length; i++) {
 
-            if (ddFiles.files[i].platform==selectedPlatform) {
+            if (ddFiles.files[i].file==selectedFile) {
               if (ddFiles.files[i].file.includes('http')==true) {
                 window.open(ddFiles.files[i].file);
               } else {

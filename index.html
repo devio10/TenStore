@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>TENSTORE</title>
-    <link id="tab-icon" rel="shortcut icon">
+    <link id="tab-icon" rel="shortcut icon" href="img/store-light.svg">
     <link rel="stylesheet" href="css/ui-elem.css">
     <link rel="stylesheet" href="css/ui-switch.css">
     <link rel="stylesheet" href="css/base.css">
@@ -223,8 +223,6 @@
       </div>
 
     </div>
-
-
     <div class="hm-bottom-loading">
       <div class="ui-loading-wheel"> </div>
       <h5 class="ui-gray">Контент загружается</h5>
@@ -233,9 +231,11 @@
 
     <!-- БЛОК ПРИЛОЖЕНИЯ -->
     <div id="app-block">
-      <div onclick="abBack()" class="ab-back">
-        <i class="ph-caret-left-bold ab-back-icon pointer"></i>
+      <div class="flex-row">
+        <div onclick="abBack()" class="ab-back"> <i class="ph-caret-left-bold ab-back-icon"></i> </div>
+        <div onclick="abQR()" class="ab-qr"> <i class="ph-qr-code-bold ab-back-icon"></i> </div>
       </div>
+
       <div id="ab-loading" style="display: none">
         <div class="ab-loading-block">
           <div class="ui-loading-wheel"> </div>
@@ -257,11 +257,7 @@
           <i id="ab-platform-select" onclick="platforms()" class="hm-card-compatibility ph-caret-down-bold"></i>
         </div>
         <div id="ab-platforms">
-          <div class="platform-check selected">Windows 10 (x64_86)</div>
-          <div class="platform-check">Windows (x32)</div>
-          <div class="platform-check">Windows (x32)</div>
-          <div class="platform-check">Windows (x32)</div>
-          <div class="platform-check">Windows (x32)</div>
+          <div class="platform-check">test platform</div>
         </div>
         <hr class="ab-hr">
         <h5 id="ab-desc"></h5>
