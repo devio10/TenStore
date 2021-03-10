@@ -494,6 +494,6 @@ button.wide {
   text-overflow: ellipsis;
 }
 
-#s-theme:disabled, #ub-theme:disabled {
+#ub-theme:disabled, #s-theme:disabled, #s-adt:disabled {
   background: var(--abs-bg);
 }

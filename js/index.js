@@ -41,3 +41,21 @@ function hideAllBlocks () {
     toggleUB();
   }
 }
+
+function checkPars() {
+  if (localStorage.getItem('autoDarkTheme')=='false') {
+    console.log('mmm');
+    document.getElementById('s-adt-sw').checked=false;
+  }
+}
+function toggleADT() {
+  curADT=localStorage.getItem('autoDarkTheme');
+  if (curADT=='false') {
+    localStorage.setItem('autoDarkTheme', 'true');
+    document.getElementById('adt-help').style.display='block';
+  } else {
+    localStorage.setItem('autoDarkTheme', 'false');
+    document.getElementById('adt-help').style.display='none';
+  }
+  checkTheme();
+}
