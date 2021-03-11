@@ -1531,3 +1531,21 @@ textarea {
   background: linear-gradient(144deg, rgba(135,147,217,1) 0%, rgba(135,147,217,1) 50%, rgba(135,147,217,1) 100%);
   transform: translateY(-2px);
 }
+.btn-3rd {
+	width: auto;
+	height: auto;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 24px;
+	padding-right: 24px;
+	margin: 16px auto 0 32px;
+	border: none;
+	background: #1565c0;
+	color: white;
+	text-transform: none;
+	border-radius: 8px;
+	font-size: 13px;
+}
+.btn-3rd:hover, .btn-3rd:focus, .btn-3rd:active {
+	background: #1565c0;
+}
