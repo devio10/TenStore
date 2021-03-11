@@ -129,6 +129,12 @@ html, body {
   border: 2px solid var(--accent);
   margin-right: 8px;
   margin-bottom: 8px;
+  transition: .3s;
+  cursor: pointer;
+  user-select: none;
+}
+.platform-check:hover, .platform-check:focus {
+  border: 2px solid var(--accent-light);
 }
 .platform-check.selected {
   background: var(--accent);
