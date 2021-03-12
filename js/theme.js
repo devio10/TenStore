@@ -22,6 +22,11 @@ function toggleDarkTheme (place) {
 
 const userPrefersDark=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 function checkTheme () {
+  if (userPrefersDark) {
+    document.getElementById('tab-icon').href='img/store-dark.svg';
+  } else {
+    document.getElementById('tab-icon').href='img/store-light.svg';
+  }
   if ((localStorage.getItem('autoDarkTheme')!='false')&&(userPrefersDark)) {
     document.documentElement.setAttribute('dark-theme', 'true');
     document.getElementById('ub-theme-sw').checked=true;

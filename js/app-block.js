@@ -45,9 +45,11 @@ function toggleAB () {
    body.style.overflow='none';
  }
 }
-function showAB(appid) {
+function showAB(appid, dontPushHistory) {
   selectedPlatform=localStorage.getItem('platform');
-  window.history.pushState(null, null, '?id='+appid);
+  if (dontPushHistory!=true) {
+    window.history.pushState(null, null, '?id='+appid);
+  }
   toggleAB();
   if (localStorage.getItem('debug')=='true') {
     loadScreen.style.display='none';

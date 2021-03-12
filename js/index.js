@@ -8,12 +8,18 @@ function getUrlVars(key) {
 function checkUrlVars() {
   hideAllBlocks();
   if (getUrlVars()['id']!=null) {
-    showAB(getUrlVars()['id']);
+    showAB(getUrlVars()['id'], true);
   } else if (getUrlVars()['list']!=null) {
-    showList(getUrlVars()['par1'], getUrlVars()['par2'], getUrlVars()['donotToggle'], getUrlVars()['par3'], getUrlVars()['background'], getUrlVars()['font'], getUrlVars()['nameColor'], getUrlVars()['subColor'], getUrlVars()['nameSize']);
+    showList(getUrlVars()['par1'], getUrlVars()['par2'], getUrlVars()['donotToggle'], getUrlVars()['par3'], getUrlVars()['background'], getUrlVars()['font'], getUrlVars()['nameColor'], getUrlVars()['subColor'], getUrlVars()['nameSize'], true);
   } else if (getUrlVars()['search']!=null) {
-    toggleList(true);
+    toggleList(true, true);
     showList('search', getUrlVars()['search'], true);
+  } else if (getUrlVars()['block']=='search') {
+    toggleList(true);
+  } else if (getUrlVars()['block']=='user') {
+    toggleUB(true);
+  } else if (getUrlVars()['block']=='settings') {
+    toggleSettings(true);
   }
 }
 
@@ -39,6 +45,9 @@ function hideAllBlocks () {
   }
   if (ubObj.style.display=='block') {
     toggleUB();
+  }
+  if (setObj.style.display=='block') {
+    toggleSettings();
   }
 }
 

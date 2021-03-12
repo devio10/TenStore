@@ -1,9 +1,12 @@
-function showList(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize) {
-  if (par1!='search') {
-    window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
-  } else {
-    window.history.pushState(null, 'Поиск', '?search='+par2);
+function showList(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize , dontPushHistory) {
+  if (dontPushHistory!=true) {
+    if (par1!='search') {
+      window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
+    } else {
+      window.history.pushState(null, 'Поиск', '?search='+par2);
+    }
   }
+
   if (donotToggle!=true) {
     toggleList();
   } else {
@@ -88,7 +91,7 @@ let currentListScreen;
 var list=document.getElementById('list');
 var loadScrn=document.getElementById('list-loading');
 var mainScrn=document.getElementById('list-main');
-function toggleList(isSearch) {
+function toggleList(isSearch, dontPushHistory) {
   document.getElementById('search-block').style.display='none';
   let listBg=document.getElementById('list-block-bg');
   currentListScreen='index';
@@ -128,6 +131,9 @@ function toggleList(isSearch) {
     document.getElementById('list-name').innerText='';
     document.getElementById('search-block').style.display='block';
     document.getElementById('list-header').style.display='none';
+    if (dontPushHistory!=true) {
+      window.history.pushState(null, 'TENSTORE', '?block=search');
+    }
   }
 }
 

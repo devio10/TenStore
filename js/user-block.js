@@ -2,7 +2,7 @@ var ubObj=document.getElementById('user-block');
 var setBgObj=document.getElementById('set-block-bg');
 var setObj=document.getElementById('settings-block');
 
-function toggleUB() {
+function toggleUB(dontPushHistory) {
 
   let ubBgObj=document.getElementById('user-block-bg');
   let hideubObj=document.getElementById('hide-ub');
@@ -23,11 +23,15 @@ function toggleUB() {
     }
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
+    window.history.pushState(null, 'TenStore', '?');
   } else {
     ubWindow('main');
     toggleScrolling('remove');
     ubBgObj.style.display='block';
     ubObj.style.display='block';
+    if (dontPushHistory!=true) {
+      window.history.pushState(null, 'TENSTORE', '?block=user');
+    }
   }
 
 }
@@ -66,7 +70,7 @@ function ubWindow(windowName) {
 
 
 
-function toggleSettings() {
+function toggleSettings(dontPushHistory) {
 
   if (setBgObj.style.display=='block') {
     setTimeout(function () {
@@ -84,11 +88,15 @@ function toggleSettings() {
     }
     setObj.style.opacity='.4';
     setBgObj.style.opacity='.1';
+    window.history.pushState(null, 'TenStore', '?');
   } else {
     ubWindow('main');
     toggleScrolling('remove');
     setBgObj.style.display='block';
     setObj.style.display='block';
+    if (dontPushHistory!=true) {
+      window.history.pushState(null, 'TENSTORE', '?block=settings');
+    }
   }
 
 }
