@@ -81,3 +81,15 @@ input[type=text] {
   width: calc(100% - 32px);
   margin: 60px 0 16px 0;
 }
+.ab-si-scroll {
+  overflow-x: auto;
+}
+.ab-shortinfo {
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0;
+}
+.ab-shortinfo .ab-si-item:first-child {
+  margin-left: 16px;
+}

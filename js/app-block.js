@@ -166,11 +166,12 @@ function showAB(appid, dontPushHistory) {
               psItem.className='platform-check selected';
               selectedFile=psJson.files[i].file;
               document.getElementById('ab-platform').innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+              document.getElementById('si-size').innerText=psJson.files[i].size+' МБ';
             } else {
               psItem.className='platform-check';
             }
             psItem.innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
-            psItem.setAttribute('onclick','selectPlatform("'+psJson.files[i].platform+'", "'+psJson.files[i].file+'", "'+psJson.files[i].architecture+'")');
+            psItem.setAttribute('onclick','selectPlatform("'+psJson.files[i].platform+'", "'+psJson.files[i].file+'", "'+psJson.files[i].architecture+'", "'+psJson.files[i].size+'")');
             psItem.id='ps-'+psJson.files[i].platform+'-'+psJson.files[i].architecture;
             document.getElementById('ab-platforms').appendChild(psItem);
           }
@@ -179,6 +180,12 @@ function showAB(appid, dontPushHistory) {
           document.getElementById('ab-platform-select').style.display='none';
           document.getElementById('ab-platform').style.display='none';
         }
+        document.getElementById('si-pos').innerText=appData.apps[0].liked;
+        document.getElementById('si-neg').innerText=appData.apps[0].disliked;
+        document.getElementById('si-rating').innerText=appData.apps[0].agelimit;
+        document.getElementById('si-dev-name').innerText=appData.apps[0].dev;
+        document.getElementById('si-downloads').innerText=appData.apps[0].downloads;
+
         document.getElementById('ab-download').setAttribute('onclick',"download("+appid+")");
 
         loadScreen.style.display='none';
@@ -188,7 +195,7 @@ function showAB(appid, dontPushHistory) {
   });
   appBlock.send(appId);
 }
-function selectPlatform(psName, fileName, psArc) {
+function selectPlatform(psName, fileName, psArc, psSize) {
   const highlightedItems=document.querySelectorAll(".platform-check");
   highlightedItems.forEach(function(userItem) {
     hiId=userItem.id;
@@ -197,6 +204,7 @@ function selectPlatform(psName, fileName, psArc) {
   document.getElementById('ps-'+psName+'-'+psArc).className='platform-check selected';
   selectedFile=fileName;
   document.getElementById('ab-platform').innerText=psName+' ('+psArc+')';
+  document.getElementById('si-size').innerText=psSize+' МБ';
 
   platforms();
 }
