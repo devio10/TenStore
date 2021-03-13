@@ -68,3 +68,21 @@ function toggleADT() {
   }
   checkTheme();
 }
+
+function hmContent(page) {
+  document.getElementById('hm-index').style.display='none';
+  document.getElementById('hm-apps').style.display='none';
+  document.getElementById('hm-games').style.display='none';
+  document.getElementById('hm-'+page).style.display='flex';
+
+  let iconClass;
+  if (page=='index') { iconClass='house' }
+  else if (page=='apps') { iconClass='squares-four' }
+  else if (page=='games') { iconClass='game-controller' }
+
+  document.getElementById('nav-index').classList='ph-house ui-nav-icon';
+  document.getElementById('nav-apps').classList='ph-squares-four ui-nav-icon';
+  document.getElementById('nav-games').classList='ph-game-controller ui-nav-icon';
+
+  document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon active';
+}

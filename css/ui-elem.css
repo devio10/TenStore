@@ -115,7 +115,7 @@ img {
 .ui-nav-item:active {
   background: var(--nav-bg-active);
 }
-.ui-nav-active {
+.ui-nav-icon.active {
   color: var(--accent);
 }
 

@@ -28,21 +28,17 @@
 
     <nav class="ui-nav">
       <div class="ui-nav-block">
-        <a class="ui-nav-item">
-  		    <i class="ph-house-fill ui-nav-icon ui-nav-active"></i>
-  		    <span class="ui-nav-name ui-nav-active">Главная</span>
+        <a class="ui-nav-item" onclick='hmContent("index")'>
+  		    <i class="ph-house-fill ui-nav-icon active" id="nav-index"></i>
   		  </a>
-        <a onclick="toggleList(true)" class="ui-nav-item">
+  		  <a class="ui-nav-item" onclick='hmContent("apps")'>
+  		    <i class="ph-squares-four ui-nav-icon" id="nav-apps"></i>
+  		  </a>
+  		  <a class="ui-nav-item" onclick='hmContent("games")'>
+  		    <i class="ph-game-controller ui-nav-icon" id="nav-games"></i>
+  		  </a>
+        <a class="ui-nav-item" onclick="toggleList(true)">
   		    <i class="ph-magnifying-glass ui-nav-icon"></i>
-  		    <span class="ui-nav-name">Поиск</span>
-  		  </a>
-  		  <a class="ui-nav-item">
-  		    <i class="ph-squares-four ui-nav-icon"></i>
-  		    <span class="ui-nav-name">Приложения</span>
-  		  </a>
-  		  <a class="ui-nav-item">
-  		    <i class="ph-game-controller ui-nav-icon"></i>
-  		    <span class="ui-nav-name">Игры</span>
   		  </a>
       </div>
 		</nav>
@@ -156,10 +152,10 @@
       </div>
     </div>
 
-    <div id="hm-content">
+    <div class="hm-content" id="hm-index">
 
       <div id="hm-content-editors-choice">
-        <h3 class="hm-card-toptext1">Выбор редакции</h3>
+        <h4 class="hm-card-toptext1">Выбор редакции</h4>
         <div class="hm-card hm-card-wide no-scale">
           <img onclick="showAB(17)" class="hm-card-img" src='img/spotify.jpg'>
           <div class="flex-row">
@@ -170,13 +166,13 @@
           <h4 class="hm-card-text">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
              создания плейлистов и поиска новых песен.</h4>
           <div class="flex-row">
-            <button style="background: #2f3462" onclick="showAB(17)">Скачать</button>
+            <button style="background: #2f3462" onclick="download(17)">Скачать</button>
             <i class="hm-card-compatibility ph-check-bold"></i>
             <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">совместимо с вашим устройством</h5>
           </div>
         </div>
       </div>
-
+      <h4 class="hm-card-toptext1" style="width: 100%">Популярные категории</h4>
       <div style="background: #e0719e" class="hm-card" onclick="showList('category', 'Связь', false, 'Приложения для связи с вашими друзьями и коллегами', 'images/backgrounds/networking.png', 'Oswald', '#e0719e', '')">
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@541&display=swap');
@@ -197,6 +193,7 @@
       </div>
 
       <div id="hm-content-telegram">
+        <h4 class="hm-card-toptext1">Популярное приложение</h4>
         <div class="hm-card hm-card-wide no-scale">
           <img onclick="showAB(12)" class="hm-card-img" src='https://thetenstore.ru/images/appTitles/telegram.jpg'>
           <div class="flex-row">
@@ -209,21 +206,56 @@
             скачиваемых приложений в мире, им пользуются более 500 миллионов
             человек.</h4>
           <div class="flex-row">
-            <button onclick="showAB(12)">Скачать</button>
+            <button onclick="download(12)">Скачать</button>
             <i class="hm-card-compatibility ph-check-bold"></i>
             <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">совместимо с вашим устройством</h5>
           </div>
         </div>
       </div>
-
+      <h4 class="hm-card-toptext1" style="width: 100%">Блог</h4>
       <div style="background: #a5e3ee" class="hm-card" onclick="showList('list', 'popular', false, 'Охуенные приложения и игры, которые сейчас в моде', 'images/backgrounds/popular.jpg', '', '', '', '')">
-        <img style="height: 300px" class="hm-card-img short-img" src='https:/thetenstore.ru/images/backgrounds/popular.jpg'>
+        <img style="height: 300px" class="hm-card-img short-img" src='https://thetenstore.ru/images/backgrounds/popular.jpg'>
         <h5 style="color: black" class="hm-card-smalltext">Блог для разработчиков</h5>
         <h2 style="color: black" class="hm-card-title2">Как сделать правильную иконку</h2>
-        <h4 style="color: black" class="hm-card-text2">Охуенные приложения и игры, которые сейчас в моде</h4>
+        <h4 style="color: black" class="hm-card-text2"></h4>
       </div>
 
     </div>
+
+    <div class="hm-content" id="hm-apps">
+
+        <div>
+          <h4 class="hm-card-toptext1">Мы рекомендуем</h4>
+          <div class="hm-card hm-card-wide no-scale">
+            <img onclick="showAB(1)" class="hm-card-img" src='https://thetenstore.ru/images/headers/musicx.jpg'>
+            <div class="flex-row">
+              <h5 class="hm-card-smalltext">Музыка ВКонтакте</h5>
+              <h5 class="hm-card-smalltext hm-card-smtxt-right">16+</h5>
+            </div>
+            <h2 class="hm-card-title">Music X</h2>
+            <h4 class="hm-card-text">Music X — удобный и функциональный музыкальный плеер.</h4>
+            <div class="flex-row">
+              <button onclick="download(1)">Скачать</button>
+              <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">только для Windows 10</h5>
+            </div>
+          </div>
+
+          <h4 class="hm-card-toptext1" style="width: 100%">Подборки</h4>
+          <div style="background: rgb(17,20,25)" class="hm-card">
+            <img style="height: 300px" class="hm-card-img short-img" src='https://thetenstore.ru/img/picks/jscode.jfif'>
+            <h5 style="color: white" class="hm-card-smalltext">Создание сайтов</h5>
+            <h2 style="color: white" class="hm-card-title2">Всё для веб разработки</h2>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="hm-content" id="hm-games">
+      <div class="hm-bottom-loading">
+        <h5 class="ui-gray">Не удалось загрузить контент</h5>
+      </div>
+    </div>
+
     <div class="hm-bottom-loading">
       <div class="ui-loading-wheel"> </div>
       <h5 class="ui-gray">Контент загружается</h5>

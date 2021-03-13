@@ -241,13 +241,6 @@ header {
   margin: 0 auto 0 auto;
   color: gray;
 }
-#hm-content {
-  display: flex;
-  box-sizing: border-box;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 
 .regular-font {
   font-weight: 400;
