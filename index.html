@@ -32,13 +32,13 @@
   		    <i class="ph-house-fill ui-nav-icon active" id="nav-index"></i>
   		  </a>
   		  <a class="ui-nav-item" onclick='hmContent("apps")'>
-  		    <i class="ph-squares-four ui-nav-icon" id="nav-apps"></i>
+  		    <i class="ph-squares-four-light ui-nav-icon" id="nav-apps"></i>
   		  </a>
   		  <a class="ui-nav-item" onclick='hmContent("games")'>
-  		    <i class="ph-game-controller ui-nav-icon" id="nav-games"></i>
+  		    <i class="ph-game-controller-light ui-nav-icon" id="nav-games"></i>
   		  </a>
         <a class="ui-nav-item" onclick="toggleList(true)">
-  		    <i class="ph-magnifying-glass ui-nav-icon"></i>
+  		    <i class="ph-magnifying-glass-light ui-nav-icon"></i>
   		  </a>
       </div>
 		</nav>
@@ -173,7 +173,7 @@
         </div>
       </div>
       <h4 class="hm-card-toptext1" style="width: 100%">Популярные категории</h4>
-      <div style="background: #e0719e" class="hm-card" onclick="showList('category', 'Связь', false, 'Приложения для связи с вашими друзьями и коллегами', 'images/backgrounds/networking.png', 'Oswald', '#e0719e', '')">
+      <div style="background: #e0719e" class="hm-card" onclick="showList('category', 'Социальные сети', false, 'Приложения для связи с вашими друзьями и коллегами', 'images/backgrounds/networking.png', 'Oswald', '#e0719e', '')">
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@541&display=swap');
         </style>
@@ -182,7 +182,7 @@
         <h4 style="color: #f3f6e6" class="hm-card-text2">Приложения для связи с вашими друзьями и коллегами</h4>
       </div>
 
-      <div style="background: #574730" class="hm-card" onclick="showList('category', 'Музыка и видео', false, 'То, чего не хватает вашим ушам...', '3rd/img/music.png', 'Amatic SC', '#574730', '', '50px')">
+      <div style="background: #574730" class="hm-card" onclick="showList('category', 'Музыка', false, 'То, чего не хватает вашим ушам...', '3rd/img/music.png', 'Amatic SC', '#574730', '', '50px')">
 
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
@@ -251,7 +251,8 @@
     </div>
 
     <div class="hm-content" id="hm-games">
-      <div class="hm-bottom-loading">
+      <div class="hm-bottom-loading" style="display: flex">
+        <i class="ph-prohibit" style="font-size: 36px; color: gray"></i>
         <h5 class="ui-gray">Не удалось загрузить контент</h5>
       </div>
     </div>
@@ -365,7 +366,8 @@
         <h5 id="list-subtext"></h5>
         <input type="text" placeholder="Поиск" id="list-search">
         <div id="search-block">
-
+          <i class="ph-file-search-thin" style="font-size: 36px; color: gray"></i>
+          <h5 class="ui-gray">Ваша история поиска будет здесь</h5>
         </div>
         <div id="list-block">
           <div class='app-item' style="display: none">

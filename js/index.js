@@ -80,9 +80,9 @@ function hmContent(page) {
   else if (page=='apps') { iconClass='squares-four' }
   else if (page=='games') { iconClass='game-controller' }
 
-  document.getElementById('nav-index').classList='ph-house ui-nav-icon';
-  document.getElementById('nav-apps').classList='ph-squares-four ui-nav-icon';
-  document.getElementById('nav-games').classList='ph-game-controller ui-nav-icon';
+  document.getElementById('nav-index').classList='ph-house-light ui-nav-icon';
+  document.getElementById('nav-apps').classList='ph-squares-four-light ui-nav-icon';
+  document.getElementById('nav-games').classList='ph-game-controller-light ui-nav-icon';
 
   document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon active';
 }

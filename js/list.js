@@ -19,6 +19,10 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   }
   let listName=document.getElementById('list-name');
   let listHeader=document.getElementById('list-header');
+  document.getElementById('list-subtext').style.display='block';
+  document.getElementById('list-name').style.display='block';
+  document.getElementById('list-search').style.marginTop='8px';
+  document.getElementById('list-block').style.display='flex';
 
   document.getElementById('list-block').innerHTML='';
   document.getElementById('list-subtext').innerText=par3;
@@ -45,6 +49,7 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   if ((subColor!=null)||(subColor!=0)) { document.getElementById('list-subtext').style.color=subColor; }
   if (par1=='search') {
     listName.style.fontFamily='Roboto';
+    document.getElementById('search-block').style.display='none';
   }
   var appsList=new XMLHttpRequest();
   var listId;
@@ -127,10 +132,12 @@ function toggleList(isSearch, dontPushHistory) {
   if (isSearch==true) {
     loadScrn.style.display='none';
     mainScrn.style.display='block';
-    document.getElementById('list-subtext').innerText='';
-    document.getElementById('list-name').innerText='';
-    document.getElementById('search-block').style.display='block';
+    document.getElementById('list-subtext').style.display='none';
+    document.getElementById('list-name').style.display='none';
+    document.getElementById('search-block').style.display='flex';
     document.getElementById('list-header').style.display='none';
+    document.getElementById('list-search').style.marginTop='60px';
+    document.getElementById('list-block').style.display='none';
     if (dontPushHistory!=true) {
       window.history.pushState(null, 'TENSTORE', '?block=search');
     }

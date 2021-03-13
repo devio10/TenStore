@@ -79,11 +79,15 @@
 .no-scale:hover, .no-scale:focus {
   transform: scale(1);
 }
-.hm-bottom-loading, .ab-loading-block {
+.hm-bottom-loading, .ab-loading-block, #search-block {
   margin: 16px auto 40px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /**/
+}
+.hm-bottom-loading {
+  display: none;
 }
 .hm-content {
   display: flex;
