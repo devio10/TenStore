@@ -56,6 +56,8 @@ function checkPars() {
     console.log('mmm');
     document.getElementById('s-adt-sw').checked=false;
   }
+  document.getElementById('cur-platform').innerText=localStorage.getItem('platform');
+  document.getElementById('p-'+localStorage.getItem('platform')).checked=true;
 }
 function toggleADT() {
   curADT=localStorage.getItem('autoDarkTheme');
@@ -85,4 +87,10 @@ function hmContent(page) {
   document.getElementById('nav-games').classList='ph-game-controller-light ui-nav-icon';
 
   document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon active';
+}
+
+function setPlatform(pmName) {
+  localStorage.setItem('platform', pmName);
+  document.getElementById('s-platform').innerText=localStorage.getItem('platform');
+  document.getElementById('cur-platform').innerText='Текущая: '+localStorage.getItem('platform');
 }

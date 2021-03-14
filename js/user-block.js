@@ -67,6 +67,11 @@ function ubWindow(windowName) {
     document.getElementById('ub-'+windowName).style.display='block';
   }
 }
+function setWindow(windowName) {
+  document.getElementById('set-main').style.display='none';
+  document.getElementById('set-platform').style.display='none';
+  document.getElementById('set-'+windowName).style.display='block';
+}
 
 
 

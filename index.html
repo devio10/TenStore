@@ -141,7 +141,7 @@
           <h4 class="ub-btn-txt">Использовать тему системы</h4>
           <input style="margin-right: 16px" id="s-adt-sw" checked onclick="toggleADT()" type="checkbox" class="switch">
         </button>
-        <button class="ub-btn btm-border">
+        <button onclick="setWindow('platform')" class="ub-btn btm-border">
           <h4 class="ub-btn-txt">Платформа</h4>
           <h4 class="ub-btn-txt2" id="s-platform">Windows</h4>
           <i class="ph-caret-right-bold ub-openbtn2"></i>
@@ -149,6 +149,35 @@
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Все приложения будут
         скачиваться для выбранной платформы, но в любой момент это можно изменить, выбрав
         необходимый файл в списке около кнопки скачивания</h5>
+      </div>
+
+      <div id="set-platform" class="ub-window">
+        <div onclick="setWindow('main')" class="ab-back">
+          <i class="ph-caret-left-bold ab-back-icon pointer"></i>
+        </div>
+        <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Платформа</h3>
+        <h5 style='margin: 4px 16px 16px 16px; color: gray' id="cur-platform"></h5>
+        <button id="s-adt" disabled class="ub-btn no-hover">
+          <h4 class="ub-btn-txt">Windows</h4>
+          <input onclick="setPlatform('Windows')" id="p-Windows" style="margin-right: 16px" type="radio" name="s-platform" value="1">
+        </button>
+        <button id="s-adt" disabled class="ub-btn no-hover">
+          <h4 class="ub-btn-txt">Android</h4>
+          <input onclick="setPlatform('Android')" id="p-Android" style="margin-right: 16px" type="radio" name="s-platform" value="2">
+        </button>
+        <button id="s-adt" disabled class="ub-btn no-hover">
+          <h4 class="ub-btn-txt">Linux</h4>
+          <input onclick="setPlatform('Linux')" id="p-Linux" style="margin-right: 16px" type="radio" name="s-platform" value="3">
+        </button>
+        <button id="s-adt" disabled class="ub-btn no-hover">
+          <h4 class="ub-btn-txt">iOS</h4>
+          <input onclick="setPlatform('iOS')" id="p-iOS" style="margin-right: 16px" type="radio" name="s-platform" value="3">
+        </button>
+        <button id="s-adt" disabled class="ub-btn no-hover btm-border">
+          <h4 class="ub-btn-txt">Не задана</h4>
+          <input onclick="setPlatform('none')" id="p-none" style="margin-right: 16px" type="radio" name="s-platform" value="2">
+        </button>
+
       </div>
     </div>
 

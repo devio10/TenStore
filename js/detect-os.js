@@ -202,5 +202,7 @@
 localStorage.setItem('platform', jscd.os);
 if ((jscd.os=='Windows')&&(jscd.osVersion=='10')) {
   localStorage.setItem('platform-uwp-support', 'true');
-  document.getElementById('s-platform').innerText=localStorage.getItem('platform');
 }
+document.getElementById('s-platform').innerText=localStorage.getItem('platform');
+document.getElementById('cur-platform').innerText='Текущая: '+localStorage.getItem('platform');
+document.getElementById('p-'+localStorage.getItem('platform')).checked=true;

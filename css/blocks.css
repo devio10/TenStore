@@ -44,14 +44,14 @@
   height: 100%;
   transition: var(--trans-03s);
 }
-#ab-index, #ab-loading, #ub-main, #list-loading, #list-main, #set-main {
+#ab-index, #ab-loading, #ub-main, #list-loading, #list-main, #set-main, #set-platform {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
   border-radius: 16px;
   margin-top: -60px;
 }
-#ub-main { margin-top: 0; }
+#ub-main, #set-platform { margin-top: 0; }
 #set-main { margin-top: 0; display: block; }
 
 #ub-na-title {

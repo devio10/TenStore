@@ -112,7 +112,7 @@ img {
   margin-bottom: 2px;
   color: #919191;
 }
-.ui-nav-item:active {
+.ui-nav-item:hover {
   background: var(--nav-bg-active);
 }
 .ui-nav-icon.active {
