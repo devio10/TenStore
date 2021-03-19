@@ -228,8 +228,8 @@ function abBack () {
   }
 }
 
+var positions=0;
 function scrollableBlocks() {
-  let positions;
   let previousTop=ab.style.top;
   let abIndex=document.getElementById('ab-index');
   abIndex.onscroll=function(){
@@ -301,3 +301,28 @@ function platforms() {
     psIcon.className='hm-card-compatibility ph-caret-up-bold';
   }
 }
+
+
+
+/*
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
+ab.addEventListener('touchstart', function(event) {
+  touchstartX = event.changedTouches[0].screenX;
+  touchstartY = event.changedTouches[0].screenY;
+}, false);
+
+ab.addEventListener('touchend', function(event) {
+  touchendX = event.changedTouches[0].screenX;
+  touchendY = event.changedTouches[0].screenY;
+  handleGesture();
+}, false);
+
+function handleGesture() {
+  if ((touchendY > touchstartY + 100)&&(positions==0)) {
+    toggleAB();
+  }
+}
+*/

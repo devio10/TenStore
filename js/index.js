@@ -87,6 +87,7 @@ function hmContent(page) {
   document.getElementById('nav-games').classList='ph-game-controller-light ui-nav-icon';
 
   document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon active';
+  window.scrollTo(0, 0);
 }
 
 function setPlatform(pmName) {
