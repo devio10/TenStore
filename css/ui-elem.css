@@ -43,6 +43,12 @@ button:disabled {
   background: gray;
 }
 
+button.outline {
+  background: 0;
+  border: 1px solid gray;
+  color: gray;
+}
+
 /* разделитель */
 hr {
   border: 0;
@@ -102,7 +108,7 @@ img {
   font-size: 12px;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  transition: .08s;
+  transition: 0;
 }
 .ui-nav-name {
   color: #919191;
@@ -113,6 +119,7 @@ img {
   color: #919191;
 }
 .ui-nav-item:hover {
+  transition: .08s;
   background: var(--nav-bg-active);
 }
 .ui-nav-icon.active {

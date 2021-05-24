@@ -1,4 +1,4 @@
-const api='https://thetenstore.ru/api.php';
+const api='https://tstore.space/api.php';
 var head=document.getElementsByTagName('HEAD')[0];
 var body=document.getElementsByTagName('body')[0];
 checkTheme();
@@ -17,3 +17,10 @@ document.getElementById('s-platform').innerText=localStorage.getItem('platform')
 window.onpopstate=function(event) {
   checkUrlVars();
 };
+
+if (localStorage.getItem('debug')!='true') {
+  document.getElementById('beta-introduction').style.display='none';
+}
+if (localStorage.getItem('temp-beta-introduction')=='hidden') {
+  document.getElementById('beta-introduction').style.display='none';
+}

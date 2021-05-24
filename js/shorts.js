@@ -17,7 +17,7 @@ function download (appid) {
               if (ddFiles.files[i].file.includes('http')==true) {
                 window.open(ddFiles.files[i].file);
               } else {
-                window.open('https://thetenstore.ru/'+ddFiles.files[i].file);
+                window.open('https://tstore.space/'+ddFiles.files[i].file);
               }
               break;
             }

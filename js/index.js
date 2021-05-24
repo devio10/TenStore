@@ -52,10 +52,6 @@ function hideAllBlocks () {
 }
 
 function checkPars() {
-  if (localStorage.getItem('autoDarkTheme')=='false') {
-    console.log('mmm');
-    document.getElementById('s-adt-sw').checked=false;
-  }
   document.getElementById('cur-platform').innerText=localStorage.getItem('platform');
   document.getElementById('p-'+localStorage.getItem('platform')).checked=true;
 }

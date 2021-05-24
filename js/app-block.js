@@ -65,7 +65,7 @@ function showAB(appid, dontPushHistory) {
       var appData=appBlock.response;
       if (appData!=0) {
         let abIcon=document.getElementById('ab-icon');
-        abIcon.src='https://thetenstore.ru/'+appData.apps[0].icon;
+        abIcon.src='https://tstore.space/'+appData.apps[0].icon;
         if (appData.apps[0].icon_pad!=0) {
           abIcon.style.width='80px';
           abIcon.style.height='80px';
@@ -93,7 +93,7 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('ab-short-desc').innerText=appData.apps[0].dev; // TODO: добавить сюда краткое описание
         let abHeader=document.getElementById('ab-header');
         if (appData.apps[0].bg!=0) {
-          abHeader.style.background="url(https://thetenstore.ru/"+appData.apps[0].bg+")";
+          abHeader.style.background="url(https://tstore.space/"+appData.apps[0].bg+")";
           abHeader.style.backgroundPosition='center';
           abHeader.style.backgroundRepeat='no-repeat';
           abHeader.style.backgroundSize='cover';
@@ -125,8 +125,8 @@ function showAB(appid, dontPushHistory) {
             scrDot.id='dot-'+s;
             screenshot.className='ab-scr';
             screenshot.id='scr-'+s;
-            screenshot.setAttribute('onclick',"window.open('https://thetenstore.ru/"+screenshots.scr[s].image+"', '_self')");
-            screenshot.src='https://thetenstore.ru/'+screenshots.scr[s].image;
+            screenshot.setAttribute('onclick',"window.open('https://tstore.space/"+screenshots.scr[s].image+"', '_self')");
+            screenshot.src='https://tstore.space/'+screenshots.scr[s].image;
             document.getElementById('ab-scrs').appendChild(screenshot);
             document.getElementById('scrs-pag').appendChild(scrDot);
 

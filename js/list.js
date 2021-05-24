@@ -1,12 +1,4 @@
-function showList(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize , dontPushHistory) {
-  if (dontPushHistory!=true) {
-    if (par1!='search') {
-      window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
-    } else {
-      window.history.pushState(null, 'Поиск', '?search='+par2);
-    }
-  }
-
+function showList(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize, dontPushHistory) {
   if (donotToggle!=true) {
     toggleList();
   } else {
@@ -23,6 +15,7 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   document.getElementById('list-name').style.display='block';
   document.getElementById('list-search').style.marginTop='8px';
   document.getElementById('list-block').style.display='flex';
+  document.getElementById('list-search').style.display='none';
 
   document.getElementById('list-block').innerHTML='';
   document.getElementById('list-subtext').innerText=par3;
@@ -33,12 +26,20 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   listName.style.color='var(--text)';
   listName.style.fontFamily='Roboto';
   document.getElementById('list-subtext').style.color='gray';
+  if (dontPushHistory!=true) {
+    if (par1!='search') {
+      window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
+    } else {
+      window.history.pushState(null, 'Поиск', '?search='+par2);
+      document.getElementById('list-search').style.marginTop='60px';
+    }
+  }
 
   if ((background==null)||(background==0)) {
     listName.style.marginTop='60px';
   } else {
     listHeader.style.display='block';
-    listHeader.style.background='url(https://thetenstore.ru/'+background+')';
+    listHeader.style.background='url(https://tstore.space/'+background+')';
     listHeader.style.backgroundPosition='center';
     listHeader.style.backgroundRepeat='no-repeat';
     listHeader.style.backgroundSize='cover';
@@ -55,11 +56,12 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   var listId;
   if (par1!='search') {
     listId='action=KdSqSAOC&select='+par1+'&value='+par2;
-    document.getElementById('list-name').innerText=par2;
+    document.getElementById('list-name').innerHTML=par2+'<i class="ph-heart-straight list-love"></i>';
   } else {
     listId='action=d6Gj59&search='+par2;
-    document.getElementById('list-name').innerText='Поиск';
-    document.getElementById('list-subtext').innerText='по запросу "'+par2+'"';
+    document.getElementById('list-name').style.display='none';
+    document.getElementById('list-subtext').style.display='none';
+    document.getElementById('list-search').style.display='block';
   }
   appsList.responseType='json';
   appsList.open('POST', api, true);
@@ -73,7 +75,7 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
         let iconPadding='0';
         let iconBg='white';
         let iconSize='40px';
-        let liIcon='https://thetenstore.ru/'+listData.apps[i].icon;
+        let liIcon='https://tstore.space/'+listData.apps[i].icon;
         if (listData.apps[i].icon_bg!=0) {
           iconBg=listData.apps[i].icon_bg;
         }
@@ -138,6 +140,7 @@ function toggleList(isSearch, dontPushHistory) {
     document.getElementById('list-header').style.display='none';
     document.getElementById('list-search').style.marginTop='60px';
     document.getElementById('list-block').style.display='none';
+    document.getElementById('list-search').style.display='block';
     if (dontPushHistory!=true) {
       window.history.pushState(null, 'TENSTORE', '?block=search');
     }
@@ -169,3 +172,12 @@ document.getElementById('list-search').addEventListener("keyup", function(event)
     showList('search', document.getElementById('list-search').value, true);
   }
 });
+
+function toggleSearch() {
+  let searchBar=document.getElementById('list-search');
+  if (searchBar.style.display=='none') {
+    searchBar.style.display='block';
+  } else {
+    searchBar.style.display='none';
+  }
+}
