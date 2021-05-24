@@ -64,8 +64,13 @@ button {
 .ui-nav-block {
   max-width: 300px;
 }
-input[type=text] {
-  height: 52px;
+input[type=text], input[type=password] {
+  margin-left: 16px;
+  margin-right: 16px;
+  width: calc(100% - 64px);
+}
+#ti-login, #ti-pass {
+  margin-top: 16px;
 }
 .ub-hide-block {
   height: 6px;
