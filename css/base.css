@@ -294,9 +294,6 @@ header {
   background: #d32f2f;
 }
 
-#ub-logout {
-  color: var(--accent);
-}
 #ub-library {
   display: none;
 }

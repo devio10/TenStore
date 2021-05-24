@@ -18,7 +18,7 @@ button {
   height: 280px;
 }
 #app-block, #ab-index, #ab-loading, #ub-main,
-#ub-settings, #user-block, #list, #list-main,
+#ub-settings, #list, #list-main,
 #settings-block, #set-main {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -31,7 +31,11 @@ button {
   height: calc(100% - 60px);
   animation-name: phone-block-appear;
 }
-#user-block { height: auto; padding-bottom: 64px }
+#user-block {
+  height: auto;
+  margin: 8px;
+  width: calc(100% - 16px);
+}
 .ab-scr {
   display: block;
   margin-right: 8px;

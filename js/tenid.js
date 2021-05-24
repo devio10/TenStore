@@ -26,7 +26,6 @@ function login() {
           document.getElementById('ub-name').innerText=userName;
           document.getElementById('ub-email').innerText=userEmail;
           let logoutbtn=document.getElementById('ub-logout');
-          logoutbtn.style.color='#d32f2f';
           logoutbtn.innerText='Выйти из TenID';
         }
       }

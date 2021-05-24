@@ -48,8 +48,6 @@
     <div onclick="toggleList()" id="list-block-bg"> </div>
     <div onclick="toggleSettings()" id="set-block-bg"> </div>
     <div id="user-block">
-
-      <div class="ub-hide-block"> </div>
       <div id="ub-logout-confirm" style="display: none" class="ub-window">
         <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Выйти из TenID</h3>
         <h5 style='margin: 8px 16px 8px 16px'>Выйти из TenID? Вы потеряете доступ к комментариям,
@@ -62,6 +60,9 @@
       </div>
       <div id="ub-main" class="ub-window">
         <div id="ub-top" onclick="window.open('user?pers=1', '_self')" class="flex-column">
+          <div class="top-btns single">
+            <a onclick='toggleUB()' class="top-btn">Готово</a>
+          </div>
           <img id="ub-user" src="img/user.svg" alt="img/user.svg">
           <div class="flex-column">
             <h5 id="ub-name">Дмитрий Навальный</h5>
@@ -91,7 +92,7 @@
         <div class="ub-btn-family">
           <button class="ub-btn" onclick="ubWindow('logout-confirm')">
             <i class="ph-key-bold ub-openbtn"></i>
-            <h4 class="ub-btn-txt focus">Войти в TenID</h4>
+            <h4 id="ub-logout" class="ub-btn-txt focus">Войти в TenID</h4>
           </button>
         </div>
 
