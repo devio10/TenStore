@@ -25,8 +25,8 @@ function login() {
           document.getElementById('ub-user').src=userPhoto;
           document.getElementById('ub-name').innerText=userName;
           document.getElementById('ub-email').innerText=userEmail;
-          let logoutbtn=document.getElementById('ub-logout');
-          logoutbtn.innerText='Выйти из TenID';
+          document.getElementById('ub-have-account').style.display='block';
+          document.getElementById('ub-no-account').style.display='none';
         }
       }
     };

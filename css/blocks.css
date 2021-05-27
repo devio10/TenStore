@@ -32,6 +32,7 @@
   --height: auto;
   --width: 380px;
   background: var(--nav-bg);
+  backdrop-filter: blur(6px);
 }
 #user-block-bg, #app-block-bg, #list-block-bg, #set-block-bg {
   display: none;

@@ -29,7 +29,7 @@
   --gray-mid: #404040;
   --gray-dark: #919191;
   --bg-percentage: .9;
-  --nav-bg: rgba(16, 16, 16, 0.9);
+  --nav-bg: rgba(16, 16, 16, 0.88);
   --nav-bg-active: rgba(255, 255, 255, 0.08);
 }
 html, body {
@@ -200,6 +200,12 @@ h1, h2, h3, h4, h5, h6, i {
   text-align: center;
   font-size: 14px;
   color: var(--accent);
+}
+.ub-btn.transparent {
+  background: 0;
+}
+.ub-btn.transparent:hover {
+  background: var(--abs-bg);
 }
 .ub-openbtn {
   color: var(--accent);

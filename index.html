@@ -69,6 +69,7 @@
             <h5 id="ub-email">dmitrynavalny@outlook.com</h5>
           </div>
         </div>
+
         <div id="ub-no-account">
           <div class="top-btns single">
             <a onclick='toggleUB()' class="top-btn">Нет, спасибо</a>
@@ -77,23 +78,37 @@
           <h5 id="ub-na-text" style="display: none">Аккаунт TenID позволяет вам скачивать приложения,
             оставлять комментарии и <a href='help?q=tenid-features'>делать другие вещи.</a>
             <a href="reg">Создайте новый</a> или <a href="login">войдите</a>, если он уже есть.</h5>
+          <div class="ub-btn-family">
+            <button class="ub-btn transparent" onclick="window.open('login')">
+              <i class="ph-key ub-openbtn"></i>
+              <h4 class="ub-btn-txt">Войти в аккаунт</h4>
+            </button>
+          </div>
+          <div class="ub-btn-family">
+            <button class="ub-btn" onclick="window.open('join-tenid')">
+              <i class="ph-plus-bold ub-openbtn"></i>
+              <h4 class="ub-btn-txt focus">Создать аккаунт</h4>
+            </button>
+          </div>
         </div>
 
-        <div class="ub-btn-family">
-          <button class="ub-btn">
-            <i class="ph-pencil ub-openbtn"></i>
-            <h4 class="ub-btn-txt">Редактировать аккаунт</h4>
-          </button>
-          <button class="ub-btn" onclick="toggleUB(), toggleSettings()">
-            <i class="ph-gear-six ub-openbtn"></i>
-            <h4 class="ub-btn-txt">Настройки</h4>
-          </button>
-        </div>
-        <div class="ub-btn-family">
-          <button class="ub-btn" onclick="ubWindow('logout-confirm')">
-            <i class="ph-key-bold ub-openbtn"></i>
-            <h4 id="ub-logout" class="ub-btn-txt focus">Войти в TenID</h4>
-          </button>
+        <div id="ub-have-account" style="display: none">
+          <div class="ub-btn-family">
+            <button class="ub-btn">
+              <i class="ph-pencil ub-openbtn"></i>
+              <h4 class="ub-btn-txt">Редактировать аккаунт</h4>
+            </button>
+            <button class="ub-btn" onclick="toggleUB(), toggleSettings()">
+              <i class="ph-gear-six ub-openbtn"></i>
+              <h4 class="ub-btn-txt">Настройки</h4>
+            </button>
+          </div>
+          <div class="ub-btn-family">
+            <button class="ub-btn" onclick="ubWindow('logout-confirm')">
+              <i class="ph-sign-out-bold ub-openbtn"></i>
+              <h4 id="ub-logout" class="ub-btn-txt focus">Выйти из TenID</h4>
+            </button>
+          </div>
         </div>
 
       </div>
