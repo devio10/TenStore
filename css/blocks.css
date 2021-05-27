@@ -55,13 +55,22 @@
 #ub-main, #set-platform { margin-top: 0; }
 #set-main { margin-top: 0; display: block; }
 
-#ub-na-title {
+.ub-na-title {
   font-weight: bold;
   margin: 40px 16px 24px 16px;
 }
-#ub-na-text {
+.ub-na-title.small {
+  text-align: center;
+  color: gray;
+  margin: 24px 16px 16px 16px;
+}
+.ub-na-text {
   margin: 8px 16px 16px 16px;
   color: gray;
+}
+.ub-na-text.small {
+  text-align: center;
+  margin: 0 16px 16px 16px;
 }
 
 .ab-shortinfo {
@@ -160,6 +169,7 @@
   margin: 0 16px 0 0;
 }
 #ab-na-text {
+  display: none;
   color: #d32f2f;
   margin: 8px 16px 0 0;
 }

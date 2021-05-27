@@ -59,7 +59,7 @@ function scrollableUB() {
 }
 
 function ubWindow(windowName) {
-  if ((windowName=='logout-confirm')&&(localStorage.getItem('login')==null)) {
+  if ((windowName=='logout-confirm')&&(localStorage.getItem('login')==null)&&(localStorage.getItem('debug')!='true')) {
     window.open('login', '_self');
   } else {
     document.getElementById('ub-main').style.display='none';

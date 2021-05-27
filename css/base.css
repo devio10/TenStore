@@ -118,8 +118,7 @@ h1, h2, h3, h4, h5, h6, i {
 }
 #ub-top {
   align-items: stretch;
-  margin: 8px 0 16px 0;
-  display: none;
+  margin: 0 0 16px 0;
 }
 
 @keyframes ub-show {
@@ -212,6 +211,9 @@ h1, h2, h3, h4, h5, h6, i {
   font-size: 18px;
   margin: 0 8px 0 0;
 }
+i.red, h1.red, h2.red, h3.red, h4.red, h5.red, h6.red {
+  color: #d32f2f;
+}
 .tenid-ver {
   color: var(--gray);
   text-align: center;
@@ -280,6 +282,7 @@ header {
   margin: 8px auto;
   width: 42px;
   height: 42px;
+  cursor: default;
 }
 #ub-name {
   margin: 0 auto 4px auto;

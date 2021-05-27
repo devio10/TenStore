@@ -55,6 +55,7 @@ function showAB(appid, dontPushHistory) {
     loadScreen.style.display='none';
     indexScreen.style.display='block';
   }
+  document.getElementById('ab-platform-select').style.display='none';
   var appBlock=new XMLHttpRequest();
   var appId='action=4LlFCT&id='+appid;
   appBlock.responseType = "json";
@@ -165,15 +166,26 @@ function showAB(appid, dontPushHistory) {
             if (psJson.files[i].platform==selectedPlatform) {
               psItem.className='platform-check selected';
               selectedFile=psJson.files[i].file;
-              document.getElementById('ab-platform').innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+              if (psJson.files[i].architecture!='') {
+                document.getElementById('ab-platform').innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+              } else {
+                document.getElementById('ab-platform').innerText=psJson.files[i].platform;
+              }
               document.getElementById('si-size').innerText=psJson.files[i].size+' МБ';
             } else {
               psItem.className='platform-check';
             }
-            psItem.innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+            if (psJson.files[i].architecture!='') {
+              psItem.innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+            } else {
+              psItem.innerText=psJson.files[i].platform;
+            }
             psItem.setAttribute('onclick','selectPlatform("'+psJson.files[i].platform+'", "'+psJson.files[i].file+'", "'+psJson.files[i].architecture+'", "'+psJson.files[i].size+'")');
             psItem.id='ps-'+psJson.files[i].platform+'-'+psJson.files[i].architecture;
             document.getElementById('ab-platforms').appendChild(psItem);
+          }
+          if (psJson.files.length > 0) {
+            document.getElementById('ab-platform-select').style.display='block';
           }
         } else {
           document.getElementById('ab-download').disabled=true;
@@ -203,7 +215,11 @@ function selectPlatform(psName, fileName, psArc, psSize) {
   });
   document.getElementById('ps-'+psName+'-'+psArc).className='platform-check selected';
   selectedFile=fileName;
-  document.getElementById('ab-platform').innerText=psName+' ('+psArc+')';
+  if (psArc!='') {
+    document.getElementById('ab-platform').innerText=psName+' ('+psArc+')';
+  } else {
+    document.getElementById('ab-platform').innerText=psName;
+  }
   document.getElementById('si-size').innerText=psSize+' МБ';
 
   platforms();
