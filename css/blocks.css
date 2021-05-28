@@ -112,6 +112,8 @@
   margin: 0 8px 0 0;
   font-weight: 400;
   cursor: pointer;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 #ab-platform-select {
   cursor: pointer;
@@ -201,11 +203,6 @@
   align-items: center;
   justify-content: center;
 }
-#ab-download {
-  padding-left: 0;
-  padding-right: 0;
-  width: 100px;
-}
 #ab-scrs .ab-scr:first-child {
   display: block;
 }
@@ -268,7 +265,7 @@
   font-weight: bolder;
   margin: 16px;
 }
-.ab-back, .ab-qr {
+.ab-back, .ab-qr, .ab-search {
   position: sticky;
   margin: 16px;
   border-radius: 100%;
@@ -282,6 +279,9 @@
 }
 .ab-qr {
   margin: 16px 16px 16px auto;
+}
+.ab-search {
+  margin: 0;
 }
 .ab-back-icon {
   color: black;
