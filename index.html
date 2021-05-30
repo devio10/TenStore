@@ -112,8 +112,8 @@
           </div>
           <div class="ub-btn-family">
             <button class="ub-btn" onclick="ubWindow('logout-confirm')">
-              <i class="ph-sign-out-bold ub-openbtn"></i>
-              <h4 id="ub-logout" class="ub-btn-txt focus">Выйти из TenID</h4>
+              <i class="ph-sign-out-bold ub-openbtn red"></i>
+              <h4 id="ub-logout" class="ub-btn-txt focus red">Выйти из TenID</h4>
             </button>
           </div>
         </div>
@@ -334,8 +334,13 @@
             <h5 id="ab-na-text">недоступно для вашей платформы</h5>
           </div>
         </div>
-        <div class="flex-row">
-          <button id="ab-download" onclick='download(17, "Windows")'>Скачать</button>
+        <div class="ub-btn-family">
+          <button class="ub-btn" id="ab-download" onclick='download(17, "Windows")'>
+            <i class="ph-cloud-arrow-down-bold ub-openbtn"></i>
+            <h4 class="ub-btn-txt focus">Скачать</h4>
+          </button>
+        </div>
+        <div style="display: flex; justify-content: center; margin: 0 0 16px 0">
           <h5 id="ab-platform" onclick="platforms()" class="hm-card-smalltext">выберите платформу</h5>
           <i id="ab-platform-select" onclick="platforms()" class="hm-card-compatibility ph-caret-down-bold"></i>
         </div>
@@ -402,7 +407,10 @@
     <div id="list">
       <div class="flex-row">
         <div onclick="toggleList()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i> </div>
-        <div onclick="toggleSearch()" class="ab-qr"> <i class="ph-magnifying-glass ab-back-icon"></i> </div>
+        <div style="margin: 0 16px 0 auto; display: flex; align-items: center">
+          <input type="text" placeholder="Поиск" id="list-search">
+          <div onclick="toggleSearch()" class="ab-search"> <i class="ph-magnifying-glass ab-back-icon"></i> </div>
+        </div>
       </div>
       <div id="list-loading" style="display: none">
         <div class="ab-loading-block">
@@ -414,7 +422,18 @@
         <div id="list-header"> </div>
         <h2 id="list-name"></h2>
         <h5 id="list-subtext"></h5>
-        <input type="text" placeholder="Поиск" id="list-search">
+
+        <div class="big_btn-horiz_block">
+          <button class="big_btn horiz">
+            <i class="ph-share big_btn-icon"></i>
+            <h4 class="big_btn-txt">Поделиться</h4>
+          </button>
+          <button class="big_btn horiz">
+            <i class="ph-share big_btn-icon"></i>
+            <h4 class="big_btn-txt">Поделиться</h4>
+          </button>
+        </div>
+
         <div id="search-block">
           <i class="ph-file-search-thin" style="font-size: 36px; color: gray"></i>
           <h5 class="ui-gray">Ваша история поиска будет здесь</h5>

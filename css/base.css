@@ -164,7 +164,7 @@ h1, h2, h3, h4, h5, h6, i {
 .top-btns.single {
   justify-content: flex-end;
 }
-.ub-btn {
+.ub-btn, .big_btn {
   border-radius: 0;
   width: calc(100% - 32px);
   margin: 8px 16px 8px 16px;
@@ -177,6 +177,19 @@ h1, h2, h3, h4, h5, h6, i {
   justify-content: center;
   transition: 0;
   transition: .3s all cubic-bezier(0.65, 0, 0.35, 1);
+}
+.big_btn {
+  border-radius: 12px;
+}
+.big_btn.horiz {
+  width: auto;
+  margin: 8px;
+  flex-basis: 100%;
+}
+.big_btn-horiz_block {
+  display: flex;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 .ub-btn-txt.focus {
   font-weight: 600;
@@ -199,19 +212,19 @@ h1, h2, h3, h4, h5, h6, i {
   transition: .08s;
   background: var(--abs-bg-dark);
 }
-.ub-btn-txt, .ub-btn-txt2 {
+.ub-btn-txt, .ub-btn-txt2, .big_btn-txt {
   margin: 0 0 0 0;
   text-align: center;
   font-size: 14px;
   color: var(--accent);
 }
-.ub-btn.transparent {
+.ub-btn.transparent, .big_btn-txt.transparent {
   background: 0;
 }
-.ub-btn.transparent:hover {
+.ub-btn.transparent:hover, .big_btn-txt.transparent:hover {
   background: var(--abs-bg);
 }
-.ub-openbtn {
+.ub-openbtn, .big_btn-icon  {
   color: var(--accent);
   font-size: 18px;
   margin: 0 8px 0 0;

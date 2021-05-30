@@ -102,3 +102,9 @@ input[type=text], input[type=password] {
 .ab-shortinfo .ab-si-item:first-child {
   margin-left: 16px;
 }
+#list-search {
+  margin: 0 8px 8px 0;
+}
+.ab-search {
+   margin-left: 8px;
+}
