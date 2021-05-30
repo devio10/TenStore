@@ -69,6 +69,11 @@ input[type=text], input[type=password] {
   margin-right: 16px;
   width: calc(100% - 64px);
 }
+#nr-title {
+  margin-left: 0;
+  margin-right: 0;
+  width: calc(100% - 32px);
+}
 #ti-login, #ti-pass {
   margin-top: 16px;
 }
@@ -107,4 +112,19 @@ input[type=text], input[type=password] {
 }
 .ab-search {
    margin-left: 8px;
+}
+#nr-liked, #nr-disliked {
+  position: fixed;
+  bottom: 0;
+  left: 16px;
+  margin-left: 0;
+  width: calc(50% - 24px);
+}
+#nr-disliked {
+  right: 16px;
+  margin-right: 0;
+  left: auto;
+}
+#nr-text {
+  height: 100%;
 }

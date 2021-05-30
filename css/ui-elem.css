@@ -157,3 +157,19 @@ a {
   color: var(--accent);
   cursor: pointer;
 }
+textarea {
+  background: var(--gray-light);
+  border: none;
+  border-radius: 16px;
+  width: calc(100% - 32px);
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  transition: .3s;
+  font-weight: 400;
+  resize: none;
+}
+textarea:focus, textarea:hover {
+  outline: none;
+  border-radius: 12px;
+}

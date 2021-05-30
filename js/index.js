@@ -91,3 +91,9 @@ function setPlatform(pmName) {
   document.getElementById('s-platform').innerText=localStorage.getItem('platform');
   document.getElementById('cur-platform').innerText='Текущая: '+localStorage.getItem('platform');
 }
+
+function debug_newReview() {
+  toggleAB();
+  document.getElementById('ab-main_content').style.display='none';
+  document.getElementById('ab-new_review').style.display='block';
+}

@@ -3,6 +3,7 @@
   --bg: #ededed;
   --abs-bg: white;
   --abs-bg-dark: var(--gray-light);
+  --top-btns: rgba(0, 0, 0, 0.04);
   --text: black;
   --gray-light: #ebebeb;
   --gray-mid: #bfbfbf;
@@ -23,6 +24,7 @@
   --bg: black;
   --abs-bg: #171717;
   --abs-bg-dark: #121212;
+  --top-btns: rgba(10, 10, 10, 0.88);
   --text: white;
   --gray: #8f8f8f;
   --gray-light: #1c1c1c;
@@ -156,10 +158,16 @@ h1, h2, h3, h4, h5, h6, i {
   font-weight: bold;
 }
 .top-btns {
-  margin: 16px;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   width: calc(100% - 32px);
+  background: var(--top-btns);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom: 1px solid var(--gray-mid);
+  position: sticky;
+  top: 0;
 }
 .top-btns.single {
   justify-content: flex-end;
@@ -191,7 +199,7 @@ h1, h2, h3, h4, h5, h6, i {
   margin-left: 8px;
   margin-right: 8px;
 }
-.ub-btn-txt.focus {
+.ub-btn-txt.focus, .big_btn-txt.focus {
   font-weight: 600;
 }
 .ub-btn:first-child {

@@ -5,7 +5,8 @@
   --half-width: calc(var(--width) / 2);
   width: var(--width);
   border-radius: 16px;
-  background: var(--bg);
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
   height: var(--height);
   z-index: 8;
   transition: .4s background-color;
@@ -44,13 +45,17 @@
   width: 100%;
   height: 100%;
   transition: .32s;
+  backdrop-filter: grayscale(1);
 }
-#ab-index, #ab-loading, #ub-main, #list-loading, #list-main, #set-main, #set-platform {
+#ab-loading, #ub-main, #list-loading, #list-main, #set-main, #set-platform, #ab-main_content, #ab-new_review {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
   border-radius: 16px;
   margin-top: -60px;
+}
+#ab-main_content, #ab-new_review {
+  margin-top: 0;
 }
 #ub-main, #set-platform { margin-top: 0; }
 #set-main { margin-top: 0; display: block; }
@@ -337,4 +342,51 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.new_review-anim {
+  animation-name: review_button;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+@keyframes review_button {
+  0% {
+    color: #388e3c;
+  }
+  50% {
+    color: #d32f2f;
+  }
+  100% {
+    color: #388e3c;
+  }
+}
+
+#nr-title {
+  background: 0;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+#nr-text {
+  background: 0;
+  font-size: 18px;
+}
+#nr-liked, #nr-disliked {
+  margin-bottom: 16px;
+}
+#nr-disliked-txt, #nr-liked-txt {
+  white-space:nowrap;
+  animation-name: nr_text-anim;
+  animation-duration: .3s;
+  animation-delay: .3s;
+  animation-fill-mode: backwards;
+}
+@keyframes  nr_text-anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

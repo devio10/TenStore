@@ -154,16 +154,15 @@ function scrollableList() {
     listPositions=mainScrn.scrollTop;
     if (listPositions > 60) {
       listPositions=60;
-      list.style.borderRadius='0';
-      mainScrn.style.borderRadius='0';
-    } else {
-      list.style.borderTopLeftRadius='16px';
-      list.style.borderTopRightRadius='16px';
-      mainScrn.style.borderTopLeftRadius='16px';
-      mainScrn.style.borderTopRightRadius='16px';
     }
     let newTopList=60 - listPositions;
     list.style.height='calc(100% - '+newTopList+'px)';
+    let scrPerc = listPositions / (60 / 100);
+    let newbRadius=16 - (16 / 100 * scrPerc);
+    mainScrn.style.borderTopLeftRadius=newbRadius+'px';
+    mainScrn.style.borderTopRightRadius=newbRadius+'px';
+    list.style.borderTopLeftRadius=newbRadius+'px';
+    list.style.borderTopRightRadius=newbRadius+'px';
   };
 }
 

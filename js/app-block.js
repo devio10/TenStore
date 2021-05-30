@@ -245,26 +245,60 @@ function abBack () {
 }
 
 var positions=0;
+var nrpositions=0;
 function scrollableBlocks() {
   let previousTop=ab.style.top;
-  let abIndex=document.getElementById('ab-index');
+  let abIndex=document.getElementById('ab-main_content');
   abIndex.onscroll=function(){
     positions=abIndex.scrollTop;
     if (positions > 60) {
       positions=60;
       ab.style.borderRadius='0';
-      abIndex.style.borderRadius='0';
-    } else {
-      ab.style.borderTopLeftRadius='16px';
-      ab.style.borderTopRightRadius='16px';
-      abIndex.style.borderTopLeftRadius='16px';
-      abIndex.style.borderTopRightRadius='16px';
     }
     let newTop=60 - positions;
     ab.style.height='calc(100% - '+newTop+'px)';
+    let scrPerc = positions / (60 / 100);
+    let newbRadius=16 - (16 / 100 * scrPerc);
+    abIndex.style.borderTopLeftRadius=newbRadius+'px';
+    abIndex.style.borderTopRightRadius=newbRadius+'px';
+    ab.style.borderTopLeftRadius=newbRadius+'px';
+    ab.style.borderTopRightRadius=newbRadius+'px';
   };
+
+  let abNR=document.getElementById('ab-new_review');
+  abNR.onscroll=function(){
+    nrpositions=abNR.scrollTop;
+    if (nrpositions > 60) {
+      nrpositions=60;
+    }
+    let newTop=60 - nrpositions;
+    ab.style.height='calc(100% - '+newTop+'px)';
+    let scrPerc = nrpositions / (60 / 100);
+    let newbRadius=16 - (16 / 100 * scrPerc);
+    abNR.style.borderTopLeftRadius=newbRadius+'px';
+    abNR.style.borderTopRightRadius=newbRadius+'px';
+    ab.style.borderTopLeftRadius=newbRadius+'px';
+    ab.style.borderTopRightRadius=newbRadius+'px';
+  };
+
 }
 
+function newReview() {
+  document.getElementById('ab-main_content').style.display='none';
+  document.getElementById('ab-new_review').style.display='block';
+  if (platform=='mobile') {
+    positions=0;
+    ab.style.height='calc(100% - 60px)';
+    abIndex.style.borderTopLeftRadius='16px';
+    abIndex.style.borderTopRightRadius='16px';
+    ab.style.borderTopLeftRadius='16px';
+    ab.style.borderTopRightRadius='16px';
+  }
+}
+function cancelReview() {
+  document.getElementById('ab-main_content').style.display='block';
+  document.getElementById('ab-new_review').style.display='none';
+}
 
 function switchScreenshot(action) {
   for (let i=0; i <= lastscr; i++) {
@@ -342,3 +376,32 @@ function handleGesture() {
   }
 }
 */
+
+function nrRate(rate) {
+  document.getElementById('nr-disliked').style.width='calc(30% - 16px)';
+  document.getElementById('nr-disliked').style.flexBasis='auto';
+  document.getElementById('nr-disliked-txt').style.display='none';
+  document.getElementById('nr-liked').style.width='calc(30% - 16px)';
+  document.getElementById('nr-liked').style.flexBasis='auto';
+  document.getElementById('nr-liked-txt').style.display='none';
+  let rateObj;
+  let rateName;
+  if (rate==1) {
+    rateObj='liked';
+    isLiked=1;
+  } else {
+    rateObj='disliked';
+    isLiked=0;
+  }
+  if (platform!='mobile') {
+    document.getElementById('nr-'+rateObj).style.width='calc(70% - 16px)';
+  } else {
+    document.getElementById('nr-'+rateObj).style.width='calc(70% - 32px)';
+  }
+  document.getElementById('nr-'+rateObj).style.flexBasis='auto';
+  setTimeout(function () {
+    document.getElementById('nr-liked-txt').style.display='none';
+    document.getElementById('nr-disliked-txt').style.display='none';
+    document.getElementById('nr-'+rateObj+'-txt').style.display='block';
+  }, 1000);
+}
