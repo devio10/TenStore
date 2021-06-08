@@ -11,15 +11,15 @@ function toggleUB(dontPushHistory) {
     setTimeout(function () {
       ubObj.style.display="none";
       ubBgObj.style.display="none";
-      ubObj.style.transform='scale(1)';
+      ubObj.className='';
       ubObj.style.opacity='1';
       ubBgObj.style.opacity='1';
     }, 150);
     toggleScrolling('add');
     if (platform=='mobile') {
-      ubObj.style.transform='translateY(64px)';
+      ubObj.className='scale-phone-anim';
     } else if (platform=='pc') {
-      ubObj.style.transform='scale(1.08)';
+      ubObj.className='scale-pc-anim';
     }
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
@@ -81,15 +81,15 @@ function toggleSettings(dontPushHistory) {
     setTimeout(function () {
       setObj.style.display="none";
       setBgObj.style.display="none";
-      setObj.style.transform='scale(1)';
+      setObj.className='';
       setObj.style.opacity='1';
       setBgObj.style.opacity='1';
     }, 150);
     toggleScrolling('add');
     if (platform=='mobile') {
-      setObj.style.transform='translateY(64px)';
+      setObj.className='scale-phone-anim';
     } else if (platform=='pc') {
-      setObj.style.transform='scale(1.08)';
+      setObj.className='scale-pc-anim';
     }
     setObj.style.opacity='.4';
     setBgObj.style.opacity='.1';

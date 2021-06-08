@@ -76,6 +76,10 @@
             оставлять комментарии и <a href='help?q=tenid-features'>делать другие вещи.</a>
             <a href="reg">Создайте новый</a> или <a href="login">войдите</a>, если он уже есть.</h5>
           <div class="ub-btn-family">
+            <button class="ub-btn transparent" onclick="toggleUB(), toggleSettings()">
+              <i class="ph-gear-six ub-openbtn"></i>
+              <h4 class="ub-btn-txt">Настройки</h4>
+            </button>
             <button class="ub-btn transparent" onclick="window.open('login')">
               <i class="ph-key ub-openbtn"></i>
               <h4 class="ub-btn-txt">Войти в аккаунт</h4>
@@ -96,8 +100,8 @@
           <div id="ub-top" class="flex-column">
             <img id="ub-user" src="img/user.svg" alt="img/user.svg">
             <div class="flex-column">
-              <h5 id="ub-name">Дмитрий Навальный</h5>
-              <h5 id="ub-email">dmitrynavalny@outlook.com</h5>
+              <h5 id="ub-name">User name here</h5>
+              <h5 id="ub-email">User email here</h5>
             </div>
           </div>
           <div class="ub-btn-family">
@@ -318,8 +322,8 @@
           <a onclick='cancelReview()' class="top-btn">Отмена</a>
           <a onclick='sendReview()' class="top-btn">Опубликовать</a>
         </div>
-        <input id="nr-title" type="text" placeholder="Заголовок...">
-        <textarea id="nr-text" rows="15" placeholder="Отзыв..."></textarea>
+        <input id="nr-title" type="text" placeholder="Заголовок..." autocomplete="off">
+        <textarea id="nr-text" rows="15" placeholder="Отзыв..." autocomplete="off"></textarea>
         <div class="big_btn-horiz_block">
           <button id="nr-liked" class="big_btn horiz" onclick="nrRate(1)">
             <i class="ph-thumbs-up-bold big_btn-icon" style="color: #388e3c"></i>
@@ -347,8 +351,8 @@
           <div class="flex-row flex-align-top" id="topcontent">
             <img id="ab-icon" src='img/prohibit.svg' alt="img/prohibit.svg">
             <div class="flex-column">
-              <h3 id="ab-name">авыавыы</h3>
-              <h5 id="ab-short-desc">аывавыа</h5>
+              <h3 id="ab-name">App name here</h3>
+              <h5 id="ab-short-desc">App short description here</h5>
               <h5 id="ab-na-text">недоступно для вашей платформы</h5>
             </div>
           </div>
@@ -391,7 +395,7 @@
             </div>
           </div>
           <hr class="ab-hr">
-          <h5 id="ab-desc">Описание здесь!!!!</h5>
+          <h5 id="ab-desc">Full description here</h5>
 
           <div id="scrs-block" style="display: none">
             <hr class="ab-hr">

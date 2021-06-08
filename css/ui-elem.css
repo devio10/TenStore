@@ -127,7 +127,7 @@ img {
 }
 
 input[type=text], input[type=password] {
-  background: var(--gray-light);
+  background: var(--abs-bg);
   border: none;
   border-radius: 16px;
   width: calc(100% - 32px);
@@ -136,7 +136,7 @@ input[type=text], input[type=password] {
   padding-right: 16px;
   font-size: 16px;
   transition: .3s;
-  font-weight: lighter;
+  font-weight: regular;
 }
 input[type=text]:focus, input[type=text]:hover,
 input[type=password]:focus, input[type=password]:hover {

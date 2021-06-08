@@ -108,15 +108,14 @@ function toggleList(isSearch, dontPushHistory) {
     setTimeout(function () {
       list.style.display="none";
       listBg.style.display="none";
-
-      list.style.transform='scale(1)';
+      list.className='';
       list.style.opacity='1';
       listBg.style.opacity='1';
     }, 150);
     if (platform=='mobile') {
-      list.style.transform='translateY(64px)';
+      list.className='scale-phone-anim';
     } else if (platform=='pc') {
-      list.style.transform='scale(1.08)';
+      list.className='scale-pc-anim';
     }
     list.style.opacity='.4';
     listBg.style.opacity='.1';

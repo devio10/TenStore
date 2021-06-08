@@ -21,15 +21,14 @@ function toggleAB () {
    setTimeout(function () {
      ab.style.display="none";
      abBg.style.display="none";
-
-     ab.style.transform='scale(1)';
+     ab.className='';
      ab.style.opacity='1';
      abBg.style.opacity='1';
    }, 150);
    if (platform=='mobile') {
-     ab.style.transform='translateY(64px)';
+     ab.className='scale-phone-anim';
    } else if (platform=='pc') {
-     ab.style.transform='scale(1.08)';
+     ab.className='scale-pc-anim';
    }
    ab.style.opacity='.4';
    abBg.style.opacity='.1';
@@ -54,6 +53,13 @@ function showAB(appid, dontPushHistory) {
   if (localStorage.getItem('debug')=='true') {
     loadScreen.style.display='none';
     indexScreen.style.display='block';
+    let abHeader=document.getElementById('ab-header');
+    abHeader.style.background="url(https://tstore.space/images/headers/10.jpg)";
+    abHeader.style.backgroundPosition='center';
+    abHeader.style.backgroundRepeat='no-repeat';
+    abHeader.style.backgroundSize='cover';
+    abHeader.style.display='block';
+    document.getElementById('topcontent').style.marginTop='0';
   }
   document.getElementById('ab-platform-select').style.display='none';
   var appBlock=new XMLHttpRequest();

@@ -53,6 +53,18 @@
   height: 100%;
   border-radius: 16px;
   margin-top: -60px;
+  animation-name: block_page-appear;
+  animation-duration: .3s;
+  animation-timing-function: ease-in-out;
+}
+#ab-loading, #ub-main, #list-loading, #set-main {
+  animation-name: none;
+}
+@keyframes block_page-appear {
+  0% {
+    transform: scale(.85);
+    opacity: .3;
+  }
 }
 #ab-main_content, #ab-new_review {
   margin-top: 0;
@@ -158,6 +170,7 @@
   height: 180px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  margin-top: -60px;
 }
 #ab-icon {
   width: 100px;
@@ -388,5 +401,27 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+.scale-pc-anim {
+  animation-name: scale-pc-anim !important;
+  animation-duration: .15s !important;
+}
+.scale-phone-anim {
+  animation-name: scale-phone-anim !important;
+  animation-duration: .15s !important;
+}
+@keyframes scale-pc-anim {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+@keyframes scale-phone-anim {
+  100% {
+    transform: translateY(64px);
   }
 }
