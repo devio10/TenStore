@@ -13,6 +13,11 @@ if ((localStorage.getItem('platform')==null)&&(localStorage.getItem('manual-plat
   head.appendChild(script);
 }
 document.getElementById('s-platform').innerText=localStorage.getItem('platform');
+if ((localStorage.getItem('platform')=='Windows')||(localStorage.getItem('platform')=='Linux')) {
+  document.getElementById('device-icon').src='img/icons/device-desktop.svg';
+} else {
+  document.getElementById('device-icon').src='img/icons/device-mobile.svg';
+}
 
 window.onpopstate=function(event) {
   checkUrlVars();

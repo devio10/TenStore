@@ -139,28 +139,29 @@
           <a onclick='toggleSettings()' class="top-btn">Готово</a>
         </div>
         <button style="margin-top: 16px" class="set-btn btm-border no-hover">
+          <img src="img/icons/gauge.svg" class="set-btn-icon" id="gauge-icon">
           <h4 class="set-btn-txt">Экономия траффика</h4>
+          <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input style="margin-right: 16px" type="checkbox" class="switch">
         </button>
-        <h5 style='margin: 4px 16px 8px 16px; color: gray'>При включении будут
-           использоваться сжатые версии изображений, а обложки приложений будут
-           заменены сплошным цветом.</h5>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Включите этот режим при ограничении траффика или медленном интернет-соединении.</h5>
         <button class="set-btn btm-border no-hover">
+          <img src="img/icons/lightning.svg" class="set-btn-icon" id="lightning-icon">
           <h4 class="set-btn-txt">Низкая производительность</h4>
+          <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input style="margin-right: 16px" type="checkbox" class="switch">
         </button>
-        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Выключает многие эффекты
-        и анимации, полезно на слабых устройствах.</h5>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Для более быстрой работы на слабых устройствах, используйте этот режим.</h5>
         <button onclick="setWindow('platform')" class="set-btn">
+          <img src="img/icons/device-mobile.svg" class="set-btn-icon" id="device-icon">
           <h4 class="set-btn-txt">Платформа</h4>
           <h4 style="margin: 0 3px">•</h4>
           <h4 class="set-btn-txt2" id="s-platform">Windows</h4>
           <i class="ph-caret-right-bold set-arrow"></i>
         </button>
-        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Все приложения будут
-        скачиваться для выбранной платформы, но в любой момент это можно изменить, выбрав
-        необходимый файл в списке около кнопки скачивания</h5>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Платформа, которую вы выберете, будет использоваться по умолчанию для скачивания приложений.</h5>
         <button class="set-btn btm-border no-hover" style="margin-bottom: 16px">
+          <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
           <h4 class="set-btn-txt">Debug</h4>
           <input style="margin-right: 16px" onclick="localStorage.setItem('debug', 'true')" type="checkbox" class="switch">
         </button>
@@ -175,30 +176,37 @@
 
       <div id="set-platform" class="ub-window">
         <div class="top-btns">
-          <a onclick='setWindow("main")' class="top-btn">Настройки</a>
-          <h4 class="top-btns-title">Настройки</h4>
+          <div class="flex-row">
+            <i class="ph-caret-left top-btns-back"></i>
+            <a onclick='setWindow("main")' class="top-btn">Настройки</a>
+          </div>
+          <h4 class="top-btns-title">Платформа</h4>
           <a onclick='toggleSettings()' class="top-btn">Готово</a>
         </div>
-        <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Платформа</h3>
-        <h5 style='margin: 4px 16px 16px 16px; color: gray' id="cur-platform"></h5>
-        <button id="s-adt" disabled class="ub-btn no-hover">
-          <h4 class="ub-btn-txt">Windows</h4>
+        <h5 style='margin: 4px 16px 16px 16px; color: gray; display: none' id="cur-platform"></h5>
+        <button style="margin-top: 16px" id="s-adt" disabled class="set-btn no-hover">
+          <img src="img/icons/windows.svg" class="set-btn-icon" id="windows-icon">
+          <h4 class="set-btn-txt">Windows</h4>
           <input onclick="setPlatform('Windows')" id="p-Windows" style="margin-right: 16px" type="radio" name="s-platform" value="1">
         </button>
-        <button id="s-adt" disabled class="ub-btn no-hover">
-          <h4 class="ub-btn-txt">Android</h4>
+        <button id="s-adt" disabled class="set-btn no-hover">
+          <img src="img/icons/android.svg" class="set-btn-icon" id="android-icon">
+          <h4 class="set-btn-txt">Android</h4>
           <input onclick="setPlatform('Android')" id="p-Android" style="margin-right: 16px" type="radio" name="s-platform" value="2">
         </button>
-        <button id="s-adt" disabled class="ub-btn no-hover">
-          <h4 class="ub-btn-txt">Linux</h4>
+        <button id="s-adt" disabled class="set-btn no-hover">
+          <img src="img/icons/ubuntu.svg" class="set-btn-icon" id="ubuntu-icon">
+          <h4 class="set-btn-txt">Linux</h4>
           <input onclick="setPlatform('Linux')" id="p-Linux" style="margin-right: 16px" type="radio" name="s-platform" value="3">
         </button>
-        <button id="s-adt" disabled class="ub-btn no-hover">
-          <h4 class="ub-btn-txt">iOS</h4>
+        <button id="s-adt" disabled class="set-btn no-hover">
+          <img src="img/icons/apple.png" class="set-btn-icon" id="apple-icon">
+          <h4 class="set-btn-txt">iOS</h4>
           <input onclick="setPlatform('iOS')" id="p-iOS" style="margin-right: 16px" type="radio" name="s-platform" value="3">
         </button>
-        <button id="s-adt" disabled class="ub-btn no-hover btm-border">
-          <h4 class="ub-btn-txt">Не задана</h4>
+        <button id="s-adt" disabled class="set-btn no-hover">
+          <img src="img/icons/prohibit.svg" class="set-btn-icon" id="prohibit-icon">
+          <h4 class="set-btn-txt">Не задана</h4>
           <input onclick="setPlatform('none')" id="p-none" style="margin-right: 16px" type="radio" name="s-platform" value="2">
         </button>
 

@@ -442,6 +442,9 @@
 }
 .set-btn-txt, .set-btn-txt2 {
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .set-btn-txt2 {
   color: gray;
@@ -450,4 +453,43 @@
   font-size: 14px;
   color: gray;
   margin-left: auto;
+}
+
+
+.set-btn-icon {
+  width: 18px;
+  height: 18px;
+  background: black;
+  padding: 4px;
+  border-radius: 4px;
+  margin-right: 16px;
+}
+#gauge-icon {
+  background: #f44336;
+}
+#lightning-icon {
+  background: #4caf50;
+}
+#device-icon {
+  background: #2196f3;
+}
+#terminal-icon {
+  background: #ff5722;
+}
+#windows-icon {
+  background: #0078d7;
+}
+#android-icon {
+  background: #092f42;
+}
+#apple-icon {
+  padding: 0;
+  width: 26px;
+  height: 26px;
+}
+#ubuntu-icon {
+  background: #dd4814;
+}
+#prohibit-icon {
+  background: #e53935;
 }

@@ -181,6 +181,11 @@ h1, h2, h3, h4, h5, h6, i {
   margin-bottom: -2px;
   font-weight: bold;
 }
+.top-btns-back {
+  color: var(--accent);
+  font-size: 20px;
+  margin: 0;
+}
 .ub-btn, .big_btn {
   border-radius: 0;
   width: calc(100% - 32px);

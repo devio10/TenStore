@@ -90,6 +90,11 @@ function setPlatform(pmName) {
   localStorage.setItem('platform', pmName);
   document.getElementById('s-platform').innerText=localStorage.getItem('platform');
   document.getElementById('cur-platform').innerText='Текущая: '+localStorage.getItem('platform');
+  if ((pmName=='Windows')||(pmName=='Linux')) {
+    document.getElementById('device-icon').src='img/icons/device-desktop.svg';
+  } else {
+    document.getElementById('device-icon').src='img/icons/device-mobile.svg';
+  }
 }
 
 function debug_newReview() {
