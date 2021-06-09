@@ -7,6 +7,7 @@
   border-radius: 16px;
   background: var(--nav-bg);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   height: var(--height);
   z-index: 8;
   transition: .4s background-color;
@@ -34,6 +35,7 @@
   --width: 380px;
   background: var(--nav-bg);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 #user-block-bg, #app-block-bg, #list-block-bg, #set-block-bg {
   display: none;
@@ -46,6 +48,7 @@
   height: 100%;
   transition: .32s;
   backdrop-filter: grayscale(1);
+  -webkit-backdrop-filter: grayscale(1);
 }
 #ab-loading, #ub-main, #list-loading, #list-main, #set-main, #set-platform, #ab-main_content, #ab-new_review {
   overflow-y: auto;
