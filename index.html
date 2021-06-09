@@ -133,37 +133,51 @@
 
     <div id='settings-block'>
       <div id="set-main" class="ub-window">
-        <div onclick="toggleSettings()" class="ab-back">
-          <i class="ph-caret-left ab-back-icon pointer"></i>
+        <div class="top-btns">
+          <a onclick='toggleSettings(); toggleUB()' class="top-btn">Назад</a>
+          <h4 class="top-btns-title">Настройки</h4>
+          <a onclick='toggleSettings()' class="top-btn">Готово</a>
         </div>
-        <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Настройки</h3>
-        <h5 style='margin: 4px 16px 16px 16px; color: gray'>TenStore 3.0 beta_27.05</h5>
-        <button class="ub-btn btm-border no-hover">
-          <h4 class="ub-btn-txt">Экономия траффика</h4>
+        <button style="margin-top: 16px" class="set-btn btm-border no-hover">
+          <h4 class="set-btn-txt">Экономия траффика</h4>
           <input style="margin-right: 16px" type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>При включении будут
            использоваться сжатые версии изображений, а обложки приложений будут
            заменены сплошным цветом.</h5>
-        <button class="ub-btn btm-border no-hover">
-          <h4 class="ub-btn-txt">Низкая производительность</h4>
+        <button class="set-btn btm-border no-hover">
+          <h4 class="set-btn-txt">Низкая производительность</h4>
           <input style="margin-right: 16px" type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Выключает многие эффекты
         и анимации, полезно на слабых устройствах.</h5>
-        <button onclick="setWindow('platform')" class="ub-btn btm-border">
-          <h4 class="ub-btn-txt">Платформа</h4>
-          <h4 class="ub-btn-txt2" id="s-platform">Windows</h4>
-          <i class="ph-caret-right-bold ub-openbtn2"></i>
+        <button onclick="setWindow('platform')" class="set-btn">
+          <h4 class="set-btn-txt">Платформа</h4>
+          <h4 style="margin: 0 3px">•</h4>
+          <h4 class="set-btn-txt2" id="s-platform">Windows</h4>
+          <i class="ph-caret-right-bold set-arrow"></i>
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Все приложения будут
         скачиваться для выбранной платформы, но в любой момент это можно изменить, выбрав
         необходимый файл в списке около кнопки скачивания</h5>
+        <button class="set-btn btm-border no-hover" style="margin-bottom: 16px">
+          <h4 class="set-btn-txt">Debug</h4>
+          <input style="margin-right: 16px" onclick="localStorage.setItem('debug', 'true')" type="checkbox" class="switch">
+        </button>
+        <div class="ub-btn-family">
+          <button class="ub-btn" onclick="localStorage.clear(); location.reload()">
+            <i class="ph-trash-bold ub-openbtn red"></i>
+            <h4 class="ub-btn-txt focus red">Удалить все данные</h4>
+          </button>
+        </div>
+        <h5 style='margin: 16px; color: gray'>TenStore 3.0 jun09</h5>
       </div>
 
       <div id="set-platform" class="ub-window">
-        <div onclick="setWindow('main')" class="ab-back">
-          <i class="ph-caret-left ab-back-icon pointer"></i>
+        <div class="top-btns">
+          <a onclick='setWindow("main")' class="top-btn">Настройки</a>
+          <h4 class="top-btns-title">Настройки</h4>
+          <a onclick='toggleSettings()' class="top-btn">Готово</a>
         </div>
         <h3 style="margin: 16px 16px 0 16px; font-weight: bold">Платформа</h3>
         <h5 style='margin: 4px 16px 16px 16px; color: gray' id="cur-platform"></h5>

@@ -50,14 +50,24 @@ input {
 }
 
 .ti-subtext {
-  margin: 8px 0 0 0;
+  margin: 0 0 16px 0;
+  text-align: center;
   color: gray;
 }
 
 #ti-login, #ti-pass {
-  margin-top: 32px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+#ti-pass, #login-btn {
+  display: none;
 }
 #wrong-data {
   margin: 8px 0 8px 0;
   visibility: hidden;
+}
+.continue-btn {
+  width: 100%;
+  margin: 0;
+  height: 42px;
 }

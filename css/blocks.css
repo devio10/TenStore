@@ -27,7 +27,7 @@
   border-top: 1px solid var(--gray-mid);
 }
 #settings-block {
-  background: var(--gray-light);
+  background: var(--nav-bg);
 }
 #user-block {
   --height: auto;
@@ -424,4 +424,27 @@
   100% {
     transform: translateY(64px);
   }
+}
+.set-btn {
+  width: 100%;
+  background: var(--abs-bg);
+  margin: 0 0 -1px 0;
+  border-radius: 0;
+  border-top: 1px solid var(--gray-mid);
+  border-bottom: 1px solid var(--gray-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.set-btn-txt, .set-btn-txt2 {
+  font-size: 14px;
+}
+.set-btn-txt2 {
+  color: gray;
+}
+.set-arrow {
+  font-size: 14px;
+  color: gray;
+  margin-left: auto;
 }

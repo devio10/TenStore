@@ -24,13 +24,18 @@
         <h5 class="ui-gray">Соединение с сервером</h5>
       </div>
       <div id="tenid-form1" style="display: none">
-        <h1>TenID</h1>
-        <h4 class="ti-subtext">Войти в аккаунт</h4>
-        <input id="ti-login" type="text" placeholder="TenID или почта">
+        <h4 class="ti-subtext">Вход в аккаунт</h4>
+        <input id="ti-login" type="text" placeholder="TenID">
+        <div class="ub-btn-family">
+          <button class="ub-btn continue-btn">
+            <i class="ph-arrow-right-bold ub-openbtn"></i>
+            <h4 class="ub-btn-txt focus">Продолжить</h4>
+          </button>
+        </div>
         <input id="ti-pass" type="password" placeholder="Пароль">
         <h5 id="wrong-data" class="ui-gray">Указанные данные неверны. <a>Забыли пароль?</a></h5>
         <button id="login-btn" onclick='saveAccount()'>Войти</button>
-        <h5 style="margin-top: 16px" class="ui-gray">или создать <a href='new-account'>новый аккаунт.</a></h5>
+        <h5 style="margin: 32px 0 0 0; text-align: center" class="ui-gray">или создать <a style="text-decoration: none" href='new-account'>новый аккаунт.</a></h5>
 
       </div>
       <div id="tenid-form2" style="display: none">

@@ -168,9 +168,15 @@ h1, h2, h3, h4, h5, h6, i {
   border-bottom: 1px solid var(--gray-mid);
   position: sticky;
   top: 0;
+  font-size: 16px;
 }
 .top-btns.single {
   justify-content: flex-end;
+}
+.top-btns-title {
+  margin: 0;
+  margin-bottom: -2px;
+  font-weight: bold;
 }
 .ub-btn, .big_btn {
   border-radius: 0;
