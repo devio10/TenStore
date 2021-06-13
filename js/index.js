@@ -50,11 +50,6 @@ function hideAllBlocks () {
     toggleSettings();
   }
 }
-
-function checkPars() {
-  document.getElementById('cur-platform').innerText=localStorage.getItem('platform');
-  document.getElementById('p-'+localStorage.getItem('platform')).checked=true;
-}
 function toggleADT() {
   curADT=localStorage.getItem('autoDarkTheme');
   if (curADT=='false') {
@@ -67,22 +62,35 @@ function toggleADT() {
   checkTheme();
 }
 
+var selHC='index';
 function hmContent(page) {
   document.getElementById('hm-index').style.display='none';
   document.getElementById('hm-apps').style.display='none';
   document.getElementById('hm-games').style.display='none';
   document.getElementById('hm-'+page).style.display='flex';
 
+  selHC=page;
+
   let iconClass;
   if (page=='index') { iconClass='house' }
   else if (page=='apps') { iconClass='squares-four' }
   else if (page=='games') { iconClass='game-controller' }
 
-  document.getElementById('nav-index').classList='ph-house-light ui-nav-icon';
-  document.getElementById('nav-apps').classList='ph-squares-four-light ui-nav-icon';
-  document.getElementById('nav-games').classList='ph-game-controller-light ui-nav-icon';
+  document.getElementById('nav-index').className='';
+  document.getElementById('nav-apps').className='';
+  document.getElementById('nav-games').className='';
+  console.log(document.getElementById('nav-index').className);
 
-  document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon active';
+  document.getElementById('nav-index').classList='ph-house-light ui-nav-icon ui-nav-icon-highlight';
+  document.getElementById('nav-apps').classList='ph-squares-four-light ui-nav-icon ui-nav-icon-highlight';
+  document.getElementById('nav-games').classList='ph-game-controller-light ui-nav-icon ui-nav-icon-highlight';
+
+  console.log(document.getElementById('nav-index').className);
+
+
+  document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon';
+
+  document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon ui-nav-icon-highlight';
   window.scrollTo(0, 0);
 }
 

@@ -374,3 +374,6 @@ button.wide {
   /**/
   cursor: not-allowed;
 }
+#search-nav-bar {
+  display: none;
+}

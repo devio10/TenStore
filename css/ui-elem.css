@@ -75,11 +75,12 @@ img {
 }
 
 .ui-nav {
+  --bottom: 16px;
   --width: 316px;
   --half-width: calc(var(--width) / 2);
   position: fixed;
   border-radius: 8px;
-  bottom: 16px;
+  bottom: var(--bottom);
   width: var(--width);
   left: calc(50% - var(--half-width));
   height: 56px;
@@ -90,6 +91,7 @@ img {
   display: flex;
   z-index: 2;
   user-select: none;
+  transition: .3s bottom;
 }
 .ui-nav-block {
   width: 100%;
@@ -118,12 +120,24 @@ img {
   margin-bottom: 2px;
   color: #919191;
 }
+.ui-nav-icon-highlight {
+  animation-name: nav-icon;
+  animation-duration: 1.5s;
+}
+@keyframes nav-icon {
+  0% {
+    color: var(--text);
+  }
+  90% {
+    color: var(--text);
+  }
+  100% {
+    color: #919191;
+  }
+}
 .ui-nav-item:hover {
   transition: .08s;
   background: var(--nav-bg-active);
-}
-.ui-nav-icon.active {
-  color: var(--accent);
 }
 
 input[type=text], input[type=password] {

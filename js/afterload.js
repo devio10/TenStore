@@ -29,5 +29,3 @@ if (localStorage.getItem('debug')!='true') {
 if (localStorage.getItem('temp-beta-introduction')=='hidden') {
   document.getElementById('beta-introduction').style.display='none';
 }
-
-//debug_newReview()

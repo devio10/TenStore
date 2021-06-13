@@ -52,17 +52,34 @@ button {
 
 .ui-nav {
   --width: 100%;
+  --bottom: 0;
   left: 0;
-  bottom: 0;
   border-radius: 0;
   box-shadow: none;
-  height: 56px;
+  background: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  height: 48px;
   border: none;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 .ui-nav-block {
-  max-width: 300px;
+  max-width: 350px;
+}
+.ui-nav-item {
+  height: 36px;
+  width: calc(33% - 24px);
+  flex-basis: none;
+  white-space: none;
+  overflow: none;
+  background: var(--bg);
+  margin: 0 8px 0 8px;
+  border-radius: 20px;
+  border: 1px solid var(--gray-mid);
+}
+.ui-nav-item:hover {
+  background: var(--abs-bg)
 }
 input[type=text], input[type=password] {
   margin-left: 16px;
@@ -127,4 +144,33 @@ input[type=text], input[type=password] {
 }
 #nr-text {
   height: 100%;
+}
+
+#search-nav-bar {
+  --bottom: 58px;
+  z-index: 6;
+  position: fixed;
+  bottom: var(--bottom);
+  top: auto;
+  width: 100%;
+  display: flex;
+  left: 0;
+  transition: .3s bottom;
+  display: block;
+}
+.search-nb-block {
+  background: var(--bg);
+  border: 1px solid var(--gray-mid);
+  width: calc(100% - 16px);
+  height: 40px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  max-width: 334px;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+.search-nb-icon {
+  margin: 0 24px 0 auto;
+  color: gray;
 }
