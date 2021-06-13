@@ -61,8 +61,6 @@ button {
   -webkit-backdrop-filter: none;
   height: 48px;
   border: none;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
 .ui-nav-block {
   max-width: 350px;
@@ -147,30 +145,7 @@ input[type=text], input[type=password] {
 }
 
 #search-nav-bar {
-  --bottom: 58px;
-  z-index: 6;
-  position: fixed;
-  bottom: var(--bottom);
-  top: auto;
   width: 100%;
-  display: flex;
+  --bottom: 58px;
   left: 0;
-  transition: .3s bottom;
-  display: block;
-}
-.search-nb-block {
-  background: var(--bg);
-  border: 1px solid var(--gray-mid);
-  width: calc(100% - 16px);
-  height: 40px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  max-width: 334px;
-  overflow-x: auto;
-  margin: 0 auto;
-}
-.search-nb-icon {
-  margin: 0 24px 0 auto;
-  color: gray;
 }

@@ -132,7 +132,7 @@ img {
     color: var(--text);
   }
   100% {
-    color: #919191;
+    color: #666666;
   }
 }
 .ui-nav-item:hover {

@@ -79,13 +79,11 @@ function hmContent(page) {
   document.getElementById('nav-index').className='';
   document.getElementById('nav-apps').className='';
   document.getElementById('nav-games').className='';
-  console.log(document.getElementById('nav-index').className);
 
   document.getElementById('nav-index').classList='ph-house-light ui-nav-icon ui-nav-icon-highlight';
   document.getElementById('nav-apps').classList='ph-squares-four-light ui-nav-icon ui-nav-icon-highlight';
   document.getElementById('nav-games').classList='ph-game-controller-light ui-nav-icon ui-nav-icon-highlight';
 
-  console.log(document.getElementById('nav-index').className);
 
 
   document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon';

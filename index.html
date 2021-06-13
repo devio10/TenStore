@@ -28,8 +28,8 @@
     </header>
 
     <div id="search-nav-bar" style="display: none" onclick="toggleList(true)">
-      <div class="search-nb-block">
-        <h5 style="color: gray; margin: 0 0 0 24px">Поиск...</h5>
+      <div id="search-nb-block">
+        <h5 style="color: inherit; margin: 0 0 0 24px">Поиск...</h5>
         <i class="ph-magnifying-glass-light search-nb-icon"></i>
       </div>
     </div>
@@ -43,9 +43,6 @@
   		  </a>
   		  <a class="ui-nav-item" onclick='hmContent("games")'>
   		    <i class="ph-game-controller-light ui-nav-icon" id="nav-games"></i>
-  		  </a>
-        <a class="ui-nav-item" style="display: none" onclick="toggleList(true)">
-  		    <i class="ph-magnifying-glass-light ui-nav-icon"></i>
   		  </a>
       </div>
 		</nav>
@@ -174,30 +171,35 @@
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Экспериментальные функции</h5>
         <button class="set-btn btm-border no-hover">
-          <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
+          <img src="img/icons/list.svg" class="set-btn-icon" id="nav-bar-anim-icon">
           <h4 class="set-btn-txt">nav bar animations</h4>
           <input id="ef-nav-bar-sw" onclick="changePar('ef-nav-bar-animations')" type="checkbox" class="switch">
         </button>
         <button class="set-btn btm-border no-hover">
-          <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
+          <img src="img/icons/search.svg" class="set-btn-icon" id="search-icon">
           <h4 class="set-btn-txt">search bar</h4>
           <input id="ef-search-bar-sw" onclick="changePar('ef-search-bar')" type="checkbox" class="switch">
         </button>
         <button class="set-btn btm-border no-hover">
-          <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
+          <img src="img/icons/stack.svg" class="set-btn-icon" id="stack-icon">
           <h4 class="set-btn-txt">home cards</h4>
           <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input id="ef-home-cards-sw" onclick="changePar('ef-home-cards')" type="checkbox" class="switch">
         </button>
         <button class="set-btn btm-border no-hover">
-          <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
+          <img src="img/icons/align-left.svg" class="set-btn-icon" id="align-left-icon">
           <h4 class="set-btn-txt">content margin</h4>
           <input id="ef-content-margin-sw" onclick="changePar('ef-content-margin')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn btm-border no-hover" style="margin-bottom: 16px">
-          <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
+        <button class="set-btn btm-border no-hover">
+          <img src="img/icons/arrow-arc-right.svg" class="set-btn-icon" id="redirect-icon">
           <h4 class="set-btn-txt">redirect (2.4 to 3.0)</h4>
           <input id="ef-redirect-sw" onclick="changePar('ef-redirect')" type="checkbox" class="switch">
+        </button>
+        <button class="set-btn btm-border no-hover" style="margin-bottom: 16px">
+          <img src="img/icons/list.svg" class="set-btn-icon" id="new-nav-bar-icon">
+          <h4 class="set-btn-txt">new nav bar (pc)</h4>
+          <input id="ef-new-nav-bar-sw" onclick="changePar('ef-new-nav-bar')" type="checkbox" class="switch">
         </button>
         <div class="ub-btn-family">
           <button class="ub-btn" onclick="localStorage.clear(); location.reload()">
@@ -205,7 +207,7 @@
             <h4 class="ub-btn-txt focus red">Удалить все данные</h4>
           </button>
         </div>
-        <h5 style='margin: 16px; color: gray'>TenStore 3.0 jun12</h5>
+        <h5 style='margin: 16px; color: gray'>TenStore 3.0 jun13</h5>
       </div>
 
       <div id="set-platform" class="ub-window">
