@@ -131,7 +131,7 @@ function CAFifth () {
     next.style.display = "block";
     let action = "si8739JI";
     const request = new XMLHttpRequest();
-    const url = "https://thetenstore.ru/api.php";
+    const url = "https://tstore.space/api.php";
     var params = new FormData();
     params.append("action", action);
     params.append("photo", picFile);

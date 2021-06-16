@@ -18,7 +18,7 @@ function EditAccount () {
   } else {
     let action = "QWE2e3FA";
     const request = new XMLHttpRequest();
-    const url = "https://thetenstore.ru/api.php";
+    const url = "https://tstore.space/api.php";
     var params = new FormData();
 
     params.append("action", action);

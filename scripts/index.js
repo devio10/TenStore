@@ -6,9 +6,9 @@ function homeCard(cardId, name, appId, background, background2) {
   }
   if (localStorage.getItem('save-traffic')!='true') {
     if ((background2==0)&&(background==0)) {
-      document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://thetenstore.ru/images/cardbg/empty.jpg)';
+      document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://tstore.space/images/cardbg/empty.jpg)';
     } else if (background!=0) {
-      document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://thetenstore.ru/'+background+')';
+      document.getElementById(cardId).style.backgroundImage='var(--topCard-gradient), url(https://tstore.space/'+background+')';
     }
   } else {
     document.getElementById(cardId).style.background='var(--bg)';
@@ -23,7 +23,7 @@ function homeCard(cardId, name, appId, background, background2) {
 }
 
 const ec_app_request=new XMLHttpRequest();
-const url='https://thetenstore.ru/api.php';
+const url='https://tstore.space/api.php';
 const ec_app_params='action=KdSqSAOC&select=editors-choice&value=app';
 ec_app_request.responseType='json';
 ec_app_request.open('POST', url, true);
@@ -103,11 +103,11 @@ function fixBg(obj) {
   document.getElementById(obj).style.backgroundPosition='center';
 }
 if (localStorage.getItem('save-traffic')!='true') {
-  document.getElementById('popular').style.backgroundImage="url(https://thetenstore.ru/images/backgrounds/popular.jpg)";
-  document.getElementById('high-rated').style.backgroundImage="url(https://thetenstore.ru/images/backgrounds/high-rated.jpg)";
-  document.getElementById('rec-upd').style.backgroundImage="url(https://thetenstore.ru/images/backgrounds/rec-upd.jpg)";
-  document.getElementById('googlefit').style.backgroundImage="var(--card2-gradient), url(https://thetenstore.ru/images/promo/googlefit.gif)";
-  document.getElementById('Microsoft').style.backgroundImage="url(https://thetenstore.ru/images/promo/microsoft-bg.jpg)";
+  document.getElementById('popular').style.backgroundImage="url(https://tstore.space/images/backgrounds/popular.jpg)";
+  document.getElementById('high-rated').style.backgroundImage="url(https://tstore.space/images/backgrounds/high-rated.jpg)";
+  document.getElementById('rec-upd').style.backgroundImage="url(https://tstore.space/images/backgrounds/rec-upd.jpg)";
+  document.getElementById('googlefit').style.backgroundImage="var(--card2-gradient), url(https://tstore.space/images/promo/googlefit.gif)";
+  document.getElementById('Microsoft').style.backgroundImage="url(https://tstore.space/images/promo/microsoft-bg.jpg)";
   fixBg('popular');
   fixBg('high-rated');
   fixBg('rec-upd');

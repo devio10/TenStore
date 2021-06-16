@@ -33,7 +33,7 @@ function addToLibrary () {
 }
 
 const request = new XMLHttpRequest();
-const url = "https://thetenstore.ru/api.php";
+const url = "https://tstore.space/api.php";
 const params = "action=" + action + "&id=" + id;
 request.responseType = "json";
 request.open("POST", url, true);
@@ -63,8 +63,8 @@ request.addEventListener("readystatechange", () => {
           } else {
             downloadCardIcon=files.files[i].icon;
           }
-          downloadCard.setAttribute('onclick',"window.open('https://thetenstore.ru/"+files.files[i].file+"', '_self'); addToLibrary()");
-          downloadCard.innerHTML="<img class='download-card-icon' src='https://thetenstore.ru/images/platforms/"+downloadCardIcon+"'> \
+          downloadCard.setAttribute('onclick',"window.open('https://tstore.space/"+files.files[i].file+"', '_self'); addToLibrary()");
+          downloadCard.innerHTML="<img class='download-card-icon' src='https://tstore.space/images/platforms/"+downloadCardIcon+"'> \
           <div class='flex flex-column download-card-text'> \
             <h4 class='download-card-title'>"+files.files[i].platform+"</h4> \
             <h5 class='download-card-description grey'>"+files.files[i].architecture+" • "+files.files[i].version+" • "+files.files[i].published+" • "+files.files[i].size+" Мб</h5> \
@@ -83,8 +83,8 @@ request.addEventListener("readystatechange", () => {
         for(let s in screenshots.scr) {
           var screenshot=document.createElement('img');
           screenshot.className='screenshot';
-          screenshot.setAttribute('onclick',"window.open('https://thetenstore.ru/"+screenshots.scr[s].image+"', '_self')");
-          screenshot.src='https://thetenstore.ru/'+screenshots.scr[s].image;
+          screenshot.setAttribute('onclick',"window.open('https://tstore.space/"+screenshots.scr[s].image+"', '_self')");
+          screenshot.src='https://tstore.space/'+screenshots.scr[s].image;
           document.getElementById('screenshots').appendChild(screenshot);
         }
       } else {
@@ -98,7 +98,7 @@ request.addEventListener("readystatechange", () => {
         for(let c in comments.comments) {
           var reviewPic;
           const userPicRequest=new XMLHttpRequest();
-          const userPicUrl="https://thetenstore.ru/api.php";
+          const userPicUrl="https://tstore.space/api.php";
           const userPicParams="action=FEhf42d&login="+comments.comments[c].login;
           userPicRequest.responseType="json";
           userPicRequest.open("POST", userPicUrl, true);
@@ -131,9 +131,9 @@ request.addEventListener("readystatechange", () => {
                 if (userrr.user[0].photo==0) {
                   reviewPic='images/user.svg';
                 } else {
-                  reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+                  reviewPic='https://tstore.space/'+userrr.user[0].photo;
                 }
-                reviewPic='https://thetenstore.ru/'+userrr.user[0].photo;
+                reviewPic='https://tstore.space/'+userrr.user[0].photo;
 
                 var comment=document.createElement('div');
                 console.log(comments.comments[c]);
@@ -157,10 +157,10 @@ request.addEventListener("readystatechange", () => {
       }
       if (localStorage.getItem('save-traffic')!='true') {
         if (obj.apps[0].bg!=0) {
-          appPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/" + obj.apps[0].bg + ")";
+          appPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://tstore.space/" + obj.apps[0].bg + ")";
         } else {
           let random=Math.floor(Math.random() * 10) + 1;
-          appPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+          appPage.style.background="linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://tstore.space/images/headers/" + random  + ".jpg)";
         }
         appPage.style.backgroundPosition='center';
         appPage.style.backgroundRepeat='no-repeat';
@@ -178,7 +178,7 @@ request.addEventListener("readystatechange", () => {
       } else {
         cssBg = obj.apps[0].icon_bg;
       }
-      icon.src = "https://thetenstore.ru/" + obj.apps[0].icon;
+      icon.src = "https://tstore.space/" + obj.apps[0].icon;
       icon.style.background = cssBg;
       let liked=obj.apps[0].liked;
       let disliked=obj.apps[0].disliked;
@@ -206,7 +206,7 @@ request.addEventListener("readystatechange", () => {
         publisher=obj.apps[0].pub;
       }
       document.getElementById('appPage-title').innerText = obj.apps[0].name + " — TenStore";
-      document.getElementById('appPage-titleIcon').href = "https://thetenstore.ru/" + obj.apps[0].icon;
+      document.getElementById('appPage-titleIcon').href = "https://tstore.space/" + obj.apps[0].icon;
       document.getElementById('appPage-category').innerHTML = "<a class='link' href='appsList?tag=" + obj.apps[0].category + "'>" + obj.apps[0].category + "</a>";
       const requestDev = new XMLHttpRequest();
       const paramsDev = "action=KdSqSAOC&select=dev" + "&value=" + devName;
@@ -226,7 +226,7 @@ request.addEventListener("readystatechange", () => {
 } else {
   if(localStorage.getItem('save-traffic')!='true') {
     let random = Math.floor(Math.random() * 10) + 1;
-    appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://thetenstore.ru/images/headers/" + random  + ".jpg)";
+    appPage.style.background = "linear-gradient(0deg, var(--rgba) 0%, rgba(0,0,0,0) 59%), url(https://tstore.space/images/headers/" + random  + ".jpg)";
     appPage.style.backgroundPosition = 'center';
     appPage.style.backgroundRepeat = 'no-repeat';
     appPage.style.backgroundSize = 'cover';
@@ -294,7 +294,7 @@ function sendReview () {
   }
   let action="DF7dcbw";
   const request=new XMLHttpRequest();
-  const url="https://thetenstore.ru/api.php";
+  const url="https://tstore.space/api.php";
   var params=new FormData();
   params.append("action", action);
   params.append("login", localStorage.getItem('login'));

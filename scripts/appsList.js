@@ -35,7 +35,7 @@ if ((getUrlVars()['tag']=='game-rec-upd')) {
 }
 var isNotFound;
 const request = new XMLHttpRequest();
-const url = "https://thetenstore.ru/api.php";
+const url = "https://tstore.space/api.php";
 let params;
 if (getUrlVars()['search']!=null) {
   params="action="+action+"&search="+search;
@@ -70,11 +70,11 @@ function confirm() {
     sType = 'app';
   }
   if (tag == true) {
-    window.open('https://thetenstore.ru/appsList?tag=' + value, '_self');
+    window.open('https://tstore.space/appsList?tag=' + value, '_self');
   } else if (dev == true) {
-    window.open('https://thetenstore.ru/appsList?dev=' + devV, '_self');
+    window.open('https://tstore.space/appsList?dev=' + devV, '_self');
   } else {
-    window.open('https://thetenstore.ru/appsList?type=' + sType, '_self');
+    window.open('https://tstore.space/appsList?type=' + sType, '_self');
   }
 }
 function category(category, catName) {

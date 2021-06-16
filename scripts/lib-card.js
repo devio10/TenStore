@@ -1,6 +1,6 @@
 function showLibCard(app_icon, app_icon_pad, app_icon_bg, app_id, app_name, app_dev) {
   let icon_bg;
-  app_icon='https://thetenstore.ru/'+app_icon;
+  app_icon='https://tstore.space/'+app_icon;
   let icon_size='45px';
   if ((app_icon_bg==0)||(app_icon_bg=='white')||(app_icon_bg=='#ffffff')||(app_icon_bg=='#fff')||(app_icon_bg=='#FFFFFF')){
     icon_bg='var(--bg)';

@@ -1,7 +1,7 @@
 var isNotFound;
 
 const libReq=new XMLHttpRequest();
-const url="https://thetenstore.ru/api.php";
+const url="https://tstore.space/api.php";
 let libPars=new FormData();
 libPars.append("action", 'hgwea0756');
 libPars.append("login", localStorage.getItem('login'));

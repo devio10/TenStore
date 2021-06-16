@@ -110,7 +110,7 @@ if ($_POST['action'] == "fg0348") {
             echo $name;
             $content = "Здравствуйте, " . $name . " " . $lastName . ".\n
 Для завершения сброса пароля, вам необходимо пройти по ссылке ниже:\n
-thetenstore.ru/newpw.php?secretKey=" . $secretKey . "\n
+tstore.space/newpw.php?secretKey=" . $secretKey . "\n
 C уважением,\n
 команда Press Team.\n
 \n
@@ -167,7 +167,7 @@ if ($_POST['action'] == "si8739JI") {
         $query = array(
             "secret" => $key,
             "response" => $_POST["g-recaptcha"],
-            "remoteip" => $_SERVER['thetenstore.ru']
+            "remoteip" => $_SERVER['tstore.space']
         );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -607,7 +607,7 @@ if ($_POST['action'] == "si8739JI") {
                                 <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
                                   <tbody>
                                     <tr>
-                                      <td> <a href=\"https://thetenstore.ru/activate.php?secretKey=".$secretKey."\" target=\"_blank\">Подтвердить</a> </td>
+                                      <td> <a href=\"https://tstore.space/activate.php?secretKey=".$secretKey."\" target=\"_blank\">Подтвердить</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -626,7 +626,7 @@ if ($_POST['action'] == "si8739JI") {
               <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
                 <tr>
                   <td class=\"content-block\">
-                    <span class=\"apple-link\">https://thetenstore.ru</span>
+                    <span class=\"apple-link\">https://tstore.space</span>
                   </td>
                 </tr>
                 <tr>
@@ -646,7 +646,7 @@ if ($_POST['action'] == "si8739JI") {
 ";
                             $headers = 'MIME-Version: 1.0' . "\r\n";
                             $headers .= "Content-type: text/html; charset=utf-8 \r\n";
-                            $headers .= "From: TenStore <webmaster@thetenstore.ru>\r\n"; // от кого
+                            $headers .= "From: TenStore <webmaster@tstore.space>\r\n"; // от кого
                             mail($email, "Регистрация на TenStore", $content, $headers);
                         }
                     } catch (PDOException $e) {
@@ -929,7 +929,7 @@ class Comment
         $this->comment = $comment;
         $this->like = $like;
     }
-    
+
 }
 
 function gen_password($length = 6)

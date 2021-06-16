@@ -5,7 +5,7 @@ function LALogin () {
   var password=SHA256(document.getElementById("password").value);
   var request=getXMLHTTP();
   request.responseType =	"json";
-  request.open('POST', 'https://thetenstore.ru/api.php', true);
+  request.open('POST', 'https://tstore.space/api.php', true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send("action="+action+"&login="+encodeURIComponent(login)+"&password="+encodeURIComponent(password));
   request.onreadystatechange = function() {
@@ -17,7 +17,7 @@ function LALogin () {
         userLogin=obj.user[0].login;
         console.log(userLogin+' '+obj.user[0].login);
         if (obj.user[0].photo!=0) {
-          document.getElementById("LA-userPic").src = "https://thetenstore.ru/" + obj.user[0].photo;
+          document.getElementById("LA-userPic").src = "https://tstore.space/" + obj.user[0].photo;
         }
         document.getElementById("LA-name").innerHTML=obj.user[0].name+" "+obj.user[0].lastname;
         document.getElementById('LA-1step').style.display='none';
