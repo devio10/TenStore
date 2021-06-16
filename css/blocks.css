@@ -511,3 +511,6 @@
 #search-icon {
   background: #455a64;
 }
+#store-icon {
+  background: var(--accent);
+}
