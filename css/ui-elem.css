@@ -8,13 +8,30 @@
 
 /* колесо загрузки */
 .ui-loading-wheel {
+  --size: 24px;
   border: 3px solid rgba(21,101,192, 0.4);
   border-top-color: var(--accent);
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: var(--size);
+  height: var(--size);
   animation: ui-loading-wheel-spin 1s linear infinite;
 }
+.ui-40px.ui-loading-wheel { --size: 40px; }
+.ui-38px.ui-loading-wheel { --size: 38px; }
+.ui-36px.ui-loading-wheel { --size: 36px; }
+.ui-34px.ui-loading-wheel { --size: 34px; }
+.ui-32px.ui-loading-wheel { --size: 32px; }
+.ui-30pxx.ui-loading-wheel { --size: 30px; }
+.ui-28px.ui-loading-wheel { --size: 28px; }
+.ui-26px.ui-loading-wheel { --size: 26px; }
+.ui-24px.ui-loading-wheel { --size: 24px; }
+.ui-22px.ui-loading-wheel { --size: 22px; }
+.ui-20px.ui-loading-wheel { --size: 20px; }
+.ui-18px.ui-loading-wheel { --size: 18px; }
+.ui-16px.ui-loading-wheel { --size: 16px; }
+.ui-14px.ui-loading-wheel { --size: 14px; }
+.ui-12px.ui-loading-wheel { --size: 12px; }
+.ui-10px.ui-loading-wheel { --size: 10px; }
 @keyframes ui-loading-wheel-spin {
   to {
     transform: rotate(360deg);

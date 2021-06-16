@@ -99,3 +99,42 @@
 #hm-apps, #hm-games {
   display: none;
 }
+
+.new.hm-card {
+  height: 500px;
+  padding: 32px;
+}
+.hm-card-title.new {
+  margin-top: 50%;
+  color: rgba(255, 255, 255, 0.9);
+}
+.hm-card-rate {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 auto;
+}
+.hc-rate-text {
+  margin: 0;
+  font-size: 16px;
+  color: white;
+}
+.hm-card-text.new {
+  color: rgba(255, 255, 255, 0.7);
+}
+#hm-card-spotify {
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3) ), url(https://tstore.space/3rd/img/spotify.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hm-card-button {
+  font-size: 32px;
+  color: white;
+  margin: 16px;
+  cursor: pointer;
+}

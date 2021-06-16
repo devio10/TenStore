@@ -80,11 +80,11 @@
             оставлять комментарии и <a href='help?q=tenid-features'>делать другие вещи.</a>
             <a href="reg">Создайте новый</a> или <a href="login">войдите</a>, если он уже есть.</h5>
           <div class="ub-btn-family">
-            <button class="ub-btn transparent" onclick="toggleUB(), toggleSettings()">
+            <button class="ub-btn" onclick="toggleUB(), toggleSettings()">
               <i class="ph-gear-six ub-openbtn"></i>
               <h4 class="ub-btn-txt">Настройки</h4>
             </button>
-            <button class="ub-btn transparent" onclick="window.open('login')">
+            <button class="ub-btn" onclick="window.open('login')">
               <i class="ph-key ub-openbtn"></i>
               <h4 class="ub-btn-txt">Войти в аккаунт</h4>
             </button>
@@ -262,19 +262,16 @@
 
       <div id="hm-content-editors-choice">
         <h4 class="hm-card-toptext1">Выбор редакции</h4>
-        <div class="hm-card hm-card-wide no-scale">
-          <img onclick="showAB(17)" class="hm-card-img" src='img/spotify.jpg'>
-          <div class="flex-row">
-            <h5 class="hm-card-smalltext">Spotify LLC</h5>
-            <h5 class="hm-card-smalltext hm-card-smtxt-right">6+ • есть транзакции</h5>
+        <div id="hm-card-spotify" class="hm-card hm-card-wide no-scale new">
+          <div class="hm-card-rate">
+            <h5 class="hc-rate-text">6+</h5>
           </div>
-          <h2 class="hm-card-title">Spotify</h2>
-          <h4 class="hm-card-text">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
+          <h1 class="hm-card-title new">Spotify</h1>
+          <h4 class="hm-card-text new">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
              создания плейлистов и поиска новых песен.</h4>
           <div class="flex-row">
-            <button style="background: #2f3462" onclick="download(17)">Скачать</button>
-            <i class="hm-card-compatibility ph-check-bold"></i>
-            <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">совместимо с вашим устройством</h5>
+            <i class="hm-card-button ph-cloud-arrow-down-light" onclick="download(17)"></i>
+            <i class="hm-card-button ph-info-light" onclick="showAB(17)"></i>
           </div>
         </div>
       </div>
@@ -285,7 +282,6 @@
         </style>
         <img class="hm-card-img short-img" src='https://tstore.space/images/backgrounds/networking.png'>
         <h2 style="color: #f3f6e6; font-family: 'Oswald'; font-size: 30px" class="hm-card-title2">СОЦИАЛЬНЫЕ СЕТИ</h2>
-        <h4 style="color: #f3f6e6" class="hm-card-text2">Приложения для связи с вашими друзьями и коллегами</h4>
       </div>
 
       <div style="background: #574730" class="hm-card" onclick="showList('category', 'Музыка', false, 'То, чего не хватает вашим ушам...', '3rd/img/music.png', 'Amatic SC', '#574730', '', '50px')">
@@ -295,7 +291,6 @@
         </style>
         <img class="hm-card-img short-img" src='https://tstore.space/3rd/img/music.png'>
         <h2 style="color: white; font-family: 'Amatic SC'; font-size: 50px" class="hm-card-title2">Музыка</h2>
-        <h4 style="color: white" class="hm-card-text2">То, чего не хватает вашим ушам...</h4>
       </div>
 
       <div id="hm-content-telegram">
@@ -368,7 +363,7 @@
     </div>
 
     <div class="hm-bottom-loading">
-      <div class="ui-loading-wheel"> </div>
+      <div class="ui-loading-wheel ui-30pxx"> </div>
       <h5 class="ui-gray">Контент загружается</h5>
     </div>
 
