@@ -188,7 +188,6 @@
         flashVersion: flashVersion
     };
 }(this));
-
 /*alert(
     'OS: ' + jscd.os +' '+ jscd.osVersion + '\n' +
     'Browser: ' + jscd.browser +' '+ jscd.browserMajorVersion +

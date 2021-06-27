@@ -13,11 +13,7 @@
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
     <script src="js/tenid.js" charset="utf-8"></script>
-    <script src="js/shorts.js" charset="utf-8"></script>
-    <script src="js/settings.js" charset="utf-8"></script>
-
     <script src="js/mobile-version.js" charset="utf-8"></script>
-    <script src="js/xmlhttp.js" charset="utf-8"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
   </head>
@@ -142,20 +138,19 @@
           <h4 class="top-btns-title">Настройки</h4>
           <a onclick='toggleSettings()' class="top-btn">Готово</a>
         </div>
-        <button style="margin-top: 16px" class="set-btn btm-border no-hover">
+        <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/tenstore.svg" class="set-btn-icon" id="store-icon">
           <h4 class="set-btn-txt">TenStore L Beta</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
-          <input type="checkbox" class="switch">
+          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0 jun27)</h4>
         </button>
-        <button style="margin-top: 16px" class="set-btn btm-border no-hover">
+        <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/gauge.svg" class="set-btn-icon" id="gauge-icon">
           <h4 class="set-btn-txt">Экономия траффика</h4>
           <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Включите этот режим при ограничении траффика или медленном интернет-соединении.</h5>
-        <button class="set-btn btm-border no-hover">
+        <button class="set-btn  no-hover">
           <img src="img/icons/lightning.svg" class="set-btn-icon" id="lightning-icon">
           <h4 class="set-btn-txt">Низкая производительность</h4>
           <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
@@ -170,59 +165,49 @@
           <i class="ph-caret-right-bold set-arrow"></i>
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Платформа, которую вы выберете, будет использоваться по умолчанию для скачивания приложений.</h5>
-        <button class="set-btn btm-border no-hover" style="margin-bottom: 16px">
+        <button class="set-btn  no-hover" style="margin-bottom: 16px">
           <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
           <h4 class="set-btn-txt">Debug</h4>
           <input onclick="localStorage.setItem('debug', 'true')" type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Экспериментальные функции</h5>
-        <button class="set-btn btm-border no-hover">
+        <button class="set-btn  no-hover">
           <img src="img/icons/list.svg" class="set-btn-icon" id="nav-bar-anim-icon">
           <h4 class="set-btn-txt">nav bar animations</h4>
           <input id="ef-nav-bar-sw" onclick="changePar('ef-nav-bar-animations')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn btm-border no-hover">
+        <button class="set-btn  no-hover">
           <img src="img/icons/search.svg" class="set-btn-icon" id="search-icon">
           <h4 class="set-btn-txt">search bar</h4>
           <input id="ef-search-bar-sw" onclick="changePar('ef-search-bar')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn btm-border no-hover">
+        <button class="set-btn  no-hover">
           <img src="img/icons/stack.svg" class="set-btn-icon" id="stack-icon">
           <h4 class="set-btn-txt">home cards</h4>
           <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input id="ef-home-cards-sw" onclick="changePar('ef-home-cards')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn btm-border no-hover">
+        <button class="set-btn  no-hover">
           <img src="img/icons/align-left.svg" class="set-btn-icon" id="align-left-icon">
           <h4 class="set-btn-txt">content margin</h4>
           <input id="ef-content-margin-sw" onclick="changePar('ef-content-margin')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn btm-border no-hover">
+        <button class="set-btn no-hover">
           <img src="img/icons/arrow-arc-right.svg" class="set-btn-icon" id="redirect-icon">
           <h4 class="set-btn-txt">redirect (2.4 to 3.0)</h4>
           <input id="ef-redirect-sw" onclick="changePar('ef-redirect')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn btm-border no-hover" style="margin-bottom: 16px">
-          <img src="img/icons/list.svg" class="set-btn-icon" id="new-nav-bar-icon">
-          <h4 class="set-btn-txt">new nav bar (pc)</h4>
-          <input id="ef-new-nav-bar-sw" onclick="changePar('ef-new-nav-bar')" type="checkbox" class="switch">
-        </button>
-        <div class="ub-btn-family">
+        <div class="ub-btn-family" style="margin-top: 16px">
           <button class="ub-btn" onclick="localStorage.clear(); location.reload()">
             <i class="ph-trash-bold ub-openbtn red"></i>
             <h4 class="ub-btn-txt focus red">Удалить все данные</h4>
           </button>
         </div>
-        <h5 style='margin: 16px; color: gray'>TenStore 3.0 jun13</h5>
       </div>
 
       <div id="set-platform" class="ub-window">
         <div class="top-btns">
-          <div class="flex-row">
-            <i class="ph-caret-left top-btns-back"></i>
-            <a onclick='setWindow("main")' class="top-btn">Настройки</a>
-          </div>
-          <h4 class="top-btns-title">Платформа</h4>
+          <a onclick='setWindow("main")' class="top-btn">Назад</a>
           <a onclick='toggleSettings()' class="top-btn">Готово</a>
         </div>
         <h5 style='margin: 4px 16px 16px 16px; color: gray; display: none' id="cur-platform"></h5>
@@ -319,13 +304,6 @@
           </div>
         </div>
       </div>
-      <h4 class="hm-card-toptext1" style="width: 100%">Блог</h4>
-      <div style="background: #a5e3ee" class="hm-card" onclick="showList('list', 'popular', false, 'Охуенные приложения и игры, которые сейчас в моде', 'images/backgrounds/popular.jpg', '', '', '', '')">
-        <img style="height: 300px" class="hm-card-img short-img" src='https://tstore.space/images/backgrounds/popular.jpg'>
-        <h5 style="color: black" class="hm-card-smalltext">Блог для разработчиков</h5>
-        <h2 style="color: black" class="hm-card-title2">Как сделать правильную иконку</h2>
-        <h4 style="color: black" class="hm-card-text2"></h4>
-      </div>
 
     </div>
 
@@ -362,10 +340,6 @@
         <i class="ph-prohibit" style="font-size: 36px; color: gray"></i>
         <h5 class="ui-gray">Не удалось загрузить контент</h5>
       </div>
-    </div>
-
-    <div class="hm-content" id="hm-settings">
-
     </div>
 
     <div class="hm-bottom-loading">
@@ -518,8 +492,8 @@
             <h4 class="big_btn-txt">Поделиться</h4>
           </button>
           <button class="big_btn horiz">
-            <i class="ph-share big_btn-icon"></i>
-            <h4 class="big_btn-txt">Поделиться</h4>
+            <i class="ph-magnifying-glass big_btn-icon"></i>
+            <h4 class="big_btn-txt">Поиск...</h4>
           </button>
         </div>
 
@@ -541,76 +515,7 @@
       </div>
 
     </div>
-
-      <!-- Root element of PhotoSwipe. Must have class pswp. -->
-  <div class="..pswp" style="display: none" tabindex="-1" role="dialog" aria-hidden="true">
-
-      <!-- Background of PhotoSwipe.
-           It's a separate element as animating opacity is faster than rgba(). -->
-      <div class="pswp__bg"></div>
-
-      <!-- Slides wrapper with overflow:hidden. -->
-      <div class="pswp__scroll-wrap">
-
-          <!-- Container that holds slides.
-              PhotoSwipe keeps only 3 of them in the DOM to save memory.
-              Don't modify these 3 pswp__item elements, data is added later on. -->
-          <div class="pswp__container">
-              <div class="pswp__item"></div>
-              <div class="pswp__item"></div>
-              <div class="pswp__item"></div>
-          </div>
-
-          <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-          <div class="pswp__ui pswp__ui--hidden">
-
-              <div class="pswp__top-bar">
-
-                  <!--  Controls are self-explanatory. Order can be changed. -->
-
-                  <div class="pswp__counter"></div>
-
-                  <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                  <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                  <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                  <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                  <div class="pswp__preloader">
-                      <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                          <div class="pswp__preloader__donut"></div>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                  <div class="pswp__share-tooltip"></div>
-              </div>
-
-              <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-              </button>
-
-              <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-              </button>
-
-              <div class="pswp__caption">
-                  <div class="pswp__caption__center"></div>
-              </div>
-
-          </div>
-
-      </div>
-
-  </div>
-
-    <script src="js/app-block.js" charset="utf-8"></script>
-    <script src="js/list.js" charset="utf-8"></script>
+    <script src="js/blocks.js" charset="utf-8"></script>
     <script src="js/index.js"></script>
-    <script src="js/user-block.js" charset="utf-8"></script>
-    <script src="js/afterload.js"></script>
   </body>
 </html>

@@ -1,9 +1,20 @@
+
 /* шрифт */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 * {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: var(--text);
+}
+:root {
+  --ui-nav-bg: rgba(255, 255, 255, 0.7);
+  --ui-nav-border: rgba(255, 255, 255, 0.9);
+  --ui-nav-item: rgba(0, 0, 0, 0.6);
+}
+[dark-theme='true'] {
+  --ui-nav-bg: rgba(0, 0, 0, 0.7);
+  --ui-nav-border: rgba(255, 255, 255, 0.3);
+  --ui-nav-item: rgba(255, 255, 255, 0.5);
 }
 
 /* колесо загрузки */
@@ -93,22 +104,23 @@ img {
 
 .ui-nav {
   --bottom: 16px;
-  --width: 316px;
-  --half-width: calc(var(--width) / 2);
+  --width: 250px;
   position: fixed;
-  border-radius: 8px;
   bottom: var(--bottom);
   width: var(--width);
-  left: calc(50% - var(--half-width));
-  height: 56px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  /*box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.34);*/
-  background: #171717;
   display: flex;
   z-index: 2;
   user-select: none;
   transition: .3s bottom;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: var(--ui-nav-bg);
+  border-radius: 24px;
+  border: 1px solid var(--ui-nav-border);
+  box-shadow: none;
+  height: 40px;
+  left: calc(50% - var(--width) - 16px);
 }
 .ui-nav-block {
   width: 100%;
@@ -128,14 +140,31 @@ img {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition: 0;
+  animation-name: none;
 }
+.ui-nav-item:first-child {
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+}
+.ui-nav-item:last-child {
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+.ui-nav-item:hover #nav-index, .ui-nav-item:hover #nav-apps, .ui-nav-item:hover #nav-games {
+  animation-name: nav-icon;
+  animation-duration: 1.5s;
+  transition: .3s transform;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(1.15);
+}
+
 .ui-nav-name {
   color: #919191;
 }
 .ui-nav-icon {
   font-size: 20px;
   margin-bottom: 2px;
-  color: #919191;
+  color: var(--ui-nav-item);
 }
 .ui-nav-icon-highlight {
   animation-name: nav-icon;
@@ -149,7 +178,7 @@ img {
     color: var(--text);
   }
   100% {
-    color: #666666;
+    color: var(--ui-nav-item);
   }
 }
 .ui-nav-item:hover {
