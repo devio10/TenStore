@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/blocks.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
@@ -123,12 +124,6 @@
         </div>
 
       </div>
-      <div id="ub-platform" class="ub-window">
-        <div onclick="ubWindow('main')" class="ab-back">
-          <i class="ph-caret-left ab-back-icon pointer"></i>
-        </div>
-        <h3 style="margin: 16px; font-weight: bold">Платформа</h3>
-      </div>
     </div>
 
     <div id='settings-block'>
@@ -171,23 +166,23 @@
           <input onclick="localStorage.setItem('debug', 'true')" type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Экспериментальные функции</h5>
-        <button class="set-btn  no-hover">
+        <button class="set-btn no-hover">
           <img src="img/icons/list.svg" class="set-btn-icon" id="nav-bar-anim-icon">
           <h4 class="set-btn-txt">nav bar animations</h4>
           <input id="ef-nav-bar-sw" onclick="changePar('ef-nav-bar-animations')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn  no-hover">
+        <button class="set-btn no-hover">
           <img src="img/icons/search.svg" class="set-btn-icon" id="search-icon">
           <h4 class="set-btn-txt">search bar</h4>
           <input id="ef-search-bar-sw" onclick="changePar('ef-search-bar')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn  no-hover">
+        <button class="set-btn no-hover">
           <img src="img/icons/stack.svg" class="set-btn-icon" id="stack-icon">
           <h4 class="set-btn-txt">home cards</h4>
           <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input id="ef-home-cards-sw" onclick="changePar('ef-home-cards')" type="checkbox" class="switch">
         </button>
-        <button class="set-btn  no-hover">
+        <button class="set-btn no-hover">
           <img src="img/icons/align-left.svg" class="set-btn-icon" id="align-left-icon">
           <h4 class="set-btn-txt">content margin</h4>
           <input id="ef-content-margin-sw" onclick="changePar('ef-content-margin')" type="checkbox" class="switch">
@@ -197,6 +192,16 @@
           <h4 class="set-btn-txt">redirect (2.4 to 3.0)</h4>
           <input id="ef-redirect-sw" onclick="changePar('ef-redirect')" type="checkbox" class="switch">
         </button>
+        <button onclick="setWindow('animate-mit')" class="set-btn" style="margin-top: 16px">
+          <img src="img/icons/file-text.svg" class="set-btn-icon">
+          <h4 class="set-btn-txt">Animate.css MIT License</h4>
+          <i class="ph-caret-right-bold set-arrow"></i>
+        </button>
+        <button onclick="setWindow('phosphor-mit')" class="set-btn">
+          <img src="img/icons/file-text.svg" class="set-btn-icon">
+          <h4 class="set-btn-txt">Phosphor Icons MIT License</h4>
+          <i class="ph-caret-right-bold set-arrow"></i>
+        </button>
         <div class="ub-btn-family" style="margin-top: 16px">
           <button class="ub-btn" onclick="localStorage.clear(); location.reload()">
             <i class="ph-trash-bold ub-openbtn red"></i>
@@ -204,7 +209,77 @@
           </button>
         </div>
       </div>
+      <div id="set-animate-mit" class="ub-window">
+        <div class="top-btns">
+          <a onclick='setWindow("main")' class="top-btn">Назад</a>
+        </div>
+        <h2 class="ub-na-title">Animate.css MIT license</h2>
+        <p class="mit-license-text">
+          The MIT License (MIT)
 
+          Copyright (c) 2016 Thomas Grainger.
+
+          Permission is hereby granted, free of charge, to any person obtaining a copy
+          of this software and associated documentation files (the "Software"), to deal
+          in the Software without restriction, including without limitation the rights
+          to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+          copies of the Software, and to permit persons to whom the Software is
+          furnished to do so, subject to the following conditions:
+
+          The above copyright notice and this permission notice shall be included in
+          all copies or substantial portions of the Software.
+
+          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+          IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+          FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+          AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+          LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+          THE SOFTWARE.
+
+
+          Portions of this wow.js Software may utilize the following copyrighted material, the use of which is hereby acknowledged.
+
+          WOW: <a style="font-family: 'Times New Roman'" href="https://github.com/matthieua/WOW/tree/20848c410fe32d161c2330e1d261b59512094f81">https://github.com/matthieua/WOW/tree/20848c410fe32d161c2330e1d261b59512094f81</a>
+
+          Copyright (C) 2014; Matthieu Aussaguel
+
+          Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+          The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+          THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        </p>
+      </div>
+      <div id="set-phosphor-mit" class="ub-window">
+        <div class="top-btns">
+          <a onclick='setWindow("main")' class="top-btn">Назад</a>
+        </div>
+        <h2 class="ub-na-title">Phosphor Icons MIT license</h2>
+        <p class="mit-license-text">
+          MIT License
+
+          Copyright (c) 2020 Phosphor Icons
+
+          Permission is hereby granted, free of charge, to any person obtaining a copy
+          of this software and associated documentation files (the "Software"), to deal
+          in the Software without restriction, including without limitation the rights
+          to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+          copies of the Software, and to permit persons to whom the Software is
+          furnished to do so, subject to the following conditions:
+
+          The above copyright notice and this permission notice shall be included in all
+          copies or substantial portions of the Software.
+
+          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+          IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+          FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+          AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+          LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+          SOFTWARE.
+        </p>
+      </div>
       <div id="set-platform" class="ub-window">
         <div class="top-btns">
           <a onclick='setWindow("main")' class="top-btn">Назад</a>

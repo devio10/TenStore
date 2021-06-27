@@ -723,6 +723,8 @@ function ubWindow(windowName) {
 function setWindow(windowName) {
   document.getElementById('set-main').style.display='none';
   document.getElementById('set-platform').style.display='none';
+  document.getElementById('set-phosphor-mit').style.display='none';
+  document.getElementById('set-animate-mit').style.display='none';
   document.getElementById('set-'+windowName).style.display='block';
 }
 function toggleSettings(dontPushHistory) {

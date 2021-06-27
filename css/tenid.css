@@ -1,5 +1,6 @@
 html, body {
-  max-width: 500px;
+  max-width: 270px;
+  width: 100%;
   height: 100%;
 }
 .ti-body-center {
@@ -9,7 +10,7 @@ html, body {
   height: 100%;
   width: 100%;
 }
-#tenid-loading, #tenid-form2 {
+#tenid-loading, #tenid-form3 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +19,9 @@ html, body {
   position: fixed;
   left: calc(50% - 100px);
   top: calc(50% - 50px);
+}
+#tenid-form1, #tenid-form2 {
+  width: 100%;
 }
 
 h1 {
@@ -58,13 +62,40 @@ input {
 #ti-login, #ti-pass {
   margin-top: 16px;
   margin-bottom: 8px;
+  animation-duration: 1s;
 }
-#ti-pass, #login-btn {
-  display: none;
+#ti-pass {
+  margin-top: 8px;
 }
 #wrong-data {
   margin: 8px 0 8px 0;
   visibility: hidden;
+}
+.user-data {
+  width: 100%;
+  background: var(--abs-bg);
+  height: 44px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+}
+#form2-name {
+  font-size: 14px;
+  margin-left: 16px;
+}
+#form2-pic {
+  width: 28px;
+  height: 28px;
+  margin-left: 16px;
+  background: white;
+  border-radius: 100%;
+}
+.form2-edit {
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: 16px;
+  color: gray;
+  cursor: pointer;
 }
 .continue-btn {
   width: 100%;

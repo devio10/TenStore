@@ -50,7 +50,7 @@
   backdrop-filter: grayscale(1);
   -webkit-backdrop-filter: grayscale(1);
 }
-#ab-loading, #ub-main, #list-loading, #list-main, #set-main, #set-platform, #ab-main_content, #ab-new_review {
+#ab-loading, #ub-main, #list-loading, #list-main, #set-main, #set-platform, #set-animate-mit, #ab-main_content, #ab-new_review {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
@@ -72,7 +72,7 @@
 #ab-main_content, #ab-new_review {
   margin-top: 0;
 }
-#ub-main, #set-platform { margin-top: 0; }
+#ub-main, #set-platform, #set-animate-mit { margin-top: 0; }
 #set-main { margin-top: 0; display: block; }
 
 .ub-na-title {
@@ -513,4 +513,12 @@
 }
 #store-icon {
   background: var(--accent);
+}
+.mit-license-text {
+  margin: 16px;
+  font-family: 'Times New Roman';
+  font-size: 14px;
+  font-weight: normal;
+  white-space: pre-line;
+  overflow-wrap: break-word;
 }

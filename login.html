@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/tenid.css">
     <link rel="stylesheet" href="css/ui-switch.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
@@ -24,27 +25,41 @@
         <h5 class="ui-gray">Соединение с сервером</h5>
       </div>
       <div id="tenid-form1" style="display: none">
+
         <h4 class="ti-subtext">Вход в аккаунт</h4>
-        <input id="ti-login" type="text" placeholder="TenID">
+        <input id="ti-login" type="text" autofocus placeholder="TenID">
         <div class="ub-btn-family">
-          <button class="ub-btn continue-btn">
+          <button onclick='nextstep(1)' class="ub-btn continue-btn">
             <i class="ph-arrow-right-bold ub-openbtn"></i>
             <h4 class="ub-btn-txt focus">Продолжить</h4>
           </button>
         </div>
-        <input id="ti-pass" type="password" placeholder="Пароль">
-        <h5 id="wrong-data" class="ui-gray">Указанные данные неверны. <a>Забыли пароль?</a></h5>
-        <button id="login-btn" onclick='saveAccount()'>Войти</button>
+        <h5 style="margin: 32px 0 0 0; text-align: center" class="ui-gray">или создать <a style="text-decoration: none" href='new-account'>новый аккаунт.</a></h5>
+      </div>
+      <div id="tenid-form2" style="display: none">
+
+        <h4 class="ti-subtext" style="margin-bottom: 32px">Вход в аккаунт</h4>
+        <div class="user-data">
+          <img id="form2-pic" src="img/communication.jpg">
+          <h5 id='form2-name'></h5>
+          <i class="ph-pencil-simple form2-edit" onclick="editData()"></i>
+        </div>
+        <input id="ti-pass" type="password" autofocus placeholder="Пароль">
+        <div class="ub-btn-family">
+          <button style="margin-top: 16px" onclick='saveAccount()' class="ub-btn continue-btn">
+            <i class="ph-arrow-right-bold ub-openbtn"></i>
+            <h4 class="ub-btn-txt focus">Продолжить</h4>
+          </button>
+        </div>
         <h5 style="margin: 32px 0 0 0; text-align: center" class="ui-gray">или создать <a style="text-decoration: none" href='new-account'>новый аккаунт.</a></h5>
 
       </div>
-      <div id="tenid-form2" style="display: none">
+      <div id="tenid-form3" style="display: none">
         <div class="ui-loading-wheel"> </div>
         <h5 class="ui-gray">Входим в аккаунт</h5>
       </div>
     </div>
 
-    <script src="js/afterload.js"></script>
     <script src="js/ti-login.js"></script>
     <script type="text/javascript">
     </script>
