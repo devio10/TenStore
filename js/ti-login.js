@@ -1,4 +1,5 @@
 var api='https://tstore.space/api.php';
+var curstep='id';
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
   var loginLink=document.createElement('link');
   loginLink.rel='stylesheet';
@@ -34,6 +35,7 @@ function nextstep(step) {
             document.getElementById('form2-name').innerText=userID;
             document.getElementById('tenid-form1').style.display='none';
             document.getElementById('tenid-form2').style.display='block';
+            curstep='pass';
           } else {
             shake('ti-login');
           }
@@ -52,6 +54,7 @@ function shake(obj) {
   }, 1000);
 }
 function saveAccount() {
+  curstep='saving';
   document.getElementById('tenid-form2').style.display='none';
   document.getElementById('tenid-form3').style.display='flex';
   let login=document.getElementById('ti-login').value;
@@ -67,7 +70,14 @@ function saveAccount() {
       if (saData!=null) {
         localStorage.setItem('login', saData.user[0].login);
         localStorage.setItem('password', password);
-        window.history.go(-1);
+        console.log(window.history.length);
+        if (window.history.length==1) {
+          window.open('https://tstore.space/3rd/', '_self');
+        } else {
+          window.history.back();
+        }
+
+
       } else {
         wrongData();
       }
@@ -86,3 +96,13 @@ function wrongData() {
   shake('ti-pass');
 }
 checkTheme()
+
+document.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {
+      if (curstep=='id') {
+        nextstep(1);
+      } else if (curstep=='pass') {
+        saveAccount();
+      }
+    }
+});
