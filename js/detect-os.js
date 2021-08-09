@@ -199,9 +199,8 @@
     'Full User Agent: ' + navigator.userAgent
 );*/
 localStorage.setItem('platform', jscd.os);
-if ((jscd.os=='Windows')&&(jscd.osVersion=='10')) {
+if ((jscd.os=='Windows')&&((jscd.osVersion=='10')||(jscd.osVersion=='11'))) {
   localStorage.setItem('platform-uwp-support', 'true');
 }
 document.getElementById('s-platform').innerText=localStorage.getItem('platform');
-document.getElementById('cur-platform').innerText='Текущая: '+localStorage.getItem('platform');
 document.getElementById('p-'+localStorage.getItem('platform')).checked=true;

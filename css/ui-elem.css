@@ -7,7 +7,7 @@
   color: var(--text);
 }
 :root {
-  --ui-nav-bg: rgba(255, 255, 255, 0.7);
+  --ui-nav-bg: rgba(255, 255, 255, 0.8);
   --ui-nav-border: rgba(255, 255, 255, 0.9);
   --ui-nav-item: rgba(0, 0, 0, 0.6);
 }
@@ -66,6 +66,9 @@ button {
 button:focus {
   outline: none;
 }
+button:hover, button:focus {
+  background: rgb(21, 109, 209);
+}
 button:disabled {
   cursor: not-allowed;
   background: gray;
@@ -75,6 +78,10 @@ button.outline {
   background: 0;
   border: 1px solid gray;
   color: gray;
+}
+button.outline:hover, button.outline:focus {
+  background: gray;
+  color: var(--abs-bg);
 }
 
 /* разделитель */
@@ -108,17 +115,19 @@ img {
   position: fixed;
   bottom: var(--bottom);
   width: var(--width);
+  /*
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  */
   display: flex;
   z-index: 2;
   user-select: none;
   transition: .3s bottom;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  background: var(--ui-nav-bg);
+  background: var(--bg);
   border-radius: 24px;
   border: 1px solid var(--ui-nav-border);
-  box-shadow: none;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.15);
   height: 40px;
   left: calc(50% - var(--width) - 16px);
 }
@@ -232,4 +241,42 @@ textarea {
 textarea:focus, textarea:hover {
   outline: none;
   border-radius: 12px;
+}
+.anim-up:hover, .anim-up:focus {
+  animation-name: anim-up;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+.anim-down:hover, .anim-down:focus {
+  animation-name: anim-down;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+@keyframes anim-up {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-2px);
+  }
+}
+@keyframes anim-down {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(2px);
+  }
 }

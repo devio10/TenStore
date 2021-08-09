@@ -1,7 +1,7 @@
 var loggedIn=false;
 function login() {
-  let login=localStorage.getItem('login');
-  let password=localStorage.getItem('password');
+  var login=localStorage.getItem('login');
+  var password=localStorage.getItem('password');
   if (login!=null) {
     var loginID=getXMLHTTP();
     loginID.responseType="json";

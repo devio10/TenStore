@@ -114,16 +114,19 @@ function debug_newReview() {
 const api='https://tstore.space/api.php';
 var head=document.getElementsByTagName('HEAD')[0];
 var body=document.getElementsByTagName('body')[0];
-checkTheme();
-checkPlatform();
-login();
-checkUrlVars();
-checkPars();
 if ((localStorage.getItem('platform')==null)&&(localStorage.getItem('manual-platform')!='true')) {
   var script=document.createElement('script');
   script.src='js/detect-os.js';
   head.appendChild(script);
 }
+checkTheme();
+login();
+checkUrlVars();
+checkPars();
+checkPlatform();
+
+efNavigationBar();
+
 document.getElementById('s-platform').innerText=localStorage.getItem('platform');
 if ((localStorage.getItem('platform')=='Windows')||(localStorage.getItem('platform')=='Linux')) {
   document.getElementById('device-icon').src='img/icons/device-desktop.svg';
@@ -138,4 +141,22 @@ if (localStorage.getItem('debug')!='true') {
 }
 if (localStorage.getItem('temp-beta-introduction')=='hidden') {
   document.getElementById('beta-introduction').style.display='none';
+}
+
+function popup(text, icon) {
+  let popup_obj=document.getElementById('pop_up');
+  document.getElementById('pop_up-icon').className='ph-'+icon;
+  document.getElementById('pop_up-text').innerText=text;
+  popup_obj.style.display='flex';
+  setTimeout(function () {
+    popup_obj.style.opacity='0';
+    popup_obj.className='scale-down-anim';
+  }, 2750);
+  setTimeout(function () {
+    popup_obj.style.display='none';
+    document.getElementById('pop_up-icon').className='ph-warning';
+    document.getElementById('pop_up-text').innerText='Ошибка на стороне сайта';
+    popup_obj.className='';
+    popup_obj.style.opacity='1';
+  }, 3000);
 }

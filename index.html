@@ -2,7 +2,7 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>TENSTORE</title>
+    <title>TenStore — магазин приложений и игр</title>
     <link id="tab-icon" rel="shortcut icon" href="img/store-light.svg">
     <link rel="stylesheet" href="css/ui-elem.css">
     <link rel="stylesheet" href="css/ui-switch.css">
@@ -13,7 +13,6 @@
 
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
-    <script src="js/tenid.js" charset="utf-8"></script>
     <script src="js/mobile-version.js" charset="utf-8"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
@@ -24,7 +23,7 @@
       <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
     </header>
 
-    <div id="search-nav-bar" style="display: none" onclick="toggleList(true)">
+    <div id="search-nav-bar" onclick="toggleList(true)">
       <div id="search-nb-block">
         <h5 style="color: inherit; margin: 0 0 0 24px">Поиск...</h5>
         <i class="ph-magnifying-glass-light search-nb-icon"></i>
@@ -136,7 +135,7 @@
         <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/tenstore.svg" class="set-btn-icon" id="store-icon">
           <h4 class="set-btn-txt">TenStore L Beta</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0 jun27)</h4>
+          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0 aug09)</h4>
         </button>
         <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/gauge.svg" class="set-btn-icon" id="gauge-icon">
@@ -156,7 +155,7 @@
           <img src="img/icons/device-mobile.svg" class="set-btn-icon" id="device-icon">
           <h4 class="set-btn-txt">Платформа</h4>
           <h4 style="margin: 0 3px">•</h4>
-          <h4 class="set-btn-txt2" id="s-platform">Windows</h4>
+          <h4 class="set-btn-txt2" id="s-platform">Не задана</h4>
           <i class="ph-caret-right-bold set-arrow"></i>
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Платформа, которую вы выберете, будет использоваться по умолчанию для скачивания приложений.</h5>
@@ -167,25 +166,10 @@
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Экспериментальные функции</h5>
         <button class="set-btn no-hover">
-          <img src="img/icons/list.svg" class="set-btn-icon" id="nav-bar-anim-icon">
-          <h4 class="set-btn-txt">nav bar animations</h4>
-          <input id="ef-nav-bar-sw" onclick="changePar('ef-nav-bar-animations')" type="checkbox" class="switch">
-        </button>
-        <button class="set-btn no-hover">
-          <img src="img/icons/search.svg" class="set-btn-icon" id="search-icon">
-          <h4 class="set-btn-txt">search bar</h4>
-          <input id="ef-search-bar-sw" onclick="changePar('ef-search-bar')" type="checkbox" class="switch">
-        </button>
-        <button class="set-btn no-hover">
           <img src="img/icons/stack.svg" class="set-btn-icon" id="stack-icon">
           <h4 class="set-btn-txt">home cards</h4>
           <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input id="ef-home-cards-sw" onclick="changePar('ef-home-cards')" type="checkbox" class="switch">
-        </button>
-        <button class="set-btn no-hover">
-          <img src="img/icons/align-left.svg" class="set-btn-icon" id="align-left-icon">
-          <h4 class="set-btn-txt">content margin</h4>
-          <input id="ef-content-margin-sw" onclick="changePar('ef-content-margin')" type="checkbox" class="switch">
         </button>
         <button class="set-btn no-hover">
           <img src="img/icons/arrow-arc-right.svg" class="set-btn-icon" id="redirect-icon">
@@ -202,6 +186,7 @@
           <h4 class="set-btn-txt">Phosphor Icons MIT License</h4>
           <i class="ph-caret-right-bold set-arrow"></i>
         </button>
+        <img src="img/cat.png" style="width: 100px; margin: 16px 0 0 32px; opacity: 0.5">
         <div class="ub-btn-family" style="margin-top: 16px">
           <button class="ub-btn" onclick="localStorage.clear(); location.reload()">
             <i class="ph-trash-bold ub-openbtn red"></i>
@@ -328,21 +313,22 @@
 
       <div id="hm-content-editors-choice">
         <h4 class="hm-card-toptext1">Выбор редакции</h4>
-        <div id="hm-card-spotify" class="hm-card hm-card-wide no-scale new">
+        <div id="hm-card-spotify" class="hm-card new">
           <div class="hm-card-rate">
             <h5 class="hc-rate-text">6+</h5>
           </div>
           <h1 class="hm-card-title new">Spotify</h1>
           <h4 class="hm-card-text new">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
              создания плейлистов и поиска новых песен.</h4>
+          <hr class="hm-card-hr">
           <div class="flex-row">
             <i class="hm-card-button ph-cloud-arrow-down-light" onclick="download(17)"></i>
             <i class="hm-card-button ph-info-light" onclick="showAB(17)"></i>
           </div>
         </div>
       </div>
-      <h4 class="hm-card-toptext1" style="width: 100%">Популярные категории</h4>
-      <div style="background: #e0719e" class="hm-card" onclick="showList('category', 'Социальные сети', false, 'Приложения для связи с вашими друзьями и коллегами', 'images/backgrounds/networking.png', 'Oswald', '#e0719e', '')">
+      <h4 class="hm-card-toptext1" style="width: 100%; display: none">Популярные категории</h4>
+      <div style="background: #e0719e; display: none" class="hm-card" onclick="showList('category', 'Социальные сети', false, 'Приложения для связи с вашими друзьями и коллегами', 'images/backgrounds/networking.png', 'Oswald', '#e0719e', '')">
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@541&display=swap');
         </style>
@@ -350,7 +336,7 @@
         <h2 style="color: #f3f6e6; font-family: 'Oswald'; font-size: 30px" class="hm-card-title2">СОЦИАЛЬНЫЕ СЕТИ</h2>
       </div>
 
-      <div style="background: #574730" class="hm-card" onclick="showList('category', 'Музыка', false, 'То, чего не хватает вашим ушам...', '3rd/img/music.png', 'Amatic SC', '#574730', '', '50px')">
+      <div style="background: #574730; display: none" class="hm-card" onclick="showList('category', 'Музыка', false, 'То, чего не хватает вашим ушам...', '3rd/img/music.png', 'Amatic SC', '#574730', '', '50px')">
 
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
@@ -411,10 +397,24 @@
     </div>
 
     <div class="hm-content" id="hm-games">
-      <div class="hm-bottom-loading" style="display: flex">
+      <div>
+        <div id="hm-card-procreation" class="hm-card new">
+          <div class="hm-card-rate">
+            <h5 class="hc-rate-text">10+</h5>
+          </div>
+          <h1 class="hm-card-title new">PROCREATION</h1>
+          <h4 class="hm-card-text new">Новая RPG-игра от Press Team. Создайте вашего голема и постепенно его развивайте! В комплекте: магия, проработанные битвы, дружба и несколько часов геймплея.</h4>
+          <hr class="hm-card-hr">
+          <div class="flex-row">
+            <i class="hm-card-button ph-info-light" onclick="showAB(51)"></i>
+          </div>
+        </div>
+      </div>
+      <div class="hm-bottom-loading" style="display: none">
         <i class="ph-prohibit" style="font-size: 36px; color: gray"></i>
         <h5 class="ui-gray">Не удалось загрузить контент</h5>
       </div>
+
     </div>
 
     <div class="hm-bottom-loading">
@@ -428,10 +428,10 @@
       <div id="ab-new_review" style="display: none">
         <div class="top-btns">
           <a onclick='cancelReview()' class="top-btn">Отмена</a>
-          <a onclick='sendReview()' class="top-btn">Опубликовать</a>
+          <a onclick='sendReview()' id="send-review" class="top-btn">Опубликовать</a>
         </div>
         <input id="nr-title" type="text" placeholder="Заголовок..." autocomplete="off">
-        <textarea id="nr-text" rows="15" placeholder="Отзыв..." autocomplete="off"></textarea>
+        <textarea id="nr-text" placeholder="Отзыв..." autocomplete="off"></textarea>
         <div class="big_btn-horiz_block">
           <button id="nr-liked" class="big_btn horiz" onclick="nrRate(1)">
             <i class="ph-thumbs-up-bold big_btn-icon" style="color: #388e3c"></i>
@@ -472,7 +472,7 @@
           </div>
           <div style="display: flex; justify-content: center; margin: 0 0 16px 0">
             <h5 id="ab-platform" onclick="platforms()" class="hm-card-smalltext">выберите платформу</h5>
-            <i id="ab-platform-select" onclick="platforms()" class="hm-card-compatibility ph-caret-down-bold"></i>
+            <i id="ab-platform-select" onclick="platforms()" class="hm-card-compatibility ph-caret-down-bold anim-down"></i>
           </div>
           <div id="ab-platforms">
             <div class="platform-check">test platform</div>
@@ -485,12 +485,12 @@
                 <h3 class="ab-si-text"><i id="si-pos">0</i> / <i id="si-neg">0</i></h3>
               </div>
               <div class="ab-si-item">
-                <h6 class="ab-si-title" id="si-dev-name">satan</h6>
+                <h6 class="ab-si-title" id="si-dev-name">developer</h6>
                 <img id='si-dev' src='img/user.svg' alt="img/user.svg">
               </div>
               <div class="ab-si-item">
                 <h6 class="ab-si-title">Рейтинг</h6>
-                <h3 class="ab-si-text" id="si-rating">999+</h3>
+                <h3 class="ab-si-text" id="si-rating">0+</h3>
               </div>
               <div class="ab-si-item">
                 <h6 class="ab-si-title">Размер</h6>
@@ -531,10 +531,14 @@
             Будьте первым, кто оставил здесь комментарий.
           </h5>
           <div id="ab-reviews">
-            <div class="ab-review rev-pos" style="display: none">
-              <h3 class='rev-title'></h3>
-              <h5 class='rev-text'></h5>
-              <h5 class='rev-author'>от пользователя</h5>
+            <!-- example review -->
+            <div class="ab-review" style="display: none">
+              <div class="flex-row">
+                <div class="rev-dot green"> </div>
+                <h5 class='rev-author'>author, 7 августа</h5>
+              </div>
+              <h3 class='rev-title'>Feels good</h3>
+              <h5 class='rev-text'>Example review. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
             </div>
           </div>
 
@@ -546,7 +550,6 @@
       <div class="flex-row">
         <div onclick="toggleList()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i> </div>
         <div style="margin: 0 16px 0 auto; display: flex; align-items: center">
-          <input type="text" placeholder="Поиск" id="list-search">
           <div onclick="toggleSearch()" class="ab-search"> <i class="ph-magnifying-glass ab-back-icon"></i> </div>
         </div>
       </div>
@@ -566,10 +569,7 @@
             <i class="ph-share big_btn-icon"></i>
             <h4 class="big_btn-txt">Поделиться</h4>
           </button>
-          <button class="big_btn horiz">
-            <i class="ph-magnifying-glass big_btn-icon"></i>
-            <h4 class="big_btn-txt">Поиск...</h4>
-          </button>
+          <input type="text" placeholder="Поиск..." id="list-search">
         </div>
 
         <div id="search-block">
@@ -590,6 +590,15 @@
       </div>
 
     </div>
+    <div id="share">
+
+    </div>
+
+    <div id="pop_up" style="display: none">
+      <i id="pop_up-icon" class="ph-warning"></i>
+      <h4 id="pop_up-text">Ошибка на стороне сайта</h4>
+    </div>
+    <script src="js/tenid.js" charset="utf-8"></script>
     <script src="js/blocks.js" charset="utf-8"></script>
     <script src="js/index.js"></script>
   </body>
