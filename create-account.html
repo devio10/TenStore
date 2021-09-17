@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr" class="ca-body">
+  <head>
+    <meta charset="utf-8">
+    <link id="tab-icon" rel="shortcut icon" href="img/tenid_favico1.svg">
+    <title>Создать аккаунт TenID</title>
+    <link rel="stylesheet" href="css/ui-elem.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/ui-switch.css">
+    <link rel="stylesheet" href="css/create-account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="js/theme.js" charset="utf-8"></script>
+    <script src="js/tenid.js" charset="utf-8"></script>
+    <script src="js/popups.js" charset="utf-8"></script>
+    <script src="js/mobile-version.js" charset="utf-8"></script>
+    <script src="js/sha256.js" charset="utf-8"></script>
+    <script src="js/xmlhttp.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
+  </head>
+  <body class="ca-body">
+    <header id="tid_header">
+      <h3 id="tid_htitle">TenID</h3>
+      <a href="login" id="tid_login_link">Войти</a>
+      <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
+    </header>
+    <div class="tid_topblock">
+      <img class="tid_topicon" src="img/tenid_color.svg">
+    </div>
+    <h2 id="tid_title">Создать аккаунт</h2>
+
+    <div id="tid_mainframe" class="tid_frame">
+      <div class="flex-row step_block">
+        <div class="tid_licon_block">
+          <i id="user_icon" class="ph-user-bold tid_licon"></i>
+        </div>
+        <div class="flex-row name-inputs">
+          <input type="text" placeholder="Имя" autofocus id="reg-name">
+          <input type="text" placeholder="Фамилия" id="reg-lastname">
+        </div>
+      </div>
+      <hr>
+      <!-- -->
+      <div class="flex-row step_block">
+        <div class="tid_licon_block">
+          <i id="email_icon" class="ph-envelope-simple-bold tid_licon"></i>
+        </div>
+        <div class="flex-row name-inputs">
+          <input type="text" placeholder="Адрес электронной почты" id="reg-email">
+        </div>
+      </div>
+      <div class="flex-row step_block" style="margin-top: 16px">
+        <div class="tid_licon_block">
+          <i id="tenid_icon" class="ph-fingerprint-simple-bold tid_licon"></i>
+        </div>
+        <div id="reg-fake-tenid" class="flex-row name-inputs reg-fake-input">
+          <input type="text" placeholder="TenID" id="reg-tenid">
+          <i class="ph-question tid_licon tid_help" onclick="toggleHelp()"></i>
+        </div>
+
+      </div>
+      <div>
+        <h4 id="tenid_help" style="display: none">TenID — логин, который вы будете использовать при входе. Пример: johnny_35</h4>
+      </div>
+      <hr>
+      <!-- -->
+      <div class="flex-row step_block">
+        <div class="tid_licon_block">
+          <i id="password_icon" class="ph-lock-bold tid_licon"></i>
+        </div>
+        <div id="reg-fake-password" class="flex-row name-inputs reg-fake-input incorrect-input">
+          <input type="password" placeholder="Пароль" id="reg-password">
+          <i onclick='lazypassword()' class="ph-dice-five tid_licon tid_help"></i>
+        </div>
+      </div>
+      <div class="flex-row step_block" style="margin-top: 16px">
+        <div class="flex-row name-inputs">
+          <input type="password" placeholder="Повторите пароль" id="reg-repeat-password">
+        </div>
+      </div>
+      <div class="flex-row step_block" id="lazy_password_block">
+        <div class="tid_licon_block">
+          <i class="ph-dice-five-bold tid_licon"></i>
+        </div>
+        <div class="flex-row name-inputs">
+          <input type="text" readonly placeholder="Случайный пароль" id="lazy_password">
+        </div>
+      </div>
+      <hr style="margin-bottom: 8px">
+      <!-- -->
+      <div class="flex-row step_block">
+        <button onclick="nextStep()">Продолжить</button>
+      </div>
+    </div>
+    <div id="tid_recaptcha" class="tid_frame">
+      <h4 style="color: gray; text-align: center">Подтвердите, что вы не робот:</h4>
+      <div style="margin: 24px 16px 16px 16px; text-align: center">
+        <div style="display: inline-block" class="g-recaptcha" data-sitekey="6LcY78EZAAAAAPHlMlm1evtyDO0jgGuDUoGcMAS_"></div>
+      </div>
+      <hr style="margin-bottom: 8px">
+      <!-- -->
+      <div class="flex-row step_block">
+        <button onclick="finishReg()">Продолжить</button>
+      </div>
+    </div>
+    <div id="tid_logged_in" class="tid_frame">
+      <h4 style="color: gray; text-align: center">Кажется, вы попали сюда по ошибке: вы уже вошли в TenID. <a onclick='history.back()' href="#">Вернуться обратно</a></h4>
+      <hr style="margin-bottom: 8px">
+      <!-- -->
+      <div class="flex-row step_block">
+        <button onclick="window.open('https://tstore.space', '_self')">TenStore</button>
+      </div>
+    </div>
+
+
+    <div onclick="popup('hide')" id="pop_up" class="pop_up" style="display: none">
+      <i id="pop_up-icon" class="ph-warning"></i>
+      <h4 id="pop_up-text">Ошибка на стороне сайта</h4>
+    </div>
+    <div id="load_box" style="display: none">
+      <div class="ui-loading-wheel load_box-wheel"> </div>
+      <h4 id="load_box-text">Ошибка на стороне сайта</h4>
+    </div>
+    <script src="js/ti-reg.js"></script>
+  </body>
+</html>

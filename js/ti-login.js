@@ -1,3 +1,6 @@
+checkPlatform('f');
+checkTheme();
+login('log');
 var api='https://tstore.space/api.php';
 var curstep='id';
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -7,17 +10,11 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
   loginLink.href='css/ti-phones.css';
   head.appendChild(loginLink);
 }
-if (localStorage.getItem('login')==null) {
-  document.getElementById('tenid-loading').style.display='none';
-  document.getElementById('tenid-form1').style.display='block';
-  document.getElementById('tenid-form2').style.display='none';
-}
-
+/*
 function nextstep(step) {
   if (step==1) {
-    let userID=document.getElementById('ti-login').value;
+    let userID=document.getElementById('login_tenid').value;
     if (userID!='') {
-
       var picreq=getXMLHTTP();
       picreq.responseType="json";
       picreq.open('POST', api, true);
@@ -37,28 +34,42 @@ function nextstep(step) {
             document.getElementById('tenid-form2').style.display='block';
             curstep='pass';
           } else {
-            shake('ti-login');
+            incorrect('fake-tenid', 'tenid');
           }
         }
       };
     } else {
-      shake('ti-login');
+      incorrect('fake-tenid', 'tenid');
     }
   }
 }
+*/
 
-function shake(obj) {
-  document.getElementById(obj).style.animationName='shakeX';
+function incorrect(obj, icon) {
+  document.getElementById('login_'+obj).style.animationName='shakeX';
+  if (icon!=null) {
+    document.getElementById(icon+'_icon').style.color='#d32f2f';
+  } else {
+    document.getElementById(obj+'_icon').style.color='#d32f2f';
+  }
+  document.getElementById('login_'+obj).style.border='1px solid #d32f2f';
   setTimeout(function () {
-    document.getElementById(obj).style.animationName='none';
+    document.getElementById('login_'+obj).style.animationName='none';
   }, 1000);
+  setTimeout(function () {
+    if (icon!=null) {
+      document.getElementById(icon+'_icon').style.color='gray';
+    } else {
+      document.getElementById(obj+'_icon').style.color='gray';
+    }
+    document.getElementById('login_'+obj).style.border='1px solid var(--gray-mid)';
+  }, 3000);
 }
 function saveAccount() {
+  loadbox('begin', 10000);
   curstep='saving';
-  document.getElementById('tenid-form2').style.display='none';
-  document.getElementById('tenid-form3').style.display='flex';
-  let login=document.getElementById('ti-login').value;
-  let password=SHA256(document.getElementById('ti-pass').value);
+  let login=document.getElementById('login_tenid').value;
+  let password=SHA256(document.getElementById('login_password').value);
   var saveAccount=getXMLHTTP();
   saveAccount.responseType="json";
   saveAccount.open('POST', 'https://tstore.space/api.php', true);
@@ -70,39 +81,25 @@ function saveAccount() {
       if (saData!=null) {
         localStorage.setItem('login', saData.user[0].login);
         localStorage.setItem('password', password);
-        console.log(window.history.length);
+        loadbox('end');
+        popup('Вход выполнен', 'check');
         if (window.history.length==1) {
           window.open('https://tstore.space/3rd/', '_self');
         } else {
           window.history.back();
         }
-
-
       } else {
-        wrongData();
+        incorrect('fake-tenid', 'tenid');
+        incorrect('fake-password', 'password');
+        popup('Введены неверные ID или пароль', 'x', 'small');
+        loadbox('end');
       }
     }
   };
 }
-function editData() {
-  document.getElementById('tenid-form2').style.display='none';
-  document.getElementById('tenid-form1').style.display='block';
-}
-
-
-function wrongData() {
-  document.getElementById('tenid-form3').style.display='none';
-  document.getElementById('tenid-form2').style.display='block';
-  shake('ti-pass');
-}
-checkTheme()
 
 document.addEventListener("keydown", function (e) {
     if (e.code === "Enter") {
-      if (curstep=='id') {
-        nextstep(1);
-      } else if (curstep=='pass') {
-        saveAccount();
-      }
+      saveAccount();
     }
 });

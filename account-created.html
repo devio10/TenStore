@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head class="ca-body">
+    <meta charset="utf-8">
+    <link id="tab-icon" rel="shortcut icon" href="img/store-light.svg">
+    <title>Создать аккаунт TenID</title>
+    <link rel="stylesheet" href="css/ui-elem.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/blocks.css">
+    <link rel="stylesheet" href="css/ui-switch.css">
+    <link rel="stylesheet" href="css/create-account.css">
+
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="js/theme.js" charset="utf-8"></script>
+    <script src="js/mobile-version.js" charset="utf-8"></script>
+    <script src="js/sha256.js" charset="utf-8"></script>
+    <script src="js/xmlhttp.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
+  </head>
+  <body class="ca-body">
+    <canvas id="confetti"></canvas>
+    <div id='reg-block'>
+      <div id="reg-success" class="ub-window">
+        <div class="top-btns">
+          <a href="https://tstore.space/" class="top-btn">Главная</a>
+        </div>
+        <h2 style="cursor: pointer; user-select: none" onclick='moreConfetti()' class="reg-title">Готово!</h2>
+        <p class="reg-text"><b style="font-weight: bold">Важно</b>: вам пришло письмо с ссылкой для подтверждения почты, перейдите по ней в течение суток, чтобы активировать ваш аккаунт.</p>
+      </div>
+      <div id="reg-errEmail" class="ub-window">
+        <div class="top-btns">
+          <a href="https://tstore.space/" class="top-btn">Главная</a>
+        </div>
+        <h2 class="reg-title">Произошла ошибка...</h2>
+        <p class="reg-text">Судя по всему, ваша почта уже занята. Обратитесь к <a href='https://t.me/ten_software'>нам</a>, чтобы получить помощь.</p>
+      </div>
+      <div id="reg-errLogin" class="ub-window">
+        <div class="top-btns">
+          <a href="https://tstore.space/" class="top-btn">Главная</a>
+        </div>
+        <h2 class="reg-title">Произошла ошибка...</h2>
+        <p class="reg-text">Судя по всему, ваш ID уже занят. Обратитесь к <a href='https://t.me/ten_software'>нам</a>, чтобы получить помощь.</p>
+      </div>
+      <div id="reg-errUnknown" class="ub-window">
+        <div class="top-btns">
+          <a href="https://tstore.space/" class="top-btn">Главная</a>
+        </div>
+        <h2 class="reg-title">Произошла неизвестная ошибка</h2>
+        <p class="reg-text">Сервер выдал неизвестную ошибку, что очень необычно. Обратитесь к <a href='https://t.me/ten_software'>нам</a>, чтобы получить помощь.</p>
+      </div>
+    </div>
+    <div id="pop_up" style="display: none">
+      <i id="pop_up-icon" class="ph-warning"></i>
+      <h4 id="pop_up-text">Ошибка на стороне сайта</h4>
+    </div>
+    <div id="load_box" style="display: none">
+      <div class="ui-loading-wheel load_box-wheel"> </div>
+      <h4 id="load_box-text">Ошибка на стороне сайта</h4>
+    </div>
+    <script src="js/account-created.js"></script>
+  </body>
+</html>

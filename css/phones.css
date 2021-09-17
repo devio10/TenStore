@@ -166,3 +166,58 @@ input[type=text], input[type=password] {
 .hm-card-hr {
   width: 100%;
 }
+
+.ca-body {
+  width: 100%;
+}
+#tid_header {
+  margin-bottom: -108px;
+  padding: 0;
+}
+#tid_htitle, #tid_login_link {
+  margin-top: -40px;
+  color: #262626;
+}
+.tid_topblock {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.reg-fake-input {
+  width: calc(100% - 32px);
+  margin-left: 16px;
+  margin-right: 16px;
+}
+#reg-name {
+  margin-right: 0;
+}
+.tid_licon_block {
+  margin: 0 0 0 8px;
+}
+#reg-repeat-password {
+  margin-left: 46px;
+}
+#tenid_help {
+  margin-left: 48px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+@media (max-width: 350px) {
+  .tid_licon_block {
+    display: none;
+  }
+  #reg-repeat-password {
+    margin-left: 16px;
+  }
+  #tenid_help {
+     margin-left: 20px;
+  }
+}
+#reg-block {
+  --width: 100%;
+  --height: 100%;
+  border-radius: 0;
+  border: none;
+}
+#confetti {
+  z-index: 100;
+}

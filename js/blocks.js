@@ -13,7 +13,7 @@ var hideFull='<a onclick="toggleDescription()"> Скрыть</a>';
 var curDescType='short';
 var selectedPlatform=localStorage.getItem('platform');
 let selectedFile;
-function toggleAB () {
+function toggleAB (dontPushHistory) {
  let abBg=document.getElementById('app-block-bg');
  currentAppScreen='index';
  if (ab.style.display=='block') {
@@ -35,7 +35,9 @@ function toggleAB () {
    abBg.style.opacity='.1';
    body.style.overflow='auto';
    toggleScrolling('add');
-   window.history.pushState(null, null, '?');
+   if (dontPushHistory!=true) {
+     window.history.pushState(null, '', 'https://tstore.space/3rd/');
+   }
  } else {
    loadScreen.style.display='flex';
    indexScreen.style.display='none';
@@ -70,24 +72,33 @@ function showAB(appid, dontPushHistory) {
     if ((appBlock.readyState===4)&&(appBlock.status===200)) {
       var appData=appBlock.response;
       if (appData!=0) {
+        if (loggedIn==true) {
+          document.getElementById('ab-no_account').style.display='none';
+        }
+
         let abIcon=document.getElementById('ab-icon');
-        abIcon.src='https://tstore.space/'+appData.apps[0].icon;
-        if (appData.apps[0].icon_pad!=0) {
-          abIcon.style.width='80px';
-          abIcon.style.height='80px';
-          abIcon.style.padding='10px';
+        if (appData.apps[0].icon!='') {
+          abIcon.src='https://tstore.space/'+appData.apps[0].icon;
+          if (appData.apps[0].icon_pad!=0) {
+            abIcon.style.width='80px';
+            abIcon.style.height='80px';
+            abIcon.style.padding='10px';
+          } else {
+            abIcon.style.width='100px';
+            abIcon.style.height='100px';
+            abIcon.style.padding='0';
+          }
+          let abIconBg;
+          if (appData.apps[0].icon_bg==0) {
+            abIconBg='white';
+          } else {
+            abIconBg=appData.apps[0].icon_bg;
+          }
+          abIcon.style.background=abIconBg;
         } else {
-          abIcon.style.width='100px';
-          abIcon.style.height='100px';
-          abIcon.style.padding='0';
+          abIcon.src='img/prohibit.svg';
         }
-        let abIconBg;
-        if (appData.apps[0].icon_bg==0) {
-          abIconBg='white';
-        } else {
-          abIconBg=appData.apps[0].icon_bg;
-        }
-        abIcon.style.background=abIconBg;
+
         shortDescription=appData.apps[0].descr.split('<p>');
         longDescription=appData.apps[0].descr;
         if (shortDescription[0]==longDescription) {
@@ -95,8 +106,18 @@ function showAB(appid, dontPushHistory) {
         } else {
           document.getElementById('ab-desc').innerHTML=shortDescription[0]+showFull;
         }
+        document.title=appData.apps[0].name+' — TenStore';
         document.getElementById('ab-name').innerText=appData.apps[0].name;
-        document.getElementById('ab-short-desc').innerText=appData.apps[0].dev; // TODO: добавить сюда краткое описание
+        if (appData.apps[0].sh_desc!='') {
+          document.getElementById('ab-short-desc').innerText=appData.apps[0].sh_desc;
+        } else {
+          let appdev=appData.apps[0].dev;
+          if (appData.apps[0].pub!='') {
+            appdev=appData.apps[0].pub;
+          }
+          document.getElementById('ab-short-desc').innerText=appdev;
+        }
+
         let abHeader=document.getElementById('ab-header');
         if (appData.apps[0].bg!=0) {
           abHeader.style.background="url(https://tstore.space/"+appData.apps[0].bg+")";
@@ -104,10 +125,9 @@ function showAB(appid, dontPushHistory) {
           abHeader.style.backgroundRepeat='no-repeat';
           abHeader.style.backgroundSize='cover';
           abHeader.style.display='block';
-          document.getElementById('topcontent').style.marginTop='0';
         } else {
           abHeader.style.display='none';
-          document.getElementById('topcontent').style.marginTop='40px';
+          document.getElementById('topcontent').style.marginTop='-18px';
         }
         document.getElementById('ab-scrs').innerHTML='';
         document.getElementById('scrs-pag').innerHTML='';
@@ -149,12 +169,21 @@ function showAB(appid, dontPushHistory) {
               revType='green';
             }
 
+            let currentTime=new Date();
+            let revDate=revs.comments[c].date;
+            let clearRevDate=revDate.substr(revDate.length - 6);
+            if (currentTime.getFullYear() == clearRevDate.substring(0, clearRevDate.length - 2)) {
+              revDate='';
+            } else {
+              revDate=', '+revDate;
+            }
+
             var reviewObj=document.createElement('div');
             reviewObj.className='ab-review';
             reviewObj.innerHTML= `
               <div class='flex-row'>
                 <div class='rev-dot ${revType}'> </div>
-                <h5 class='rev-author'>${revs.comments[c].login}, ${revs.comments[c].date}</h5>
+                <h5 class='rev-author'>${revs.comments[c].login}${revDate}</h5>
               </div>
               <h3 class='rev-title'>${revs.comments[c].title}</h3>
               <h5 class='rev-text'>${revs.comments[c].comment}</h5>
@@ -165,7 +194,7 @@ function showAB(appid, dontPushHistory) {
           }
         }
         document.getElementById('ab-platforms').innerHTML='';
-        if ((appData.apps[0].files!='')||(appData.apps[0].files!='[]')) {
+        if (appData.apps[0].files!='{}') {
           let psJson=JSON.parse(appData.apps[0].files);
           for (var i = 0; i < psJson.files.length; i++) {
             let psItem=document.createElement('div');
@@ -178,7 +207,7 @@ function showAB(appid, dontPushHistory) {
               } else {
                 document.getElementById('ab-platform').innerText=psJson.files[i].platform;
               }
-              document.getElementById('si-size').innerText=psJson.files[i].size+' МБ';
+              document.getElementById('ab-platform-info').innerText=psJson.files[i].size+' МБ, '+psJson.files[i].published;
             } else {
               psItem.className='platform-check';
             }
@@ -187,7 +216,7 @@ function showAB(appid, dontPushHistory) {
             } else {
               psItem.innerText=psJson.files[i].platform;
             }
-            psItem.setAttribute('onclick','selectPlatform("'+psJson.files[i].platform+'", "'+psJson.files[i].file+'", "'+psJson.files[i].architecture+'", "'+psJson.files[i].size+'")');
+            psItem.setAttribute('onclick',`selectPlatform("${psJson.files[i].platform}", "${psJson.files[i].file}", "${psJson.files[i].architecture}", "${psJson.files[i].size}", "${psJson.files[i].published}")`);
             psItem.id='ps-'+psJson.files[i].platform+'-'+psJson.files[i].architecture;
             document.getElementById('ab-platforms').appendChild(psItem);
           }
@@ -215,7 +244,7 @@ function showAB(appid, dontPushHistory) {
   });
   appBlock.send(appId);
 }
-function selectPlatform(psName, fileName, psArc, psSize) {
+function selectPlatform(psName, fileName, psArc, psSize, psDate) {
   const highlightedItems=document.querySelectorAll(".platform-check");
   highlightedItems.forEach(function(userItem) {
     hiId=userItem.id;
@@ -224,7 +253,7 @@ function selectPlatform(psName, fileName, psArc, psSize) {
   document.getElementById('ps-'+psName+'-'+psArc).className='platform-check selected';
   selectedFile=fileName;
   if (psArc!='') { document.getElementById('ab-platform').innerText=psName+' ('+psArc+')'; } else { document.getElementById('ab-platform').innerText=psName; }
-  document.getElementById('si-size').innerText=psSize+' МБ';
+  document.getElementById('ab-platform-info').innerText=psSize+' МБ, '+psDate;
   platforms();
 }
 function toggleDescription() {
@@ -237,9 +266,12 @@ function toggleDescription() {
   }
 }
 function abBack () {
+  /*
   if ((currentAppScreen==null)||(currentAppScreen=='index')) {
     toggleAB();
   }
+  */
+  history.back();
 }
 var positions=0;
 var nrpositions=0;
@@ -260,9 +292,6 @@ function scrollableBlocks() {
     abIndex.style.borderTopRightRadius=newbRadius+'px';
     ab.style.borderTopLeftRadius=newbRadius+'px';
     ab.style.borderTopRightRadius=newbRadius+'px';
-    if (positions < -70) {
-      toggleAB();
-    }
   };
   let abNR=document.getElementById('ab-new_review');
   abNR.onscroll=function(){
@@ -296,9 +325,39 @@ function newReview() {
     popup('Войдите в аккаунт', 'sign-in');
   }
 }
+function abShare() {
+  document.getElementById('ab-main_content').style.display='none';
+  document.getElementById('ab-share').style.display='block';
+  var vibrant = new Vibrant(document.getElementById('ab-icon'));
+  var swatches = vibrant.swatches()
+  for (var swatch in swatches) {
+    if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
+      let vaaa=swatches[swatch].getRgb();
+      console.log(vaaa);
+
+    }
+  }
+     /*
+      * Results into:
+      * Vibrant #7a4426
+      * Muted #7b9eae
+      * DarkVibrant #348945
+      * DarkMuted #141414
+      * LightVibrant #f3ccb4
+      */
+  if (platform=='mobile') {
+    positions=0;
+    ab.style.height='calc(100% - 60px)';
+    abIndex.style.borderTopLeftRadius='16px';
+    abIndex.style.borderTopRightRadius='16px';
+    ab.style.borderTopLeftRadius='16px';
+    ab.style.borderTopRightRadius='16px';
+  }
+}
 function cancelReview() {
   document.getElementById('ab-main_content').style.display='block';
   document.getElementById('ab-new_review').style.display='none';
+  document.getElementById('ab-share').style.display='none';
 }
 
 function switchScreenshot(action) {
@@ -433,6 +492,11 @@ function sendReview(appid) {
     };
   }
 }
+
+function addToLibrary (appid) {
+
+}
+
 function download (appid) {
   if (loggedIn==true) {
     var downloadRequest=new XMLHttpRequest();
@@ -453,6 +517,7 @@ function download (appid) {
                 window.open(ddFiles.files[i].file);
               } else {
                 window.open('https://tstore.space/'+ddFiles.files[i].file);
+                addToLibrary(appid);
               }
               break;
             }
@@ -491,36 +556,50 @@ function efNewNavBar() {
 }
 function efHomeCards() {
   document.getElementById('ef-home-cards-sw').checked=true;
-  document.getElementById('hm-index').innerHTML="<div class='hm-bottom-loading' style='display: flex'> \
-    <i class='ph-prohibit' style='font-size: 36px; color: gray'></i> \
-    <h5 class='ui-gray'>Не удалось загрузить контент</h5> \
-  </div>";
-  document.getElementById('hm-apps').innerHTML="<div class='hm-bottom-loading' style='display: flex'> \
-    <i class='ph-prohibit' style='font-size: 36px; color: gray'></i> \
-    <h5 class='ui-gray'>Не удалось загрузить контент</h5> \
-  </div>";
+  document.getElementById('hm-index').innerHTML=`
+    <div id="index-loading">
+      <div class="ab-loading-block">
+        <div class="ui-loading-wheel"> </div>
+        <h5 class="ui-gray">Контент загружается</h5>
+      </div>
+    </div>
+  `;
+  document.getElementById('hm-apps').innerHTML=`
+    <div id="apps-loading">
+      <div class="ab-loading-block">
+        <div class="ui-loading-wheel"> </div>
+        <h5 class="ui-gray">Контент загружается</h5>
+      </div>
+    </div>
+  `;
 }
 function efNavigationBar() {
   var prevScrollpos=window.pageYOffset;
   window.onscroll=function() {
     var currentScrollPos=window.pageYOffset;
+    if (currentScrollPos < 0) {
+      currentScrollPos=0;
+    }
     if (prevScrollpos > currentScrollPos) {
       document.getElementById('nav-bar').style.bottom="var(--bottom)";
       document.getElementById('search-nav-bar').style.bottom="var(--bottom)";
       let iconId='house';
-      if (selHC=='apps') { iconId='squares-four'; } else if (selHC=='games') { iconId='game-controller'; }
+      if (selHC=='apps') { iconId='squares-four'; } else if (selHC=='games') { iconId='game-controller'; } else if (selHC=='search') { iconId='magnifying-glass'; }
       document.getElementById('nav-index').className='';
       document.getElementById('nav-apps').className='';
       document.getElementById('nav-games').className='';
+      document.getElementById('nav-search').className='';
 
       document.getElementById('nav-index').className='ph-house-light ui-nav-icon ui-nav-icon-highlight';
       document.getElementById('nav-apps').className='ph-squares-four-light ui-nav-icon ui-nav-icon-highlight';
+      document.getElementById('nav-search').className='ph-magnifying-glass-light ui-nav-icon ui-nav-icon-highlight';
       document.getElementById('nav-games').className='ph-game-controller ui-nav-icon ui-nav-icon-highlight';
       document.getElementById('nav-'+selHC).className='ph-'+iconId+'-fill ui-nav-icon ui-nav-icon-highlight';
     } else {
       document.getElementById('nav-bar').style.bottom="-70px";
       document.getElementById('search-nav-bar').style.bottom="-70px";
       document.getElementById('nav-index').className='';
+      document.getElementById('nav-search').className='';
       document.getElementById('nav-apps').className='';
       document.getElementById('nav-games').className='';
     }
@@ -544,9 +623,8 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   let listHeader=document.getElementById('list-header');
   document.getElementById('list-subtext').style.display='block';
   document.getElementById('list-name').style.display='block';
-  document.getElementById('list-search').style.marginTop='8px';
   document.getElementById('list-block').style.display='flex';
-  document.getElementById('list-search').style.display='none';
+  document.getElementById('list-noitems').style.display='none';
   document.getElementById('list-block').innerHTML='';
   document.getElementById('list-subtext').innerText=par3;
   listHeader.style.background='';
@@ -557,12 +635,7 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
   listName.style.fontFamily='Roboto';
   document.getElementById('list-subtext').style.color='gray';
   if (dontPushHistory!=true) {
-    if (par1!='search') {
-      window.history.pushState(null, 'Список', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background+'&font='+font+'&nameColor='+nameColor+'&subColor='+subColor+'&nameSize='+nameSize);
-    } else {
-      window.history.pushState(null, 'Поиск', '?search='+par2);
-      document.getElementById('list-search').style.marginTop='60px';
-    }
+    window.history.pushState(null, '', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background);
   }
   if ((background==null)||(background==0)) {
     listName.style.marginTop='60px';
@@ -573,25 +646,9 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
     listHeader.style.backgroundRepeat='no-repeat';
     listHeader.style.backgroundSize='cover';
   }
-  if ((font!=null)||(font!=0)||(font!=undefined)) { listName.style.fontFamily=font; }
-  if ((nameColor!=null)||(nameColor!=0)) { listName.style.color=nameColor; }
-  if ((nameSize!=null)||(nameSize!=0)) { listName.style.fontSize=nameSize; }
-  if ((subColor!=null)||(subColor!=0)) { document.getElementById('list-subtext').style.color=subColor; }
-  if (par1=='search') {
-    listName.style.fontFamily='Roboto';
-    document.getElementById('search-block').style.display='none';
-  }
   var appsList=new XMLHttpRequest();
-  var listId;
-  if (par1!='search') {
-    listId='action=KdSqSAOC&select='+par1+'&value='+par2;
-    document.getElementById('list-name').innerHTML=par2+'<i class="ph-heart-straight list-love"></i>';
-  } else {
-    listId='action=d6Gj59&search='+par2;
-    document.getElementById('list-name').style.display='none';
-    document.getElementById('list-subtext').style.display='none';
-    document.getElementById('list-search').style.display='block';
-  }
+  var listId='action=KdSqSAOC&select='+par1+'&value='+par2;
+    document.getElementById('list-name').innerHTML=par2;
   appsList.responseType='json';
   appsList.open('POST', api, true);
   appsList.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -600,24 +657,35 @@ function showList(par1, par2, donotToggle, par3, background, font, nameColor, su
       var listData=appsList.response;
       loadScrn.style.display='none';
       mainScrn.style.display='block';
-      for (let i=0; i<listData.apps.length; i++) {
-        let iconPadding='0';
-        let iconBg='white';
-        let iconSize='40px';
-        let liIcon='https://tstore.space/'+listData.apps[i].icon;
-        if (listData.apps[i].icon_bg!=0) {
-          iconBg=listData.apps[i].icon_bg;
+      if (listData.apps!=undefined) {
+        for (let i=0; i<listData.apps.length; i++) {
+          let iconPadding='0';
+          let iconBg='white';
+          let iconSize='40px';
+          let liIcon='https://tstore.space/'+listData.apps[i].icon;
+          if (listData.apps[i].icon=='') {
+            liIcon='img/prohibit.svg';
+          }
+          if (listData.apps[i].icon_bg!=0) {
+            iconBg=listData.apps[i].icon_bg;
+          }
+          if (listData.apps[i].icon_pad!=0) {
+            iconPadding='5px';
+            iconSize='30px';
+          }
+          let appdev=listData.apps[i].dev;
+          if (listData.apps[i].pub!='') {
+            appdev=listData.apps[i].pub;
+          }
+          var listItem=document.createElement('div');
+          listItem.className='app-item';
+          listItem.innerHTML="<img class='ai-icon' onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
+          <div class='ai-text'> <h5 onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' class='ai-name'>"+listData.apps[i].name+"</h5> <h5 onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' class='ai-dev'>"+appdev+"</h5> </div> \
+          <i onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' class='ph-info ai-info'></i> <i onclick='download("+listData.apps[i].id+"); popup(`Скачивание началось`, `cloud-arrow-down`)' class='ph-cloud-arrow-down ai-down'></i>"
+          document.getElementById('list-block').appendChild(listItem);
         }
-        if (listData.apps[i].icon_pad!=0) {
-          iconPadding='5px';
-          iconSize='30px';
-        }
-        var listItem=document.createElement('div');
-        listItem.className='app-item';
-        listItem.innerHTML="<img class='ai-icon' onclick='toggleList(); showAB("+listData.apps[i].id+")' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
-        <div class='ai-text'> <h5 onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ai-name'>"+listData.apps[i].name+"</h5> <h5 onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ai-dev'>"+listData.apps[i].dev+"</h5> </div> \
-        <i onclick='showAB("+listData.apps[i].id+"); toggleList()' class='ph-info ai-info'></i> <i onclick='download("+listData.apps[i].id+")' class='ph-cloud-arrow-down ai-down'></i>"
-        document.getElementById('list-block').appendChild(listItem);
+      } else {
+        document.getElementById('list-noitems').style.display='flex';
       }
     }
   });
@@ -627,8 +695,10 @@ let currentListScreen;
 var list=document.getElementById('list');
 var loadScrn=document.getElementById('list-loading');
 var mainScrn=document.getElementById('list-main');
+
 function toggleList(isSearch, dontPushHistory) {
   document.getElementById('search-block').style.display='none';
+  document.getElementById('list-share').style.display='block';
   let listBg=document.getElementById('list-block-bg');
   currentListScreen='index';
   if (list.style.display=='block') {
@@ -650,7 +720,9 @@ function toggleList(isSearch, dontPushHistory) {
     listBg.style.opacity='.1';
     body.style.overflow='auto';
     toggleScrolling('add');
-    window.history.pushState(null, null, '?');
+    if (dontPushHistory!=true) {
+      window.history.pushState(null, '', 'https://tstore.space/3rd/');
+    }
   } else {
     loadScrn.style.display='flex';
     mainScrn.style.display='none';
@@ -660,17 +732,18 @@ function toggleList(isSearch, dontPushHistory) {
     body.style.overflow='none';
   }
   if (isSearch==true) {
+    document.title='Поиск — TenStore';
     loadScrn.style.display='none';
     mainScrn.style.display='block';
+    document.getElementById('list-share').style.display='none';
     document.getElementById('list-subtext').style.display='none';
     document.getElementById('list-name').style.display='none';
     document.getElementById('search-block').style.display='flex';
     document.getElementById('list-header').style.display='none';
-    document.getElementById('list-search').style.marginTop='60px';
     document.getElementById('list-block').style.display='none';
-    document.getElementById('list-search').style.display='block';
+    document.getElementById('list-noitems').style.display='none';
     if (dontPushHistory!=true) {
-      window.history.pushState(null, 'TENSTORE', '?block=search');
+      window.history.pushState(null, '', '?block=search');
     }
   }
 }
@@ -692,19 +765,11 @@ function scrollableList() {
     list.style.borderTopRightRadius=newbRadius+'px';
   };
 }
-document.getElementById('list-search').addEventListener("keyup", function(event) {
+document.getElementById('hm-search-input').addEventListener("keyup", function(event) {
   if (event.keyCode===13) {
-    showList('search', document.getElementById('list-search').value, true);
+    goSearch();
   }
 });
-function toggleSearch() {
-  let searchBar=document.getElementById('list-search');
-  if (searchBar.style.display=='none') {
-    searchBar.style.display='block';
-  } else {
-    searchBar.style.display='none';
-  }
-}
 
 /* БЛОК ПОЛЬЗОВАТЕЛЯ */
 var ubObj=document.getElementById('user-block');
@@ -729,7 +794,9 @@ function toggleUB(dontPushHistory) {
     }
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
-    window.history.pushState(null, 'TenStore', '?');
+    if (dontPushHistory!=true) {
+      window.history.pushState(null, '', 'https://tstore.space/3rd/');
+    }
   } else {
     ubWindow('main');
     toggleScrolling('remove');
@@ -774,6 +841,7 @@ function setWindow(windowName) {
   document.getElementById('set-platform').style.display='none';
   document.getElementById('set-phosphor-mit').style.display='none';
   document.getElementById('set-animate-mit').style.display='none';
+  document.getElementById('set-support').style.display='none';
   document.getElementById('set-'+windowName).style.display='block';
 }
 function toggleSettings(dontPushHistory) {
@@ -793,7 +861,10 @@ function toggleSettings(dontPushHistory) {
     }
     setObj.style.opacity='.4';
     setBgObj.style.opacity='.1';
-    window.history.pushState(null, 'TenStore', '?');
+    if (dontPushHistory!=true) {
+      window.history.pushState(null, '', 'https://tstore.space/3rd/');
+    }
+
   } else {
     ubWindow('main');
     toggleScrolling('remove');

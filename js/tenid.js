@@ -1,5 +1,5 @@
 var loggedIn=false;
-function login() {
+function login(addit) {
   var login=localStorage.getItem('login');
   var password=localStorage.getItem('password');
   if (login!=null) {
@@ -19,14 +19,28 @@ function login() {
           if ((userData.user[0].photo==0)||(userData.user[0].photo==null)) {
             userPhoto='img/user.svg';
           }
-          document.getElementById('ub-no-account').style.display='none';
-          document.getElementById('ub-top').style.display='flex';
-          document.getElementById('hd-user').src=userPhoto;
-          document.getElementById('ub-user').src=userPhoto;
-          document.getElementById('ub-name').innerText=userName;
-          document.getElementById('ub-email').innerText=userEmail;
-          document.getElementById('ub-have-account').style.display='block';
-          document.getElementById('ub-no-account').style.display='none';
+          if (addit=='reg') {
+            document.getElementById('tid_login_link').style.display='none';
+            document.getElementById('hd-user').style.display='block';
+            document.getElementById('hd-user').src=userPhoto;
+            document.getElementById('tid_mainframe').style.display='none';
+            document.getElementById('tid_logged_in').style.display='block';
+          } else if (addit=='log') {
+            document.getElementById('tid_login_link').style.display='none';
+            document.getElementById('hd-user').style.display='block';
+            document.getElementById('hd-user').src=userPhoto;
+            document.getElementById('login_mainframe').style.display='none';
+            document.getElementById('tid_logged_in').style.display='block';
+          } else {
+            document.getElementById('ub-no-account').style.display='none';
+            document.getElementById('ub-top').style.display='flex';
+            document.getElementById('hd-user').src=userPhoto;
+            document.getElementById('ub-user').src=userPhoto;
+            document.getElementById('ub-name').innerText=userName;
+            document.getElementById('ub-email').innerText=userEmail;
+            document.getElementById('ub-have-account').style.display='block';
+            document.getElementById('ub-no-account').style.display='none';
+          }
         }
       }
     };

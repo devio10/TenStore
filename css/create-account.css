@@ -1,0 +1,230 @@
+html, body {
+  width: 100%;
+}
+.reg-title, .reg-title2 {
+  font-weight: bold;
+  margin: 32px 16px 16px 16px;
+}
+.reg-title2 {
+  margin: 24px 16px 16px 16px;
+}
+.reg-text {
+   margin: 0 16px 16px 16px;
+   color: gray;
+   font-size: 15px;
+}
+/*
+#reg-name, #lazy_password, #reg-lastname, #reg-password, #reg-repeat-password {
+  width: calc(50% - 52px);
+}
+*/
+/*
+#reg-email, #reg-tenid {
+  width: calc(100% - 52px);
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+#reg-tenid {
+  margin-top: 0;
+}
+*/
+#check-login, #check-email {
+  margin: 16px;
+  font-size: 15px;
+}
+/*
+#reg-name, #lazy_password, #reg-lastname, #reg-password, #reg-repeat-password, #reg-email, #reg-tenid {
+  height: 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid var(--gray-mid);
+}
+*/
+::-webkit-input-placeholder {
+  font-weight: normal;
+  text-transform: none;
+}
+::-moz-placeholder {
+  font-weight: normal;
+  text-transform: none;
+}
+.load_box-wheel {
+  --size: 48px;
+}
+#load_box {
+  --size: 120px;
+}
+#load_box-text {
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+#lazy_password-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  display: none;
+}
+.top-btn {
+  margin-left: auto;
+}
+#reg-recaptcha {
+  margin-top: 0;
+}
+#confetti {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
+#reg-block {
+  background: var(--abs-bg);
+  --width: 500px;
+}
+
+
+/*********/
+html, body {
+  max-width: 650px;
+}
+header {
+  margin-top: 48px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+#tid_htitle {
+  font-family: 'Kanit', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 24px;
+}
+#tid_login_link {
+  color: gray;
+  margin: 24px;
+}
+.tid_topblock {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #04E474 0%, #16CB71 100%);
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#tenstore_topblock {
+  background: linear-gradient(135deg, rgba(4,178,228,1) 0%, rgba(22,144,203,1) 100%);
+}
+.tid_topicon {
+  --size: 72px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 28px;
+  background: white;
+  margin-top: 150px;
+  box-shadow: 0px 10px 29px 6px rgba(4, 228, 116, 0.15);
+  padding: 12px;
+}
+#tenstore_topicon {
+  box-shadow: 0px 10px 29px 6px rgba(4,178,228,0.15);
+}
+#tid_title {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 48px;
+}
+.tid_frame {
+  width: 100%;
+  margin-top: 36px;
+}
+input[type=text], input[type=password] {
+  border: 1px solid var(--gray-mid);
+  height: 37px;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 12px;
+  animation-duration: 1s;
+}
+.name-inputs {
+  width: 100%;
+  max-width: 480px;
+}
+.tid_licon {
+  font-size: 22px;
+  color: gray;
+  transition: .3s;
+}
+.tid_licon_block, .tid_help_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -58px;
+  margin-right: 36px;
+}
+.tid_help_block {
+  margin-left: -42px;
+  cursor: pointer;
+}
+hr {
+  width: calc(100% - 32px);
+  margin: 32px 16px 32px 16px;
+}
+.step_block {
+  justify-content: center;
+}
+.reg-fake-input {
+  max-width: calc(480px - 16px);
+  border-radius: 12px;
+  background: var(--abs-bg);
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray-mid);
+  margin-left: 8px;
+  margin-right: 8px;
+  animation-duration: 1s;
+  transition: .3s;
+}
+#reg-tenid, #reg-password, #login_tenid, #login_password {
+  border: none;
+  background: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.tid_help {
+  margin-right: 4px;
+  margin-left: 4px;
+  padding: 4px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.tid_help:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transition: none;
+}
+#lazy_password_block {
+  display: none;
+  margin-top: 16px;
+}
+button {
+  font-size: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+#hd-user {
+  display: none;
+}
+#tid_recaptcha, #tid_logged_in {
+  display: none;
+}
+#tenid_help {
+  color: gray;
+  margin: 16px 16px 0 96px;
+  max-width: 480px;
+  /*************/
+  display: none;
+}

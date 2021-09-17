@@ -83,6 +83,22 @@ button.outline:hover, button.outline:focus {
   background: gray;
   color: var(--abs-bg);
 }
+button.outline-small {
+  border-radius: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  color: gray;
+  background: none;
+}
+button.outline-small:hover {
+  background: rgba(255, 255, 255, var(--download-hover));
+}
 
 /* разделитель */
 hr {
@@ -111,7 +127,8 @@ img {
 
 .ui-nav {
   --bottom: 16px;
-  --width: 250px;
+  --width: 300px;
+  --half-width: calc(var(--width) / 2);
   position: fixed;
   bottom: var(--bottom);
   width: var(--width);
@@ -128,8 +145,8 @@ img {
   border-radius: 24px;
   border: 1px solid var(--ui-nav-border);
   box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.15);
-  height: 40px;
-  left: calc(50% - var(--width) - 16px);
+  height: 45px;
+  left: calc(50% - var(--half-width));
 }
 .ui-nav-block {
   width: 100%;
@@ -159,7 +176,7 @@ img {
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
 }
-.ui-nav-item:hover #nav-index, .ui-nav-item:hover #nav-apps, .ui-nav-item:hover #nav-games {
+.ui-nav-item:hover #nav-index, .ui-nav-item:hover #nav-apps, .ui-nav-item:hover #nav-games, .ui-nav-item:hover #nav-search {
   animation-name: nav-icon;
   animation-duration: 1.5s;
   transition: .3s transform;
@@ -214,12 +231,9 @@ input[type=password]:focus, input[type=password]:hover {
 }
 ::-webkit-input-placeholder {
   font-weight: 300;
-  text-transform: uppercase;
 }
 ::-moz-placeholder {
-   text-align: center;
    font-weight: lighter;
-   text-transform: uppercase;
 }
 
 a {

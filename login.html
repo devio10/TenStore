@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" dir="ltr">
+<html lang="ru" dir="ltr" class="ca-body">
   <head>
     <meta charset="utf-8">
     <link id="tab-icon" rel="shortcut icon" href="img/store-light.svg">
@@ -8,56 +8,74 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/tenid.css">
     <link rel="stylesheet" href="css/ui-switch.css">
+    <link rel="stylesheet" href="css/create-account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
+    <script src="js/tenid.js" charset="utf-8"></script>
     <script src="js/mobile-version.js" charset="utf-8"></script>
     <script src="js/sha256.js" charset="utf-8"></script>
-    <script src="js/xmlhttp.js" charset="utf-8"></script>
+    <script src="js/popups.js" charset="utf-8"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
   </head>
-  <body>
+  <body class="ca-body">
+    <header id="tid_header">
+      <h3 id="tid_htitle">TenID</h3>
+      <a href="login" id="tid_login_link">Войти</a>
+      <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
+    </header>
+    <div class="tid_topblock" id="tenstore_topblock">
+      <img class="tid_topicon" id="tenstore_topicon" src="img/store-light.svg">
+    </div>
+    <h2 id="tid_title">Войти в аккаунт</h2>
     <div class="ti-body-center">
-      <div id="tenid-loading">
-        <div class="ui-loading-wheel"> </div>
-        <h5 class="ui-gray">Соединение с сервером</h5>
-      </div>
-      <div id="tenid-form1" style="display: none">
 
-        <h4 class="ti-subtext">Вход в аккаунт</h4>
-        <input id="ti-login" type="text" autofocus placeholder="TenID">
-        <div class="ub-btn-family">
-          <button onclick='nextstep(1)' class="ub-btn continue-btn">
-            <i class="ph-arrow-right-bold ub-openbtn"></i>
-            <h4 class="ub-btn-txt focus">Продолжить</h4>
-          </button>
+      <div id="login_mainframe">
+        <h4 style="color: gray; text-align: center; max-width: 400px; margin: 16px auto 16px auto">"TenStore" запрашивает доступ к данным вашего аккаунта TenID, но для начала необходимо войти.</h4>
+        <div class="flex-row step_block">
+          <div class="tid_licon_block">
+            <i id="tenid_icon" class="ph-fingerprint-simple-bold tid_licon"></i>
+          </div>
+          <div id="login_fake-tenid" class="flex-row name-inputs reg-fake-input">
+            <input type="text" placeholder="TenID или адрес эл. почты" id="login_tenid">
+            <i class="ph-lifebuoy tid_licon tid_help" onclick="window.open('https://tstore.space/forgot-password')"></i>
+          </div>
         </div>
-        <h5 style="margin: 32px 0 0 0; text-align: center" class="ui-gray">или создать <a style="text-decoration: none" href='new-account'>новый аккаунт.</a></h5>
-      </div>
-      <div id="tenid-form2" style="display: none">
+        <div class="flex-row step_block" style="margin-top: 16px">
+          <div class="tid_licon_block">
+            <i id="password_icon" class="ph-lock-bold tid_licon"></i>
+          </div>
+          <div id="login_fake-password" class="flex-row name-inputs reg-fake-input">
+            <input type="password" placeholder="Пароль" id="login_password">
+            <i class="ph-key-return tid_licon tid_help" onclick="nextstep(1)"></i>
+          </div>
+        </div>
+        <hr style="margin-bottom: 24px">
+        <!-- -->
+        <div class="flex-row step_block">
+          <button onclick="saveAccount()">Продолжить</button>
+        </div>
 
-        <h4 class="ti-subtext" style="margin-bottom: 32px">Вход в аккаунт</h4>
-        <div class="user-data">
-          <img id="form2-pic" src="img/communication.jpg">
-          <h5 id='form2-name'></h5>
-          <i class="ph-pencil-simple form2-edit" onclick="editData()"></i>
-        </div>
-        <input id="ti-pass" type="password" autofocus placeholder="Пароль">
-        <div class="ub-btn-family">
-          <button style="margin-top: 16px" onclick='saveAccount()' class="ub-btn continue-btn">
-            <i class="ph-arrow-right-bold ub-openbtn"></i>
-            <h4 class="ub-btn-txt focus">Продолжить</h4>
-          </button>
-        </div>
-        <h5 style="margin: 32px 0 0 0; text-align: center" class="ui-gray">или создать <a style="text-decoration: none" href='new-account'>новый аккаунт.</a></h5>
-
+        <h4 style="color: gray; text-align: center; margin-top: 32px">Ещё нет аккаунта? <a href='create-account' style='color: gray'>Создайте новый.</a></h4>
       </div>
-      <div id="tenid-form3" style="display: none">
-        <div class="ui-loading-wheel"> </div>
-        <h5 class="ui-gray">Входим в аккаунт</h5>
+      <div id="tid_logged_in" class="tid_frame">
+        <h4 style="color: gray; text-align: center">Кажется, вы попали сюда по ошибке: вы уже вошли в TenID. <a onclick='history.back()' href="#">Вернуться обратно</a></h4>
+        <hr style="margin-bottom: 8px">
+        <!-- -->
+        <div class="flex-row step_block">
+          <button onclick="window.open('https://tstore.space', '_self')">TenStore</button>
+        </div>
       </div>
+    </div>
+    <div onclick="popup('hide')" id="pop_up" class="pop_up" style="display: none">
+      <i id="pop_up-icon" class="ph-warning"></i>
+      <h4 id="pop_up-text">Ошибка на стороне сайта</h4>
+    </div>
+    <div id="load_box" style="display: none">
+      <div class="ui-loading-wheel load_box-wheel"> </div>
+      <h4 id="load_box-text">Ошибка на стороне сайта</h4>
     </div>
 
     <script src="js/ti-login.js"></script>

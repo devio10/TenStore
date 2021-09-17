@@ -6,14 +6,16 @@
     <link id="tab-icon" rel="shortcut icon" href="img/store-light.svg">
     <link rel="stylesheet" href="css/ui-elem.css">
     <link rel="stylesheet" href="css/ui-switch.css">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base.css?ver=asdf3123">
     <link rel="stylesheet" href="css/blocks.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="js/theme.js" charset="utf-8"></script>
+    <script src="js/vibrant.js" charset="utf-8"></script>
     <script src="js/mobile-version.js" charset="utf-8"></script>
+    <script src="js/popups.js" charset="utf-8"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
   </head>
@@ -23,7 +25,7 @@
       <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
     </header>
 
-    <div id="search-nav-bar" onclick="toggleList(true)">
+    <div id="search-nav-bar" style="display: none" onclick="hmContent('search')">
       <div id="search-nb-block">
         <h5 style="color: inherit; margin: 0 0 0 24px">Поиск...</h5>
         <i class="ph-magnifying-glass-light search-nb-icon"></i>
@@ -40,10 +42,13 @@
   		  <a class="ui-nav-item" onclick='hmContent("games")'>
   		    <i class="ph-game-controller-light ui-nav-icon" id="nav-games"></i>
   		  </a>
+        <a class="ui-nav-item" onclick='hmContent("search")'>
+  		    <i class="ph-magnifying-glass-light ui-nav-icon" id="nav-search"></i>
+  		  </a>
       </div>
 		</nav>
 
-    <div onclick="toggleAB()" id="app-block-bg"> </div>
+    <div onclick="abBack()" id="app-block-bg"> </div>
     <div onclick="toggleUB()" id="user-block-bg"> </div>
     <div onclick="toggleList()" id="list-block-bg"> </div>
     <div onclick="toggleSettings()" id="set-block-bg"> </div>
@@ -86,7 +91,7 @@
             </button>
           </div>
           <div class="ub-btn-family">
-            <button class="ub-btn" onclick="window.open('join-tenid')">
+            <button class="ub-btn" onclick="window.open('create-account')">
               <i class="ph-plus-bold ub-openbtn"></i>
               <h4 class="ub-btn-txt focus">Создать аккаунт</h4>
             </button>
@@ -134,9 +139,16 @@
         </div>
         <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/tenstore.svg" class="set-btn-icon" id="store-icon">
-          <h4 class="set-btn-txt">TenStore L Beta</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0 aug09)</h4>
+          <h4 class="set-btn-txt">TenStore Logan Beta</h4>
+          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0 sep16)</h4>
         </button>
+        <button onclick="setWindow('support')" class="set-btn">
+          <img src="img/icons/lifebuoy.svg" class="set-btn-icon" id="support-icon">
+          <h4 class="set-btn-txt">Поддержка</h4>
+          <i class="ph-caret-right-bold set-arrow"></i>
+        </button>
+        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Обратитесь к нам, если у вас появились вопросы, проблемы с использованием или предложения по функциональности сайта.</h5>
+
         <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/gauge.svg" class="set-btn-icon" id="gauge-icon">
           <h4 class="set-btn-txt">Экономия траффика</h4>
@@ -144,13 +156,6 @@
           <input type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Включите этот режим при ограничении траффика или медленном интернет-соединении.</h5>
-        <button class="set-btn  no-hover">
-          <img src="img/icons/lightning.svg" class="set-btn-icon" id="lightning-icon">
-          <h4 class="set-btn-txt">Низкая производительность</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
-          <input type="checkbox" class="switch">
-        </button>
-        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Для более быстрой работы на слабых устройствах, используйте этот режим.</h5>
         <button onclick="setWindow('platform')" class="set-btn">
           <img src="img/icons/device-mobile.svg" class="set-btn-icon" id="device-icon">
           <h4 class="set-btn-txt">Платформа</h4>
@@ -159,7 +164,7 @@
           <i class="ph-caret-right-bold set-arrow"></i>
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Платформа, которую вы выберете, будет использоваться по умолчанию для скачивания приложений.</h5>
-        <button class="set-btn  no-hover" style="margin-bottom: 16px">
+        <button class="set-btn no-hover" style="margin-bottom: 16px">
           <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
           <h4 class="set-btn-txt">Debug</h4>
           <input onclick="localStorage.setItem('debug', 'true')" type="checkbox" class="switch">
@@ -168,7 +173,6 @@
         <button class="set-btn no-hover">
           <img src="img/icons/stack.svg" class="set-btn-icon" id="stack-icon">
           <h4 class="set-btn-txt">home cards</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
           <input id="ef-home-cards-sw" onclick="changePar('ef-home-cards')" type="checkbox" class="switch">
         </button>
         <button class="set-btn no-hover">
@@ -193,6 +197,29 @@
             <h4 class="ub-btn-txt focus red">Удалить все данные</h4>
           </button>
         </div>
+      </div>
+      <div id="set-support" class="ub-window">
+        <div class="top-btns">
+          <a onclick='setWindow("main")' class="top-btn">Назад</a>
+        </div>
+        <h2 class="ub-na-title">Поддержка</h2>
+
+        <button onclick="window.open('https://t.me/dnavalny')" class="set-btn">
+          <img src="img/icons/chats.svg" class="set-btn-icon" id="support-icon">
+          <h4 class="set-btn-txt">Напишите нам в Telegram</h4>
+          <i class="ph-caret-right-bold set-arrow"></i>
+        </button>
+        <button onclick="window.open('https://vk.com/ten_software')" class="set-btn">
+          <img src="img/icons/vk.jpg" class="set-btn-icon" id="vk-icon">
+          <h4 class="set-btn-txt">Напишите нам в ВКонтакте</h4>
+          <i class="ph-caret-right-bold set-arrow"></i>
+        </button>
+        <button onclick="window.open('https://t.me/ten_software')" style="margin-top: 16px" class="set-btn">
+          <img src="img/icons/telegram.svg" class="set-btn-icon" id="telegram-icon">
+          <h4 class="set-btn-txt">Наш Telegram канал</h4>
+          <i class="ph-caret-right-bold set-arrow"></i>
+        </button>
+        </p>
       </div>
       <div id="set-animate-mit" class="ub-window">
         <div class="top-btns">
@@ -270,6 +297,7 @@
           <a onclick='setWindow("main")' class="top-btn">Назад</a>
           <a onclick='toggleSettings()' class="top-btn">Готово</a>
         </div>
+        <h2 class="ub-na-title">Платформа</h2>
         <h5 style='margin: 4px 16px 16px 16px; color: gray; display: none' id="cur-platform"></h5>
         <button style="margin-top: 16px" id="s-adt" disabled class="set-btn no-hover">
           <img src="img/icons/windows.svg" class="set-btn-icon" id="windows-icon">
@@ -302,15 +330,6 @@
 
     <div class="hm-content" id="hm-index">
 
-      <div id="beta-introduction" class="hm-card hm-card-wide no-scale">
-        <img class="hm-card-img" src='img/totally_not_iMac_wallpaper.jpg'>
-        <h2 class="hm-card-title2" style="color: #2483da">TenStore 3. Теперь Бета</h2>
-        <h4 class="hm-card-text">Полностью новый интерфейс, удобное скачивание приложений, лента и скриншоты. А ещё сайт стал загружаться быстрее.</h4>
-        <div class="flex-row">
-          <button class="outline" onclick="localStorage.setItem('temp-beta-introduction', 'hidden'); document.getElementById('beta-introduction').style.display='none'">Больше не показывать</button> <!-- temp -->
-        </div>
-      </div>
-
       <div id="hm-content-editors-choice">
         <h4 class="hm-card-toptext1">Выбор редакции</h4>
         <div id="hm-card-spotify" class="hm-card new">
@@ -328,19 +347,11 @@
         </div>
       </div>
       <h4 class="hm-card-toptext1" style="width: 100%; display: none">Популярные категории</h4>
-      <div style="background: #e0719e; display: none" class="hm-card" onclick="showList('category', 'Социальные сети', false, 'Приложения для связи с вашими друзьями и коллегами', 'images/backgrounds/networking.png', 'Oswald', '#e0719e', '')">
-        <style>
-          @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@541&display=swap');
-        </style>
-        <img class="hm-card-img short-img" src='https://tstore.space/images/backgrounds/networking.png'>
-        <h2 style="color: #f3f6e6; font-family: 'Oswald'; font-size: 30px" class="hm-card-title2">СОЦИАЛЬНЫЕ СЕТИ</h2>
+      <div class="hm-card category">
+
       </div>
 
       <div style="background: #574730; display: none" class="hm-card" onclick="showList('category', 'Музыка', false, 'То, чего не хватает вашим ушам...', '3rd/img/music.png', 'Amatic SC', '#574730', '', '50px')">
-
-        <style>
-          @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
-        </style>
         <img class="hm-card-img short-img" src='https://tstore.space/3rd/img/music.png'>
         <h2 style="color: white; font-family: 'Amatic SC'; font-size: 50px" class="hm-card-title2">Музыка</h2>
       </div>
@@ -417,6 +428,54 @@
 
     </div>
 
+    <div class="hm-content" id="hm-search">
+      <h1 class="hm-title" style="margin-top: 16px">Поиск</h1>
+      <div class="fake-input">
+        <i class="ph-magnifying-glass hm-si-icon"></i>
+        <input type="text" placeholder="Поиск..." id="hm-search-input">
+      </div>
+      <hr class="hm-hr">
+      <div id="search-main_content">
+        <div class="flex-row">
+          <h3 class="hm-title">Рекомендуем</h3>
+          <div class='hm-title-sponsored'>Реклама</div>
+        </div>
+        <div class="search-ad-filler"> </div>
+        <hr class="hm-hr">
+        <div class="flex-row">
+          <h3 class="hm-title">История поиска</h3>
+          <button id="clear-history" class="outline-small" onclick="clearHistory()">Очистить</button>
+        </div>
+
+        <div id="search-history">
+          <div class="search-item">
+            <i class="ph-magnifying-glass-bold"></i>
+            <p class="search-item-text">Телеграм</p>
+          </div>
+          <div class="search-item">
+            <i class="ph-magnifying-glass-bold"></i>
+            <p class="search-item-text">Тенстор</p>
+          </div>
+          <div class="search-item">
+            <i class="ph-magnifying-glass-bold"></i>
+            <p class="search-item-text">асмр ходьбы по южному городу 1 минута</p>
+          </div>
+        </div>
+      </div>
+      <div id="search_list">
+        <div class="app-item">
+          <img class="ai-icon" onclick="toggleList(true, true); showAB(12)" style="background: #FFFFFF; padding: 5px; width: 30px; height: 30px" src="https://tstore.space/images/appIcons/telegram.png">
+          <div class="ai-text">
+            <h5 onclick="toggleList(true, true); showAB(12)" class="ai-name">Telegram</h5>
+            <h5 onclick="toggleList(true, true); showAB(12)" class="ai-dev">Telegram LLC</h5>
+          </div>
+          <i onclick="toggleList(true, true); showAB(12)" class="ph-info ai-info"></i>
+          <i class="ph-cloud-arrow-down ai-down"></i>
+        </div>
+      </div>
+
+    </div>
+
     <div class="hm-bottom-loading">
       <div class="ui-loading-wheel ui-30pxx"> </div>
       <h5 class="ui-gray">Контент загружается</h5>
@@ -445,8 +504,10 @@
       </div>
       <div id="ab-main_content">
         <div class="flex-row">
-          <div onclick="abBack()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i> </div>
-          <div style="cursor: not-allowed" onclick="abQR()" class="ab-qr"> <i class="ph-share ab-back-icon"></i> </div>
+          <div onclick="abBack()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i>
+            <p id="ab-back-text">Назад</p>
+          </div>
+          <div onclick="abShare()" class="ab-qr"> <i class="ph-share ab-back-icon"></i> </div>
         </div>
         <div id="ab-loading" style="display: none">
           <div class="ab-loading-block">
@@ -457,44 +518,67 @@
         <div id="ab-index">
           <div id="ab-header"> </div>
           <div class="flex-row flex-align-top" id="topcontent">
-            <img id="ab-icon" src='img/prohibit.svg' alt="img/prohibit.svg">
+            <img id="ab-icon" src='img/prohibit.svg'>
             <div class="flex-column">
-              <h3 id="ab-name">App name here</h3>
+              <div class="flex-row">
+                <h3 id="ab-name">App name here</h3>
+                <div class="ab-rating">
+                  <h5 id="si-rating">17+</h5>
+                </div>
+              </div>
               <h5 id="ab-short-desc">App short description here</h5>
               <h5 id="ab-na-text">недоступно для вашей платформы</h5>
             </div>
           </div>
-          <div class="ub-btn-family">
-            <button class="ub-btn" id="ab-download" onclick='download(17, "Windows")'>
-              <i class="ph-cloud-arrow-down-bold ub-openbtn"></i>
-              <h4 class="ub-btn-txt focus">Скачать</h4>
+          <div class="flex-row">
+            <button id="ab-download" onclick='download(17, "Windows")'>
+              <i class="ph-cloud-arrow-down ub-openbtn ab-download-icon"></i>
             </button>
+            <hr class="vert-hr">
+            <button id="ab-bookmark" onclick="popup('Закладки временно недоступны', 'wrench')">
+              <i class="ph-bookmark ub-openbtn ab-download-icon"></i>
+            </button>
+            <div class="rate-block">
+              <button id="rab-pos" class="rate-button" onclick="newReview(); nrRate(1)">
+                <i class="ph-thumbs-up rate-icon"></i>
+                <p id="si-pos">10</p>
+              </button>
+              <button id="rab-neg" class="rate-button" onclick="newReview(); nrRate(0)">
+                <i class="ph-thumbs-down rate-icon"></i>
+                <p id="si-neg">3</p>
+              </button>
+            </div>
           </div>
-          <div style="display: flex; justify-content: center; margin: 0 0 16px 0">
-            <h5 id="ab-platform" onclick="platforms()" class="hm-card-smalltext">выберите платформу</h5>
-            <i id="ab-platform-select" onclick="platforms()" class="hm-card-compatibility ph-caret-down-bold anim-down"></i>
+          <div id="ab-no_account">
+            <hr class="ab-hr">
+            <div style="margin: 0 0 8px 40px; display: flex">
+              <i class="ph-warning-circle ab-warning_icon warn"></i>
+              <div style="display: flex; flex-direction: column">
+                <a href="create-account" class="ab-warning_text warn">Войдите в аккаунт, чтобы добавить приложение в библиотеку и не пропустить его обновления.</a>
+              </div>
+            </div>
+          </div>
+          <hr class="ab-hr">
+          <div style="margin: 0 0 8px 40px; display: flex">
+            <img src="img/icons/file.svg" id="ab-file-icon">
+            <div style="display: flex; flex-direction: column">
+              <div class="flex-row" style="margin-top: 2px">
+                <h5 id="ab-platform" onclick="platforms()">Android (arm32)</h5>
+                <i id="ab-platform-select" onclick="platforms()" class="hm-card-compatibility ph-caret-right-bold anim-down"></i>
+              </div>
+              <h5 id="ab-platform-info">appname_ver_arch.exe, 269 МБ, 15 мая</h5>
+            </div>
           </div>
           <div id="ab-platforms">
-            <div class="platform-check">test platform</div>
+            <div class="platform-check">platform</div>
+            <div class="platform-check checked">selected platform</div>
           </div>
           <hr class="ab-hr">
           <div class="ab-si-scroll">
             <div class="ab-shortinfo">
               <div class="ab-si-item">
-                <h6 class="ab-si-title">Оценки</h6>
-                <h3 class="ab-si-text"><i id="si-pos">0</i> / <i id="si-neg">0</i></h3>
-              </div>
-              <div class="ab-si-item">
                 <h6 class="ab-si-title" id="si-dev-name">developer</h6>
                 <img id='si-dev' src='img/user.svg' alt="img/user.svg">
-              </div>
-              <div class="ab-si-item">
-                <h6 class="ab-si-title">Рейтинг</h6>
-                <h3 class="ab-si-text" id="si-rating">0+</h3>
-              </div>
-              <div class="ab-si-item">
-                <h6 class="ab-si-title">Размер</h6>
-                <h3 class="ab-si-text" id="si-size">0 МБ</h3>
               </div>
               <div class="ab-si-item">
                 <h6 class="ab-si-title">скачиваний</h6>
@@ -520,11 +604,15 @@
           </div>
 
           <hr class="ab-hr">
-          <h3 class="ab-title">Комментарии</h3>
+          <div class="flex-row">
+            <h3 class="ab-title">Комментарии</h3>
+            <button id="ab-reviews-btn" class="outline-small">Показать полностью</button>
+          </div>
+
           <div class="big_btn-family">
             <button onclick="newReview()" class="big_btn">
               <i class="ph-chats-teardrop-bold ub-openbtn new_review-anim"></i>
-              <h4 class="ub-btn-txt focus new_review-anim">Оставить комментарий</h4>
+              <h4 class="ub-btn-txt focus new_review-anim">Поделитесь мнением</h4>
             </button>
           </div>
           <h5 id="ab-no-reviews">
@@ -543,15 +631,18 @@
           </div>
 
         </div>
+
+      </div>
+      <div id="ab-share" style="display: none">
+        <div class="top-btns">
+          <a onclick='cancelReview()' style="margin-left: auto" class="top-btn">Готово</a>
+        </div>
       </div>
 
     </div>
     <div id="list">
       <div class="flex-row">
         <div onclick="toggleList()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i> </div>
-        <div style="margin: 0 16px 0 auto; display: flex; align-items: center">
-          <div onclick="toggleSearch()" class="ab-search"> <i class="ph-magnifying-glass ab-back-icon"></i> </div>
-        </div>
       </div>
       <div id="list-loading" style="display: none">
         <div class="ab-loading-block">
@@ -565,11 +656,16 @@
         <h5 id="list-subtext"></h5>
 
         <div class="big_btn-horiz_block">
-          <button class="big_btn horiz">
+          <button id="list-share" class="big_btn horiz">
             <i class="ph-share big_btn-icon"></i>
             <h4 class="big_btn-txt">Поделиться</h4>
           </button>
-          <input type="text" placeholder="Поиск..." id="list-search">
+
+        </div>
+
+        <div id="list-noitems" style="display: none">
+          <i class="ph-warning-thin" style="font-size: 48px; color: gray"></i>
+          <h5 class="ui-gray">По вашему запросу ничего не найдено.</h5>
         </div>
 
         <div id="search-block">
@@ -590,13 +686,14 @@
       </div>
 
     </div>
-    <div id="share">
 
-    </div>
-
-    <div id="pop_up" style="display: none">
+    <div onclick="popup('hide')" id="pop_up" class="pop_up" style="display: none">
       <i id="pop_up-icon" class="ph-warning"></i>
       <h4 id="pop_up-text">Ошибка на стороне сайта</h4>
+    </div>
+    <div id="load_box" style="display: none">
+      <div class="ui-loading-wheel load_box-wheel"> </div>
+      <h4 id="load_box-text">Ошибка на стороне сайта</h4>
     </div>
     <script src="js/tenid.js" charset="utf-8"></script>
     <script src="js/blocks.js" charset="utf-8"></script>
