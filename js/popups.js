@@ -65,3 +65,38 @@ function loadbox(state, timeout, text) {
     }, 250);
   }
 }
+
+function dialogBox(curWindow, title, text, btn1_text, btn2_text, onclick1, onclick2, btn1_icon, btn2_icon, btn1_type, btn2_type) {
+
+  document.getElementById(curWindow).style.display='none';
+  document.getElementById('dialog_box').style.display='block';
+
+  let btns_inner=[document.getElementById('db_btn1').children, document.getElementById('db_btn2').children];
+  let btns_icons=[btn1_icon, btn2_icon];
+  let btns_texts=[btn1_text, btn2_text];
+  let btns_types=[btn1_type, btn2_type];
+
+  document.getElementById('db_title').innerText=title;
+  document.getElementById('db_text').innerText=text;
+
+  for (var i = 0; i < btns_inner.length; i++) {
+
+    btns_inner[i][1].innerText=btns_texts[i];
+    btns_inner[i][0].className=`ph-${btns_icons[i]}`;
+    if (btns_types[i]=='red') {
+      btns_inner[i][0].className=`ph-${btns_icons[i]} red`;
+      btns_inner[i][1].className='red';
+    } else if (btns_types[i]=='focus') {
+      btns_inner[i][0].className=`ph-${btns_icons[i]}-bold`;
+      btns_inner[i][1].className='focus';
+    } else if (btns_types[i]=='red_focus') {
+      btns_inner[i][0].className=`ph-${btns_icons[i]}-bold red`;
+      btns_inner[i][1].className='red focus';
+    }
+
+  }
+
+  document.getElementById('db_btn1').setAttribute('onclick', onclick1);
+  document.getElementById('db_btn2').setAttribute('onclick', onclick2);
+
+}

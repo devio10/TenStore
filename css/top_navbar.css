@@ -1,0 +1,7 @@
+.ui-nav {
+  position: sticky;
+  top: 0;
+  bottom: auto;
+  border: none;
+  border-bottom: 1px solid var(--gray_light);
+}

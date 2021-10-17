@@ -1,49 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap'); /*логотип*/
+ /*логотип*/
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
 :root {
-  --bg: #ededed;
-  --block-bg: #e3e3e3;
-  --abs-bg: white;
-  --abs-bg-dark: var(--gray-light);
-  --top-btns: rgba(255, 255, 255, 0.7);
-  --pop-up: rgba(255, 255, 255, 0.9);
-  --text: #262626;
-  --gray-light: #ebebeb;
-  --gray-mid: #bfbfbf;
-  --gray: gray;
-  --gray-dark: #4a4a4a;
-  --accent: rgb(21,101,192);
-  --accent-light: rgb(130,177,255);
-  --accent-dark: rgb(13,71,161);
-  --dot: var(--gray-mid);
-  --dot-active: var(--gray);
-  --trans-03s: .3s;
-  --bg-percentage: .8;
-  --nav-bg: rgba(239, 239, 239, 0.95);
-  --nav-bg-active: rgba(0, 0, 0, 0.24);
-  --review: var(--abs-bg);
-  --download-hover: 0.5;
+  --bg: #f5f5f5;
+  --bg_absolute: white;
+  --bg_userblock: #ebebeb;
+  /*--bg_abs_darken: var(--gray_lightest);*/
+  --bg_blocks_nav: rgba(255, 255, 255, 0.7);
+  --bg_popup: rgba(255, 255, 255, 0.9);
+  --bg_hover: rgba(0, 0, 0, 0.24);
+  --transparency_hover_light: 0.5;
+
+  --text_color: #262626;
+  --gray_lightest: #ebebeb;
+  --gray_light: #bfbfbf;
+  --gray_darken: #4a4a4a;
+  --tenstore_accent: rgb(21,101,192);
+  --tenstore_accent_light: rgb(130,177,255);
+  --tenstore_accent_dark: rgb(13,71,161);
+
+  --tenstore_circle: var(--tenstore_accent_dark);
+  /*--dot: var(--gray_light);
+  --dot-active: gray;*/
+  /*--nav-bg: rgba(239, 239, 239, 0.95);*/
 }
 [dark-theme='true'] {
   --bg: black;
-  --block-bg: #0e0e0e;
-  --abs-bg: #171717;
-  --abs-bg-dark: #121212;
-  --top-btns: rgba(25, 25, 25, 0.7);
-  --pop-up: rgba(20, 20, 20, 0.9);
-  --text: white;
-  --gray: #8f8f8f;
-  --gray-light: #1c1c1c;
-  --gray-mid: #404040;
-  --gray-dark: #919191;
-  --bg-percentage: .9;
-  --nav-bg: rgba(16, 16, 16, 0.88);
-  --nav-bg-active: rgba(255, 255, 255, 0.08);
-  --download-hover: 0.1;
+  --bg_absolute: #171717;
+  --bg_userblock: #0f0f0f;
+  --bg_blocks_nav: rgba(25, 25, 25, 0.7);
+  --bg_popup: rgba(20, 20, 20, 0.9);
+  --bg_hover: rgba(255, 255, 255, 0.08);
+  --text_color: white;
+  --gray_lightest: #1c1c1c;
+  --gray_light: #404040;
+  --gray_darken: #919191;
+  /*--nav-bg: rgba(16, 16, 16, 0.88);*/
+  --transparency_hover_light: 0.1;
+  --tenstore_circle: var(--tenstore_accent_light);
 }
 html, body {
   background: var(--bg);
   width: 100%;
-  max-width: 620px;
+  max-width: 700px;
   margin: 0 auto 0 auto;
   transition: .6s background-color cubic-bezier(0.65, 0, 0.35, 1);
   padding-bottom: 30px;
@@ -77,8 +75,25 @@ h1, h2, h3, h4, h5, h6, i {
   width: 100%;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid var(--gray-mid);
-  background: var(--abs-bg);
+  border-bottom: 1px solid var(--gray_light);
+  background: var(--bg_absolute);
+}
+.ai-down, .ai-info {
+  cursor: pointer;
+  margin: auto 8px auto 4px;
+  font-size: 20px;
+  color: gray;
+  padding: 7px;
+  border-radius: 100%;
+  transition: .2s all cubic-bezier(0.65, 0, 0.35, 1);
+}
+.ai-info {
+  margin-left: auto;
+  margin-right: 4px;
+}
+.ai-down:hover, .ai-info:hover {
+  background: rgba(150, 150, 150, var(--transparency_hover_light));
+  transition: none;
 }
 .ai-icon {
   width: 40px;
@@ -101,16 +116,7 @@ h1, h2, h3, h4, h5, h6, i {
   white-space: nowrap;
   cursor: pointer;
 }
-.ai-down, .ai-info {
-  cursor: pointer;
-  margin: auto 16px auto 8px;
-  font-size: 20px;
-  color: gray;
-}
-.ai-info {
-  margin-left: auto;
-  margin-right: 8px;
-}
+
 .ai-text {
   justify-content: center;
   display: flex;
@@ -148,7 +154,7 @@ h1, h2, h3, h4, h5, h6, i {
   height: 100%;
 }
 .top-btn {
-  color: var(--accent);
+  color: var(--tenstore_accent);
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 400;
@@ -165,12 +171,12 @@ h1, h2, h3, h4, h5, h6, i {
   display: flex;
   justify-content: space-between;
   width: calc(100% - 32px);
-  background: var(--top-btns);
+  background: var(--bg_blocks_nav);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(5px);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  border-bottom: 1px solid var(--gray-mid);
+  border-bottom: 1px solid var(--gray_light);
   position: sticky;
   top: 0;
   font-size: 16px;
@@ -184,7 +190,7 @@ h1, h2, h3, h4, h5, h6, i {
   font-weight: bold;
 }
 .top-btns-back {
-  color: var(--accent);
+  color: var(--tenstore_accent);
   font-size: 20px;
   margin: 0;
 }
@@ -194,19 +200,18 @@ h1, h2, h3, h4, h5, h6, i {
   margin: 8px 16px 8px 16px;
   height: 42px;
   padding: 0;
-  background: var(--abs-bg);
-  color: var(--text);
+  background: var(--bg_absolute);
+  color: var(--text_color);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0;
   transition: .3s all cubic-bezier(0.65, 0, 0.35, 1);
 }
 .ub-btn:disabled {
   display: none;
 }
 .set-btn:hover, .set-btn:focus {
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
 }
 .big_btn {
   border-radius: 12px;
@@ -237,26 +242,26 @@ h1, h2, h3, h4, h5, h6, i {
   margin-top: 0;
 }
 .btm-border {
-  border-bottom: 1px solid var(--gray-mid);
+  border-bottom: 1px solid var(--gray_light);
 }
 .ub-btn:hover, .big_btn:hover, .ub-btn:focus, .big_btn:focus {
-  transition: .08s;
-  background: var(--abs-bg-dark);
+  transition: none;
+  background: rgba(50, 50, 50, 0.1);
 }
 .ub-btn-txt, .ub-btn-txt2, .big_btn-txt {
   margin: 0 0 0 0;
   text-align: center;
   font-size: 14px;
-  color: var(--accent);
+  color: var(--tenstore_accent);
 }
 .ub-btn.transparent, .big_btn-txt.transparent {
   background: 0;
 }
 .ub-btn.transparent:hover, .big_btn-txt.transparent:hover {
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
 }
 .ub-openbtn, .big_btn-icon  {
-  color: var(--accent);
+  color: var(--tenstore_accent);
   font-size: 18px;
   margin: 0 8px 0 0;
 }
@@ -267,7 +272,7 @@ i.warn, h1.warn, h2.warn, h3.warn, h4.warn, h5.warn, h6.warn, a.warn {
   color: #e64a19;
 }
 .tenid-ver {
-  color: var(--gray);
+  color: gray;
   text-align: center;
   margin: 8px 0 0 0;
 }
@@ -275,15 +280,15 @@ i.warn, h1.warn, h2.warn, h3.warn, h4.warn, h5.warn, h6.warn, a.warn {
   margin-top: 16px;
 }
 .ub-last-btn {
-  border-bottom: 1px solid var(--gray-mid);
+  border-bottom: 1px solid var(--gray_light);
 }
 .no-hover:hover {
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
   cursor: default;
 }
 .ub-hide {
   font-size: 22px;
-  color: var(--text);
+  color: var(--text_color);
   margin: 8px auto 0 auto;
 }
 .flex-row {
@@ -307,7 +312,27 @@ header {
   font-weight: bold;
   font-size: 20px;
   text-align: center;
-  margin: 24px;
+  margin: 24px 24px 24px 0;
+}
+#hd_logo_circle {
+  background: var(--tenstore_circle);
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  margin: 24px 8px 24px 24px;
+  animation-name: anim_logo_circle;
+  animation-duration: .75s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes anim_logo_circle {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 #hd-user, #ub-user, #si-dev {
   width: 32px;
@@ -330,20 +355,6 @@ header {
     opacity: .3;
   }
 }
-#ub-user {
-  margin: 8px auto;
-  width: 42px;
-  height: 42px;
-  cursor: default;
-}
-#ub-name {
-  margin: 0 auto 4px auto;
-  font-weight: bold;
-}
-#ub-email {
-  margin: 0 auto 0 auto;
-  color: gray;
-}
 
 .regular-font {
   font-weight: 400;
@@ -360,8 +371,8 @@ header {
 }
 button.no-accent {
   background: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--gray-mid);
+  color: var(--text_color);
+  border: 1px solid var(--gray_light);
 }
 button.wide {
   padding-left: 36px;
@@ -375,7 +386,7 @@ button.wide {
 }
 
 #ub-theme:disabled, #s-theme:disabled, #s-adt:disabled {
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
 }
 .list-love {
   color: inherit;
@@ -430,7 +441,7 @@ button.wide {
 
   width: var(--size);
   height: var(--size);
-  background: var(--pop-up);
+  background: var(--bg_popup);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.15);

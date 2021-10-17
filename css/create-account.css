@@ -37,7 +37,7 @@ html, body {
   height: 30px;
   border-radius: 8px;
   font-size: 14px;
-  border: 1px solid var(--gray-mid);
+  border: 1px solid var(--gray_light);
 }
 */
 ::-webkit-input-placeholder {
@@ -79,7 +79,7 @@ html, body {
   display: none;
 }
 #reg-block {
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
   --width: 500px;
 }
 
@@ -140,7 +140,7 @@ header {
   margin-top: 36px;
 }
 input[type=text], input[type=password] {
-  border: 1px solid var(--gray-mid);
+  border: 1px solid var(--gray_light);
   height: 37px;
   margin-left: 8px;
   margin-right: 8px;
@@ -177,10 +177,10 @@ hr {
 .reg-fake-input {
   max-width: calc(480px - 16px);
   border-radius: 12px;
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
   display: flex;
   align-items: center;
-  border: 1px solid var(--gray-mid);
+  border: 1px solid var(--gray_light);
   margin-left: 8px;
   margin-right: 8px;
   animation-duration: 1s;

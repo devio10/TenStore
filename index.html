@@ -6,7 +6,7 @@
     <link id="tab-icon" rel="shortcut icon" href="img/store-light.svg">
     <link rel="stylesheet" href="css/ui-elem.css">
     <link rel="stylesheet" href="css/ui-switch.css">
-    <link rel="stylesheet" href="css/base.css?ver=asdf3123">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/blocks.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -21,6 +21,7 @@
   </head>
   <body>
     <header>
+      <div id='hd_logo_circle'> </div>
       <h3 id='hd-logo'>TenStore</h3>
       <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
     </header>
@@ -50,13 +51,10 @@
 
     <div onclick="abBack()" id="app-block-bg"> </div>
     <div onclick="toggleUB()" id="user-block-bg"> </div>
-    <div onclick="toggleList()" id="list-block-bg"> </div>
+    <div onclick="abBack()" id="list-block-bg"> </div>
     <div onclick="toggleSettings()" id="set-block-bg"> </div>
     <div id="user-block">
       <div id="ub-logout-confirm" style="display: none" class="ub-window">
-        <div class="top-btns single" style="display: none">
-          <a onclick='toggleUB()' class="top-btn">Отмена</a>
-        </div>
         <h5 class="ub-na-title small">Выйти из аккаунта?</h5>
         <h5 class="ub-na-text small">Вы потеряете возможность оставлять комментарии, скачивать приложения и добавлять их в библиотеку.</h5>
         <div class="ub-btn-family">
@@ -73,24 +71,20 @@
       </div>
       <div id="ub-main" class="ub-window">
         <div id="ub-no-account">
-          <div class="top-btns single">
-            <a onclick='toggleUB()' class="top-btn">Нет, спасибо</a>
+           <div class="flex-row">
+            <div onclick="toggleUB(); toggleSettings()" class="ab-back"> <i class="ph-gear-six ab-back-icon"></i> </div>
+            <div onclick="toggleUB()" class="ab-qr"> <i class="ph-x-bold ab-back-icon"></i> </div>
+          </div>
+          <h4 class="ub_title">TenID</h4>
+          <div class="ub_topblock">
+            <img class="ub_topicon" src="img/tenid_color.svg">
           </div>
           <h2 class="ub-na-title">Создайте TenID</h2>
-          <h5 class="ub-na-text" style="display: none">Аккаунт TenID позволяет вам скачивать приложения,
-            оставлять комментарии и <a href='help?q=tenid-features'>делать другие вещи.</a>
-            <a href="reg">Создайте новый</a> или <a href="login">войдите</a>, если он уже есть.</h5>
           <div class="ub-btn-family">
-            <button class="ub-btn" onclick="toggleUB(), toggleSettings()">
-              <i class="ph-gear-six ub-openbtn"></i>
-              <h4 class="ub-btn-txt">Настройки</h4>
-            </button>
             <button class="ub-btn" onclick="window.open('login')">
               <i class="ph-key ub-openbtn"></i>
               <h4 class="ub-btn-txt">Войти в аккаунт</h4>
             </button>
-          </div>
-          <div class="ub-btn-family">
             <button class="ub-btn" onclick="window.open('create-account')">
               <i class="ph-plus-bold ub-openbtn"></i>
               <h4 class="ub-btn-txt focus">Создать аккаунт</h4>
@@ -99,24 +93,30 @@
         </div>
 
         <div id="ub-have-account" style="display: none">
-          <div class="top-btns single">
-            <a onclick='toggleUB()' class="top-btn">Готово</a>
+          <div class="flex-row">
+            <div onclick="toggleUB(); toggleSettings()" class="ab-back"> <i class="ph-gear-six ab-back-icon"></i> </div>
+            <div onclick="toggleUB()" class="ab-qr"> <i class="ph-x-bold ab-back-icon"></i> </div>
+          </div>
+          <h4 class="ub_title">TenID</h4>
+          <div class="ub_topblock" id="ha_topblock">
+            <img id="ub-user" src="img/user.svg" alt="img/user.svg">
           </div>
           <div id="ub-top" class="flex-column">
-            <img id="ub-user" src="img/user.svg" alt="img/user.svg">
+
             <div class="flex-column">
-              <h5 id="ub-name">User name here</h5>
+              <h3 id="ub-name">Дмитрий Навальный</h3>
               <h5 id="ub-email">User email here</h5>
             </div>
           </div>
           <div class="ub-btn-family">
+
             <button class="ub-btn">
-              <i class="ph-user-circle ub-openbtn"></i>
-              <h4 class="ub-btn-txt">Мой аккаунт</h4>
+              <i class="ph-bookmark-bold ub-openbtn"></i>
+              <h4 style="font-weight: bold" class="ub-btn-txt">Закладки</h4>
             </button>
-            <button class="ub-btn" onclick="toggleUB(), toggleSettings()">
-              <i class="ph-gear-six ub-openbtn"></i>
-              <h4 class="ub-btn-txt">Настройки</h4>
+            <button class="ub-btn">
+              <i class="ph-books ub-openbtn"></i>
+              <h4 class="ub-btn-txt">Библиотека</h4>
             </button>
           </div>
           <div class="ub-btn-family">
@@ -140,7 +140,11 @@
         <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/tenstore.svg" class="set-btn-icon" id="store-icon">
           <h4 class="set-btn-txt">TenStore Logan Beta</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0 sep16)</h4>
+          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0.0 oct17)</h4>
+        </button>
+        <button class="set-btn no-hover">
+          <img src="img/icons/key.svg" class="set-btn-icon" id="store-icon">
+          <h4 id="api_version" style="margin-right: auto" class="set-btn-txt">API v1.0</h4>
         </button>
         <button onclick="setWindow('support')" class="set-btn">
           <img src="img/icons/lifebuoy.svg" class="set-btn-icon" id="support-icon">
@@ -153,9 +157,8 @@
           <img src="img/icons/gauge.svg" class="set-btn-icon" id="gauge-icon">
           <h4 class="set-btn-txt">Экономия траффика</h4>
           <h4 class="set-btn-txt2" style="margin-left: 4px">(недоступно)</h4>
-          <input type="checkbox" class="switch">
+          <input id="slow_network-sw" onclick="changePar('slow_network')" type="checkbox" class="switch">
         </button>
-        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Включите этот режим при ограничении траффика или медленном интернет-соединении.</h5>
         <button onclick="setWindow('platform')" class="set-btn">
           <img src="img/icons/device-mobile.svg" class="set-btn-icon" id="device-icon">
           <h4 class="set-btn-txt">Платформа</h4>
@@ -163,22 +166,26 @@
           <h4 class="set-btn-txt2" id="s-platform">Не задана</h4>
           <i class="ph-caret-right-bold set-arrow"></i>
         </button>
-        <h5 style='margin: 4px 16px 8px 16px; color: gray'>Платформа, которую вы выберете, будет использоваться по умолчанию для скачивания приложений.</h5>
+        <button class="set-btn no-hover" style="margin-bottom: 16px">
+          <img src="img/icons/top_navbar.svg" class="set-btn-icon" id="stack-icon">
+          <h4 class="set-btn-txt">Панель навигации сверху</h4>
+          <input id="top_navbar-sw" onclick="changePar('top_navbar')" type="checkbox" class="switch">
+        </button>
         <button class="set-btn no-hover" style="margin-bottom: 16px">
           <img src="img/icons/terminal.svg" class="set-btn-icon" id="terminal-icon">
           <h4 class="set-btn-txt">Debug</h4>
-          <input onclick="localStorage.setItem('debug', 'true')" type="checkbox" class="switch">
+          <input id="debug-sw" onclick="changePar('debug')" type="checkbox" class="switch">
         </button>
         <h5 style='margin: 4px 16px 8px 16px; color: gray'>Экспериментальные функции</h5>
         <button class="set-btn no-hover">
-          <img src="img/icons/stack.svg" class="set-btn-icon" id="stack-icon">
-          <h4 class="set-btn-txt">home cards</h4>
-          <input id="ef-home-cards-sw" onclick="changePar('ef-home-cards')" type="checkbox" class="switch">
+          <img src="img/icons/arrow-arc-right.svg" class="set-btn-icon" id="redirect-icon">
+          <h4 class="set-btn-txt">Перенаправление на 3.0</h4>
+          <input id="ef-redirect-sw" onclick="changePar('ef-redirect')" type="checkbox" class="switch">
         </button>
         <button class="set-btn no-hover">
-          <img src="img/icons/arrow-arc-right.svg" class="set-btn-icon" id="redirect-icon">
-          <h4 class="set-btn-txt">redirect (2.4 to 3.0)</h4>
-          <input id="ef-redirect-sw" onclick="changePar('ef-redirect')" type="checkbox" class="switch">
+          <img src="img/icons/key.svg" class="set-btn-icon" id="device-icon">
+          <h4 class="set-btn-txt">API 2.0</h4>
+          <input id="ef-api2-sw" onclick="changePar('ef-api2')" type="checkbox" class="switch">
         </button>
         <button onclick="setWindow('animate-mit')" class="set-btn" style="margin-top: 16px">
           <img src="img/icons/file-text.svg" class="set-btn-icon">
@@ -328,108 +335,25 @@
       </div>
     </div>
 
-    <div class="hm-content" id="hm-index">
+    <div class="hm-content" id="hm-index"> </div>
 
-      <div id="hm-content-editors-choice">
-        <h4 class="hm-card-toptext1">Выбор редакции</h4>
-        <div id="hm-card-spotify" class="hm-card new">
-          <div class="hm-card-rate">
-            <h5 class="hc-rate-text">6+</h5>
-          </div>
-          <h1 class="hm-card-title new">Spotify</h1>
-          <h4 class="hm-card-text new">Spotify — лучшее решение для прослушивания и стриминга музыки онлайн,
-             создания плейлистов и поиска новых песен.</h4>
-          <hr class="hm-card-hr">
-          <div class="flex-row">
-            <i class="hm-card-button ph-cloud-arrow-down-light" onclick="download(17)"></i>
-            <i class="hm-card-button ph-info-light" onclick="showAB(17)"></i>
-          </div>
-        </div>
-      </div>
-      <h4 class="hm-card-toptext1" style="width: 100%; display: none">Популярные категории</h4>
-      <div class="hm-card category">
+    <div class="hm-content" id="hm-apps"> </div>
 
-      </div>
-
-      <div style="background: #574730; display: none" class="hm-card" onclick="showList('category', 'Музыка', false, 'То, чего не хватает вашим ушам...', '3rd/img/music.png', 'Amatic SC', '#574730', '', '50px')">
-        <img class="hm-card-img short-img" src='https://tstore.space/3rd/img/music.png'>
-        <h2 style="color: white; font-family: 'Amatic SC'; font-size: 50px" class="hm-card-title2">Музыка</h2>
-      </div>
-
-      <div id="hm-content-telegram">
-        <h4 class="hm-card-toptext1">Популярное приложение</h4>
-        <div class="hm-card hm-card-wide no-scale">
-          <img onclick="showAB(12)" class="hm-card-img" src='https://tstore.space/images/appTitles/telegram.jpg'>
-          <div class="flex-row">
-            <h5 class="hm-card-smalltext">Быстрый. Безопасный.</h5>
-            <h5 class="hm-card-smalltext hm-card-smtxt-right">17+</h5>
-          </div>
-          <h2 class="hm-card-title">Telegram</h2>
-          <h4 class="hm-card-text">Telegram – простое, быстрое и безопасное
-            приложение для обмена сообщениями. Telegram входит в десятку самых
-            скачиваемых приложений в мире, им пользуются более 500 миллионов
-            человек.</h4>
-          <div class="flex-row">
-            <button onclick="download(12)">Скачать</button>
-            <i class="hm-card-compatibility ph-check-bold"></i>
-            <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">совместимо с вашим устройством</h5>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="hm-content" id="hm-apps">
-
-        <div>
-          <h4 class="hm-card-toptext1">Мы рекомендуем</h4>
-          <div class="hm-card hm-card-wide no-scale">
-            <img onclick="showAB(1)" class="hm-card-img" src='https://tstore.space/images/headers/musicx.jpg'>
-            <div class="flex-row">
-              <h5 class="hm-card-smalltext">Музыка ВКонтакте</h5>
-              <h5 class="hm-card-smalltext hm-card-smtxt-right">16+</h5>
-            </div>
-            <h2 class="hm-card-title">Music X</h2>
-            <h4 class="hm-card-text">Music X — удобный и функциональный музыкальный плеер.</h4>
-            <div class="flex-row">
-              <button onclick="download(1)">Скачать</button>
-              <h5 class="hm-card-smalltext regular-font hm-card-compText" style="margin: 0 0 0 8px">только для Windows 10</h5>
-            </div>
-          </div>
-
-          <h4 class="hm-card-toptext1" style="width: 100%">Подборки</h4>
-          <div style="background: rgb(17,20,25)" class="hm-card">
-            <img style="height: 300px" class="hm-card-img short-img" src='https://tstore.space/img/picks/jscode.jfif'>
-            <h5 style="color: white" class="hm-card-smalltext">Создание сайтов</h5>
-            <h2 style="color: white" class="hm-card-title2">Всё для веб разработки</h2>
-          </div>
-        </div>
-
-    </div>
-
-    <div class="hm-content" id="hm-games">
-      <div>
-        <div id="hm-card-procreation" class="hm-card new">
-          <div class="hm-card-rate">
-            <h5 class="hc-rate-text">10+</h5>
-          </div>
-          <h1 class="hm-card-title new">PROCREATION</h1>
-          <h4 class="hm-card-text new">Новая RPG-игра от Press Team. Создайте вашего голема и постепенно его развивайте! В комплекте: магия, проработанные битвы, дружба и несколько часов геймплея.</h4>
-          <hr class="hm-card-hr">
-          <div class="flex-row">
-            <i class="hm-card-button ph-info-light" onclick="showAB(51)"></i>
-          </div>
-        </div>
-      </div>
-      <div class="hm-bottom-loading" style="display: none">
-        <i class="ph-prohibit" style="font-size: 36px; color: gray"></i>
-        <h5 class="ui-gray">Не удалось загрузить контент</h5>
-      </div>
-
-    </div>
+    <div class="hm-content" id="hm-games"> </div>
 
     <div class="hm-content" id="hm-search">
-      <h1 class="hm-title" style="margin-top: 16px">Поиск</h1>
+
+      <div class="flex-row">
+
+        <h1 id="hm-title_1" onclick="hmContent('search')" class="hm-title" style="margin-top: 16px">Поиск</h1>
+
+        <div id="hm-title_2_block" class="flex-row">
+          <i class="ph-caret-right-bold hm-title_2_icon"></i>
+          <h1 id='hm-title_2' class="hm-title" style="margin-top: 16px">Telegram</h1>
+        </div>
+
+      </div>
+
       <div class="fake-input">
         <i class="ph-magnifying-glass hm-si-icon"></i>
         <input type="text" placeholder="Поиск..." id="hm-search-input">
@@ -462,6 +386,15 @@
           </div>
         </div>
       </div>
+      <div id="search-process" class="hm-bottom-loading">
+        <div class="ui-loading-wheel ui-30pxx"> </div>
+        <h5 class="ui-gray">Результаты загружаются...</h5>
+      </div>
+      <div id="search-no_results" class="hm-bottom-loading">
+        <i class="ph-prohibit" style="font-size: 36px; color: gray"></i>
+        <h5 class="ui-gray">По вашему запросу ничего не найдено</h5>
+      </div>
+      <div id="search-best_result"> </div>
       <div id="search_list">
         <div class="app-item">
           <img class="ai-icon" onclick="toggleList(true, true); showAB(12)" style="background: #FFFFFF; padding: 5px; width: 30px; height: 30px" src="https://tstore.space/images/appIcons/telegram.png">
@@ -476,17 +409,12 @@
 
     </div>
 
-    <div class="hm-bottom-loading">
-      <div class="ui-loading-wheel ui-30pxx"> </div>
-      <h5 class="ui-gray">Контент загружается</h5>
-    </div>
-
-
     <!-- БЛОК ПРИЛОЖЕНИЯ -->
     <div id="app-block">
+
       <div id="ab-new_review" style="display: none">
         <div class="top-btns">
-          <a onclick='cancelReview()' class="top-btn">Отмена</a>
+          <a onclick='abHome()' class="top-btn">Отмена</a>
           <a onclick='sendReview()' id="send-review" class="top-btn">Опубликовать</a>
         </div>
         <input id="nr-title" type="text" placeholder="Заголовок..." autocomplete="off">
@@ -507,12 +435,22 @@
           <div onclick="abBack()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i>
             <p id="ab-back-text">Назад</p>
           </div>
-          <div onclick="abShare()" class="ab-qr"> <i class="ph-share ab-back-icon"></i> </div>
+          <div id="ab-share_btn" onclick="abShare(1)" class="ab-qr"> <i class="ph-export ab-back-icon"></i> </div>
         </div>
         <div id="ab-loading" style="display: none">
           <div class="ab-loading-block">
             <div class="ui-loading-wheel"> </div>
             <h5 class="ui-gray">Получение информации о приложении</h5>
+          </div>
+        </div>
+        <div id="ab-error" style="display: none">
+          <div class="ab-loading-block">
+            <i id="ab_error_icon" class="ph-cloud-slash" style="font-size: 48px; color: gray"></i>
+            <h5 id="ab_error_text" class="ui-gray" style="text-align: center; margin-left: 16px; margin-right: 16px">
+              Произошла ошибка при загрузке данных.
+              <a onclick="toggleAB(); toggleSettings(); setWindow('support')">Напишите нам</a>
+              или зайдите сюда позднее.
+            </h5>
           </div>
         </div>
         <div id="ab-index">
@@ -589,10 +527,10 @@
           <hr class="ab-hr">
           <h5 id="ab-desc">Full description here</h5>
 
-          <div id="scrs-block" style="display: none">
+          <div id="scrs-block">
             <hr class="ab-hr">
             <div id="ab-scrs" class="flex-row">
-
+              <img class="ab-scr" id="scr-0" onclick="openScreenshot('https://tstore.space/content/musicx/scr/1.jpg')" src="https://tstore.space/content/musicx/scr/1.jpg">
             </div>
             <div id="scrs-pag">
 
@@ -606,10 +544,9 @@
           <hr class="ab-hr">
           <div class="flex-row">
             <h3 class="ab-title">Комментарии</h3>
-            <button id="ab-reviews-btn" class="outline-small">Показать полностью</button>
           </div>
 
-          <div class="big_btn-family">
+          <div class="big_btn-family" id="above_reviews">
             <button onclick="newReview()" class="big_btn">
               <i class="ph-chats-teardrop-bold ub-openbtn new_review-anim"></i>
               <h4 class="ub-btn-txt focus new_review-anim">Поделитесь мнением</h4>
@@ -620,13 +557,16 @@
           </h5>
           <div id="ab-reviews">
             <!-- example review -->
-            <div class="ab-review" style="display: none">
-              <div class="flex-row">
-                <div class="rev-dot green"> </div>
-                <h5 class='rev-author'>author, 7 августа</h5>
+            <div class="ab-review">
+              <div class="abb">
+                <i class="review_icon ph-thumbs-down red"></i>
+                <h3 class='rev-title'>Feels good</h3>
               </div>
-              <h3 class='rev-title'>Feels good</h3>
               <h5 class='rev-text'>Example review. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
+              <div class="agg">
+                <h5 class='rev-author'>author, 7 августа</h5>
+                <i class="ph-flag-bold"></i>
+              </div>
             </div>
           </div>
 
@@ -634,57 +574,271 @@
 
       </div>
       <div id="ab-share" style="display: none">
-        <div class="top-btns">
-          <a onclick='cancelReview()' style="margin-left: auto" class="top-btn">Готово</a>
+        <div onclick="abHome()" class="ab-qr"> <i class="ph-x ab-back-icon"></i> </div>
+        <h2 style="margin-top: -30px">Поделиться</h2>
+
+        <div id="share-block">
+
+
+          <img id="share-qr_code" src="img/icons/static_loading.svg" alt="">
+
+          <h2 id="share-name">Music X — Музыка ВК</h2>
+
+          <input id="share-link" readonly type="text" value="https://tstore.space/3rd?id=12">
+
+          <div class="share_buttons">
+            <button id="vk" class="share_social_btn" onclick="window.open('http://vk.com/share.php?url=https://tstore.space/3rd/', '_blank')">
+              <img src='img/icons/vk.jpg'>
+            </button>
+            <button id="viber" class="share_social_btn" onclick="window.open('viber://forward?text=https://tstore.space/3rd/')">
+              <img src='img/icons/viber.png'>
+            </button>
+            <button id="telegram" class="share_social_btn" onclick="window.open('https://t.me/share/url?url=https://tstore.space/3rd/', '_blank')">
+              <img src='img/icons/telegram2.svg'>
+            </button>
+            <button id="twitter" class="share_social_btn" onclick="window.open('https://twitter.com/intent/tweet?text=https://tstore.space/3rd/', '_blank')">
+              <img src='img/icons/twitter.svg'>
+            </button>
+            <button id="copy" class="share_social_btn" onclick="shareCopy()">
+              <img src='img/icons/copy.svg'>
+            </button>
+          </div>
+
+
         </div>
+
+      </div>
+      <div id="ab-screenshot" style="display: none">
+        <div class="flex-row">
+          <div onclick="abHome()" class="ab-qr"> <i class="ph-x-bold ab-back-icon"></i> </div>
+        </div>
+        <h4 class="ub_title">Снимок экрана</h4>
+        <img id="ab_scr_img">
       </div>
 
     </div>
+
+
     <div id="list">
-      <div class="flex-row">
-        <div onclick="toggleList()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i> </div>
-      </div>
+
       <div id="list-loading" style="display: none">
         <div class="ab-loading-block">
           <div class="ui-loading-wheel"> </div>
           <h5 class="ui-gray">Список загружается</h5>
         </div>
       </div>
+
       <div id="list-main">
-        <div id="list-header"> </div>
-        <h2 id="list-name"></h2>
-        <h5 id="list-subtext"></h5>
 
-        <div class="big_btn-horiz_block">
-          <button id="list-share" class="big_btn horiz">
-            <i class="ph-share big_btn-icon"></i>
-            <h4 class="big_btn-txt">Поделиться</h4>
-          </button>
+        <div class="flex-row">
+          <div onclick="list_actions()" class="ab-qr list_close"> <i class="ph-dots-three-outline-bold ab-back-icon"></i> </div>
+          <div onclick="abBack()" class="ab-back list_more"> <i class="ph-x-bold ab-back-icon"></i> </div>
+        </div>
+        <div id="list-header" class="ub_topblock">
+          <img id="list_icon" class="ub_topicon">
+        </div>
+        <h2 id="list_title" class="ub-na-title"></h2>
 
+        <div id="list_actions">
+
+          <div class="big_btn-horiz_block">
+
+            <button id="btn_list_removeall" class="big_btn btn_list horiz">
+              <i class="ph-trash-bold red focus"></i>
+              <p class="red focus">Удалить всё</p>
+            </button>
+            <button id="btn_list_checkupdates" class="big_btn btn_list horiz">
+              <i class="ph-arrows-counter-clockwise-bold"></i>
+              <p class="focus">Получить обновления</p>
+            </button>
+            <button onclick='list_actions(true)' id="btn_list_sort" class="big_btn btn_list horiz">
+              <i class="ph-funnel"></i>
+              <p>Сортировать...</p>
+            </button>
+
+          </div>
+
+          <div class="big_btn-horiz_block">
+
+            <button onclick='list_actions(true)' id="btn_list_downloadall" class="big_btn btn_list horiz">
+              <i class="ph-cloud-arrow-down-bold"></i>
+              <p class="focus">Скачать всё</p>
+            </button>
+
+          </div>
+
+          <div id="list_sortby">
+
+            <div class="list_sortby_btns">
+
+              <button class="set-btn no-hover">
+                <img src="img/icons/clock.svg" class="set-btn-icon">
+                <h4 class="set-btn-txt">По дате добавления</h4>
+                <input checked onclick="sortby('date')" type="radio" name="list_sort_items" value="1">
+              </button>
+
+              <button class="set-btn no-hover">
+                <img src="img/icons/text_aa.svg" class="set-btn-icon">
+                <h4 class="set-btn-txt">По названию</h4>
+                <input onclick="sortby('name')" type="radio" name="list_sort_items" value="2 ">
+              </button>
+
+              <button class="set-btn no-hover">
+                <img src="img/icons/developer.svg" class="set-btn-icon">
+                <h4 class="set-btn-txt">По имени разработчика</h4>
+                <input onclick="sortby('dev')" type="radio" name="list_sort_items" value="3">
+              </button>
+
+              <button class="set-btn no-hover">
+                <img src="img/icons/download.svg" class="set-btn-icon">
+                <h4 class="set-btn-txt">По количеству скачиваний</h4>
+                <input onclick="sortby('downloads')" type="radio" name="list_sort_items" value="4">
+              </button>
+
+            </div>
+
+            <div class="list_sortby_btns">
+
+              <button class="set-btn no-hover">
+                <img src="img/icons/sort_ascending.svg" class="set-btn-icon">
+                <h4 class="set-btn-txt">По возрастанию</h4>
+                <input onclick="list_order('ascending')" type="radio" name="list_sort_order" value="1">
+              </button>
+
+              <button class="set-btn no-hover">
+                <img src="img/icons/sort_descending.svg" class="set-btn-icon">
+                <h4 class="set-btn-txt">По убыванию</h4>
+                <input checked onclick="list_order('descending')" type="radio" name="list_sort_order" value="2">
+              </button>
+
+            </div>
+
+          </div>
+
+          <hr>
+
+        </div>
+
+        <div id="list_updates">
+          <i id="list_updateicon" class="ph-arrows-counter-clockwise"></i>
+          <div>
+            <h5>Доступны обновления (2)</h5>
+            <p>Обновления приложений содержат новые функции и исправления ошибок.</p>
+          </div>
         </div>
 
         <div id="list-noitems" style="display: none">
           <i class="ph-warning-thin" style="font-size: 48px; color: gray"></i>
-          <h5 class="ui-gray">По вашему запросу ничего не найдено.</h5>
+          <h5 class="ui-gray">Список пуст.</h5>
         </div>
 
-        <div id="search-block">
-          <i class="ph-file-search-thin" style="font-size: 36px; color: gray"></i>
-          <h5 class="ui-gray">Ваша история поиска будет здесь</h5>
+        <div class="flex-row" id="list_updates_head">
+          <h3 id="list_updates_title" style="margin: 0 auto 0 24px">Обновления</h3>
+          <button style="margin: 0 24px 0 0">Скачать всё</button>
         </div>
-        <div id="list-block">
-          <div class='app-item' style="display: none">
-            <img class='ai-icon'>
+
+        <div id="list_updates_block">
+
+          <div class='app-item' id="upd_0">
+            <img src="https://tstore.space/images/appIcons/tenstore.png" class='ai-icon'>
             <div class='ai-text'>
-              <h5 class='ai-name'></h5>
-              <h5 class='ai-dev'></h5>
+              <h5 class='ai-name'>TenStore для Android</h5>
+              <h5 style="font-weight: bold" class='ai-dev red'>Обновление до inner_b0115</h5>
             </div>
             <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down ai-down'></i>
+            <i class='ph-cloud-arrow-down-bold ai-down'></i>
           </div>
+          <div class='app-item' id="upd_1">
+            <img src="https://tstore.space/images/appIcons/tenstore.png" class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'>TenStore для разработчиков</h5>
+              <h5 style="font-weight: bold" class='ai-dev red'>Обновление до inner_b1666</h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-cloud-arrow-down-bold ai-down'></i>
+          </div>
+
         </div>
+
+        <h3 id="list_allapps_title">Все приложения</h3>
+
+        <div id="list-block">
+
+          <div class='app-item' id="el_0">
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'>Music X — музыка ВК 10</h5>
+              <h5 class='ai-dev'>Fooxboy</h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-trash ai-down'></i>
+          </div>
+          <div class='app-item' id="el_1">
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'>TenStore для Android 0</h5>
+              <h5 class='ai-dev'>Ten Software</h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-trash ai-down'></i>
+          </div>
+          <div class='app-item' id="el_2">
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'>Orpad — блокнот 1</h5>
+              <h5 class='ai-dev'>Li_is</h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-trash ai-down'></i>
+          </div>
+          <div class='app-item' id="el_3">
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'>Spotify 5</h5>
+              <h5 class='ai-dev'>Spotify Ltd.</h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-trash ai-down'></i>
+          </div>
+          <div class='app-item' id="el_4">
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'>Telegram 95</h5>
+              <h5 class='ai-dev'>Telegram LLC</h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-trash ai-down'></i>
+          </div>
+          <div class='app-item' id="el_5">
+            <img class='ai-icon'>
+            <div class='ai-text'>
+              <h5 class='ai-name'>Notepads App 11</h5>
+              <h5 class='ai-dev'>Jackie Liu</h5>
+            </div>
+            <i onclick='showAB()' class='ph-info ai-info'></i>
+            <i class='ph-trash ai-down'></i>
+          </div>
+
+        </div>
+
       </div>
 
+    </div>
+
+
+    <div id="dialog_box">
+      <h5 id="db_title"></h5>
+      <h5 id="db_text"></h5>
+      <div class="ub-btn-family">
+        <button id="db_btn1" class="ub-btn">
+          <i class="ph-x"></i>
+          <p></p>
+        </button>
+        <button id="db_btn2" class="ub-btn">
+          <i class="ph-check"></i>
+          <p></p>
+        </button>
+      </div>
     </div>
 
     <div onclick="popup('hide')" id="pop_up" class="pop_up" style="display: none">

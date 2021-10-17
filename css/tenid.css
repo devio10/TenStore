@@ -62,7 +62,7 @@ input {
 }
 .user-data {
   width: 100%;
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
   height: 44px;
   border-radius: 16px;
   display: flex;

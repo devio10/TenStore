@@ -6,9 +6,9 @@
 }
 input[type='checkbox'], input[type='radio'] {
 	--background: var(--ui-switch-bg);
-	--disabled: var(--abs-bg);
-	--disabled-inner: var(--accent-light);
-	--checkbox-bg: var(--accent);
+	--disabled: var(--bg_absolute);
+	--disabled-inner: var(--tenstore_accent_dark);
+	--checkbox-bg: var(--tenstore_accent);
 	--white: white;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -34,7 +34,7 @@ input[type='checkbox']:after, input[type='radio']:after {
 }
 input[type='checkbox']:checked, input[type='radio']:checked {
 	--b: var(--checkbox-bg);
-	--bc: var(--accent);
+	--bc: var(--tenstore_accent);
 	--d-o: .16s;
 	--d-t: .16s;
 	--d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
@@ -46,13 +46,13 @@ input[type='checkbox']:disabled, input[type='radio']:disabled {
 }
 input[type='checkbox']:disabled:checked, input[type='radio']:disabled:checked {
 	--b: var(--disabled-inner);
-	--bc: var(--accent-light);
+	--bc: var(--tenstore_accent_dark);
 }
 input[type='checkbox']:disabled + label, input[type='radio']:disabled + label {
 	cursor: not-allowed;
 }
 input[type='checkbox']:hover:not(:checked):not(:disabled), input[type='radio']:hover:not(:checked):not(:disabled) {
-	--bc: var(--accent-light);
+	--bc: var(--tenstore_accent_dark);
 }
 input[type='checkbox']:not(.switch), input[type='radio']:not(.switch) {
 	width: 21px;
@@ -115,8 +115,8 @@ input[type='radio'] {
 	border-radius: 100%;
 	width: 19px;
 	height: 21px;
-	background: var(--abs-bg);
-	border: 1px solid var(--accent);
+	background: var(--bg_absolute);
+	border: 1px solid var(--tenstore_accent);
 }
 input[type='radio']:after {
 	opacity: 0;
@@ -124,5 +124,5 @@ input[type='radio']:after {
 }
 input[type='radio']:checked {
 	--s: 0.5;
-	background: var(--accent);
+	background: var(--tenstore_accent);
 }

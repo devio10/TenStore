@@ -1,6 +1,6 @@
 .hm-card {
   height: auto;
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
   box-shadow: 0px 8px 16px 8px rgba(0,0,0,0.08);
   border-radius: 24px;
   cursor: pointer;
@@ -19,7 +19,7 @@
 }
 .hm-card-open {
   font-size: 20px;
-  color: var(--gray);
+  color: gray;
   margin: 16px auto 16px auto;
 }
 .hm-card-wide {
@@ -29,12 +29,13 @@
   cursor: auto;
 }
 .hm-card-toptext1 {
+  width: 100%;
   margin: 0 0 8px 0;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bolder;
-  color: var(--gray);
+  color: gray;
 }
 .hm-card-img {
   border-top-left-radius: 24px;
@@ -49,7 +50,7 @@
   height: 240px;
 }
 .hm-card-smalltext {
-  color: var(--gray);
+  color: gray;
   font-weight: bold;
   margin: 16px 16px 8px 16px;
 }
@@ -67,24 +68,31 @@
 }
 .hm-card-text, .hm-card-text2 {
   margin: 8px 16px 16px;
-  color: var(--gray);
+  color: gray;
 }
 .hm-card-text2 {
   margin: 8px 16px 0 16px;
 }
 .hm-card-compatibility {
   font-size: 16px;
-  color: var(--gray);
+  color: gray;
 }
 .no-scale:hover, .no-scale:focus {
   transform: scale(1);
 }
-.hm-bottom-loading, .ab-loading-block, #search-block, #list-noitems, #index-loading, #apps-loading {
+.hm-bottom-loading, .ab-loading-block, #search-block, #list-noitems, #index-loading, #apps-loading, #games-loading {
   margin: 16px auto 40px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   /**/
+}
+#index-loading, #apps-loading, #games-loading {
+  height: 200px;
+  width: 200px;
+  position: fixed;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
 }
 #search-block, #list-noitems {
   margin-top: 48px;
@@ -167,6 +175,13 @@
   background: rgba(255, 255, 255, 0.2);
   transition: none;
 }
+.z_wide_icon {
+  color: var(--text_color);
+  margin-top: 0;
+}
+.z_wide_icon:hover {
+  background: var(--bg_hover);
+}
 
 .hm-card.category {
   border-radius: 12px;
@@ -185,11 +200,9 @@
   width: calc(100% - 48px);
   border-radius: 12px;
   height: 38px;
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
   display: flex;
   align-items: center;
-  margin-left: 8px;
-  margin-right: 8px;
   animation-duration: 1s;
   transition: .3s;
   margin: 8px auto 8px auto;
@@ -209,7 +222,7 @@
   margin-left: 12px;
 }
 .search-ad-filler {
-  background: var(--abs-bg);
+  background: var(--bg_absolute);
   border-radius: 24px;
   width: calc(100% - 40px);
   margin: 16px auto 16px auto;
@@ -273,8 +286,8 @@
   border-bottom: none;
 }
 #clear-history {
-   margin: 24px 24px auto auto;
-   transition: .3s;
+  margin: 24px 24px auto auto;
+  transition: .3s;
 }
 #clear-history:active {
   transform: translateY(3px);
@@ -284,5 +297,87 @@
   100% {
     transform: translateX(90px);
     opacity: 0;
+  }
+}
+
+@keyframes title-hide {
+  100% {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+}
+@keyframes title-show {
+  0% {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.hm-title_2_icon {
+  font-size: 20px;
+  margin: 20px 0 8px 8px;
+  color: gray;
+}
+#hm-title_2 {
+  margin-left: 8px;
+  user-select: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+#hm-title_1 {
+  cursor: pointer;
+  user-select: none;
+}
+#hm-title_2_block {
+  animation-duration: .3s;
+  /* animation-name: title-hide; */
+  animation-fill-mode: forwards;
+
+  display: none;
+}
+#search-process, #search-no_results {
+  margin-top: 50px;
+}
+div.placeholder {
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  width: 100%;
+  height: auto;
+}
+h5.placeholder, h2.placeholder {
+  border-radius: 4px;
+  width: 60%;
+  height: 14px;
+}
+h2.placeholder {
+  width: 80%;
+  height: 24px;
+}
+div.placeholder, h5.placeholder, h2.placeholder {
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholder;
+  animation-timing-function: linear;
+  background-size: 1500px 200px;
+  background: linear-gradient(135deg, rgba(var(--ph_color),1) 20%, rgba(var(--ph_color),0.3) 50%, rgba(var(--ph_color),1) 80%);
+}
+.flexStyle {
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes placeholder {
+  0%{
+    background-position: -468px 0;
+  }
+    100%{
+    background-position: 468px 0;
   }
 }
