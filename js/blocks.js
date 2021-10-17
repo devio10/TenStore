@@ -138,6 +138,8 @@ function showAB(appid, dontPushHistory) {
           abIcon.src='img/prohibit.svg';
         }
 
+        document.getElementById('ab-error').style.display='none';
+
         shortDescription=appData.apps[0].descr.split('<p>');
         longDescription=appData.apps[0].descr;
         if (shortDescription[0]==longDescription) {
