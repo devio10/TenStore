@@ -176,7 +176,7 @@ img {
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
 }
-.ui-nav-item:hover #nav-index, .ui-nav-item:hover #nav-apps, .ui-nav-item:hover #nav-games, .ui-nav-item:hover #nav-search {
+.ui-nav-item:hover #nav-home, .ui-nav-item:hover #nav-apps, .ui-nav-item:hover #nav-games, .ui-nav-item:hover #nav-search {
   animation-name: nav-icon;
   animation-duration: 1.5s;
   transition: .3s transform;

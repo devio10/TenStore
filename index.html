@@ -26,16 +26,42 @@
       <img onclick="toggleUB()" id='hd-user' src='img/user.svg' alt="img/user.svg">
     </header>
 
-    <div id="search-nav-bar" style="display: none" onclick="hmContent('search')">
-      <div id="search-nb-block">
-        <h5 style="color: inherit; margin: 0 0 0 24px">Поиск...</h5>
-        <i class="ph-magnifying-glass-light search-nb-icon"></i>
-      </div>
+    <div id="top_alert">
+      <p>Ваша учётная запись TenID подтверждена. Теперь вы можете воспользоваться всеми её преимуществами.</p>
     </div>
+
+    <nav id="ts-top_nav">
+
+      <a class="active" onclick='hmContent("home")' id="top_nav_home">
+		    <i class="ph-house-fill"></i>
+        <p>Главная</p>
+		  </a>
+		  <a onclick='hmContent("apps")' id="top_nav_apps">
+		    <i class="ph-squares-four-light"></i>
+        <p>Приложения</p>
+		  </a>
+		  <a onclick='hmContent("games")' id="top_nav_games">
+		    <i class="ph-game-controller-light"></i>
+        <p>Игры</p>
+		  </a>
+      <a onclick='hmContent("search")' id="top_nav_search" style="display: none">
+		    <i class="ph-magnifying-glass-light"></i>
+        <p>Поиск</p>
+		  </a>
+
+    </nav>
+
+    <div class="fake-input fake_search" onclick="hmContent('search')">
+      <i class="ph-magnifying-glass hm-si-icon"></i>
+      <input type="text" placeholder="Поиск..." id="hm_fake_search">
+    </div>
+
+
+
     <nav class="ui-nav" id="nav-bar">
       <div class="ui-nav-block">
-        <a class="ui-nav-item" onclick='hmContent("index")'>
-  		    <i class="ph-house-fill ui-nav-icon active" id="nav-index"></i>
+        <a class="ui-nav-item" onclick='hmContent("home")'>
+  		    <i class="ph-house-fill ui-nav-icon active" id="nav-home"></i>
   		  </a>
   		  <a class="ui-nav-item" onclick='hmContent("apps")'>
   		    <i class="ph-squares-four-light ui-nav-icon" id="nav-apps"></i>
@@ -110,11 +136,11 @@
           </div>
           <div class="ub-btn-family">
 
-            <button class="ub-btn">
+            <button class="ub-btn" onclick="toggleUB(); showList('saved')">
               <i class="ph-bookmark-bold ub-openbtn"></i>
               <h4 style="font-weight: bold" class="ub-btn-txt">Закладки</h4>
             </button>
-            <button class="ub-btn">
+            <button class="ub-btn" onclick="toggleUB(); showList('library')">
               <i class="ph-books ub-openbtn"></i>
               <h4 class="ub-btn-txt">Библиотека</h4>
             </button>
@@ -140,7 +166,7 @@
         <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/icons/tenstore.svg" class="set-btn-icon" id="store-icon">
           <h4 class="set-btn-txt">TenStore Logan Beta</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0.0 oct17)</h4>
+          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0.0 oct22)</h4>
         </button>
         <button class="set-btn no-hover">
           <img src="img/icons/key.svg" class="set-btn-icon" id="store-icon">
@@ -186,6 +212,11 @@
           <img src="img/icons/key.svg" class="set-btn-icon" id="device-icon">
           <h4 class="set-btn-txt">API 2.0</h4>
           <input id="ef-api2-sw" onclick="changePar('ef-api2')" type="checkbox" class="switch">
+        </button>
+        <button class="set-btn no-hover">
+          <img src="img/icons/cards.svg" class="set-btn-icon" id="gauge-icon">
+          <h4 class="set-btn-txt">Постраничная загрузка карточек</h4>
+          <input id="ef-pages-sw" onclick="changePar('ef-pages')" type="checkbox" class="switch">
         </button>
         <button onclick="setWindow('animate-mit')" class="set-btn" style="margin-top: 16px">
           <img src="img/icons/file-text.svg" class="set-btn-icon">
@@ -335,7 +366,7 @@
       </div>
     </div>
 
-    <div class="hm-content" id="hm-index"> </div>
+    <div class="hm-content" id="hm-home"> </div>
 
     <div class="hm-content" id="hm-apps"> </div>
 
@@ -364,9 +395,11 @@
           <h3 class="hm-title">Рекомендуем</h3>
           <div class='hm-title-sponsored'>Реклама</div>
         </div>
-        <div class="search-ad-filler"> </div>
+        <div id="banner_search" class="banner">
+
+        </div>
         <hr class="hm-hr">
-        <div class="flex-row">
+        <div class="flex-row" id="history_topblock">
           <h3 class="hm-title">История поиска</h3>
           <button id="clear-history" class="outline-small" onclick="clearHistory()">Очистить</button>
         </div>
@@ -407,6 +440,11 @@
         </div>
       </div>
 
+    </div>
+
+    <div id="more_cards_loading" class="ab-loading-block">
+      <div class="ui-loading-wheel ui-24px"> </div>
+      <h5 class="ui-gray">Контент загружается...</h5>
     </div>
 
     <!-- БЛОК ПРИЛОЖЕНИЯ -->
@@ -737,28 +775,7 @@
           <button style="margin: 0 24px 0 0">Скачать всё</button>
         </div>
 
-        <div id="list_updates_block">
-
-          <div class='app-item' id="upd_0">
-            <img src="https://tstore.space/images/appIcons/tenstore.png" class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'>TenStore для Android</h5>
-              <h5 style="font-weight: bold" class='ai-dev red'>Обновление до inner_b0115</h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down-bold ai-down'></i>
-          </div>
-          <div class='app-item' id="upd_1">
-            <img src="https://tstore.space/images/appIcons/tenstore.png" class='ai-icon'>
-            <div class='ai-text'>
-              <h5 class='ai-name'>TenStore для разработчиков</h5>
-              <h5 style="font-weight: bold" class='ai-dev red'>Обновление до inner_b1666</h5>
-            </div>
-            <i onclick='showAB()' class='ph-info ai-info'></i>
-            <i class='ph-cloud-arrow-down-bold ai-down'></i>
-          </div>
-
-        </div>
+        <div id="list_updates_block"> </div>
 
         <h3 id="list_allapps_title">Все приложения</h3>
 
@@ -852,5 +869,6 @@
     <script src="js/tenid.js" charset="utf-8"></script>
     <script src="js/blocks.js" charset="utf-8"></script>
     <script src="js/index.js"></script>
+    <script src="js/banners.js" charset="utf-8"></script>
   </body>
 </html>

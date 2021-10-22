@@ -4,4 +4,12 @@
   bottom: auto;
   border: none;
   border-bottom: 1px solid var(--gray_light);
+
+  display: none;
+}
+#ts-top_nav {
+  display: flex;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
 }

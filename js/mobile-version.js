@@ -19,7 +19,12 @@ function checkPlatform () {
 
     } else {
 
-      efNavigationBar();
+      document.getElementById('nav-bar').style.bottom="var(--bottom)";
+      document.getElementById('nav-home').className='ph-house-light ui-nav-icon ui-nav-icon-highlight';
+      document.getElementById('nav-apps').className='ph-squares-four-light ui-nav-icon ui-nav-icon-highlight';
+      document.getElementById('nav-search').className='ph-magnifying-glass-light ui-nav-icon ui-nav-icon-highlight';
+      document.getElementById('nav-games').className='ph-game-controller ui-nav-icon ui-nav-icon-highlight';
+      document.getElementsByClassName('fake_search')[0].style.display='none';
 
     }
 

@@ -166,7 +166,7 @@ function finishReg () {
     params.append("email", document.getElementById('reg-email').value);
     params.append("password", SHA256(document.getElementById('reg-password').value));
     params.append("g-recaptcha", recaptchaResponse);
-    request.open("POST", api, true);
+    request.open("POST", 'https://tstore.space/api.php', true);
     request.addEventListener("readystatechange", () => {
         if (request.readyState === 4 && request.status === 200) {
           loadbox('end');

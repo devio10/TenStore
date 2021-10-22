@@ -22,34 +22,80 @@ function checkUrlVars() {
     toggleUB(true);
   } else if (getUrlVars()['block']=='settings') {
     toggleSettings(true);
+  } else if (getUrlVars()['tenid_activation_code']!=null) {
+    show_activation_popup();
   }
 }
+function show_activation_popup() {
+
+  function toggle_popup(msg) {
+
+    let obj = document.getElementById('top_alert');
+    obj.children[0].innerHTML=msg;
+    obj.style.display='block';
+
+  }
+
+  let key = getUrlVars()['tenid_activation_code'];
+
+  if (key=='success') {
+
+    toggle_popup('Ваша учётная запись TenID подтверждена. Теперь вы можете воспользоваться всеми её преимуществами.');
+
+  } else if (key=='error') {
+
+    toggle_popup(`При подтверждении учётной записи TenID что-то пошло не так. Пожалуйста, напишите в <a style='color: var(--tenstore_accent_dark)' onclick="toggleSettings(), setWindow('support')">поддержку</a>.`)
+
+  }
+
+}
+var h_amount=2;
+var h_page=0;
+var lastload=0;
 
 function loadCards(location) {
 
+  if (lastload >= (Date.now() - 150)) {
+    return;
+  }
+  lastload = Date.now();
+
   let locationPage=location;
-  if (location=='home') {
-    locationPage='index';
+  let more_loading=document.getElementById('more_cards_loading');
+
+  if (h_page==0) {
+    more_loading.style.display='none';
+    document.getElementById(`hm-${locationPage}`).innerHTML=`
+      <div id="${locationPage}-loading">
+        <div class="ab-loading-block">
+          <div class="ui-loading-wheel ui-42px"> </div>
+          <h5 class="ui-gray">Контент загружается</h5>
+        </div>
+      </div>
+    `;
   }
 
-  document.getElementById(`hm-${locationPage}`).innerHTML=`
-    <div id="${locationPage}-loading">
-      <div class="ab-loading-block">
-        <div class="ui-loading-wheel ui-42px"> </div>
-        <h5 class="ui-gray">Контент загружается</h5>
-      </div>
-    </div>
-  `;
 
   var cards=new XMLHttpRequest();
   var cardskey='action=HKdoi40';
+  h_page++;
+
   var cardRequestStatus;
   cards.responseType = "json";
-  cards.open("POST", api, true);
+  if (localStorage.getItem('ef-api2')=='true') {
+    cardskey=`tab=${location}`;
+    if (localStorage.getItem('ef-pages')=='true') {
+      cardskey=`tab=${location}&amount=${h_amount}&page=${h_page}`;
+    }
+    cards.open("POST", api2_cards, true);
+  } else {
+    cards.open("POST", api, true);
+  }
+
   cards.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   cards.addEventListener("readystatechange", () => {
 
-    if ((cards.readyState===4)&&(cards.status===200)) {
+    if ((cards.readyState===4)&&(cards.status===200)&&(cards!='null')) {
 
       /* timeout */
       setTimeout(function () {
@@ -72,21 +118,20 @@ function loadCards(location) {
              let cardobj=document.createElement('div');
              if (cardType=='2_wide') {
                let btm_buttons=`
-                 <i class="hm-card-button ph-cloud-arrow-down-light" onclick="download(${cardsData.cards[i].link_app})"></i>
-                 <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData.cards[i].link_app})"></i>
+                 <i class="hm-card-button ph-cloud-arrow-down-light" onclick="download(${cardsData.cards[i].appId})"></i>
+                 <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData.cards[i].appId})"></i>
                `;
                if (cardsData.cards[i].download_button==0) {
                  btm_buttons=`
-                   <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData.cards[i].link_app})"></i>
+                   <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData.cards[i].appId})"></i>
                  `;
                }
-               let toptitle='';
-               if (cardsData.cards[i].top_title!='') {
-                 toptitle=`<h4 class="hm-card-toptext1">${cardsData.cards[i].top_title}</h4>`;
-               }
+               cardobj.className='hm-card new';
+               cardobj.style.backgroundImage=`linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3) ), url(https://tstore.space/${cardsData.cards[i].bg_image})`;
+               cardobj.style.backgroundRepeat='no-repeat';
+               cardobj.style.backgroundSize='cover';
+               cardobj.style.backgroundPosition=`center`;
                cardobj.innerHTML=`
-               ${toptitle}
-               <div class='hm-card new' style='background-image: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3) ), url(https://tstore.space/${cardsData.cards[i].bg_image}); background-repeat: no-repeat; background-size: cover; background-position: center'>
                  <div class="hm-card-rate">
                    <h5 class="hc-rate-text">${cardsData.cards[i].age_rating}+</h5>
                  </div>
@@ -97,73 +142,42 @@ function loadCards(location) {
                  <div class="flex-row">
                   ${btm_buttons}
                  </div>
-               </div>
                `;
 
-            } else if ((cardType=='1_small')&&(skippedCard!=i)) {
+            } else if (cardType=='1_small') {
 
               let phClass='';
               let src=`src='https://tstore.space/${cardsData.cards[i].bg_image}'`;
               let imgObj=`<img style="height: 300px; --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-img short-img ${phClass}" ${src}>`;
-
-              let flexStyle='';
               if (cardsData.cards[i].placeholder!=0) {
                 phClass='placeholder';
                 imgObj='<div style="height: 300px; --ph_color: ${cardsData.cards[i].ph_color}" class="placeholder"></div>';
               }
-              let toptitle='';
-              if (cardsData.cards[i].top_title!='') {
-                 toptitle=`<h4 class="hm-card-toptext1">${cardsData.cards[i].top_title}</h4>`;
-              }
-              let secondCard='';
-              let z=i+1;
-              if ((cardsData.cards[z].top_title=='')&&(cardsData.cards[z].type='1_small')) {
 
-                let phClassZ='';
-                let srcZ=`src='https://tstore.space/${cardsData.cards[z].bg_image}'`;
-                let imgObjZ=`<img style="height: 300px; --ph_color: ${cardsData.cards[z].ph_color}" class="hm-card-img short-img ${phClassZ}" ${srcZ}>`;
-                if (cardsData.cards[z].placeholder!=0) {
-                  phClassZ='placeholder';
-                  imgObjZ='<div style="height: 300px; --ph_color: ${cardsData.cards[z].ph_color}" class="placeholder"></div>';
-                }
-
-                secondCard=`
-                <div class='hm-card' onclick='article("${cardsData.cards[z].link_article}")' style='background: rgb(${cardsData.cards[z].bg_color})'>
-                  ${imgObjZ}
-                  <h5 style="color: rgb(${cardsData.cards[z].text_color}); --ph_color: ${cardsData.cards[z].ph_color}" class="hm-card-smalltext ${phClassZ}">${cardsData.cards[z].subtitle}</h5>
-                  <h2 style="color: rgb(${cardsData.cards[z].text_color}); --ph_color: ${cardsData.cards[z].ph_color}" class="hm-card-title2 ${phClassZ}">${cardsData.cards[z].title}</h2>
-                </div>
-                `;
-                skippedCard=i+1;
-
-                flexStyle=`class='flexStyle'`;
-
-              }
-
-              cardobj.style.width='100%';
+              cardobj.className='hm-card';
+              cardobj.style.background=`rgb(${cardsData.cards[i].bg_color})`;
+              cardobj.setAttribute('onclick', `showList("${cardsData.cards[i].link_list}")`);
               cardobj.innerHTML=`
-              ${toptitle}
-              <div ${flexStyle}>
-                <div class='hm-card' onclick='article("${cardsData.cards[i].link_article}")' style='background: rgb(${cardsData.cards[i].bg_color})'>
-                  ${imgObj}
-                  <h5 style="color: rgb(${cardsData.cards[i].text_color}); --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-smalltext ${phClass}">${cardsData.cards[i].subtitle}</h5>
-                  <h2 style="color: rgb(${cardsData.cards[i].text_color}); --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-title2 ${phClass}">${cardsData.cards[i].title}</h2>
-                </div>
-                ${secondCard}
-              </div>
+                ${imgObj}
+                <h5 style="color: rgb(${cardsData.cards[i].text_color}); --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-smalltext ${phClass}">${cardsData.cards[i].subtitle}</h5>
+                <h2 style="color: rgb(${cardsData.cards[i].text_color}); --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-title2 ${phClass}">${cardsData.cards[i].title}</h2>
               `;
 
             }
 
             document.getElementById('hm-'+locationPage).appendChild(cardobj);
+            more_loading.style.display='flex';
 
            }
         }
-      } else {
+      } else if (h_page==0) {
         popup('Ошибка при загрузке страницы', 'warning');
+      } else {
+        more_loading.style.display='none';
       }
 
       cardRequestStatus='done';
+    } else if (cards=='null') {
     } else if (cards.status===0) {
 
       document.getElementById(`hm-${locationPage}`).innerHTML=`
@@ -207,38 +221,64 @@ function toggleADT() {
   checkTheme();
 }
 
-var selHC='index';
+var selHC='home';
 function hmContent(page) {
-  document.getElementById('hm-index').style.display='none';
-  document.getElementById('hm-apps').style.display='none';
-  document.getElementById('hm-games').style.display='none';
-  document.getElementById('hm-search').style.display='none';
-  document.getElementById('hm-'+page).style.display='flex';
+
+  document.getElementById('more_cards_loading').style.display='none';
+  h_page=0;
+  let pages=['home', 'apps', 'games', 'search'];
+  let icons=['house', 'squares-four', 'game-controller', 'magnifying-glass'];
+  let icon;
+  let top_navbar=localStorage.getItem('top_navbar')!='false';
+  let top_nav = document.getElementById('ts-top_nav');
+  let fake_search = document.getElementsByClassName('fake_search')[0];
+
+  if (top_navbar) {
+    top_nav.style.display='flex';
+  }
+  fake_search.style.display='flex';
+
+  for (var i = 0; i < pages.length; i++) {
+
+    if (pages[i] == page) { icon = icons[i] };
+
+    document.getElementById(`hm-${pages[i]}`).style.display='none';
+
+    if (page!='search') {
+
+      if (i!=3) {
+
+        document.getElementById(`top_nav_${pages[i]}`).className='';
+        document.getElementById(`top_nav_${pages[i]}`).children[0].className='';
+        document.getElementById(`top_nav_${pages[i]}`).children[0].className=`ph-${icons[i]}-light`;
+
+      }
+
+      document.getElementById(`nav-${pages[i]}`).className=``;
+      document.getElementById(`nav-${pages[i]}`).classList=`ph-${icons[i]}-light ui-nav-icon ui-nav-icon-highlight`;
+
+    }
+
+
+  }
+
+  if (page!='search') {
+    loadCards(page);
+  } else {
+    setTimeout(function () {
+      document.getElementById('hm-search-input').focus();
+    }, 100);
+    checkHistory();
+    fake_search.style.display='none';
+  }
+  document.getElementById(`hm-${page}`).style.display='flex';
+  document.getElementById(`nav-${page}`).classList=`ph-${icon}-fill ui-nav-icon ui-nav-icon-highlight`;
+  document.getElementById(`top_nav_${page}`).className='active';
+  document.getElementById(`top_nav_${page}`).children[0].className=`ph-${icon}-fill`;
 
   selHC=page;
-
-  let iconClass;
-  if (page=='index') { iconClass='house'; loadCards('home') }
-  else if (page=='apps') { iconClass='squares-four'; loadCards('apps') }
-  else if (page=='games') { iconClass='game-controller'; loadCards('games') }
-  else if (page=='search') { iconClass='magnifying-glass'; checkHistory() }
-
-  document.getElementById('nav-index').className='';
-  document.getElementById('nav-apps').className='';
-  document.getElementById('nav-games').className='';
-  document.getElementById('nav-search').className='';
-
-  document.getElementById('nav-index').classList='ph-house-light ui-nav-icon ui-nav-icon-highlight';
-  document.getElementById('nav-apps').classList='ph-squares-four-light ui-nav-icon ui-nav-icon-highlight';
-  document.getElementById('nav-search').classList='ph-magnifying-glass-light ui-nav-icon ui-nav-icon-highlight';
-  document.getElementById('nav-games').classList='ph-game-controller-light ui-nav-icon ui-nav-icon-highlight';
-
-
-
-  document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon';
-
-  document.getElementById('nav-'+page).classList='ph-'+iconClass+'-fill ui-nav-icon ui-nav-icon-highlight';
   window.scrollTo(0, 0);
+
 }
 
 function setPlatform(pmName) {
@@ -259,8 +299,16 @@ function debug_newReview() {
 }
 
 /* AFTERLOAD */
+document.getElementById('nav-bar').style.bottom="-70px";
+document.getElementById('nav-home').className='';
+document.getElementById('nav-search').className='';
+document.getElementById('nav-apps').className='';
+document.getElementById('nav-games').className='';
 const api='https://tstore.space/api.php';
 const api2_app=`https://api.tstore.space/app.php`;
+const api2_search=`https://api.tstore.space/search.php`;
+const api2_list=`https://api.tstore.space/list.php`;
+const api2_cards=`https://api.tstore.space/cards.php`;
 var head=document.getElementsByTagName('HEAD')[0];
 var body=document.getElementsByTagName('body')[0];
 if ((localStorage.getItem('platform')==null)&&(localStorage.getItem('manual-platform')!='true')) {
@@ -273,6 +321,15 @@ login();
 checkUrlVars();
 checkPars();
 checkPlatform();
+
+window.onscroll=function() {
+
+  let current_scroll=window.pageYOffset + window.screen.height;
+  if ((current_scroll >= document.body.scrollHeight)&&selHC!='search') {
+    loadCards(selHC);
+  }
+
+}
 
 
 
@@ -308,6 +365,7 @@ function checkHistory() {
   }, 300);
 
   if (history!=null) {
+    document.getElementById('history_topblock').style.display='flex';
     for (var i = 0; i < history.length; i++) {
       let historyItem=document.createElement('div');
       historyItem.className='search-item';
@@ -318,6 +376,8 @@ function checkHistory() {
       `;
       historyList.appendChild(historyItem);
     }
+  } else {
+    document.getElementById('history_topblock').style.display='none';
   }
 
 
@@ -378,7 +438,13 @@ function goSearch(historyValue) {
   // TODO: window.history.pushState(null, '', `?search=${searchValue}`);
   var search=new XMLHttpRequest();
   search.responseType='json';
-  search.open('POST', api, true);
+  if (localStorage.getItem('ef-api2')=='true') {
+    search.open('POST', api2_search, true);
+    searchPars=`search=${searchValue}`;
+  } else {
+    search.open('POST', api, true);
+  }
+
   search.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   search.addEventListener("readystatechange", () => {
     if ((search.readyState===4)&&(search.status===200)) {

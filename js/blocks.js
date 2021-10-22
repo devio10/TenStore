@@ -92,6 +92,7 @@ function showAB(appid, dontPushHistory) {
   }
   document.getElementById('ab-platform-select').style.display='none';
 
+  var selected_presence=0;
   /* обращение к серверу */
   var appBlock=new XMLHttpRequest();
   var abPars='action=4LlFCT&id='+appid;
@@ -114,6 +115,7 @@ function showAB(appid, dontPushHistory) {
         if (loggedIn==true) {
           document.getElementById('ab-no_account').style.display='none';
         }
+        selected_presence=0;
 
         let abIcon=document.getElementById('ab-icon');
         if (appData.apps[0].icon!='') {
@@ -179,8 +181,28 @@ function showAB(appid, dontPushHistory) {
         curscr=0;
         let scrsData=appData.apps[0].screenshots;
         if (localStorage.getItem('ef-api2')=='true') {
-          scrsData='[]';
-        }
+          if(scrsData!=null){
+          var screenshots=JSON.parse(scrsData);
+          for(let s in screenshots) {
+            lastscr=s;
+            var screenshot=document.createElement('img');
+            var scrDot=document.createElement('div');
+            if (s==0) {
+              scrDot.className='scr-dot scr-dot-active';
+            } else {
+              scrDot.className='scr-dot';
+            }
+            scrDot.setAttribute('onclick', 'switchScreenshot('+s+')');
+            scrDot.id='dot-'+s;
+            screenshot.className='ab-scr';
+            screenshot.id='scr-'+s;
+            screenshot.setAttribute('onclick',"openScreenshot('https://tstore.space/"+screenshots[s].image+"')");
+            screenshot.src='https://tstore.space/'+screenshots[s].image;
+            document.getElementById('ab-scrs').appendChild(screenshot);
+            document.getElementById('scrs-pag').appendChild(scrDot);
+            document.getElementById('scrs-block').style.display='block';
+        }}}
+        else{
         if ((scrsData!='[]')||(scrsData!='')) {
           var screenshots=JSON.parse(scrsData);
           for(let s in screenshots.scr) {
@@ -202,14 +224,86 @@ function showAB(appid, dontPushHistory) {
             document.getElementById('scrs-pag').appendChild(scrDot);
             document.getElementById('scrs-block').style.display='block';
           }
-        }
+        }}
 
         document.getElementById('ab-reviews').innerHTML='';
         let revJson=appData.apps[0].comments;
         if (localStorage.getItem('ef-api2')=='true') {
-          revJson=0;
-        }
-        if (revJson!=0) {
+          if (revJson!=null) {
+
+            const revs=JSON.parse(revJson);
+            for(let c in revs) {
+
+                  if (c==2) {
+
+                    let showFull = document.createElement('button');
+                    showFull.id = 'ab-reviews-btn';
+                    showFull.setAttribute('onclick', 'toggleReviews()');
+                    showFull.innerHTML = `<i class="ph-caret-down-bold"></i><p>Показать полностью</p>`;
+                    document.getElementById('ab-reviews').appendChild(showFull);
+
+                  }
+
+                  let currentTime=new Date();
+                  let revDate=revs[c].date;
+                  let clearRevDate=revDate.substr(revDate.length - 6);
+                  if (currentTime.getFullYear() == clearRevDate.substring(0, clearRevDate.length - 2)) {
+                    revDate=', '+revDate.slice(0, - 7);
+                  } else {
+                    revDate=', '+revDate;
+                  }
+
+                  var reviewObj=document.createElement('div');
+                  reviewObj.className='ab-review';
+
+                  let revType='down red';
+                  if (revs[c].isLiked=='1') {
+                    revType='up green';
+                    reviewObj.style.border='1px solid rgba(67,160,71, 0.5)';
+                  }
+
+
+                  if (revs[c].login!=localStorage.getItem('login')) {
+
+                    reviewObj.innerHTML= `
+                      <div class="abb">
+                        <i class="review_icon ph-thumbs-${revType}"></i>
+                        <h3 class='rev-title'>${revs[c].title}</h3>
+                      </div>
+                      <h5 class='rev-text'>${revs[c].text}</h5>
+                      <div class="agg">
+                        <h5 class='rev-author'>${revs[c].login}${revDate}</h5>
+                        <i onclick='reportReview()' class="ph-flag-bold"></i>
+                      </div>
+                    `;
+
+                    document.getElementById('ab-reviews').appendChild(reviewObj);
+
+                  } else {
+
+                    reviewObj.innerHTML= `
+                      <div class="abb">
+                        <i id='my_rev_rate' class="review_icon ph-thumbs-${revType}"></i>
+                        <h3 id='my_rev_title' class='rev-title'>${revs[c].title}</h3>
+                      </div>
+                      <h5 id='my_rev_text' class='rev-text'>${revs[c].text}</h5>
+                      <div class="agg">
+                        <h5 class='rev-author'>${revs[c].login}${revDate}</h5>
+                      </div>
+                      <div class="review_btns">
+                        <button onclick="removeReview(${appid})"><i class="ph-trash"></i><p>Удалить</p></button>
+                        <button onclick="editReview()"><i class="ph-pencil-bold"></i><p>Редактировать</p></button>
+                      </div>
+                    `;
+
+                    document.getElementById('above_reviews').innerHTML='';
+                    document.getElementById('above_reviews').appendChild(reviewObj);
+
+                  }
+
+                  document.getElementById('ab-no-reviews').style.display='none';
+                }}
+        } else if (revJson!=0) {
         const revs=JSON.parse(revJson);
         for(let c in revs.comments) {
 
@@ -288,22 +382,72 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('ab-platforms').innerHTML='';
         let filesjson=appData.apps[0].files;
         if (localStorage.getItem('ef-api2')=='true') {
-          filesjson='{}';
-        }
-        if (filesjson!='{}') {
+          if (filesjson!=null) {
+            let psJson=JSON.parse(appData.apps[0].files);
+
+            for (var i = 0; i < psJson.length; i++) {
+
+              let psItem=document.createElement('div');
+              let psBlock;
+              if ((psJson[i].platform==selectedPlatform)&&(selected_presence!=1)) {
+                setPlatformIcon(psJson[i].platform);
+                psItem.className='platform-check selected';
+                selected_presence=1;
+                selectedFile=psJson[i].file;
+                if ((psJson[i].architecture!='')&&(psJson[i].name=='')) {
+                  document.getElementById('ab-platform').innerText=`${psJson[i].platform} (${psJson[i].architecture})`;
+                } else if (psJson[i].name=='') {
+                  document.getElementById('ab-platform').innerText=psJson[i].platform;
+                } else {
+                  document.getElementById('ab-platform').innerText=psJson[i].name;
+                }
+                document.getElementById('ab-platform-info').innerText=psJson[i].size+' МБ, '+psJson[i].date[0];
+              } else {
+                psItem.className='platform-check';
+              }
+              let file_name;
+              if ((psJson[i].architecture!='')&&(psJson[i].name=='')) {
+                file_name=`${psJson[i].platform} (${psJson[i].architecture})`;
+              } else if (psJson[i].name=='') {
+                file_name=psJson[i].platform;
+              } else {
+                file_name=psJson[i].name;
+              }
+              psItem.innerText=file_name;
+              psItem.setAttribute('onclick',`selectPlatform("${psJson[i].platform}", "${file_name}", "${psJson[i].size}", "${psJson[i].date[0]}", "${i}")`);
+              psItem.id=`ps-${i}`;
+              document.getElementById('ab-platforms').appendChild(psItem);
+
+            }
+
+            if (psJson.length > 0) {
+              document.getElementById('ab-platform-select').style.display='block';
+            }
+          } else {
+            document.getElementById('ab-download').disabled=true;
+            document.getElementById('ab-platform-select').style.display='none';
+            document.getElementById('ab-platform').style.display='none';
+          }
+        } else if (filesjson!='{}') {
           let psJson=JSON.parse(appData.apps[0].files);
           for (var i = 0; i < psJson.files.length; i++) {
             let psItem=document.createElement('div');
             let psBlock;
-            if (psJson.files[i].platform==selectedPlatform) {
+            if ((psJson.files[i].platform==selectedPlatform)&&(selected_presence!=1)) {
+
+              selected_presence=1;
+              console.log('Выбрана платформа');
               psItem.className='platform-check selected';
               selectedFile=psJson.files[i].file;
+
               if (psJson.files[i].architecture!='') {
                 document.getElementById('ab-platform').innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
               } else {
                 document.getElementById('ab-platform').innerText=psJson.files[i].platform;
               }
+
               document.getElementById('ab-platform-info').innerText=psJson.files[i].size+' МБ, '+psJson.files[i].published;
+
             } else {
               psItem.className='platform-check';
             }
@@ -312,8 +456,8 @@ function showAB(appid, dontPushHistory) {
             } else {
               psItem.innerText=psJson.files[i].platform;
             }
-            psItem.setAttribute('onclick',`selectPlatform("${psJson.files[i].platform}", "${psJson.files[i].file}", "${psJson.files[i].architecture}", "${psJson.files[i].size}", "${psJson.files[i].published}")`);
-            psItem.id='ps-'+psJson.files[i].platform+'-'+psJson.files[i].architecture;
+            psItem.setAttribute('onclick',`selectPlatform("${psJson.files[i].platform}", "${psJson.files[i].file}", "${psJson.files[i].architecture}", "${psJson.files[i].size}", "${psJson.files[i].published}", "${i}")`);
+            psItem.id=`ps-${i}`;
             document.getElementById('ab-platforms').appendChild(psItem);
           }
           if (psJson.files.length > 0) {
@@ -326,7 +470,7 @@ function showAB(appid, dontPushHistory) {
         }
         document.getElementById('si-pos').innerText=appData.apps[0].liked;
         document.getElementById('si-neg').innerText=appData.apps[0].disliked;
-        document.getElementById('si-rating').innerText=appData.apps[0].agelimit;
+        document.getElementById('si-rating').innerText=`${appData.apps[0].ageLimit}+`;
         document.getElementById('si-dev-name').innerText=appData.apps[0].dev;
         document.getElementById('si-downloads').innerText=appData.apps[0].downloads;
 
@@ -371,17 +515,39 @@ function showAB(appid, dontPushHistory) {
 
   appBlock.send(abPars);
 }
-function selectPlatform(psName, fileName, psArc, psSize, psDate) {
+function setPlatformIcon(arc) {
+
+  let icon, bg;
+  if (arc=='Android') {
+    icon='android.svg';
+    bg='#092f42';
+  } else if (arc=='Windows') {
+    icon='windows.svg';
+    bg='#0078d7';
+  } else if (arc=='Linux') {
+    icon='ubuntu.svg';
+    bg='#dd4814';
+  } else {
+    icon='file.svg';
+    bg='white';
+  }
+  document.getElementById('ab-file-icon').src=`img/icons/${icon}`;
+  document.getElementById('ab-file-icon').style.backgroundColor=bg;
+
+}
+function selectPlatform(platform_name, fileName, psSize, psDate, file_id) {
   const highlightedItems=document.querySelectorAll(".platform-check");
   highlightedItems.forEach(function(userItem) {
     hiId=userItem.id;
     document.getElementById(hiId).className='platform-check';
   });
-  document.getElementById('ps-'+psName+'-'+psArc).className='platform-check selected';
+  document.getElementById(`ps-${file_id}`).className='platform-check selected';
   selectedFile=fileName;
-  if (psArc!='') { document.getElementById('ab-platform').innerText=psName+' ('+psArc+')'; } else { document.getElementById('ab-platform').innerText=psName; }
+  document.getElementById('ab-platform').innerText=fileName;
   document.getElementById('ab-platform-info').innerText=psSize+' МБ, '+psDate;
   platforms();
+
+  setPlatformIcon(platform_name);
 }
 function toggleDescription() {
   if (curDescType=='long') {
@@ -642,6 +808,84 @@ function sendReview(appid, remove) {
           if (appData!=0) {
             document.getElementById('ab-reviews').innerHTML='';
             let revJson=appData.apps[0].comments;
+            if (localStorage.getItem('ef-api2')=='true') {
+              if (revJson!=null) {
+                const revs=JSON.parse(revJson);
+                for(let c in revs) {
+
+                  if (c==3) {
+
+                    let showFull = document.createElement('button');
+                    showFull.id = 'ab-reviews-btn';
+                    showFull.setAttribute('onclick', 'toggleReviews()');
+                    showFull.innerHTML = `<i class="ph-caret-down-bold"></i><p>Показать полностью</p>`;
+                    document.getElementById('ab-reviews').appendChild(showFull);
+
+                  }
+
+                  let currentTime=new Date();
+                  let revDate=revs.comments[c].date;
+                  let clearRevDate=revDate.substr(revDate.length - 6);
+                  if (currentTime.getFullYear() == clearRevDate.substring(0, clearRevDate.length - 2)) {
+                    revDate=', '+revDate.slice(0, - 7);
+                  } else {
+                    revDate=', '+revDate;
+                  }
+
+                  var reviewObj=document.createElement('div');
+                  reviewObj.className='ab-review';
+
+                  let revType='down red';
+                  if (revs.comments[c].isLiked=='1') {
+                    revType='up green';
+                    reviewObj.style.border='1px solid rgba(67,160,71, 0.5)';
+                  }
+
+
+                  if (revs.comments[c].login!=localStorage.getItem('login')) {
+
+                    reviewObj.innerHTML= `
+                      <div class="abb">
+                        <i class="review_icon ph-thumbs-${revType}"></i>
+                        <h3 class='rev-title'>${revs.comments[c].title}</h3>
+                      </div>
+                      <h5 class='rev-text'>${revs.comments[c].comment}</h5>
+                      <div class="agg">
+                        <h5 class='rev-author'>${revs.comments[c].login}${revDate}</h5>
+                        <i onclick='reportReview()' class="ph-flag-bold"></i>
+                      </div>
+                    `;
+
+                    document.getElementById('ab-reviews').appendChild(reviewObj);
+
+                  } else {
+
+                    reviewObj.innerHTML= `
+                      <div class="abb">
+                        <i id='my_rev_rate' class="review_icon ph-thumbs-${revType}"></i>
+                        <h3 id='my_rev_title' class='rev-title'>${revs.comments[c].title}</h3>
+                      </div>
+                      <h5 id='my_rev_text' class='rev-text'>${revs.comments[c].comment}</h5>
+                      <div class="agg">
+                        <h5 class='rev-author'>${revs.comments[c].login}${revDate}</h5>
+                      </div>
+                      <div class="review_btns">
+                        <button onclick="removeReview(${appid})"><i class="ph-trash"></i><p>Удалить</p></button>
+                        <button onclick="editReview()"><i class="ph-pencil-bold"></i><p>Редактировать</p></button>
+                      </div>
+                    `;
+
+                    document.getElementById('above_reviews').innerHTML='';
+                    document.getElementById('above_reviews').appendChild(reviewObj);
+
+                  }
+
+                  document.getElementById('ab-no-reviews').style.display='none';
+
+                }
+            };
+            }
+            else
             if (revJson!=0) {
               const revs=JSON.parse(revJson);
               for(let c in revs.comments) {
@@ -741,15 +985,33 @@ function addToLibrary (appid) {
 function download (appid) {
   if (loggedIn==true) {
     var downloadRequest=new XMLHttpRequest();
-    var dqData='action=4LlFCT&id='+appid;
+    var dqData=`id=${appid}&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}`;
+    console.log(dqData);
     downloadRequest.responseType = "json";
-    downloadRequest.open("POST", api, true);
+    downloadRequest.open("POST", api2_app, true);
     downloadRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     downloadRequest.addEventListener("readystatechange", () => {
       if ((downloadRequest.readyState===4)&&(downloadRequest.status===200)) {
         var ddResponse=downloadRequest.response;
         let ddFiles=ddResponse.apps[0].files;
-        if ((ddFiles!='')||(ddFiles!='[]')) {
+        if (localStorage.getItem('ef-api2')=='true') {
+          if (ddFiles!=null) {
+            ddFiles=JSON.parse(ddFiles);
+            for(let i=0; i<ddFiles.length; i++) {
+
+              if (ddFiles[i].file==selectedFile) {
+                if (ddFiles[i].file.includes('http')==true) {
+                  window.open(ddFiles[i].file);
+                } else {
+                  window.open('https://tstore.space/'+ddFiles[i].file);
+                  addToLibrary(appid);
+                }
+                break;
+              }
+
+            }
+          }
+        } else if ((ddFiles!='')||(ddFiles!='[]')) {
           ddFiles=JSON.parse(ddFiles);
           for(let i=0; i<ddFiles.files.length; i++) {
 
@@ -759,6 +1021,7 @@ function download (appid) {
               } else {
                 window.open('https://tstore.space/'+ddFiles.files[i].file);
                 addToLibrary(appid);
+                popup('Начало загрузки...', 'cloud-arrow-down', 'small');
               }
               break;
             }
@@ -768,13 +1031,15 @@ function download (appid) {
       }
     });
     downloadRequest.send(dqData);
+  } else {
+    popup('Войдите в аккаунт', 'sign-in');
   }
 }
 
 /* НАСТРОЙКИ */
 function checkPars() {
 
-  let params = ['ef-redirect', 'top_navbar', 'debug', 'slow_network', 'ef-api2'];
+  let params = ['ef-redirect', 'top_navbar', 'debug', 'slow_network', 'ef-api2', 'ef-pages'];
 
   for (var i = 0; i < params.length; i++) {
 
@@ -810,25 +1075,23 @@ function efNavigationBar() {
     if (currentScrollPos < 0) {
       currentScrollPos=0;
     }
-    if (prevScrollpos > currentScrollPos) {
+    if ((prevScrollpos > currentScrollPos)&&(currentScrollPos > 120)) {
       document.getElementById('nav-bar').style.bottom="var(--bottom)";
-      document.getElementById('search-nav-bar').style.bottom="var(--bottom)";
       let iconId='house';
       if (selHC=='apps') { iconId='squares-four'; } else if (selHC=='games') { iconId='game-controller'; } else if (selHC=='search') { iconId='magnifying-glass'; }
-      document.getElementById('nav-index').className='';
+      document.getElementById('nav-home').className='';
       document.getElementById('nav-apps').className='';
       document.getElementById('nav-games').className='';
       document.getElementById('nav-search').className='';
 
-      document.getElementById('nav-index').className='ph-house-light ui-nav-icon ui-nav-icon-highlight';
+      document.getElementById('nav-home').className='ph-house-light ui-nav-icon ui-nav-icon-highlight';
       document.getElementById('nav-apps').className='ph-squares-four-light ui-nav-icon ui-nav-icon-highlight';
       document.getElementById('nav-search').className='ph-magnifying-glass-light ui-nav-icon ui-nav-icon-highlight';
       document.getElementById('nav-games').className='ph-game-controller ui-nav-icon ui-nav-icon-highlight';
       document.getElementById('nav-'+selHC).className='ph-'+iconId+'-fill ui-nav-icon ui-nav-icon-highlight';
     } else {
       document.getElementById('nav-bar').style.bottom="-70px";
-      document.getElementById('search-nav-bar').style.bottom="-70px";
-      document.getElementById('nav-index').className='';
+      document.getElementById('nav-home').className='';
       document.getElementById('nav-search').className='';
       document.getElementById('nav-apps').className='';
       document.getElementById('nav-games').className='';

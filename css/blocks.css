@@ -679,6 +679,8 @@
   border-radius: 100%;
   color: gray;
   cursor: pointer;
+  /************/
+  display: none;
 }
 .agg > .ph-flag-bold:hover, .agg > .ph-flag-bold:focus {
   background: var(--bg_hover);

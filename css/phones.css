@@ -11,8 +11,9 @@ button {
 }
 
 .hm-card {
-  flex: 0 0 100%;
-  max-width: 100%;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 .hm-card-img {
   height: 380px;
@@ -61,7 +62,7 @@ button {
   left: 0;
   border-radius: 0;
   box-shadow: none;
-  background: var(--nav-bg);
+  background: var(--bg_nav);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   height: 56px;
@@ -246,4 +247,34 @@ input[type=text], input[type=password] {
 
   width: calc(100% - 16px);
   border-radius: 24px;
+}
+
+
+#ts-top_nav > a {
+  flex-basis: none;
+  white-space: none;
+  overflow: none;
+  width: 33%;
+}
+
+#ts-top_nav > a > i {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+#ts-top_nav > a > p {
+  margin-right: 16px;
+}
+@media (max-width: 400px) {
+
+  #ts-top_nav > a > p {
+    display: none;
+  }
+
+}
+
+#ts-top_nav {
+  display: none;
+}
+.fake_search {
+  margin-top: 16px;
 }

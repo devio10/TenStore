@@ -27,3 +27,7 @@ if (code!=null) {
 if (code=='success') {
   moreConfetti();
 }
+
+function efNavigationBar() {
+  
+}
