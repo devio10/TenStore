@@ -84,7 +84,7 @@ function saveAccount() {
         loadbox('end');
         popup('Вход выполнен', 'check');
         if (window.history.length==1) {
-          window.open('https://tstore.space/3rd/', '_self');
+          window.open('https://tstore.space/', '_self');
         } else {
           window.history.back();
         }

@@ -3,12 +3,12 @@ function checkTheme (page) {
   if (userPrefersDark) {
     document.documentElement.setAttribute('dark-theme', 'true');
     if (page==null) {
-      document.getElementById('tab-icon').href='img/store-dark.svg';
+      document.getElementById('header_logo').src='img/tenstore_header_dark.svg';
     }
 
   } else {
     if (page==null) {
-      document.getElementById('tab-icon').href='img/store-light.svg';
+      document.getElementById('header_logo').src='img/tenstore_header.svg';
     }
   }
 }
@@ -17,13 +17,13 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     const newColorScheme=e.matches?'dark':'light';
     if (newColorScheme=='dark') {
       document.documentElement.setAttribute('dark-theme', 'true');
-      if (page==null) {
-        document.getElementById('tab-icon').href='img/store-dark.svg';
+      if (document.getElementById('header_logo')!=null) {
+        document.getElementById('header_logo').src='img/tenstore_header_dark.svg';
       }
     } else {
       document.documentElement.setAttribute('dark-theme', 'false');
-      if (page==null) {
-        document.getElementById('tab-icon').href='img/store-light.svg';
+      if (document.getElementById('header_logo')!=null) {
+        document.getElementById('header_logo').src='img/tenstore_header.svg';
       }
     }
 });

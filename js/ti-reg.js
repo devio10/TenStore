@@ -1,7 +1,32 @@
+const userPrefersDark=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+function checkTheme (page) {
+  if (userPrefersDark) {
+    document.documentElement.setAttribute('dark-theme', 'true');
+    document.getElementById('header_logo').src='img/tenid_header_darktheme.svg';
+  } else {
+    document.getElementById('header_logo').src='img/tenid_header_whitetheme.svg';
+  }
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const newColorScheme=e.matches?'dark':'light';
+    if (newColorScheme=='dark') {
+      document.documentElement.setAttribute('dark-theme', 'true');
+      if (document.getElementById('header_logo')!=null) {
+        document.getElementById('header_logo').src='img/tenid_header_darktheme.svg';
+      }
+    } else {
+      document.documentElement.setAttribute('dark-theme', 'false');
+      if (document.getElementById('header_logo')!=null) {
+        document.getElementById('header_logo').src='img/tenid_header_whitetheme.svg';
+      }
+    }
+});
+
 checkTheme('f');
 checkPlatform('f');
 login('reg');
-var api='https://tstore.space/api.php';
+var api='http://tenid.tstore.space/register.php';
 function checkData(type, source) {
   if (type=='email') {
     source=document.getElementById('reg-email').value;

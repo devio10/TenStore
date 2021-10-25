@@ -12,7 +12,7 @@ var showFull='<a onclick="toggleDescription()"> Показать полност�
 var hideFull='<a onclick="toggleDescription()"> Скрыть</a>';
 var curDescType='short';
 var selectedPlatform=localStorage.getItem('platform');
-let selectedFile;
+var selectedFile;
 function toggleAB (dontPushHistory) {
  let abBg=document.getElementById('app-block-bg');
  currentAppScreen='index';
@@ -36,7 +36,7 @@ function toggleAB (dontPushHistory) {
    body.style.overflow='auto';
    toggleScrolling('add');
    if (dontPushHistory!=true) {
-     window.history.pushState(null, '', 'https://tstore.space/3rd/');
+     window.history.pushState(null, '', 'https://tstore.space/');
    }
  } else {
    loadScreen.style.display='flex';
@@ -52,57 +52,21 @@ function showAB(appid, dontPushHistory) {
   if (dontPushHistory!=true) { window.history.pushState(null, null, '?id='+appid); }
 
   toggleAB();
+  document.getElementById('above_reviews').innerHTML=`
+    <button onclick="newReview()" class="big_btn">
+      <i class="ph-chats-teardrop-bold ub-openbtn new_review-anim"></i>
+      <h4 class="ub-btn-txt focus new_review-anim">Поделитесь мнением</h4>
+    </button>
+  `;
 
-  if (localStorage.getItem('debug')=='true') {
-
-    loadScreen.style.display='none';
-    indexScreen.style.display='block';
-    let abHeader=document.getElementById('ab-header');
-    abHeader.style.background="url(https://tstore.space/images/headers/10.jpg)";
-    abHeader.style.backgroundPosition='center';
-    abHeader.style.backgroundRepeat='no-repeat';
-    abHeader.style.backgroundSize='cover';
-    abHeader.style.display='block';
-    document.getElementById('topcontent').style.marginTop='0';
-
-    document.getElementById('above_reviews').innerHTML=`
-      <div class="ab-review" style="border: 1px solid rgba(67,160,71, 0.5)">
-        <div class="abb">
-          <i class="review_icon ph-thumbs-up green"></i>
-          <h3 class='rev-title'>Feels good</h3>
-        </div>
-        <h5 class='rev-text'>Example review. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
-        <div class="agg">
-          <h5 class='rev-author'>Debug_User, 7 августа</h5>
-        </div>
-        <div class="review_btns">
-          <button onclick="removeReview(${appid})"><i class="ph-trash"></i><p>Удалить</p></button>
-          <button onclick="editReview()"><i class="ph-pencil-bold"></i><p>Редактировать</p></button>
-        </div>
-      </div>
-    `;
-
-  } else {
-    document.getElementById('above_reviews').innerHTML=`
-      <button onclick="newReview()" class="big_btn">
-        <i class="ph-chats-teardrop-bold ub-openbtn new_review-anim"></i>
-        <h4 class="ub-btn-txt focus new_review-anim">Поделитесь мнением</h4>
-      </button>
-    `;
-  }
   document.getElementById('ab-platform-select').style.display='none';
 
   var selected_presence=0;
   /* обращение к серверу */
   var appBlock=new XMLHttpRequest();
-  var abPars='action=4LlFCT&id='+appid;
+  var abPars=`id=${appid}&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}`;
   appBlock.responseType = "json";
-  if (localStorage.getItem('ef-api2')=='true') {
-    abPars=`id=${appid}`;
-    appBlock.open("POST", api2_app, true);
-  } else {
-    appBlock.open("POST", api, true);
-  }
+  appBlock.open("POST", api2_app, true);
   appBlock.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   appBlock.addEventListener("readystatechange", () => {
@@ -139,6 +103,11 @@ function showAB(appid, dontPushHistory) {
         } else {
           abIcon.src='img/prohibit.svg';
         }
+
+        document.getElementById('ab-download').disabled=false;
+        document.getElementById('ab-platform-select').style.display='block';
+        document.getElementById('ab-platform').style.display='block';
+        document.getElementById('ab-bookmark').children[0].className='ph-bookmark ub-openbtn ab-download-icon';
 
         document.getElementById('ab-error').style.display='none';
 
@@ -180,8 +149,7 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('ab-share_btn').setAttribute('onclick', `abShare(${appid}, '${appData.apps[0].name}')`);
         curscr=0;
         let scrsData=appData.apps[0].screenshots;
-        if (localStorage.getItem('ef-api2')=='true') {
-          if(scrsData!=null){
+        if(scrsData!=null){
           var screenshots=JSON.parse(scrsData);
           for(let s in screenshots) {
             lastscr=s;
@@ -201,268 +169,135 @@ function showAB(appid, dontPushHistory) {
             document.getElementById('ab-scrs').appendChild(screenshot);
             document.getElementById('scrs-pag').appendChild(scrDot);
             document.getElementById('scrs-block').style.display='block';
-        }}}
-        else{
-        if ((scrsData!='[]')||(scrsData!='')) {
-          var screenshots=JSON.parse(scrsData);
-          for(let s in screenshots.scr) {
-            lastscr=s;
-            var screenshot=document.createElement('img');
-            var scrDot=document.createElement('div');
-            if (s==0) {
-              scrDot.className='scr-dot scr-dot-active';
-            } else {
-              scrDot.className='scr-dot';
-            }
-            scrDot.setAttribute('onclick', 'switchScreenshot('+s+')');
-            scrDot.id='dot-'+s;
-            screenshot.className='ab-scr';
-            screenshot.id='scr-'+s;
-            screenshot.setAttribute('onclick',"openScreenshot('https://tstore.space/"+screenshots.scr[s].image+"')");
-            screenshot.src='https://tstore.space/'+screenshots.scr[s].image;
-            document.getElementById('ab-scrs').appendChild(screenshot);
-            document.getElementById('scrs-pag').appendChild(scrDot);
-            document.getElementById('scrs-block').style.display='block';
           }
-        }}
+        }
+
+        document.getElementById('ab-bookmark').setAttribute('onclick', `add_to_saved('${appid}')`);
 
         document.getElementById('ab-reviews').innerHTML='';
         let revJson=appData.apps[0].comments;
-        if (localStorage.getItem('ef-api2')=='true') {
-          if (revJson!=null) {
+        if (revJson!=null) {
 
-            const revs=JSON.parse(revJson);
-            for(let c in revs) {
+          const revs=JSON.parse(revJson);
+          for(let c in revs) {
 
-                  if (c==2) {
+            if (c==2) {
 
-                    let showFull = document.createElement('button');
-                    showFull.id = 'ab-reviews-btn';
-                    showFull.setAttribute('onclick', 'toggleReviews()');
-                    showFull.innerHTML = `<i class="ph-caret-down-bold"></i><p>Показать полностью</p>`;
-                    document.getElementById('ab-reviews').appendChild(showFull);
+              let showFull = document.createElement('button');
+              showFull.id = 'ab-reviews-btn';
+              showFull.setAttribute('onclick', 'toggleReviews()');
+              showFull.innerHTML = `<i class="ph-caret-down-bold"></i><p>Показать полностью</p>`;
+              document.getElementById('ab-reviews').appendChild(showFull);
 
-                  }
+            }
 
-                  let currentTime=new Date();
-                  let revDate=revs[c].date;
-                  let clearRevDate=revDate.substr(revDate.length - 6);
-                  if (currentTime.getFullYear() == clearRevDate.substring(0, clearRevDate.length - 2)) {
-                    revDate=', '+revDate.slice(0, - 7);
-                  } else {
-                    revDate=', '+revDate;
-                  }
+            let currentTime=new Date();
+            let revDate=revs[c].date;
+            let clearRevDate=revDate.substr(revDate.length - 6);
+            if (currentTime.getFullYear() == clearRevDate.substring(0, clearRevDate.length - 2)) {
+              revDate=', '+revDate.slice(0, - 7);
+            } else {
+              revDate=', '+revDate;
+            }
 
-                  var reviewObj=document.createElement('div');
-                  reviewObj.className='ab-review';
+            var reviewObj=document.createElement('div');
+            reviewObj.className='ab-review';
 
-                  let revType='down red';
-                  if (revs[c].isLiked=='1') {
-                    revType='up green';
-                    reviewObj.style.border='1px solid rgba(67,160,71, 0.5)';
-                  }
+            let revType='down red';
+            if (revs[c].isLiked=='1') {
+              revType='up green';
+              reviewObj.style.border='1px solid rgba(67,160,71, 0.5)';
+            }
 
 
-                  if (revs[c].login!=localStorage.getItem('login')) {
+            if (revs[c].login!=localStorage.getItem('login')) {
 
-                    reviewObj.innerHTML= `
-                      <div class="abb">
-                        <i class="review_icon ph-thumbs-${revType}"></i>
-                        <h3 class='rev-title'>${revs[c].title}</h3>
-                      </div>
-                      <h5 class='rev-text'>${revs[c].text}</h5>
-                      <div class="agg">
-                        <h5 class='rev-author'>${revs[c].login}${revDate}</h5>
-                        <i onclick='reportReview()' class="ph-flag-bold"></i>
-                      </div>
-                    `;
+              reviewObj.innerHTML= `
+                <div class="abb">
+                  <i class="review_icon ph-thumbs-${revType}"></i>
+                  <h3 class='rev-title'>${revs[c].title}</h3>
+                </div>
+                <h5 class='rev-text'>${revs[c].text}</h5>
+                <div class="agg">
+                  <h5 class='rev-author'>${revs[c].login}${revDate}</h5>
+                  <i onclick='reportReview()' class="ph-flag-bold"></i>
+                </div>
+              `;
 
-                    document.getElementById('ab-reviews').appendChild(reviewObj);
+              document.getElementById('ab-reviews').appendChild(reviewObj);
 
-                  } else {
+            } else {
 
-                    reviewObj.innerHTML= `
-                      <div class="abb">
-                        <i id='my_rev_rate' class="review_icon ph-thumbs-${revType}"></i>
-                        <h3 id='my_rev_title' class='rev-title'>${revs[c].title}</h3>
-                      </div>
-                      <h5 id='my_rev_text' class='rev-text'>${revs[c].text}</h5>
-                      <div class="agg">
-                        <h5 class='rev-author'>${revs[c].login}${revDate}</h5>
-                      </div>
-                      <div class="review_btns">
-                        <button onclick="removeReview(${appid})"><i class="ph-trash"></i><p>Удалить</p></button>
-                        <button onclick="editReview()"><i class="ph-pencil-bold"></i><p>Редактировать</p></button>
-                      </div>
-                    `;
+              reviewObj.innerHTML= `
+                <div class="abb">
+                  <i id='my_rev_rate' class="review_icon ph-thumbs-${revType}"></i>
+                  <h3 id='my_rev_title' class='rev-title'>${revs[c].title}</h3>
+                </div>
+                <h5 id='my_rev_text' class='rev-text'>${revs[c].text}</h5>
+                <div class="agg">
+                  <h5 class='rev-author'>${revs[c].login}${revDate}</h5>
+                </div>
+                <div class="review_btns">
+                  <button onclick="removeReview(${appid})"><i class="ph-trash"></i><p>Удалить</p></button>
+                  <button onclick="editReview()"><i class="ph-pencil-bold"></i><p>Редактировать</p></button>
+                </div>
+              `;
 
-                    document.getElementById('above_reviews').innerHTML='';
-                    document.getElementById('above_reviews').appendChild(reviewObj);
+              document.getElementById('above_reviews').innerHTML='';
+              document.getElementById('above_reviews').appendChild(reviewObj);
 
-                  }
+            }
 
-                  document.getElementById('ab-no-reviews').style.display='none';
-                }}
-        } else if (revJson!=0) {
-        const revs=JSON.parse(revJson);
-        for(let c in revs.comments) {
-
-          if (c==2) {
-
-            let showFull = document.createElement('button');
-            showFull.id = 'ab-reviews-btn';
-            showFull.setAttribute('onclick', 'toggleReviews()');
-            showFull.innerHTML = `<i class="ph-caret-down-bold"></i><p>Показать полностью</p>`;
-            document.getElementById('ab-reviews').appendChild(showFull);
+            document.getElementById('ab-no-reviews').style.display='none';
 
           }
-
-          let currentTime=new Date();
-          let revDate=revs.comments[c].date;
-          let clearRevDate=revDate.substr(revDate.length - 6);
-          if (currentTime.getFullYear() == clearRevDate.substring(0, clearRevDate.length - 2)) {
-            revDate=', '+revDate.slice(0, - 7);
-          } else {
-            revDate=', '+revDate;
-          }
-
-          var reviewObj=document.createElement('div');
-          reviewObj.className='ab-review';
-
-          let revType='down red';
-          if (revs.comments[c].isLiked=='1') {
-            revType='up green';
-            reviewObj.style.border='1px solid rgba(67,160,71, 0.5)';
-          }
-
-
-          if (revs.comments[c].login!=localStorage.getItem('login')) {
-
-            reviewObj.innerHTML= `
-              <div class="abb">
-                <i class="review_icon ph-thumbs-${revType}"></i>
-                <h3 class='rev-title'>${revs.comments[c].title}</h3>
-              </div>
-              <h5 class='rev-text'>${revs.comments[c].comment}</h5>
-              <div class="agg">
-                <h5 class='rev-author'>${revs.comments[c].login}${revDate}</h5>
-                <i onclick='reportReview()' class="ph-flag-bold"></i>
-              </div>
-            `;
-
-            document.getElementById('ab-reviews').appendChild(reviewObj);
-
-          } else {
-
-            reviewObj.innerHTML= `
-              <div class="abb">
-                <i id='my_rev_rate' class="review_icon ph-thumbs-${revType}"></i>
-                <h3 id='my_rev_title' class='rev-title'>${revs.comments[c].title}</h3>
-              </div>
-              <h5 id='my_rev_text' class='rev-text'>${revs.comments[c].comment}</h5>
-              <div class="agg">
-                <h5 class='rev-author'>${revs.comments[c].login}${revDate}</h5>
-              </div>
-              <div class="review_btns">
-                <button onclick="removeReview(${appid})"><i class="ph-trash"></i><p>Удалить</p></button>
-                <button onclick="editReview()"><i class="ph-pencil-bold"></i><p>Редактировать</p></button>
-              </div>
-            `;
-
-            document.getElementById('above_reviews').innerHTML='';
-            document.getElementById('above_reviews').appendChild(reviewObj);
-
-          }
-
-          document.getElementById('ab-no-reviews').style.display='none';
         }
-        }
+
 
         selectedPlatform=localStorage.getItem('platform');
         document.getElementById('ab-platforms').innerHTML='';
         let filesjson=appData.apps[0].files;
-        if (localStorage.getItem('ef-api2')=='true') {
-          if (filesjson!=null) {
-            let psJson=JSON.parse(appData.apps[0].files);
-
-            for (var i = 0; i < psJson.length; i++) {
-
-              let psItem=document.createElement('div');
-              let psBlock;
-              if ((psJson[i].platform==selectedPlatform)&&(selected_presence!=1)) {
-                setPlatformIcon(psJson[i].platform);
-                psItem.className='platform-check selected';
-                selected_presence=1;
-                selectedFile=psJson[i].file;
-                if ((psJson[i].architecture!='')&&(psJson[i].name=='')) {
-                  document.getElementById('ab-platform').innerText=`${psJson[i].platform} (${psJson[i].architecture})`;
-                } else if (psJson[i].name=='') {
-                  document.getElementById('ab-platform').innerText=psJson[i].platform;
-                } else {
-                  document.getElementById('ab-platform').innerText=psJson[i].name;
-                }
-                document.getElementById('ab-platform-info').innerText=psJson[i].size+' МБ, '+psJson[i].date[0];
-              } else {
-                psItem.className='platform-check';
-              }
-              let file_name;
-              if ((psJson[i].architecture!='')&&(psJson[i].name=='')) {
-                file_name=`${psJson[i].platform} (${psJson[i].architecture})`;
-              } else if (psJson[i].name=='') {
-                file_name=psJson[i].platform;
-              } else {
-                file_name=psJson[i].name;
-              }
-              psItem.innerText=file_name;
-              psItem.setAttribute('onclick',`selectPlatform("${psJson[i].platform}", "${file_name}", "${psJson[i].size}", "${psJson[i].date[0]}", "${i}")`);
-              psItem.id=`ps-${i}`;
-              document.getElementById('ab-platforms').appendChild(psItem);
-
-            }
-
-            if (psJson.length > 0) {
-              document.getElementById('ab-platform-select').style.display='block';
-            }
-          } else {
-            document.getElementById('ab-download').disabled=true;
-            document.getElementById('ab-platform-select').style.display='none';
-            document.getElementById('ab-platform').style.display='none';
-          }
-        } else if (filesjson!='{}') {
+        if (filesjson!=null) {
           let psJson=JSON.parse(appData.apps[0].files);
-          for (var i = 0; i < psJson.files.length; i++) {
+
+          for (var i = 0; i < psJson.length; i++) {
+
             let psItem=document.createElement('div');
             let psBlock;
-            if ((psJson.files[i].platform==selectedPlatform)&&(selected_presence!=1)) {
-
-              selected_presence=1;
-              console.log('Выбрана платформа');
+            if ((psJson[i].platform==selectedPlatform)&&(selected_presence!=1)) {
+              setPlatformIcon(psJson[i].platform);
               psItem.className='platform-check selected';
-              selectedFile=psJson.files[i].file;
-
-              if (psJson.files[i].architecture!='') {
-                document.getElementById('ab-platform').innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+              selected_presence=1;
+              selectedFile=psJson[i].file;
+              if ((psJson[i].architecture!='')&&(psJson[i].name=='')) {
+                document.getElementById('ab-platform').innerText=`${psJson[i].platform} (${psJson[i].architecture})`;
+              } else if (psJson[i].name=='') {
+                document.getElementById('ab-platform').innerText=psJson[i].platform;
               } else {
-                document.getElementById('ab-platform').innerText=psJson.files[i].platform;
+                document.getElementById('ab-platform').innerText=psJson[i].name;
               }
-
-              document.getElementById('ab-platform-info').innerText=psJson.files[i].size+' МБ, '+psJson.files[i].published;
-
+              document.getElementById('ab-platform-info').innerText=psJson[i].size+' МБ, '+psJson[i].date[0];
             } else {
               psItem.className='platform-check';
             }
-            if (psJson.files[i].architecture!='') {
-              psItem.innerText=psJson.files[i].platform+' ('+psJson.files[i].architecture+')';
+            let file_name;
+            if ((psJson[i].architecture!='')&&(psJson[i].name=='')) {
+              file_name=`${psJson[i].platform} (${psJson[i].architecture})`;
+            } else if (psJson[i].name=='') {
+              file_name=psJson[i].platform;
             } else {
-              psItem.innerText=psJson.files[i].platform;
+              file_name=psJson[i].name;
             }
-            psItem.setAttribute('onclick',`selectPlatform("${psJson.files[i].platform}", "${psJson.files[i].file}", "${psJson.files[i].architecture}", "${psJson.files[i].size}", "${psJson.files[i].published}", "${i}")`);
+            psItem.innerText=file_name;
+            psItem.setAttribute('onclick',`selectPlatform("${psJson[i].platform}", "${file_name}", "${psJson[i].size}", "${psJson[i].date[0]}", "${i}", "${psJson[i].file}")`);
             psItem.id=`ps-${i}`;
             document.getElementById('ab-platforms').appendChild(psItem);
+
           }
-          if (psJson.files.length > 0) {
+
+          if (psJson.length > 0) {
             document.getElementById('ab-platform-select').style.display='block';
-          }
+        }
         } else {
           document.getElementById('ab-download').disabled=true;
           document.getElementById('ab-platform-select').style.display='none';
@@ -474,7 +309,7 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('si-dev-name').innerText=appData.apps[0].dev;
         document.getElementById('si-downloads').innerText=appData.apps[0].downloads;
 
-        document.getElementById('ab-download').setAttribute('onclick',"download("+appid+")");
+        document.getElementById('ab-download').setAttribute('onclick',`download(${appid})`);
         document.getElementById('send-review').setAttribute('onclick',"sendReview("+appid+")");
 
         loadScreen.style.display='none';
@@ -535,14 +370,14 @@ function setPlatformIcon(arc) {
   document.getElementById('ab-file-icon').style.backgroundColor=bg;
 
 }
-function selectPlatform(platform_name, fileName, psSize, psDate, file_id) {
+function selectPlatform(platform_name, fileName, psSize, psDate, file_id, file_path) {
   const highlightedItems=document.querySelectorAll(".platform-check");
   highlightedItems.forEach(function(userItem) {
     hiId=userItem.id;
     document.getElementById(hiId).className='platform-check';
   });
   document.getElementById(`ps-${file_id}`).className='platform-check selected';
-  selectedFile=fileName;
+  selectedFile=file_path;
   document.getElementById('ab-platform').innerText=fileName;
   document.getElementById('ab-platform-info').innerText=psSize+' МБ, '+psDate;
   platforms();
@@ -629,14 +464,14 @@ function abShare(appid, name) {
 
 
   /* QR CODE */
-  document.getElementById('share-qr_code').src=`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=https://tstore.space/3rd/?id=${appid}`;
+  document.getElementById('share-qr_code').src=`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=https://tstore.space/?id=${appid}`;
   document.getElementById('share-name').innerText=name;
-  document.getElementById('share-link').value='https://tstore.space/3rd/?id='+appid;
+  document.getElementById('share-link').value='https://tstore.space/?id='+appid;
 
-  document.getElementById('twitter').setAttribute('onclick', `window.open('https://twitter.com/intent/tweet?text=https://tstore.space/3rd/?id=${appid}', '_blank')`);
-  document.getElementById('viber').setAttribute('onclick', `window.open('viber://forward?text=https://tstore.space/3rd/?id=${appid}')`);
-  document.getElementById('telegram').setAttribute('onclick', `window.open('https://t.me/share/url?url=https://tstore.space/3rd/?id=${appid}', '_blank')`);
-  document.getElementById('vk').setAttribute('onclick', `window.open('https://vk.com/share.php?url=https://tstore.space/3rd/?id=${appid}', '_blank')`);
+  document.getElementById('twitter').setAttribute('onclick', `window.open('https://twitter.com/intent/tweet?text=https://tstore.space/?id=${appid}', '_blank')`);
+  document.getElementById('viber').setAttribute('onclick', `window.open('viber://forward?text=https://tstore.space/?id=${appid}')`);
+  document.getElementById('telegram').setAttribute('onclick', `window.open('https://t.me/share/url?url=https://tstore.space/?id=${appid}', '_blank')`);
+  document.getElementById('vk').setAttribute('onclick', `window.open('https://vk.com/share.php?url=https://tstore.space/?id=${appid}', '_blank')`);
 
   if (platform=='mobile') {
     positions=0;
@@ -978,15 +813,125 @@ function sendReview(appid, remove) {
   }
 }
 
-function addToLibrary (appid) {
+function addToLibrary (appid, action, item_id, show_popup) {
+  var lib_req=new XMLHttpRequest();
+
+  if (action==null) {
+    action='add';
+  }
+  let lib_pars=`action=${action}&id=${appid}&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}`;
+
+  lib_req.responseType='text';
+  lib_req.open('POST', api2_lib, true);
+  lib_req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  lib_req.addEventListener("readystatechange", () => {
+    if ((lib_req.readyState===4)&&(lib_req.status===200)) {
+      if (action != 'delete') {
+        let lib_response = lib_req.response;
+        if (lib_response=='success') {
+          popup('Приложение добавлено в библиотеку', 'books', 'small');
+        } else {
+          popup('Начало загрузки...', 'cloud-arrow-down', 'small');
+        }
+      } else if (action == 'delete_all') {
+        popup('Библиотека очищена', 'trash', 'small');
+        remove_app_item('all');
+      } else {
+        popup('Приложение удалено из библиотеки', 'trash', 'small');
+        remove_app_item(item_id);
+      }
+
+    }
+  });
+  lib_req.send(lib_pars);
+}
+function add_to_saved(appid, action, item_id) {
+
+
+  let saved_req=new XMLHttpRequest();
+
+  if (action==null) {
+    action='add';
+  }
+  let saved_pars=`action=${action}&id=${appid}&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}`;
+
+
+  saved_req.responseType='text';
+  saved_req.open('POST', api2_saved, true);
+  saved_req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  saved_req.addEventListener("readystatechange", () => {
+    if ((saved_req.readyState===4)&&(saved_req.status===200)) {
+
+      let button = document.getElementById('ab-bookmark').children[0];
+
+      let saved_response = saved_req.response;
+      if ((action!='delete')&&(action!='delete_all')) {
+
+        if (saved_response=='success') {
+          popup('Приложение добавлено в закладки', 'bookmark-fill', 'small');
+          button.className='ph-bookmark-fill red ub-openbtn ab-download-icon';
+        } else {
+          add_to_saved(appid, 'delete');
+        }
+
+      } else if ((action=='delete')&&(item_id==null)) {
+
+        popup('Приложение удалено из закладок', 'bookmark', 'small');
+        button.className='ph-bookmark ub-openbtn ab-download-icon';
+
+      } else if ((action=='delete')&&(item_id!=null)) {
+
+        popup('Приложение удалено из закладок', 'bookmark', 'small');
+        remove_app_item(item_id);
+
+      } else if ((action=='check')&&(saved_response=='true')) {
+        button.className='ph-bookmark-fill red ub-openbtn ab-download-icon';
+      } else if (action=='delete_all') {
+        popup('Закладки очищены', 'trash', 'small');
+        document.getElementById('list-block').innerHTML='';
+        document.getElementById('list-noitems').style.display='flex';
+      } else {
+        button.className='ph-bookmark ub-openbtn ab-download-icon';
+      }
+
+
+    }
+  });
+  saved_req.send(saved_pars);
+}
+function remove_app_item (item_id, list_name) {
+
+  if (item_id!='all') {
+
+    document.getElementById(`el_${item_id}`).classList.toggle('remove_app_item');
+    setTimeout(function () {
+      document.getElementById(`el_${item_id}`).remove();
+    }, 300);
+    let list_vars = [list_names, list_devs, list_dates, list_downloads];
+    let ulist_vars = [ulist_names, ulist_devs, ulist_dates, ulist_downloads];
+    for (var i = 0; i < list_vars.length; i++) {
+      list_vars[i].splice(item_id, 1);
+    }
+
+  } else {
+
+    for (var i = 0; i < list_names.length; i++) {
+      document.getElementById(`el_${i}`).style.animationName='history-item-hide';
+      let delay=i * (0.3 / list_names.length);
+      document.getElementById(`el_${i}`).style.animationDelay=`${delay}s`;
+    }
+    setTimeout(function () {
+      toggleList();
+      showList(list_name, true);
+    }, 1000);
+
+  }
 
 }
-
-function download (appid) {
+function download (appid, is_download_all) {
   if (loggedIn==true) {
     var downloadRequest=new XMLHttpRequest();
     var dqData=`id=${appid}&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}`;
-    console.log(dqData);
     downloadRequest.responseType = "json";
     downloadRequest.open("POST", api2_app, true);
     downloadRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -994,40 +939,24 @@ function download (appid) {
       if ((downloadRequest.readyState===4)&&(downloadRequest.status===200)) {
         var ddResponse=downloadRequest.response;
         let ddFiles=ddResponse.apps[0].files;
-        if (localStorage.getItem('ef-api2')=='true') {
-          if (ddFiles!=null) {
-            ddFiles=JSON.parse(ddFiles);
-            for(let i=0; i<ddFiles.length; i++) {
 
-              if (ddFiles[i].file==selectedFile) {
-                if (ddFiles[i].file.includes('http')==true) {
-                  window.open(ddFiles[i].file);
-                } else {
-                  window.open('https://tstore.space/'+ddFiles[i].file);
-                  addToLibrary(appid);
-                }
-                break;
-              }
+        ddFiles=JSON.parse(ddFiles);
+        for(let i=0; i<ddFiles.length; i++) {
 
+          if (ddFiles[i].file==selectedFile) {
+            if (ddFiles[i].file.includes('http')==true) {
+              window.open(ddFiles[i].file);
+            } else {
+              window.open('https://tstore.space/'+ddFiles[i].file);
             }
-          }
-        } else if ((ddFiles!='')||(ddFiles!='[]')) {
-          ddFiles=JSON.parse(ddFiles);
-          for(let i=0; i<ddFiles.files.length; i++) {
-
-            if (ddFiles.files[i].file==selectedFile) {
-              if (ddFiles.files[i].file.includes('http')==true) {
-                window.open(ddFiles.files[i].file);
-              } else {
-                window.open('https://tstore.space/'+ddFiles.files[i].file);
-                addToLibrary(appid);
-                popup('Начало загрузки...', 'cloud-arrow-down', 'small');
-              }
-              break;
+            if (is_download_all!=true) {
+              addToLibrary(appid, null, null);
             }
-
+            break;
           }
+
         }
+
       }
     });
     downloadRequest.send(dqData);
@@ -1039,7 +968,7 @@ function download (appid) {
 /* НАСТРОЙКИ */
 function checkPars() {
 
-  let params = ['ef-redirect', 'top_navbar', 'debug', 'slow_network', 'ef-api2', 'ef-pages'];
+  let params = ['top_navbar', 'debug', 'slow_network'];
 
   for (var i = 0; i < params.length; i++) {
 
@@ -1100,33 +1029,38 @@ function efNavigationBar() {
   }
 }
 
+var list_names = [];
+var list_devs = [];
+var list_dates = [];
+var list_downloads = [];
+var list_ids = [];
 
-function showList(list_name) {
+var ulist_names = [];
+var ulist_devs = [];
+var ulist_dates = [];
+var ulist_downloads = [];
+function showList(list_name, dontPushHistory) {
+
+  if (dontPushHistory!=true) { window.history.pushState(null, null, `?list=${list_name}`); }
 
   toggleList();
-  sortby('date');
-
-  loadScrn.style.display='none';
-  mainScrn.style.display='block';
-
   if (list_name=='saved') {
-
 
     /* закладки */
     document.getElementById('btn_list_removeall').style.display='flex';
     document.getElementById('btn_list_checkupdates').style.display='none';
-    document.getElementById('btn_list_downloadall').style.display='flex';
+    document.getElementById('btn_list_downloadall').style.display='none'; // TODO
 
     document.getElementById('list_title').innerText='Закладки';
     document.getElementById('list-header').style.background='linear-gradient(135deg, rgb(229,57,53) 0%, #ff2824 100%)';
     document.getElementById('list_icon').src='img/icons/bookmarks.svg';
     document.getElementById('list_icon').style.boxShadow='0px 10px 29px 6px rgba(229, 57, 53, 0.15)';
 
-
   } else if (list_name=='library') {
 
+    /* библиотека */
     document.getElementById('btn_list_removeall').style.display='none';
-    document.getElementById('btn_list_checkupdates').style.display='flex';
+    document.getElementById('btn_list_checkupdates').style.display='none'; //TODO
     document.getElementById('btn_list_downloadall').style.display='none';
 
     document.getElementById('list_title').innerText='Библиотека';
@@ -1136,97 +1070,100 @@ function showList(list_name) {
 
   }
 
-}
-/* СПИСОК*/
-function showListOld(par1, par2, donotToggle, par3, background, font, nameColor, subColor, nameSize, dontPushHistory) {
-  if (donotToggle!=true) {
-    toggleList();
-  } else {
-    loadScrn.style.display='flex';
-    mainScrn.style.display='none';
-  }
-  if (localStorage.getItem('debug')=='true') {
-    loadScrn.style.display='none';
-    mainScrn.style.display='block';
-  }
-  let listName=document.getElementById('list-name');
-  let listHeader=document.getElementById('list-header');
-  document.getElementById('list-subtext').style.display='block';
-  document.getElementById('list-name').style.display='block';
-  document.getElementById('list-block').style.display='flex';
   document.getElementById('list-noitems').style.display='none';
-  document.getElementById('list-block').innerHTML='';
-  document.getElementById('list-subtext').innerText=par3;
-  listHeader.style.background='';
-  listHeader.style.display='none';
-  listName.style.marginTop='8px';
-  listName.style.fontSize='1.5em';
-  listName.style.color='var(--text)';
-  listName.style.fontFamily='Roboto';
-  document.getElementById('list-subtext').style.color='gray';
-  if (dontPushHistory!=true) {
-    window.history.pushState(null, '', '?list=true&par1='+par1+'&par2='+par2+'&donotToggle='+donotToggle+'&par3='+par3+'&background='+background);
-  }
-  if ((background==null)||(background==0)) {
-    listName.style.marginTop='60px';
+
+  var list_req=new XMLHttpRequest();
+  let list_pars=`action=show&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}`;
+  list_req.responseType='json';
+  if (list_name=='library') {
+    list_req.open('POST', api2_lib, true);
   } else {
-    listHeader.style.display='block';
-    listHeader.style.background='url(https://tstore.space/'+background+')';
-    listHeader.style.backgroundPosition='center';
-    listHeader.style.backgroundRepeat='no-repeat';
-    listHeader.style.backgroundSize='cover';
+    list_req.open('POST', api2_saved, true);
   }
-  var appsList=new XMLHttpRequest();
-  var listId='action=KdSqSAOC&select='+par1+'&value='+par2;
-    document.getElementById('list-name').innerHTML=par2;
-  appsList.responseType='json';
-  appsList.open('POST', api, true);
-  appsList.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  appsList.addEventListener("readystatechange", () => {
-    if ((appsList.readyState===4)&&(appsList.status===200)) {
-      var listData=appsList.response;
+  list_req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  list_req.addEventListener("readystatechange", () => {
+    if ((list_req.readyState===4)&&(list_req.status===200)) {
+
+      let list_data = list_req.response;
       loadScrn.style.display='none';
       mainScrn.style.display='block';
-      if (listData.apps!=undefined) {
-        for (let i=0; i<listData.apps.length; i++) {
+      if (list_data!=null) {
+
+        document.getElementById('list-block').innerHTML=``;
+        for (var i = 0; i < list_data.length; i++) {
+
           let iconPadding='0';
           let iconBg='white';
           let iconSize='40px';
-          let liIcon='https://tstore.space/'+listData.apps[i].icon;
-          if (listData.apps[i].icon=='') {
+          let liIcon='https://tstore.space/'+list_data[i].icon;
+          if (list_data[i].icon=='') {
             liIcon='img/prohibit.svg';
           }
-          if (listData.apps[i].icon_bg!=0) {
-            iconBg=listData.apps[i].icon_bg;
+          if (list_data[i].icon_bg!=0) {
+            iconBg=list_data[i].icon_bg;
           }
-          if (listData.apps[i].icon_pad!=0) {
+          if (list_data[i].icon_pad!=0) {
             iconPadding='5px';
             iconSize='30px';
           }
-          let appdev=listData.apps[i].dev;
-          if (listData.apps[i].pub!='') {
-            appdev=listData.apps[i].pub;
+          let appdev=list_data[i].dev;
+          if (list_data[i].sh_desc!='') {
+            appdev=list_data[i].sh_desc;
+          } else if (list_data[i].pub!='') {
+            appdev=list_data[i].pub;
           }
-          var listItem=document.createElement('div');
+          let listItem=document.createElement('div');
           listItem.className='app-item';
-          listItem.innerHTML="<img class='ai-icon' onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
-          <div class='ai-text'> <h5 onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' class='ai-name'>"+listData.apps[i].name+"</h5> <h5 onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' class='ai-dev'>"+appdev+"</h5> </div> \
-          <i onclick='toggleList(true, true); showAB("+listData.apps[i].id+")' class='ph-info ai-info'></i> <i onclick='download("+listData.apps[i].id+"); popup(`Скачивание началось`, `cloud-arrow-down`)' class='ph-cloud-arrow-down ai-down'></i>"
+          listItem.id=`el_${i}`;
+          listItem.innerHTML=`
+            <img class='ai-icon' onclick='toggleList(true, true); showAB(${list_data[i].id})' style='background: ${iconBg}; padding: ${iconPadding}; width: ${iconSize}; height: ${iconSize}' src='${liIcon}'>
+            <div class='ai-text'> <h5 onclick='toggleList(true, true); showAB(${list_data[i].id})' class='ai-name'>${list_data[i].name}</h5> <h5 onclick='toggleList(true, true); showAB(${list_data[i].id})' class='ai-dev'>${appdev}</h5> </div> \
+            <i onclick="remove_app('${list_name}', ${list_data[i].id}, ${i})" class='ph-trash ai-info'></i> <i onclick="download(${list_data[i].id}); popup('Скачивание началось', 'cloud-arrow-down')" class='ph-cloud-arrow-down ai-down'></i>
+          `;
           document.getElementById('list-block').appendChild(listItem);
+
+
+          list_names.push(list_data[i].name);
+          ulist_names.push(list_data[i].name);
+
+          list_devs.push(appdev);
+          ulist_devs.push(appdev);
+
+          list_dates.push(list_data[i].date);
+          ulist_dates.push(list_data[i].date);
+
+          list_downloads.push(list_data[i].downloads);
+          ulist_downloads.push(list_data[i].downloads);
+
+          list_ids.push(list_data[i].id);
+
+
         }
+        if (list_data.length==0) {
+          document.getElementById('list-noitems').style.display='flex';
+        }
+        sortby('date');
       } else {
         document.getElementById('list-noitems').style.display='flex';
       }
+
     }
   });
-  appsList.send(listId);
+  list_req.send(list_pars);
 }
 let currentListScreen;
 var list=document.getElementById('list');
 var loadScrn=document.getElementById('list-loading');
 var mainScrn=document.getElementById('list-main');
 
-
+function remove_app(list_name, appid, item_id) {
+  console.log(`${list_name} ${appid}`);
+  if (list_name=='library') {
+    addToLibrary(appid, 'delete', item_id);
+  } else if (list_name=='saved') {
+    add_to_saved(appid, 'delete', item_id);
+  }
+}
 function list_actions(isSort) {
 
   let obj=document.getElementById('list_actions');
@@ -1253,17 +1190,6 @@ function list_actions(isSort) {
   }
 
 }
-
-var list_names=['Music X — Музыка ВК', 'TenStore для Android', 'Orpad — блокнот', 'Spotify', 'Telegram', 'Notepads App'];
-var list_devs=['Fooxboy', 'Ten Software', 'Li_is', 'Spotify Ltd.', 'Telegram LLC', 'Jackie Liu'];
-var list_dates=[1000, 19523, 23424, 1231231, 134, 999];
-var list_downloads=[10, 0, 1, 5, 95, 11];
-//var ids=[...];
-
-var ulist_names=['Music X — Музыка ВК', 'TenStore для Android', 'Orpad — блокнот', 'Spotify', 'Telegram', 'Notepads App'];
-var ulist_devs=['Fooxboy', 'Ten Software', 'Li_is', 'Spotify Ltd.', 'Telegram LLC', 'Jackie Liu'];
-var ulist_dates=[1000, 19523, 23424, 1231231, 134, 999];
-var ulist_downloads=[10, 0, 1, 5, 95, 11];
 
 var sort_method='name';
 var sort_order='descending';
@@ -1334,6 +1260,13 @@ function list_order(direction) {
   sortby(sort_method);
 
 }
+function download_all() {
+  popup('Начало скачивания списка...', 'cloud-arrow-down', 'small');
+  for (var i = 0; i < list_ids.length; i++) {
+    download(list_ids[i], true);
+  }
+
+}
 
 function toggleList(isSearch, dontPushHistory) {
   let listBg=document.getElementById('list-block-bg');
@@ -1358,7 +1291,7 @@ function toggleList(isSearch, dontPushHistory) {
     body.style.overflow='auto';
     toggleScrolling('add');
     if (dontPushHistory!=true) {
-      window.history.pushState(null, '', 'https://tstore.space/3rd/');
+      window.history.pushState(null, '', 'https://tstore.space/');
     }
   } else {
     loadScrn.style.display='flex';
@@ -1404,7 +1337,7 @@ function toggleUB(dontPushHistory) {
     ubObj.style.opacity='.4';
     ubBgObj.style.opacity='.1';
     if (dontPushHistory!=true) {
-      window.history.pushState(null, '', 'https://tstore.space/3rd/');
+      window.history.pushState(null, '', 'https://tstore.space/');
     }
   } else {
     ubWindow('main');
@@ -1451,7 +1384,7 @@ function toggleSettings(dontPushHistory) {
     setObj.style.opacity='.4';
     setBgObj.style.opacity='.1';
     if (dontPushHistory!=true) {
-      window.history.pushState(null, '', 'https://tstore.space/3rd/');
+      window.history.pushState(null, '', 'https://tstore.space/');
     }
 
   } else {

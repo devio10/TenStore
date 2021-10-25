@@ -242,12 +242,15 @@
   margin: 100px auto 0 auto;
 }
 #ub-name {
-  margin: 32px auto 4px auto;
+  margin: 0 4px 0 0;
   font-weight: bold;
 }
 #ub-email {
   margin: 0 auto 0 auto;
   color: gray;
+}
+#ub-name:hover, #ub-email:hover {
+  text-decoration: underline;
 }
 .ub_topblock {
   width: calc(100% - 32px);
@@ -258,6 +261,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 #list-header {
   margin-top: -68px;
@@ -358,10 +362,14 @@
   color: gray;
   margin: 0 16px 0 8px;
 }
-#ab-platform-select {
+#ab-platform-select, #tenid_user_arrow {
   cursor: pointer;
   font-size: 12px;
   margin-top: 2px;
+}
+#tenid_user_arrow {
+  margin: 0;
+  font-size: 14px;
 }
 #ab-platforms {
   margin: 16px 32px 8px 32px;
@@ -889,7 +897,10 @@
   background: #455a64;
 }
 #store-icon {
-  background: var(--tenstore_accent_dark);
+  background: none;
+  padding: 0;
+  width: 26px;
+  height: 26px;
 }
 #support-icon {
   background: #616161;
@@ -920,6 +931,12 @@
   transition: .2s all cubic-bezier(0.65, 0, 0.35, 1);
   width: 44px;
   height: 44px;
+}
+#ab-download:disabled {
+  cursor: not-allowed;
+}
+#ab-download:disabled > .ab-download-icon {
+  color: gray;
 }
 #ab-bookmark {
   margin-left: 16px;
@@ -995,6 +1012,7 @@
   background: white;
   padding: 4px;
   border-radius: 4px;
+  cursor: pointer;
 }
 .ab-rating {
   width: 22px;

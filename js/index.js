@@ -11,7 +11,7 @@ function checkUrlVars() {
   if (getUrlVars()['id']!=null) {
     showAB(getUrlVars()['id'], true);
   } else if (getUrlVars()['list']!=null) {
-    showList(getUrlVars()['list']);
+    showList(getUrlVars()['list'], true);
   } else if (getUrlVars()['search']!=null) {
     hmContent('search');
     goSearch(getUrlVars()['search']);
@@ -307,7 +307,8 @@ document.getElementById('nav-games').className='';
 const api='https://tstore.space/api.php';
 const api2_app=`https://api.tstore.space/app.php`;
 const api2_search=`https://api.tstore.space/search.php`;
-const api2_list=`https://api.tstore.space/list.php`;
+const api2_lib=`https://tenid.tstore.space/library.php`;
+const api2_saved='https://tenid.tstore.space/saved.php';
 const api2_cards=`https://api.tstore.space/cards.php`;
 var head=document.getElementsByTagName('HEAD')[0];
 var body=document.getElementsByTagName('body')[0];
@@ -473,7 +474,9 @@ function goSearch(historyValue) {
             iconSize='30px';
           }
           let appdev=listData.apps[i].dev;
-          if (listData.apps[i].pub!='') {
+          if (listData.apps[i].sh_desc!='') {
+            appdev=listData.apps[i].sh_desc;
+          } else if (listData.apps[i].pub!='') {
             appdev=listData.apps[i].pub;
           }
           let otherResults=`<h2 class="hm-title">Остальные результаты</h2>`;
@@ -495,7 +498,7 @@ function goSearch(historyValue) {
                 <img onclick="showAB(${listData.apps[i].id})" class="hm-card-img" src='${appbg}'>
                 <div class="flex-row">
                   <h5 class="hm-card-smalltext">${appdev}</h5>
-                  <h5 class="hm-card-smalltext hm-card-smtxt-right">${listData.apps[i].agelimit}</h5>
+                  <h5 class="hm-card-smalltext hm-card-smtxt-right">${listData.apps[i].ageLimit}</h5>
                 </div>
                 <h2 class="hm-card-title">${listData.apps[i].name}</h2>
                 <h4 class="hm-card-text">${listData.apps[i].sh_desc}</h4>
