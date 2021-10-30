@@ -505,7 +505,8 @@
 #ab-desc {
   font-weight: normal;
   margin: 16px;
-  white-space: pre-line;
+  white-space: pre-wrap;
+  hyphens: auto;
 }
 #list-subtext {
   margin: 4px 16px 16px 16px;
@@ -1055,6 +1056,7 @@
   border-radius: 100px;
   margin-left: 0;
   margin-right: 0;
+  color: var(--text_color);
 }
 .rate-button.selected:first-child {
   color: #388e3c;
@@ -1063,10 +1065,10 @@
   color: #d32f2f;
 }
 .rate-button.new_review {
-  background: rgba(255, 255, 255, calc(var(--transparency_hover_light) / 2));
+  background: var(--bg_nr_btns);
 }
 #ab-new_review {
-  background: var(--bg_absolute);
+  background: var(--bg_new_review);
 }
 .rate-button.new_review > .rate-icon {
   color: inherit;
@@ -1133,6 +1135,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  hyphens: auto;
+  white-space: pre-wrap;
 }
 #ab-reviews-btn > i {
   color: var(--text_color);

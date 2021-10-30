@@ -8,6 +8,9 @@
   --bg_hover: rgba(0, 0, 0, 0.24);
   --transparency_hover_light: 0.5;
 
+  --bg_new_review: var(--bg);
+  --bg_nr_btns: var(--gray_lightest);
+
   --text_color: #262626;
   --gray_lightest: #ebebeb;
   --gray_light: #bfbfbf;
@@ -37,6 +40,8 @@
   --bg_nav: rgba(16, 16, 16, 0.88);
   --transparency_hover_light: 0.1;
   --tenstore_circle: var(--tenstore_accent_light);
+  --bg_new_review: var(--bg_absolute);
+  --bg_nr_btns: rgba(255, 255, 255, 0.05);
 }
 html, body {
   background: var(--bg);
@@ -121,8 +126,9 @@ h1, h2, h3, h4, h5, h6, i {
 .ai-dev {
   margin: 0 24px 0 2px;
   color: gray;
-  width: calc(100% - 200px);
-  text-overflow: clip;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -131,6 +137,7 @@ h1, h2, h3, h4, h5, h6, i {
   justify-content: center;
   display: flex;
   flex-direction: column;
+  width: calc(100% - 160px);
 }
 
 .ub-window {
