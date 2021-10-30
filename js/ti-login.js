@@ -1,7 +1,7 @@
 checkPlatform('f');
 checkTheme();
 login('log');
-var api='https://tstore.space/api.php';
+var api='https://tenid.tstore.space/login.php';
 var curstep='id';
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
   var loginLink=document.createElement('link');
@@ -72,14 +72,14 @@ function saveAccount() {
   let password=SHA256(document.getElementById('login_password').value);
   var saveAccount=getXMLHTTP();
   saveAccount.responseType="json";
-  saveAccount.open('POST', 'https://tstore.space/api.php', true);
+  saveAccount.open('POST', 'https://tenid.tstore.space/login.php', true);
   saveAccount.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   saveAccount.send("action=h495ujh"+"&login="+login+"&password="+password);
   saveAccount.onreadystatechange = function() {
     if ((saveAccount.readyState===4) && (saveAccount.status===200)) {
       let saData=saveAccount.response;
       if (saData!=null) {
-        localStorage.setItem('login', saData.user[0].login);
+        localStorage.setItem('login', saData[0].login);
         localStorage.setItem('password', password);
         loadbox('end');
         popup('Вход выполнен', 'check');

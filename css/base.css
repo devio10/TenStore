@@ -20,6 +20,8 @@
   /*--dot: var(--gray_light);
   --dot-active: gray;*/
   --bg_nav: rgba(239, 239, 239, 0.95);
+
+  --grid-width: calc(50% - 32px);
 }
 [dark-theme='true'] {
   --bg: black;
@@ -39,7 +41,6 @@
 html, body {
   background: var(--bg);
   width: 100%;
-  max-width: 700px;
   margin: 0 auto 0 auto;
   transition: .6s background-color cubic-bezier(0.65, 0, 0.35, 1);
   padding-bottom: 30px;
@@ -315,6 +316,9 @@ i.warn, h1.warn, h2.warn, h3.warn, h4.warn, h5.warn, h6.warn, a.warn {
 header {
   display: flex;
   align-items: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 #hd-logo {
   font-family: 'Kanit', sans-serif;
@@ -324,7 +328,7 @@ header {
   text-align: center;
   margin: 24px 24px 24px 0;
 }
-#header_logo {
+#header_logo, #tenid_header_logo {
   margin: 24px 24px 24px 0;
   width: 160px;
 }
@@ -359,7 +363,7 @@ header {
   transition: .4s transform;
   animation-name: user-pic;
   animation-duration: .4s;
-  border: 1.5px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
 }
 #hd-user:hover, #ub-user:hover, #si-dev:hover {
   transform: scale(1.1);

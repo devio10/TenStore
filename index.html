@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/blocks.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="https://tstore.space/animate/animate.min.css">
+    <link rel="stylesheet" href="./animate/animate.min.css">
 
-    <script src="https://tstore.space/phosphor/index.js"></script>
+    <script src="./phosphor/index.js"></script>
     <script src="js/theme.js" charset="utf-8"></script>
     <script src="js/vibrant.js" charset="utf-8"></script>
-    <script src="js/mobile-version.js" charset="utf-8"></script>
     <script src="js/popups.js" charset="utf-8"></script>
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
@@ -169,7 +168,7 @@
         <button style="margin-top: 16px" class="set-btn  no-hover">
           <img src="img/tenstore_icon_tab.svg" class="set-btn-icon" id="store-icon">
           <h4 class="set-btn-txt">TenStore Logan</h4>
-          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0.0 Pre-Release 1)</h4>
+          <h4 class="set-btn-txt2" style="margin-left: 4px; margin-right: auto">(3.0.0 Pre-Release 2)</h4>
         </button>
         <button onclick="setWindow('support')" class="set-btn">
           <img src="img/icons/lifebuoy.svg" class="set-btn-icon" id="support-icon">
@@ -435,21 +434,25 @@
     <div id="app-block">
 
       <div id="ab-new_review" style="display: none">
-        <div class="top-btns">
-          <a onclick='abHome()' class="top-btn">Отмена</a>
-          <a onclick='sendReview()' id="send-review" class="top-btn">Опубликовать</a>
+        <div class="flex-row">
+          <div onclick="abHome()" class="ab-back"> <i class="ph-caret-left ab-back-icon"></i> </div>
+          <div id="send-review" onclick="sendReview()" class="ab-qr"> <i class="ph-paper-plane-bold ab-back-icon"></i> </div>
         </div>
-        <input id="nr-title" type="text" placeholder="Заголовок..." autocomplete="off">
-        <textarea id="nr-text" placeholder="Отзыв..." autocomplete="off"></textarea>
-        <div class="big_btn-horiz_block">
-          <button id="nr-liked" class="big_btn horiz" onclick="nrRate(1)">
-            <i class="ph-thumbs-up-bold big_btn-icon" style="color: #388e3c"></i>
-            <h4 id="nr-liked-txt" class="big_btn-txt focus" style="color: #388e3c">Понравилось</h4>
-          </button>
-          <button id="nr-disliked" class="big_btn horiz" onclick="nrRate(0)">
-            <i class="ph-thumbs-down-bold big_btn-icon" style="color: #d32f2f"></i>
-            <h4 id="nr-disliked-txt" class="big_btn-txt focus" style="color: #d32f2f">Не понравилось</h4>
-          </button>
+        <h4 class="ub_title">Оставить комментарий</h4>
+
+        <div class="flex-row" style="margin: 0 0 16px 16px">
+          <div class="rate-block new_review">
+            <button id="rate_liked" class="rate-button new_review" onclick="nrRate(1)">
+              <i class="ph-thumbs-up rate-icon"></i>
+            </button>
+            <button id="rate_disliked" class="rate-button new_review" onclick="nrRate(0)">
+              <i class="ph-thumbs-down rate-icon"></i>
+            </button>
+          </div>
+          <input id="nr-title" type="text" placeholder="Заголовок..." autocomplete="off">
+        </div>
+        <div class="nr-text_block">
+          <textarea id="nr-text" placeholder="Отзыв..." autocomplete="off"></textarea>
         </div>
       </div>
       <div id="ab-main_content">
@@ -797,6 +800,7 @@
     </div>
     <script src="js/tenid.js" charset="utf-8"></script>
     <script src="js/blocks.js" charset="utf-8"></script>
+    <script src="js/mobile-version.js" charset="utf-8"></script>
     <script src="js/index.js"></script>
     <script src="js/banners.js" charset="utf-8"></script>
   </body>

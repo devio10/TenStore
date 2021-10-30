@@ -1,4 +1,4 @@
-
+localStorage.setItem('ef-api2', 'true');
 function getUrlVars(key) {
   var vars = {};
   var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -49,7 +49,7 @@ function show_activation_popup() {
   }
 
 }
-var h_amount=2;
+var h_amount=15;
 var h_page=0;
 var lastload=0;
 
@@ -110,33 +110,33 @@ function loadCards(location) {
       if (cardsData!=undefined) {
         document.getElementById(`${locationPage}-loading`).style.display='none';
         var skippedCard;
-        for (let i=0; i<cardsData.cards.length; i++) {
-           if (cardsData.cards[i].location==location) {
+        for (let i=0; i<cardsData.length; i++) {
+           if (cardsData[i].location==location) {
 
-             let cardType=cardsData.cards[i].type;
+             let cardType=cardsData[i].type;
 
              let cardobj=document.createElement('div');
              if (cardType=='2_wide') {
                let btm_buttons=`
-                 <i class="hm-card-button ph-cloud-arrow-down-light" onclick="download(${cardsData.cards[i].appId})"></i>
-                 <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData.cards[i].appId})"></i>
+                 <i class="hm-card-button ph-cloud-arrow-down-light" onclick="download(${cardsData[i].appId})"></i>
+                 <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData[i].appId})"></i>
                `;
-               if (cardsData.cards[i].download_button==0) {
+               if (cardsData[i].download_button==0) {
                  btm_buttons=`
-                   <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData.cards[i].appId})"></i>
+                   <i class="hm-card-button ph-info-light" onclick="showAB(${cardsData[i].appId})"></i>
                  `;
                }
                cardobj.className='hm-card new';
-               cardobj.style.backgroundImage=`linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3) ), url(https://tstore.space/${cardsData.cards[i].bg_image})`;
+               cardobj.style.backgroundImage=`linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3) ), url(https://tstore.space/${cardsData[i].bg_image})`;
                cardobj.style.backgroundRepeat='no-repeat';
                cardobj.style.backgroundSize='cover';
                cardobj.style.backgroundPosition=`center`;
                cardobj.innerHTML=`
                  <div class="hm-card-rate">
-                   <h5 class="hc-rate-text">${cardsData.cards[i].age_rating}+</h5>
+                   <h5 class="hc-rate-text">${cardsData[i].age_rating}+</h5>
                  </div>
-                 <h1 class="hm-card-title new">${cardsData.cards[i].title}</h1>
-                 <h4 class="hm-card-text new">${cardsData.cards[i].text}</h4>
+                 <h1 class="hm-card-title new">${cardsData[i].title}</h1>
+                 <h4 class="hm-card-text new">${cardsData[i].text}</h4>
                  <hr class="hm-card-hr">
 
                  <div class="flex-row">
@@ -147,20 +147,20 @@ function loadCards(location) {
             } else if (cardType=='1_small') {
 
               let phClass='';
-              let src=`src='https://tstore.space/${cardsData.cards[i].bg_image}'`;
-              let imgObj=`<img style="height: 300px; --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-img short-img ${phClass}" ${src}>`;
-              if (cardsData.cards[i].placeholder!=0) {
+              let src=`src='https://tstore.space/${cardsData[i].bg_image}'`;
+              let imgObj=`<img style="height: 300px; --ph_color: ${cardsData[i].ph_color}" class="hm-card-img short-img ${phClass}" ${src}>`;
+              if (cardsData[i].placeholder!=0) {
                 phClass='placeholder';
-                imgObj='<div style="height: 300px; --ph_color: ${cardsData.cards[i].ph_color}" class="placeholder"></div>';
+                imgObj=`<div style="height: 300px" class="placeholder"></div>`;
               }
 
               cardobj.className='hm-card';
-              cardobj.style.background=`rgb(${cardsData.cards[i].bg_color})`;
-              cardobj.setAttribute('onclick', `showList("${cardsData.cards[i].link_list}")`);
+              cardobj.style.background=`rgb(${cardsData[i].bg_color})`;
+              cardobj.setAttribute('onclick', `showList("${cardsData[i].link_list}")`);
               cardobj.innerHTML=`
                 ${imgObj}
-                <h5 style="color: rgb(${cardsData.cards[i].text_color}); --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-smalltext ${phClass}">${cardsData.cards[i].subtitle}</h5>
-                <h2 style="color: rgb(${cardsData.cards[i].text_color}); --ph_color: ${cardsData.cards[i].ph_color}" class="hm-card-title2 ${phClass}">${cardsData.cards[i].title}</h2>
+                <h5 style="color: rgb(${cardsData[i].text_color}); --ph_color: ${cardsData[i].ph_color}" class="hm-card-smalltext ${phClass}">${cardsData[i].subtitle}</h5>
+                <h2 style="color: rgb(${cardsData[i].text_color}); --ph_color: ${cardsData[i].ph_color}" class="hm-card-title2 ${phClass}">${cardsData[i].title}</h2>
               `;
 
             }
@@ -180,6 +180,7 @@ function loadCards(location) {
     } else if (cards=='null') {
     } else if (cards.status===0) {
 
+
       document.getElementById(`hm-${locationPage}`).innerHTML=`
         <div id="${locationPage}-loading">
           <div class="ab-loading-block">
@@ -189,6 +190,7 @@ function loadCards(location) {
         </div>
       `;
       cards.abort();
+
 
     }
 
@@ -264,14 +266,15 @@ function hmContent(page) {
 
   if (page!='search') {
     loadCards(page);
+    document.getElementById(`hm-${page}`).style.display='flex';
   } else {
     setTimeout(function () {
       document.getElementById('hm-search-input').focus();
     }, 100);
     checkHistory();
     fake_search.style.display='none';
+    document.getElementById(`hm-${page}`).style.display='block';
   }
-  document.getElementById(`hm-${page}`).style.display='flex';
   document.getElementById(`nav-${page}`).classList=`ph-${icon}-fill ui-nav-icon ui-nav-icon-highlight`;
   document.getElementById(`top_nav_${page}`).className='active';
   document.getElementById(`top_nav_${page}`).children[0].className=`ph-${icon}-fill`;
@@ -322,6 +325,7 @@ login();
 checkUrlVars();
 checkPars();
 checkPlatform();
+
 
 window.onscroll=function() {
 
@@ -454,40 +458,44 @@ function goSearch(historyValue) {
       loadScrn.style.display='none';
       mainScrn.style.display='block';
       */
-      if (listData.apps==undefined) {
+      if (listData==undefined) {
         document.getElementById('search-no_results').style.display='flex';
         document.getElementById('search-process').style.display='none';
-      } else if (listData.apps!=undefined) {
-        for (let i=0; i<listData.apps.length; i++) {
+      } else if (listData!=undefined) {
+        for (let i=0; i<listData.length; i++) {
           let iconPadding='0';
           let iconBg='white';
           let iconSize='40px';
-          let liIcon='https://tstore.space/'+listData.apps[i].icon;
-          if (listData.apps[i].icon=='') {
+          let liIcon='https://tstore.space/'+listData[i].icon;
+          if (listData[i].icon=='') {
             liIcon='img/prohibit.svg';
           }
-          if (listData.apps[i].icon_bg!=0) {
-            iconBg=listData.apps[i].icon_bg;
+          if (listData[i].icon_bg!=0) {
+            iconBg=listData[i].icon_bg;
           }
-          if (listData.apps[i].icon_pad!=0) {
+          if (listData[i].icon_pad!=0) {
             iconPadding='5px';
             iconSize='30px';
           }
-          let appdev=listData.apps[i].dev;
-          if (listData.apps[i].sh_desc!='') {
-            appdev=listData.apps[i].sh_desc;
-          } else if (listData.apps[i].pub!='') {
-            appdev=listData.apps[i].pub;
+          let app_desc=listData[i].dev;
+          if (listData[i].pub!='') {
+            app_desc=listData[i].pub;
+          } else if (listData[i].sh_desc!='') {
+            app_desc=listData[i].sh_desc;
+          }
+          let appdev=listData[i].dev;
+          if (listData[i].pub!='') {
+            appdev=listData[i].pub;
           }
           let otherResults=`<h2 class="hm-title">Остальные результаты</h2>`;
-          if (listData.apps.length==1) {
+          if (listData.length==1) {
             otherResults='';
           }
           if (i==0) {
 
-            let appbg=`https://tstore.space/${listData.apps[i].bg}`;
+            let appbg=`https://tstore.space/${listData[i].bg}`;
 
-            if (listData.apps[i].bg == '') {
+            if (listData[i].bg == '') {
               appbg='https://tstore.space/images/headers/2.jpg';
             }
 
@@ -495,16 +503,16 @@ function goSearch(historyValue) {
             document.getElementById('search-best_result').innerHTML=`
               <h2 class="hm-title">Лучший результат</h2>
               <div class="hm-card hm-card-wide no-scale">
-                <img onclick="showAB(${listData.apps[i].id})" class="hm-card-img" src='${appbg}'>
+                <img onclick="showAB(${listData[i].id})" class="hm-card-img" src='${appbg}'>
                 <div class="flex-row">
                   <h5 class="hm-card-smalltext">${appdev}</h5>
-                  <h5 class="hm-card-smalltext hm-card-smtxt-right">${listData.apps[i].ageLimit}</h5>
+                  <h5 class="hm-card-smalltext hm-card-smtxt-right">${listData[i].ageLimit}+</h5>
                 </div>
-                <h2 class="hm-card-title">${listData.apps[i].name}</h2>
-                <h4 class="hm-card-text">${listData.apps[i].sh_desc}</h4>
+                <h2 class="hm-card-title">${listData[i].name}</h2>
+                <h4 class="hm-card-text">${listData[i].sh_desc}</h4>
                 <div class="flex-row">
-                  <i class="hm-card-button ph-cloud-arrow-down-light z_wide_icon" onclick="download(${listData.apps[i].id})"></i>
-                  <i class="hm-card-button ph-info-light z_wide_icon" onclick="showAB(${listData.apps[i].id})"></i>
+                  <i class="hm-card-button ph-cloud-arrow-down-light z_wide_icon" onclick="download(${listData[i].id})"></i>
+                  <i class="hm-card-button ph-info-light z_wide_icon" onclick="showAB(${listData[i].id})"></i>
                 </div>
               </div>
               ${otherResults}
@@ -514,9 +522,9 @@ function goSearch(historyValue) {
 
             var listItem=document.createElement('div');
             listItem.className='app-item';
-            listItem.innerHTML="<img class='ai-icon' onclick='showAB("+listData.apps[i].id+")' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
-            <div class='ai-text'> <h5 onclick='showAB("+listData.apps[i].id+")' class='ai-name'>"+listData.apps[i].name+"</h5> <h5 onclick='showAB("+listData.apps[i].id+")' class='ai-dev'>"+appdev+"</h5> </div> \
-            <i onclick='showAB("+listData.apps[i].id+")' class='ph-info ai-info'></i> <i onclick='download("+listData.apps[i].id+"); popup(`Скачивание началось`, `cloud-arrow-down`)' class='ph-cloud-arrow-down ai-down'></i>"
+            listItem.innerHTML="<img class='ai-icon' onclick='showAB("+listData[i].id+")' style='background: "+iconBg+"; padding: "+iconPadding+"; width: "+iconSize+"; height: "+iconSize+"' src='"+liIcon+"'> \
+            <div class='ai-text'> <h5 onclick='showAB("+listData[i].id+")' class='ai-name'>"+listData[i].name+"</h5> <h5 onclick='showAB("+listData[i].id+")' class='ai-dev'>"+app_desc+"</h5> </div> \
+            <i onclick='showAB("+listData[i].id+")' class='ph-info ai-info'></i> <i onclick='download("+listData[i].id+"); popup(`Скачивание началось`, `cloud-arrow-down`)' class='ph-cloud-arrow-down ai-down'></i>"
             document.getElementById('search_list').appendChild(listItem);
 
           }

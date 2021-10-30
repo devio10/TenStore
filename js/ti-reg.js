@@ -26,7 +26,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
 checkTheme('f');
 checkPlatform('f');
 login('reg');
-var api='http://tenid.tstore.space/register.php';
+var api='https://tenid.tstore.space/register.php';
 function checkData(type, source) {
   if (type=='email') {
     source=document.getElementById('reg-email').value;
@@ -191,7 +191,7 @@ function finishReg () {
     params.append("email", document.getElementById('reg-email').value);
     params.append("password", SHA256(document.getElementById('reg-password').value));
     params.append("g-recaptcha", recaptchaResponse);
-    request.open("POST", 'https://tstore.space/api.php', true);
+    request.open("POST", 'https://tenid.tstore.space/register.php', true);
     request.addEventListener("readystatechange", () => {
         if (request.readyState === 4 && request.status === 200) {
           loadbox('end');

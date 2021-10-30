@@ -10,10 +10,16 @@ button {
   font-size: 14px;
 }
 
-.hm-card {
+#hm-home, #hm-apps, #hm-games {
   width: 100%;
+}
+.hm-card, .new.hm-card {
+  flex-basis: 100%;
   margin-left: 0;
   margin-right: 0;
+}
+.hm-content {
+  align-items: center;
 }
 .hm-card-img {
   height: 380px;
@@ -36,6 +42,7 @@ button {
   animation-name: phone-block-appear;
   border: none;
   border-top: 1px solid var(--gray_light);
+  transform: none;
 }
 #user-block {
   height: auto;
@@ -156,18 +163,6 @@ input[type=text], input[type=password] {
   margin-left: 8px;
   margin-right: 8px;
 }
-.new.hm-card {
-  padding: 16px;
-}
-.new.hm-card-title {
-  margin: 60px 0 16px 0;
-}
-.new.hm-card-text {
-  margin: 0 0 0 0;
-}
-.hm-card-hr {
-  width: 100%;
-}
 
 .ca-body {
   width: 100%;
@@ -282,4 +277,8 @@ input[type=text], input[type=password] {
 #header_logo {
   margin: 24px 24px 24px 24px;
   width: 140px;
+}
+#tenid_header_logo {
+  width: 110px;
+  margin: -62px 0 0 24px;
 }

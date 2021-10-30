@@ -5,7 +5,7 @@ function login(addit) {
   if (login!=null) {
     var loginID=getXMLHTTP();
     loginID.responseType="json";
-    loginID.open('POST', 'https://tstore.space/api.php', true);
+    loginID.open('POST', 'https://tenid.tstore.space/login.php', true);
     loginID.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     loginID.send("action=h495ujh"+"&login="+login+"&password="+password);
     loginID.onreadystatechange = function() {
@@ -13,10 +13,10 @@ function login(addit) {
         let userData=loginID.response;
         if (userData!=null) {
           loggedIn=true;
-          var userEmail=userData.user[0].email;
-          var userName=userData.user[0].name+' '+userData.user[0].lastname;
-          var userPhoto='https://tstore.space/'+userData.user[0].photo;
-          if ((userData.user[0].photo==0)||(userData.user[0].photo==null)) {
+          var userEmail=userData[0].email;
+          var userName=userData[0].name+' '+userData[0].lastname;
+          var userPhoto='https://tstore.space/'+userData[0].photo;
+          if ((userData[0].photo==0)||(userData[0].photo==null)) {
             userPhoto='img/user.svg';
           }
           if (addit=='reg') {

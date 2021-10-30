@@ -74,7 +74,7 @@ function showAB(appid, dontPushHistory) {
 
     if ((appBlock.readyState===4)&&(appBlock.status===200)) {
       var appData=appBlock.response;
-      if (  (appData!=0) && ( (appData.apps[0].type=='app') || (appData.apps[0].type=='game') )  ) {
+      if (  (appData!=0) && ( (appData[0].type=='app') || (appData[0].type=='game') )  ) {
 
         if (loggedIn==true) {
           document.getElementById('ab-no_account').style.display='none';
@@ -82,9 +82,9 @@ function showAB(appid, dontPushHistory) {
         selected_presence=0;
 
         let abIcon=document.getElementById('ab-icon');
-        if (appData.apps[0].icon!='') {
-          abIcon.src='https://tstore.space/'+appData.apps[0].icon;
-          if (appData.apps[0].icon_pad!=0) {
+        if (appData[0].icon!='') {
+          abIcon.src='https://tstore.space/'+appData[0].icon;
+          if (appData[0].icon_pad!=0) {
             abIcon.style.width='80px';
             abIcon.style.height='80px';
             abIcon.style.padding='10px';
@@ -94,10 +94,10 @@ function showAB(appid, dontPushHistory) {
             abIcon.style.padding='0';
           }
           let abIconBg;
-          if (appData.apps[0].icon_bg==0) {
+          if (appData[0].icon_bg==0) {
             abIconBg='white';
           } else {
-            abIconBg=appData.apps[0].icon_bg;
+            abIconBg=appData[0].icon_bg;
           }
           abIcon.style.background=abIconBg;
         } else {
@@ -111,28 +111,28 @@ function showAB(appid, dontPushHistory) {
 
         document.getElementById('ab-error').style.display='none';
 
-        shortDescription=appData.apps[0].descr.split('<p>');
-        longDescription=appData.apps[0].descr;
+        shortDescription=appData[0].descr.split('<p>');
+        longDescription=appData[0].descr;
         if (shortDescription[0]==longDescription) {
           document.getElementById('ab-desc').innerHTML=shortDescription[0];
         } else {
           document.getElementById('ab-desc').innerHTML=shortDescription[0]+showFull;
         }
-        document.title=appData.apps[0].name+' — TenStore';
-        document.getElementById('ab-name').innerText=appData.apps[0].name;
-        if (appData.apps[0].sh_desc!='') {
-          document.getElementById('ab-short-desc').innerText=appData.apps[0].sh_desc;
+        document.title=appData[0].name+' — TenStore';
+        document.getElementById('ab-name').innerText=appData[0].name;
+        if (appData[0].sh_desc!='') {
+          document.getElementById('ab-short-desc').innerText=appData[0].sh_desc;
         } else {
-          let appdev=appData.apps[0].dev;
-          if (appData.apps[0].pub!='') {
-            appdev=appData.apps[0].pub;
+          let appdev=appData[0].dev;
+          if (appData[0].pub!='') {
+            appdev=appData[0].pub;
           }
           document.getElementById('ab-short-desc').innerText=appdev;
         }
 
         let abHeader=document.getElementById('ab-header');
-        if (appData.apps[0].bg!=0) {
-          abHeader.style.background="url(https://tstore.space/"+appData.apps[0].bg+")";
+        if (appData[0].bg!=0) {
+          abHeader.style.background="url(https://tstore.space/"+appData[0].bg+")";
           abHeader.style.backgroundPosition='center';
           abHeader.style.backgroundRepeat='no-repeat';
           abHeader.style.backgroundSize='cover';
@@ -146,9 +146,9 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('scrs-block').style.display='none';
         document.getElementById('nav-prev').disabled=false;
         document.getElementById('nav-next').disabled=false;
-        document.getElementById('ab-share_btn').setAttribute('onclick', `abShare(${appid}, '${appData.apps[0].name}')`);
+        document.getElementById('ab-share_btn').setAttribute('onclick', `abShare(${appid}, '${appData[0].name}')`);
         curscr=0;
-        let scrsData=appData.apps[0].screenshots;
+        let scrsData=appData[0].screenshots;
         if(scrsData!=null){
           var screenshots=JSON.parse(scrsData);
           for(let s in screenshots) {
@@ -175,7 +175,7 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('ab-bookmark').setAttribute('onclick', `add_to_saved('${appid}')`);
 
         document.getElementById('ab-reviews').innerHTML='';
-        let revJson=appData.apps[0].comments;
+        let revJson=appData[0].comments;
         if (revJson!=null) {
 
           const revs=JSON.parse(revJson);
@@ -256,9 +256,9 @@ function showAB(appid, dontPushHistory) {
 
         selectedPlatform=localStorage.getItem('platform');
         document.getElementById('ab-platforms').innerHTML='';
-        let filesjson=appData.apps[0].files;
+        let filesjson=appData[0].files;
         if (filesjson!=null) {
-          let psJson=JSON.parse(appData.apps[0].files);
+          let psJson=JSON.parse(appData[0].files);
 
           for (var i = 0; i < psJson.length; i++) {
 
@@ -303,18 +303,18 @@ function showAB(appid, dontPushHistory) {
           document.getElementById('ab-platform-select').style.display='none';
           document.getElementById('ab-platform').style.display='none';
         }
-        document.getElementById('si-pos').innerText=appData.apps[0].liked;
-        document.getElementById('si-neg').innerText=appData.apps[0].disliked;
-        document.getElementById('si-rating').innerText=`${appData.apps[0].ageLimit}+`;
-        document.getElementById('si-dev-name').innerText=appData.apps[0].dev;
-        document.getElementById('si-downloads').innerText=appData.apps[0].downloads;
+        document.getElementById('si-pos').innerText=appData[0].liked;
+        document.getElementById('si-neg').innerText=appData[0].disliked;
+        document.getElementById('si-rating').innerText=`${appData[0].ageLimit}+`;
+        document.getElementById('si-dev-name').innerText=appData[0].dev;
+        document.getElementById('si-downloads').innerText=appData[0].downloads;
 
         document.getElementById('ab-download').setAttribute('onclick',`download(${appid})`);
         document.getElementById('send-review').setAttribute('onclick',"sendReview("+appid+")");
 
         loadScreen.style.display='none';
         indexScreen.style.display='block';
-      } else if ((appData!=0)&&(appData.apps[0].type=='removed')) {
+      } else if ((appData!=0)&&(appData[0].type=='removed')) {
 
         document.getElementById('ab-loading').style.display='none';
         document.getElementById('ab-error').style.display='flex';
@@ -322,7 +322,7 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('ab_error_icon').className='ph-warning-circle';
         document.getElementById('ab_error_text').innerHTML=`Приложение было удалено из публичного доступа.`;
 
-      } else if ((appData!=0)&&(appData.apps[0].type=='violation_of_rules')) {
+      } else if ((appData!=0)&&(appData[0].type=='violation_of_rules')) {
 
         document.getElementById('ab-loading').style.display='none';
         document.getElementById('ab-error').style.display='flex';
@@ -408,14 +408,9 @@ function newReview() {
   if (loggedIn==true) {
     document.getElementById('ab-main_content').style.display='none';
     document.getElementById('ab-new_review').style.display='block';
-    if (platform=='mobile') {
-      positions=0;
-      ab.style.height='calc(100% - 60px)';
-      abIndex.style.borderTopLeftRadius='16px';
-      abIndex.style.borderTopRightRadius='16px';
-      ab.style.borderTopLeftRadius='16px';
-      ab.style.borderTopRightRadius='16px';
-    }
+    setTimeout(function () {
+      document.getElementById('nr-title').focus();
+    }, 700);
   } else {
     popup('Войдите в аккаунт', 'sign-in');
   }
@@ -548,32 +543,25 @@ function platforms() {
   }
 }
 function nrRate(rate) {
-  document.getElementById('nr-disliked').style.width='calc(30% - 16px)';
-  document.getElementById('nr-disliked').style.flexBasis='auto';
-  document.getElementById('nr-disliked-txt').style.display='none';
-  document.getElementById('nr-liked').style.width='calc(30% - 16px)';
-  document.getElementById('nr-liked').style.flexBasis='auto';
-  document.getElementById('nr-liked-txt').style.display='none';
   let rateObj;
-  let rateName;
+  let icon;
   if (rate==1) {
     rateObj='liked';
+    icon = 'up';
     isLiked='1';
   } else {
     rateObj='disliked';
     isLiked='-1';
+    icon = 'down';
   }
-  if (platform!='mobile') {
-    document.getElementById('nr-'+rateObj).style.width='calc(70% - 16px)';
-  } else {
-    document.getElementById('nr-'+rateObj).style.width='calc(70% - 32px)';
-  }
-  document.getElementById('nr-'+rateObj).style.flexBasis='auto';
-  setTimeout(function () {
-    document.getElementById('nr-liked-txt').style.display='none';
-    document.getElementById('nr-disliked-txt').style.display='none';
-    document.getElementById('nr-'+rateObj+'-txt').style.display='block';
-  }, 1000);
+  document.getElementById(`rate_liked`).classList.remove('selected');
+  document.getElementById(`rate_disliked`).classList.remove('selected');
+
+  document.getElementById(`rate_liked`).children[0].className=`ph-thumbs-up rate-icon`;
+  document.getElementById(`rate_disliked`).children[0].className=`ph-thumbs-down rate-icon`;
+
+  document.getElementById(`rate_${rateObj}`).classList.toggle('selected');
+  document.getElementById(`rate_${rateObj}`).children[0].className=`ph-thumbs-${icon}-fill rate-icon`;
 }
 function openScreenshot(src) {
 
@@ -627,103 +615,24 @@ function sendReview(appid, remove) {
     let reviewtitle=document.getElementById('nr-title').value;
     var sendreview=getXMLHTTP();
     sendreview.responseType="json";
-    sendreview.open('POST', 'https://tstore.space/api.php', true);
+    sendreview.open('POST', 'https://api.tstore.space/new_review.php', true);
     sendreview.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    sendreview.send("action=DF7dcbw"+"&login="+localStorage.getItem('login')+"&password="+localStorage.getItem('password')+"&isLiked="+isLiked+"&comment="+reviewtext+"&title="+reviewtitle+"&id="+appid);
     sendreview.onreadystatechange = function() {
       abHome();
       let appBlock=new XMLHttpRequest();
-      let appId='action=4LlFCT&id='+appid;
+      let appId=`id=${appid}`;
       appBlock.responseType = "json";
-      appBlock.open("POST", api, true);
+      appBlock.open("POST", api2_app, true);
       appBlock.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       appBlock.addEventListener("readystatechange", () => {
         if ((appBlock.readyState===4)&&(appBlock.status===200)) {
           let appData=appBlock.response;
           if (appData!=0) {
             document.getElementById('ab-reviews').innerHTML='';
-            let revJson=appData.apps[0].comments;
-            if (localStorage.getItem('ef-api2')=='true') {
-              if (revJson!=null) {
-                const revs=JSON.parse(revJson);
-                for(let c in revs) {
-
-                  if (c==3) {
-
-                    let showFull = document.createElement('button');
-                    showFull.id = 'ab-reviews-btn';
-                    showFull.setAttribute('onclick', 'toggleReviews()');
-                    showFull.innerHTML = `<i class="ph-caret-down-bold"></i><p>Показать полностью</p>`;
-                    document.getElementById('ab-reviews').appendChild(showFull);
-
-                  }
-
-                  let currentTime=new Date();
-                  let revDate=revs.comments[c].date;
-                  let clearRevDate=revDate.substr(revDate.length - 6);
-                  if (currentTime.getFullYear() == clearRevDate.substring(0, clearRevDate.length - 2)) {
-                    revDate=', '+revDate.slice(0, - 7);
-                  } else {
-                    revDate=', '+revDate;
-                  }
-
-                  var reviewObj=document.createElement('div');
-                  reviewObj.className='ab-review';
-
-                  let revType='down red';
-                  if (revs.comments[c].isLiked=='1') {
-                    revType='up green';
-                    reviewObj.style.border='1px solid rgba(67,160,71, 0.5)';
-                  }
-
-
-                  if (revs.comments[c].login!=localStorage.getItem('login')) {
-
-                    reviewObj.innerHTML= `
-                      <div class="abb">
-                        <i class="review_icon ph-thumbs-${revType}"></i>
-                        <h3 class='rev-title'>${revs.comments[c].title}</h3>
-                      </div>
-                      <h5 class='rev-text'>${revs.comments[c].comment}</h5>
-                      <div class="agg">
-                        <h5 class='rev-author'>${revs.comments[c].login}${revDate}</h5>
-                        <i onclick='reportReview()' class="ph-flag-bold"></i>
-                      </div>
-                    `;
-
-                    document.getElementById('ab-reviews').appendChild(reviewObj);
-
-                  } else {
-
-                    reviewObj.innerHTML= `
-                      <div class="abb">
-                        <i id='my_rev_rate' class="review_icon ph-thumbs-${revType}"></i>
-                        <h3 id='my_rev_title' class='rev-title'>${revs.comments[c].title}</h3>
-                      </div>
-                      <h5 id='my_rev_text' class='rev-text'>${revs.comments[c].comment}</h5>
-                      <div class="agg">
-                        <h5 class='rev-author'>${revs.comments[c].login}${revDate}</h5>
-                      </div>
-                      <div class="review_btns">
-                        <button onclick="removeReview(${appid})"><i class="ph-trash"></i><p>Удалить</p></button>
-                        <button onclick="editReview()"><i class="ph-pencil-bold"></i><p>Редактировать</p></button>
-                      </div>
-                    `;
-
-                    document.getElementById('above_reviews').innerHTML='';
-                    document.getElementById('above_reviews').appendChild(reviewObj);
-
-                  }
-
-                  document.getElementById('ab-no-reviews').style.display='none';
-
-                }
-            };
-            }
-            else
-            if (revJson!=0) {
+            let revJson=appData[0].comments;
+            if (revJson!=null) {
               const revs=JSON.parse(revJson);
-              for(let c in revs.comments) {
+              for(let c in revs) {
 
                 if (c==3) {
 
@@ -796,6 +705,7 @@ function sendReview(appid, remove) {
 
               }
           };
+
         };
         }
       });
@@ -808,6 +718,7 @@ function sendReview(appid, remove) {
         loadbox('end');
       }
     };
+    sendreview.send(`action=new&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}&isLiked=${isLiked}&title=${reviewtitle}&text=${reviewtext}&id=${appid}`);
   } else {
     popup('Поставьте оценку приложению', 'star-half');
   }
@@ -938,7 +849,7 @@ function download (appid, is_download_all) {
     downloadRequest.addEventListener("readystatechange", () => {
       if ((downloadRequest.readyState===4)&&(downloadRequest.status===200)) {
         var ddResponse=downloadRequest.response;
-        let ddFiles=ddResponse.apps[0].files;
+        let ddFiles=ddResponse[0].files;
 
         ddFiles=JSON.parse(ddFiles);
         for(let i=0; i<ddFiles.length; i++) {
@@ -982,10 +893,6 @@ function checkPars() {
 
   document.getElementById('cur-platform').innerText=localStorage.getItem('platform');
   document.getElementById('p-'+localStorage.getItem('platform')).checked=true;
-
-  if (localStorage.getItem('ef-api2')=='true') {
-    document.getElementById('api_version').innerText='API 2.0';
-  }
 
 }
 
@@ -1327,15 +1234,14 @@ function toggleUB(dontPushHistory) {
       ubObj.className='';
       ubObj.style.opacity='1';
       ubBgObj.style.opacity='1';
-    }, 150);
+    }, 500);
     toggleScrolling('add');
     if (platform=='mobile') {
       ubObj.className='scale-phone-anim';
     } else if (platform=='pc') {
       ubObj.className='scale-pc-anim';
     }
-    ubObj.style.opacity='.4';
-    ubBgObj.style.opacity='.1';
+    ubBgObj.style.opacity='0';
     if (dontPushHistory!=true) {
       window.history.pushState(null, '', 'https://tstore.space/');
     }
