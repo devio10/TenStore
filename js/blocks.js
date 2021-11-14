@@ -66,6 +66,7 @@ function showAB(appid, dontPushHistory) {
   var appBlock=new XMLHttpRequest();
   var abPars=`id=${appid}&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}`;
   appBlock.responseType = "json";
+  appBlock.overrideMimeType('text/xml; charset=iso-8859-1');
   appBlock.open("POST", api2_app, true);
   appBlock.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -73,7 +74,7 @@ function showAB(appid, dontPushHistory) {
 
 
     if ((appBlock.readyState===4)&&(appBlock.status===200)) {
-      var appData=appBlock.response;
+      var appData = appBlock.response;
       if (  (appData!=0) && ( (appData[0].type=='app') || (appData[0].type=='game') )  ) {
 
         /* ⬇️⬇️ возвращение к первоначальному состоянию ⬇️⬇️ */
@@ -158,6 +159,8 @@ function showAB(appid, dontPushHistory) {
         document.getElementById('ab-share_btn').setAttribute('onclick', `abShare(${appid}, '${appData[0].name}')`);
         // Кнопка "скачать"
         document.getElementById('ab-download').setAttribute('onclick',`download(${appid})`);
+        document.getElementById('si-pos').innerText=appData[0].liked;
+        document.getElementById('si-neg').innerText=appData[0].disliked;
         /* ***** */
 
         /* ⬇️⬇️ ПРОВЕРКА НАЛИЧИЯ В ЗАКЛАДКАХ ⬇️⬇️ */
@@ -653,6 +656,7 @@ function sendReview(appid, remove) {
     var sendreview=new XMLHttpRequest();
     let pars = `action=new&login=${localStorage.getItem('login')}&password=${localStorage.getItem('password')}&isLiked=${isLiked}&title=${reviewtitle}&text=${reviewtext}&id=${appid}`;
     sendreview.responseType="json";
+    sendreview.overrideMimeType('text/xml; charset=iso-8859-1');
     sendreview.open('POST', 'https://api.tstore.space/new_review.php', true);
     sendreview.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     sendreview.addEventListener("readystatechange", () => {
@@ -661,6 +665,7 @@ function sendReview(appid, remove) {
       let appBlock=new XMLHttpRequest();
       let appId=`id=${appid}`;
       appBlock.responseType = "json";
+      appBlock.overrideMimeType('text/xml; charset=iso-8859-1');
       appBlock.open("POST", api2_app, true);
       appBlock.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       appBlock.addEventListener("readystatechange", () => {
@@ -725,7 +730,7 @@ function sendReview(appid, remove) {
                       <i id='my_rev_rate' class="review_icon ph-thumbs-${revType}"></i>
                       <h3 id='my_rev_title' class='rev-title'>${revs[c].title}</h3>
                     </div>
-                    <h5 id='my_rev_text' class='rev-text'>${revs[c].comment}</h5>
+                    <h5 id='my_rev_text' class='rev-text'>${revs[c].text}</h5>
                     <div class="agg">
                       <h5 class='rev-author'>${revs[c].login}${revDate}</h5>
                     </div>
